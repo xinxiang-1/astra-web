@@ -2,8 +2,8 @@
 import { computed, reactive, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 
+import { AtmosphereStage } from '@/components/styles'
 import FxButton from '@/components/ui/FxButton.vue'
-import FxStage from '@/components/ui/FxStage.vue'
 import { useAuthStore, type AuthMode } from '@/stores/auth'
 
 const props = withDefaults(
@@ -90,7 +90,7 @@ async function onSubmit() {
 </script>
 
 <template>
-  <FxStage intensity="soft">
+  <AtmosphereStage preset="auth">
     <section class="auth">
       <div class="panel">
         <div class="brand-row">
@@ -214,7 +214,7 @@ async function onSubmit() {
         </p>
       </div>
     </section>
-  </FxStage>
+  </AtmosphereStage>
 </template>
 
 <style scoped>
@@ -229,12 +229,19 @@ async function onSubmit() {
 
 .panel {
   width: min(420px, 100%);
-  padding: 1.4rem 1.35rem 1.25rem;
-  border: 1px solid var(--border);
+  padding: 1.55rem 1.45rem 1.4rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: var(--radius-lg);
-  background: var(--bg-elevated);
-  backdrop-filter: blur(18px);
-  box-shadow: var(--shadow);
+  background: color-mix(in srgb, var(--bg-elevated) 88%, transparent);
+  backdrop-filter: blur(20px) saturate(1.35);
+  -webkit-backdrop-filter: blur(20px) saturate(1.35);
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.42);
+}
+
+[data-theme='light'] .panel {
+  border-color: rgba(18, 28, 48, 0.1);
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 24px 70px rgba(40, 60, 110, 0.14);
 }
 
 .brand-row {
@@ -245,10 +252,11 @@ async function onSubmit() {
 }
 
 .mark {
+  font-family: Syne, 'Segoe UI', sans-serif;
   font-weight: 750;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
 }
 
 .badge {

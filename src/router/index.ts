@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
+import AsciiArtView from '@/views/AsciiArtView.vue'
 import AuthView from '@/views/AuthView.vue'
 import BlackHoleView from '@/views/BlackHoleView.vue'
 import FluidView from '@/views/FluidView.vue'
@@ -23,6 +24,7 @@ const router = createRouter({
       component: AuthView,
       props: { initialMode: 'register' },
     },
+    { path: '/ascii-art', name: 'ascii-art', component: AsciiArtView },
     { path: '/prism', name: 'prism', component: PrismView },
     { path: '/black-hole', name: 'black-hole', component: BlackHoleView },
     { path: '/fluid', name: 'fluid', component: FluidView },

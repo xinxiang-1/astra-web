@@ -13,6 +13,11 @@ const wallColor = computed(() => (theme.isDark ? '#05070e' : '#dfe6f4'))
 
 const suite = [
   {
+    to: '/ascii-art',
+    name: 'Ascii Art',
+    line: '上传图片，本地转成字符画',
+  },
+  {
     to: '/prism',
     name: 'Prism',
     line: '色散与折射的官方级 WebGPU 背景',
@@ -86,9 +91,9 @@ onBeforeUnmount(() => {
       class="suite"
       :class="{ in: revealed }"
     >
-      <h2>四条可复用视觉线</h2>
+      <h2>可复用视觉与工具</h2>
       <p class="suite-lead">
-        同一套 Astra 语言：暗亮主题、轻交互壳、重渲染按路由加载。
+        同一套 Astra 语言：暗亮主题、轻交互壳；特效按路由加载，工具纯前端本地跑。
       </p>
       <ul class="suite-list">
         <li v-for="item in suite" :key="item.to">

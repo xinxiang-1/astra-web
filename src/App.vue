@@ -14,10 +14,13 @@ const isAuthPage = computed(
   () => route.name === 'login' || route.name === 'register',
 )
 const isLanding = computed(() => route.name === 'home')
+const isToolPage = computed(() => route.name === 'ascii-art')
 const isImmersive = computed(
-  () => isLanding.value || (route.name !== 'home' && !isAuthPage.value),
+  () =>
+    isLanding.value ||
+    (!isAuthPage.value && !isToolPage.value && route.name !== 'home'),
 )
-const isScrollable = computed(() => isLanding.value)
+const isScrollable = computed(() => isLanding.value || isToolPage.value)
 </script>
 
 <template>
@@ -33,6 +36,7 @@ const isScrollable = computed(() => isLanding.value)
       <RouterLink class="brand" to="/">Astra</RouterLink>
       <nav>
         <template v-if="!isAuthPage">
+          <RouterLink to="/ascii-art">字符画</RouterLink>
           <RouterLink to="/prism">Prism</RouterLink>
           <RouterLink to="/black-hole">黑洞</RouterLink>
           <RouterLink to="/fluid">流体</RouterLink>

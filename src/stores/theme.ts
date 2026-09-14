@@ -23,6 +23,7 @@ function readStored(): ThemeMode {
 function applyDom(mode: ThemeMode) {
   document.documentElement.dataset.theme = mode
   document.documentElement.style.colorScheme = mode
+  document.documentElement.classList.toggle('dark', mode === 'dark')
 }
 
 export const useThemeStore = defineStore('theme', () => {
