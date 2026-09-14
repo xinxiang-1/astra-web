@@ -1,0 +1,22 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
+  "include": [
+    "env.d.ts",
+    "src/shims/**/*.d.ts",
+    "src/App.vue",
+    "src/main.ts",
+    "src/router/**/*",
+    "src/views/**/*",
+    "src/stores/**/*",
+    "src/lib/**/*"
+  ],
+  "exclude": ["src/effects/**"],
+  "compilerOptions": {
+    "composite": false,
+    "noUncheckedIndexedAccess": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.views.tsbuildinfo"
+  }
+}

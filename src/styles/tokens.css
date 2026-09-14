@@ -1,0 +1,75 @@
+:root,
+[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #070a12;
+  --bg-elevated: rgba(12, 16, 28, 0.78);
+  --bg-soft: rgba(255, 255, 255, 0.045);
+  --bg-soft-hover: rgba(255, 255, 255, 0.09);
+  --text: #eef2ff;
+  --text-muted: rgba(238, 242, 255, 0.62);
+  --text-faint: rgba(238, 242, 255, 0.48);
+  --border: rgba(255, 255, 255, 0.12);
+  --border-strong: rgba(255, 255, 255, 0.18);
+  --accent: #8ea4ff;
+  --accent-2: #b29bff;
+  --accent-text: #081018;
+  --danger: #ffb4b4;
+  --ok: #9dffc4;
+  --glow-a: rgba(99, 130, 255, 0.28);
+  --glow-b: rgba(255, 130, 90, 0.16);
+  --glow-c: rgba(70, 210, 180, 0.1);
+  --spotlight: rgba(140, 170, 255, 0.16);
+  --shadow: 0 24px 80px rgba(0, 0, 0, 0.38);
+  --topbar: rgba(7, 10, 18, 0.72);
+  --grad-hero-1: rgba(90, 130, 255, 0.2);
+  --grad-hero-2: rgba(255, 120, 80, 0.12);
+  --input-bg: rgba(255, 255, 255, 0.04);
+  --focus-ring: rgba(110, 140, 255, 0.18);
+  --radius-lg: 22px;
+  --radius-md: 14px;
+  --radius-pill: 999px;
+  --font:
+    'Segoe UI',
+    'PingFang SC',
+    'Microsoft YaHei',
+    system-ui,
+    sans-serif;
+}
+
+[data-theme='light'] {
+  color-scheme: light;
+  --bg: #e9eef8;
+  --bg-elevated: rgba(255, 255, 255, 0.78);
+  --bg-soft: rgba(20, 28, 48, 0.04);
+  --bg-soft-hover: rgba(20, 28, 48, 0.08);
+  --text: #121826;
+  --text-muted: rgba(18, 24, 38, 0.64);
+  --text-faint: rgba(18, 24, 38, 0.48);
+  --border: rgba(18, 28, 48, 0.1);
+  --border-strong: rgba(18, 28, 48, 0.16);
+  --accent: #4f6fff;
+  --accent-2: #7a63ef;
+  --accent-text: #f7f8ff;
+  --danger: #c62828;
+  --ok: #1b7a4a;
+  --glow-a: rgba(90, 120, 255, 0.22);
+  --glow-b: rgba(255, 140, 100, 0.14);
+  --glow-c: rgba(60, 190, 160, 0.1);
+  --spotlight: rgba(80, 110, 255, 0.12);
+  --shadow: 0 24px 70px rgba(40, 60, 110, 0.14);
+  --topbar: rgba(233, 238, 248, 0.78);
+  --grad-hero-1: rgba(90, 120, 255, 0.18);
+  --grad-hero-2: rgba(255, 140, 100, 0.12);
+  --input-bg: rgba(255, 255, 255, 0.7);
+  --focus-ring: rgba(80, 110, 255, 0.18);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
