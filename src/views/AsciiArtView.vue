@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 
-import FxButton from '@/components/ui/FxButton.vue'
 import {
   ASCII_ASPECT_PRESETS,
   ASCII_CHARSETS,
@@ -48,7 +47,6 @@ const pending = ref(false)
 const copied = ref(false)
 const hasImage = ref(false)
 const downloading = ref(false)
-const advancedOpen = ref(false)
 const autoZoom = ref(true)
 const fullscreen = ref(false)
 
@@ -136,18 +134,16 @@ const exportColors = {
 
 const advancedActive = computed(
   () =>
-    mode.value === 'phrase' ||
-    Math.abs(exposure.value) > 0.01 ||
-    invert.value ||
     resolutionKey.value === 'custom' ||
     customCharset.value.trim().length > 0 ||
-    charsetKey.value !== 'dense' ||
     fontSize.value !== 9 ||
     previewFontKey.value !== 'consolas' ||
     exportFontKey.value !== 'yahei' ||
     Math.abs(previewAspect.value - ASCII_ASPECT_PRESETS.consolas.value) >
       0.02 ||
-    Math.abs(exportAspect.value - EXPORT_CHAR_ASPECT) > 0.02,
+    Math.abs(exportAspect.value - EXPORT_CHAR_ASPECT) > 0.02 ||
+    (mode.value === 'phrase' &&
+      (Math.abs(phraseThreshold.value - 0.55) > 0.01 || phraseFillAll.value)),
 )
 
 const resolutionOptions = (
@@ -190,6 +186,22 @@ function onColumnsChange(value: number | number[]) {
   const next = Array.isArray(value) ? (value[0] ?? columns.value) : value
   columns.value = next
   syncResolutionFromColumns(next)
+}
+
+function onColumnsRange(event: Event) {
+  onColumnsChange(Number((event.target as HTMLInputElement).value))
+}
+
+function onZoomRange(event: Event) {
+  onZoomSlider(Number((event.target as HTMLInputElement).value))
+}
+
+function onPreviewAspectRange(event: Event) {
+  onPreviewAspectChange(Number((event.target as HTMLInputElement).value))
+}
+
+function onExportAspectRange(event: Event) {
+  onExportAspectChange(Number((event.target as HTMLInputElement).value))
 }
 
 function revokePreview() {
@@ -679,310 +691,35 @@ onBeforeUnmount(() => {
   document.body.style.overflow = ''
 })
 </script>
-
 <template>
   <div class="page">
-    <header class="intro">
-      <div class="intro-text">
-        <p class="eyebrow">工具 · 纯前端</p>
+    <header class="page-head">
+      <div class="page-title">
         <h1>图片转字符画</h1>
-        <p class="lead">
-          本地转换，不上传服务器。支持灰度字符与指定文字铺底两种模式。
-        </p>
+        <p class="sub">本地实时渲染 · 不上传服务器</p>
       </div>
-
-      <el-popover
-        v-model:visible="advancedOpen"
-        placement="bottom-end"
-        :width="360"
-        trigger="click"
-        popper-class="ascii-advanced-popper"
-      >
-        <template #reference>
-          <button
-            type="button"
-            class="gear-btn"
-            :class="{ on: advancedOpen || advancedActive }"
-            aria-label="高级设置"
-            title="高级设置"
-          >
-            <span class="gear" aria-hidden="true">⚙</span>
-            <span class="gear-label">高级</span>
-            <span v-if="advancedActive" class="gear-dot" />
-          </button>
-        </template>
-
-        <div class="advanced">
-          <p class="advanced-title">高级设置</p>
-
-          <label class="adv-field">
-            <span>列宽采样 {{ columns }}</span>
-            <el-slider
-              :model-value="columns"
-              :min="40"
-              :max="400"
-              :step="2"
-              @update:model-value="onColumnsChange"
-            />
-          </label>
-
-          <label class="adv-field">
-            <span>基础字号 {{ fontSize }}px</span>
-            <el-slider v-model="fontSize" :min="4" :max="16" :step="1" />
-          </label>
-
-          <fieldset class="adv-field">
-            <legend>预览字体</legend>
-            <div class="chips">
-              <button
-                v-for="opt in fontOptions"
-                :key="`preview-${opt.key}`"
-                type="button"
-                class="chip"
-                :class="{ on: previewFontKey === opt.key }"
-                :title="opt.hint"
-                @click="selectPreviewFont(opt.key)"
-              >
-                {{ opt.label }}
-              </button>
-            </div>
-            <label class="adv-field tight">
-              <span>预览字格 {{ previewAspect.toFixed(2) }}</span>
-              <el-slider
-                :model-value="previewAspect"
-                :min="0.4"
-                :max="1.1"
-                :step="0.01"
-                @update:model-value="onPreviewAspectChange"
-              />
-            </label>
-            <p class="adv-hint">
-              页面预览默认 Consolas（字格≈0.55），只影响屏幕显示与采样。
-            </p>
-          </fieldset>
-
-          <fieldset class="adv-field">
-            <legend>下载 / 记事本字体</legend>
-            <div class="chips">
-              <button
-                v-for="opt in fontOptions"
-                :key="`export-${opt.key}`"
-                type="button"
-                class="chip"
-                :class="{ on: exportFontKey === opt.key }"
-                :title="opt.hint"
-                @click="selectExportFont(opt.key)"
-              >
-                {{ opt.label }}
-              </button>
-            </div>
-            <label class="adv-field tight">
-              <span>导出字格 {{ exportAspect.toFixed(2) }}</span>
-              <el-slider
-                :model-value="exportAspect"
-                :min="0.4"
-                :max="1.1"
-                :step="0.01"
-                @update:model-value="onExportAspectChange"
-              />
-            </label>
-            <p class="adv-hint">
-              下载 TXT/PNG 默认微软雅黑（字格≈0.74），对齐本机记事本；与预览互不影响。
-            </p>
-          </fieldset>
-
-          <label class="adv-field">
-            <span>
-              图片曝光
-              {{ exposure >= 0 ? `+${exposure.toFixed(1)}` : exposure.toFixed(1) }} EV
-            </span>
-            <el-slider
-              v-model="exposure"
-              :min="-2"
-              :max="2"
-              :step="0.1"
-            />
-            <p class="adv-hint">调亮/压暗采样亮度，两种模式都生效。</p>
-          </label>
-
-          <label class="check">
-            <input v-model="phraseColor" type="checkbox" />
-            <span>彩色预览（按原图像素上色）</span>
-          </label>
-          <p class="adv-hint">灰度字符与文字铺底均可使用；关闭后为单色字，字格不变。</p>
-
-          <fieldset v-if="mode === 'phrase'" class="adv-field">
-            <legend>文字铺底</legend>
-            <input
-              v-model="phrase"
-              type="text"
-              maxlength="64"
-              placeholder="自定义文案，例如：我爱你中国"
-              spellcheck="false"
-            />
-            <label class="adv-field tight">
-              <span>明暗阈值 {{ phraseThreshold.toFixed(2) }}</span>
-              <el-slider
-                v-model="phraseThreshold"
-                :min="0.05"
-                :max="0.95"
-                :step="0.01"
-              />
-            </label>
-            <label class="check">
-              <input v-model="phraseFillAll" type="checkbox" />
-              <span>铺满整图</span>
-            </label>
-            <p class="adv-hint">
-              按曝光后的明暗把轮廓填成循环文案；阈值越低，保留的墨迹区域越少。
-            </p>
-          </fieldset>
-
-          <fieldset v-if="mode === 'charset'" class="adv-field">
-            <legend>字符集</legend>
-            <div class="chips">
-              <button
-                v-for="opt in charsetOptions"
-                :key="opt.key"
-                type="button"
-                class="chip"
-                :class="{ on: charsetKey === opt.key && !customCharset.trim() }"
-                @click="selectCharset(opt.key)"
-              >
-                {{ opt.label }}
-              </button>
-            </div>
-            <input
-              v-model="customCharset"
-              type="text"
-              placeholder="自定义（暗→亮）"
-              spellcheck="false"
-            />
-          </fieldset>
-
-          <label class="check">
-            <input v-model="invert" type="checkbox" />
-            <span>翻转预览正反向</span>
-          </label>
-          <p class="adv-hint">
-            预览默认随主题：深色反相、浅色正向；勾选可对调。下载 TXT/PNG 固定正向（白底深字、采样不反相）。
-          </p>
-
-          <div class="adv-actions">
-            <el-button
-              size="small"
-              :disabled="!hasImage || pending"
-              @click="runConvert"
-            >
-              重新生成
-            </el-button>
-            <el-button size="small" plain @click="restoreDefaults">
-              恢复默认
-            </el-button>
-            <el-button
-              size="small"
-              text
-              :disabled="!previewUrl"
-              @click="resetAll"
-            >
-              清空
-            </el-button>
-          </div>
-        </div>
-      </el-popover>
-    </header>
-
-    <!-- Common controls: eye-catching -->
-    <section class="common-bar">
-      <div class="res-block">
-        <p class="res-label">模式</p>
-        <div class="res-chips" role="group" aria-label="转换模式">
-          <button
-            type="button"
-            class="res-chip"
-            :class="{ on: mode === 'charset' }"
-            title="按亮度映射字符集"
-            @click="selectMode('charset')"
-          >
-            <span class="res-name">灰度字符</span>
-            <span class="res-cols">经典</span>
-          </button>
-          <button
-            type="button"
-            class="res-chip"
-            :class="{ on: mode === 'phrase' }"
-            title="按明暗铺指定文字，类似「我爱你中国」字符画"
-            @click="selectMode('phrase')"
-          >
-            <span class="res-name">文字铺底</span>
-            <span class="res-cols">指定文案</span>
-          </button>
-        </div>
-      </div>
-
-      <div class="res-block">
-        <p class="res-label">采样清晰度</p>
-        <div class="res-chips" role="group" aria-label="采样清晰度">
-          <button
-            v-for="opt in resolutionOptions"
-            :key="opt.key"
-            type="button"
-            class="res-chip"
-            :class="{ on: resolutionKey === opt.key }"
-            :title="`${opt.columns} 列 · ${opt.hint}`"
-            @click="selectResolution(opt.key)"
-          >
-            <span class="res-name">{{ opt.label }}</span>
-            <span class="res-cols">{{ opt.columns }}列</span>
-          </button>
-          <span v-if="resolutionKey === 'custom'" class="res-chip on muted">
-            自定义 {{ columns }}
-          </span>
-        </div>
-      </div>
-
-      <div class="zoom-block">
-        <p class="res-label">
-          放大 {{ zoom }}%
-          <span v-if="autoZoom" class="auto-tag">自适应</span>
-        </p>
-        <div class="zoom-row">
-          <el-button size="small" :disabled="zoom <= 10" @click="zoomOut">
-            −
-          </el-button>
-          <el-slider
-            :model-value="zoom"
-            :min="10"
-            :max="300"
-            :step="5"
-            :show-tooltip="true"
-            @update:model-value="onZoomSlider"
-          />
-          <el-button size="small" :disabled="zoom >= 300" @click="zoomIn">
-            +
-          </el-button>
-          <el-button size="small" text @click="resetZoom">自适应</el-button>
-        </div>
-      </div>
-
-      <div class="common-actions">
-        <FxButton
-          variant="ghost"
+      <div class="export-actions">
+        <button
           type="button"
+          class="btn"
           :disabled="!hasResult"
           @click="copyAscii"
         >
-          {{ copied ? '已复制' : '复制' }}
-        </FxButton>
+          {{ copied ? '已复制' : '复制文本' }}
+        </button>
         <el-dropdown
           :disabled="!hasResult || downloading"
           trigger="click"
           @command="onDownloadCommand"
         >
-          <el-button type="primary" plain :disabled="!hasResult || downloading">
-            {{ downloading ? '导出中…' : '下载' }}
+          <button
+            type="button"
+            class="btn primary"
+            :disabled="!hasResult || downloading"
+          >
+            {{ downloading ? '导出中…' : '导出' }}
             <span class="caret">▾</span>
-          </el-button>
+          </button>
           <template #dropdown>
             <el-dropdown-menu>
               <el-dropdown-item command="txt">下载 TXT</el-dropdown-item>
@@ -991,62 +728,395 @@ onBeforeUnmount(() => {
           </template>
         </el-dropdown>
       </div>
-    </section>
+    </header>
 
-    <p v-if="error" class="error banner">{{ error }}</p>
-    <p v-else-if="meta" class="meta banner">{{ meta }}</p>
-
-    <div class="layout">
-      <section
-        class="panel drop-panel"
-        :class="{ active: dragging, filled: Boolean(previewUrl) }"
-        role="button"
-        tabindex="0"
-        :aria-label="previewUrl ? '点击更换图片' : '点击上传图片'"
-        @dragenter.prevent="dragging = true"
-        @dragover.prevent="dragging = true"
-        @dragleave.prevent="dragging = false"
-        @drop.prevent="onDrop"
-        @click="fileInput?.click()"
-        @keydown.enter.prevent="fileInput?.click()"
-        @keydown.space.prevent="fileInput?.click()"
+    <!-- Mode switch — outside sidebar, like Image/Text tabs on pro converters -->
+    <nav class="mode-switch" role="tablist" aria-label="转换模式">
+      <button
+        type="button"
+        role="tab"
+        class="mode-card"
+        :class="{ on: mode === 'charset' }"
+        :aria-selected="mode === 'charset'"
+        @click="selectMode('charset')"
       >
-        <img
-          v-if="previewUrl"
-          class="thumb"
-          :src="previewUrl"
-          alt="上传预览"
-        />
-        <div class="drop-copy">
-          <p class="drop-title">
-            {{ previewUrl ? '点击或拖拽换图' : '点击或拖拽上传' }}
-          </p>
-          <p class="drop-hint">PNG / JPG / WebP / GIF</p>
-        </div>
-        <input
-          ref="fileInput"
-          class="sr-only"
-          type="file"
-          :accept="ACCEPT"
-          @change="onFileChange"
-          @click.stop
-        />
-      </section>
+        <span class="mode-kicker">Charset</span>
+        <span class="mode-name">灰度字符</span>
+        <span class="mode-desc">按亮度映射字符集，适合照片与图标</span>
+      </button>
+      <button
+        type="button"
+        role="tab"
+        class="mode-card"
+        :class="{ on: mode === 'phrase' }"
+        :aria-selected="mode === 'phrase'"
+        @click="selectMode('phrase')"
+      >
+        <span class="mode-kicker">Phrase</span>
+        <span class="mode-name">文字铺底</span>
+        <span class="mode-desc">用指定文案铺满明暗轮廓</span>
+      </button>
+    </nav>
 
-      <section ref="previewFrame" class="panel output">
-        <div class="out-head">
-          <h2>字符画预览</h2>
-          <div v-if="hasResult" class="out-tools">
-            <el-button size="small" text @click="zoomOut">缩小</el-button>
-            <el-button size="small" text @click="zoomIn">放大</el-button>
-            <el-button size="small" text @click="openFullscreen">全屏</el-button>
+    <div class="workspace">
+      <aside class="side fx-scroll">
+        <section class="card">
+          <header class="card-head">
+            <h2>源文件</h2>
+            <span class="card-meta">Source</span>
+          </header>
+          <div
+            class="drop"
+            :class="{ active: dragging, filled: Boolean(previewUrl) }"
+            role="button"
+            tabindex="0"
+            :aria-label="previewUrl ? '点击更换图片' : '点击上传图片'"
+            @dragenter.prevent="dragging = true"
+            @dragover.prevent="dragging = true"
+            @dragleave.prevent="dragging = false"
+            @drop.prevent="onDrop"
+            @click="fileInput?.click()"
+            @keydown.enter.prevent="fileInput?.click()"
+            @keydown.space.prevent="fileInput?.click()"
+          >
+            <img
+              v-if="previewUrl"
+              class="thumb"
+              :src="previewUrl"
+              alt="上传预览"
+            />
+            <div class="drop-copy">
+              <p class="drop-title">
+                {{ previewUrl ? '点击或拖拽换图' : '拖拽或点击上传' }}
+              </p>
+              <p class="drop-hint">PNG / JPG / WebP / GIF</p>
+            </div>
+            <input
+              ref="fileInput"
+              class="sr-only"
+              type="file"
+              :accept="ACCEPT"
+              @change="onFileChange"
+              @click.stop
+            />
           </div>
-        </div>
+        </section>
+
+        <section class="card">
+          <header class="card-head">
+            <h2>外观</h2>
+            <span class="card-meta">Appearance</span>
+          </header>
+
+          <div class="field">
+            <div class="field-label">
+              <span>清晰度</span>
+              <span class="field-val">{{ columns }} 列</span>
+            </div>
+            <div class="seg fx-scroll" role="group" aria-label="采样清晰度">
+              <button
+                v-for="opt in resolutionOptions"
+                :key="opt.key"
+                type="button"
+                class="seg-item"
+                :class="{ on: resolutionKey === opt.key }"
+                :title="`${opt.columns} 列 · ${opt.hint}`"
+                @click="selectResolution(opt.key)"
+              >
+                {{ opt.label }}
+              </button>
+            </div>
+          </div>
+
+          <div v-if="mode === 'phrase'" class="field">
+            <div class="field-label"><span>铺底文案</span></div>
+            <input
+              v-model="phrase"
+              class="text-input"
+              type="text"
+              maxlength="64"
+              placeholder="我爱你中国"
+              spellcheck="false"
+            />
+          </div>
+          <div v-else class="field">
+            <div class="field-label"><span>字符集</span></div>
+            <div class="seg wrap" role="group">
+              <button
+                v-for="opt in charsetOptions"
+                :key="opt.key"
+                type="button"
+                class="seg-item"
+                :class="{ on: charsetKey === opt.key && !customCharset.trim() }"
+                @click="selectCharset(opt.key)"
+              >
+                {{ opt.label }}
+              </button>
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="field-label">
+              <span>曝光</span>
+              <span class="field-val">
+                {{ exposure >= 0 ? `+${exposure.toFixed(1)}` : exposure.toFixed(1) }} EV
+              </span>
+            </div>
+            <input
+              v-model.number="exposure"
+              class="range"
+              type="range"
+              min="-2"
+              max="2"
+              step="0.1"
+            />
+          </div>
+
+          <div class="field">
+            <div class="field-label">
+              <span>预览缩放</span>
+              <span class="field-val">
+                {{ zoom }}%
+                <button
+                  v-if="!autoZoom"
+                  type="button"
+                  class="text-link"
+                  @click="resetZoom"
+                >
+                  自适应
+                </button>
+                <em v-else>自适应</em>
+              </span>
+            </div>
+            <div class="zoom-row">
+              <button
+                type="button"
+                class="icon-btn"
+                :disabled="zoom <= 10"
+                @click="zoomOut"
+              >
+                −
+              </button>
+              <input
+                :value="zoom"
+                class="range"
+                type="range"
+                min="10"
+                max="300"
+                step="5"
+                @input="onZoomRange"
+              />
+              <button
+                type="button"
+                class="icon-btn"
+                :disabled="zoom >= 300"
+                @click="zoomIn"
+              >
+                +
+              </button>
+            </div>
+          </div>
+
+          <div class="toggle-row">
+            <button
+              type="button"
+              class="chip-toggle"
+              :class="{ on: phraseColor }"
+              @click="phraseColor = !phraseColor"
+            >
+              彩色
+            </button>
+            <button
+              type="button"
+              class="chip-toggle"
+              :class="{ on: invert }"
+              @click="invert = !invert"
+            >
+              反相
+            </button>
+          </div>
+        </section>
+
+        <details class="card advanced-card">
+          <summary class="card-head summary">
+            <h2>高级</h2>
+            <span class="card-meta">
+              {{ advancedActive ? '已调整' : 'Advanced' }}
+              <span v-if="advancedActive" class="dot" />
+            </span>
+          </summary>
+
+          <div class="advanced-body">
+            <div class="field">
+              <div class="field-label">
+                <span>列宽采样</span>
+                <span class="field-val">{{ columns }}</span>
+              </div>
+              <input
+                :value="columns"
+                class="range"
+                type="range"
+                min="40"
+                max="400"
+                step="2"
+                @input="onColumnsRange"
+              />
+            </div>
+
+            <div class="field">
+              <div class="field-label">
+                <span>基础字号</span>
+                <span class="field-val">{{ fontSize }}px</span>
+              </div>
+              <input
+                v-model.number="fontSize"
+                class="range"
+                type="range"
+                min="4"
+                max="16"
+                step="1"
+              />
+            </div>
+
+            <div class="field">
+              <div class="field-label"><span>预览字体</span></div>
+              <div class="seg wrap">
+                <button
+                  v-for="opt in fontOptions"
+                  :key="`preview-${opt.key}`"
+                  type="button"
+                  class="seg-item"
+                  :class="{ on: previewFontKey === opt.key }"
+                  :title="opt.hint"
+                  @click="selectPreviewFont(opt.key)"
+                >
+                  {{ opt.label }}
+                </button>
+              </div>
+              <div class="field-label tight">
+                <span>预览字格</span>
+                <span class="field-val">{{ previewAspect.toFixed(2) }}</span>
+              </div>
+              <input
+                :value="previewAspect"
+                class="range"
+                type="range"
+                min="0.4"
+                max="1.1"
+                step="0.01"
+                @input="onPreviewAspectRange"
+              />
+            </div>
+
+            <div class="field">
+              <div class="field-label"><span>下载字体</span></div>
+              <div class="seg wrap">
+                <button
+                  v-for="opt in fontOptions"
+                  :key="`export-${opt.key}`"
+                  type="button"
+                  class="seg-item"
+                  :class="{ on: exportFontKey === opt.key }"
+                  :title="opt.hint"
+                  @click="selectExportFont(opt.key)"
+                >
+                  {{ opt.label }}
+                </button>
+              </div>
+              <div class="field-label tight">
+                <span>导出字格</span>
+                <span class="field-val">{{ exportAspect.toFixed(2) }}</span>
+              </div>
+              <input
+                :value="exportAspect"
+                class="range"
+                type="range"
+                min="0.4"
+                max="1.1"
+                step="0.01"
+                @input="onExportAspectRange"
+              />
+            </div>
+
+            <template v-if="mode === 'phrase'">
+              <div class="field">
+                <div class="field-label">
+                  <span>明暗阈值</span>
+                  <span class="field-val">{{ phraseThreshold.toFixed(2) }}</span>
+                </div>
+                <input
+                  v-model.number="phraseThreshold"
+                  class="range"
+                  type="range"
+                  min="0.05"
+                  max="0.95"
+                  step="0.01"
+                />
+              </div>
+              <label class="check">
+                <input v-model="phraseFillAll" type="checkbox" />
+                <span>铺满整图</span>
+              </label>
+            </template>
+
+            <div v-if="mode === 'charset'" class="field">
+              <div class="field-label"><span>自定义字符（暗→亮）</span></div>
+              <input
+                v-model="customCharset"
+                class="text-input"
+                type="text"
+                placeholder="覆盖上方字符集"
+                spellcheck="false"
+              />
+            </div>
+
+            <div class="adv-actions">
+              <button
+                type="button"
+                class="btn"
+                :disabled="!hasImage || pending"
+                @click="runConvert"
+              >
+                重新生成
+              </button>
+              <button type="button" class="btn ghost" @click="restoreDefaults">
+                恢复默认
+              </button>
+              <button
+                type="button"
+                class="text-link"
+                :disabled="!previewUrl"
+                @click="resetAll"
+              >
+                清空
+              </button>
+            </div>
+          </div>
+        </details>
+      </aside>
+
+      <section ref="previewFrame" class="stage">
+        <header class="stage-head">
+          <div>
+            <h2>预览</h2>
+            <p v-if="error" class="status error">{{ error }}</p>
+            <p v-else-if="meta" class="status">{{ meta }}</p>
+            <p v-else class="status">上传图片后实时显示结果</p>
+          </div>
+          <button
+            v-if="hasResult"
+            type="button"
+            class="btn ghost"
+            @click="openFullscreen"
+          >
+            全屏
+          </button>
+        </header>
 
         <div
           v-if="hasResult"
           ref="previewScroll"
-          class="ascii-scroll"
+          class="ascii-scroll fx-scroll"
           title="Ctrl + 滚轮缩放"
         >
           <div class="ascii-scroll-inner">
@@ -1054,7 +1124,7 @@ onBeforeUnmount(() => {
           </div>
         </div>
         <div v-else class="empty">
-          {{ pending ? '处理中…' : '上传图片后，字符画显示在这里' }}
+          {{ pending ? '处理中…' : '将图片拖到左侧，或点击上传开始' }}
         </div>
       </section>
     </div>
@@ -1070,17 +1140,19 @@ onBeforeUnmount(() => {
         <div class="fs-bar">
           <p class="fs-title">全屏预览 · {{ zoom }}% · Ctrl+滚轮</p>
           <div class="fs-tools">
-            <el-button size="small" @click="zoomOut">缩小</el-button>
-            <el-button size="small" @click="zoomIn">放大</el-button>
-            <el-button size="small" @click="resetZoom">自适应</el-button>
-            <el-button size="small" type="primary" @click="closeFullscreen">
+            <button type="button" class="btn ghost" @click="zoomOut">缩小</button>
+            <button type="button" class="btn ghost" @click="zoomIn">放大</button>
+            <button type="button" class="btn ghost" @click="resetZoom">
+              自适应
+            </button>
+            <button type="button" class="btn primary" @click="closeFullscreen">
               退出全屏
-            </el-button>
+            </button>
           </div>
         </div>
         <div
           ref="fullscreenScroll"
-          class="fs-scroll"
+          class="fs-scroll fx-scroll"
           title="Ctrl + 滚轮缩放"
         >
           <div class="ascii-scroll-inner">
@@ -1094,280 +1166,494 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .page {
-  max-width: 1480px;
+  --panel: color-mix(in srgb, var(--bg-elevated) 94%, transparent);
+  --line: var(--border);
+  --soft: var(--bg-soft);
+  max-width: 1440px;
   margin: 0 auto;
-  padding: 5.25rem 1.25rem 3rem;
+  padding: 4.5rem 1.15rem 2.5rem;
   color: var(--text);
 }
 
-.intro {
+.page-head {
   display: flex;
-  align-items: flex-start;
+  align-items: flex-end;
   justify-content: space-between;
   gap: 1rem;
-  margin-bottom: 1.1rem;
+  margin-bottom: 1rem;
 }
 
-.eyebrow {
-  margin: 0 0 0.35rem;
-  color: var(--text-faint);
-  font-size: 0.78rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.intro h1 {
-  margin: 0 0 0.3rem;
+.page-title h1 {
+  margin: 0;
   font-family: Syne, var(--font);
-  font-size: clamp(1.55rem, 3vw, 1.9rem);
+  font-size: 1.35rem;
+  font-weight: 700;
   letter-spacing: -0.03em;
 }
 
-.lead {
-  margin: 0;
-  color: var(--text-muted);
-  font-size: 0.92rem;
+.sub {
+  margin: 0.25rem 0 0;
+  color: var(--text-faint);
+  font-size: 0.8rem;
 }
 
-.gear-btn {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  padding: 0.45rem 0.85rem;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-pill);
-  background: var(--bg-soft);
-  color: var(--text-muted);
-  cursor: pointer;
-  font: inherit;
-  font-size: 0.86rem;
-  transition:
-    border-color 0.15s ease,
-    background 0.15s ease,
-    color 0.15s ease;
-}
-
-.gear-btn:hover,
-.gear-btn.on {
-  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
-  background: color-mix(in srgb, var(--accent) 14%, var(--bg-soft));
-  color: var(--text);
-}
-
-.gear {
-  font-size: 1.05rem;
-  line-height: 1;
-}
-
-.gear-dot {
-  position: absolute;
-  top: 0.35rem;
-  right: 0.4rem;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 0 2px var(--bg);
-}
-
-.common-bar {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1rem 1.25rem;
-  align-items: end;
-  margin-bottom: 0.85rem;
-  padding: 1rem 1.1rem;
-  border: 1px solid color-mix(in srgb, var(--accent) 28%, var(--border));
-  border-radius: var(--radius-lg);
-  background:
-    linear-gradient(
-      135deg,
-      color-mix(in srgb, var(--accent) 14%, transparent),
-      color-mix(in srgb, var(--accent-2) 8%, transparent) 42%,
-      var(--bg-elevated)
-    );
-  box-shadow: 0 12px 40px color-mix(in srgb, var(--accent) 10%, transparent);
-}
-
-.phrase-checks {
+.export-actions {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-}
-
-.res-label {
-  margin: 0 0 0.45rem;
-  color: var(--text);
-  font-size: 0.82rem;
-  font-weight: 650;
-  letter-spacing: 0.02em;
-}
-
-.auto-tag {
-  margin-left: 0.4rem;
-  padding: 0.1rem 0.45rem;
-  border-radius: var(--radius-pill);
-  background: color-mix(in srgb, var(--accent) 18%, transparent);
-  color: var(--accent);
-  font-size: 0.7rem;
-  font-weight: 600;
-}
-
-.res-chips {
-  display: flex;
-  flex-wrap: wrap;
   gap: 0.45rem;
+  flex-shrink: 0;
 }
 
-.res-chip {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.1rem;
-  min-width: 4.6rem;
-  padding: 0.5rem 0.75rem;
-  border: 1px solid transparent;
-  border-radius: 14px;
-  background: color-mix(in srgb, var(--bg) 55%, transparent);
-  color: var(--text-muted);
+.mode-switch {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+  margin-bottom: 1rem;
+}
+
+.mode-card {
+  appearance: none;
+  text-align: left;
   cursor: pointer;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--panel);
+  color: inherit;
   font: inherit;
   transition:
-    transform 0.12s ease,
     border-color 0.15s ease,
     background 0.15s ease,
-    color 0.15s ease,
-    box-shadow 0.15s ease;
+    box-shadow 0.15s ease,
+    transform 0.15s ease;
 }
 
-.res-chip:hover {
-  color: var(--text);
+.mode-card:hover {
   border-color: var(--border-strong);
-}
-
-.res-chip.on {
-  color: var(--text);
-  border-color: color-mix(in srgb, var(--accent) 65%, transparent);
-  background: color-mix(in srgb, var(--accent) 22%, var(--bg));
-  box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 35%, transparent);
   transform: translateY(-1px);
 }
 
-.res-chip.muted {
-  pointer-events: none;
+.mode-card.on {
+  border-color: color-mix(in srgb, var(--accent) 55%, var(--line));
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--accent) 12%, transparent),
+      var(--panel)
+    );
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 22%, transparent);
 }
 
-.res-name {
-  font-size: 0.92rem;
-  font-weight: 700;
-}
-
-.res-cols {
-  font-size: 0.72rem;
+.mode-kicker {
+  display: block;
+  margin-bottom: 0.2rem;
   color: var(--text-faint);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
-.res-chip.on .res-cols {
-  color: color-mix(in srgb, var(--accent) 75%, var(--text-faint));
+.mode-name {
+  display: block;
+  font-size: 1rem;
+  font-weight: 650;
+  letter-spacing: -0.02em;
 }
 
-.zoom-block .zoom-row {
+.mode-desc {
+  display: block;
+  margin-top: 0.25rem;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+
+.workspace {
+  /* Photopea-style equal-height shell: both columns share one track height */
   display: grid;
-  grid-template-columns: auto 1fr auto auto;
-  gap: 0.4rem;
-  align-items: center;
-  min-width: 200px;
-}
-
-.common-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.45rem;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-.caret {
-  margin-left: 0.25rem;
-  font-size: 0.75em;
-  opacity: 0.8;
-}
-
-.banner {
-  margin: 0 0 0.75rem;
-  font-size: 0.84rem;
-}
-
-.error {
-  color: var(--danger);
-}
-
-.meta {
-  color: var(--text-faint);
-}
-
-.layout {
-  display: grid;
-  grid-template-columns: minmax(200px, 240px) minmax(0, 1fr);
-  gap: 1.15rem;
+  grid-template-columns: minmax(260px, 300px) minmax(0, 1fr);
+  gap: 0.9rem;
   align-items: stretch;
+  height: calc(100dvh - 13.5rem);
+  min-height: 560px;
 }
 
-.panel {
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  background: var(--bg-elevated);
-  backdrop-filter: blur(12px);
-}
-
-.drop-panel {
-  display: grid;
-  align-content: start;
-  justify-items: center;
+.side {
+  display: flex;
+  flex-direction: column;
   gap: 0.75rem;
-  padding: 1rem 0.85rem;
+  min-height: 0;
+  height: 100%;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-right: 2px;
+}
+
+.card {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--panel);
+  padding: 0.85rem 0.9rem;
+}
+
+.card-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.7rem;
+}
+
+.card-head h2 {
+  margin: 0;
+  font-size: 0.82rem;
+  font-weight: 650;
+}
+
+.card-meta {
+  position: relative;
+  color: var(--text-faint);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.summary {
+  list-style: none;
+  cursor: pointer;
+  margin-bottom: 0;
+  user-select: none;
+}
+
+.summary::-webkit-details-marker {
+  display: none;
+}
+
+.advanced-card[open] .summary {
+  margin-bottom: 0.7rem;
+}
+
+.dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-left: 0.3rem;
+  border-radius: 50%;
+  background: var(--accent);
+  vertical-align: middle;
+}
+
+.advanced-body {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.drop {
+  display: grid;
+  gap: 0.55rem;
+  justify-items: center;
+  padding: 0.75rem;
+  border: 1px dashed var(--line);
+  border-radius: 10px;
+  background: var(--soft);
   text-align: center;
-  border-style: dashed;
-  background: var(--bg-soft);
   cursor: pointer;
   transition:
     border-color 0.15s ease,
     background 0.15s ease;
 }
 
-.drop-panel:hover {
-  border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
-  background: color-mix(in srgb, var(--accent) 8%, var(--bg-soft));
+.drop:hover,
+.drop.active {
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+  background: color-mix(in srgb, var(--accent) 8%, var(--soft));
 }
 
-.drop-panel.active {
-  border-color: var(--accent);
-  background: color-mix(in srgb, var(--accent) 12%, var(--bg-soft));
-}
-
-.drop-panel.filled {
+.drop.filled {
   border-style: solid;
 }
 
 .thumb {
   width: 100%;
-  max-height: 220px;
+  max-height: 140px;
   object-fit: contain;
-  border-radius: 10px;
-  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.18);
 }
 
 .drop-title {
   margin: 0;
+  font-size: 0.8rem;
   font-weight: 600;
-  font-size: 0.9rem;
 }
 
 .drop-hint {
-  margin: 0.25rem 0 0;
+  margin: 0.15rem 0 0;
   color: var(--text-faint);
+  font-size: 0.7rem;
+}
+
+.field {
+  display: grid;
+  gap: 0.4rem;
+  margin-bottom: 0.85rem;
+}
+
+.field:last-child {
+  margin-bottom: 0;
+}
+
+.field-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  color: var(--text-muted);
+  font-size: 0.74rem;
+}
+
+.field-label.tight {
+  margin-top: 0.35rem;
+}
+
+.field-val {
+  color: var(--text-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.field-val em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+.seg {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 2px;
+  padding: 2px;
+  border-radius: 8px;
+  background: var(--soft);
+  overflow-x: auto;
+}
+
+.seg.wrap {
+  flex-wrap: wrap;
+}
+
+.seg-item {
+  appearance: none;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.74rem;
+  min-height: 1.75rem;
+  padding: 0 0.55rem;
+  white-space: nowrap;
+}
+
+.seg-item:hover {
+  color: var(--text);
+}
+
+.seg-item.on {
+  background: color-mix(in srgb, var(--bg-elevated) 90%, var(--accent));
+  color: var(--text);
+  font-weight: 600;
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--border) 70%, transparent);
+}
+
+.text-input {
+  width: 100%;
+  min-height: 2rem;
+  padding: 0 0.65rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--input-bg);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.82rem;
+  outline: none;
+}
+
+.text-input:focus {
+  border-color: color-mix(in srgb, var(--accent) 50%, var(--line));
+  box-shadow: 0 0 0 3px var(--focus-ring);
+}
+
+.range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 18px;
+  background: transparent;
+  margin: 0;
+  cursor: pointer;
+}
+
+.range:focus {
+  outline: none;
+}
+
+.range::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 999px;
+  background: var(--soft);
+}
+
+.range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  margin-top: -5px;
+  border-radius: 50%;
+  border: 2px solid color-mix(in srgb, var(--accent) 70%, #fff);
+  background: var(--bg-elevated);
+  box-shadow: 0 1px 4px color-mix(in srgb, var(--accent) 28%, transparent);
+}
+
+.range::-moz-range-track {
+  height: 4px;
+  border-radius: 999px;
+  background: var(--soft);
+  border: 0;
+}
+
+.range::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid color-mix(in srgb, var(--accent) 70%, #fff);
+  background: var(--bg-elevated);
+  box-shadow: 0 1px 4px color-mix(in srgb, var(--accent) 28%, transparent);
+}
+
+.zoom-row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 0.35rem;
+  align-items: center;
+}
+
+.icon-btn {
+  width: 1.75rem;
+  height: 1.75rem;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--soft);
+  color: var(--text-muted);
+  cursor: pointer;
+  font: inherit;
+  line-height: 1;
+}
+
+.icon-btn:hover:not(:disabled) {
+  color: var(--text);
+  background: var(--bg-soft-hover);
+}
+
+.icon-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.toggle-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.chip-toggle {
+  appearance: none;
+  min-height: 1.75rem;
+  padding: 0 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--soft);
+  color: var(--text-muted);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.74rem;
+}
+
+.chip-toggle.on {
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+  background: color-mix(in srgb, var(--accent) 14%, var(--soft));
+  color: var(--text);
+  font-weight: 600;
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--text-muted);
   font-size: 0.78rem;
+}
+
+.adv-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.btn {
+  appearance: none;
+  min-height: 2rem;
+  padding: 0 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--soft);
+  color: var(--text);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.8rem;
+}
+
+.btn:hover:not(:disabled) {
+  background: var(--bg-soft-hover);
+  border-color: var(--border-strong);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btn.primary {
+  border-color: transparent;
+  background: linear-gradient(120deg, var(--accent), var(--accent-2));
+  color: var(--accent-text);
+  font-weight: 600;
+}
+
+.btn.ghost {
+  background: transparent;
+}
+
+.text-link {
+  appearance: none;
+  border: 0;
+  background: none;
+  color: var(--accent);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.74rem;
+  padding: 0;
+}
+
+.text-link:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.caret {
+  margin-left: 0.15rem;
+  font-size: 0.7em;
+  opacity: 0.8;
 }
 
 .sr-only {
@@ -1381,139 +1667,61 @@ onBeforeUnmount(() => {
   border: 0;
 }
 
-.advanced {
-  display: grid;
-  gap: 0.9rem;
-}
-
-.advanced-title {
-  margin: 0;
-  font-weight: 650;
-  font-size: 0.92rem;
-}
-
-.adv-field {
-  display: grid;
-  gap: 0.35rem;
-  margin: 0;
-  padding: 0;
-  border: 0;
-}
-
-.adv-field > span,
-.adv-field legend {
-  color: var(--text-muted);
-  font-size: 0.8rem;
-}
-
-.chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem;
-}
-
-.chip {
-  border: 1px solid var(--border);
-  border-radius: var(--radius-pill);
-  background: var(--bg-soft);
-  color: var(--text-muted);
-  padding: 0.28rem 0.7rem;
-  font: inherit;
-  font-size: 0.8rem;
-  cursor: pointer;
-}
-
-.chip.on {
-  border-color: color-mix(in srgb, var(--accent) 50%, var(--border));
-  background: color-mix(in srgb, var(--accent) 16%, var(--bg-soft));
-  color: var(--text);
-}
-
-.adv-field.tight {
-  gap: 0.2rem;
-}
-
-.adv-hint {
-  margin: 0;
-  color: var(--text-faint);
-  font-size: 0.75rem;
-  line-height: 1.4;
-}
-
-.chip.muted {
-  pointer-events: none;
-}
-
-.advanced input[type='text'] {
-  width: 100%;
-  min-height: 2.3rem;
-  padding: 0 0.7rem;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  background: var(--input-bg);
-  color: var(--text);
-  font: inherit;
-  font-size: 0.86rem;
-  outline: none;
-}
-
-.check {
-  display: flex;
-  align-items: center;
-  gap: 0.45rem;
-  color: var(--text-muted);
-  font-size: 0.86rem;
-}
-
-.adv-actions {
-  display: flex;
-  gap: 0.35rem;
-}
-
-.output {
+.stage {
   min-width: 0;
-  min-height: 560px;
-  padding: 1.1rem 1.15rem 1.15rem;
+  min-height: 0;
+  height: 100%;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--panel);
+  padding: 0.85rem 0.95rem 0.95rem;
   display: grid;
-  grid-template-rows: auto 1fr;
-  gap: 0.75rem;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 0.65rem;
 }
 
-.out-head {
+.stage-head {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 0.75rem;
 }
 
-.out-head h2 {
+.stage-head h2 {
   margin: 0;
-  font-size: 0.95rem;
+  font-size: 0.82rem;
   font-weight: 650;
 }
 
-.out-tools {
-  display: flex;
-  align-items: center;
-  gap: 0.15rem;
+.status {
+  margin: 0.2rem 0 0;
+  color: var(--text-faint);
+  font-size: 0.72rem;
+}
+
+.status.error {
+  color: var(--danger);
 }
 
 .empty {
   display: grid;
   place-items: center;
-  min-height: min(70vh, 720px);
-  border: 1px dashed var(--border);
-  border-radius: var(--radius-md);
+  min-height: 0;
+  height: 100%;
+  border: 1px dashed var(--line);
+  border-radius: 10px;
   color: var(--text-faint);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
 .ascii-scroll {
   overflow: auto;
-  max-width: 100%;
-  max-height: min(82vh, 920px);
-  height: min(82vh, 920px);
-  border-radius: var(--radius-md);
+  min-width: 0;
+  min-height: 0;
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  border-radius: 10px;
   background: rgba(0, 0, 0, 0.28);
   overscroll-behavior: contain;
 }
@@ -1522,7 +1730,6 @@ onBeforeUnmount(() => {
   display: inline-block;
   min-width: 100%;
   min-height: 100%;
-  padding: 0;
   vertical-align: top;
 }
 
@@ -1534,7 +1741,6 @@ onBeforeUnmount(() => {
   height: auto;
   vertical-align: top;
   object-fit: none;
-  transform: none;
 }
 
 [data-theme='light'] .ascii-scroll {
@@ -1572,6 +1778,11 @@ onBeforeUnmount(() => {
   gap: 0.35rem;
 }
 
+.fs-tools .btn.ghost {
+  color: #e8ecff;
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
 .fs-scroll {
   flex: 1;
   min-height: 0;
@@ -1585,19 +1796,27 @@ onBeforeUnmount(() => {
 }
 
 @media (max-width: 980px) {
-  .common-bar {
+  .workspace {
+    grid-template-columns: 1fr;
+    height: auto;
+    min-height: 0;
+  }
+
+  .side {
+    height: auto;
+    overflow: visible;
+  }
+
+  .mode-switch {
     grid-template-columns: 1fr;
   }
 
-  .common-actions {
-    justify-content: flex-start;
+  .stage {
+    height: min(72dvh, 720px);
+    min-height: 420px;
   }
 
-  .layout {
-    grid-template-columns: 1fr;
-  }
-
-  .drop-panel {
+  .drop {
     grid-template-columns: auto 1fr;
     justify-items: start;
     text-align: left;
@@ -1605,14 +1824,19 @@ onBeforeUnmount(() => {
   }
 
   .thumb {
-    width: 120px;
-    max-height: 120px;
+    width: 96px;
+    max-height: 96px;
   }
 }
 
 @media (max-width: 860px) {
   .page {
-    padding-top: 4.75rem;
+    padding-top: 4.15rem;
+  }
+
+  .page-head {
+    flex-wrap: wrap;
+    align-items: flex-start;
   }
 }
 </style>

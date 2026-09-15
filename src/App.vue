@@ -11,16 +11,27 @@ const auth = useAuthStore()
 useThemeStore()
 
 const isAuthPage = computed(
-  () => route.name === 'login' || route.name === 'register',
+  () =>
+    route.name === 'login' ||
+    route.name === 'register' ||
+    route.name === 'forgot' ||
+    route.name === 'wechat-login',
 )
 const isLanding = computed(() => route.name === 'home')
-const isToolPage = computed(() => route.name === 'ascii-art')
+const isToolPage = computed(
+  () =>
+    route.name === 'ascii-art' ||
+    route.name === 'file-upload' ||
+    route.name === 'file-preview',
+)
 const isImmersive = computed(
   () =>
     isLanding.value ||
     (!isAuthPage.value && !isToolPage.value && route.name !== 'home'),
 )
-const isScrollable = computed(() => isLanding.value || isToolPage.value)
+const isScrollable = computed(
+  () => isLanding.value || route.name === 'ascii-art' || route.name === 'file-upload',
+)
 </script>
 
 <template>
@@ -33,10 +44,12 @@ const isScrollable = computed(() => isLanding.value || isToolPage.value)
     }"
   >
     <header class="topbar">
-      <RouterLink class="brand" to="/">Astra</RouterLink>
+      <RouterLink v-if="!isAuthPage" class="brand" to="/">Astra</RouterLink>
+      <span v-else class="topbar-spacer" aria-hidden="true" />
       <nav>
         <template v-if="!isAuthPage">
           <RouterLink to="/ascii-art">字符画</RouterLink>
+          <RouterLink to="/file-upload">文件预览</RouterLink>
           <RouterLink to="/prism">Prism</RouterLink>
           <RouterLink to="/black-hole">黑洞</RouterLink>
           <RouterLink to="/fluid">流体</RouterLink>
@@ -56,7 +69,7 @@ const isScrollable = computed(() => isLanding.value || isToolPage.value)
         >
           登录
         </RouterLink>
-        <RouterLink v-else class="login-link" to="/">返回</RouterLink>
+        <RouterLink v-else class="back-link" to="/">← 返回作品</RouterLink>
       </nav>
     </header>
     <main>
@@ -107,7 +120,21 @@ a {
 }
 
 .app-shell.auth {
-  grid-template-rows: auto 1fr;
+  grid-template-rows: 1fr;
+}
+
+.app-shell.auth .topbar {
+  position: absolute;
+  inset: 0 0 auto;
+  border-bottom-color: transparent;
+  background: transparent;
+  backdrop-filter: none;
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
+}
+
+.app-shell.auth main {
+  height: 100%;
 }
 
 .topbar {
@@ -163,6 +190,7 @@ a {
   letter-spacing: 0.08em;
   text-decoration: none;
   text-transform: uppercase;
+  font-size: 0.9rem;
 }
 
 nav {
@@ -170,13 +198,13 @@ nav {
   align-items: center;
   flex-wrap: wrap;
   justify-content: flex-end;
-  gap: 0.75rem;
+  gap: 0.65rem;
 }
 
 nav a {
   color: var(--text-muted);
   text-decoration: none;
-  font-size: 0.9rem;
+  font-size: 0.8125rem;
   transition: color 0.15s ease;
 }
 
@@ -185,11 +213,27 @@ nav a:hover {
   color: var(--text);
 }
 
+.topbar-spacer {
+  width: 1px;
+  height: 1px;
+}
+
 .login-link {
   padding: 0.35rem 0.85rem;
   border: 1px solid var(--border);
   border-radius: var(--radius-pill);
   background: var(--bg-soft);
+}
+
+.back-link {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.8125rem;
+  transition: color 0.15s ease;
+}
+
+.back-link:hover {
+  color: var(--text);
 }
 
 .user {

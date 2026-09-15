@@ -48,19 +48,19 @@ withDefaults(
 .atmosphere-stage[data-preset='auth'] {
   background:
     radial-gradient(
-      ellipse 90% 60% at 50% -20%,
-      color-mix(in srgb, var(--accent) 18%, transparent),
-      transparent 55%
+      ellipse 100% 70% at 50% -18%,
+      color-mix(in srgb, var(--accent) 22%, transparent),
+      transparent 58%
     ),
-    radial-gradient(circle at 50% 100%, #0a1020 0%, var(--bg) 55%);
-}
-
-[data-theme='light'] .atmosphere-stage[data-preset='auth'] {
-  background:
     radial-gradient(
-      ellipse 90% 55% at 50% -15%,
-      color-mix(in srgb, var(--accent) 16%, transparent),
-      transparent 55%
+      circle at 18% 88%,
+      color-mix(in srgb, var(--glow-b) 55%, transparent),
+      transparent 42%
+    ),
+    radial-gradient(
+      circle at 82% 78%,
+      color-mix(in srgb, var(--glow-c) 45%, transparent),
+      transparent 40%
     ),
     var(--bg);
 }

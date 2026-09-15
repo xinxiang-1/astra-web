@@ -18,6 +18,11 @@ const suite = [
     line: '上传图片，本地转成字符画',
   },
   {
+    to: '/file-upload',
+    name: 'File Preview',
+    line: '本地上传，浏览器内预览 Office / PDF',
+  },
+  {
     to: '/prism',
     name: 'Prism',
     line: '色散与折射的官方级 WebGPU 背景',
@@ -129,7 +134,7 @@ onBeforeUnmount(() => {
   min-height: 100vh;
   min-height: 100dvh;
   display: grid;
-  align-items: end;
+  align-items: center;
   overflow: hidden;
   color: #eef2ff;
 }
@@ -146,10 +151,10 @@ onBeforeUnmount(() => {
   pointer-events: none;
   background:
     linear-gradient(
-      to top,
-      rgba(4, 6, 12, 0.82) 0%,
-      rgba(4, 6, 12, 0.35) 42%,
-      rgba(4, 6, 12, 0.2) 100%
+      to bottom,
+      rgba(4, 6, 12, 0.28) 0%,
+      rgba(4, 6, 12, 0.22) 45%,
+      rgba(4, 6, 12, 0.55) 100%
     ),
     linear-gradient(
       115deg,
@@ -161,48 +166,51 @@ onBeforeUnmount(() => {
 .hero-copy {
   position: relative;
   z-index: 2;
-  width: min(760px, calc(100% - 2.5rem));
-  margin: 0 auto 12vh;
-  padding: 0 0.25rem;
+  width: min(640px, calc(100% - 2.5rem));
+  margin: 0 auto;
+  padding: 4rem 0.25rem 1.75rem;
+  transform: translateY(-3vh);
   animation: rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .brand {
-  margin: 0 0 0.85rem;
+  margin: 0 0 0.55rem;
   font-family: var(--display);
-  font-size: clamp(3.4rem, 10vw, 6.4rem);
-  font-weight: 750;
-  letter-spacing: -0.045em;
-  line-height: 0.92;
+  font-size: clamp(2.35rem, 7vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
   text-transform: none;
 }
 
 h1 {
-  margin: 0 0 0.85rem;
-  max-width: 14ch;
+  margin: 0 0 0.6rem;
+  max-width: 16ch;
   font-family: var(--display);
-  font-size: clamp(1.45rem, 3.2vw, 2.15rem);
-  font-weight: 560;
-  letter-spacing: -0.03em;
-  line-height: 1.15;
-  color: rgba(238, 242, 255, 0.92);
+  font-size: clamp(1.1rem, 2.4vw, 1.45rem);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.25;
+  color: rgba(238, 242, 255, 0.9);
 }
 
 .support {
-  margin: 0 0 1.5rem;
-  max-width: 34rem;
-  color: rgba(238, 242, 255, 0.68);
-  font-size: 1.05rem;
-  line-height: 1.6;
+  margin: 0 0 1.15rem;
+  max-width: 30rem;
+  color: rgba(238, 242, 255, 0.64);
+  font-size: 0.92rem;
+  line-height: 1.55;
 }
 
 .cta {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
+  gap: 0.6rem;
 }
 
 .cta :deep(.fx-btn) {
+  min-height: 2.35rem;
+  font-size: 0.875rem;
   color: #eef2ff;
   border-color: rgba(255, 255, 255, 0.22);
   background: rgba(255, 255, 255, 0.06);
@@ -221,27 +229,27 @@ h1 {
 
 .suite,
 .invite {
-  width: min(920px, calc(100% - 2.5rem));
+  width: min(820px, calc(100% - 2.5rem));
   margin: 0 auto;
-  padding: 5.5rem 0 2rem;
+  padding: 4.25rem 0 1.75rem;
 }
 
 .suite h2,
 .invite h2 {
-  margin: 0 0 0.7rem;
+  margin: 0 0 0.55rem;
   font-family: var(--display);
-  font-size: clamp(1.8rem, 4vw, 2.6rem);
-  letter-spacing: -0.035em;
-  line-height: 1.1;
+  font-size: clamp(1.4rem, 3.2vw, 1.95rem);
+  letter-spacing: -0.03em;
+  line-height: 1.15;
 }
 
 .suite-lead,
 .invite p {
-  margin: 0 0 2rem;
-  max-width: 36rem;
+  margin: 0 0 1.5rem;
+  max-width: 34rem;
   color: var(--text-muted);
-  font-size: 1.05rem;
-  line-height: 1.65;
+  font-size: 0.95rem;
+  line-height: 1.6;
 }
 
 .suite-list {
@@ -253,10 +261,10 @@ h1 {
 
 .suite-link {
   display: grid;
-  grid-template-columns: minmax(7rem, 0.28fr) 1fr auto;
-  gap: 1rem;
+  grid-template-columns: minmax(6.5rem, 0.26fr) 1fr auto;
+  gap: 0.85rem;
   align-items: baseline;
-  padding: 1.25rem 0.15rem;
+  padding: 1rem 0.15rem;
   border-bottom: 1px solid var(--border);
   text-decoration: none;
   color: inherit;
@@ -293,18 +301,18 @@ h1 {
 
 .name {
   font-family: var(--display);
-  font-size: 1.2rem;
+  font-size: 1.05rem;
   letter-spacing: -0.02em;
 }
 
 .line {
   color: var(--text-muted);
-  font-size: 0.98rem;
+  font-size: 0.9rem;
 }
 
 .go {
   color: var(--accent);
-  font-size: 1.2rem;
+  font-size: 1.05rem;
   transition: transform 0.2s ease;
 }
 
@@ -313,7 +321,12 @@ h1 {
 }
 
 .invite {
-  padding-bottom: 6rem;
+  padding-bottom: 4.5rem;
+}
+
+.invite :deep(.fx-btn) {
+  min-height: 2.35rem;
+  font-size: 0.875rem;
 }
 
 @keyframes rise {
@@ -329,7 +342,8 @@ h1 {
 
 @media (max-width: 720px) {
   .hero-copy {
-    margin-bottom: 18vh;
+    transform: translateY(-2vh);
+    padding-top: 4rem;
   }
 
   .suite-link {
