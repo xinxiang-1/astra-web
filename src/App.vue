@@ -3,6 +3,11 @@ import { computed } from 'vue'
 import { RouterLink, RouterView, useRoute } from 'vue-router'
 
 import ThemeToggle from '@/components/ui/ThemeToggle.vue'
+import {
+  authRouteNames,
+  studioRouteNames,
+  toolRouteNames,
+} from '@/content/catalog'
 import { useAuthStore } from '@/stores/auth'
 import { useThemeStore } from '@/stores/theme'
 
@@ -10,27 +15,32 @@ const route = useRoute()
 const auth = useAuthStore()
 useThemeStore()
 
-const isAuthPage = computed(
-  () =>
-    route.name === 'login' ||
-    route.name === 'register' ||
-    route.name === 'forgot' ||
-    route.name === 'wechat-login',
+const routeName = computed(() => String(route.name ?? ''))
+
+const isAuthPage = computed(() =>
+  (authRouteNames as readonly string[]).includes(routeName.value),
 )
-const isLanding = computed(() => route.name === 'home')
-const isToolPage = computed(
-  () =>
-    route.name === 'ascii-art' ||
-    route.name === 'file-upload' ||
-    route.name === 'file-preview',
+const isLanding = computed(() => routeName.value === 'home')
+const isStudioHub = computed(() => routeName.value === 'studio')
+const isToolPage = computed(() =>
+  (toolRouteNames as readonly string[]).includes(routeName.value),
 )
+const isStudioEffect = computed(
+  () =>
+    (studioRouteNames as readonly string[]).includes(routeName.value) &&
+    !isStudioHub.value,
+)
+
+/** Full-bleed FX under a translucent topbar */
 const isImmersive = computed(
+  () => isLanding.value || isStudioHub.value || isStudioEffect.value,
+)
+
+const isScrollable = computed(
   () =>
     isLanding.value ||
-    (!isAuthPage.value && !isToolPage.value && route.name !== 'home'),
-)
-const isScrollable = computed(
-  () => isLanding.value || route.name === 'ascii-art' || route.name === 'file-upload',
+    isStudioHub.value ||
+    isToolPage.value,
 )
 </script>
 
@@ -48,12 +58,9 @@ const isScrollable = computed(
       <span v-else class="topbar-spacer" aria-hidden="true" />
       <nav>
         <template v-if="!isAuthPage">
-          <RouterLink to="/ascii-art">字符画</RouterLink>
-          <RouterLink to="/file-upload">文件预览</RouterLink>
-          <RouterLink to="/prism">Prism</RouterLink>
-          <RouterLink to="/black-hole">黑洞</RouterLink>
-          <RouterLink to="/fluid">流体</RouterLink>
-          <RouterLink to="/webgl-fluid">彩烟</RouterLink>
+          <RouterLink class="nav-primary" to="/ascii-art">字符画</RouterLink>
+          <RouterLink to="/tools">工具</RouterLink>
+          <RouterLink to="/studio">工作室</RouterLink>
         </template>
         <ThemeToggle />
         <template v-if="!isAuthPage && auth.isLoggedIn">
@@ -69,7 +76,7 @@ const isScrollable = computed(
         >
           登录
         </RouterLink>
-        <RouterLink v-else class="back-link" to="/">← 返回作品</RouterLink>
+        <RouterLink v-else class="back-link" to="/">← 返回</RouterLink>
       </nav>
     </header>
     <main>
@@ -93,7 +100,7 @@ body,
 
 body {
   overflow: hidden;
-  font-family: 'DM Sans', var(--font);
+  font-family: var(--font-body);
   background: var(--bg);
   color: var(--text);
   transition:
@@ -185,7 +192,7 @@ a {
 }
 
 .brand {
-  font-family: 'Syne', var(--font);
+  font-family: var(--font-display);
   font-weight: 700;
   letter-spacing: 0.08em;
   text-decoration: none;
@@ -206,6 +213,11 @@ nav a {
   text-decoration: none;
   font-size: 0.8125rem;
   transition: color 0.15s ease;
+}
+
+nav a.nav-primary {
+  font-weight: 600;
+  color: var(--text);
 }
 
 nav a.router-link-active,
@@ -260,5 +272,15 @@ nav a:hover {
 main {
   min-height: 0;
   height: 100%;
+}
+
+@media (max-width: 560px) {
+  nav {
+    gap: 0.5rem;
+  }
+
+  nav a:not(.login-link):not(.back-link) {
+    font-size: 0.78rem;
+  }
 }
 </style>

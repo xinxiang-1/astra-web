@@ -6,6 +6,8 @@ import BlackHoleView from '@/views/BlackHoleView.vue'
 import FluidView from '@/views/FluidView.vue'
 import HomeView from '@/views/HomeView.vue'
 import PrismView from '@/views/PrismView.vue'
+import StudioView from '@/views/StudioView.vue'
+import ToolsView from '@/views/ToolsView.vue'
 import WebglFluidView from '@/views/WebglFluidView.vue'
 
 const router = createRouter({
@@ -36,6 +38,8 @@ const router = createRouter({
       component: AuthView,
       props: { initialMode: 'wechat' },
     },
+    { path: '/tools', name: 'tools', component: ToolsView },
+    { path: '/studio', name: 'studio', component: StudioView },
     { path: '/ascii-art', name: 'ascii-art', component: AsciiArtView },
     {
       path: '/file-upload',
@@ -52,6 +56,9 @@ const router = createRouter({
     { path: '/fluid', name: 'fluid', component: FluidView },
     { path: '/webgl-fluid', name: 'webgl-fluid', component: WebglFluidView },
   ],
+  scrollBehavior() {
+    return { top: 0 }
+  },
 })
 
 export default router
