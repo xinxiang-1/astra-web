@@ -7,29 +7,53 @@ import {
   ASCII_FONT_PRESETS,
   ASCII_RESOLUTIONS,
   asciiToPngBlob,
-  convertBitmapToAscii,
-  convertBitmapToPhraseAscii,
+  buildPrerenderCacheKey,
+  convertSourceToAscii,
+  convertSourceToPhraseAscii,
+  createLiveFrameLoop,
+  createPrerenderFrameLoop,
   EXPORT_CHAR_ASPECT,
   EXPORT_MONO_FONT,
+  exportAsciiVideo,
   fileToImageBitmap,
   hasCjkText,
+  isImageFile,
+  isVideoFile,
+  loadVideoElement,
   measureMonoCellAspect,
+  MEDIA_ACCEPT,
+  nearestPrerenderIndex,
+  needsVideoPrerender,
   paintAsciiToCanvas,
   pickMetricGlyph,
+  planVideoExportFrames,
   PREVIEW_MONO_FONT,
+  prerenderVideoFrames,
+  resolveAsciiColumns,
+  seekVideoTo,
   suggestFitZoom,
   triggerDownload,
+  videoLiveColumnCap,
+  VIDEO_PRERENDER_MAX_DURATION_SEC,
+  VIDEO_EXPORT_BUFFER_FRAMES,
+  VIDEO_EXPORT_MAX_FRAMES,
+  VIDEO_TARGET_FPS,
   type AsciiCharsetKey,
   type AsciiFontPresetKey,
+  type AsciiFrameSource,
+  type AsciiMediaKind,
   type AsciiMode,
   type AsciiResolutionKey,
-} from '@/utils/ascii-art'
+  type FrameLoopHandle,
+  type PrerenderFrame,
+} from '@/lib/ascii'
 import { useThemeStore } from '@/stores/theme'
 
-const ACCEPT = 'image/png,image/jpeg,image/webp,image/gif,image/bmp'
+const ACCEPT = MEDIA_ACCEPT
 const theme = useThemeStore()
 
 const fileInput = ref<HTMLInputElement | null>(null)
+const sourceVideo = ref<HTMLVideoElement | null>(null)
 const previewCanvas = ref<HTMLCanvasElement | null>(null)
 const fullscreenCanvas = ref<HTMLCanvasElement | null>(null)
 const previewScroll = ref<HTMLElement | null>(null)
@@ -46,9 +70,23 @@ const imageAspect = ref(0)
 const pending = ref(false)
 const copied = ref(false)
 const hasImage = ref(false)
+const mediaKind = ref<AsciiMediaKind | null>(null)
+const videoPlaying = ref(false)
+const videoDuration = ref(0)
+const videoCurrentTime = ref(0)
+const videoFps = ref(VIDEO_TARGET_FPS)
+const clipStart = ref(0)
+const clipEnd = ref(0)
 const downloading = ref(false)
+const downloadProgress = ref('')
 const autoZoom = ref(true)
 const fullscreen = ref(false)
+/** live = realtime convert; prerender = play cached full-quality frames. */
+const videoPlaybackMode = ref<'idle' | 'live' | 'prerender'>('idle')
+const videoPrerendering = ref(false)
+const videoPrerenderDone = ref(0)
+const videoPrerenderTotal = ref(0)
+const videoPrerenderReady = ref(false)
 
 /** charset = classic ASCII; phrase = 指定文字铺底 (我爱你中国 style). */
 const mode = ref<AsciiMode>('charset')
@@ -61,7 +99,7 @@ const exposure = ref(0)
 
 /** Default to higher sampling. */
 const resolutionKey = ref<AsciiResolutionKey | 'custom'>('high')
-const columns = ref(ASCII_RESOLUTIONS.high.columns)
+const columns = ref<number>(ASCII_RESOLUTIONS.high.columns)
 const charsetKey = ref<AsciiCharsetKey>('dense')
 const customCharset = ref('')
 const invert = ref(false)
@@ -72,7 +110,7 @@ const zoom = ref(100)
 /** Page preview: original Consolas stack + ~0.55 cell. */
 const previewFontKey = ref<AsciiFontPresetKey>('consolas')
 const previewFontFamily = ref(PREVIEW_MONO_FONT)
-const previewAspect = ref(
+const previewAspect = ref<number>(
   measureMonoCellAspect(12, PREVIEW_MONO_FONT) ||
     ASCII_ASPECT_PRESETS.consolas.value,
 )
@@ -80,17 +118,72 @@ const previewAspect = ref(
 /** Download / Notepad: Microsoft YaHei + ~0.74 cell. */
 const exportFontKey = ref<AsciiFontPresetKey>('yahei')
 const exportFontFamily = ref(EXPORT_MONO_FONT)
-const exportAspect = ref(EXPORT_CHAR_ASPECT)
+const exportAspect = ref<number>(EXPORT_CHAR_ASPECT)
 
 let bitmap: ImageBitmap | null = null
 let copyTimer = 0
 let paintRaf = 0
+let videoLoop: FrameLoopHandle | null = null
+let frameBusy = false
+let convertQueued: { fitZoom?: boolean } | false = false
+let videoObjectUrl = ''
+/** Last presented grid — used to refit zoom when live-cap toggles. */
+let lastPreviewCols = 0
+let lastPreviewRows = 0
+let prerenderFrames: PrerenderFrame[] = []
+let prerenderCacheKey = ''
+let prerenderAbort = false
+let prerenderPlayIndex = 0
 /** Remember charset-mode fonts when switching to phrase. */
 let savedCharsetPreview: {
   key: AsciiFontPresetKey
   family: string
   aspect: number
 } | null = null
+
+const hasMedia = computed(() => hasImage.value || mediaKind.value === 'video')
+const hasVideo = computed(() => mediaKind.value === 'video')
+
+/** Realtime playback uses a lighter column cap; prerender / pause use full clarity. */
+const videoLivePreview = computed(
+  () =>
+    hasVideo.value &&
+    videoPlaying.value &&
+    videoPlaybackMode.value === 'live',
+)
+
+const liveColumnCap = computed(() => videoLiveColumnCap(mode.value))
+
+const usePrerenderPath = computed(() =>
+  needsVideoPrerender(columns.value, mode.value),
+)
+
+const effectiveColumns = computed(() =>
+  resolveAsciiColumns({
+    columns: columns.value,
+    kind: mediaKind.value,
+    mode: mode.value,
+    livePreview: videoLivePreview.value,
+  }),
+)
+
+const columnsCapped = computed(
+  () =>
+    hasVideo.value &&
+    videoLivePreview.value &&
+    columns.value > liveColumnCap.value,
+)
+
+const prerenderProgressLabel = computed(() => {
+  if (!videoPrerendering.value) return ''
+  const { done, total } = {
+    done: videoPrerenderDone.value,
+    total: videoPrerenderTotal.value,
+  }
+  if (total <= 0) return '正在解析字符视频…'
+  const pct = Math.round((done / total) * 100)
+  return `正在解析字符视频 ${done}/${total}（${pct}%）`
+})
 
 const charset = computed(() => {
   const custom = customCharset.value.trim()
@@ -109,13 +202,50 @@ const hasResult = computed(() => ascii.value.length > 0)
 const meta = computed(() => {
   if (!hasResult.value) return ''
   const parts = [`${columnsOut.value} × ${rows.value} 字符`]
+  if (hasVideo.value) {
+    if (videoPrerendering.value) {
+      parts.push(prerenderProgressLabel.value)
+    } else if (videoPlaying.value && videoPlaybackMode.value === 'prerender') {
+      parts.push(`预渲染播放 ${videoFps.value} fps · ${columns.value} 列`)
+    } else if (videoLivePreview.value) {
+      parts.push(`实时播放 ${videoFps.value} fps`)
+      if (columnsCapped.value) {
+        parts.push(`预览 ${effectiveColumns.value} 列`)
+      }
+    } else if (videoPrerenderReady.value && usePrerenderPath.value) {
+      parts.push(`预渲染就绪 · ${prerenderFrames.length} 帧`)
+    } else {
+      parts.push('已暂停')
+    }
+  }
   if (mode.value === 'phrase') parts.push('文字铺底')
   if (imageAspect.value > 0) {
-    parts.push(`原图 ${imageAspect.value.toFixed(2)}:1`)
+    parts.push(`原画 ${imageAspect.value.toFixed(2)}:1`)
   }
   if (autoZoom.value) parts.push(`自适应 ${zoom.value}%`)
   return parts.join(' · ')
 })
+
+function formatClock(seconds: number) {
+  if (!Number.isFinite(seconds) || seconds < 0) return '0:00'
+  const total = Math.floor(seconds)
+  const m = Math.floor(total / 60)
+  const s = total % 60
+  return `${m}:${String(s).padStart(2, '0')}`
+}
+
+const videoTimeLabel = computed(
+  () =>
+    `${formatClock(videoCurrentTime.value)} / ${formatClock(videoDuration.value)}`,
+)
+
+const CLIP_MIN_SPAN = 0.2
+
+const clipSpan = computed(() => Math.max(0, clipEnd.value - clipStart.value))
+
+const clipOverLimit = computed(
+  () => clipSpan.value > VIDEO_PRERENDER_MAX_DURATION_SEC + 0.05,
+)
 
 const previewColors = computed(() =>
   theme.isDark
@@ -178,14 +308,45 @@ function syncResolutionFromColumns(value: number) {
 }
 
 function selectResolution(key: AsciiResolutionKey) {
+  const next = ASCII_RESOLUTIONS[key].columns
+  // High clarity on video: pause first so full columns apply (not live cap).
+  pauseVideoIfNeedsFullQuality(next)
   resolutionKey.value = key
-  columns.value = ASCII_RESOLUTIONS[key].columns
+  columns.value = next
 }
 
 function onColumnsChange(value: number | number[]) {
   const next = Array.isArray(value) ? (value[0] ?? columns.value) : value
+  pauseVideoIfNeedsFullQuality(next)
   columns.value = next
   syncResolutionFromColumns(next)
+}
+
+function pauseVideoIfNeedsFullQuality(nextColumns: number) {
+  if (!hasVideo.value) return
+  if (nextColumns <= videoLiveColumnCap(mode.value)) return
+  const wasLive =
+    videoPlaying.value || Boolean(sourceVideo.value && !sourceVideo.value.paused)
+  pauseVideoPlayback()
+  // Column watch will convert; if columns unchanged, convert here.
+  if (wasLive && nextColumns === columns.value) {
+    void runConvert({ fitZoom: autoZoom.value })
+  }
+}
+
+function selectMode(next: AsciiMode) {
+  if (mode.value === next) return
+  if (
+    hasVideo.value &&
+    videoPlaying.value &&
+    columns.value > videoLiveColumnCap(next)
+  ) {
+    pauseVideoPlayback()
+  }
+  mode.value = next
+  if (next === 'phrase') applyPhraseFontDefaults()
+  else restoreCharsetFontDefaults()
+  autoZoom.value = true
 }
 
 function onColumnsRange(event: Event) {
@@ -207,6 +368,38 @@ function onExportAspectRange(event: Event) {
 function revokePreview() {
   if (previewUrl.value) URL.revokeObjectURL(previewUrl.value)
   previewUrl.value = ''
+  if (videoObjectUrl) {
+    URL.revokeObjectURL(videoObjectUrl)
+    videoObjectUrl = ''
+  }
+}
+
+function stopVideoLoop() {
+  videoLoop?.stop()
+  videoLoop = null
+}
+
+function pauseVideoPlayback() {
+  stopVideoLoop()
+  videoPlaying.value = false
+  videoPlaybackMode.value = 'idle'
+  sourceVideo.value?.pause()
+}
+
+function clearVideoElement() {
+  pauseVideoPlayback()
+  cancelVideoPrerender()
+  clearPrerenderCache()
+  const video = sourceVideo.value
+  if (video) {
+    video.removeAttribute('src')
+    video.load()
+  }
+  videoDuration.value = 0
+  videoCurrentTime.value = 0
+  clipStart.value = 0
+  clipEnd.value = 0
+  mediaKind.value = null
 }
 
 function clearResult() {
@@ -214,17 +407,81 @@ function clearResult() {
   asciiColors.value = null
   rows.value = 0
   columnsOut.value = 0
+  lastPreviewCols = 0
+  lastPreviewRows = 0
+}
+
+function clearPrerenderCache() {
+  prerenderFrames = []
+  prerenderCacheKey = ''
+  prerenderPlayIndex = 0
+  videoPrerenderReady.value = false
+  videoPrerenderDone.value = 0
+  videoPrerenderTotal.value = 0
+}
+
+function cancelVideoPrerender() {
+  prerenderAbort = true
+  videoPrerendering.value = false
+}
+
+function currentPrerenderCacheKey() {
+  return buildPrerenderCacheKey({
+    videoObjectUrl,
+    columns: columns.value,
+    mode: mode.value,
+    phrase: phrase.value,
+    charset: charset.value,
+    previewInvert: previewInvert.value,
+    exposure: exposure.value,
+    previewAspect: previewAspect.value,
+    phraseColor: phraseColor.value,
+    phraseThreshold: phraseThreshold.value,
+    phraseFillAll: phraseFillAll.value,
+    videoFps: videoFps.value,
+    clipStart: clipStart.value,
+    clipEnd: clipEnd.value,
+  })
+}
+
+function invalidatePrerenderIfStale() {
+  if (!videoPrerenderReady.value) return
+  if (prerenderCacheKey !== currentPrerenderCacheKey()) {
+    clearPrerenderCache()
+  }
 }
 
 function resetAll() {
   clearResult()
+  pauseVideoPlayback()
   revokePreview()
+  clearVideoElement()
   bitmap?.close()
   bitmap = null
   hasImage.value = false
   imageAspect.value = 0
   error.value = ''
   if (fileInput.value) fileInput.value.value = ''
+}
+
+function getFrameSource(): AsciiFrameSource | null {
+  if (bitmap) {
+    return { source: bitmap, width: bitmap.width, height: bitmap.height }
+  }
+  const video = sourceVideo.value
+  if (
+    mediaKind.value === 'video' &&
+    video &&
+    video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA &&
+    video.videoWidth > 0
+  ) {
+    return {
+      source: video,
+      width: video.videoWidth,
+      height: video.videoHeight,
+    }
+  }
+  return null
 }
 
 function applyPhraseFontDefaults() {
@@ -284,15 +541,8 @@ function restoreDefaults() {
   exportAspect.value = EXPORT_CHAR_ASPECT
   savedCharsetPreview = null
   error.value = ''
-  if (bitmap) void runConvert({ fitZoom: true })
-}
-
-function selectMode(next: AsciiMode) {
-  if (mode.value === next) return
-  mode.value = next
-  if (next === 'phrase') applyPhraseFontDefaults()
-  else restoreCharsetFontDefaults()
-  autoZoom.value = true
+  clearPrerenderCache()
+  if (getFrameSource()) void runConvert({ fitZoom: true })
 }
 
 function readPreviewFrameSize() {
@@ -322,8 +572,10 @@ function readPreviewFrameSize() {
 }
 
 /** Fit ASCII into the preview frame using image-derived cols/rows + font size. */
-function applyAutoZoom() {
-  if (!autoZoom.value || columnsOut.value <= 0 || rows.value <= 0) return
+function applyAutoZoom(force = false) {
+  if ((!force && !autoZoom.value) || columnsOut.value <= 0 || rows.value <= 0) {
+    return
+  }
   const frame = readPreviewFrameSize()
   zoom.value = suggestFitZoom({
     columns: columnsOut.value,
@@ -337,46 +589,124 @@ function applyAutoZoom() {
   })
 }
 
+/**
+ * Keep on-screen scale consistent when effective columns change
+ * (e.g. 超清/极清 pause = full cols, play = live cap).
+ */
+function syncZoomForGrid(
+  nextCols: number,
+  nextRows: number,
+  options?: { forceFit?: boolean },
+) {
+  if (nextCols <= 0 || nextRows <= 0) return
+  const gridChanged =
+    nextCols !== lastPreviewCols || nextRows !== lastPreviewRows
+  if (!gridChanged && !options?.forceFit) return
+
+  columnsOut.value = nextCols
+  rows.value = nextRows
+
+  if (autoZoom.value || options?.forceFit) {
+    applyAutoZoom(true)
+  } else if (gridChanged && lastPreviewCols > 0) {
+    // Manual zoom: preserve approximate preview width across live-cap toggles.
+    const scaled = Math.round(zoom.value * (lastPreviewCols / nextCols))
+    zoom.value = Math.min(300, Math.max(10, scaled))
+  }
+
+  lastPreviewCols = nextCols
+  lastPreviewRows = nextRows
+}
+
+function convertFrame(
+  frame: AsciiFrameSource,
+  options?: { fitZoom?: boolean; forExport?: boolean },
+) {
+  const invertFlag = options?.forExport ? false : previewInvert.value
+  const cols = resolveAsciiColumns({
+    columns: columns.value,
+    kind: mediaKind.value,
+    mode: mode.value,
+    livePreview: options?.forExport ? false : videoLivePreview.value,
+    forExport: options?.forExport,
+  })
+  const result =
+    mode.value === 'phrase'
+      ? convertSourceToPhraseAscii(frame, {
+          columns: cols,
+          phrase: phrase.value.trim() || '我爱你中国',
+          threshold: phraseThreshold.value,
+          invert: invertFlag,
+          fillAll: phraseFillAll.value,
+          charAspect: previewAspect.value,
+          withColors: phraseColor.value,
+          exposure: exposure.value,
+        })
+      : convertSourceToAscii(frame, {
+          columns: cols,
+          charset: charset.value,
+          invert: invertFlag,
+          charAspect: previewAspect.value,
+          exposure: exposure.value,
+          withColors: phraseColor.value,
+        })
+  return result
+}
+
 async function runConvert(options?: { fitZoom?: boolean }) {
-  if (!bitmap) return
-  pending.value = true
+  const frame = getFrameSource()
+  if (!frame) return
+  if (frameBusy) {
+    const prevFit =
+      typeof convertQueued === 'object' ? Boolean(convertQueued.fitZoom) : false
+    convertQueued = { fitZoom: Boolean(options?.fitZoom) || prevFit }
+    return
+  }
+  frameBusy = true
+  const targetCols = resolveAsciiColumns({
+    columns: columns.value,
+    kind: mediaKind.value,
+    mode: mode.value,
+    livePreview: videoLivePreview.value,
+  })
+  const heavy =
+    targetCols >= 240 || (mode.value === 'phrase' && targetCols >= 180)
+  const showPending =
+    heavy || !hasVideo.value || !hasResult.value || !videoLivePreview.value
+  if (showPending) pending.value = true
   error.value = ''
   try {
-    imageAspect.value = bitmap.width / Math.max(1, bitmap.height)
-    const result =
-      mode.value === 'phrase'
-        ? convertBitmapToPhraseAscii(bitmap, {
-            columns: columns.value,
-            phrase: phrase.value.trim() || '我爱你中国',
-            threshold: phraseThreshold.value,
-            invert: previewInvert.value,
-            fillAll: phraseFillAll.value,
-            charAspect: previewAspect.value,
-            withColors: phraseColor.value,
-            exposure: exposure.value,
-          })
-        : convertBitmapToAscii(bitmap, {
-            columns: columns.value,
-            charset: charset.value,
-            invert: previewInvert.value,
-            charAspect: previewAspect.value,
-            exposure: exposure.value,
-            withColors: phraseColor.value,
-          })
+    if (heavy) await new Promise<void>((r) => setTimeout(r, 0))
+    const latest = getFrameSource()
+    if (!latest) {
+      clearResult()
+      return
+    }
+    imageAspect.value = latest.width / Math.max(1, latest.height)
+
+    const result = convertFrame(latest, options)
     ascii.value = result.text
     asciiColors.value = result.colors ?? null
     rows.value = result.rows
     columnsOut.value = result.columns
-    if (options?.fitZoom) {
-      await nextTick()
-      await nextTick()
-      applyAutoZoom()
-    }
+    syncZoomForGrid(result.columns, result.rows, {
+      forceFit: options?.fitZoom,
+    })
+
+    await nextTick()
+    if (options?.fitZoom || autoZoom.value) await nextTick()
+    schedulePaint()
   } catch (e) {
     error.value = e instanceof Error ? e.message : '转换失败'
     clearResult()
   } finally {
+    frameBusy = false
     pending.value = false
+    if (convertQueued) {
+      const queued = convertQueued
+      convertQueued = false
+      void runConvert(queued)
+    }
   }
 }
 
@@ -385,31 +715,371 @@ function buildExportAscii(): {
   text: string
   colors?: Uint8ClampedArray
 } {
-  if (!bitmap) return { text: ascii.value, colors: asciiColors.value ?? undefined }
-  if (mode.value === 'phrase') {
-    const result = convertBitmapToPhraseAscii(bitmap, {
-      columns: columns.value,
-      phrase: phrase.value.trim() || '我爱你中国',
-      threshold: phraseThreshold.value,
-      invert: false,
-      fillAll: phraseFillAll.value,
-      // Match preview grid so TXT silhouette matches what you tuned on screen,
-      // while staying 正向 (no theme invert).
-      charAspect: previewAspect.value,
-      withColors: phraseColor.value,
-      exposure: exposure.value,
-    })
-    return { text: result.text, colors: result.colors }
+  const frame = getFrameSource()
+  if (!frame) {
+    return { text: ascii.value, colors: asciiColors.value ?? undefined }
   }
-  const result = convertBitmapToAscii(bitmap, {
-    columns: columns.value,
-    charset: charset.value,
-    invert: false,
-    charAspect: previewAspect.value,
-    exposure: exposure.value,
-    withColors: phraseColor.value,
-  })
+  const result = convertFrame(frame, { forExport: true })
   return { text: result.text, colors: result.colors }
+}
+
+function onVideoTimeUpdate() {
+  const video = sourceVideo.value
+  if (!video) return
+  if (videoPlaybackMode.value === 'prerender') return
+  videoCurrentTime.value = video.currentTime
+  if (Number.isFinite(video.duration)) videoDuration.value = video.duration
+}
+
+function onSourceVideoPlay() {
+  if (videoPlaybackMode.value === 'prerender' || videoPrerendering.value) return
+  videoPlaying.value = true
+}
+
+function onSourceVideoPause() {
+  if (videoPlaybackMode.value === 'prerender' || videoPrerendering.value) return
+  videoPlaying.value = false
+}
+
+function onVideoSeeked() {
+  if (!hasVideo.value) return
+  if (downloading.value || videoPrerendering.value) return
+  if (videoPlaybackMode.value === 'prerender' && videoPlaying.value) return
+  if (videoPrerenderReady.value && usePrerenderPath.value && !videoPlaying.value) {
+    applyPrerenderFrame(nearestPrerenderIndex(prerenderFrames, videoCurrentTime.value))
+    return
+  }
+  void runConvert()
+}
+
+function applyPrerenderFrame(
+  index: number,
+  options?: { fitZoom?: boolean },
+) {
+  const frame = prerenderFrames[index]
+  if (!frame) return
+  prerenderPlayIndex = index
+  ascii.value = frame.text
+  asciiColors.value = frame.colors
+  columnsOut.value = frame.columns
+  rows.value = frame.rows
+  videoCurrentTime.value = frame.time
+  syncZoomForGrid(frame.columns, frame.rows, { forceFit: options?.fitZoom })
+  schedulePaint()
+}
+
+async function runPrerenderVideoFrames(): Promise<boolean> {
+  const video = sourceVideo.value
+  if (!video || !hasVideo.value) return false
+
+  prerenderAbort = false
+  pauseVideoPlayback()
+  clearPrerenderCache()
+  videoPrerendering.value = true
+  videoPrerenderDone.value = 0
+  videoPrerenderTotal.value = 0
+  error.value = ''
+
+  try {
+    const result = await prerenderVideoFrames({
+      video,
+      fps: videoFps.value,
+      startTime: clipStart.value,
+      endTime: clipEnd.value,
+      shouldAbort: () => prerenderAbort,
+      getFrameSource,
+      convertFrame: (source) => convertFrame(source),
+      onPlan: ({ total }) => {
+        videoPrerenderTotal.value = total
+      },
+      onProgress: ({ done, total, frame, index }) => {
+        videoPrerenderDone.value = done
+        videoPrerenderTotal.value = total
+        if (index === 0) {
+          ascii.value = frame.text
+          asciiColors.value = frame.colors
+          columnsOut.value = frame.columns
+          rows.value = frame.rows
+          syncZoomForGrid(frame.columns, frame.rows, { forceFit: true })
+          schedulePaint()
+        }
+      },
+    })
+
+    if (!result.ok) {
+      clearPrerenderCache()
+      error.value = result.error
+      return false
+    }
+
+    prerenderFrames = result.frames
+    prerenderCacheKey = currentPrerenderCacheKey()
+    videoPrerenderReady.value = true
+    applyPrerenderFrame(0, { fitZoom: true })
+    videoCurrentTime.value = result.resumeTime
+    return true
+  } finally {
+    videoPrerendering.value = false
+  }
+}
+
+function startVideoLoop() {
+  stopVideoLoop()
+  const video = sourceVideo.value
+  if (!video || mediaKind.value !== 'video') return
+  videoPlaybackMode.value = 'live'
+
+  videoLoop = createLiveFrameLoop({
+    fps: videoFps.value,
+    getVideo: () => sourceVideo.value,
+    isActive: () => mediaKind.value === 'video',
+    getRange: () =>
+      clipEnd.value > clipStart.value
+        ? { start: clipStart.value, end: clipEnd.value }
+        : null,
+    onPaused: () => {
+      videoPlaying.value = false
+      videoPlaybackMode.value = 'idle'
+    },
+    onFrame: (currentTime) => {
+      videoPlaying.value = true
+      videoCurrentTime.value = currentTime
+      void runConvert()
+    },
+  })
+}
+
+function startPrerenderLoop() {
+  stopVideoLoop()
+  if (prerenderFrames.length === 0) return
+  videoPlaybackMode.value = 'prerender'
+  videoPlaying.value = true
+  sourceVideo.value?.pause()
+
+  videoLoop = createPrerenderFrameLoop({
+    fps: videoFps.value,
+    frameCount: prerenderFrames.length,
+    shouldTick: () =>
+      videoPlaying.value && videoPlaybackMode.value === 'prerender',
+    getIndex: () => prerenderPlayIndex,
+    setIndex: (index) => {
+      prerenderPlayIndex = index
+    },
+    onFrame: (index) => {
+      applyPrerenderFrame(index)
+    },
+  })
+}
+
+async function playVideo() {
+  const video = sourceVideo.value
+  if (!video || !hasVideo.value || videoPrerendering.value) return
+
+  if (usePrerenderPath.value) {
+    invalidatePrerenderIfStale()
+    if (!videoPrerenderReady.value) {
+      const ok = await runPrerenderVideoFrames()
+      if (!ok) return
+    }
+    const playAt =
+      videoCurrentTime.value < clipStart.value ||
+      videoCurrentTime.value >= clipEnd.value
+        ? clipStart.value
+        : videoCurrentTime.value
+    prerenderPlayIndex = nearestPrerenderIndex(prerenderFrames, playAt)
+    startPrerenderLoop()
+    return
+  }
+
+  clearPrerenderCache()
+  seekPlaybackIntoClip(video)
+  try {
+    await video.play()
+    videoPlaying.value = true
+    startVideoLoop()
+    void runConvert({ fitZoom: autoZoom.value })
+  } catch {
+    error.value = '无法自动播放，请点击播放'
+  }
+}
+
+function pauseVideo() {
+  const wasLive =
+    videoPlaying.value || Boolean(sourceVideo.value && !sourceVideo.value.paused)
+  const modeWas = videoPlaybackMode.value
+  pauseVideoPlayback()
+  if (wasLive && modeWas === 'live') {
+    void runConvert({ fitZoom: autoZoom.value })
+  } else if (modeWas === 'prerender' && prerenderFrames.length > 0) {
+    applyPrerenderFrame(prerenderPlayIndex, { fitZoom: autoZoom.value })
+  }
+}
+
+function toggleVideoPlayback() {
+  if (!hasVideo.value || videoPrerendering.value) return
+  if (videoPlaying.value || (sourceVideo.value && !sourceVideo.value.paused)) {
+    pauseVideo()
+  } else {
+    void playVideo()
+  }
+}
+
+function resetClipBounds(duration: number) {
+  const safe = Number.isFinite(duration) && duration > 0 ? duration : 0
+  clipStart.value = 0
+  clipEnd.value =
+    safe > VIDEO_PRERENDER_MAX_DURATION_SEC
+      ? VIDEO_PRERENDER_MAX_DURATION_SEC
+      : safe
+}
+
+function onClipEdited() {
+  clearPrerenderCache()
+  const video = sourceVideo.value
+  if (!video || videoPlaybackMode.value !== 'live' || video.paused) return
+  if (
+    video.currentTime < clipStart.value ||
+    video.currentTime >= clipEnd.value - 0.04
+  ) {
+    video.currentTime = clipStart.value
+    videoCurrentTime.value = clipStart.value
+  }
+}
+
+function seekPlaybackIntoClip(video: HTMLVideoElement) {
+  if (
+    video.currentTime < clipStart.value ||
+    video.currentTime >= clipEnd.value - 0.05
+  ) {
+    video.currentTime = clipStart.value
+    videoCurrentTime.value = clipStart.value
+  }
+}
+
+function onClipStartInput(event: Event) {
+  const raw = Number((event.target as HTMLInputElement).value)
+  const max = Math.max(0, clipEnd.value - CLIP_MIN_SPAN)
+  clipStart.value = Math.min(Math.max(0, raw), max)
+  onClipEdited()
+}
+
+function onClipEndInput(event: Event) {
+  const raw = Number((event.target as HTMLInputElement).value)
+  const min = Math.min(videoDuration.value, clipStart.value + CLIP_MIN_SPAN)
+  clipEnd.value = Math.max(min, Math.min(videoDuration.value, raw))
+  onClipEdited()
+}
+
+function markClipIn() {
+  const t = Math.min(Math.max(0, videoCurrentTime.value), videoDuration.value)
+  const span = Math.min(
+    VIDEO_PRERENDER_MAX_DURATION_SEC,
+    Math.max(CLIP_MIN_SPAN, clipEnd.value - clipStart.value),
+  )
+  clipStart.value = t
+  if (clipEnd.value < clipStart.value + CLIP_MIN_SPAN) {
+    clipEnd.value = Math.min(videoDuration.value, clipStart.value + span)
+  }
+  if (clipEnd.value < clipStart.value + CLIP_MIN_SPAN) {
+    clipStart.value = Math.max(0, clipEnd.value - CLIP_MIN_SPAN)
+  }
+  onClipEdited()
+}
+
+function markClipOut() {
+  const t = Math.min(Math.max(0, videoCurrentTime.value), videoDuration.value)
+  const span = Math.min(
+    VIDEO_PRERENDER_MAX_DURATION_SEC,
+    Math.max(CLIP_MIN_SPAN, clipEnd.value - clipStart.value),
+  )
+  clipEnd.value = t
+  if (clipEnd.value < clipStart.value + CLIP_MIN_SPAN) {
+    clipStart.value = Math.max(0, clipEnd.value - span)
+  }
+  if (clipEnd.value < clipStart.value + CLIP_MIN_SPAN) {
+    clipEnd.value = Math.min(videoDuration.value, clipStart.value + CLIP_MIN_SPAN)
+  }
+  onClipEdited()
+}
+
+function resetClip() {
+  resetClipBounds(videoDuration.value)
+  onClipEdited()
+}
+
+function onVideoSeekInput(event: Event) {
+  const video = sourceVideo.value
+  if (!video || !hasVideo.value || videoPrerendering.value) return
+  const value = Number((event.target as HTMLInputElement).value)
+  videoCurrentTime.value = value
+
+  if (videoPrerenderReady.value && usePrerenderPath.value) {
+    const idx = nearestPrerenderIndex(prerenderFrames, value)
+    if (videoPlaying.value && videoPlaybackMode.value === 'prerender') {
+      prerenderPlayIndex = idx
+      applyPrerenderFrame(idx)
+    } else {
+      applyPrerenderFrame(idx)
+    }
+    return
+  }
+
+  video.currentTime = value
+}
+
+function clearImageBitmap() {
+  bitmap?.close()
+  bitmap = null
+  hasImage.value = false
+}
+
+async function loadImageFile(file: File) {
+  pauseVideoPlayback()
+  clearVideoElement()
+  const next = await fileToImageBitmap(file)
+  clearImageBitmap()
+  bitmap = next
+  hasImage.value = true
+  mediaKind.value = 'image'
+  imageAspect.value = next.width / Math.max(1, next.height)
+  revokePreview()
+  previewUrl.value = URL.createObjectURL(file)
+  autoZoom.value = true
+  await nextTick()
+  await runConvert({ fitZoom: true })
+}
+
+async function loadVideoFile(file: File) {
+  clearImageBitmap()
+  pauseVideoPlayback()
+  revokePreview()
+
+  await nextTick()
+  const video = sourceVideo.value
+  if (!video) throw new Error('视频预览组件未就绪')
+
+  if (videoObjectUrl) {
+    URL.revokeObjectURL(videoObjectUrl)
+    videoObjectUrl = ''
+  }
+
+  const url = await loadVideoElement(file, video)
+  videoObjectUrl = url
+  mediaKind.value = 'video'
+  hasImage.value = false
+  videoDuration.value = Number.isFinite(video.duration) ? video.duration : 0
+  videoCurrentTime.value = 0
+  video.loop = false
+  resetClipBounds(videoDuration.value)
+  imageAspect.value = video.videoWidth / Math.max(1, video.videoHeight)
+
+  autoZoom.value = true
+  await nextTick()
+  await runConvert({ fitZoom: true })
+  // 超清/极清先停在第一帧，等用户选好选段再解析播放。
+  if (!needsVideoPrerender(columns.value, mode.value)) {
+    await playVideo()
+  }
 }
 
 async function loadFile(file: File | undefined) {
@@ -417,17 +1087,15 @@ async function loadFile(file: File | undefined) {
   error.value = ''
   pending.value = true
   try {
-    const next = await fileToImageBitmap(file)
-    bitmap?.close()
-    bitmap = next
-    hasImage.value = true
-    imageAspect.value = next.width / Math.max(1, next.height)
-    revokePreview()
-    previewUrl.value = URL.createObjectURL(file)
-    autoZoom.value = true
-    await runConvert({ fitZoom: true })
+    if (isVideoFile(file)) {
+      await loadVideoFile(file)
+    } else if (isImageFile(file)) {
+      await loadImageFile(file)
+    } else {
+      throw new Error('请选择图片或视频（MP4 / WebM）')
+    }
   } catch (e) {
-    error.value = e instanceof Error ? e.message : '无法读取图片'
+    error.value = e instanceof Error ? e.message : '无法读取文件'
     resetAll()
   } finally {
     pending.value = false
@@ -481,6 +1149,11 @@ function onDrop(event: DragEvent) {
 }
 
 async function copyAscii() {
+  if (!ascii.value) {
+    const frame = getFrameSource()
+    if (!frame) return
+    await runConvert()
+  }
   if (!ascii.value) return
   try {
     await navigator.clipboard.writeText(ascii.value)
@@ -495,19 +1168,19 @@ async function copyAscii() {
 }
 
 function downloadTxt() {
-  if (!ascii.value && !bitmap) return
-  // Always 正向 sampling for download (not theme-inverted preview text).
+  if (!ascii.value && !getFrameSource()) return
   const { text } = buildExportAscii()
   if (!text) return
   const blob = new Blob(['\uFEFF', text], {
     type: 'text/plain;charset=utf-8',
   })
-  triggerDownload(blob, 'ascii-art.txt')
+  triggerDownload(blob, hasVideo.value ? 'ascii-frame.txt' : 'ascii-art.txt')
 }
 
 async function downloadPng() {
-  if (!ascii.value && !bitmap) return
+  if (!ascii.value && !getFrameSource()) return
   downloading.value = true
+  downloadProgress.value = ''
   error.value = ''
   try {
     const { text, colors } = buildExportAscii()
@@ -520,17 +1193,81 @@ async function downloadPng() {
       metricGlyph: metricGlyph.value,
       colors: phraseColor.value ? colors : undefined,
     })
-    triggerDownload(blob, 'ascii-art.png')
+    triggerDownload(blob, hasVideo.value ? 'ascii-frame.png' : 'ascii-art.png')
   } catch (e) {
     error.value = e instanceof Error ? e.message : 'PNG 下载失败'
   } finally {
     downloading.value = false
+    downloadProgress.value = ''
+  }
+}
+
+async function downloadVideo() {
+  const video = sourceVideo.value
+  if (!video || !hasVideo.value) return
+
+  const plan = planVideoExportFrames(clipSpan.value, videoFps.value)
+  if (!plan.ok) {
+    error.value = plan.error
+    return
+  }
+
+  downloading.value = true
+  downloadProgress.value = `0/${plan.total}`
+  error.value = ''
+  const resumeTime = video.currentTime
+  pauseVideoPlayback()
+
+  try {
+    const result = await exportAsciiVideo({
+      frameCount: plan.total,
+      fps: plan.fps,
+      fontSize: Math.max(8, fontSize.value),
+      background: exportColors.background,
+      foreground: exportColors.foreground,
+      fontFamily: exportFontFamily.value,
+      charAspect: exportAspect.value,
+      metricGlyph: metricGlyph.value,
+      onProgress: ({ done, total }) => {
+        downloadProgress.value = `${done}/${total}`
+      },
+      getFrame: async (index) => {
+        const t = Math.min(clipEnd.value, clipStart.value + index * plan.step)
+        await seekVideoTo(video, t)
+        const frame = getFrameSource()
+        if (!frame) return null
+        const converted = convertFrame(frame, { forExport: true })
+        return {
+          text: converted.text,
+          colors: phraseColor.value ? converted.colors : null,
+        }
+      },
+    })
+
+    triggerDownload(result.blob, `ascii-art.${result.extension}`)
+    if (result.extension !== 'mp4') {
+      error.value =
+        '当前浏览器不支持直接录制 MP4，已导出为 WebM。Chrome / Edge / Safari 通常可导出 MP4。'
+    }
+  } catch (e) {
+    error.value = e instanceof Error ? e.message : '视频导出失败'
+  } finally {
+    downloading.value = false
+    downloadProgress.value = ''
+    try {
+      await seekVideoTo(video, resumeTime)
+      videoCurrentTime.value = resumeTime
+      void runConvert()
+    } catch {
+      // ignore seek restore failures
+    }
   }
 }
 
 function onDownloadCommand(command: string | number | object) {
   if (command === 'txt') downloadTxt()
   else if (command === 'png') void downloadPng()
+  else if (command === 'mp4') void downloadVideo()
 }
 
 const ZOOM_MIN = 10
@@ -576,12 +1313,26 @@ function onZoomSlider(value: number | number[]) {
   zoom.value = Array.isArray(value) ? (value[0] ?? zoom.value) : value
 }
 
+function fullscreenPaintColors() {
+  const style = getComputedStyle(document.documentElement)
+  const background = style.getPropertyValue('--bg').trim()
+  const foreground = style.getPropertyValue('--text').trim()
+  return {
+    background: background || previewColors.value.background,
+    foreground: foreground || previewColors.value.foreground,
+  }
+}
+
 function paintTo(canvas: HTMLCanvasElement | null) {
   if (!canvas || !ascii.value) return
+  const colors =
+    canvas === fullscreenCanvas.value
+      ? fullscreenPaintColors()
+      : previewColors.value
   paintAsciiToCanvas(canvas, ascii.value, {
     fontSize: displayFontSize.value,
-    background: previewColors.value.background,
-    foreground: previewColors.value.foreground,
+    background: colors.background,
+    foreground: colors.foreground,
     fontFamily: previewFontFamily.value,
     charAspect: previewAspect.value,
     metricGlyph: metricGlyph.value,
@@ -605,6 +1356,12 @@ function schedulePaint() {
 
 async function openFullscreen() {
   if (!hasResult.value) return
+  if (!ascii.value && getFrameSource()) {
+    const playing =
+      videoPlaying.value || Boolean(sourceVideo.value && !sourceVideo.value.paused)
+    if (playing) pauseVideoPlayback()
+    await runConvert()
+  }
   fullscreen.value = true
   await nextTick()
   schedulePaint()
@@ -634,21 +1391,43 @@ watch(
     exposure,
   ],
   () => {
-    if (bitmap) void runConvert({ fitZoom: autoZoom.value })
+    if (hasVideo.value) {
+      const parsingPlayback =
+        videoPlaybackMode.value === 'prerender' ||
+        (usePrerenderPath.value && videoPlaybackMode.value === 'live')
+      if (videoPlaying.value && parsingPlayback) {
+        pauseVideoPlayback()
+      }
+      clearPrerenderCache()
+    }
+    if (getFrameSource() && !videoPrerendering.value) {
+      void runConvert({ fitZoom: autoZoom.value })
+    }
   },
 )
 
 watch(previewFontFamily, () => {
-  if (bitmap && autoZoom.value) applyAutoZoom()
+  if (getFrameSource() && autoZoom.value) applyAutoZoom()
   schedulePaint()
 })
 
 watch(fontSize, () => {
-  if (bitmap && autoZoom.value) applyAutoZoom()
+  if (getFrameSource() && autoZoom.value) applyAutoZoom()
 })
 
-watch([ascii, displayFontSize, previewColors, phraseColor, asciiColors], async () => {
-  if (!ascii.value) return
+watch(videoFps, () => {
+  if (!hasVideo.value) return
+  clearPrerenderCache()
+  if (!videoPlaying.value) return
+  if (videoPlaybackMode.value === 'prerender') {
+    pauseVideoPlayback()
+  } else if (videoPlaybackMode.value === 'live') {
+    startVideoLoop()
+  }
+})
+
+watch([ascii, displayFontSize, previewColors, phraseColor, asciiColors, zoom], async () => {
+  if (!hasResult.value) return
   await nextTick()
   schedulePaint()
 })
@@ -687,6 +1466,7 @@ onBeforeUnmount(() => {
   resetAll()
   window.clearTimeout(copyTimer)
   if (paintRaf) cancelAnimationFrame(paintRaf)
+  stopVideoLoop()
   window.removeEventListener('keydown', onFullscreenKey)
   document.body.style.overflow = ''
 })
@@ -695,8 +1475,8 @@ onBeforeUnmount(() => {
   <div class="page">
     <header class="page-head">
       <div class="page-title">
-        <h1>图片转字符画</h1>
-        <p class="sub">本地实时渲染 · 不上传服务器</p>
+        <h1>图片 / 视频转字符画</h1>
+        <p class="sub">本地实时渲染 · 支持短视频按帧解析 · 不上传服务器</p>
       </div>
       <div class="export-actions">
         <button
@@ -717,13 +1497,26 @@ onBeforeUnmount(() => {
             class="btn primary"
             :disabled="!hasResult || downloading"
           >
-            {{ downloading ? '导出中…' : '导出' }}
+            {{
+              downloading
+                ? downloadProgress
+                  ? `导出中 ${downloadProgress}`
+                  : '导出中…'
+                : '导出'
+            }}
             <span class="caret">▾</span>
           </button>
           <template #dropdown>
             <el-dropdown-menu>
-              <el-dropdown-item command="txt">下载 TXT</el-dropdown-item>
-              <el-dropdown-item command="png">下载 PNG</el-dropdown-item>
+              <el-dropdown-item command="txt">
+                {{ hasVideo ? '下载当前帧 TXT' : '下载 TXT' }}
+              </el-dropdown-item>
+              <el-dropdown-item command="png">
+                {{ hasVideo ? '下载当前帧 PNG' : '下载 PNG' }}
+              </el-dropdown-item>
+              <el-dropdown-item v-if="hasVideo" command="mp4">
+                下载视频 MP4
+              </el-dropdown-item>
             </el-dropdown-menu>
           </template>
         </el-dropdown>
@@ -767,10 +1560,15 @@ onBeforeUnmount(() => {
           </header>
           <div
             class="drop"
-            :class="{ active: dragging, filled: Boolean(previewUrl) }"
+            :class="{
+              active: dragging,
+              filled: Boolean(previewUrl) || hasVideo,
+            }"
             role="button"
             tabindex="0"
-            :aria-label="previewUrl ? '点击更换图片' : '点击上传图片'"
+            :aria-label="
+              previewUrl || hasVideo ? '点击更换文件' : '点击上传图片或视频'
+            "
             @dragenter.prevent="dragging = true"
             @dragover.prevent="dragging = true"
             @dragleave.prevent="dragging = false"
@@ -779,17 +1577,34 @@ onBeforeUnmount(() => {
             @keydown.enter.prevent="fileInput?.click()"
             @keydown.space.prevent="fileInput?.click()"
           >
+            <video
+              ref="sourceVideo"
+              class="thumb video-thumb"
+              :class="{ show: hasVideo }"
+              muted
+              playsinline
+              loop
+              @click.stop
+              @timeupdate="onVideoTimeUpdate"
+              @seeked="onVideoSeeked"
+              @play="onSourceVideoPlay"
+              @pause="onSourceVideoPause"
+            />
             <img
-              v-if="previewUrl"
+              v-if="previewUrl && !hasVideo"
               class="thumb"
               :src="previewUrl"
               alt="上传预览"
             />
             <div class="drop-copy">
               <p class="drop-title">
-                {{ previewUrl ? '点击或拖拽换图' : '拖拽或点击上传' }}
+                {{
+                  previewUrl || hasVideo
+                    ? '点击或拖拽更换'
+                    : '拖拽或点击上传'
+                }}
               </p>
-              <p class="drop-hint">PNG / JPG / WebP / GIF</p>
+              <p class="drop-hint">PNG / JPG / WebP / GIF · MP4 / WebM</p>
             </div>
             <input
               ref="fileInput"
@@ -800,6 +1615,156 @@ onBeforeUnmount(() => {
               @click.stop
             />
           </div>
+          <div v-if="hasVideo" class="video-controls" @click.stop>
+            <button
+              type="button"
+              class="btn"
+              :disabled="pending || videoPrerendering"
+              @click="toggleVideoPlayback"
+            >
+              {{
+                videoPrerendering
+                  ? '解析中…'
+                  : videoPlaying
+                    ? '暂停'
+                    : usePrerenderPath && !videoPrerenderReady
+                      ? '解析并播放'
+                      : '播放'
+              }}
+            </button>
+            <button
+              v-if="videoPrerendering"
+              type="button"
+              class="btn ghost"
+              @click="cancelVideoPrerender"
+            >
+              取消
+            </button>
+            <input
+              class="range video-seek"
+              type="range"
+              min="0"
+              :max="Math.max(0.1, videoDuration)"
+              step="0.05"
+              :value="videoCurrentTime"
+              :disabled="videoDuration <= 0 || videoPrerendering"
+              @input="onVideoSeekInput"
+            />
+            <span class="video-clock">{{ videoTimeLabel }}</span>
+            <label class="video-fps">
+              <span>解析</span>
+              <select
+                v-model.number="videoFps"
+                class="fps-select"
+                :disabled="videoPrerendering"
+              >
+                <option :value="12">12 fps</option>
+                <option :value="15">15 fps</option>
+                <option :value="20">20 fps</option>
+                <option :value="24">24 fps</option>
+              </select>
+            </label>
+          </div>
+          <div v-if="hasVideo" class="clip-box" @click.stop>
+            <div class="clip-head">
+              <span>选段</span>
+              <span class="clip-meta" :class="{ warn: clipOverLimit }">
+                {{ formatClock(clipStart) }} – {{ formatClock(clipEnd) }}
+                · {{ clipSpan.toFixed(1) }}s
+              </span>
+            </div>
+            <label class="clip-line">
+              <span>入点</span>
+              <input
+                class="range"
+                type="range"
+                min="0"
+                :max="Math.max(0.1, videoDuration)"
+                step="0.1"
+                :value="clipStart"
+                :disabled="videoDuration <= 0 || videoPrerendering || downloading"
+                @input="onClipStartInput"
+              />
+            </label>
+            <label class="clip-line">
+              <span>出点</span>
+              <input
+                class="range"
+                type="range"
+                min="0"
+                :max="Math.max(0.1, videoDuration)"
+                step="0.1"
+                :value="clipEnd"
+                :disabled="videoDuration <= 0 || videoPrerendering || downloading"
+                @input="onClipEndInput"
+              />
+            </label>
+            <div class="clip-actions">
+              <button
+                type="button"
+                class="btn ghost"
+                :disabled="videoPrerendering || downloading"
+                @click="markClipIn"
+              >
+                当前为入点
+              </button>
+              <button
+                type="button"
+                class="btn ghost"
+                :disabled="videoPrerendering || downloading"
+                @click="markClipOut"
+              >
+                当前为出点
+              </button>
+              <button
+                type="button"
+                class="text-link"
+                :disabled="videoPrerendering || downloading"
+                @click="resetClip"
+              >
+                重置
+              </button>
+            </div>
+          </div>
+          <div v-if="videoPrerendering" class="prerender-bar" @click.stop>
+            <div class="prerender-track">
+              <div
+                class="prerender-fill"
+                :style="{
+                  width: `${
+                    videoPrerenderTotal
+                      ? (videoPrerenderDone / videoPrerenderTotal) * 100
+                      : 0
+                  }%`,
+                }"
+              />
+            </div>
+            <p class="prerender-label">{{ prerenderProgressLabel }}</p>
+          </div>
+          <p v-if="hasVideo" class="video-note">
+            <template v-if="videoPrerendering">
+              正在解析选段，可点取消。解析播放最长
+              {{ VIDEO_PRERENDER_MAX_DURATION_SEC }} 秒。
+            </template>
+            <template v-else-if="usePrerenderPath && !videoPrerenderReady">
+              已显示第一帧。选好入点/出点后点「解析并播放」，解析完成才会播放。
+            </template>
+            <template v-else-if="clipOverLimit">
+              选段超过 {{ VIDEO_PRERENDER_MAX_DURATION_SEC }} 秒，不能整段解析播放。导出超过
+              {{ VIDEO_EXPORT_BUFFER_FRAMES }} 帧会逐帧编码并丢弃，单次最多
+              {{ VIDEO_EXPORT_MAX_FRAMES }} 帧。
+            </template>
+            <template v-else-if="usePrerenderPath">
+              当前清晰度会先解析选段再播放。标清 / 高清仍可在选段内实时播放。
+            </template>
+            <template v-else-if="columnsCapped">
+              实时播放中预览限 {{ liveColumnCap }} 列；暂停可见全清晰度。
+            </template>
+            <template v-else>
+              播放处理当前选段。导出超过 {{ VIDEO_EXPORT_BUFFER_FRAMES }} 帧会边编码边丢弃，单次最多
+              {{ VIDEO_EXPORT_MAX_FRAMES }} 帧。
+            </template>
+          </p>
         </section>
 
         <section class="card">
@@ -947,135 +1912,161 @@ onBeforeUnmount(() => {
           </summary>
 
           <div class="advanced-body">
-            <div class="field">
-              <div class="field-label">
-                <span>列宽采样</span>
-                <span class="field-val">{{ columns }}</span>
-              </div>
-              <input
-                :value="columns"
-                class="range"
-                type="range"
-                min="40"
-                max="400"
-                step="2"
-                @input="onColumnsRange"
-              />
-            </div>
-
-            <div class="field">
-              <div class="field-label">
-                <span>基础字号</span>
-                <span class="field-val">{{ fontSize }}px</span>
-              </div>
-              <input
-                v-model.number="fontSize"
-                class="range"
-                type="range"
-                min="4"
-                max="16"
-                step="1"
-              />
-            </div>
-
-            <div class="field">
-              <div class="field-label"><span>预览字体</span></div>
-              <div class="seg wrap">
-                <button
-                  v-for="opt in fontOptions"
-                  :key="`preview-${opt.key}`"
-                  type="button"
-                  class="seg-item"
-                  :class="{ on: previewFontKey === opt.key }"
-                  :title="opt.hint"
-                  @click="selectPreviewFont(opt.key)"
-                >
-                  {{ opt.label }}
-                </button>
-              </div>
-              <div class="field-label tight">
-                <span>预览字格</span>
-                <span class="field-val">{{ previewAspect.toFixed(2) }}</span>
-              </div>
-              <input
-                :value="previewAspect"
-                class="range"
-                type="range"
-                min="0.4"
-                max="1.1"
-                step="0.01"
-                @input="onPreviewAspectRange"
-              />
-            </div>
-
-            <div class="field">
-              <div class="field-label"><span>下载字体</span></div>
-              <div class="seg wrap">
-                <button
-                  v-for="opt in fontOptions"
-                  :key="`export-${opt.key}`"
-                  type="button"
-                  class="seg-item"
-                  :class="{ on: exportFontKey === opt.key }"
-                  :title="opt.hint"
-                  @click="selectExportFont(opt.key)"
-                >
-                  {{ opt.label }}
-                </button>
-              </div>
-              <div class="field-label tight">
-                <span>导出字格</span>
-                <span class="field-val">{{ exportAspect.toFixed(2) }}</span>
-              </div>
-              <input
-                :value="exportAspect"
-                class="range"
-                type="range"
-                min="0.4"
-                max="1.1"
-                step="0.01"
-                @input="onExportAspectRange"
-              />
-            </div>
-
-            <template v-if="mode === 'phrase'">
-              <div class="field">
-                <div class="field-label">
-                  <span>明暗阈值</span>
-                  <span class="field-val">{{ phraseThreshold.toFixed(2) }}</span>
+            <details class="adv-group" open>
+              <summary class="adv-group-summary">采样与字号</summary>
+              <div class="adv-group-body">
+                <div class="field">
+                  <div class="field-label">
+                    <span>列宽采样</span>
+                    <span class="field-val">{{ columns }}</span>
+                  </div>
+                  <input
+                    :value="columns"
+                    class="range"
+                    type="range"
+                    min="40"
+                    max="400"
+                    step="2"
+                    @input="onColumnsRange"
+                  />
                 </div>
-                <input
-                  v-model.number="phraseThreshold"
-                  class="range"
-                  type="range"
-                  min="0.05"
-                  max="0.95"
-                  step="0.01"
-                />
-              </div>
-              <label class="check">
-                <input v-model="phraseFillAll" type="checkbox" />
-                <span>铺满整图</span>
-              </label>
-            </template>
 
-            <div v-if="mode === 'charset'" class="field">
-              <div class="field-label"><span>自定义字符（暗→亮）</span></div>
-              <input
-                v-model="customCharset"
-                class="text-input"
-                type="text"
-                placeholder="覆盖上方字符集"
-                spellcheck="false"
-              />
-            </div>
+                <div class="field">
+                  <div class="field-label">
+                    <span>基础字号</span>
+                    <span class="field-val">{{ fontSize }}px</span>
+                  </div>
+                  <input
+                    v-model.number="fontSize"
+                    class="range"
+                    type="range"
+                    min="4"
+                    max="16"
+                    step="1"
+                  />
+                </div>
+              </div>
+            </details>
+
+            <details class="adv-group">
+              <summary class="adv-group-summary">预览字体</summary>
+              <div class="adv-group-body">
+                <div class="field">
+                  <div class="field-label"><span>预览字体</span></div>
+                  <div class="seg wrap">
+                    <button
+                      v-for="opt in fontOptions"
+                      :key="`preview-${opt.key}`"
+                      type="button"
+                      class="seg-item"
+                      :class="{ on: previewFontKey === opt.key }"
+                      :title="opt.hint"
+                      @click="selectPreviewFont(opt.key)"
+                    >
+                      {{ opt.label }}
+                    </button>
+                  </div>
+                  <div class="field-label tight">
+                    <span>预览字格</span>
+                    <span class="field-val">{{ previewAspect.toFixed(2) }}</span>
+                  </div>
+                  <input
+                    :value="previewAspect"
+                    class="range"
+                    type="range"
+                    min="0.4"
+                    max="1.1"
+                    step="0.01"
+                    @input="onPreviewAspectRange"
+                  />
+                </div>
+              </div>
+            </details>
+
+            <details class="adv-group">
+              <summary class="adv-group-summary">导出字体</summary>
+              <div class="adv-group-body">
+                <div class="field">
+                  <div class="field-label"><span>下载字体</span></div>
+                  <div class="seg wrap">
+                    <button
+                      v-for="opt in fontOptions"
+                      :key="`export-${opt.key}`"
+                      type="button"
+                      class="seg-item"
+                      :class="{ on: exportFontKey === opt.key }"
+                      :title="opt.hint"
+                      @click="selectExportFont(opt.key)"
+                    >
+                      {{ opt.label }}
+                    </button>
+                  </div>
+                  <div class="field-label tight">
+                    <span>导出字格</span>
+                    <span class="field-val">{{ exportAspect.toFixed(2) }}</span>
+                  </div>
+                  <input
+                    :value="exportAspect"
+                    class="range"
+                    type="range"
+                    min="0.4"
+                    max="1.1"
+                    step="0.01"
+                    @input="onExportAspectRange"
+                  />
+                </div>
+              </div>
+            </details>
+
+            <details class="adv-group">
+              <summary class="adv-group-summary">
+                {{ mode === 'phrase' ? '短语参数' : '字符集' }}
+              </summary>
+              <div class="adv-group-body">
+                <template v-if="mode === 'phrase'">
+                  <div class="field">
+                    <div class="field-label">
+                      <span>明暗阈值</span>
+                      <span class="field-val">{{
+                        phraseThreshold.toFixed(2)
+                      }}</span>
+                    </div>
+                    <input
+                      v-model.number="phraseThreshold"
+                      class="range"
+                      type="range"
+                      min="0.05"
+                      max="0.95"
+                      step="0.01"
+                    />
+                  </div>
+                  <label class="check">
+                    <input v-model="phraseFillAll" type="checkbox" />
+                    <span>铺满整图</span>
+                  </label>
+                </template>
+
+                <div v-else class="field">
+                  <div class="field-label">
+                    <span>自定义字符（暗→亮）</span>
+                  </div>
+                  <input
+                    v-model="customCharset"
+                    class="text-input"
+                    type="text"
+                    placeholder="覆盖上方字符集"
+                    spellcheck="false"
+                  />
+                </div>
+              </div>
+            </details>
 
             <div class="adv-actions">
               <button
                 type="button"
                 class="btn"
-                :disabled="!hasImage || pending"
-                @click="runConvert"
+                :disabled="!hasMedia || pending"
+                @click="() => runConvert()"
               >
                 重新生成
               </button>
@@ -1085,7 +2076,7 @@ onBeforeUnmount(() => {
               <button
                 type="button"
                 class="text-link"
-                :disabled="!previewUrl"
+                :disabled="!previewUrl && !hasVideo"
                 @click="resetAll"
               >
                 清空
@@ -1101,7 +2092,7 @@ onBeforeUnmount(() => {
             <h2>预览</h2>
             <p v-if="error" class="status error">{{ error }}</p>
             <p v-else-if="meta" class="status">{{ meta }}</p>
-            <p v-else class="status">上传图片后实时显示结果</p>
+            <p v-else class="status">上传图片或短视频后实时显示结果</p>
           </div>
           <button
             v-if="hasResult"
@@ -1114,7 +2105,7 @@ onBeforeUnmount(() => {
         </header>
 
         <div
-          v-if="hasResult"
+          v-if="hasMedia || hasResult"
           ref="previewScroll"
           class="ascii-scroll fx-scroll"
           title="Ctrl + 滚轮缩放"
@@ -1124,7 +2115,11 @@ onBeforeUnmount(() => {
           </div>
         </div>
         <div v-else class="empty">
-          {{ pending ? '处理中…' : '将图片拖到左侧，或点击上传开始' }}
+          {{
+            pending
+              ? '处理中…'
+              : '将图片或视频拖到左侧，或点击上传开始'
+          }}
         </div>
       </section>
     </div>
@@ -1344,7 +2339,63 @@ onBeforeUnmount(() => {
 
 .advanced-body {
   display: grid;
-  gap: 0.75rem;
+  gap: 0.45rem;
+}
+
+.adv-group {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--soft) 70%, transparent);
+  overflow: clip;
+}
+
+.adv-group-summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.55rem 0.7rem;
+  color: var(--text-muted);
+  font-size: 0.74rem;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+}
+
+.adv-group-summary::-webkit-details-marker {
+  display: none;
+}
+
+.adv-group-summary::after {
+  content: '';
+  width: 0.35rem;
+  height: 0.35rem;
+  border-right: 1.5px solid var(--text-faint);
+  border-bottom: 1.5px solid var(--text-faint);
+  transform: rotate(45deg);
+  transition: transform 0.15s ease;
+  flex-shrink: 0;
+}
+
+.adv-group[open] > .adv-group-summary::after {
+  transform: rotate(-135deg);
+  margin-top: 0.15rem;
+}
+
+.adv-group[open] > .adv-group-summary {
+  border-bottom: 1px solid var(--line);
+  color: var(--text);
+}
+
+.adv-group-body {
+  display: grid;
+  gap: 0.65rem;
+  padding: 0.7rem;
+}
+
+.adv-group-body .field {
+  margin-bottom: 0;
 }
 
 .drop {
@@ -1390,6 +2441,146 @@ onBeforeUnmount(() => {
   margin: 0.15rem 0 0;
   color: var(--text-faint);
   font-size: 0.7rem;
+}
+
+.video-thumb {
+  display: none;
+}
+
+.video-thumb.show {
+  display: block;
+}
+
+.video-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 0.55rem;
+  align-items: center;
+  margin-top: 0.65rem;
+}
+
+.video-controls .btn {
+  min-height: 2rem;
+  padding: 0 0.7rem;
+  font-size: 0.75rem;
+}
+
+.video-seek {
+  flex: 1 1 8rem;
+  margin: 0;
+  min-width: 6rem;
+}
+
+.video-clock {
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.clip-box {
+  display: grid;
+  gap: 0.4rem;
+  margin-top: 0.7rem;
+  padding-top: 0.65rem;
+  border-top: 1px solid var(--line);
+}
+
+.clip-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  color: var(--text-muted);
+  font-size: 0.74rem;
+  font-weight: 600;
+}
+
+.clip-meta {
+  color: var(--text-faint);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+.clip-meta.warn {
+  color: var(--danger);
+}
+
+.clip-line {
+  display: grid;
+  grid-template-columns: 2.2rem 1fr;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--text-faint);
+  font-size: 0.72rem;
+}
+
+.clip-line .range {
+  margin: 0;
+}
+
+.clip-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.clip-actions .btn {
+  min-height: 1.85rem;
+  padding: 0 0.6rem;
+  font-size: 0.72rem;
+}
+
+.video-fps {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+.fps-select {
+  min-height: 1.85rem;
+  padding: 0 0.45rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--input-bg);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.75rem;
+}
+
+.prerender-bar {
+  margin-top: 0.55rem;
+}
+
+.prerender-track {
+  height: 0.35rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--soft);
+}
+
+.prerender-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  transition: width 0.15s ease;
+}
+
+.prerender-label {
+  margin: 0.35rem 0 0;
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  line-height: 1.4;
+}
+
+.video-note {
+  margin: 0.5rem 0 0;
+  color: var(--text-faint);
+  font-size: 0.72rem;
+  line-height: 1.45;
 }
 
 .field {
@@ -1727,6 +2918,7 @@ onBeforeUnmount(() => {
 }
 
 .ascii-scroll-inner {
+  position: relative;
   display: inline-block;
   min-width: 100%;
   min-height: 100%;
@@ -1753,7 +2945,8 @@ onBeforeUnmount(() => {
   z-index: 4000;
   display: flex;
   flex-direction: column;
-  background: rgba(4, 6, 12, 0.96);
+  background: var(--bg);
+  color: var(--text);
 }
 
 .fs-bar {
@@ -1763,12 +2956,15 @@ onBeforeUnmount(() => {
   gap: 1rem;
   flex-shrink: 0;
   padding: 0.75rem 1rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  color: #e8ecff;
+  border-bottom: 1px solid var(--border);
+  background: color-mix(in srgb, var(--bg-elevated) 92%, transparent);
+  color: var(--text);
+  backdrop-filter: blur(12px);
 }
 
 .fs-title {
   margin: 0;
+  color: var(--text-muted);
   font-size: 0.9rem;
 }
 
@@ -1779,8 +2975,13 @@ onBeforeUnmount(() => {
 }
 
 .fs-tools .btn.ghost {
-  color: #e8ecff;
-  border-color: rgba(255, 255, 255, 0.18);
+  color: var(--text);
+  border-color: var(--border-strong);
+  background: color-mix(in srgb, var(--bg-elevated) 80%, transparent);
+}
+
+.fs-tools .btn.ghost:hover {
+  background: var(--bg-soft-hover);
 }
 
 .fs-scroll {
@@ -1788,7 +2989,7 @@ onBeforeUnmount(() => {
   min-height: 0;
   overflow: auto;
   overscroll-behavior: contain;
-  background: rgba(0, 0, 0, 0.35);
+  background: var(--bg);
 }
 
 .fs-scroll .ascii-scroll-inner {

@@ -12,7 +12,7 @@ export const toolsCatalog: readonly CatalogItem[] = [
   {
     to: '/ascii-art',
     name: '字符画',
-    line: '上传图片，本地转成可晒的中文铺字 / 彩色字符画',
+    line: '上传图片或短视频，本地转成可晒的中文铺字 / 彩色字符画',
     tag: '主推',
   },
   {
