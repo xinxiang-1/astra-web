@@ -107,8 +107,12 @@ export function paintAsciiToCanvas(
 
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
   ctx.imageSmoothingEnabled = false
-  ctx.fillStyle = options.background
-  ctx.fillRect(0, 0, cssWidth, cssHeight)
+  if (options.background && options.background !== 'transparent') {
+    ctx.fillStyle = options.background
+    ctx.fillRect(0, 0, cssWidth, cssHeight)
+  } else {
+    ctx.clearRect(0, 0, cssWidth, cssHeight)
+  }
   ctx.font = font
   ctx.textAlign = 'left'
   ctx.textBaseline = 'top'

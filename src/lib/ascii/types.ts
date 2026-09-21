@@ -10,25 +10,44 @@ export type AsciiResolutionKey = keyof typeof ASCII_RESOLUTIONS
 export type AsciiAspectPresetKey = keyof typeof ASCII_ASPECT_PRESETS
 export type AsciiFontPresetKey = keyof typeof ASCII_FONT_PRESETS
 
+/** Shared tone pipeline (charset + phrase), aligned with asciify-engine. */
+export type AsciiToneOptions = {
+  invert?: boolean
+  /**
+   * Exposure bias in stops (-2 … +2). Positive = brighter image.
+   * Combined with a soft brightness shift before contrast.
+   */
+  exposure?: number
+  /**
+   * Contrast around midtones (−1 … +1). `0` = unchanged.
+   * Default in the UI is a light boost (~0.2).
+   */
+  contrast?: number
+  /**
+   * Stretch frame luminance so darkest→lightest fills the charset.
+   * Helps muted / low-contrast photos.
+   */
+  normalize?: boolean
+  /**
+   * Bayer 4×4 dither strength on luminance (0 … 1).
+   * Softens banding on flat gradients.
+   */
+  ditherStrength?: number
+}
+
 export type AsciiConvertOptions = {
   /** Output columns (character width). */
   columns: number
   charset: string
-  invert?: boolean
   /**
    * Vertical sampling scale vs image aspect.
    * Must equal display cell (glyphWidth / lineHeight) or shapes stretch.
    * Consolas ≈ 0.55; higher values add rows and make output look taller.
    */
   charAspect?: number
-  /**
-   * Exposure bias in stops (-2 … +2). Positive = brighter image.
-   * Applied as brightness *= 2^exposure.
-   */
-  exposure?: number
   /** Attach per-cell RGB for colored preview/PNG. */
   withColors?: boolean
-}
+} & AsciiToneOptions
 
 export type MonoCellMetrics = {
   fontFamily: string
@@ -60,15 +79,12 @@ export type AsciiPhraseOptions = {
    * Lower = only darker regions keep characters.
    */
   threshold?: number
-  invert?: boolean
   charAspect?: number
-  /** Exposure bias in stops (-2 … +2). */
-  exposure?: number
   /** When true, every cell gets a phrase char (no silhouette spaces). */
   fillAll?: boolean
   /** Attach per-cell RGB for colored preview/PNG. */
   withColors?: boolean
-}
+} & AsciiToneOptions
 
 export type AsciiMediaKind = 'image' | 'video'
 

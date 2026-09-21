@@ -36,6 +36,7 @@ export type {
   AsciiPhraseOptions,
   AsciiPngOptions,
   AsciiResolutionKey,
+  AsciiToneOptions,
   FitZoomOptions,
   MonoCellMetrics,
   PrerenderFrame,

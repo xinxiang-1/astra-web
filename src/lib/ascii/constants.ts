@@ -1,8 +1,15 @@
-/** Character sets for brightness → glyph mapping. */
+/**
+ * Character density ramps (dark → light), curated like asciify-engine.
+ * Mapping uses luminance linearly across the string — not measured ink area.
+ */
 export const ASCII_CHARSETS = {
-  dense: '@%#*+=-:. ',
+  /** Default — asciify “detailed”, reversed to dark→light. */
+  dense: '@80GCLft1i;:,. ',
+  /** Classic 10-step ramp (asciify standard, reversed). */
+  standard: '@%#*+=-:. ',
   blocks: '█▓▒░ ',
-  simple: '#Oo*. ',
+  simple: '#*+:. ',
+  letters: 'WMSAYTFCLli. ',
   binary: '10 ',
 } as const
 

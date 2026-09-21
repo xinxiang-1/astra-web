@@ -16,6 +16,18 @@ export const toolsCatalog: readonly CatalogItem[] = [
     tag: '主推',
   },
   {
+    to: '/ascii-loop',
+    name: '循环嵌入',
+    line: '循环视频转字符画：抠背景格换成流动字符，可导出 HTML',
+    tag: '实验',
+  },
+  {
+    to: '/ascii-live',
+    name: '动态字符',
+    line: '大理石胸像转动态字符，悬停白字跟随，可上传图片或视频',
+    tag: '实验',
+  },
+  {
     to: '/file-upload',
     name: '文件预览',
     line: '本地上传，浏览器内预览 Office / PDF，不上传服务器',
@@ -49,6 +61,8 @@ export const studioCatalog: readonly CatalogItem[] = [
 export const toolRouteNames = [
   'tools',
   'ascii-art',
+  'ascii-loop',
+  'ascii-live',
   'file-upload',
   'file-preview',
 ] as const

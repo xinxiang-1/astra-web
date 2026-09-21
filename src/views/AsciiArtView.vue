@@ -35,8 +35,6 @@ import {
   triggerDownload,
   videoLiveColumnCap,
   VIDEO_PRERENDER_MAX_DURATION_SEC,
-  VIDEO_EXPORT_BUFFER_FRAMES,
-  VIDEO_EXPORT_MAX_FRAMES,
   VIDEO_TARGET_FPS,
   type AsciiCharsetKey,
   type AsciiFontPresetKey,
@@ -47,6 +45,7 @@ import {
   type FrameLoopHandle,
   type PrerenderFrame,
 } from '@/lib/ascii'
+import { WarningFilled } from '@element-plus/icons-vue'
 import { useThemeStore } from '@/stores/theme'
 
 const ACCEPT = MEDIA_ACCEPT
@@ -96,6 +95,12 @@ const phraseFillAll = ref(false)
 const phraseColor = ref(true) // kept name; applies to both modes as 彩色预览
 /** Exposure bias in EV stops (-2 … +2). */
 const exposure = ref(0)
+/** Soft midtone boost — asciify-style contrast (0 = flat). */
+const contrast = ref(0.2)
+/** Stretch luminance to full charset range. */
+const normalizeTone = ref(true)
+/** Bayer dither 0–1; soft default reduces banding. */
+const ditherStrength = ref(0.25)
 
 /** Default to higher sampling. */
 const resolutionKey = ref<AsciiResolutionKey | 'custom'>('high')
@@ -240,12 +245,65 @@ const videoTimeLabel = computed(
 )
 
 const CLIP_MIN_SPAN = 0.2
+const CLIP_LENGTH_OPTIONS = [5, 10, 15, 20] as const
+
+const clipLength = ref(VIDEO_PRERENDER_MAX_DURATION_SEC)
+const clipLengthCustom = ref(false)
 
 const clipSpan = computed(() => Math.max(0, clipEnd.value - clipStart.value))
+
+const clipFrameCount = computed(() =>
+  Math.max(1, Math.floor(clipSpan.value * videoFps.value) + 1),
+)
+
+const clipMaxFrames = computed(() => {
+  const span = Math.min(
+    VIDEO_PRERENDER_MAX_DURATION_SEC,
+    videoDuration.value > 0 ? videoDuration.value : VIDEO_PRERENDER_MAX_DURATION_SEC,
+  )
+  return Math.max(2, Math.floor(span * videoFps.value) + 1)
+})
 
 const clipOverLimit = computed(
   () => clipSpan.value > VIDEO_PRERENDER_MAX_DURATION_SEC + 0.05,
 )
+
+const clipStartPct = computed(() => {
+  const d = videoDuration.value
+  if (d <= 0) return 0
+  return Math.min(100, Math.max(0, (clipStart.value / d) * 100))
+})
+
+const clipSpanPct = computed(() => {
+  const d = videoDuration.value
+  if (d <= 0) return 0
+  return Math.min(100 - clipStartPct.value, Math.max(0, (clipSpan.value / d) * 100))
+})
+
+const playheadPct = computed(() => {
+  const d = videoDuration.value
+  if (d <= 0) return 0
+  return Math.min(100, Math.max(0, (videoCurrentTime.value / d) * 100))
+})
+
+const videoHint = computed(() => {
+  if (!usePrerenderPath.value) {
+    if (columnsCapped.value) {
+      return `实时预览限 ${liveColumnCap.value} 列；暂停看全清晰度`
+    }
+    return ''
+  }
+  if (videoPrerendering.value) {
+    return `解析中…最多 ${VIDEO_PRERENDER_MAX_DURATION_SEC}s`
+  }
+  if (!videoPrerenderReady.value) {
+    return '选好片段后点「解析并播放」'
+  }
+  if (clipOverLimit.value) {
+    return `片段不能超过 ${VIDEO_PRERENDER_MAX_DURATION_SEC} 秒`
+  }
+  return ''
+})
 
 const previewColors = computed(() =>
   theme.isDark
@@ -291,9 +349,11 @@ const fontOptions = (
 ).map(([key, value]) => ({ key, ...value }))
 
 const charsetOptions: { key: AsciiCharsetKey; label: string }[] = [
-  { key: 'dense', label: '密集' },
+  { key: 'dense', label: '细腻' },
+  { key: 'standard', label: '经典' },
   { key: 'blocks', label: '色块' },
   { key: 'simple', label: '简洁' },
+  { key: 'letters', label: '字母' },
   { key: 'binary', label: '二进制' },
 ]
 
@@ -399,6 +459,8 @@ function clearVideoElement() {
   videoCurrentTime.value = 0
   clipStart.value = 0
   clipEnd.value = 0
+  clipLength.value = VIDEO_PRERENDER_MAX_DURATION_SEC
+  clipLengthCustom.value = false
   mediaKind.value = null
 }
 
@@ -434,6 +496,9 @@ function currentPrerenderCacheKey() {
     charset: charset.value,
     previewInvert: previewInvert.value,
     exposure: exposure.value,
+    contrast: contrast.value,
+    normalize: normalizeTone.value,
+    ditherStrength: ditherStrength.value,
     previewAspect: previewAspect.value,
     phraseColor: phraseColor.value,
     phraseThreshold: phraseThreshold.value,
@@ -523,6 +588,9 @@ function restoreDefaults() {
   phraseFillAll.value = false
   phraseColor.value = true
   exposure.value = 0
+  contrast.value = 0.2
+  normalizeTone.value = true
+  ditherStrength.value = 0.25
   resolutionKey.value = 'high'
   columns.value = ASCII_RESOLUTIONS.high.columns
   charsetKey.value = 'dense'
@@ -641,6 +709,8 @@ function convertFrame(
           charAspect: previewAspect.value,
           withColors: phraseColor.value,
           exposure: exposure.value,
+          contrast: contrast.value,
+          normalize: normalizeTone.value,
         })
       : convertSourceToAscii(frame, {
           columns: cols,
@@ -648,6 +718,9 @@ function convertFrame(
           invert: invertFlag,
           charAspect: previewAspect.value,
           exposure: exposure.value,
+          contrast: contrast.value,
+          normalize: normalizeTone.value,
+          ditherStrength: ditherStrength.value,
           withColors: phraseColor.value,
         })
   return result
@@ -834,7 +907,7 @@ function startVideoLoop() {
     getVideo: () => sourceVideo.value,
     isActive: () => mediaKind.value === 'video',
     getRange: () =>
-      clipEnd.value > clipStart.value
+      usePrerenderPath.value && clipEnd.value > clipStart.value
         ? { start: clipStart.value, end: clipEnd.value }
         : null,
     onPaused: () => {
@@ -927,10 +1000,32 @@ function toggleVideoPlayback() {
 function resetClipBounds(duration: number) {
   const safe = Number.isFinite(duration) && duration > 0 ? duration : 0
   clipStart.value = 0
-  clipEnd.value =
-    safe > VIDEO_PRERENDER_MAX_DURATION_SEC
-      ? VIDEO_PRERENDER_MAX_DURATION_SEC
-      : safe
+  clipLengthCustom.value = false
+  clipLength.value = Math.min(
+    VIDEO_PRERENDER_MAX_DURATION_SEC,
+    Math.max(CLIP_MIN_SPAN, safe || VIDEO_PRERENDER_MAX_DURATION_SEC),
+  )
+  syncClipEnd()
+}
+
+function syncClipEnd() {
+  const safeDuration =
+    Number.isFinite(videoDuration.value) && videoDuration.value > 0
+      ? videoDuration.value
+      : 0
+  if (safeDuration <= 0) {
+    clipEnd.value = clipStart.value
+    return
+  }
+  const span = Math.min(
+    Math.max(CLIP_MIN_SPAN, clipLength.value),
+    VIDEO_PRERENDER_MAX_DURATION_SEC,
+    safeDuration,
+  )
+  const maxStart = Math.max(0, safeDuration - span)
+  clipStart.value = Math.min(Math.max(0, clipStart.value), maxStart)
+  clipEnd.value = Math.min(safeDuration, clipStart.value + span)
+  clipLength.value = Math.max(CLIP_MIN_SPAN, clipEnd.value - clipStart.value)
 }
 
 function onClipEdited() {
@@ -958,52 +1053,48 @@ function seekPlaybackIntoClip(video: HTMLVideoElement) {
 
 function onClipStartInput(event: Event) {
   const raw = Number((event.target as HTMLInputElement).value)
-  const max = Math.max(0, clipEnd.value - CLIP_MIN_SPAN)
-  clipStart.value = Math.min(Math.max(0, raw), max)
+  clipStart.value = Math.max(0, raw)
+  syncClipEnd()
   onClipEdited()
 }
 
-function onClipEndInput(event: Event) {
+function setClipLength(seconds: number, custom = false) {
+  clipLengthCustom.value = custom
+  clipLength.value = Math.min(
+    VIDEO_PRERENDER_MAX_DURATION_SEC,
+    Math.max(CLIP_MIN_SPAN, seconds),
+  )
+  syncClipEnd()
+  onClipEdited()
+}
+
+function enableClipCustom() {
+  clipLengthCustom.value = true
+}
+
+function onCustomSecondsInput(event: Event) {
   const raw = Number((event.target as HTMLInputElement).value)
-  const min = Math.min(videoDuration.value, clipStart.value + CLIP_MIN_SPAN)
-  clipEnd.value = Math.max(min, Math.min(videoDuration.value, raw))
-  onClipEdited()
+  if (!Number.isFinite(raw)) return
+  setClipLength(raw, true)
 }
 
-function markClipIn() {
-  const t = Math.min(Math.max(0, videoCurrentTime.value), videoDuration.value)
-  const span = Math.min(
-    VIDEO_PRERENDER_MAX_DURATION_SEC,
-    Math.max(CLIP_MIN_SPAN, clipEnd.value - clipStart.value),
+function onCustomFramesInput(event: Event) {
+  const raw = Number((event.target as HTMLInputElement).value)
+  if (!Number.isFinite(raw)) return
+  const frames = Math.min(
+    clipMaxFrames.value,
+    Math.max(2, Math.round(raw)),
   )
-  clipStart.value = t
-  if (clipEnd.value < clipStart.value + CLIP_MIN_SPAN) {
-    clipEnd.value = Math.min(videoDuration.value, clipStart.value + span)
-  }
-  if (clipEnd.value < clipStart.value + CLIP_MIN_SPAN) {
-    clipStart.value = Math.max(0, clipEnd.value - CLIP_MIN_SPAN)
-  }
-  onClipEdited()
+  const seconds = Math.max(CLIP_MIN_SPAN, (frames - 1) / videoFps.value)
+  setClipLength(seconds, true)
 }
 
-function markClipOut() {
-  const t = Math.min(Math.max(0, videoCurrentTime.value), videoDuration.value)
-  const span = Math.min(
-    VIDEO_PRERENDER_MAX_DURATION_SEC,
-    Math.max(CLIP_MIN_SPAN, clipEnd.value - clipStart.value),
+function startClipHere() {
+  clipStart.value = Math.min(
+    Math.max(0, videoCurrentTime.value),
+    videoDuration.value,
   )
-  clipEnd.value = t
-  if (clipEnd.value < clipStart.value + CLIP_MIN_SPAN) {
-    clipStart.value = Math.max(0, clipEnd.value - span)
-  }
-  if (clipEnd.value < clipStart.value + CLIP_MIN_SPAN) {
-    clipEnd.value = Math.min(videoDuration.value, clipStart.value + CLIP_MIN_SPAN)
-  }
-  onClipEdited()
-}
-
-function resetClip() {
-  resetClipBounds(videoDuration.value)
+  syncClipEnd()
   onClipEdited()
 }
 
@@ -1389,6 +1480,9 @@ watch(
     phraseFillAll,
     phraseColor,
     exposure,
+    contrast,
+    normalizeTone,
+    ditherStrength,
   ],
   () => {
     if (hasVideo.value) {
@@ -1619,7 +1713,7 @@ onBeforeUnmount(() => {
             <button
               type="button"
               class="btn"
-              :disabled="pending || videoPrerendering"
+              :disabled="pending || videoPrerendering || clipOverLimit"
               @click="toggleVideoPlayback"
             >
               {{
@@ -1651,81 +1745,121 @@ onBeforeUnmount(() => {
               @input="onVideoSeekInput"
             />
             <span class="video-clock">{{ videoTimeLabel }}</span>
-            <label class="video-fps">
-              <span>解析</span>
-              <select
-                v-model.number="videoFps"
-                class="fps-select"
-                :disabled="videoPrerendering"
-              >
-                <option :value="12">12 fps</option>
-                <option :value="15">15 fps</option>
-                <option :value="20">20 fps</option>
-                <option :value="24">24 fps</option>
-              </select>
-            </label>
+            <select
+              v-if="usePrerenderPath"
+              v-model.number="videoFps"
+              class="fps-select"
+              :disabled="videoPrerendering"
+              title="解析帧率"
+            >
+              <option :value="12">12fps</option>
+              <option :value="15">15fps</option>
+              <option :value="20">20fps</option>
+              <option :value="24">24fps</option>
+            </select>
           </div>
-          <div v-if="hasVideo" class="clip-box" @click.stop>
-            <div class="clip-head">
-              <span>选段</span>
-              <span class="clip-meta" :class="{ warn: clipOverLimit }">
-                {{ formatClock(clipStart) }} – {{ formatClock(clipEnd) }}
-                · {{ clipSpan.toFixed(1) }}s
-              </span>
+
+          <div
+            v-if="hasVideo && usePrerenderPath"
+            class="clip-panel"
+            @click.stop
+          >
+            <div class="clip-top">
+              <strong :class="{ warn: clipOverLimit }">
+                {{ formatClock(clipStart) }}–{{ formatClock(clipEnd) }}
+                · {{ clipSpan.toFixed(1) }}s · {{ clipFrameCount }}帧
+              </strong>
+              <button
+                type="button"
+                class="text-link"
+                :disabled="videoPrerendering || downloading"
+                @click="startClipHere"
+              >
+                从这开始
+              </button>
             </div>
-            <label class="clip-line">
-              <span>入点</span>
+            <div class="clip-rail">
+              <div class="clip-map" aria-hidden="true">
+                <div
+                  class="clip-map-range"
+                  :style="{
+                    left: `${clipStartPct}%`,
+                    width: `${clipSpanPct}%`,
+                  }"
+                />
+                <div
+                  class="clip-map-playhead"
+                  :style="{ left: `${playheadPct}%` }"
+                />
+              </div>
               <input
-                class="range"
+                class="range clip-rail-input"
                 type="range"
                 min="0"
                 :max="Math.max(0.1, videoDuration)"
                 step="0.1"
                 :value="clipStart"
-                :disabled="videoDuration <= 0 || videoPrerendering || downloading"
+                :disabled="
+                  videoDuration <= 0 || videoPrerendering || downloading
+                "
+                aria-label="片段起点"
                 @input="onClipStartInput"
               />
-            </label>
-            <label class="clip-line">
-              <span>出点</span>
-              <input
-                class="range"
-                type="range"
-                min="0"
-                :max="Math.max(0.1, videoDuration)"
-                step="0.1"
-                :value="clipEnd"
-                :disabled="videoDuration <= 0 || videoPrerendering || downloading"
-                @input="onClipEndInput"
-              />
-            </label>
-            <div class="clip-actions">
+            </div>
+            <div class="seg wrap clip-chips" role="group" aria-label="片段时长">
               <button
+                v-for="sec in CLIP_LENGTH_OPTIONS"
+                :key="sec"
                 type="button"
-                class="btn ghost"
+                class="seg-item"
+                :class="{
+                  on: !clipLengthCustom && Math.abs(clipLength - sec) < 0.2,
+                }"
                 :disabled="videoPrerendering || downloading"
-                @click="markClipIn"
+                @click="setClipLength(Math.min(sec, videoDuration || sec))"
               >
-                当前为入点
+                {{ sec }}s
               </button>
               <button
                 type="button"
-                class="btn ghost"
+                class="seg-item"
+                :class="{ on: clipLengthCustom }"
                 :disabled="videoPrerendering || downloading"
-                @click="markClipOut"
+                @click="enableClipCustom"
               >
-                当前为出点
-              </button>
-              <button
-                type="button"
-                class="text-link"
-                :disabled="videoPrerendering || downloading"
-                @click="resetClip"
-              >
-                重置
+                自定义
               </button>
             </div>
+            <div v-if="clipLengthCustom" class="clip-custom">
+              <label class="clip-custom-field">
+                <span>秒</span>
+                <input
+                  class="num-input"
+                  type="number"
+                  min="0.2"
+                  :max="VIDEO_PRERENDER_MAX_DURATION_SEC"
+                  step="0.1"
+                  :value="Number(clipSpan.toFixed(1))"
+                  :disabled="videoPrerendering || downloading"
+                  @change="onCustomSecondsInput"
+                />
+              </label>
+              <label class="clip-custom-field">
+                <span>帧</span>
+                <input
+                  class="num-input"
+                  type="number"
+                  min="2"
+                  :max="clipMaxFrames"
+                  step="1"
+                  :value="clipFrameCount"
+                  :disabled="videoPrerendering || downloading"
+                  @change="onCustomFramesInput"
+                />
+              </label>
+            </div>
           </div>
+
           <div v-if="videoPrerendering" class="prerender-bar" @click.stop>
             <div class="prerender-track">
               <div
@@ -1741,30 +1875,7 @@ onBeforeUnmount(() => {
             </div>
             <p class="prerender-label">{{ prerenderProgressLabel }}</p>
           </div>
-          <p v-if="hasVideo" class="video-note">
-            <template v-if="videoPrerendering">
-              正在解析选段，可点取消。解析播放最长
-              {{ VIDEO_PRERENDER_MAX_DURATION_SEC }} 秒。
-            </template>
-            <template v-else-if="usePrerenderPath && !videoPrerenderReady">
-              已显示第一帧。选好入点/出点后点「解析并播放」，解析完成才会播放。
-            </template>
-            <template v-else-if="clipOverLimit">
-              选段超过 {{ VIDEO_PRERENDER_MAX_DURATION_SEC }} 秒，不能整段解析播放。导出超过
-              {{ VIDEO_EXPORT_BUFFER_FRAMES }} 帧会逐帧编码并丢弃，单次最多
-              {{ VIDEO_EXPORT_MAX_FRAMES }} 帧。
-            </template>
-            <template v-else-if="usePrerenderPath">
-              当前清晰度会先解析选段再播放。标清 / 高清仍可在选段内实时播放。
-            </template>
-            <template v-else-if="columnsCapped">
-              实时播放中预览限 {{ liveColumnCap }} 列；暂停可见全清晰度。
-            </template>
-            <template v-else>
-              播放处理当前选段。导出超过 {{ VIDEO_EXPORT_BUFFER_FRAMES }} 帧会边编码边丢弃，单次最多
-              {{ VIDEO_EXPORT_MAX_FRAMES }} 帧。
-            </template>
-          </p>
+          <p v-if="hasVideo && videoHint" class="video-note">{{ videoHint }}</p>
         </section>
 
         <section class="card">
@@ -1784,11 +1895,35 @@ onBeforeUnmount(() => {
                 :key="opt.key"
                 type="button"
                 class="seg-item"
-                :class="{ on: resolutionKey === opt.key }"
-                :title="`${opt.columns} 列 · ${opt.hint}`"
+                :class="{
+                  on: resolutionKey === opt.key,
+                  'has-warn':
+                    hasVideo && needsVideoPrerender(opt.columns, mode),
+                }"
+                :title="
+                  hasVideo && needsVideoPrerender(opt.columns, mode)
+                    ? undefined
+                    : `${opt.columns} 列 · ${opt.hint}`
+                "
                 @click="selectResolution(opt.key)"
               >
                 {{ opt.label }}
+                <el-tooltip
+                  v-if="hasVideo && needsVideoPrerender(opt.columns, mode)"
+                  effect="dark"
+                  placement="top"
+                  :show-after="120"
+                  content="视频需先选片段再解析播放，最长 20 秒"
+                >
+                  <span
+                    class="res-warn"
+                    role="img"
+                    aria-label="需解析播放"
+                    @click.stop
+                  >
+                    <el-icon :size="12"><WarningFilled /></el-icon>
+                  </span>
+                </el-tooltip>
               </button>
             </div>
           </div>
@@ -1839,6 +1974,36 @@ onBeforeUnmount(() => {
 
           <div class="field">
             <div class="field-label">
+              <span>对比度</span>
+              <span class="field-val">{{ contrast.toFixed(2) }}</span>
+            </div>
+            <input
+              v-model.number="contrast"
+              class="range"
+              type="range"
+              min="-0.4"
+              max="0.8"
+              step="0.05"
+            />
+          </div>
+
+          <div class="field">
+            <div class="field-label">
+              <span>抖动</span>
+              <span class="field-val">{{ Math.round(ditherStrength * 100) }}%</span>
+            </div>
+            <input
+              v-model.number="ditherStrength"
+              class="range"
+              type="range"
+              min="0"
+              max="1"
+              step="0.05"
+            />
+          </div>
+
+          <div class="field">
+            <div class="field-label">
               <span>预览缩放</span>
               <span class="field-val">
                 {{ zoom }}%
@@ -1883,6 +2048,14 @@ onBeforeUnmount(() => {
           </div>
 
           <div class="toggle-row">
+            <button
+              type="button"
+              class="chip-toggle"
+              :class="{ on: normalizeTone }"
+              @click="normalizeTone = !normalizeTone"
+            >
+              归一化
+            </button>
             <button
               type="button"
               class="chip-toggle"
@@ -2478,66 +2651,113 @@ onBeforeUnmount(() => {
   white-space: nowrap;
 }
 
-.clip-box {
+.clip-panel {
   display: grid;
-  gap: 0.4rem;
-  margin-top: 0.7rem;
-  padding-top: 0.65rem;
-  border-top: 1px solid var(--line);
+  gap: 0.35rem;
+  margin-top: 0.55rem;
+  padding: 0.55rem 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--soft) 72%, transparent);
 }
 
-.clip-head {
+.clip-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 0.5rem;
-  color: var(--text-muted);
-  font-size: 0.74rem;
-  font-weight: 600;
 }
 
-.clip-meta {
-  color: var(--text-faint);
-  font-weight: 500;
+.clip-top strong {
+  color: var(--text);
+  font-size: 0.72rem;
+  font-weight: 650;
   font-variant-numeric: tabular-nums;
 }
 
-.clip-meta.warn {
+.clip-top strong.warn {
   color: var(--danger);
 }
 
-.clip-line {
-  display: grid;
-  grid-template-columns: 2.2rem 1fr;
-  align-items: center;
-  gap: 0.45rem;
-  color: var(--text-faint);
-  font-size: 0.72rem;
+.clip-rail {
+  position: relative;
+  height: 1.1rem;
 }
 
-.clip-line .range {
+.clip-map {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 0.32rem;
+  transform: translateY(-50%);
+  overflow: hidden;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--text-faint) 22%, transparent);
+  pointer-events: none;
+}
+
+.clip-map-range {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  border-radius: inherit;
+  background: color-mix(in srgb, var(--accent) 55%, var(--accent-2));
+}
+
+.clip-map-playhead {
+  position: absolute;
+  top: -2px;
+  bottom: -2px;
+  width: 2px;
+  margin-left: -1px;
+  background: var(--text);
+  border-radius: 1px;
+}
+
+.clip-rail-input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0.85;
+}
+
+.clip-chips {
   margin: 0;
 }
 
-.clip-actions {
+.clip-custom {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.4rem 0.55rem;
 }
 
-.clip-actions .btn {
-  min-height: 1.85rem;
-  padding: 0 0.6rem;
-  font-size: 0.72rem;
-}
-
-.video-fps {
+.clip-custom-field {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  color: var(--text-muted);
-  font-size: 0.75rem;
+  gap: 0.3rem;
+  color: var(--text-faint);
+  font-size: 0.7rem;
+}
+
+.num-input {
+  width: 3.8rem;
+  min-height: 1.7rem;
+  padding: 0 0.35rem;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--input-bg);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.72rem;
+  font-variant-numeric: tabular-nums;
+  outline: none;
+}
+
+.num-input:focus {
+  border-color: color-mix(in srgb, var(--accent) 50%, var(--line));
+  box-shadow: 0 0 0 3px var(--focus-ring);
 }
 
 .fps-select {
@@ -2642,6 +2862,21 @@ onBeforeUnmount(() => {
   min-height: 1.75rem;
   padding: 0 0.55rem;
   white-space: nowrap;
+}
+
+.seg-item.has-warn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  padding-right: 0.4rem;
+}
+
+.res-warn {
+  display: inline-flex;
+  align-items: center;
+  color: var(--danger);
+  opacity: 0.9;
+  line-height: 1;
 }
 
 .seg-item:hover {

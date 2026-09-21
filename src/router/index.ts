@@ -42,6 +42,16 @@ const router = createRouter({
     { path: '/studio', name: 'studio', component: StudioView },
     { path: '/ascii-art', name: 'ascii-art', component: AsciiArtView },
     {
+      path: '/ascii-loop',
+      name: 'ascii-loop',
+      component: () => import('@/views/AsciiLoopView.vue'),
+    },
+    {
+      path: '/ascii-live',
+      name: 'ascii-live',
+      component: () => import('@/views/AsciiLiveView.vue'),
+    },
+    {
       path: '/file-upload',
       name: 'file-upload',
       component: () => import('@/views/FileUploadView.vue'),

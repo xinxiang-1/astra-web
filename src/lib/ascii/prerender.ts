@@ -21,6 +21,9 @@ export type PrerenderCacheKeyInputs = {
   charset: string
   previewInvert: boolean
   exposure: number
+  contrast: number
+  normalize: boolean
+  ditherStrength: number
   previewAspect: number
   phraseColor: boolean
   phraseThreshold: number
@@ -39,6 +42,9 @@ export function buildPrerenderCacheKey(inputs: PrerenderCacheKeyInputs): string 
     inputs.charset,
     String(inputs.previewInvert),
     String(inputs.exposure),
+    String(inputs.contrast),
+    String(inputs.normalize),
+    String(inputs.ditherStrength),
     String(inputs.previewAspect),
     String(inputs.phraseColor),
     String(inputs.phraseThreshold),
