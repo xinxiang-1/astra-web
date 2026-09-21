@@ -16,8 +16,11 @@
 | `playback.ts` | 无 Vue 的 rAF 循环；实时播放可在选段内回绕 |
 | `export-video.ts` | 选段导出 MP4。短于内存上限先缓冲；更长则编一帧丢一帧 |
 | `loop/` | **解耦**循环字符画：抠背景格 + 跨帧流动字符 + HTML 导出 |
+| `studio-preview.ts` | 字符画页 ↔ asciify Studio：悬停 / 微动、极性、列数→`cellSize` |
 
 独立页面：`/ascii-loop`（`AsciiLoopView.vue`），不改动主字符画流程。
+
+字符画页的动效嵌入页在 `src/lib/ascii-art-embed-page.ts`（下载 HTML，CDN 上的 Studio）。引擎默认 `monospace`，本地预览由 `vite.config.ts` 改写成 Consolas；导出页在浏览器里做同样的字体替换，并带上当前悬停 / 微动（都关时默认拖尾 + 慢流）。
 
 方案与产品方向见 [`docs/plans/ascii-art-roadmap.md`](../../../docs/plans/ascii-art-roadmap.md)。
 

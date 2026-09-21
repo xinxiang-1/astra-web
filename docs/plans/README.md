@@ -13,4 +13,4 @@
 | [ascii-art.md](./ascii-art.md) | 图片转字符画：阶段 1 纯前端页面 |
 | [ascii-art-roadmap.md](./ascii-art-roadmap.md) | 字符画体验与产品优化方向、阶段优先级 |
 
-代码模块见 `src/lib/ascii/README.md`（转换 / 绘制 / 媒体 / 预渲染 / 播放 / 视频导出）。
+代码模块见 `src/lib/ascii/README.md`（转换 / 绘制 / 媒体 / 预渲染 / 播放 / 视频导出 / Studio 悬停预览）。

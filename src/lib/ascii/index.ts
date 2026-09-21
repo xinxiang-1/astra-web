@@ -54,6 +54,24 @@ export {
 } from './convert'
 
 export {
+  asciiStudioEffectsActive,
+  buildAsciiStudioSettings,
+  charsetForStudio,
+  mountCharsetStudio,
+  resizeCharsetStudio,
+  studioCellSizeFromColumns,
+  studioPatchFromInput,
+  toStudioCharset,
+} from './studio-preview'
+
+export type {
+  AsciiStudioHoverEffect,
+  AsciiStudioMotion,
+  AsciiStudioPreviewInput,
+  CharsetStudioHandle,
+} from './studio-preview'
+
+export {
   asciiToPngBlob,
   measureMonoCellAspect,
   measureMonoCellMetrics,

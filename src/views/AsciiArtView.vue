@@ -45,6 +45,18 @@ import {
   type FrameLoopHandle,
   type PrerenderFrame,
 } from '@/lib/ascii'
+import { asciiArtEmbedPage } from '@/lib/ascii-art-embed-page'
+import {
+  asciiStudioEffectsActive,
+  buildAsciiStudioSettings,
+  mountCharsetStudio,
+  resizeCharsetStudio,
+  studioCellSizeFromColumns,
+  studioPatchFromInput,
+  type AsciiStudioHoverEffect,
+  type AsciiStudioMotion,
+  type CharsetStudioHandle,
+} from '@/lib/ascii/studio-preview'
 import { WarningFilled } from '@element-plus/icons-vue'
 import { useThemeStore } from '@/stores/theme'
 
@@ -54,6 +66,7 @@ const theme = useThemeStore()
 const fileInput = ref<HTMLInputElement | null>(null)
 const sourceVideo = ref<HTMLVideoElement | null>(null)
 const previewCanvas = ref<HTMLCanvasElement | null>(null)
+const previewHost = ref<HTMLElement | null>(null)
 const fullscreenCanvas = ref<HTMLCanvasElement | null>(null)
 const previewScroll = ref<HTMLElement | null>(null)
 const fullscreenScroll = ref<HTMLElement | null>(null)
@@ -101,6 +114,39 @@ const contrast = ref(0.2)
 const normalizeTone = ref(true)
 /** Bayer dither 0–1; soft default reduces banding. */
 const ditherStrength = ref(0.25)
+
+/** Studio hover / motion (charset mode only; same stack as /ascii-live). */
+const hoverEffect = ref<AsciiStudioHoverEffect>('none')
+const hoverStrength = ref(0.65)
+const hoverRadius = ref(0.38)
+const ambientMotion = ref<AsciiStudioMotion>('none')
+
+const hoverOptions = [
+  { key: 'trail' as const, label: '拖尾' },
+  { key: 'water' as const, label: '水面' },
+  { key: 'silk' as const, label: '丝绸' },
+  { key: 'vortex' as const, label: '漩涡' },
+  { key: 'contour' as const, label: '等高' },
+  { key: 'dissolve' as const, label: '溶解' },
+  { key: 'none' as const, label: '关闭' },
+]
+
+const motionOptions = [
+  { key: 'current' as const, label: '慢流' },
+  { key: 'reform' as const, label: '重组' },
+  { key: 'caustics' as const, label: '光斑' },
+  { key: 'none' as const, label: '关闭' },
+]
+
+let artStudio: CharsetStudioHandle | null = null
+let artStudioAbort: AbortController | null = null
+let previewStageObserver: ResizeObserver | null = null
+let artStudioBusy = false
+let artStudioQueued = false
+let artStudioSourceKey = ''
+
+/** Shared contain-fit stage box (Studio + static autoZoom). */
+const previewStageBox = ref({ width: 0, height: 0 })
 
 /** Default to higher sampling. */
 const resolutionKey = ref<AsciiResolutionKey | 'custom'>('high')
@@ -204,6 +250,27 @@ const displayFontSize = computed(
 )
 
 const hasResult = computed(() => ascii.value.length > 0)
+
+/** Pin host to the Studio stage box so toggling hover keeps the same width. */
+const stagePinned = computed(
+  () => studioLiveActive.value || (autoZoom.value && hasResult.value),
+)
+
+const previewHostStyle = computed(() => {
+  if (!stagePinned.value) return undefined
+  const { width, height } = previewStageBox.value
+  if (width < 40 || height < 40) return undefined
+  const scale =
+    studioLiveActive.value && !autoZoom.value
+      ? Math.max(0.1, zoom.value / 100)
+      : 1
+  return {
+    width: `${width}px`,
+    height: `${height}px`,
+    transform: scale === 1 ? undefined : `scale(${scale})`,
+    transformOrigin: scale === 1 ? undefined : 'top left',
+  }
+})
 const meta = computed(() => {
   if (!hasResult.value) return ''
   const parts = [`${columnsOut.value} × ${rows.value} 字符`]
@@ -313,6 +380,14 @@ const previewColors = computed(() =>
 
 /** Preview sampling polarity follows theme; checkbox flips relative to that. */
 const previewInvert = computed(() => invert.value !== theme.isDark)
+
+/** Studio live preview when charset mode has hover or ambient motion. */
+const studioLiveActive = computed(
+  () =>
+    mode.value === 'charset' &&
+    asciiStudioEffectsActive(hoverEffect.value, ambientMotion.value) &&
+    hasMedia.value,
+)
 
 /** Notepad / PNG paper look — always 正向, independent of theme. */
 const exportColors = {
@@ -517,6 +592,7 @@ function invalidatePrerenderIfStale() {
 }
 
 function resetAll() {
+  destroyArtStudio()
   clearResult()
   pauseVideoPlayback()
   revokePreview()
@@ -591,6 +667,10 @@ function restoreDefaults() {
   contrast.value = 0.2
   normalizeTone.value = true
   ditherStrength.value = 0.25
+  hoverEffect.value = 'none'
+  hoverStrength.value = 0.65
+  hoverRadius.value = 0.38
+  ambientMotion.value = 'none'
   resolutionKey.value = 'high'
   columns.value = ASCII_RESOLUTIONS.high.columns
   charsetKey.value = 'dense'
@@ -639,21 +719,61 @@ function readPreviewFrameSize() {
   }
 }
 
-/** Fit ASCII into the preview frame using image-derived cols/rows + font size. */
+/**
+ * Same contain-fit box used by Studio hover preview and static autoZoom,
+ * so toggling 悬停/微动 keeps the same on-screen width.
+ */
+function computePreviewStageSize() {
+  const scroll = previewScroll.value
+  const frame = readPreviewFrameSize()
+  const maxW = scroll
+    ? Math.max(160, scroll.clientWidth - 16)
+    : frame.width
+  const maxH = scroll
+    ? Math.max(200, scroll.clientHeight - 16)
+    : frame.height
+  const ratio = imageAspect.value > 0.05 ? imageAspect.value : 1
+  let w = maxW
+  let h = w / ratio
+  if (h > maxH) {
+    h = maxH
+    w = h * ratio
+  }
+  return { width: Math.round(w), height: Math.round(h) }
+}
+
+function refreshPreviewStageBox() {
+  const stage = computePreviewStageSize()
+  if (
+    stage.width !== previewStageBox.value.width ||
+    stage.height !== previewStageBox.value.height
+  ) {
+    previewStageBox.value = stage
+  }
+  return stage
+}
+
+/** Fit ASCII into the shared preview stage (same box as Studio). */
 function applyAutoZoom(force = false) {
   if ((!force && !autoZoom.value) || columnsOut.value <= 0 || rows.value <= 0) {
     return
   }
-  const frame = readPreviewFrameSize()
+  const stage = refreshPreviewStageBox()
+  if (stage.width < 40 || stage.height < 40) return
   zoom.value = suggestFitZoom({
     columns: columnsOut.value,
     rows: rows.value,
     fontSize: fontSize.value,
-    frameWidth: frame.width,
-    frameHeight: frame.height,
+    frameWidth: stage.width,
+    frameHeight: stage.height,
     fontFamily: previewFontFamily.value,
     charAspect: previewAspect.value,
     metricGlyph: metricGlyph.value,
+    padding: 12,
+    margin: 1,
+    step: 1,
+    minZoom: 10,
+    maxZoom: 300,
   })
 }
 
@@ -900,6 +1020,17 @@ function startVideoLoop() {
   stopVideoLoop()
   const video = sourceVideo.value
   if (!video || mediaKind.value !== 'video') return
+
+  if (studioLiveActive.value) {
+    videoPlaybackMode.value = 'live'
+    videoPlaying.value = true
+    void video.play().catch(() => {
+      videoPlaying.value = false
+    })
+    void syncArtStudio()
+    return
+  }
+
   videoPlaybackMode.value = 'live'
 
   videoLoop = createLiveFrameLoop({
@@ -1359,6 +1490,60 @@ function onDownloadCommand(command: string | number | object) {
   if (command === 'txt') downloadTxt()
   else if (command === 'png') void downloadPng()
   else if (command === 'mp4') void downloadVideo()
+  else if (command === 'live-html') void downloadLiveHtml()
+}
+
+async function bitmapToDataUrl(source: ImageBitmap): Promise<string> {
+  const canvas = document.createElement('canvas')
+  canvas.width = source.width
+  canvas.height = source.height
+  const ctx = canvas.getContext('2d')
+  if (!ctx) throw new Error('Canvas 2D unavailable')
+  ctx.drawImage(source, 0, 0)
+  return canvas.toDataURL('image/jpeg', 0.92)
+}
+
+async function downloadLiveHtml() {
+  if (mode.value !== 'charset') {
+    error.value = '动效网页仅支持灰度字符模式'
+    return
+  }
+  downloading.value = true
+  downloadProgress.value = ''
+  try {
+    const input = artStudioInput()
+    // 「动效网页」应带上悬停/微动；UI 都关时写入预览同款默认，打开后仍可改。
+    if (input.hoverEffect === 'none' && input.motion === 'none') {
+      input.hoverEffect = 'trail'
+      input.hoverStrength = 0.65
+      input.hoverRadius = 0.38
+      input.motion = 'current'
+    }
+    const settings = buildAsciiStudioSettings(input)
+    const ratio =
+      imageAspect.value > 0.05
+        ? imageAspect.value
+        : columnsOut.value > 0 && rows.value > 0
+          ? columnsOut.value / rows.value
+          : 1
+    let dataUrl: string | undefined
+    if (!hasVideo.value && bitmap) {
+      dataUrl = await bitmapToDataUrl(bitmap)
+    }
+    const html = asciiArtEmbedPage({
+      settings,
+      ratio,
+      dataUrl,
+      title: '字符画动效',
+      fontFamily: previewFontFamily.value,
+    })
+    const blob = new Blob([html], { type: 'text/html;charset=utf-8' })
+    triggerDownload(blob, 'ascii-art-live.html')
+  } catch (e) {
+    error.value = e instanceof Error ? e.message : '动效网页下载失败'
+  } finally {
+    downloading.value = false
+  }
 }
 
 const ZOOM_MIN = 10
@@ -1414,8 +1599,162 @@ function fullscreenPaintColors() {
   }
 }
 
+function artStudioInput(stageCssWidth?: number) {
+  const hostW =
+    stageCssWidth ??
+    previewHost.value?.clientWidth ??
+    Math.max(160, (previewScroll.value?.clientWidth ?? 640) - 16)
+  return {
+    charset: charset.value,
+    colored: phraseColor.value,
+    ink: previewColors.value.foreground,
+    invert: previewInvert.value,
+    exposure: exposure.value,
+    contrast: contrast.value,
+    // Clarity presets (列数) → Studio cell size, not fontSize.
+    cellSize: studioCellSizeFromColumns(hostW, columns.value),
+    hoverEffect: hoverEffect.value,
+    hoverStrength: hoverStrength.value,
+    hoverRadius: hoverRadius.value,
+    motion: ambientMotion.value,
+    backdrop: previewColors.value.background,
+  }
+}
+
+function destroyArtStudio() {
+  artStudioAbort?.abort()
+  artStudioAbort = null
+  artStudio?.destroy()
+  artStudio = null
+  artStudioSourceKey = ''
+  // Host size is owned by Vue `previewHostStyle` while stagePinned;
+  // do not clear width/height here or static autoZoom shrinks after hover off.
+}
+
+function currentArtStudioSourceKey() {
+  if (hasVideo.value && videoObjectUrl) return `video:${videoObjectUrl}`
+  if (previewUrl.value) return `img:${previewUrl.value}`
+  return ''
+}
+
+function resolveArtStudioSource(): string | null {
+  // asciify mountStudio only accepts File | string (URL). ImageBitmap /
+  // HTMLVideoElement lack .type and crash inside loadStudioMedia.
+  if (hasVideo.value && videoObjectUrl) return videoObjectUrl
+  if (previewUrl.value) return previewUrl.value
+  return null
+}
+
+/** Contain-fit stage to the preview scroll; manual zoom scales, autoZoom stays 1:1 fitted. */
+function layoutArtStudioStage() {
+  const host = previewHost.value
+  const canvas = previewCanvas.value
+  if (!host || !canvas) return { width: 0, height: 0 }
+  const stage = refreshPreviewStageBox()
+  if (stage.width < 40) return { width: 0, height: 0 }
+  return stage
+}
+
+function resizeArtStudio() {
+  if (!artStudio || !previewHost.value) return
+  const { width } = layoutArtStudioStage()
+  if (width > 0) {
+    artStudio.update(
+      studioPatchFromInput(artStudioInput(width)),
+    )
+  }
+  resizeCharsetStudio(artStudio, previewHost.value)
+}
+
+function onPreviewStageResize() {
+  const stage = refreshPreviewStageBox()
+  if (stage.width < 40) return
+  if (artStudio) {
+    resizeArtStudio()
+    return
+  }
+  if (autoZoom.value && ascii.value) {
+    applyAutoZoom(true)
+    schedulePaint()
+  }
+}
+
+async function syncArtStudio() {
+  if (!studioLiveActive.value) {
+    destroyArtStudio()
+    if (ascii.value) {
+      refreshPreviewStageBox()
+      if (autoZoom.value) applyAutoZoom(true)
+      schedulePaint()
+    }
+    return
+  }
+  const canvas = previewCanvas.value
+  if (!canvas) return
+  if (artStudioBusy) {
+    artStudioQueued = true
+    return
+  }
+  artStudioBusy = true
+  artStudioQueued = false
+  try {
+    // Studio owns the video frames — stop our ASCII convert loop.
+    if (hasVideo.value) {
+      stopVideoLoop()
+      if (videoPlaybackMode.value === 'prerender') {
+        videoPlaybackMode.value = 'live'
+      }
+    }
+    const { width: stageW } = layoutArtStudioStage()
+    const input = artStudioInput(stageW || undefined)
+    const sourceKey = currentArtStudioSourceKey()
+    if (artStudio && artStudioSourceKey === sourceKey) {
+      artStudio.update(studioPatchFromInput(input))
+      if (previewHost.value) resizeCharsetStudio(artStudio, previewHost.value)
+      return
+    }
+    destroyArtStudio()
+    artStudioAbort = new AbortController()
+    const signal = artStudioAbort.signal
+    const source = resolveArtStudioSource()
+    if (!source) {
+      error.value = '没有可用的素材地址，请重新上传'
+      return
+    }
+    artStudio = await mountCharsetStudio(canvas, source, input, { signal })
+    if (signal.aborted) {
+      artStudio.destroy()
+      artStudio = null
+      return
+    }
+    artStudioSourceKey = sourceKey
+    resizeArtStudio()
+    // Studio loads its own video element from the blob URL; keep UI in sync.
+    if (hasVideo.value) {
+      videoPlaying.value = true
+      videoPlaybackMode.value = 'live'
+    }
+  } catch (e) {
+    if (!(e instanceof DOMException && e.name === 'AbortError')) {
+      error.value = e instanceof Error ? e.message : '动效预览启动失败'
+    }
+    destroyArtStudio()
+    schedulePaint()
+  } finally {
+    artStudioBusy = false
+    if (artStudioQueued) {
+      artStudioQueued = false
+      void syncArtStudio()
+    }
+  }
+}
+
 function paintTo(canvas: HTMLCanvasElement | null) {
   if (!canvas || !ascii.value) return
+  // Preview canvas is owned by Studio while hover/motion is on.
+  if (canvas === previewCanvas.value && studioLiveActive.value && artStudio) {
+    return
+  }
   const colors =
     canvas === fullscreenCanvas.value
       ? fullscreenPaintColors()
@@ -1430,6 +1769,10 @@ function paintTo(canvas: HTMLCanvasElement | null) {
     colors: phraseColor.value ? (asciiColors.value ?? undefined) : undefined,
     devicePixelRatio: window.devicePixelRatio || 1,
   })
+  // Stage box is CSS-pinned; paint's inline canvas size is overridden by .staged.
+  if (canvas === previewCanvas.value && autoZoom.value) {
+    refreshPreviewStageBox()
+  }
 }
 
 function paintPreview() {
@@ -1520,17 +1863,73 @@ watch(videoFps, () => {
   }
 })
 
+watch(
+  [
+    studioLiveActive,
+    hoverEffect,
+    hoverStrength,
+    hoverRadius,
+    ambientMotion,
+    charsetKey,
+    customCharset,
+    phraseColor,
+    exposure,
+    contrast,
+    columns,
+    autoZoom,
+    invert,
+    previewInvert,
+    () => theme.mode,
+    zoom,
+    hasMedia,
+    mode,
+    previewUrl,
+  ],
+  async () => {
+    await nextTick()
+    void syncArtStudio()
+  },
+)
+
 watch([ascii, displayFontSize, previewColors, phraseColor, asciiColors, zoom], async () => {
   if (!hasResult.value) return
   await nextTick()
+  if (studioLiveActive.value) {
+    resizeArtStudio()
+    return
+  }
   schedulePaint()
+})
+
+watch(previewCanvas, (el) => {
+  if (!el) return
+  if (studioLiveActive.value) void syncArtStudio()
+  else if (ascii.value) schedulePaint()
+})
+
+watch(imageAspect, () => {
+  if (imageAspect.value <= 0.05) return
+  refreshPreviewStageBox()
+  if (artStudio) resizeArtStudio()
+  else if (autoZoom.value && ascii.value) {
+    applyAutoZoom(true)
+    schedulePaint()
+  }
 })
 
 watch(previewScroll, (el, _prev, onCleanup) => {
   if (!el) return
   const handler = (event: WheelEvent) => onPreviewWheel(event)
   el.addEventListener('wheel', handler, { passive: false })
-  onCleanup(() => el.removeEventListener('wheel', handler))
+  previewStageObserver?.disconnect()
+  previewStageObserver = new ResizeObserver(() => onPreviewStageResize())
+  previewStageObserver.observe(el)
+  refreshPreviewStageBox()
+  onCleanup(() => {
+    el.removeEventListener('wheel', handler)
+    previewStageObserver?.disconnect()
+    previewStageObserver = null
+  })
 })
 
 watch(fullscreenScroll, (el, _prev, onCleanup) => {
@@ -1538,10 +1937,6 @@ watch(fullscreenScroll, (el, _prev, onCleanup) => {
   const handler = (event: WheelEvent) => onPreviewWheel(event)
   el.addEventListener('wheel', handler, { passive: false })
   onCleanup(() => el.removeEventListener('wheel', handler))
-})
-
-watch(previewCanvas, (el) => {
-  if (el && ascii.value) schedulePaint()
 })
 
 watch(fullscreenCanvas, (el) => {
@@ -1557,6 +1952,9 @@ onMounted(() => {
 })
 
 onBeforeUnmount(() => {
+  destroyArtStudio()
+  previewStageObserver?.disconnect()
+  previewStageObserver = null
   resetAll()
   window.clearTimeout(copyTimer)
   if (paintRaf) cancelAnimationFrame(paintRaf)
@@ -1607,6 +2005,12 @@ onBeforeUnmount(() => {
               </el-dropdown-item>
               <el-dropdown-item command="png">
                 {{ hasVideo ? '下载当前帧 PNG' : '下载 PNG' }}
+              </el-dropdown-item>
+              <el-dropdown-item
+                command="live-html"
+                :disabled="mode !== 'charset'"
+              >
+                下载动效网页
               </el-dropdown-item>
               <el-dropdown-item v-if="hasVideo" command="mp4">
                 下载视频 MP4
@@ -2075,6 +2479,78 @@ onBeforeUnmount(() => {
           </div>
         </section>
 
+        <section class="card" :class="{ muted: mode !== 'charset' }">
+          <header class="card-head">
+            <h2>悬停 / 微动</h2>
+          </header>
+          <p v-if="mode !== 'charset'" class="hint">
+            文字铺底模式不支持 Studio 悬停（会冲掉铺字）。请切回灰度字符。
+          </p>
+          <template v-else>
+            <div class="field">
+              <div class="field-label"><span>悬停</span></div>
+              <div class="seg wrap" role="group">
+                <button
+                  v-for="opt in hoverOptions"
+                  :key="opt.key"
+                  type="button"
+                  class="seg-item"
+                  :class="{ on: hoverEffect === opt.key }"
+                  @click="hoverEffect = opt.key"
+                >
+                  {{ opt.label }}
+                </button>
+              </div>
+            </div>
+            <div v-if="hoverEffect !== 'none'" class="field">
+              <div class="field-label">
+                <span>强度</span>
+                <span class="field-val">{{ Math.round(hoverStrength * 100) }}%</span>
+              </div>
+              <input
+                v-model.number="hoverStrength"
+                class="range"
+                type="range"
+                min="0.1"
+                max="1"
+                step="0.05"
+              />
+            </div>
+            <div v-if="hoverEffect !== 'none'" class="field">
+              <div class="field-label">
+                <span>范围</span>
+                <span class="field-val">{{ Math.round(hoverRadius * 100) }}%</span>
+              </div>
+              <input
+                v-model.number="hoverRadius"
+                class="range"
+                type="range"
+                min="0.1"
+                max="0.55"
+                step="0.02"
+              />
+            </div>
+            <div class="field">
+              <div class="field-label"><span>微动</span></div>
+              <div class="seg wrap" role="group">
+                <button
+                  v-for="opt in motionOptions"
+                  :key="opt.key"
+                  type="button"
+                  class="seg-item"
+                  :class="{ on: ambientMotion === opt.key }"
+                  @click="ambientMotion = opt.key"
+                >
+                  {{ opt.label }}
+                </button>
+              </div>
+            </div>
+            <p class="hint">
+              开启后预览用 Studio 渲染：清晰度（列数）会改变格子大小；自适应下画布铺满预览区，手动缩放仍可用。导出 TXT/PNG 仍是静态结果；「下载动效网页」会写入当前悬停/微动（都关时默认拖尾+慢流）并使用 Consolas 字体，打开后可再切换。
+            </p>
+          </template>
+        </section>
+
         <details class="card advanced-card">
           <summary class="card-head summary">
             <h2>高级</h2>
@@ -2284,7 +2760,14 @@ onBeforeUnmount(() => {
           title="Ctrl + 滚轮缩放"
         >
           <div class="ascii-scroll-inner">
-            <canvas ref="previewCanvas" class="ascii-canvas" />
+            <div
+              ref="previewHost"
+              class="ascii-host"
+              :class="{ live: studioLiveActive, staged: stagePinned }"
+              :style="previewHostStyle"
+            >
+              <canvas ref="previewCanvas" class="ascii-canvas" />
+            </div>
           </div>
         </div>
         <div v-else class="empty">
@@ -2461,6 +2944,17 @@ onBeforeUnmount(() => {
   border-radius: 12px;
   background: var(--panel);
   padding: 0.85rem 0.9rem;
+}
+
+.card.muted {
+  opacity: 0.72;
+}
+
+.hint {
+  margin: 0 0 0.55rem;
+  color: var(--text-faint);
+  font-size: 0.72rem;
+  line-height: 1.4;
 }
 
 .card-head {
@@ -3158,6 +3652,36 @@ onBeforeUnmount(() => {
   min-width: 100%;
   min-height: 100%;
   vertical-align: top;
+}
+
+.ascii-host {
+  position: relative;
+  display: inline-block;
+  width: fit-content;
+  max-width: 100%;
+}
+
+.ascii-host.staged {
+  display: block;
+  overflow: hidden;
+  background: #0a0a0a;
+  /* Beat paintAsciiToCanvas inline pixel sizes so the box matches Studio. */
+}
+
+.ascii-host.staged .ascii-canvas {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: fill;
+}
+
+.ascii-host.live {
+  display: block;
+  background: #0a0a0a;
+}
+
+.ascii-host.live .ascii-canvas {
+  width: 100%;
+  height: 100%;
 }
 
 .ascii-canvas {
