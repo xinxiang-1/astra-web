@@ -28,6 +28,12 @@ export const toolsCatalog: readonly CatalogItem[] = [
     tag: '实验',
   },
   {
+    to: '/signature-portrait',
+    name: '签名画像',
+    line: '手写签名抠成印章，按画像明暗多角度拼接（试验页）',
+    tag: '实验',
+  },
+  {
     to: '/file-upload',
     name: '文件预览',
     line: '本地上传，浏览器内预览 Office / PDF，不上传服务器',
@@ -63,6 +69,7 @@ export const toolRouteNames = [
   'ascii-art',
   'ascii-loop',
   'ascii-live',
+  'signature-portrait',
   'file-upload',
   'file-preview',
 ] as const

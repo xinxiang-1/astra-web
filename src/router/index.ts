@@ -52,6 +52,11 @@ const router = createRouter({
       component: () => import('@/views/AsciiLiveView.vue'),
     },
     {
+      path: '/signature-portrait',
+      name: 'signature-portrait',
+      component: () => import('@/views/SignaturePortraitView.vue'),
+    },
+    {
       path: '/file-upload',
       name: 'file-upload',
       component: () => import('@/views/FileUploadView.vue'),

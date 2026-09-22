@@ -41,6 +41,7 @@ npm run lint
 | `/tools` | 工具 | 工具目录 |
 | `/ascii-art` | 工具 | 字符画 ★：灰度 / 铺字、悬停与微动预览、下载动效网页 |
 | `/ascii-live` | 工具 | 大理石胸像动态字符实验（Studio 悬停） |
+| `/signature-portrait` | 工具 | 签名画像（试验）：手写章按明暗拼接；规划见 `docs/plans/signature-portrait.md` |
 | `/file-upload` | 工具 | 文件上传预览 |
 | `/studio` | 工作室 | 特效目录 |
 | `/prism` 等 | 工作室 | 各特效沉浸页 |

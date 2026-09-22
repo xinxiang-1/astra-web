@@ -70,6 +70,7 @@
 Astra
 ├── 工具 Tools          ← 赚钱主线 / 用户带走结果
 │   ├── 字符画          /ascii-art     ★ 主推 MVP
+│   ├── 签名画像        /signature-portrait  试验（见 signature-portrait.md）
 │   └── 文件预览        /file-upload → /file-preview
 ├── 工作室 Studio       ← 品牌与接单样板
 │   ├── 目录            /studio
@@ -87,6 +88,7 @@ Astra
 | 功能 | 价值主张 | 阶段 |
 |------|----------|------|
 | 字符画 | 上传 → 本地成图 → 导出可晒 | **P0 变现楔子** |
+| 签名画像 | 手写章按明暗拼肖像；矢量坐标源 + 导出 | 试验，规划见 [signature-portrait.md](./signature-portrait.md) |
 | 文件预览 | 本地预览 Office / PDF | P2 流量配件，不抢主 CTA |
 
 ### 3.2 工作室（Studio）
