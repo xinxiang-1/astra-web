@@ -29,9 +29,14 @@ npm run lint
 
 ## 推荐环境
 
-- IDE：[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
-- Node：见 `package.json` → `engines`
-- 特效页建议使用较新的 Chromium（WebGPU）
+| 项 | 要求 |
+|----|------|
+| IDE | [VS Code](https://code.visualstudio.com/) / Cursor + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) |
+| Node | `package.json` → `engines`（`^22.18.0 \|\| >=24.12.0`） |
+| 浏览器 | 特效页建议较新的 Chromium（WebGPU） |
+| 后端联调 | 同级仓库 [astra-cloud](https://github.com/xinxiang-1/astra-cloud)：**JDK 21**、**Nacos Server 3.0.3**、MySQL 8、Redis 7；详见该仓库 README「环境要求」 |
+
+登录页（`/login`）经 Vite 代理 `/api` → 网关 `http://127.0.0.1:8080`，需先按后端文档启动 Nacos + Auth + Gateway。
 
 ## 路由一览
 
@@ -45,4 +50,4 @@ npm run lint
 | `/file-upload` | 工具 | 文件上传预览 |
 | `/studio` | 工作室 | 特效目录 |
 | `/prism` 等 | 工作室 | 各特效沉浸页 |
-| `/login` 等 | 账户 | 前端壳，暂不主推 |
+| `/login` 等 | 账户 | 邮箱验证码 / 密码登录（依赖 astra-cloud 网关） |
