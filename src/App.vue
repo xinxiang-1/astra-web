@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import { RouterLink, RouterView, useRoute } from 'vue-router'
 
 import ThemeToggle from '@/components/ui/ThemeToggle.vue'
@@ -14,6 +14,10 @@ import { useThemeStore } from '@/stores/theme'
 const route = useRoute()
 const auth = useAuthStore()
 useThemeStore()
+
+onMounted(() => {
+  void auth.restoreSession()
+})
 
 const routeName = computed(() => String(route.name ?? ''))
 
@@ -65,7 +69,7 @@ const isScrollable = computed(
         <ThemeToggle />
         <template v-if="!isAuthPage && auth.isLoggedIn">
           <span class="user">{{ auth.user?.name }}</span>
-          <button type="button" class="nav-btn" @click="auth.logout()">
+          <button type="button" class="nav-btn" @click="void auth.logout()">
             退出
           </button>
         </template>
