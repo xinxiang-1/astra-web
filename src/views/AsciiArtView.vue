@@ -1,5 +1,13 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import type { Ref } from 'vue'
+import { useRoute } from 'vue-router'
+import CharacterArtwork from '@/components/CharacterArtwork.vue'
+import ArtIcon from '@/components/ui/ArtIcon.vue'
+import ExportSheet from '@/components/ExportSheet.vue'
+import { artworkPresets, type ArtworkPreset } from '@/content/artwork'
+import { getArtProject, saveArtProject } from '@/lib/art-projects'
+import '@/styles/art-editor.css'
 
 import {
   ASCII_ASPECT_PRESETS,
@@ -21,6 +29,7 @@ import {
   isVideoFile,
   loadVideoElement,
   measureMonoCellAspect,
+  measureMonoCellMetrics,
   MEDIA_ACCEPT,
   nearestPrerenderIndex,
   needsVideoPrerender,
@@ -58,10 +67,24 @@ import {
   type CharsetStudioHandle,
 } from '@/lib/ascii/studio-preview'
 import { WarningFilled } from '@element-plus/icons-vue'
-import { useThemeStore } from '@/stores/theme'
 
 const ACCEPT = MEDIA_ACCEPT
-const theme = useThemeStore()
+const route = useRoute()
+const projectTitle = ref('未命名作品')
+const projectId = ref('')
+const projectStatus = ref('仅保存在此浏览器')
+const savingProject = ref(false)
+const mobilePanel = ref('presets')
+const activePreset = ref('')
+const showOriginal = ref(false)
+const exportOpen = ref(false)
+const exportPreview = ref('')
+const backgroundColor = ref('#111615')
+const foregroundColor = ref('#eeeae2')
+let sourceFile: File | null = null
+let exportName = ''
+let exportLongEdge = 2048
+let exportTransparent = false
 
 const fileInput = ref<HTMLInputElement | null>(null)
 const sourceVideo = ref<HTMLVideoElement | null>(null)
@@ -105,7 +128,7 @@ const mode = ref<AsciiMode>('charset')
 const phrase = ref('我爱你中国')
 const phraseThreshold = ref(0.55)
 const phraseFillAll = ref(false)
-const phraseColor = ref(true) // kept name; applies to both modes as 彩色预览
+const phraseColor = ref(false) // kept name; applies to both modes as 彩色预览
 /** Exposure bias in EV stops (-2 … +2). */
 const exposure = ref(0)
 /** Soft midtone boost — asciify-style contrast (0 = flat). */
@@ -162,8 +185,7 @@ const zoom = ref(100)
 const previewFontKey = ref<AsciiFontPresetKey>('consolas')
 const previewFontFamily = ref(PREVIEW_MONO_FONT)
 const previewAspect = ref<number>(
-  measureMonoCellAspect(12, PREVIEW_MONO_FONT) ||
-    ASCII_ASPECT_PRESETS.consolas.value,
+  measureMonoCellAspect(12, PREVIEW_MONO_FONT) || ASCII_ASPECT_PRESETS.consolas.value,
 )
 
 /** Download / Notepad: Microsoft YaHei + ~0.74 cell. */
@@ -197,17 +219,12 @@ const hasVideo = computed(() => mediaKind.value === 'video')
 
 /** Realtime playback uses a lighter column cap; prerender / pause use full clarity. */
 const videoLivePreview = computed(
-  () =>
-    hasVideo.value &&
-    videoPlaying.value &&
-    videoPlaybackMode.value === 'live',
+  () => hasVideo.value && videoPlaying.value && videoPlaybackMode.value === 'live',
 )
 
 const liveColumnCap = computed(() => videoLiveColumnCap(mode.value))
 
-const usePrerenderPath = computed(() =>
-  needsVideoPrerender(columns.value, mode.value),
-)
+const usePrerenderPath = computed(() => needsVideoPrerender(columns.value, mode.value))
 
 const effectiveColumns = computed(() =>
   resolveAsciiColumns({
@@ -219,10 +236,7 @@ const effectiveColumns = computed(() =>
 )
 
 const columnsCapped = computed(
-  () =>
-    hasVideo.value &&
-    videoLivePreview.value &&
-    columns.value > liveColumnCap.value,
+  () => hasVideo.value && videoLivePreview.value && columns.value > liveColumnCap.value,
 )
 
 const prerenderProgressLabel = computed(() => {
@@ -241,29 +255,20 @@ const charset = computed(() => {
   return custom.length > 0 ? custom : ASCII_CHARSETS[charsetKey.value]
 })
 
-const metricGlyph = computed(() =>
-  mode.value === 'phrase' ? pickMetricGlyph(phrase.value) : 'M',
-)
+const metricGlyph = computed(() => (mode.value === 'phrase' ? pickMetricGlyph(phrase.value) : 'M'))
 
-const displayFontSize = computed(
-  () => Math.max(0.5, (fontSize.value * zoom.value) / 100),
-)
+const displayFontSize = computed(() => Math.max(0.5, (fontSize.value * zoom.value) / 100))
 
 const hasResult = computed(() => ascii.value.length > 0)
 
 /** Pin host to the Studio stage box so toggling hover keeps the same width. */
-const stagePinned = computed(
-  () => studioLiveActive.value || (autoZoom.value && hasResult.value),
-)
+const stagePinned = computed(() => studioLiveActive.value || (autoZoom.value && hasResult.value))
 
 const previewHostStyle = computed(() => {
   if (!stagePinned.value) return undefined
   const { width, height } = previewStageBox.value
   if (width < 40 || height < 40) return undefined
-  const scale =
-    studioLiveActive.value && !autoZoom.value
-      ? Math.max(0.1, zoom.value / 100)
-      : 1
+  const scale = studioLiveActive.value && !autoZoom.value ? Math.max(0.1, zoom.value / 100) : 1
   return {
     width: `${width}px`,
     height: `${height}px`,
@@ -307,8 +312,7 @@ function formatClock(seconds: number) {
 }
 
 const videoTimeLabel = computed(
-  () =>
-    `${formatClock(videoCurrentTime.value)} / ${formatClock(videoDuration.value)}`,
+  () => `${formatClock(videoCurrentTime.value)} / ${formatClock(videoDuration.value)}`,
 )
 
 const CLIP_MIN_SPAN = 0.2
@@ -319,9 +323,7 @@ const clipLengthCustom = ref(false)
 
 const clipSpan = computed(() => Math.max(0, clipEnd.value - clipStart.value))
 
-const clipFrameCount = computed(() =>
-  Math.max(1, Math.floor(clipSpan.value * videoFps.value) + 1),
-)
+const clipFrameCount = computed(() => Math.max(1, Math.floor(clipSpan.value * videoFps.value) + 1))
 
 const clipMaxFrames = computed(() => {
   const span = Math.min(
@@ -331,9 +333,7 @@ const clipMaxFrames = computed(() => {
   return Math.max(2, Math.floor(span * videoFps.value) + 1)
 })
 
-const clipOverLimit = computed(
-  () => clipSpan.value > VIDEO_PRERENDER_MAX_DURATION_SEC + 0.05,
-)
+const clipOverLimit = computed(() => clipSpan.value > VIDEO_PRERENDER_MAX_DURATION_SEC + 0.05)
 
 const clipStartPct = computed(() => {
   const d = videoDuration.value
@@ -372,14 +372,13 @@ const videoHint = computed(() => {
   return ''
 })
 
-const previewColors = computed(() =>
-  theme.isDark
-    ? { background: '#070a12', foreground: '#d8e0ff' }
-    : { background: '#f4f6fb', foreground: '#1a2238' },
-)
+const previewColors = computed(() => ({
+  background: backgroundColor.value,
+  foreground: foregroundColor.value,
+}))
 
-/** Preview sampling polarity follows theme; checkbox flips relative to that. */
-const previewInvert = computed(() => invert.value !== theme.isDark)
+/** Light glyphs on a dark canvas; invert flips the density ramp. */
+const previewInvert = computed(() => !invert.value)
 
 /** Studio live preview when charset mode has hover or ambient motion. */
 const studioLiveActive = computed(
@@ -389,11 +388,15 @@ const studioLiveActive = computed(
     hasMedia.value,
 )
 
-/** Notepad / PNG paper look — always 正向, independent of theme. */
+/** Export uses the selected canvas palette. */
 const exportColors = {
-  background: '#ffffff',
-  foreground: '#111111',
-} as const
+  get background() {
+    return backgroundColor.value
+  },
+  get foreground() {
+    return foregroundColor.value
+  },
+}
 
 const advancedActive = computed(
   () =>
@@ -402,8 +405,7 @@ const advancedActive = computed(
     fontSize.value !== 9 ||
     previewFontKey.value !== 'consolas' ||
     exportFontKey.value !== 'yahei' ||
-    Math.abs(previewAspect.value - ASCII_ASPECT_PRESETS.consolas.value) >
-      0.02 ||
+    Math.abs(previewAspect.value - ASCII_ASPECT_PRESETS.consolas.value) > 0.02 ||
     Math.abs(exportAspect.value - EXPORT_CHAR_ASPECT) > 0.02 ||
     (mode.value === 'phrase' &&
       (Math.abs(phraseThreshold.value - 0.55) > 0.01 || phraseFillAll.value)),
@@ -460,8 +462,7 @@ function onColumnsChange(value: number | number[]) {
 function pauseVideoIfNeedsFullQuality(nextColumns: number) {
   if (!hasVideo.value) return
   if (nextColumns <= videoLiveColumnCap(mode.value)) return
-  const wasLive =
-    videoPlaying.value || Boolean(sourceVideo.value && !sourceVideo.value.paused)
+  const wasLive = videoPlaying.value || Boolean(sourceVideo.value && !sourceVideo.value.paused)
   pauseVideoPlayback()
   // Column watch will convert; if columns unchanged, convert here.
   if (wasLive && nextColumns === columns.value) {
@@ -471,11 +472,7 @@ function pauseVideoIfNeedsFullQuality(nextColumns: number) {
 
 function selectMode(next: AsciiMode) {
   if (mode.value === next) return
-  if (
-    hasVideo.value &&
-    videoPlaying.value &&
-    columns.value > videoLiveColumnCap(next)
-  ) {
+  if (hasVideo.value && videoPlaying.value && columns.value > videoLiveColumnCap(next)) {
     pauseVideoPlayback()
   }
   mode.value = next
@@ -592,6 +589,8 @@ function invalidatePrerenderIfStale() {
 }
 
 function resetAll() {
+  sourceFile = null
+  showOriginal.value = false
   destroyArtStudio()
   clearResult()
   pauseVideoPlayback()
@@ -639,10 +638,7 @@ function applyPhraseFontDefaults() {
   if (hasCjkText(phrase.value)) {
     const cjkAspect = Math.min(
       1.05,
-      Math.max(
-        0.85,
-        measureMonoCellAspect(12, previewFontFamily.value, '中') || 1,
-      ),
+      Math.max(0.85, measureMonoCellAspect(12, previewFontFamily.value, '中') || 1),
     )
     previewAspect.value = cjkAspect
     exportAspect.value = cjkAspect
@@ -682,8 +678,7 @@ function restoreDefaults() {
   previewFontKey.value = 'consolas'
   previewFontFamily.value = PREVIEW_MONO_FONT
   previewAspect.value =
-    measureMonoCellAspect(12, PREVIEW_MONO_FONT) ||
-    ASCII_ASPECT_PRESETS.consolas.value
+    measureMonoCellAspect(12, PREVIEW_MONO_FONT) || ASCII_ASPECT_PRESETS.consolas.value
   exportFontKey.value = 'yahei'
   exportFontFamily.value = EXPORT_MONO_FONT
   exportAspect.value = EXPORT_CHAR_ASPECT
@@ -712,10 +707,7 @@ function readPreviewFrameSize() {
   const headH = head?.getBoundingClientRect().height ?? 48
   return {
     width: Math.max(160, rect.width - 28),
-    height: Math.max(
-      200,
-      Math.min(window.innerHeight * 0.82, 920) - headH,
-    ),
+    height: Math.max(200, Math.min(window.innerHeight * 0.82, 920) - headH),
   }
 }
 
@@ -726,12 +718,8 @@ function readPreviewFrameSize() {
 function computePreviewStageSize() {
   const scroll = previewScroll.value
   const frame = readPreviewFrameSize()
-  const maxW = scroll
-    ? Math.max(160, scroll.clientWidth - 16)
-    : frame.width
-  const maxH = scroll
-    ? Math.max(200, scroll.clientHeight - 16)
-    : frame.height
+  const maxW = scroll ? Math.max(160, scroll.clientWidth - 16) : frame.width
+  const maxH = scroll ? Math.max(200, scroll.clientHeight - 16) : frame.height
   const ratio = imageAspect.value > 0.05 ? imageAspect.value : 1
   let w = maxW
   let h = w / ratio
@@ -781,14 +769,9 @@ function applyAutoZoom(force = false) {
  * Keep on-screen scale consistent when effective columns change
  * (e.g. 超清/极清 pause = full cols, play = live cap).
  */
-function syncZoomForGrid(
-  nextCols: number,
-  nextRows: number,
-  options?: { forceFit?: boolean },
-) {
+function syncZoomForGrid(nextCols: number, nextRows: number, options?: { forceFit?: boolean }) {
   if (nextCols <= 0 || nextRows <= 0) return
-  const gridChanged =
-    nextCols !== lastPreviewCols || nextRows !== lastPreviewRows
+  const gridChanged = nextCols !== lastPreviewCols || nextRows !== lastPreviewRows
   if (!gridChanged && !options?.forceFit) return
 
   columnsOut.value = nextCols
@@ -810,7 +793,7 @@ function convertFrame(
   frame: AsciiFrameSource,
   options?: { fitZoom?: boolean; forExport?: boolean },
 ) {
-  const invertFlag = options?.forExport ? false : previewInvert.value
+  const invertFlag = previewInvert.value
   const cols = resolveAsciiColumns({
     columns: columns.value,
     kind: mediaKind.value,
@@ -850,8 +833,7 @@ async function runConvert(options?: { fitZoom?: boolean }) {
   const frame = getFrameSource()
   if (!frame) return
   if (frameBusy) {
-    const prevFit =
-      typeof convertQueued === 'object' ? Boolean(convertQueued.fitZoom) : false
+    const prevFit = typeof convertQueued === 'object' ? Boolean(convertQueued.fitZoom) : false
     convertQueued = { fitZoom: Boolean(options?.fitZoom) || prevFit }
     return
   }
@@ -862,10 +844,8 @@ async function runConvert(options?: { fitZoom?: boolean }) {
     mode: mode.value,
     livePreview: videoLivePreview.value,
   })
-  const heavy =
-    targetCols >= 240 || (mode.value === 'phrase' && targetCols >= 180)
-  const showPending =
-    heavy || !hasVideo.value || !hasResult.value || !videoLivePreview.value
+  const heavy = targetCols >= 240 || (mode.value === 'phrase' && targetCols >= 180)
+  const showPending = heavy || !hasVideo.value || !hasResult.value || !videoLivePreview.value
   if (showPending) pending.value = true
   error.value = ''
   try {
@@ -903,7 +883,7 @@ async function runConvert(options?: { fitZoom?: boolean }) {
   }
 }
 
-/** Rebuild ASCII for download — always 正向 (invert=false). */
+/** Rebuild at full sampling quality with the same polarity as the preview. */
 function buildExportAscii(): {
   text: string
   colors?: Uint8ClampedArray
@@ -945,10 +925,7 @@ function onVideoSeeked() {
   void runConvert()
 }
 
-function applyPrerenderFrame(
-  index: number,
-  options?: { fitZoom?: boolean },
-) {
+function applyPrerenderFrame(index: number, options?: { fitZoom?: boolean }) {
   const frame = prerenderFrames[index]
   if (!frame) return
   prerenderPlayIndex = index
@@ -1063,8 +1040,7 @@ function startPrerenderLoop() {
   videoLoop = createPrerenderFrameLoop({
     fps: videoFps.value,
     frameCount: prerenderFrames.length,
-    shouldTick: () =>
-      videoPlaying.value && videoPlaybackMode.value === 'prerender',
+    shouldTick: () => videoPlaying.value && videoPlaybackMode.value === 'prerender',
     getIndex: () => prerenderPlayIndex,
     setIndex: (index) => {
       prerenderPlayIndex = index
@@ -1086,8 +1062,7 @@ async function playVideo() {
       if (!ok) return
     }
     const playAt =
-      videoCurrentTime.value < clipStart.value ||
-      videoCurrentTime.value >= clipEnd.value
+      videoCurrentTime.value < clipStart.value || videoCurrentTime.value >= clipEnd.value
         ? clipStart.value
         : videoCurrentTime.value
     prerenderPlayIndex = nearestPrerenderIndex(prerenderFrames, playAt)
@@ -1108,8 +1083,7 @@ async function playVideo() {
 }
 
 function pauseVideo() {
-  const wasLive =
-    videoPlaying.value || Boolean(sourceVideo.value && !sourceVideo.value.paused)
+  const wasLive = videoPlaying.value || Boolean(sourceVideo.value && !sourceVideo.value.paused)
   const modeWas = videoPlaybackMode.value
   pauseVideoPlayback()
   if (wasLive && modeWas === 'live') {
@@ -1141,9 +1115,7 @@ function resetClipBounds(duration: number) {
 
 function syncClipEnd() {
   const safeDuration =
-    Number.isFinite(videoDuration.value) && videoDuration.value > 0
-      ? videoDuration.value
-      : 0
+    Number.isFinite(videoDuration.value) && videoDuration.value > 0 ? videoDuration.value : 0
   if (safeDuration <= 0) {
     clipEnd.value = clipStart.value
     return
@@ -1163,20 +1135,14 @@ function onClipEdited() {
   clearPrerenderCache()
   const video = sourceVideo.value
   if (!video || videoPlaybackMode.value !== 'live' || video.paused) return
-  if (
-    video.currentTime < clipStart.value ||
-    video.currentTime >= clipEnd.value - 0.04
-  ) {
+  if (video.currentTime < clipStart.value || video.currentTime >= clipEnd.value - 0.04) {
     video.currentTime = clipStart.value
     videoCurrentTime.value = clipStart.value
   }
 }
 
 function seekPlaybackIntoClip(video: HTMLVideoElement) {
-  if (
-    video.currentTime < clipStart.value ||
-    video.currentTime >= clipEnd.value - 0.05
-  ) {
+  if (video.currentTime < clipStart.value || video.currentTime >= clipEnd.value - 0.05) {
     video.currentTime = clipStart.value
     videoCurrentTime.value = clipStart.value
   }
@@ -1191,10 +1157,7 @@ function onClipStartInput(event: Event) {
 
 function setClipLength(seconds: number, custom = false) {
   clipLengthCustom.value = custom
-  clipLength.value = Math.min(
-    VIDEO_PRERENDER_MAX_DURATION_SEC,
-    Math.max(CLIP_MIN_SPAN, seconds),
-  )
+  clipLength.value = Math.min(VIDEO_PRERENDER_MAX_DURATION_SEC, Math.max(CLIP_MIN_SPAN, seconds))
   syncClipEnd()
   onClipEdited()
 }
@@ -1212,19 +1175,13 @@ function onCustomSecondsInput(event: Event) {
 function onCustomFramesInput(event: Event) {
   const raw = Number((event.target as HTMLInputElement).value)
   if (!Number.isFinite(raw)) return
-  const frames = Math.min(
-    clipMaxFrames.value,
-    Math.max(2, Math.round(raw)),
-  )
+  const frames = Math.min(clipMaxFrames.value, Math.max(2, Math.round(raw)))
   const seconds = Math.max(CLIP_MIN_SPAN, (frames - 1) / videoFps.value)
   setClipLength(seconds, true)
 }
 
 function startClipHere() {
-  clipStart.value = Math.min(
-    Math.max(0, videoCurrentTime.value),
-    videoDuration.value,
-  )
+  clipStart.value = Math.min(Math.max(0, videoCurrentTime.value), videoDuration.value)
   syncClipEnd()
   onClipEdited()
 }
@@ -1316,9 +1273,11 @@ async function loadFile(file: File | undefined) {
     } else {
       throw new Error('请选择图片或视频（MP4 / WebM）')
     }
+    sourceFile = file
+    projectStatus.value = '有未保存的更改'
   } catch (e) {
-    error.value = e instanceof Error ? e.message : '无法读取文件'
     resetAll()
+    error.value = e instanceof Error ? e.message : '无法读取文件'
   } finally {
     pending.value = false
   }
@@ -1328,30 +1287,22 @@ function selectPreviewFont(key: AsciiFontPresetKey) {
   previewFontKey.value = key
   const preset = ASCII_FONT_PRESETS[key]
   previewFontFamily.value = preset.family
-  previewAspect.value =
-    measureMonoCellAspect(12, preset.family, metricGlyph.value) ||
-    preset.aspect
+  previewAspect.value = measureMonoCellAspect(12, preset.family, metricGlyph.value) || preset.aspect
 }
 
 function selectExportFont(key: AsciiFontPresetKey) {
   exportFontKey.value = key
   const preset = ASCII_FONT_PRESETS[key]
   exportFontFamily.value = preset.family
-  exportAspect.value =
-    measureMonoCellAspect(12, preset.family, metricGlyph.value) ||
-    preset.aspect
+  exportAspect.value = measureMonoCellAspect(12, preset.family, metricGlyph.value) || preset.aspect
 }
 
 function onPreviewAspectChange(value: number | number[]) {
-  previewAspect.value = Array.isArray(value)
-    ? (value[0] ?? previewAspect.value)
-    : value
+  previewAspect.value = Array.isArray(value) ? (value[0] ?? previewAspect.value) : value
 }
 
 function onExportAspectChange(value: number | number[]) {
-  exportAspect.value = Array.isArray(value)
-    ? (value[0] ?? exportAspect.value)
-    : value
+  exportAspect.value = Array.isArray(value) ? (value[0] ?? exportAspect.value) : value
 }
 
 function selectCharset(key: AsciiCharsetKey) {
@@ -1396,7 +1347,7 @@ function downloadTxt() {
   const blob = new Blob(['\uFEFF', text], {
     type: 'text/plain;charset=utf-8',
   })
-  triggerDownload(blob, hasVideo.value ? 'ascii-frame.txt' : 'ascii-art.txt')
+  triggerDownload(blob, `${exportName || 'ascii-art'}.txt`)
 }
 
 async function downloadPng() {
@@ -1406,16 +1357,39 @@ async function downloadPng() {
   error.value = ''
   try {
     const { text, colors } = buildExportAscii()
+    const metrics = measureMonoCellMetrics(12, previewFontFamily.value, metricGlyph.value)
+    const lines = text.split('\n')
+    const targetFontSize =
+      ((exportLongEdge - 32) * 12) /
+      Math.max(
+        Math.max(...lines.map((line) => line.length)) * metrics.advance,
+        (lines.length * metrics.advance) / previewAspect.value,
+      )
     const blob = await asciiToPngBlob(text, {
-      fontSize: Math.max(8, fontSize.value),
-      background: exportColors.background,
+      fontSize: targetFontSize,
+      background: exportTransparent ? 'transparent' : exportColors.background,
       foreground: exportColors.foreground,
-      fontFamily: exportFontFamily.value,
-      charAspect: exportAspect.value,
+      fontFamily: previewFontFamily.value,
+      charAspect: previewAspect.value,
       metricGlyph: metricGlyph.value,
       colors: phraseColor.value ? colors : undefined,
     })
-    triggerDownload(blob, hasVideo.value ? 'ascii-frame.png' : 'ascii-art.png')
+    const image = await createImageBitmap(blob)
+    const output = document.createElement('canvas')
+    const scale = exportLongEdge / Math.max(image.width, image.height)
+    output.width = Math.max(1, Math.round(image.width * scale))
+    output.height = Math.max(1, Math.round(image.height * scale))
+    const ctx = output.getContext('2d')
+    if (!ctx) throw new Error('当前浏览器无法生成图片')
+    ctx.drawImage(image, 0, 0, output.width, output.height)
+    image.close()
+    const resized = await new Promise<Blob>((resolve, reject) =>
+      output.toBlob(
+        (result) => (result ? resolve(result) : reject(new Error('图片导出失败'))),
+        'image/png',
+      ),
+    )
+    triggerDownload(resized, `${exportName || 'ascii-art'}.png`)
   } catch (e) {
     error.value = e instanceof Error ? e.message : 'PNG 下载失败'
   } finally {
@@ -1447,8 +1421,8 @@ async function downloadVideo() {
       fontSize: Math.max(8, fontSize.value),
       background: exportColors.background,
       foreground: exportColors.foreground,
-      fontFamily: exportFontFamily.value,
-      charAspect: exportAspect.value,
+      fontFamily: previewFontFamily.value,
+      charAspect: previewAspect.value,
       metricGlyph: metricGlyph.value,
       onProgress: ({ done, total }) => {
         downloadProgress.value = `${done}/${total}`
@@ -1466,7 +1440,7 @@ async function downloadVideo() {
       },
     })
 
-    triggerDownload(result.blob, `ascii-art.${result.extension}`)
+    triggerDownload(result.blob, `${exportName || 'ascii-art'}.${result.extension}`)
     if (result.extension !== 'mp4') {
       error.value =
         '当前浏览器不支持直接录制 MP4，已导出为 WebM。Chrome / Edge / Safari 通常可导出 MP4。'
@@ -1486,11 +1460,20 @@ async function downloadVideo() {
   }
 }
 
-function onDownloadCommand(command: string | number | object) {
-  if (command === 'txt') downloadTxt()
-  else if (command === 'png') void downloadPng()
-  else if (command === 'mp4') void downloadVideo()
-  else if (command === 'live-html') void downloadLiveHtml()
+async function handleExport(options: {
+  format: string
+  name: string
+  longEdge: number
+  transparent: boolean
+}) {
+  exportName = options.name.replace(/[<>:"/\\|?*\x00-\x1f]/g, '-').slice(0, 100) || 'astra-art'
+  exportLongEdge = options.longEdge
+  exportTransparent = options.transparent
+  error.value = ''
+  if (options.format === 'png') await downloadPng()
+  else if (options.format === 'mp4') await downloadVideo()
+  else if (options.format === 'txt') downloadTxt()
+  else if (options.format === 'live-html') await downloadLiveHtml()
 }
 
 async function bitmapToDataUrl(source: ImageBitmap): Promise<string> {
@@ -1538,7 +1521,7 @@ async function downloadLiveHtml() {
       fontFamily: previewFontFamily.value,
     })
     const blob = new Blob([html], { type: 'text/html;charset=utf-8' })
-    triggerDownload(blob, 'ascii-art-live.html')
+    triggerDownload(blob, `${exportName || 'ascii-art-live'}.html`)
   } catch (e) {
     error.value = e instanceof Error ? e.message : '动效网页下载失败'
   } finally {
@@ -1563,10 +1546,7 @@ function zoomOut() {
 function nudgeZoom(delta: number) {
   if (!hasResult.value) return
   autoZoom.value = false
-  zoom.value = Math.min(
-    ZOOM_MAX,
-    Math.max(ZOOM_MIN, Math.round(zoom.value + delta)),
-  )
+  zoom.value = Math.min(ZOOM_MAX, Math.max(ZOOM_MIN, Math.round(zoom.value + delta)))
 }
 
 /** Ctrl/⌘ + wheel zooms preview; blocks browser page zoom over the art. */
@@ -1659,9 +1639,7 @@ function resizeArtStudio() {
   if (!artStudio || !previewHost.value) return
   const { width } = layoutArtStudioStage()
   if (width > 0) {
-    artStudio.update(
-      studioPatchFromInput(artStudioInput(width)),
-    )
+    artStudio.update(studioPatchFromInput(artStudioInput(width)))
   }
   resizeCharsetStudio(artStudio, previewHost.value)
 }
@@ -1755,10 +1733,7 @@ function paintTo(canvas: HTMLCanvasElement | null) {
   if (canvas === previewCanvas.value && studioLiveActive.value && artStudio) {
     return
   }
-  const colors =
-    canvas === fullscreenCanvas.value
-      ? fullscreenPaintColors()
-      : previewColors.value
+  const colors = canvas === fullscreenCanvas.value ? fullscreenPaintColors() : previewColors.value
   paintAsciiToCanvas(canvas, ascii.value, {
     fontSize: displayFontSize.value,
     background: colors.background,
@@ -1791,8 +1766,7 @@ function schedulePaint() {
 async function openFullscreen() {
   if (!hasResult.value) return
   if (!ascii.value && getFrameSource()) {
-    const playing =
-      videoPlaying.value || Boolean(sourceVideo.value && !sourceVideo.value.paused)
+    const playing = videoPlaying.value || Boolean(sourceVideo.value && !sourceVideo.value.paused)
     if (playing) pauseVideoPlayback()
     await runConvert()
   }
@@ -1879,7 +1853,8 @@ watch(
     autoZoom,
     invert,
     previewInvert,
-    () => theme.mode,
+    backgroundColor,
+    foregroundColor,
     zoom,
     hasMedia,
     mode,
@@ -1947,8 +1922,185 @@ watch(fullscreen, (open) => {
   document.body.style.overflow = open ? 'hidden' : ''
 })
 
+const projectSettings: Record<string, Ref<string | number | boolean>> = {
+  mode,
+  phrase,
+  phraseThreshold,
+  phraseFillAll,
+  phraseColor,
+  exposure,
+  contrast,
+  normalizeTone,
+  ditherStrength,
+  hoverEffect,
+  hoverStrength,
+  hoverRadius,
+  ambientMotion,
+  resolutionKey,
+  columns,
+  charsetKey,
+  customCharset,
+  invert,
+  fontSize,
+  previewFontKey,
+  previewFontFamily,
+  previewAspect,
+  exportFontKey,
+  exportFontFamily,
+  exportAspect,
+  backgroundColor,
+  foregroundColor,
+  clipStart,
+  clipEnd,
+  videoFps,
+}
+let savedSnapshot = ''
+function snapshot() {
+  return JSON.stringify({
+    name: projectTitle.value,
+    settings: Object.fromEntries(
+      Object.entries(projectSettings).map(([key, value]) => [key, value.value]),
+    ),
+  })
+}
+watch(
+  () => snapshot(),
+  () => {
+    if (sourceFile && snapshot() !== savedSnapshot) projectStatus.value = '有未保存的更改'
+  },
+)
+function makeThumbnail() {
+  const canvas = document.createElement('canvas')
+  const frame = getFrameSource()
+  if (!frame) return ''
+  const result = convertFrame(frame, { forExport: true })
+  paintAsciiToCanvas(canvas, result.text, {
+    fontSize: 5,
+    background: backgroundColor.value,
+    foreground: foregroundColor.value,
+    fontFamily: previewFontFamily.value,
+    charAspect: previewAspect.value,
+    metricGlyph: metricGlyph.value,
+    colors: phraseColor.value ? result.colors : undefined,
+    padding: 0,
+  })
+  const thumb = document.createElement('canvas')
+  thumb.width = 420
+  thumb.height = Math.max(1, Math.round((canvas.height * 420) / canvas.width))
+  thumb.getContext('2d')?.drawImage(canvas, 0, 0, thumb.width, thumb.height)
+  return thumb.toDataURL('image/jpeg', 0.85)
+}
+function openExport() {
+  exportPreview.value = makeThumbnail()
+  exportOpen.value = true
+}
+async function saveProject() {
+  if (!sourceFile || savingProject.value) return
+  savingProject.value = true
+  const captured = snapshot()
+  try {
+    const id = projectId.value || crypto.randomUUID()
+    await saveArtProject({
+      id,
+      name: projectTitle.value.trim() || '未命名作品',
+      kind: hasVideo.value ? 'video' : 'image',
+      source: sourceFile,
+      updatedAt: Date.now(),
+      thumbnail: makeThumbnail(),
+      settings: JSON.parse(captured).settings,
+    })
+    projectId.value = id
+    savedSnapshot = captured
+    projectStatus.value = captured === snapshot() ? '已保存到此浏览器' : '有未保存的更改'
+  } catch {
+    error.value = '保存失败，浏览器存储空间可能不足。请先导出作品。'
+  } finally {
+    savingProject.value = false
+  }
+}
+async function applyPreset(preset: ArtworkPreset, replaceSource = false) {
+  activePreset.value = preset.id
+  selectMode(preset.mode)
+  await nextTick()
+  phrase.value = preset.phrase || '光与影'
+  phraseFillAll.value = Boolean(preset.phrase)
+  phraseColor.value = preset.color
+  contrast.value = 0.2
+  exposure.value = 0
+  invert.value = false
+  customCharset.value = ''
+  charsetKey.value = 'dense'
+  hoverEffect.value = 'none'
+  ambientMotion.value = 'none'
+  backgroundColor.value = '#111615'
+  foregroundColor.value = '#eeeae2'
+  selectResolution('high')
+  if (preset.mode === 'phrase') {
+    previewAspect.value = 0.85
+    exportAspect.value = 0.85
+  } else {
+    previewAspect.value = 0.55
+  }
+  if (!hasMedia.value || replaceSource) {
+    try {
+      const response = await fetch(preset.src)
+      if (!response.ok) throw new Error('素材加载失败')
+      const blob = await response.blob()
+      await loadFile(
+        new File([blob], `${preset.id}.${preset.src.split('.').pop()}`, { type: blob.type }),
+      )
+      projectTitle.value = preset.title
+    } catch {
+      error.value = '示例暂时无法加载，请上传自己的照片。'
+    }
+  }
+  await nextTick()
+  void runConvert({ fitZoom: true })
+}
+async function loadRouteProject() {
+  if (typeof route.query.project === 'string') {
+    try {
+      const project = await getArtProject(route.query.project)
+      if (!project) {
+        error.value = '没有找到这个本地项目。它可能已被删除，或保存在另一个浏览器中。'
+        return
+      }
+      await loadFile(project.source)
+      if (error.value) return
+      if (project.settings.mode === 'phrase' || project.settings.mode === 'charset')
+        selectMode(project.settings.mode)
+      await nextTick()
+      for (const [key, value] of Object.entries(project.settings)) {
+        const target = projectSettings[key]
+        if (target && typeof value === typeof target.value) target.value = value
+      }
+      projectId.value = project.id
+      projectTitle.value = project.name
+      await nextTick()
+      savedSnapshot = snapshot()
+      projectStatus.value = '已从此浏览器恢复'
+      void runConvert({ fitZoom: true })
+    } catch {
+      error.value = '项目无法恢复，请检查浏览器存储权限。'
+    }
+  } else {
+    const preset = artworkPresets.find((p) => p.id === route.query.preset)
+    if (preset) await applyPreset(preset, true)
+  }
+}
+watch(
+  () => route.fullPath,
+  async () => {
+    if (route.name !== 'ascii-art') return
+    resetAll()
+    projectId.value = ''
+    projectTitle.value = '未命名作品'
+    await loadRouteProject()
+  },
+)
 onMounted(() => {
   window.addEventListener('keydown', onFullscreenKey)
+  void loadRouteProject()
 })
 
 onBeforeUnmount(() => {
@@ -1964,60 +2116,28 @@ onBeforeUnmount(() => {
 })
 </script>
 <template>
-  <div class="page">
-    <header class="page-head">
-      <div class="page-title">
-        <h1>图片 / 视频转字符画</h1>
-        <p class="sub">本地实时渲染 · 支持短视频按帧解析 · 不上传服务器</p>
+  <div class="page art-editor" :class="`mobile-${mobilePanel}`">
+    <header class="editor-header">
+      <div class="editor-brand">
+        <RouterLink to="/" class="art-wordmark">Astra</RouterLink
+        ><RouterLink to="/gallery" class="editor-back">← 返回作品</RouterLink>
       </div>
-      <div class="export-actions">
-        <button
-          type="button"
-          class="btn"
-          :disabled="!hasResult"
-          @click="copyAscii"
+      <input v-model="projectTitle" class="project-title" aria-label="作品名称" maxlength="60" />
+      <div class="editor-header-actions">
+        <span class="save-status" role="status">{{ projectStatus }}</span
+        ><button
+          class="editor-save"
+          :disabled="!hasResult || pending || savingProject || downloading"
+          @click="saveProject"
         >
-          {{ copied ? '已复制' : '复制文本' }}
+          {{ savingProject ? '保存中…' : '保存项目' }}</button
+        ><button
+          class="art-button primary"
+          :disabled="!hasResult || pending || downloading"
+          @click="openExport"
+        >
+          导出 <ArtIcon :size="17" />
         </button>
-        <el-dropdown
-          :disabled="!hasResult || downloading"
-          trigger="click"
-          @command="onDownloadCommand"
-        >
-          <button
-            type="button"
-            class="btn primary"
-            :disabled="!hasResult || downloading"
-          >
-            {{
-              downloading
-                ? downloadProgress
-                  ? `导出中 ${downloadProgress}`
-                  : '导出中…'
-                : '导出'
-            }}
-            <span class="caret">▾</span>
-          </button>
-          <template #dropdown>
-            <el-dropdown-menu>
-              <el-dropdown-item command="txt">
-                {{ hasVideo ? '下载当前帧 TXT' : '下载 TXT' }}
-              </el-dropdown-item>
-              <el-dropdown-item command="png">
-                {{ hasVideo ? '下载当前帧 PNG' : '下载 PNG' }}
-              </el-dropdown-item>
-              <el-dropdown-item
-                command="live-html"
-                :disabled="mode !== 'charset'"
-              >
-                下载动效网页
-              </el-dropdown-item>
-              <el-dropdown-item v-if="hasVideo" command="mp4">
-                下载视频 MP4
-              </el-dropdown-item>
-            </el-dropdown-menu>
-          </template>
-        </el-dropdown>
       </div>
     </header>
 
@@ -2050,7 +2170,7 @@ onBeforeUnmount(() => {
     </nav>
 
     <div class="workspace">
-      <aside class="side fx-scroll">
+      <aside class="source-panel side fx-scroll">
         <section class="card">
           <header class="card-head">
             <h2>源文件</h2>
@@ -2064,9 +2184,7 @@ onBeforeUnmount(() => {
             }"
             role="button"
             tabindex="0"
-            :aria-label="
-              previewUrl || hasVideo ? '点击更换文件' : '点击上传图片或视频'
-            "
+            :aria-label="previewUrl || hasVideo ? '点击更换文件' : '点击上传图片或视频'"
             @dragenter.prevent="dragging = true"
             @dragover.prevent="dragging = true"
             @dragleave.prevent="dragging = false"
@@ -2088,19 +2206,10 @@ onBeforeUnmount(() => {
               @play="onSourceVideoPlay"
               @pause="onSourceVideoPause"
             />
-            <img
-              v-if="previewUrl && !hasVideo"
-              class="thumb"
-              :src="previewUrl"
-              alt="上传预览"
-            />
+            <img v-if="previewUrl && !hasVideo" class="thumb" :src="previewUrl" alt="上传预览" />
             <div class="drop-copy">
               <p class="drop-title">
-                {{
-                  previewUrl || hasVideo
-                    ? '点击或拖拽更换'
-                    : '拖拽或点击上传'
-                }}
+                {{ previewUrl || hasVideo ? '点击或拖拽更换' : '拖拽或点击上传' }}
               </p>
               <p class="drop-hint">PNG / JPG / WebP / GIF · MP4 / WebM</p>
             </div>
@@ -2163,15 +2272,11 @@ onBeforeUnmount(() => {
             </select>
           </div>
 
-          <div
-            v-if="hasVideo && usePrerenderPath"
-            class="clip-panel"
-            @click.stop
-          >
+          <div v-if="hasVideo && usePrerenderPath" class="clip-panel" @click.stop>
             <div class="clip-top">
               <strong :class="{ warn: clipOverLimit }">
-                {{ formatClock(clipStart) }}–{{ formatClock(clipEnd) }}
-                · {{ clipSpan.toFixed(1) }}s · {{ clipFrameCount }}帧
+                {{ formatClock(clipStart) }}–{{ formatClock(clipEnd) }} · {{ clipSpan.toFixed(1) }}s
+                · {{ clipFrameCount }}帧
               </strong>
               <button
                 type="button"
@@ -2191,10 +2296,7 @@ onBeforeUnmount(() => {
                     width: `${clipSpanPct}%`,
                   }"
                 />
-                <div
-                  class="clip-map-playhead"
-                  :style="{ left: `${playheadPct}%` }"
-                />
+                <div class="clip-map-playhead" :style="{ left: `${playheadPct}%` }" />
               </div>
               <input
                 class="range clip-rail-input"
@@ -2203,9 +2305,7 @@ onBeforeUnmount(() => {
                 :max="Math.max(0.1, videoDuration)"
                 step="0.1"
                 :value="clipStart"
-                :disabled="
-                  videoDuration <= 0 || videoPrerendering || downloading
-                "
+                :disabled="videoDuration <= 0 || videoPrerendering || downloading"
                 aria-label="片段起点"
                 @input="onClipStartInput"
               />
@@ -2270,9 +2370,7 @@ onBeforeUnmount(() => {
                 class="prerender-fill"
                 :style="{
                   width: `${
-                    videoPrerenderTotal
-                      ? (videoPrerenderDone / videoPrerenderTotal) * 100
-                      : 0
+                    videoPrerenderTotal ? (videoPrerenderDone / videoPrerenderTotal) * 100 : 0
                   }%`,
                 }"
               />
@@ -2281,10 +2379,60 @@ onBeforeUnmount(() => {
           </div>
           <p v-if="hasVideo && videoHint" class="video-note">{{ videoHint }}</p>
         </section>
-
+        <section class="preset-section">
+          <div class="preset-heading">
+            <h2>风格预设</h2>
+            <RouterLink to="/gallery">全部 ↗</RouterLink>
+          </div>
+          <div class="editor-presets">
+            <button
+              v-for="preset in artworkPresets"
+              :key="preset.id"
+              :class="{ selected: activePreset === preset.id }"
+              :disabled="pending || downloading"
+              @click="applyPreset(preset)"
+            >
+              <div class="preset-image">
+                <CharacterArtwork
+                  :src="preset.src"
+                  :color="preset.color"
+                  :phrase="preset.phrase"
+                  :label="preset.title"
+                />
+              </div>
+              <span>{{ preset.title }}</span>
+            </button>
+          </div>
+          <p class="preset-note">先选喜欢的风格，再换成你的照片。</p>
+        </section>
+        <RouterLink to="/projects" class="editor-projects"
+          ><ArtIcon name="folder" :size="17" /> 我的项目 <span>↗</span></RouterLink
+        >
+      </aside>
+      <nav class="mobile-editor-tabs" aria-label="编辑面板">
+        <button :class="{ active: mobilePanel === 'presets' }" @click="mobilePanel = 'presets'">
+          素材与预设</button
+        ><button :class="{ active: mobilePanel === 'settings' }" @click="mobilePanel = 'settings'">
+          调整效果</button
+        ><button :disabled="!hasResult || savingProject || pending" @click="saveProject">
+          保存项目
+        </button>
+      </nav>
+      <aside class="inspector-panel side fx-scroll">
+        <div class="inspector-title">
+          <h2>文字与风格</h2>
+          <span>⌃</span>
+        </div>
+        <div class="inspector-modes">
+          <button :class="{ selected: mode === 'charset' }" @click="selectMode('charset')">
+            字符</button
+          ><button :class="{ selected: mode === 'phrase' }" @click="selectMode('phrase')">
+            中文铺字
+          </button>
+        </div>
         <section class="card">
           <header class="card-head">
-            <h2>外观</h2>
+            <h2>细节调整</h2>
             <span class="card-meta">Appearance</span>
           </header>
 
@@ -2301,8 +2449,7 @@ onBeforeUnmount(() => {
                 class="seg-item"
                 :class="{
                   on: resolutionKey === opt.key,
-                  'has-warn':
-                    hasVideo && needsVideoPrerender(opt.columns, mode),
+                  'has-warn': hasVideo && needsVideoPrerender(opt.columns, mode),
                 }"
                 :title="
                   hasVideo && needsVideoPrerender(opt.columns, mode)
@@ -2319,12 +2466,7 @@ onBeforeUnmount(() => {
                   :show-after="120"
                   content="视频需先选片段再解析播放，最长 20 秒"
                 >
-                  <span
-                    class="res-warn"
-                    role="img"
-                    aria-label="需解析播放"
-                    @click.stop
-                  >
+                  <span class="res-warn" role="img" aria-label="需解析播放" @click.stop>
                     <el-icon :size="12"><WarningFilled /></el-icon>
                   </span>
                 </el-tooltip>
@@ -2411,24 +2553,14 @@ onBeforeUnmount(() => {
               <span>预览缩放</span>
               <span class="field-val">
                 {{ zoom }}%
-                <button
-                  v-if="!autoZoom"
-                  type="button"
-                  class="text-link"
-                  @click="resetZoom"
-                >
+                <button v-if="!autoZoom" type="button" class="text-link" @click="resetZoom">
                   自适应
                 </button>
                 <em v-else>自适应</em>
               </span>
             </div>
             <div class="zoom-row">
-              <button
-                type="button"
-                class="icon-btn"
-                :disabled="zoom <= 10"
-                @click="zoomOut"
-              >
+              <button type="button" class="icon-btn" :disabled="zoom <= 10" @click="zoomOut">
                 −
               </button>
               <input
@@ -2440,12 +2572,7 @@ onBeforeUnmount(() => {
                 step="5"
                 @input="onZoomRange"
               />
-              <button
-                type="button"
-                class="icon-btn"
-                :disabled="zoom >= 300"
-                @click="zoomIn"
-              >
+              <button type="button" class="icon-btn" :disabled="zoom >= 300" @click="zoomIn">
                 +
               </button>
             </div>
@@ -2479,13 +2606,18 @@ onBeforeUnmount(() => {
           </div>
         </section>
 
-        <section class="card" :class="{ muted: mode !== 'charset' }">
-          <header class="card-head">
-            <h2>悬停 / 微动</h2>
-          </header>
-          <p v-if="mode !== 'charset'" class="hint">
-            文字铺底模式不支持 Studio 悬停（会冲掉铺字）。请切回灰度字符。
-          </p>
+        <section class="card palette-card">
+          <label>背景 <input v-model="backgroundColor" type="color" aria-label="背景颜色" /></label
+          ><label
+            >文字颜色 <input v-model="foregroundColor" type="color" aria-label="文字颜色"
+          /></label>
+        </section>
+        <details class="card" :class="{ muted: mode !== 'charset' }">
+          <summary class="card-head">
+            <h2>动态效果</h2>
+            <span>＋</span>
+          </summary>
+          <p v-if="mode !== 'charset'" class="hint">切换到字符模式，即可添加悬停与微动效果。</p>
           <template v-else>
             <div class="field">
               <div class="field-label"><span>悬停</span></div>
@@ -2545,11 +2677,9 @@ onBeforeUnmount(() => {
                 </button>
               </div>
             </div>
-            <p class="hint">
-              开启后预览用 Studio 渲染：清晰度（列数）会改变格子大小；自适应下画布铺满预览区，手动缩放仍可用。导出 TXT/PNG 仍是静态结果；「下载动效网页」会写入当前悬停/微动（都关时默认拖尾+慢流）并使用 Consolas 字体，打开后可再切换。
-            </p>
+            <p class="hint">悬停与微动可随“动态网页”导出。PNG 和文本保留静态效果。</p>
           </template>
-        </section>
+        </details>
 
         <details class="card advanced-card">
           <summary class="card-head summary">
@@ -2676,9 +2806,7 @@ onBeforeUnmount(() => {
                   <div class="field">
                     <div class="field-label">
                       <span>明暗阈值</span>
-                      <span class="field-val">{{
-                        phraseThreshold.toFixed(2)
-                      }}</span>
+                      <span class="field-val">{{ phraseThreshold.toFixed(2) }}</span>
                     </div>
                     <input
                       v-model.number="phraseThreshold"
@@ -2719,9 +2847,7 @@ onBeforeUnmount(() => {
               >
                 重新生成
               </button>
-              <button type="button" class="btn ghost" @click="restoreDefaults">
-                恢复默认
-              </button>
+              <button type="button" class="btn ghost" @click="restoreDefaults">恢复默认</button>
               <button
                 type="button"
                 class="text-link"
@@ -2743,14 +2869,11 @@ onBeforeUnmount(() => {
             <p v-else-if="meta" class="status">{{ meta }}</p>
             <p v-else class="status">上传图片或短视频后实时显示结果</p>
           </div>
-          <button
-            v-if="hasResult"
-            type="button"
-            class="btn ghost"
-            @click="openFullscreen"
-          >
-            全屏
-          </button>
+          <div v-if="hasResult" class="stage-view-actions">
+            <button :class="{ selected: showOriginal }" @click="showOriginal = true">原图</button
+            ><button :class="{ selected: !showOriginal }" @click="showOriginal = false">效果</button
+            ><button class="stage-fullscreen" @click="openFullscreen">全屏 ↗</button>
+          </div>
         </header>
 
         <div
@@ -2760,6 +2883,15 @@ onBeforeUnmount(() => {
           title="Ctrl + 滚轮缩放"
         >
           <div class="ascii-scroll-inner">
+            <img
+              v-if="showOriginal && !hasVideo"
+              :src="previewUrl"
+              class="original-overlay"
+              alt="原始图片"
+            />
+            <div v-if="showOriginal && hasVideo" class="original-video-note">
+              原始视频可在左侧素材面板查看。<button @click="showOriginal = false">返回效果</button>
+            </div>
             <div
               ref="previewHost"
               class="ascii-host"
@@ -2770,15 +2902,41 @@ onBeforeUnmount(() => {
             </div>
           </div>
         </div>
-        <div v-else class="empty">
-          {{
-            pending
-              ? '处理中…'
-              : '将图片或视频拖到左侧，或点击上传开始'
-          }}
+        <div v-else class="empty art-empty" @dragover.prevent @drop.prevent="onDrop">
+          <span class="art-eyebrow">YOUR CANVAS, YOUR EXPRESSION</span
+          ><ArtIcon name="upload" :size="40" />
+          <h1>{{ pending ? '正在准备你的画布…' : '从一张照片开始' }}</h1>
+          <p>拖入图片或短视频，让文字重新描绘它。</p>
+          <button class="art-button primary" :disabled="pending" @click="fileInput?.click()">
+            选择本地文件 <ArtIcon :size="17" /></button
+          ><button class="empty-demo" :disabled="pending" @click="applyPreset(artworkPresets[0]!)">
+            或先试试示例 →</button
+          ><small>JPG / PNG / WebP / GIF · MP4 / WebM</small>
         </div>
       </section>
     </div>
+    <footer class="editor-footer">
+      <button :disabled="!hasResult" @click="copyAscii">
+        {{ copied ? '已复制 ✓' : '复制字符文本' }}
+      </button>
+      <div>
+        <button :disabled="!hasResult" @click="resetZoom">适应画布</button
+        ><button aria-label="缩小" @click="zoomOut">−</button><span>{{ zoom }}%</span
+        ><button aria-label="放大" @click="zoomIn">＋</button>
+      </div>
+      <span class="editor-privacy"><ArtIcon name="shield" :size="18" /> 所有处理均在本地完成</span>
+    </footer>
+    <ExportSheet
+      v-model="exportOpen"
+      :video="hasVideo"
+      :phrase="mode === 'phrase'"
+      :busy="downloading"
+      :progress="downloadProgress"
+      :error="error"
+      :name="projectTitle"
+      :preview="exportPreview"
+      @export="handleExport"
+    />
 
     <Teleport to="body">
       <div
@@ -2793,19 +2951,11 @@ onBeforeUnmount(() => {
           <div class="fs-tools">
             <button type="button" class="btn ghost" @click="zoomOut">缩小</button>
             <button type="button" class="btn ghost" @click="zoomIn">放大</button>
-            <button type="button" class="btn ghost" @click="resetZoom">
-              自适应
-            </button>
-            <button type="button" class="btn primary" @click="closeFullscreen">
-              退出全屏
-            </button>
+            <button type="button" class="btn ghost" @click="resetZoom">自适应</button>
+            <button type="button" class="btn primary" @click="closeFullscreen">退出全屏</button>
           </div>
         </div>
-        <div
-          ref="fullscreenScroll"
-          class="fs-scroll fx-scroll"
-          title="Ctrl + 滚轮缩放"
-        >
+        <div ref="fullscreenScroll" class="fs-scroll fx-scroll" title="Ctrl + 滚轮缩放">
           <div class="ascii-scroll-inner">
             <canvas ref="fullscreenCanvas" class="ascii-canvas" />
           </div>
@@ -2885,12 +3035,11 @@ onBeforeUnmount(() => {
 
 .mode-card.on {
   border-color: color-mix(in srgb, var(--accent) 55%, var(--line));
-  background:
-    linear-gradient(
-      135deg,
-      color-mix(in srgb, var(--accent) 12%, transparent),
-      var(--panel)
-    );
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--accent) 12%, transparent),
+    var(--panel)
+  );
   box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 22%, transparent);
 }
 

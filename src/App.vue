@@ -3,11 +3,8 @@ import { computed, onMounted } from 'vue'
 import { RouterLink, RouterView, useRoute } from 'vue-router'
 
 import ThemeToggle from '@/components/ui/ThemeToggle.vue'
-import {
-  authRouteNames,
-  studioRouteNames,
-  toolRouteNames,
-} from '@/content/catalog'
+import ArtHeader from '@/components/ArtHeader.vue'
+import { authRouteNames, studioRouteNames, toolRouteNames } from '@/content/catalog'
 import { useAuthStore } from '@/stores/auth'
 import { useThemeStore } from '@/stores/theme'
 
@@ -20,32 +17,22 @@ onMounted(() => {
 })
 
 const routeName = computed(() => String(route.name ?? ''))
+const isProduct = computed(() =>
+  ['home', 'gallery', 'projects', 'ascii-art'].includes(routeName.value),
+)
+const isEditor = computed(() => routeName.value === 'ascii-art')
 
-const isAuthPage = computed(() =>
-  (authRouteNames as readonly string[]).includes(routeName.value),
-)
-const isLanding = computed(() => routeName.value === 'home')
+const isAuthPage = computed(() => (authRouteNames as readonly string[]).includes(routeName.value))
 const isStudioHub = computed(() => routeName.value === 'studio')
-const isToolPage = computed(() =>
-  (toolRouteNames as readonly string[]).includes(routeName.value),
-)
+const isToolPage = computed(() => (toolRouteNames as readonly string[]).includes(routeName.value))
 const isStudioEffect = computed(
-  () =>
-    (studioRouteNames as readonly string[]).includes(routeName.value) &&
-    !isStudioHub.value,
+  () => (studioRouteNames as readonly string[]).includes(routeName.value) && !isStudioHub.value,
 )
 
 /** Full-bleed FX under a translucent topbar */
-const isImmersive = computed(
-  () => isLanding.value || isStudioHub.value || isStudioEffect.value,
-)
+const isImmersive = computed(() => isStudioHub.value || isStudioEffect.value)
 
-const isScrollable = computed(
-  () =>
-    isLanding.value ||
-    isStudioHub.value ||
-    isToolPage.value,
-)
+const isScrollable = computed(() => isProduct.value || isStudioHub.value || isToolPage.value)
 </script>
 
 <template>
@@ -55,9 +42,12 @@ const isScrollable = computed(
       immersive: isImmersive,
       auth: isAuthPage,
       scrollable: isScrollable,
+      product: isProduct,
+      editor: isEditor,
     }"
   >
-    <header class="topbar">
+    <ArtHeader v-if="isProduct && !isEditor" />
+    <header v-else-if="!isEditor" class="topbar">
       <RouterLink v-if="!isAuthPage" class="brand" to="/">Astra</RouterLink>
       <span v-else class="topbar-spacer" aria-hidden="true" />
       <nav>
@@ -69,17 +59,9 @@ const isScrollable = computed(
         <ThemeToggle />
         <template v-if="!isAuthPage && auth.isLoggedIn">
           <span class="user">{{ auth.user?.name }}</span>
-          <button type="button" class="nav-btn" @click="void auth.logout()">
-            退出
-          </button>
+          <button type="button" class="nav-btn" @click="void auth.logout()">退出</button>
         </template>
-        <RouterLink
-          v-else-if="!isAuthPage"
-          class="login-link"
-          to="/login"
-        >
-          登录
-        </RouterLink>
+        <RouterLink v-else-if="!isAuthPage" class="login-link" to="/login"> 登录 </RouterLink>
         <RouterLink v-else class="back-link" to="/">← 返回</RouterLink>
       </nav>
     </header>
@@ -134,6 +116,13 @@ a {
   grid-template-rows: 1fr;
 }
 
+.app-shell.editor {
+  display: block;
+}
+.app-shell.product main {
+  min-height: 0;
+}
+
 .app-shell.auth .topbar {
   position: absolute;
   inset: 0 0 auto;
@@ -175,11 +164,7 @@ a {
   position: absolute;
   inset: 0 0 auto;
   border-bottom-color: transparent;
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.5),
-    transparent
-  );
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), transparent);
   color: #eef2ff;
 }
 

@@ -4,7 +4,7 @@ import AsciiArtView from '@/views/AsciiArtView.vue'
 import AuthView from '@/views/AuthView.vue'
 import BlackHoleView from '@/views/BlackHoleView.vue'
 import FluidView from '@/views/FluidView.vue'
-import HomeView from '@/views/HomeView.vue'
+import HomeView from '@/views/ArtHomeView.vue'
 import PrismView from '@/views/PrismView.vue'
 import StudioView from '@/views/StudioView.vue'
 import ToolsView from '@/views/ToolsView.vue'
@@ -14,6 +14,8 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     { path: '/', name: 'home', component: HomeView },
+    { path: '/gallery', name: 'gallery', component: () => import('@/views/GalleryView.vue') },
+    { path: '/projects', name: 'projects', component: () => import('@/views/ProjectsView.vue') },
     {
       path: '/login',
       name: 'login',
@@ -71,8 +73,8 @@ const router = createRouter({
     { path: '/fluid', name: 'fluid', component: FluidView },
     { path: '/webgl-fluid', name: 'webgl-fluid', component: WebglFluidView },
   ],
-  scrollBehavior() {
-    return { top: 0 }
+  scrollBehavior(to) {
+    return to.hash ? { el: to.hash, top: 20 } : { top: 0 }
   },
 })
 
