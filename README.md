@@ -4,7 +4,7 @@
 
 本轮前后端交付范围、验证证据和后续任务见 [阶段交付记录](./docs/plans/stage-delivery-2026-10-01.md)。[产品总计划](./docs/plans/product-master-plan.md)持续跟踪模板包、新增付费创作和定制服务；订单、支付、公测和正式部署仍待实现。首页原Studio参数保留，原创Logo位于 `public/brand/`。
 
-商业开发依据：[商品与付费创作PRD](./docs/plans/prd-commerce.md)、[商业合同执行记录](./docs/plans/commerce-contract-iteration-2026-10-02.md)；对应后端提供OpenAPI与17表候选DDL。交易与批量工作台尚未实现，当前免费能力保持。
+商业开发依据：[商品与付费创作PRD](./docs/plans/prd-commerce.md)、[商业合同执行记录](./docs/plans/commerce-contract-iteration-2026-10-02.md)；后端三个只读目录GET及鉴权/角色已经真实联调，见[接续阶段](./docs/plans/commerce-catalog-iteration-2026-10-02.md)。订单/支付与前端购买流程、批量工作台尚未实现，当前免费能力保持。
 
 每完成一个可验收小阶段，记录步骤/失败/检查后单独提交并立即推送，官方MCP核验远端SHA。提交推送使用用户指定的GitHub MCP连接账户 `xinxiang-1`。先核验账户与目标仓库权限；浏览器登录和本地Git凭证不替代MCP授权。
 
