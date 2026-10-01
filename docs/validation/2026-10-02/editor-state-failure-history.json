@@ -1,0 +1,32 @@
+[
+  {
+    "directory": "development",
+    "passedCases": 5,
+    "message": "Expected values to be strictly equal:\n+ actual - expected\n\n+ 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAjQAAALBCAYAAABP1DupAAAQAElEQVR4Aez9BWAVy9M9iq4kuLsc3N0O7m7BnaCBJBAgOMHd3d3d3d2DuxPc3d3fWr33hEkO/OR77777/e+Fcya7pmeme011dVW1VI9r9Dixf/w5/vDgjwz8kYE/MvBHBv7IwB8Z+D9ZBlxjxIiOiycOonXzpnBxccHlU4exctFc6N+5owHYt22DSJw6",
+    "originalPreservedLocally": true
+  },
+  {
+    "directory": "development-r2",
+    "passedCases": 0,
+    "message": "page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:5180/ascii-art\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:5180/ascii-art\", waiting until \"domcontentloaded\"\u001b[22m\n",
+    "originalPreservedLocally": true
+  },
+  {
+    "directory": "development-r3",
+    "passedCases": 10,
+    "message": "Expected values to be strictly equal:\n+ actual - expected\n\n+ '← 返回作品有未保存的更改保存项目 导出 Charset灰度字符按亮度映射字符集，适合照片与图标Phrase文字铺底用指定文案铺满明暗轮廓源文件Source点击或拖拽更换PNG / JPG / WebP / GIF · MP4 / WebM风格预设全部 ↗光影之间山河万里她的色彩一位老朋友时间的轮廓用文字看世界先选喜欢的风格，再换成你的照片。 我的项目 ↗ 下载作品包备份原始素材与参数，换设备继续创作。 素材与预设 调整效果 保存项目 文字与风格⌃光影字符原色字符中文铺字轮廓线稿点阵细节印刷网点细节调整Appe",
+    "originalPreservedLocally": true
+  },
+  {
+    "directory": "development-r4",
+    "passedCases": 6,
+    "message": "Expected values to be strictly equal:\n+ actual - expected\n\n+ '812e6f8b41355a7c7c75d6d603caabfb2714f83e3c48e8935c4edcf31f81b216'\n- 'ce0b2f80c57cdaeb300ec1b788f028de60f1b9a3a1eed804e712b3bd73e13313'\n",
+    "originalPreservedLocally": true
+  },
+  {
+    "directory": "development-r5",
+    "passedCases": 18,
+    "message": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.editor-back')\u001b[22m\n\u001b[2m    - locator resolved to <a href=\"/gallery\" data-v-4641f82a=\"\" class=\"editor-back\">← 返回作品</a>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    ",
+    "originalPreservedLocally": true
+  }
+]

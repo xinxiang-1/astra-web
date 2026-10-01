@@ -1,0 +1,109 @@
+{
+  "base": "http://127.0.0.1:5194",
+  "browser": "153.0.8010.12",
+  "scope": "Real Chromium UI/storage/media and native unload; delayed decode and quota failure injected; no aesthetics/real-device certification",
+  "cases": [
+    {
+      "name": "broken-image",
+      "preserved": true,
+      "noStorageWrite": true
+    },
+    {
+      "name": "broken-video",
+      "preserved": true,
+      "noStorageWrite": true
+    },
+    {
+      "name": "unsupported",
+      "preserved": true,
+      "noStorageWrite": true
+    },
+    {
+      "name": "empty",
+      "preserved": true,
+      "noStorageWrite": true
+    },
+    {
+      "name": "oversize-before-decode",
+      "preserved": true
+    },
+    {
+      "name": "decoded-too-small",
+      "preserved": true,
+      "width": 1,
+      "height": 2
+    },
+    {
+      "name": "decoded-longest-side",
+      "preserved": true,
+      "width": 16385,
+      "height": 2
+    },
+    {
+      "name": "decoded-pixel-limit",
+      "preserved": true,
+      "width": 5700,
+      "height": 5700
+    },
+    {
+      "name": "cancel-decode",
+      "preserved": true,
+      "staleBitmapClosed": true
+    },
+    {
+      "name": "late-image-cannot-overwrite",
+      "latestSourceHash": "6b8865b691747d831a00f33017c97cbc5beed21575601a3442918de61361ef31",
+      "staleBitmapClosed": true
+    },
+    {
+      "name": "source-only-change-is-dirty",
+      "passed": true
+    },
+    {
+      "name": "save-completion-cannot-mark-later-parameters-saved",
+      "passed": true
+    },
+    {
+      "name": "save-completion-cannot-mark-later-source-saved",
+      "passed": true
+    },
+    {
+      "name": "video-preserved-after-image-and-video-failure",
+      "passed": true
+    },
+    {
+      "name": "image-video-image-resource-transfer",
+      "activeSourceUrls": 1
+    },
+    {
+      "name": "clear-cancel-escape-and-native-focus-trap",
+      "passed": true
+    },
+    {
+      "name": "save-failure-keeps-original-target-and-success-leaves",
+      "passed": true
+    },
+    {
+      "name": "same-route-query-and-browser-back-cancel",
+      "passed": true
+    },
+    {
+      "nativeDialog": "beforeunload",
+      "dismissed": true
+    },
+    {
+      "name": "native-close-cancel-and-mobile-dialog",
+      "passed": true
+    },
+    {
+      "name": "confirmed-clear-creates-new-project-without-overwriting",
+      "passed": true
+    },
+    {
+      "name": "discard-and-unmount-release-late-candidate",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

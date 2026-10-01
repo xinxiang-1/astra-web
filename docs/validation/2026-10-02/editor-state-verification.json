@@ -1,0 +1,55 @@
+{
+  "collectedAt": "2026-10-01T17:12:07.036Z",
+  "sourceParent": "46f64fd44843fefe91ca84508e13e9a6bca177ee",
+  "checks": {
+    "relatedEslintExitCode": 0,
+    "strictTypeCheckExitCode": 0,
+    "productionBuildExitCode": 0,
+    "protectedFiles": 27,
+    "finalBrowserChecksPassed": true
+  },
+  "buildWarnings": [
+    "stream externalized by jszip",
+    "large chunks",
+    "signature layout-compute static/dynamic import overlap",
+    "plugin timing notice"
+  ],
+  "scope": "Current Chromium, same-device storage, short encoded media; not real-device/cross-browser/aesthetic or commercial acceptance",
+  "evidence": [
+    {
+      "path": "editor-state-development.json",
+      "sha256": "d52caaebce15ef296413412082e33df0389781b5f23a489cf186c32432f8e1f8",
+      "source": "development-r7/report.json"
+    },
+    {
+      "path": "editor-state-production.json",
+      "sha256": "47c304b658fbf0ca1db7f3fd1383456d083124482120f3c39f4169a31c1d794b",
+      "source": "production-r2/report.json"
+    },
+    {
+      "path": "project-package-production.json",
+      "sha256": "bdd45431dee562bd3727aa32c775583ce42d44e6d6e796a30512da17a3d09766",
+      "source": "package-production/report.json"
+    },
+    {
+      "path": "effects-media-production.json",
+      "sha256": "ad703cc7b44a8206553214e34537fadcfc41f265158afcd094daf5a12a7332c8",
+      "source": "media-production/report.json"
+    },
+    {
+      "path": "home-hover-production.json",
+      "sha256": "c68afb87dc2a12a67109c44c1ef2a4ba2926fc863d107cbb9d0836f1a0cd1b11",
+      "source": "home-production/hover-regression.json"
+    },
+    {
+      "path": "unsaved-desktop.png",
+      "sha256": "10987c7f2f0cb17a285ac848c59459230ac25323fcee9cbac7904fa3b40437f2",
+      "source": "production-r2/unsaved-desktop.png"
+    },
+    {
+      "path": "unsaved-mobile.png",
+      "sha256": "2e8bbd7dbb311fd3b77f7fafdaec4144279d3c4a05cdc7da5b70e676a982e907",
+      "source": "production-r2/unsaved-mobile.png"
+    }
+  ]
+}

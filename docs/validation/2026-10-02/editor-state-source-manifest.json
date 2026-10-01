@@ -1,0 +1,30 @@
+[
+  {
+    "path": "src/views/AsciiArtView.vue",
+    "sha256": "5dc775fecf865fd31a70bb58b0edae9873c8d9a5ca6a827bcdfd9dcab1d3b370"
+  },
+  {
+    "path": "src/lib/art-media-source.ts",
+    "sha256": "3a41567e8066decf758b0b04396329c769fa418334fcba55239eaafb400f24c4"
+  },
+  {
+    "path": "src/components/UnsavedChangesDialog.vue",
+    "sha256": "f96e269f923e6642abc14eecd049e7f788531c38beb264ed41197d0d23e1900f"
+  },
+  {
+    "path": "scripts/art-editor-state-contract.mjs",
+    "sha256": "59ebf3b3e7946c37e761deb4acc6d8454be8a577d578c178cba3ecf8628855e2"
+  },
+  {
+    "path": "scripts/art-editor-contract.mjs",
+    "sha256": "4b0a8fa64c0fc3b6f6477782b9f930b9cfa02bf2e4980c5acdf072f6cc158c36"
+  },
+  {
+    "path": "scripts/art-effects-media-contract.mjs",
+    "sha256": "7d0ebcf8db4116ed1ebd53542ce7091f5696d570b149f588c6ee7ecaa8632cfc"
+  },
+  {
+    "path": "scripts/art-project-package-contract.mjs",
+    "sha256": "85688b6d25a2d2bf6f559814d354e9bb4e31ec00cbaada5012d294876b315ab6"
+  }
+]

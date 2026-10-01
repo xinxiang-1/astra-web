@@ -1,0 +1,164 @@
+[
+  {
+    "path": "src/lib/ascii/media.ts",
+    "sha256": "964a6e1706ae05eb75fb16e991748180ef296832e7a7f40196aa037dd775014a",
+    "actual": "964a6e1706ae05eb75fb16e991748180ef296832e7a7f40196aa037dd775014a",
+    "unchanged": true
+  },
+  {
+    "path": "src/views/ArtHomeView.vue",
+    "sha256": "db2b7e0ffa0d590be0e3e9d99caa8ecaba4716721b5d03b2d6269e46ad4458dd",
+    "actual": "db2b7e0ffa0d590be0e3e9d99caa8ecaba4716721b5d03b2d6269e46ad4458dd",
+    "unchanged": true
+  },
+  {
+    "path": "src/components/CharacterArtwork.vue",
+    "sha256": "99da7635979b98f70aa622887bcf775047114529b4130de201cebf40d0ab2858",
+    "actual": "99da7635979b98f70aa622887bcf775047114529b4130de201cebf40d0ab2858",
+    "unchanged": true
+  },
+  {
+    "path": "src/lib/ascii/studio-preview.ts",
+    "sha256": "87ef73fd4261872b1a6bc3d66fd2a05498bc73fa047294b4934174ede9af1a07",
+    "actual": "87ef73fd4261872b1a6bc3d66fd2a05498bc73fa047294b4934174ede9af1a07",
+    "unchanged": true
+  },
+  {
+    "path": "src/components/ui/AstraMark.vue",
+    "sha256": "e337437a70e5f4dfcce3da742f27743e9777244cbc3803e18586b31444e296cd",
+    "actual": "e337437a70e5f4dfcce3da742f27743e9777244cbc3803e18586b31444e296cd",
+    "unchanged": true
+  },
+  {
+    "path": "src/lib/art-engine/canvas.ts",
+    "sha256": "5e9b2028805988f7a7c6fc3211fecba3e10fc301f9b8933556bbd915984df395",
+    "actual": "5e9b2028805988f7a7c6fc3211fecba3e10fc301f9b8933556bbd915984df395",
+    "unchanged": true
+  },
+  {
+    "path": "src/lib/art-engine/core.ts",
+    "sha256": "ce091baf6d11340ccdda8c21fabe8a7935134964aaf7d4c094fe4432fce414e4",
+    "actual": "ce091baf6d11340ccdda8c21fabe8a7935134964aaf7d4c094fe4432fce414e4",
+    "unchanged": true
+  },
+  {
+    "path": "src/lib/art-engine/embed.ts",
+    "sha256": "f69ada47cb8aa027e4828e6baa24bf7661db6e650988a03b77556c8caef0f068",
+    "actual": "f69ada47cb8aa027e4828e6baa24bf7661db6e650988a03b77556c8caef0f068",
+    "unchanged": true
+  },
+  {
+    "path": "src/lib/art-engine/gpu.ts",
+    "sha256": "e169f6faf4abbd398f2d91671dcd953e977e8fd26c1730c362dc6fb323278adc",
+    "actual": "e169f6faf4abbd398f2d91671dcd953e977e8fd26c1730c362dc6fb323278adc",
+    "unchanged": true
+  },
+  {
+    "path": "src/lib/art-engine/index.ts",
+    "sha256": "18c455b3562dbb358ccde7a56fdf31e6f8b89a234b038fa6b7ce03469092d6b7",
+    "actual": "18c455b3562dbb358ccde7a56fdf31e6f8b89a234b038fa6b7ce03469092d6b7",
+    "unchanged": true
+  },
+  {
+    "path": "src/lib/art-engine/types.ts",
+    "sha256": "595f02d61c70a6e87c31fd67c60feb11fa1e74c093b7107a9be94f81efef2c3f",
+    "actual": "595f02d61c70a6e87c31fd67c60feb11fa1e74c093b7107a9be94f81efef2c3f",
+    "unchanged": true
+  },
+  {
+    "path": "src/lib/signature-portrait/bank.ts",
+    "sha256": "33be37e4d591899f0551b96ccd8a1c51c210b9f38070a3bf04bf89b72e73a958",
+    "actual": "33be37e4d591899f0551b96ccd8a1c51c210b9f38070a3bf04bf89b72e73a958",
+    "unchanged": true
+  },
+  {
+    "path": "src/lib/signature-portrait/extract.ts",
+    "sha256": "6d0b1d666d3204c2f380b6f5b4e6e74d2d847474c4a2b0b74c22c74916e7d81e",
+    "actual": "6d0b1d666d3204c2f380b6f5b4e6e74d2d847474c4a2b0b74c22c74916e7d81e",
+    "unchanged": true
+  },
+  {
+    "path": "src/lib/signature-portrait/gl-preview.ts",
+    "sha256": "ec95b098b2b4d121c2ebd960bf95a2f0b4f50481ad562028fdbca78ce69996d1",
+    "actual": "ec95b098b2b4d121c2ebd960bf95a2f0b4f50481ad562028fdbca78ce69996d1",
+    "unchanged": true
+  },
+  {
+    "path": "src/lib/signature-portrait/index.ts",
+    "sha256": "541c3e4bcdf0750b126ca203bfd33be3818930c66764ec46c5eec0192c68349b",
+    "actual": "541c3e4bcdf0750b126ca203bfd33be3818930c66764ec46c5eec0192c68349b",
+    "unchanged": true
+  },
+  {
+    "path": "src/lib/signature-portrait/ink-style.ts",
+    "sha256": "f8108d50c29bd7774dc66a0d817fc88380597cf99745e4e6f5e1a4f5b96cbd8f",
+    "actual": "f8108d50c29bd7774dc66a0d817fc88380597cf99745e4e6f5e1a4f5b96cbd8f",
+    "unchanged": true
+  },
+  {
+    "path": "src/lib/signature-portrait/layout-compute.ts",
+    "sha256": "3a7e0c0ce584c1ab4007aefcd4e850e38fe93c3f8bfd9e4410098acf129276be",
+    "actual": "3a7e0c0ce584c1ab4007aefcd4e850e38fe93c3f8bfd9e4410098acf129276be",
+    "unchanged": true
+  },
+  {
+    "path": "src/lib/signature-portrait/layout-worker-client.ts",
+    "sha256": "215b2fbf6d44d7135265dd249e2e4cdf4322a7d13772dea1fc5f21351a869767",
+    "actual": "215b2fbf6d44d7135265dd249e2e4cdf4322a7d13772dea1fc5f21351a869767",
+    "unchanged": true
+  },
+  {
+    "path": "src/lib/signature-portrait/layout-worker-protocol.ts",
+    "sha256": "501e2a93624e84c58f043e1c8ccf50182e554229e4b6c2c5a53824314cd8dcfb",
+    "actual": "501e2a93624e84c58f043e1c8ccf50182e554229e4b6c2c5a53824314cd8dcfb",
+    "unchanged": true
+  },
+  {
+    "path": "src/lib/signature-portrait/layout.ts",
+    "sha256": "17427b9b849dc65a96d70fa7f85d81026625b1ad2879c035013183da46ed931f",
+    "actual": "17427b9b849dc65a96d70fa7f85d81026625b1ad2879c035013183da46ed931f",
+    "unchanged": true
+  },
+  {
+    "path": "src/lib/signature-portrait/layout.worker.ts",
+    "sha256": "e99c08766c49401fa78e1cce3d22b7e3b6326663196c348f0c2f80cf8170c090",
+    "actual": "e99c08766c49401fa78e1cce3d22b7e3b6326663196c348f0c2f80cf8170c090",
+    "unchanged": true
+  },
+  {
+    "path": "src/lib/signature-portrait/render-style.ts",
+    "sha256": "53d60867485278f7514e0915d5074a92dbaee401789489795f24a2d81cbe6265",
+    "actual": "53d60867485278f7514e0915d5074a92dbaee401789489795f24a2d81cbe6265",
+    "unchanged": true
+  },
+  {
+    "path": "src/lib/signature-portrait/svg.ts",
+    "sha256": "d2a5a0861d5f8dadaa58dbcdcf6e6c4bf5e4274017c4ed9d872aa4957acbd84d",
+    "actual": "d2a5a0861d5f8dadaa58dbcdcf6e6c4bf5e4274017c4ed9d872aa4957acbd84d",
+    "unchanged": true
+  },
+  {
+    "path": "src/lib/signature-portrait/trace.ts",
+    "sha256": "2a6460aff46951c354095e4f3e5a5a4a42cb7abf9bba8ce0a98bd808d24beaa0",
+    "actual": "2a6460aff46951c354095e4f3e5a5a4a42cb7abf9bba8ce0a98bd808d24beaa0",
+    "unchanged": true
+  },
+  {
+    "path": "src/lib/signature-portrait/variants.ts",
+    "sha256": "c92146d7cdc3e622146ef286f74bf28431f7cf582f10e13ad202a4977afeb3c5",
+    "actual": "c92146d7cdc3e622146ef286f74bf28431f7cf582f10e13ad202a4977afeb3c5",
+    "unchanged": true
+  },
+  {
+    "path": "src/lib/signature-portrait/vector-ink.ts",
+    "sha256": "b98b8f9952c4982973cd24697b12d9823fa6bd9a16de840dde271670ff64bdc6",
+    "actual": "b98b8f9952c4982973cd24697b12d9823fa6bd9a16de840dde271670ff64bdc6",
+    "unchanged": true
+  },
+  {
+    "path": "src/lib/signature-portrait/woven.ts",
+    "sha256": "24cf963946eb466d4f87db16bf42b4f42e36995055620405b83a842f46755b14",
+    "actual": "24cf963946eb466d4f87db16bf42b4f42e36995055620405b83a842f46755b14",
+    "unchanged": true
+  }
+]

@@ -1,0 +1,228 @@
+{
+  "base": "http://127.0.0.1:5194",
+  "browser": "153.0.8010.12",
+  "scope": "Same browser, fresh storage, actual package/PNG downloads; no commercial aesthetics, real device or cross-browser certification",
+  "cases": [
+    {
+      "key": "density-classic",
+      "packageHash": "f3d4c27d5fb3caf523c3b87946ef5dd33513db9862b3a90d2824d504f8d918c2",
+      "sourceHash": "3b47141fc9fc62d760147df102c316b13d187709e3fbd8ca6fd724d7655562a2",
+      "pngHash": "3571bc592bc77a0d92dfbe8b86506358cccee625f6fbc69c6bf089e4007856b5",
+      "exactPng": true,
+      "parameters": "exact",
+      "sourceMetadata": "exact",
+      "refresh": true
+    },
+    {
+      "key": "color-classic",
+      "packageHash": "8e28957d07612c4a3b997240b75bb21ad9af02d353e99ba20be06083911b62b4",
+      "sourceHash": "3b47141fc9fc62d760147df102c316b13d187709e3fbd8ca6fd724d7655562a2",
+      "pngHash": "fc5ad39193afbbbf0149b44e2cd30be319451ff6999a2984a18a6c5ec9d6fdab",
+      "exactPng": true,
+      "parameters": "exact",
+      "sourceMetadata": "exact",
+      "refresh": true
+    },
+    {
+      "key": "phrase-classic",
+      "packageHash": "64e52c56d8660976f677f9ef730efbc9f63e0e1b1045762b99c769fa11af1af8",
+      "sourceHash": "3b47141fc9fc62d760147df102c316b13d187709e3fbd8ca6fd724d7655562a2",
+      "pngHash": "d9bb03360a92e7a403317405f850e1aef7f9431e0c04e3ceae7d22fbcad5f0b7",
+      "exactPng": true,
+      "parameters": "exact",
+      "sourceMetadata": "exact",
+      "refresh": true
+    },
+    {
+      "key": "contour-classic",
+      "packageHash": "093268bf29109e1784a5ec286a5a84bf34d71bc1377a8062f3dbbf004312f9a4",
+      "sourceHash": "3b47141fc9fc62d760147df102c316b13d187709e3fbd8ca6fd724d7655562a2",
+      "pngHash": "6eeffa2f9006ac6aa6746b96dbd46910e7c93b493b14539591f5c5021c73c028",
+      "exactPng": true,
+      "parameters": "exact",
+      "sourceMetadata": "exact",
+      "refresh": true
+    },
+    {
+      "key": "braille-classic",
+      "packageHash": "b5e158fe1ed4324c6ecbd63614b9168e13f4e70cd79968626218827bc2daa254",
+      "sourceHash": "3b47141fc9fc62d760147df102c316b13d187709e3fbd8ca6fd724d7655562a2",
+      "pngHash": "519701c33965ae48a5d69591495b648f9317ec241378abcb46f3a2ac7c556c1d",
+      "exactPng": true,
+      "parameters": "exact",
+      "sourceMetadata": "exact",
+      "refresh": true
+    },
+    {
+      "key": "halftone-classic",
+      "packageHash": "d644ab3558eb34b98ef2c9b6af3b3f1058c114d434301affdcbf586739a37027",
+      "sourceHash": "3b47141fc9fc62d760147df102c316b13d187709e3fbd8ca6fd724d7655562a2",
+      "pngHash": "17d139c1b1f71e4a6c579ef8c99b932a080be292a627b4610987d896a3830054",
+      "exactPng": true,
+      "parameters": "exact",
+      "sourceMetadata": "exact",
+      "refresh": true
+    },
+    {
+      "key": "density-detailed",
+      "packageHash": "8ed79385a756043b314042cb464ff993837526427882c3b50322d27b2d84befc",
+      "sourceHash": "3b47141fc9fc62d760147df102c316b13d187709e3fbd8ca6fd724d7655562a2",
+      "pngHash": "70476f150f3a7a3943bb68f504c8fc8dab6ba9e70bf5abe5e9180e91342e2e81",
+      "exactPng": true,
+      "parameters": "exact",
+      "sourceMetadata": "exact",
+      "refresh": true
+    },
+    {
+      "key": "density-smooth",
+      "packageHash": "82d18c794a6f9e5d01ede8ad601959b262ab305da6c588618db223dae5ff1360",
+      "sourceHash": "3b47141fc9fc62d760147df102c316b13d187709e3fbd8ca6fd724d7655562a2",
+      "pngHash": "6e48b9f955382ff5391f12bbfad30f20b6eb181e7aa7140b3d6498e1aacf5bf9",
+      "exactPng": true,
+      "parameters": "exact",
+      "sourceMetadata": "exact",
+      "refresh": true
+    },
+    {
+      "key": "density-faithful",
+      "packageHash": "42a44c5ddfe0b2ece4dcae63787fddb434896b0250835c9b2a7c97169774eba7",
+      "sourceHash": "3b47141fc9fc62d760147df102c316b13d187709e3fbd8ca6fd724d7655562a2",
+      "pngHash": "e21cfafc5d312ddeeb292c076e298fcaa0cf1d68d35fe5e912a4516bc1b5fcd9",
+      "exactPng": true,
+      "parameters": "exact",
+      "sourceMetadata": "exact",
+      "refresh": true
+    },
+    {
+      "key": "color-faithful",
+      "packageHash": "e0f6403238e239dec3b51f9d0d12a13c00a4a639898ca1464998426e01cd07d0",
+      "sourceHash": "3b47141fc9fc62d760147df102c316b13d187709e3fbd8ca6fd724d7655562a2",
+      "pngHash": "7f4be3e47725ef8b7c53b3fb892b4ba05155d639bca410aa6f65b199440465b2",
+      "exactPng": true,
+      "parameters": "exact",
+      "sourceMetadata": "exact",
+      "refresh": true
+    }
+  ],
+  "rejected": [
+    {
+      "key": "wrong-format",
+      "message": "作品包大小无效，原始素材最多支持 64 MB 重试",
+      "noWrite": true
+    },
+    {
+      "key": "truncated",
+      "message": "作品包素材不完整或包含额外数据 重试",
+      "noWrite": true
+    },
+    {
+      "key": "extra-payload",
+      "message": "作品包素材不完整或包含额外数据 重试",
+      "noWrite": true
+    },
+    {
+      "key": "manifest-hash",
+      "message": "作品包目录校验失败，文件可能已损坏 重试",
+      "noWrite": true
+    },
+    {
+      "key": "source-hash",
+      "message": "作品包素材校验失败，文件可能已损坏，请重新下载或导出 重试",
+      "noWrite": true
+    },
+    {
+      "key": "thumbnail-hash",
+      "message": "作品包素材校验失败，文件可能已损坏，请重新下载或导出 重试",
+      "noWrite": true
+    },
+    {
+      "key": "future-schema",
+      "message": "此作品包版本暂不支持，请使用对应版本的 Astra 重试",
+      "noWrite": true
+    },
+    {
+      "key": "missing-parameter",
+      "message": "作品包缺少必要参数：columns 重试",
+      "noWrite": true
+    },
+    {
+      "key": "incompatible-quality",
+      "message": "作品包的画质档不适用于这个模式或视频，请在原编辑器重新保存 重试",
+      "noWrite": true
+    },
+    {
+      "key": "future-engine",
+      "message": "这个项目使用了其他版本的效果引擎，请使用对应版本打开，避免改变作品。 重试",
+      "noWrite": true
+    },
+    {
+      "key": "engine-mismatch",
+      "message": "作品包的效果引擎与参数不一致 重试",
+      "noWrite": true
+    },
+    {
+      "key": "invalid-parameter",
+      "message": "作品包的columns超出支持范围 重试",
+      "noWrite": true
+    },
+    {
+      "key": "non-finite-parameter",
+      "message": "作品包的previewAspect超出支持范围 重试",
+      "noWrite": true
+    },
+    {
+      "key": "unknown-parameter",
+      "message": "作品包包含当前版本不支持的参数：constructor 重试",
+      "noWrite": true
+    },
+    {
+      "key": "invalid-thumbnail-type",
+      "message": "作品包缩略图格式无效 重试",
+      "noWrite": true
+    },
+    {
+      "key": "oversize-source",
+      "message": "作品包的素材大小超出支持范围 重试",
+      "noWrite": true
+    },
+    {
+      "key": "bad-media-with-correct-hash",
+      "message": "作品包中的图片无法读取 重试",
+      "noWrite": true
+    }
+  ],
+  "errors": [],
+  "uploads": [],
+  "passed": true,
+  "duplicate": {
+    "newId": true,
+    "originalsUnchanged": true
+  },
+  "storageFailure": {
+    "noWrite": true,
+    "message": "浏览器未能保存作品包，存储空间可能不足。请保留备份文件后重试。 重试"
+  },
+  "legacy": {
+    "oldProject": true,
+    "noAutomaticUpgrade": true
+  },
+  "video": {
+    "sourceHash": "2ac71802efe0da92a32273e60d21b68e36f554eeb13132628e8a6201be827513",
+    "exactSettings": true,
+    "clip": [
+      0.2,
+      0.7
+    ],
+    "playback": {
+      "currentTime": 0.2,
+      "paused": true,
+      "duration": 1,
+      "width": 320
+    }
+  },
+  "mobile": {
+    "width": 390,
+    "noOverflow": true,
+    "actualEditorDownload": true
+  }
+}

@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, shallowRef, watch } from 'vue'
-import type { Ref } from 'vue'
-import { useRoute } from 'vue-router'
+import type { ComponentPublicInstance, Ref } from 'vue'
+import { onBeforeRouteLeave, onBeforeRouteUpdate, useRoute } from 'vue-router'
 import CharacterArtwork from '@/components/CharacterArtwork.vue'
 import ArtIcon from '@/components/ui/ArtIcon.vue'
 import AstraLogo from '@/components/ui/AstraLogo.vue'
 import ExportSheet from '@/components/ExportSheet.vue'
+import UnsavedChangesDialog from '@/components/UnsavedChangesDialog.vue'
+import { prepareArtSource, type PreparedArtSource } from '@/lib/art-media-source'
 import { artworkPresets, type ArtworkPreset } from '@/content/artwork'
 import { getArtProject, saveArtProject } from '@/lib/art-projects'
 import {
@@ -41,11 +43,7 @@ import {
   EXPORT_CHAR_ASPECT,
   EXPORT_MONO_FONT,
   exportAsciiVideo,
-  fileToImageBitmap,
   hasCjkText,
-  isImageFile,
-  isVideoFile,
-  loadVideoElement,
   measureMonoCellAspect,
   measureMonoCellMetrics,
   MEDIA_ACCEPT,
@@ -107,7 +105,16 @@ let exportLongEdge = 2048
 let exportTransparent = false
 
 const fileInput = ref<HTMLInputElement | null>(null)
-const sourceVideo = ref<HTMLVideoElement | null>(null)
+const videoSlots = [
+  shallowRef<HTMLVideoElement | null>(null),
+  shallowRef<HTMLVideoElement | null>(null),
+]
+const activeVideoSlot = ref(0)
+const sourceVideo = computed(() => videoSlots[activeVideoSlot.value]?.value ?? null)
+function setVideoSlot(slot: number, element: Element | ComponentPublicInstance | null) {
+  const target = videoSlots[slot]
+  if (target) target.value = element instanceof HTMLVideoElement ? element : null
+}
 const previewCanvas = ref<HTMLCanvasElement | null>(null)
 const previewHost = ref<HTMLElement | null>(null)
 const fullscreenCanvas = ref<HTMLCanvasElement | null>(null)
@@ -116,13 +123,21 @@ const fullscreenScroll = ref<HTMLElement | null>(null)
 const previewFrame = ref<HTMLElement | null>(null)
 const dragging = ref(false)
 const error = ref('')
+const sourceError = ref('')
 const previewUrl = ref('')
 const ascii = ref('')
 const asciiColors = ref<Uint8ClampedArray | null>(null)
 const rows = ref(0)
 const columnsOut = ref(0)
 const imageAspect = ref(0)
-const pending = ref(false)
+const converting = ref(false)
+const loadingSource = ref(false)
+const pending = computed(() => converting.value || loadingSource.value)
+const sourceRevision = ref(0)
+let sourceLoadController: AbortController | null = null
+let sourceLoadGeneration = 0
+let routeLoadGeneration = 0
+let viewDisposed = false
 const copied = ref(false)
 const hasImage = ref(false)
 const mediaKind = ref<AsciiMediaKind | null>(null)
@@ -581,7 +596,7 @@ function selectArtHover(next: ArtHover | 'none') {
   artHover.value = next
 }
 
-function calibratedSettings(cols = columns.value): ArtSettings {
+function calibratedSettings(cols = columns.value, kind = mediaKind.value): ArtSettings {
   return {
     mode: artMode.value,
     columns: cols,
@@ -599,7 +614,9 @@ function calibratedSettings(cols = columns.value): ArtSettings {
     fontFamily: previewFontFamily.value,
     charAspect: previewAspect.value,
     ditherStrength: ditherStrength.value,
-    ...(artQualityAvailable.value && artQuality.value !== 'classic'
+    ...(kind !== 'video' &&
+    (artMode.value === 'color' || (artMode.value === 'density' && !phraseColor.value)) &&
+    artQuality.value !== 'classic'
       ? artQuality.value === 'faithful'
         ? { fontWeight: 600 as const, softwareRaster: true, colorFidelity: true }
         : {
@@ -806,7 +823,12 @@ function invalidatePrerenderIfStale() {
 }
 
 function resetAll() {
+  sourceLoadGeneration++
+  sourceLoadController?.abort()
+  sourceLoadController = null
+  loadingSource.value = false
   sourceFile = null
+  sourceRevision.value++
   showOriginal.value = false
   destroyArtStudio()
   clearResult()
@@ -818,6 +840,7 @@ function resetAll() {
   hasImage.value = false
   imageAspect.value = 0
   error.value = ''
+  sourceError.value = ''
   if (fileInput.value) fileInput.value.value = ''
 }
 
@@ -1030,12 +1053,12 @@ function syncZoomForGrid(nextCols: number, nextRows: number, options?: { forceFi
 
 function convertFrame(
   frame: AsciiFrameSource,
-  options?: { fitZoom?: boolean; forExport?: boolean },
+  options?: { fitZoom?: boolean; forExport?: boolean; sourceKind?: AsciiMediaKind },
 ) {
   const invertFlag = previewInvert.value
   const cols = resolveAsciiColumns({
     columns: columns.value,
-    kind: mediaKind.value,
+    kind: options?.sourceKind ?? mediaKind.value,
     mode: mode.value,
     livePreview: options?.forExport ? false : videoLivePreview.value,
     forExport: options?.forExport,
@@ -1047,7 +1070,7 @@ function convertFrame(
             frame.source,
             frame.width,
             frame.height,
-            calibratedSettings(cols),
+            calibratedSettings(cols, options?.sourceKind ?? mediaKind.value),
           )
           return { art, text: art.text, colors: art.colors, columns: art.columns, rows: art.rows }
         })()
@@ -1087,6 +1110,7 @@ async function runConvert(options?: { fitZoom?: boolean }) {
     return
   }
   frameBusy = true
+  const capturedRevision = sourceRevision.value
   const targetCols = resolveAsciiColumns({
     columns: columns.value,
     kind: mediaKind.value,
@@ -1095,10 +1119,11 @@ async function runConvert(options?: { fitZoom?: boolean }) {
   })
   const heavy = targetCols >= 240 || (mode.value === 'phrase' && targetCols >= 180)
   const showPending = heavy || !hasVideo.value || !hasResult.value || !videoLivePreview.value
-  if (showPending) pending.value = true
+  if (showPending) converting.value = true
   error.value = ''
   try {
     if (heavy) await new Promise<void>((r) => setTimeout(r, 0))
+    if (capturedRevision !== sourceRevision.value) return
     const latest = getFrameSource()
     if (!latest) {
       clearResult()
@@ -1120,11 +1145,12 @@ async function runConvert(options?: { fitZoom?: boolean }) {
     if (options?.fitZoom || autoZoom.value) await nextTick()
     schedulePaint()
   } catch (e) {
+    if (capturedRevision !== sourceRevision.value) return
     error.value = e instanceof Error ? e.message : '转换失败'
     clearResult()
   } finally {
     frameBusy = false
-    pending.value = false
+    converting.value = false
     if (convertQueued) {
       const queued = convertQueued
       convertQueued = false
@@ -1483,75 +1509,83 @@ function clearImageBitmap() {
   hasImage.value = false
 }
 
-async function loadImageFile(file: File) {
-  pauseVideoPlayback()
-  clearVideoElement()
-  const next = await fileToImageBitmap(file)
-  clearImageBitmap()
-  bitmap = next
-  hasImage.value = true
-  mediaKind.value = 'image'
-  imageAspect.value = next.width / Math.max(1, next.height)
-  revokePreview()
-  previewUrl.value = URL.createObjectURL(file)
-  autoZoom.value = true
-  await nextTick()
-  await runConvert({ fitZoom: true })
-}
-
-async function loadVideoFile(file: File) {
-  clearImageBitmap()
-  pauseVideoPlayback()
-  revokePreview()
-
-  await nextTick()
-  const video = sourceVideo.value
-  if (!video) throw new Error('视频预览组件未就绪')
-
-  if (videoObjectUrl) {
-    URL.revokeObjectURL(videoObjectUrl)
-    videoObjectUrl = ''
-  }
-
-  const url = await loadVideoElement(file, video)
-  videoObjectUrl = url
-  mediaKind.value = 'video'
-  hasImage.value = false
-  videoDuration.value = Number.isFinite(video.duration) ? video.duration : 0
-  videoCurrentTime.value = 0
-  video.loop = false
-  resetClipBounds(videoDuration.value)
-  imageAspect.value = video.videoWidth / Math.max(1, video.videoHeight)
-
-  autoZoom.value = true
-  await nextTick()
-  await runConvert({ fitZoom: true })
-  // 超清/极清先停在第一帧，等用户选好选段再解析播放。
-  if (!needsVideoPrerender(columns.value, mode.value)) {
-    await playVideo()
-  }
-}
-
 async function loadFile(file: File | undefined) {
-  if (!file) return
+  if (!file || viewDisposed || downloading.value || packingProject.value) return false
+  sourceLoadController?.abort()
+  const controller = new AbortController()
+  sourceLoadController = controller
+  const generation = ++sourceLoadGeneration
+  let candidate: PreparedArtSource | null = null
+  let committed = false
+  sourceError.value = ''
   error.value = ''
-  pending.value = true
+  loadingSource.value = true
   try {
-    if (isVideoFile(file)) {
-      await loadVideoFile(file)
-    } else if (isImageFile(file)) {
-      await loadImageFile(file)
+    await nextTick()
+    controller.signal.throwIfAborted()
+    const slot = 1 - activeVideoSlot.value
+    candidate = await prepareArtSource(file, videoSlots[slot]?.value ?? null, controller.signal)
+    controller.signal.throwIfAborted()
+    if (generation !== sourceLoadGeneration) return false
+    // The first frame must be usable before releasing any part of the previous work.
+    const result = convertFrame(candidate.frame, { forExport: true, sourceKind: candidate.kind })
+    destroyArtStudio()
+    clearVideoElement()
+    clearImageBitmap()
+    revokePreview()
+    showOriginal.value = false
+    mediaKind.value = candidate.kind
+    if (candidate.kind === 'video') {
+      activeVideoSlot.value = slot
+      videoObjectUrl = candidate.url
+      const video = sourceVideo.value!
+      video.loop = false
+      videoDuration.value = video.duration
+      videoCurrentTime.value = 0
+      resetClipBounds(video.duration)
     } else {
-      throw new Error('请选择图片或视频（MP4 / WebM）')
+      bitmap = candidate.bitmap!
+      hasImage.value = true
+      previewUrl.value = candidate.url
     }
     sourceFile = file
+    sourceRevision.value++
+    committed = true
+    imageAspect.value = candidate.frame.width / candidate.frame.height
+    autoZoom.value = true
+    artFrame.value = result.art ?? null
+    ascii.value = result.text
+    asciiColors.value = result.colors ?? null
+    rows.value = result.rows
+    columnsOut.value = result.columns
+    syncZoomForGrid(result.columns, result.rows, { forceFit: true })
     projectStatus.value = '有未保存的更改'
+    await nextTick()
+    schedulePaint()
+    if (
+      generation === sourceLoadGeneration &&
+      candidate.kind === 'video' &&
+      !usePrerenderPath.value
+    )
+      await playVideo()
+    return generation === sourceLoadGeneration
   } catch (e) {
-    resetAll()
-    error.value = e instanceof Error ? e.message : '无法读取文件'
+    if (!controller.signal.aborted && generation === sourceLoadGeneration)
+      sourceError.value = e instanceof Error ? e.message : '无法读取文件'
+    return false
   } finally {
-    pending.value = false
+    if (!committed) candidate?.dispose()
+    if (generation === sourceLoadGeneration) {
+      loadingSource.value = false
+      sourceLoadController = null
+    }
   }
+}
+function cancelSourceLoad() {
+  sourceLoadGeneration++
+  sourceLoadController?.abort()
+  sourceLoadController = null
+  loadingSource.value = false
 }
 
 function selectPreviewFont(key: AsciiFontPresetKey) {
@@ -1584,6 +1618,7 @@ function selectCharset(key: AsciiCharsetKey) {
 function onFileChange(event: Event) {
   const input = event.target as HTMLInputElement
   void loadFile(input.files?.[0])
+  input.value = ''
 }
 
 function onDrop(event: DragEvent) {
@@ -2431,10 +2466,11 @@ const projectSettings: Record<string, Ref<string | number | boolean>> = {
   clipEnd,
   videoFps,
 }
-let savedSnapshot = ''
+const savedSnapshot = ref('')
 function snapshot() {
   return JSON.stringify({
     name: projectTitle.value,
+    sourceRevision: sourceRevision.value,
     settings: Object.fromEntries(
       Object.entries(projectSettings).map(([key, value]) => [key, value.value]),
     ),
@@ -2443,9 +2479,12 @@ function snapshot() {
 watch(
   () => snapshot(),
   () => {
-    if (sourceFile && snapshot() !== savedSnapshot) projectStatus.value = '有未保存的更改'
+    if (sourceFile)
+      projectStatus.value =
+        snapshot() !== savedSnapshot.value ? '有未保存的更改' : '已保存到此浏览器'
   },
 )
+const hasUnsavedChanges = computed(() => hasMedia.value && snapshot() !== savedSnapshot.value)
 function makeThumbnail() {
   const canvas = document.createElement('canvas')
   const frame = getFrameSource()
@@ -2489,9 +2528,10 @@ async function openExport() {
   exportOpen.value = true
 }
 async function saveProject() {
-  if (!sourceFile || savingProject.value) return
+  if (!sourceFile || savingProject.value || pending.value || downloading.value) return false
   savingProject.value = true
   const captured = snapshot()
+  const capturedRevision = sourceRevision.value
   try {
     const id = projectId.value || crypto.randomUUID()
     await saveArtProject({
@@ -2504,15 +2544,67 @@ async function saveProject() {
       settings: JSON.parse(captured).settings,
       engineVersion: editorEngine.value === 'calibrated' ? ART_ENGINE_VERSION : 'legacy-1',
     })
+    if (capturedRevision !== sourceRevision.value) return false
     projectId.value = id
-    savedSnapshot = captured
+    savedSnapshot.value = captured
     projectStatus.value = captured === snapshot() ? '已保存到此浏览器' : '有未保存的更改'
+    return captured === snapshot()
   } catch {
     error.value = '保存失败，浏览器存储空间可能不足。请先导出作品。'
+    return false
   } finally {
     savingProject.value = false
   }
 }
+const leaveDialogOpen = ref(false)
+const leaveAction = ref<'离开' | '清空'>('离开')
+const leaveError = ref('')
+const leaveBusy = computed(
+  () =>
+    pending.value ||
+    savingProject.value ||
+    downloading.value ||
+    packingProject.value ||
+    videoPrerendering.value,
+)
+let resolveLeave: ((allow: boolean) => void) | null = null
+function requestLeave(action: '离开' | '清空' = '离开'): boolean | Promise<boolean> {
+  if (!hasUnsavedChanges.value && !leaveBusy.value) return true
+  resolveLeave?.(false)
+  leaveError.value = ''
+  leaveAction.value = action
+  leaveDialogOpen.value = true
+  return new Promise<boolean>((resolve) => {
+    resolveLeave = resolve
+  })
+}
+function finishLeave(allow: boolean) {
+  if (allow && leaveBusy.value) return
+  leaveDialogOpen.value = false
+  resolveLeave?.(allow)
+  resolveLeave = null
+}
+async function saveAndLeave() {
+  if (leaveBusy.value) return
+  leaveError.value = ''
+  if (await saveProject()) finishLeave(true)
+  else leaveError.value = error.value || '保存期间作品发生变化，请确认后再保存。'
+}
+async function clearArtwork() {
+  if (!(await requestLeave('清空'))) return
+  resetAll()
+  projectId.value = ''
+  projectTitle.value = '未命名作品'
+  savedSnapshot.value = ''
+  projectStatus.value = '仅保存在此浏览器'
+}
+function onBeforeUnload(event: BeforeUnloadEvent) {
+  if (!hasUnsavedChanges.value) return
+  event.preventDefault()
+  event.returnValue = ''
+}
+onBeforeRouteLeave(() => requestLeave())
+onBeforeRouteUpdate((to, from) => to.fullPath === from.fullPath || requestLeave())
 async function downloadProjectPackage() {
   if (!sourceFile || packingProject.value || pending.value || downloading.value) return
   packingProject.value = true
@@ -2565,13 +2657,16 @@ async function applyPreset(preset: ArtworkPreset, replaceSource = false) {
     previewAspect.value = 0.55
   }
   if (!hasMedia.value || replaceSource) {
+    const requestedSourceGeneration = sourceLoadGeneration
     try {
       const response = await fetch(preset.src)
       if (!response.ok) throw new Error('素材加载失败')
       const blob = await response.blob()
-      await loadFile(
+      if (viewDisposed || requestedSourceGeneration !== sourceLoadGeneration) return
+      const loaded = await loadFile(
         new File([blob], `${preset.id}.${preset.src.split('.').pop()}`, { type: blob.type }),
       )
+      if (!loaded) return
       projectTitle.value = preset.title
     } catch {
       error.value = '示例暂时无法加载，请上传自己的照片。'
@@ -2581,11 +2676,15 @@ async function applyPreset(preset: ArtworkPreset, replaceSource = false) {
   void runConvert({ fitZoom: true })
 }
 async function loadRouteProject() {
+  const generation = ++routeLoadGeneration
+  const requestedPath = route.fullPath
   if (typeof route.query.project !== 'string')
     editorEngine.value = route.query.engine === 'legacy' ? 'legacy' : 'calibrated'
   if (typeof route.query.project === 'string') {
     try {
       const project = await getArtProject(route.query.project)
+      if (viewDisposed || generation !== routeLoadGeneration || requestedPath !== route.fullPath)
+        return
       if (!project) {
         error.value = '没有找到这个本地项目。它可能已被删除，或保存在另一个浏览器中。'
         return
@@ -2593,8 +2692,7 @@ async function loadRouteProject() {
       assertArtProjectEngineCompatible(project)
       editorEngine.value = project.settings.editorEngine === 'calibrated' ? 'calibrated' : 'legacy'
       artQuality.value = 'classic'
-      await loadFile(project.source)
-      if (error.value) return
+      if (!(await loadFile(project.source))) return
       artEffectProfile.value =
         project.settings.artEffectProfile === 'expressive' ? 'expressive' : 'classic'
       artMotionSpeed.value = 1
@@ -2624,7 +2722,7 @@ async function loadRouteProject() {
       projectTitle.value = project.name
       await nextTick()
       await runConvert({ fitZoom: true })
-      savedSnapshot = snapshot()
+      savedSnapshot.value = snapshot()
       projectStatus.value = '已从此浏览器恢复'
     } catch (cause) {
       error.value = cause instanceof Error ? cause.message : '项目无法恢复，请检查浏览器存储权限。'
@@ -2640,11 +2738,13 @@ watch(
     if (route.name !== 'ascii-art') return
     resetAll()
     projectId.value = ''
+    savedSnapshot.value = ''
     projectTitle.value = '未命名作品'
     await loadRouteProject()
   },
 )
 onMounted(() => {
+  window.addEventListener('beforeunload', onBeforeUnload)
   document.addEventListener('visibilitychange', onArtVisibilityChange)
   const motionQuery = matchMedia('(prefers-reduced-motion: reduce)')
   const onMotionChange = () => {
@@ -2658,6 +2758,11 @@ onMounted(() => {
 })
 
 onBeforeUnmount(() => {
+  viewDisposed = true
+  routeLoadGeneration++
+  resolveLeave?.(false)
+  resolveLeave = null
+  window.removeEventListener('beforeunload', onBeforeUnload)
   destroyCalibratedRenderers()
   artVisibilityObserver?.disconnect()
   document.removeEventListener('visibilitychange', onArtVisibilityChange)
@@ -2752,17 +2857,19 @@ onBeforeUnmount(() => {
             @keydown.space.prevent="fileInput?.click()"
           >
             <video
-              ref="sourceVideo"
+              v-for="slot in [0, 1]"
+              :key="slot"
+              :ref="(element) => setVideoSlot(slot, element)"
               class="thumb video-thumb"
-              :class="{ show: hasVideo }"
+              :class="{ show: hasVideo && activeVideoSlot === slot }"
               muted
               playsinline
               loop
               @click.stop
-              @timeupdate="onVideoTimeUpdate"
-              @seeked="onVideoSeeked"
-              @play="onSourceVideoPlay"
-              @pause="onSourceVideoPause"
+              @timeupdate="activeVideoSlot === slot && onVideoTimeUpdate()"
+              @seeked="activeVideoSlot === slot && onVideoSeeked()"
+              @play="activeVideoSlot === slot && onSourceVideoPlay()"
+              @pause="activeVideoSlot === slot && onSourceVideoPause()"
             />
             <img v-if="previewUrl && !hasVideo" class="thumb" :src="previewUrl" alt="上传预览" />
             <div class="drop-copy">
@@ -3602,7 +3709,7 @@ onBeforeUnmount(() => {
                 type="button"
                 class="text-link"
                 :disabled="!previewUrl && !hasVideo"
-                @click="resetAll"
+                @click="clearArtwork"
               >
                 清空
               </button>
@@ -3615,7 +3722,13 @@ onBeforeUnmount(() => {
         <header class="stage-head">
           <div>
             <h2>预览</h2>
-            <p v-if="error" class="status error">{{ error }}</p>
+            <p v-if="loadingSource" class="status" role="status">
+              正在读取新素材，当前作品会保留。
+              <button type="button" class="text-link" @click="cancelSourceLoad">取消读取</button>
+            </p>
+            <p v-else-if="sourceError || error" class="status error" role="alert">
+              {{ sourceError || error }}
+            </p>
             <p v-else-if="meta" class="status">{{ meta }}</p>
             <p v-else class="status">上传图片或短视频后实时显示结果</p>
           </div>
@@ -3694,6 +3807,15 @@ onBeforeUnmount(() => {
       @export="handleExport"
     />
 
+    <UnsavedChangesDialog
+      :open="leaveDialogOpen"
+      :busy="leaveBusy"
+      :error="leaveError"
+      :action="leaveAction"
+      @cancel="finishLeave(false)"
+      @discard="finishLeave(true)"
+      @save="saveAndLeave"
+    />
     <Teleport to="body">
       <div
         v-if="fullscreen && hasResult"
@@ -4531,6 +4653,10 @@ onBeforeUnmount(() => {
   margin: 0.2rem 0 0;
   color: var(--text-faint);
   font-size: 0.72rem;
+  /* Keep status changes from resizing and repainting the current artwork. */
+  height: 3.6em;
+  overflow: auto;
+  overflow-wrap: anywhere;
 }
 
 .status.error {

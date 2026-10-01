@@ -29,6 +29,8 @@ const errors = [],
   uploads = []
 for (const target of [page, restored]) {
   target.on('pageerror', (e) => errors.push(e.message))
+  // Full-page resets intentionally discard test edits; the state contract tests cancel/save/discard.
+  target.on('dialog', (dialog) => dialog.accept())
   target.on('request', (request) => {
     if (request.method() === 'POST') uploads.push(request.url())
   })
@@ -372,13 +374,11 @@ try {
       throw new DOMException('Storage full', 'QuotaExceededError')
     }
   })
-  await restored
-    .locator('input[aria-label="导入 Astra 作品包"]')
-    .setInputFiles({
-      name: 'quota.astra',
-      mimeType: 'application/x-astra-project',
-      buffer: firstBytes,
-    })
+  await restored.locator('input[aria-label="导入 Astra 作品包"]').setInputFiles({
+    name: 'quota.astra',
+    mimeType: 'application/x-astra-project',
+    buffer: firstBytes,
+  })
   await restored.locator('.art-error').filter({ hasText: '存储空间可能不足' }).waitFor()
   await restored.evaluate(() => {
     IDBObjectStore.prototype.put = window.packageOriginalPut
@@ -435,7 +435,7 @@ try {
   await restored.goto(`${base}/ascii-art?project=${videoProject.id}`)
   await restored.locator('.save-status').filter({ hasText: '已从此浏览器恢复' }).waitFor()
   await ready(restored)
-  const playback = await restored.locator('video').evaluate((v) => ({
+  const playback = await restored.locator('.video-thumb.show').evaluate((v) => ({
     currentTime: v.currentTime,
     paused: v.paused,
     duration: v.duration,

@@ -12,6 +12,7 @@
     "test:ascii-studio-render": "node scripts/ascii-studio-render-smoke.mjs",
     "test:art-ui": "node scripts/art-ui-smoke.mjs",
     "test:art-editor": "node scripts/art-editor-contract.mjs",
+    "test:art-editor-state": "node scripts/art-editor-state-contract.mjs",
     "test:art-project-package": "node scripts/art-project-package-contract.mjs",
     "test:art-effects": "node scripts/art-effects-contract.mjs",
     "test:art-effects-media": "node scripts/art-effects-media-contract.mjs",

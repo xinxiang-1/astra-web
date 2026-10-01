@@ -37,6 +37,8 @@ const page = await context.newPage()
 page.setDefaultTimeout(30000)
 const errors = []
 page.on('pageerror', (e) => errors.push(e.message))
+// This contract deliberately resets test pages; navigation protection has its own UI contract.
+page.on('dialog', (dialog) => dialog.accept())
 const report = {
   base,
   browser: await browser.version(),
@@ -664,7 +666,7 @@ try {
   await page.getByRole('button', { name: '播放', exact: true }).click()
   await page.waitForTimeout(300)
   await page.getByRole('button', { name: '暂停', exact: true }).click()
-  const returnedTime = await page.locator('video').evaluate((v) => v.currentTime)
+  const returnedTime = await page.locator('.video-thumb.show').evaluate((v) => v.currentTime)
   await page.getByRole('button', { name: /^超清/ }).click()
   await page.getByRole('button', { name: /解析并播放/ }).click()
   await page.getByRole('button', { name: '暂停', exact: true }).waitFor()
@@ -682,12 +684,14 @@ try {
   await page.getByRole('button', { name: '微软雅黑', exact: true }).click()
   await page.getByRole('button', { name: /解析并播放/ }).waitFor()
   report.video.fontInvalidation = true
-  const cancelTime = await page.locator('video').evaluate((v) => v.currentTime)
+  const cancelTime = await page.locator('.video-thumb.show').evaluate((v) => v.currentTime)
   await page.getByRole('button', { name: /解析并播放/ }).click()
   await page.getByRole('button', { name: '取消', exact: true }).click()
   await page.getByRole('button', { name: '取消', exact: true }).waitFor({ state: 'hidden' })
   assert(
-    Math.abs((await page.locator('video').evaluate((v) => v.currentTime)) - cancelTime) < 0.01,
+    Math.abs(
+      (await page.locator('.video-thumb.show').evaluate((v) => v.currentTime)) - cancelTime,
+    ) < 0.01,
     'cancel must return to the source frame',
   )
   report.video.cancelRestoresTime = true

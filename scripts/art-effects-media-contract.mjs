@@ -87,7 +87,7 @@ try {
     .setInputFiles(path.resolve('test-results/editor-contract-source.mp4'))
   await page.waitForFunction(
     () =>
-      document.querySelector('video')?.readyState >= 2 &&
+      document.querySelector('.video-thumb.show')?.readyState >= 2 &&
       !document.querySelector('.editor-package')?.disabled,
   )
   await page.getByRole('button', { name: /^超清/ }).click()
