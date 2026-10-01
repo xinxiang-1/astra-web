@@ -13,6 +13,8 @@
     "test:art-ui": "node scripts/art-ui-smoke.mjs",
     "test:art-editor": "node scripts/art-editor-contract.mjs",
     "test:art-editor-state": "node scripts/art-editor-state-contract.mjs",
+    "template:build": "node scripts/build-starter-pack.mjs",
+    "test:art-template-delivery": "node scripts/art-template-delivery-contract.mjs",
     "test:art-project-package": "node scripts/art-project-package-contract.mjs",
     "test:art-effects": "node scripts/art-effects-contract.mjs",
     "test:art-effects-media": "node scripts/art-effects-media-contract.mjs",

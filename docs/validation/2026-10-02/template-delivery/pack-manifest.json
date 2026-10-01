@@ -1,0 +1,153 @@
+{
+  "schemaVersion": 1,
+  "id": "astra-starter-pack",
+  "version": "1.0.0",
+  "name": "几何光影入门包",
+  "createdAt": "2026-10-01T17:48:04.326Z",
+  "engineVersion": "2.2.0",
+  "projectPackageSchema": 1,
+  "status": "local-delivery-candidate",
+  "templates": [
+    {
+      "id": "orbital-light",
+      "name": "星环余光",
+      "directory": "templates/orbital-light",
+      "recipe": "templates/orbital-light/recipe.json"
+    },
+    {
+      "id": "spectral-fold",
+      "name": "光谱折面",
+      "directory": "templates/spectral-fold",
+      "recipe": "templates/spectral-fold/recipe.json"
+    },
+    {
+      "id": "phrase-echo",
+      "name": "字句回响",
+      "directory": "templates/phrase-echo",
+      "recipe": "templates/phrase-echo/recipe.json"
+    }
+  ],
+  "integrity": "Assets exclude manifest.json itself; archive SHA256 is a separate companion file.",
+  "assets": [
+    {
+      "path": "LICENSE-DRAFT.md",
+      "bytes": 875,
+      "sha256": "210b0e087511ed91d2c550d0c5e18da82e05d37d9ad21f70405a5445151697f9"
+    },
+    {
+      "path": "README.md",
+      "bytes": 1824,
+      "sha256": "9c7f69bbe41bd688dda0e9a289546ca5a0faffe60794eb04a7beb0068773d947"
+    },
+    {
+      "path": "SOURCES.md",
+      "bytes": 571,
+      "sha256": "f9709eebe297db087c405ab8fcfcf64f305aa8f006560ffdaa94777c2f615cc4"
+    },
+    {
+      "path": "VERIFY.ps1",
+      "bytes": 4428,
+      "sha256": "f667c249151e5f5fdbe09cbbe4457bb4017f35e796da6a0bee86b9156b4cf93d"
+    },
+    {
+      "path": "source/generate-sources.html",
+      "bytes": 5963,
+      "sha256": "f7eb70664c547ff4d784b70cb1c3f937a77459982ade1e53cbb0e593225f6ab9"
+    },
+    {
+      "path": "source/source-art.mjs",
+      "bytes": 5956,
+      "sha256": "f4bf41c50d2e1e50564344a06c3ccefcb42a106edc605295262b2a4205e36000"
+    },
+    {
+      "path": "templates/orbital-light/README.md",
+      "bytes": 848,
+      "sha256": "6cdbd5d926f812e3b206b6b55bda1e949682aabe66a372ff009151af0cb771a2"
+    },
+    {
+      "path": "templates/orbital-light/playback.html",
+      "bytes": 300599,
+      "sha256": "41c3523222ae485a6a3767be709cdd853d2ba042d9107abe794765491e092fa8"
+    },
+    {
+      "path": "templates/orbital-light/preview.png",
+      "bytes": 398992,
+      "sha256": "8f239185bc7d8e8be4c40305ab1b2574391c6b205a2bec5751e8c3c3d0d0a182"
+    },
+    {
+      "path": "templates/orbital-light/project.astra",
+      "bytes": 759132,
+      "sha256": "738100d51a28b725e2333a549f5dc67b2c3735dc539c95213f08393a49ed5127"
+    },
+    {
+      "path": "templates/orbital-light/recipe.json",
+      "bytes": 1866,
+      "sha256": "c020e94e49a77ef6241e4598b4a15a2c15ccee2d3ec7481899a51f1883c0c95a"
+    },
+    {
+      "path": "templates/orbital-light/source.png",
+      "bytes": 740260,
+      "sha256": "3df9a1688faa22e070af6f0a499a459f90a3ecbe61761688905b4b8785c41874"
+    },
+    {
+      "path": "templates/phrase-echo/README.md",
+      "bytes": 907,
+      "sha256": "9be7c030137da64dbd47bec737855d7a3f66b41833dba8019d1760645d5ef470"
+    },
+    {
+      "path": "templates/phrase-echo/playback.html",
+      "bytes": 137083,
+      "sha256": "75a2d6cb354fdd276cf14b712857b6a7950b190305cfa8653087181aa02a8b72"
+    },
+    {
+      "path": "templates/phrase-echo/preview.png",
+      "bytes": 201336,
+      "sha256": "58ee12ef476a4f1c0a208972b109d7828a5b9f22ec14a45d8d09b274c7114dde"
+    },
+    {
+      "path": "templates/phrase-echo/project.astra",
+      "bytes": 221971,
+      "sha256": "88834f17ae87e6819a8420b2c2f6393fad881ed951c937e7c0cb01d6061d7c63"
+    },
+    {
+      "path": "templates/phrase-echo/recipe.json",
+      "bytes": 1893,
+      "sha256": "ecf6718211cbffc28f54debd02a9d145abb291ffe2e9a7af26afbe95d925a860"
+    },
+    {
+      "path": "templates/phrase-echo/source.png",
+      "bytes": 207088,
+      "sha256": "8f6f5f5f9b4ef057c26c6773531ba838ea8fc0330d8350143d73dfa6c6997ba9"
+    },
+    {
+      "path": "templates/spectral-fold/README.md",
+      "bytes": 845,
+      "sha256": "a687be4482e3a1075822ea896b4d5f9e173fd8ed1b312ac6ed515d4dbc88ea30"
+    },
+    {
+      "path": "templates/spectral-fold/playback.html",
+      "bytes": 329105,
+      "sha256": "d97531c9a89a2863e1ed0cd97c8c44f39c789b587ae6f0b472763cc677a73f11"
+    },
+    {
+      "path": "templates/spectral-fold/preview.png",
+      "bytes": 571299,
+      "sha256": "0328bfb5cdd1953d8eea63f1fa84a10af55f2c362804f88ac29f8e595402e15b"
+    },
+    {
+      "path": "templates/spectral-fold/project.astra",
+      "bytes": 768107,
+      "sha256": "974b88e36dea981a03aeb2fc87b6ee43cd16175dcce88a4b690806bd1dda30d9"
+    },
+    {
+      "path": "templates/spectral-fold/recipe.json",
+      "bytes": 1859,
+      "sha256": "92324eccd1fca77bfda463ba80dcddeb3e614d715b2d45060f7eb543a3c8a552"
+    },
+    {
+      "path": "templates/spectral-fold/source.png",
+      "bytes": 745621,
+      "sha256": "54f3f5b91535ac98e262242b4865058fd2d2c46d489a248aa2e0aeba3ebb7a20"
+    }
+  ]
+}

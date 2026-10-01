@@ -1,0 +1,95 @@
+{
+  "collectedAt": "2026-10-01T18:01:57.346Z",
+  "parent": "bd5287dc1a8a7b0935bb01e0788c46b1d63f7298",
+  "checks": {
+    "relatedEslintExitCode": 0,
+    "syntaxExitCode": 0,
+    "protectedFiles": 34,
+    "realProductionContractPassed": true
+  },
+  "applicationSourceChanged": false,
+  "dependencyChanged": false,
+  "scope": "Three original geometric templates; real Chromium UI/download/storage and offline file playback, simulated 390px touch; not natural-photo/Chinese/signature commercial quality or real-device/cross-browser certification",
+  "artifacts": [
+    {
+      "path": "contract-production.json",
+      "bytes": 3203,
+      "sha256": "6f4a091616194aaf3bf44243cadb9b9eafc04607f9d079578639d9c4851b0b3d"
+    },
+    {
+      "path": "contract-source-manifest.json",
+      "bytes": 720,
+      "sha256": "d6f4b895330b9403c062ae3c9b9433fe704a3b6bd8484e136f985d34bcf561dc"
+    },
+    {
+      "path": "build.json",
+      "bytes": 5786,
+      "sha256": "f6157066d7813d6726436c0daf70b6e916e3733b4a62570a6dc9becc424791e9"
+    },
+    {
+      "path": "repack.json",
+      "bytes": 6533,
+      "sha256": "00caacdc0ec0dff82c435cb7757d91e397d11cf3fdde90f663206bb868e60afc"
+    },
+    {
+      "path": "pack-manifest.json",
+      "bytes": 4874,
+      "sha256": "eed70b7c6b7f3fcf0db72d403b69e2d9d80044d4a4140353ee8602f86489fe97"
+    },
+    {
+      "path": "archive.sha256",
+      "bytes": 95,
+      "sha256": "2ccdc7abb6f3a9b348d39b97562f958d68a59f26cf73fdb58956e7683e2bcc17"
+    },
+    {
+      "path": "orbital-light-recipe.json",
+      "bytes": 1866,
+      "sha256": "c020e94e49a77ef6241e4598b4a15a2c15ccee2d3ec7481899a51f1883c0c95a"
+    },
+    {
+      "path": "orbital-light-preview.png",
+      "bytes": 398992,
+      "sha256": "8f239185bc7d8e8be4c40305ab1b2574391c6b205a2bec5751e8c3c3d0d0a182"
+    },
+    {
+      "path": "orbital-light-mobile.png",
+      "bytes": 36046,
+      "sha256": "07f8691bfba9c6adda22186cb3d83148a1e2c7adce6b8a8ffdde81a4f61e748b"
+    },
+    {
+      "path": "spectral-fold-recipe.json",
+      "bytes": 1859,
+      "sha256": "92324eccd1fca77bfda463ba80dcddeb3e614d715b2d45060f7eb543a3c8a552"
+    },
+    {
+      "path": "spectral-fold-preview.png",
+      "bytes": 571299,
+      "sha256": "0328bfb5cdd1953d8eea63f1fa84a10af55f2c362804f88ac29f8e595402e15b"
+    },
+    {
+      "path": "spectral-fold-mobile.png",
+      "bytes": 42043,
+      "sha256": "a5b702ea7762e3c1dfc5b90c1ab29a082020b30b7e5ca9e3205a3da1820c61a0"
+    },
+    {
+      "path": "phrase-echo-recipe.json",
+      "bytes": 1893,
+      "sha256": "ecf6718211cbffc28f54debd02a9d145abb291ffe2e9a7af26afbe95d925a860"
+    },
+    {
+      "path": "phrase-echo-preview.png",
+      "bytes": 201336,
+      "sha256": "58ee12ef476a4f1c0a208972b109d7828a5b9f22ec14a45d8d09b274c7114dde"
+    },
+    {
+      "path": "phrase-echo-mobile.png",
+      "bytes": 35906,
+      "sha256": "fef6334320b2015abcb4d10345974df6f0fd80dd84860cca41341e262ce4bffb"
+    },
+    {
+      "path": "source-tool-mobile.png",
+      "bytes": 89826,
+      "sha256": "86bbff0488262f05871c6e03cc1eabf1d41a1d44828af9bac69332a6ccb709dc"
+    }
+  ]
+}

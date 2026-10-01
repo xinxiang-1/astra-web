@@ -1,0 +1,157 @@
+{
+  "passed": true,
+  "previous": "E:\\project\\astra\\astra-web\\output\\astra-starter-pack-v1-r3",
+  "next": "E:\\project\\astra\\astra-web\\output\\astra-starter-pack-v1-r4",
+  "reason": "Windows PowerShell compatibility; only shipped verifier changes",
+  "archive": {
+    "bytes": 5417930,
+    "sha256": "59d960f41b235be5f1169536e3984e711f1083a1c6557ff4a1226151a5d16b94",
+    "entries": 25
+  },
+  "assets": [
+    {
+      "path": "LICENSE-DRAFT.md",
+      "previous": "210b0e087511ed91d2c550d0c5e18da82e05d37d9ad21f70405a5445151697f9",
+      "actual": "210b0e087511ed91d2c550d0c5e18da82e05d37d9ad21f70405a5445151697f9",
+      "unchanged": true
+    },
+    {
+      "path": "README.md",
+      "previous": "9c7f69bbe41bd688dda0e9a289546ca5a0faffe60794eb04a7beb0068773d947",
+      "actual": "9c7f69bbe41bd688dda0e9a289546ca5a0faffe60794eb04a7beb0068773d947",
+      "unchanged": true
+    },
+    {
+      "path": "SOURCES.md",
+      "previous": "f9709eebe297db087c405ab8fcfcf64f305aa8f006560ffdaa94777c2f615cc4",
+      "actual": "f9709eebe297db087c405ab8fcfcf64f305aa8f006560ffdaa94777c2f615cc4",
+      "unchanged": true
+    },
+    {
+      "path": "VERIFY.ps1",
+      "previous": "3161fb489721c3d87c6a1969d2628f5b0c80659f03debef23d4399365b9d2337",
+      "actual": "f667c249151e5f5fdbe09cbbe4457bb4017f35e796da6a0bee86b9156b4cf93d",
+      "unchanged": false
+    },
+    {
+      "path": "source/generate-sources.html",
+      "previous": "f7eb70664c547ff4d784b70cb1c3f937a77459982ade1e53cbb0e593225f6ab9",
+      "actual": "f7eb70664c547ff4d784b70cb1c3f937a77459982ade1e53cbb0e593225f6ab9",
+      "unchanged": true
+    },
+    {
+      "path": "source/source-art.mjs",
+      "previous": "f4bf41c50d2e1e50564344a06c3ccefcb42a106edc605295262b2a4205e36000",
+      "actual": "f4bf41c50d2e1e50564344a06c3ccefcb42a106edc605295262b2a4205e36000",
+      "unchanged": true
+    },
+    {
+      "path": "templates/orbital-light/README.md",
+      "previous": "6cdbd5d926f812e3b206b6b55bda1e949682aabe66a372ff009151af0cb771a2",
+      "actual": "6cdbd5d926f812e3b206b6b55bda1e949682aabe66a372ff009151af0cb771a2",
+      "unchanged": true
+    },
+    {
+      "path": "templates/orbital-light/playback.html",
+      "previous": "41c3523222ae485a6a3767be709cdd853d2ba042d9107abe794765491e092fa8",
+      "actual": "41c3523222ae485a6a3767be709cdd853d2ba042d9107abe794765491e092fa8",
+      "unchanged": true
+    },
+    {
+      "path": "templates/orbital-light/preview.png",
+      "previous": "8f239185bc7d8e8be4c40305ab1b2574391c6b205a2bec5751e8c3c3d0d0a182",
+      "actual": "8f239185bc7d8e8be4c40305ab1b2574391c6b205a2bec5751e8c3c3d0d0a182",
+      "unchanged": true
+    },
+    {
+      "path": "templates/orbital-light/project.astra",
+      "previous": "738100d51a28b725e2333a549f5dc67b2c3735dc539c95213f08393a49ed5127",
+      "actual": "738100d51a28b725e2333a549f5dc67b2c3735dc539c95213f08393a49ed5127",
+      "unchanged": true
+    },
+    {
+      "path": "templates/orbital-light/recipe.json",
+      "previous": "c020e94e49a77ef6241e4598b4a15a2c15ccee2d3ec7481899a51f1883c0c95a",
+      "actual": "c020e94e49a77ef6241e4598b4a15a2c15ccee2d3ec7481899a51f1883c0c95a",
+      "unchanged": true
+    },
+    {
+      "path": "templates/orbital-light/source.png",
+      "previous": "3df9a1688faa22e070af6f0a499a459f90a3ecbe61761688905b4b8785c41874",
+      "actual": "3df9a1688faa22e070af6f0a499a459f90a3ecbe61761688905b4b8785c41874",
+      "unchanged": true
+    },
+    {
+      "path": "templates/phrase-echo/README.md",
+      "previous": "9be7c030137da64dbd47bec737855d7a3f66b41833dba8019d1760645d5ef470",
+      "actual": "9be7c030137da64dbd47bec737855d7a3f66b41833dba8019d1760645d5ef470",
+      "unchanged": true
+    },
+    {
+      "path": "templates/phrase-echo/playback.html",
+      "previous": "75a2d6cb354fdd276cf14b712857b6a7950b190305cfa8653087181aa02a8b72",
+      "actual": "75a2d6cb354fdd276cf14b712857b6a7950b190305cfa8653087181aa02a8b72",
+      "unchanged": true
+    },
+    {
+      "path": "templates/phrase-echo/preview.png",
+      "previous": "58ee12ef476a4f1c0a208972b109d7828a5b9f22ec14a45d8d09b274c7114dde",
+      "actual": "58ee12ef476a4f1c0a208972b109d7828a5b9f22ec14a45d8d09b274c7114dde",
+      "unchanged": true
+    },
+    {
+      "path": "templates/phrase-echo/project.astra",
+      "previous": "88834f17ae87e6819a8420b2c2f6393fad881ed951c937e7c0cb01d6061d7c63",
+      "actual": "88834f17ae87e6819a8420b2c2f6393fad881ed951c937e7c0cb01d6061d7c63",
+      "unchanged": true
+    },
+    {
+      "path": "templates/phrase-echo/recipe.json",
+      "previous": "ecf6718211cbffc28f54debd02a9d145abb291ffe2e9a7af26afbe95d925a860",
+      "actual": "ecf6718211cbffc28f54debd02a9d145abb291ffe2e9a7af26afbe95d925a860",
+      "unchanged": true
+    },
+    {
+      "path": "templates/phrase-echo/source.png",
+      "previous": "8f6f5f5f9b4ef057c26c6773531ba838ea8fc0330d8350143d73dfa6c6997ba9",
+      "actual": "8f6f5f5f9b4ef057c26c6773531ba838ea8fc0330d8350143d73dfa6c6997ba9",
+      "unchanged": true
+    },
+    {
+      "path": "templates/spectral-fold/README.md",
+      "previous": "a687be4482e3a1075822ea896b4d5f9e173fd8ed1b312ac6ed515d4dbc88ea30",
+      "actual": "a687be4482e3a1075822ea896b4d5f9e173fd8ed1b312ac6ed515d4dbc88ea30",
+      "unchanged": true
+    },
+    {
+      "path": "templates/spectral-fold/playback.html",
+      "previous": "d97531c9a89a2863e1ed0cd97c8c44f39c789b587ae6f0b472763cc677a73f11",
+      "actual": "d97531c9a89a2863e1ed0cd97c8c44f39c789b587ae6f0b472763cc677a73f11",
+      "unchanged": true
+    },
+    {
+      "path": "templates/spectral-fold/preview.png",
+      "previous": "0328bfb5cdd1953d8eea63f1fa84a10af55f2c362804f88ac29f8e595402e15b",
+      "actual": "0328bfb5cdd1953d8eea63f1fa84a10af55f2c362804f88ac29f8e595402e15b",
+      "unchanged": true
+    },
+    {
+      "path": "templates/spectral-fold/project.astra",
+      "previous": "974b88e36dea981a03aeb2fc87b6ee43cd16175dcce88a4b690806bd1dda30d9",
+      "actual": "974b88e36dea981a03aeb2fc87b6ee43cd16175dcce88a4b690806bd1dda30d9",
+      "unchanged": true
+    },
+    {
+      "path": "templates/spectral-fold/recipe.json",
+      "previous": "92324eccd1fca77bfda463ba80dcddeb3e614d715b2d45060f7eb543a3c8a552",
+      "actual": "92324eccd1fca77bfda463ba80dcddeb3e614d715b2d45060f7eb543a3c8a552",
+      "unchanged": true
+    },
+    {
+      "path": "templates/spectral-fold/source.png",
+      "previous": "54f3f5b91535ac98e262242b4865058fd2d2c46d489a248aa2e0aeba3ebb7a20",
+      "actual": "54f3f5b91535ac98e262242b4865058fd2d2c46d489a248aa2e0aeba3ebb7a20",
+      "unchanged": true
+    }
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "base": "http://127.0.0.1:5194",
+  "pack": "E:\\project\\astra\\astra-web\\output\\astra-starter-pack-v1-r4",
+  "scope": "Three original geometric templates; real Chromium UI/download/storage and offline file playback, simulated 390px touch; not natural-photo/Chinese/signature commercial quality or real-device/cross-browser certification",
+  "cases": [
+    {
+      "id": "orbital-light",
+      "task": "desktop-import-duplicate-edit-export",
+      "exactSource": true,
+      "exactSettings": true,
+      "exactRestoredPng": true,
+      "newIds": true,
+      "editedPngDifferent": true
+    },
+    {
+      "id": "orbital-light",
+      "task": "file-offline-motion-hover-pause",
+      "requests": 0,
+      "hover": true,
+      "motion": true,
+      "paused": true
+    },
+    {
+      "id": "spectral-fold",
+      "task": "desktop-import-duplicate-edit-export",
+      "exactSource": true,
+      "exactSettings": true,
+      "exactRestoredPng": true,
+      "newIds": true,
+      "editedPngDifferent": true
+    },
+    {
+      "id": "spectral-fold",
+      "task": "file-offline-motion-hover-pause",
+      "requests": 0,
+      "hover": true,
+      "motion": true,
+      "paused": true
+    },
+    {
+      "id": "phrase-echo",
+      "task": "desktop-import-duplicate-edit-export",
+      "exactSource": true,
+      "exactSettings": true,
+      "exactRestoredPng": true,
+      "newIds": true,
+      "editedPngDifferent": true
+    },
+    {
+      "id": "phrase-echo",
+      "task": "file-offline-motion-hover-pause",
+      "requests": 0,
+      "hover": true,
+      "motion": true,
+      "paused": true
+    },
+    {
+      "id": "orbital-light",
+      "task": "offline-source-rebuild",
+      "exactPng": true
+    },
+    {
+      "id": "spectral-fold",
+      "task": "offline-source-rebuild",
+      "exactPng": true
+    },
+    {
+      "id": "phrase-echo",
+      "task": "offline-source-rebuild",
+      "exactPng": true
+    },
+    {
+      "id": "orbital-light",
+      "task": "390px-import-open-modify-download",
+      "actualDownload": true,
+      "noOverflow": true
+    },
+    {
+      "id": "spectral-fold",
+      "task": "390px-import-open-modify-download",
+      "actualDownload": true,
+      "noOverflow": true
+    },
+    {
+      "id": "phrase-echo",
+      "task": "390px-import-open-modify-download",
+      "actualDownload": true,
+      "noOverflow": true
+    }
+  ],
+  "rejected": [
+    {
+      "name": "changed-asset",
+      "rejected": true,
+      "verifier": "independent .NET/PowerShell"
+    },
+    {
+      "name": "wrong-hash",
+      "rejected": true,
+      "verifier": "independent .NET/PowerShell"
+    },
+    {
+      "name": "path-traversal",
+      "rejected": true,
+      "verifier": "independent .NET/PowerShell"
+    },
+    {
+      "name": "unlisted-file",
+      "rejected": true,
+      "verifier": "independent .NET/PowerShell"
+    },
+    {
+      "name": "changed-archive",
+      "rejected": true,
+      "verifier": "independent .NET ZipArchive"
+    }
+  ],
+  "errors": [],
+  "uploads": [],
+  "passed": true,
+  "browser": "153.0.8010.12",
+  "archive": {
+    "passed": true,
+    "assets": 24,
+    "zipChecked": true,
+    "sha256": "59d960f41b235be5f1169536e3984e711f1083a1c6557ff4a1226151a5d16b94"
+  }
+}

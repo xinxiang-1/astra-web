@@ -1,0 +1,26 @@
+[
+  {
+    "directory": "build-r1",
+    "message": "locator.setChecked: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByLabel('反相', { exact: true })\u001b[22m\n",
+    "completedTasks": 0,
+    "originalPreservedLocally": true
+  },
+  {
+    "directory": "contract-production-r1",
+    "message": "Command failed: powershell.exe -NoProfile -NonInteractive -ExecutionPolicy Bypass -File E:\\project\\astra\\astra-web\\scripts\\templates\\verify-delivery.ps1 -PackageRoot E:\\project\\astra\\astra-web\\output\\astra-starter-pack-v1-r2 -ZipPath E:\\project\\astra\\astra-web\\output\\astra-starter-pack-v1-r2.zip\nConvertFrom-Json : ����Ķ�����Ч��ӦΪ��:����}���� (104): {\r\n  \"schemaVersion\": 1,\r\n  \"id\": \"astra-starter-pack\",\r\n  \"version\": \"1.0.0\",\r\n  \"name\": \"几何光影入门�?,\r\n  \"createdAt\": \"2026-10-01T17:37:21.759Z\",\r\n  \"",
+    "completedTasks": 0,
+    "originalPreservedLocally": true
+  },
+  {
+    "directory": "contract-production-r2",
+    "message": "Get-FileHash : 无法将“Get-FileHash”项识别为 cmdlet、函数、脚本文件或可运行程序的名称。请检查名称的拼写，如果包括路径，请确保路径正确，然后再试一次。\r\n所在位置 E:\\project\\astra\\astra-web\\output\\astra-starter-pack-v1-r3\\VERIFY.ps1:22 字符: 8\r\n+   if ((Get-FileHash -LiteralPath $astraTarget -Algorithm SHA256).Hash ...\r\n+        ~~~~~~~~~~~~\r\n    + CategoryInfo          : ObjectNotFound: (Get-FileHash:String) [], ParentContainsErrorRecordException\r\n    + FullyQualifiedErrorId : CommandNotFoundException\r\n \r\n",
+    "completedTasks": 0,
+    "originalPreservedLocally": true
+  },
+  {
+    "directory": "contract-production-r3",
+    "message": "locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.save-status').filter({ hasText: '已从此浏览器恢复' }) to be visible\u001b[22m\n\u001b[2m    59 × locator resolved to hidden <span role=\"status\" data-v-ea301bb5=\"\" class=\"save-status\">已从此浏览器恢复</span>\u001b[22m\n",
+    "completedTasks": 9,
+    "originalPreservedLocally": true
+  }
+]

@@ -1,0 +1,22 @@
+[
+  {
+    "path": "scripts/art-template-delivery-contract.mjs",
+    "sha256": "7b9b84132683d0e919160fdf2a7288e1dc29206acc83f2112e66cb67bfb67b78"
+  },
+  {
+    "path": "scripts/templates/starter-source-art.mjs",
+    "sha256": "f4bf41c50d2e1e50564344a06c3ccefcb42a106edc605295262b2a4205e36000"
+  },
+  {
+    "path": "scripts/templates/delivery-ui.mjs",
+    "sha256": "35e0df6e555a149a8892b37eb1cdf198ed91c62c23b3ec73af4688fdfac7d9df"
+  },
+  {
+    "path": "scripts/templates/delivery-files.mjs",
+    "sha256": "00673e8d41e1576a4ce0a2f1059233d4e13e2dc46a77e6785feb0ebea01e059c"
+  },
+  {
+    "path": "scripts/templates/verify-delivery.ps1",
+    "sha256": "f667c249151e5f5fdbe09cbbe4457bb4017f35e796da6a0bee86b9156b4cf93d"
+  }
+]
