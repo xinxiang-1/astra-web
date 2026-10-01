@@ -1,8 +1,10 @@
 # Astra 商业产品 PRD
 
-版本：1.0 · 2026-10-02。状态：首版开发基线，所有交易、付费批量工作台及定制咨询提交均待开发；价格和许可是发布前实验方案，未上线销售。
+版本：1.0 · 2026-10-02。状态：首版开发基线，订单后端技术子项已实现；真实收款/权益交付、付费批量工作台及定制咨询提交仍待开发。价格和许可是发布前实验方案，未上线销售。
 
 实施更新：已完成[后端只读目录与权限子阶段](./commerce-catalog-iteration-2026-10-02.md)，32JUnit/90实际HTTP，实际响应对照OpenAPI通过；17表仅影子库验证。前端结算/订单/领取及所有真实交易仍待开发，不能使用这项结果宣布收费或商业画质已通过。
+
+订单接续：已完成[后端订单快照/幂等/本人查询/安全到期](./commerce-orders-iteration-2026-10-02.md)，43JUnit/193实际HTTP，185商业响应schema通过；production新建暂503，支付/mock/权益和前端流程仍未实现。研发顺序第3项先完成订单子项，mock/支付抽象在下一个独立子阶段，不把整个第3项或真实交易验收记为完成。
 
 依据：[产品总计划](./product-master-plan.md)、[已交付免费模板入口](./template-entry-iteration-2026-10-02.md)、[本阶段工程记录](./commerce-contract-iteration-2026-10-02.md)。后端合同唯一入口：[接口](../../../astra-cloud/docs/commerce/api-contracts.md)、[OpenAPI](../../../astra-cloud/docs/commerce/openapi.json)、[数据库与状态迁移](../../../astra-cloud/docs/commerce/database-design.md)。冲突时先修正文档与机器合同，再开发；不能让前端另定义金额或交易状态。
 
