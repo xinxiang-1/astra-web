@@ -1,14 +1,6 @@
-import {
-  VIDEO_PRERENDER_MAX_DURATION_SEC,
-  VIDEO_PRERENDER_MAX_FRAMES,
-} from './constants'
+import { VIDEO_PRERENDER_MAX_DURATION_SEC, VIDEO_PRERENDER_MAX_FRAMES } from './constants'
 import { seekVideoTo } from './media'
-import type {
-  AsciiConvertResult,
-  AsciiFrameSource,
-  AsciiMode,
-  PrerenderFrame,
-} from './types'
+import type { AsciiConvertResult, AsciiFrameSource, AsciiMode, PrerenderFrame } from './types'
 
 export type { PrerenderFrame }
 
@@ -56,10 +48,7 @@ export function buildPrerenderCacheKey(inputs: PrerenderCacheKeyInputs): string 
 }
 
 /** Index of the cached frame whose `time` is closest to `time`. */
-export function nearestPrerenderIndex(
-  frames: readonly PrerenderFrame[],
-  time: number,
-): number {
+export function nearestPrerenderIndex(frames: readonly PrerenderFrame[], time: number): number {
   if (frames.length === 0) return 0
   let best = 0
   let bestDist = Infinity
@@ -74,6 +63,8 @@ export function nearestPrerenderIndex(
 }
 
 export type PrerenderVideoOptions = {
+  /** Bound typed cell buffers retained by the six-mode cache. */
+  maxCacheBytes?: number
   video: HTMLVideoElement
   fps: number
   /** Inclusive range start in seconds. Defaults to 0. */
@@ -86,18 +77,14 @@ export type PrerenderVideoOptions = {
   shouldAbort: () => boolean
   getFrameSource: () => AsciiFrameSource | null
   convertFrame: (source: AsciiFrameSource) => AsciiConvertResult
+  renderRaster?: (source: AsciiFrameSource, time: number) => Promise<Blob>
   /** Called once limits pass and the frame count is known. */
   onPlan?: (info: { total: number; fps: number; duration: number }) => void
   /**
    * Called after each successful frame (done is 1-based).
    * Use for progress UI and optional first-frame preview.
    */
-  onProgress?: (info: {
-    done: number
-    total: number
-    frame: PrerenderFrame
-    index: number
-  }) => void
+  onProgress?: (info: { done: number; total: number; frame: PrerenderFrame; index: number }) => void
 }
 
 export type PrerenderVideoSuccess = {
@@ -121,15 +108,8 @@ export type PrerenderVideoResult = PrerenderVideoSuccess | PrerenderVideoFailure
 export async function prerenderVideoFrames(
   options: PrerenderVideoOptions,
 ): Promise<PrerenderVideoResult> {
-  const {
-    video,
-    getFrameSource,
-    convertFrame,
-    shouldAbort,
-    onProgress,
-  } = options
-  const maxDurationSec =
-    options.maxDurationSec ?? VIDEO_PRERENDER_MAX_DURATION_SEC
+  const { video, getFrameSource, convertFrame, shouldAbort, onProgress } = options
+  const maxDurationSec = options.maxDurationSec ?? VIDEO_PRERENDER_MAX_DURATION_SEC
   const maxFrames = options.maxFrames ?? VIDEO_PRERENDER_MAX_FRAMES
 
   const fileDuration = video.duration
@@ -137,14 +117,8 @@ export async function prerenderVideoFrames(
     return { ok: false, error: '无法读取视频时长，请换一个文件' }
   }
 
-  const start = Math.min(
-    Math.max(0, options.startTime ?? 0),
-    fileDuration,
-  )
-  const end = Math.min(
-    Math.max(start, options.endTime ?? fileDuration),
-    fileDuration,
-  )
+  const start = Math.min(Math.max(0, options.startTime ?? 0), fileDuration)
+  const end = Math.min(Math.max(start, options.endTime ?? fileDuration), fileDuration)
   const span = end - start
   if (span < 0.05) {
     return { ok: false, error: '选段太短，请拉开入点和出点' }
@@ -170,6 +144,7 @@ export async function prerenderVideoFrames(
   options.onPlan?.({ total, fps, duration: span })
 
   const frames: PrerenderFrame[] = []
+  let cacheBytes = 0
   const resumeTime = video.currentTime
 
   try {
@@ -187,7 +162,18 @@ export async function prerenderVideoFrames(
       if (!source) continue
 
       const result = convertFrame(source)
+      if (result.art) {
+        cacheBytes +=
+          result.art.indices.byteLength +
+          result.art.alpha.byteLength +
+          result.art.colors.byteLength +
+          result.text.length * 2
+        if (cacheBytes > (options.maxCacheBytes ?? 96 * 1024 * 1024))
+          return { ok: false, error: '选段缓存已达到内存上限，请缩短选段或降低清晰度后重试' }
+      }
       const frame: PrerenderFrame = {
+        art: result.art,
+        raster: await options.renderRaster?.(source, t),
         text: result.text,
         colors: result.colors ?? null,
         columns: result.columns,
@@ -204,17 +190,20 @@ export async function prerenderVideoFrames(
       return { ok: false, error: '预渲染未得到有效帧' }
     }
 
-    try {
-      await seekVideoTo(video, resumeTime)
-    } catch {
-      // ignore restore seek errors
-    }
-
     return { ok: true, frames, resumeTime }
   } catch (e) {
     return {
       ok: false,
       error: e instanceof Error ? e.message : '预渲染失败',
+    }
+  } finally {
+    // Cancellation and memory failures must restore the source just like success.
+    if (video.readyState >= 2) {
+      try {
+        await seekVideoTo(video, resumeTime)
+      } catch {
+        // The caller may have replaced or removed this source while parsing.
+      }
     }
   }
 }

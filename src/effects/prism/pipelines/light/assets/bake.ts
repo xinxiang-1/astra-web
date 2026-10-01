@@ -91,7 +91,7 @@ export async function bakeLightAssetTextures(
 function createBakedTexture(gpu: Gpu, spec: LightAssetSpec): BakedTexture {
   return {
     texture: gpu.device.createTexture({
-      kind: "2d",
+      dimension: "2d",
       size: spec.size,
       format: "rgba8unorm",
       mipLevelCount: mipLevelCount(spec.size),
@@ -231,7 +231,7 @@ async function loadWallMaskTexture(gpu: Gpu): Promise<Texture | undefined> {
         `Wall mask is ${bitmap.width}x${bitmap.height}; expected ${WALL_MASK_SIZE.join("x")}.`
       );
     texture = gpu.device.createTexture({
-      kind: "2d",
+      dimension: "2d",
       size: WALL_MASK_SIZE,
       format: "rgba8unorm",
       usage: ["texture_binding", "copy_dst", "render_attachment"],

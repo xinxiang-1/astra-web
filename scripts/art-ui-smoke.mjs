@@ -71,7 +71,7 @@ try {
   await page.getByRole('status').filter({ hasText: '已从此浏览器恢复' }).waitFor()
   await page.locator('.editor-presets button').filter({ hasText: '山河万里' }).click()
   await page.waitForFunction(
-    () => document.querySelector('.inspector-modes .selected')?.textContent === '中文铺字',
+    () => document.querySelector('.inspector-modes .selected')?.textContent?.trim() === '中文铺字',
   )
   assert.equal(await page.locator('input[maxlength="64"]').inputValue(), '山河万里')
   await page.locator('input[type="file"]').setInputFiles(path.resolve('public/artwork/pet.jpg'))

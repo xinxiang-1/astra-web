@@ -1,0 +1,36 @@
+[
+  {
+    "repository": "humanbydefinition/p5.asciify-accurate-renderer-plugin",
+    "url": "https://github.com/humanbydefinition/p5.asciify-accurate-renderer-plugin",
+    "files": [
+      {
+        "filename": "LICENSE",
+        "url": "https://github.com/humanbydefinition/p5.asciify-accurate-renderer-plugin/blob/1d8c9b1948c522d82a7231ef20b00ec884507a1c/LICENSE",
+        "sha256": "db3353a2e76ede29db1786eae6566bcc9cc1a8377af7a0afe41a5bf1b7420f62"
+      },
+      {
+        "filename": "README.md",
+        "url": "https://github.com/humanbydefinition/p5.asciify-accurate-renderer-plugin/blob/1d8c9b1948c522d82a7231ef20b00ec884507a1c/README.md",
+        "sha256": "4169729f6e0c11e2dd9595b1fb84b0ae869991565f1c284f0cc8ef90b84c5437"
+      }
+    ],
+    "commit": "1d8c9b1948c522d82a7231ef20b00ec884507a1c"
+  },
+  {
+    "repository": "humanbydefinition/textmode.js",
+    "url": "https://github.com/humanbydefinition/textmode.js",
+    "files": [
+      {
+        "filename": "LICENSE",
+        "url": "https://github.com/humanbydefinition/textmode.js/blob/2361bb33bbdaddbbe029d267a36e6dc3d3226a32/LICENSE",
+        "sha256": "db3353a2e76ede29db1786eae6566bcc9cc1a8377af7a0afe41a5bf1b7420f62"
+      },
+      {
+        "filename": "README.md",
+        "url": "https://github.com/humanbydefinition/textmode.js/blob/2361bb33bbdaddbbe029d267a36e6dc3d3226a32/README.md",
+        "sha256": "aba93cf67ec39387572691ffa6668e51f574025ce0771780faac6dca68f2326d"
+      }
+    ],
+    "commit": "2361bb33bbdaddbbe029d267a36e6dc3d3226a32"
+  }
+]

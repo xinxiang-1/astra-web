@@ -1,12 +1,30 @@
 <script setup lang="ts">
-import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, shallowRef, watch } from 'vue'
 import type { Ref } from 'vue'
 import { useRoute } from 'vue-router'
 import CharacterArtwork from '@/components/CharacterArtwork.vue'
 import ArtIcon from '@/components/ui/ArtIcon.vue'
+import AstraLogo from '@/components/ui/AstraLogo.vue'
 import ExportSheet from '@/components/ExportSheet.vue'
 import { artworkPresets, type ArtworkPreset } from '@/content/artwork'
 import { getArtProject, saveArtProject } from '@/lib/art-projects'
+import {
+  assertArtProjectEngineCompatible,
+  artProjectPackageFilename,
+  createArtProjectPackage,
+} from '@/lib/art-project-package'
+import {
+  ART_MODES,
+  ART_ENGINE_VERSION,
+  createCanvasArtRenderer,
+  prepareArtFrame,
+  type ArtFrame,
+  type ArtMode,
+  type ArtMotion,
+  type ArtHover,
+  type ArtSettings,
+} from '@/lib/art-engine'
+import { artworkEmbedPage } from '@/lib/art-engine/embed'
 import '@/styles/art-editor.css'
 
 import {
@@ -74,6 +92,8 @@ const projectTitle = ref('未命名作品')
 const projectId = ref('')
 const projectStatus = ref('仅保存在此浏览器')
 const savingProject = ref(false)
+const packingProject = ref(false)
+const packageStatus = ref('')
 const mobilePanel = ref('presets')
 const activePreset = ref('')
 const showOriginal = ref(false)
@@ -125,6 +145,58 @@ const videoPrerenderReady = ref(false)
 
 /** charset = classic ASCII; phrase = 指定文字铺底 (我爱你中国 style). */
 const mode = ref<AsciiMode>('charset')
+const editorEngine = ref<'calibrated' | 'legacy'>(
+  route.query.engine === 'legacy' ? 'legacy' : 'calibrated',
+)
+const artMode = ref<ArtMode>('density')
+const artQuality = ref<'classic' | 'detailed' | 'smooth' | 'faithful'>('classic')
+const artMotion = ref<ArtMotion>('none')
+const artHover = ref<ArtHover | 'none'>('light')
+const artEffectProfile = ref<'classic' | 'expressive'>('expressive')
+const artMotionSpeed = ref(1)
+const artMotionStrength = ref(0.65)
+const artPaused = ref(false)
+const artQualityOptions = computed(() => [
+  { id: 'classic' as const, label: '经典' },
+  ...(artMode.value === 'density'
+    ? [
+        { id: 'detailed' as const, label: '精细' },
+        { id: 'smooth' as const, label: '柔和' },
+      ]
+    : []),
+  { id: 'faithful' as const, label: '还原' },
+])
+const artFrame = shallowRef<ArtFrame | null>(null)
+const reducedArtMotion = ref(matchMedia('(prefers-reduced-motion: reduce)').matches)
+const artRenderers = new Map<HTMLCanvasElement, ReturnType<typeof createCanvasArtRenderer>>()
+let artAnimationRaf = 0,
+  artLastTick = 0,
+  artElapsed = 0,
+  artInteractionElapsed = 0
+const artPointer = { x: 0.5, y: 0.5, strength: 0, target: 0 }
+let artStageVisible = true
+let artVisibilityObserver: IntersectionObserver | null = null
+const artMotionOptions: { id: ArtMotion; label: string }[] = [
+  { id: 'none', label: '静态' },
+  { id: 'breathe', label: '光息' },
+  { id: 'wave', label: '流动' },
+  { id: 'assemble', label: '聚合' },
+  { id: 'current', label: '慢流' },
+  { id: 'reform', label: '重组' },
+  { id: 'caustics', label: '光斑' },
+]
+const artHoverOptions: { id: ArtHover | 'none'; label: string }[] = [
+  { id: 'light', label: '光晕' },
+  { id: 'ripple', label: '涟漪' },
+  { id: 'displace', label: '轻推' },
+  { id: 'trail', label: '拖尾' },
+  { id: 'water', label: '水面' },
+  { id: 'silk', label: '丝绸' },
+  { id: 'vortex', label: '漩涡' },
+  { id: 'contour', label: '等高' },
+  { id: 'dissolve', label: '溶解' },
+  { id: 'none', label: '关闭' },
+]
 const phrase = ref('我爱你中国')
 const phraseThreshold = ref(0.55)
 const phraseFillAll = ref(false)
@@ -216,6 +288,12 @@ let savedCharsetPreview: {
 
 const hasMedia = computed(() => hasImage.value || mediaKind.value === 'video')
 const hasVideo = computed(() => mediaKind.value === 'video')
+const artQualityAvailable = computed(
+  () =>
+    editorEngine.value === 'calibrated' &&
+    (artMode.value === 'color' || (artMode.value === 'density' && !phraseColor.value)) &&
+    !hasVideo.value,
+)
 
 /** Realtime playback uses a lighter column cap; prerender / pause use full clarity. */
 const videoLivePreview = computed(
@@ -383,6 +461,7 @@ const previewInvert = computed(() => !invert.value)
 /** Studio live preview when charset mode has hover or ambient motion. */
 const studioLiveActive = computed(
   () =>
+    editorEngine.value === 'legacy' &&
     mode.value === 'charset' &&
     asciiStudioEffectsActive(hoverEffect.value, ambientMotion.value) &&
     hasMedia.value,
@@ -481,6 +560,141 @@ function selectMode(next: AsciiMode) {
   autoZoom.value = true
 }
 
+function selectArtMode(next: ArtMode) {
+  editorEngine.value = 'calibrated'
+  selectMode(next === 'phrase' ? 'phrase' : 'charset')
+  artMode.value = next
+  if (next === 'color') phraseColor.value = true
+  artElapsed = 0
+}
+
+function selectArtMotion(next: ArtMotion) {
+  if (['current', 'reform', 'caustics'].includes(next)) artEffectProfile.value = 'expressive'
+  artMotion.value = next
+  artElapsed = 0
+  artLastTick = 0
+}
+
+function selectArtHover(next: ArtHover | 'none') {
+  if (['trail', 'water', 'silk', 'vortex', 'contour', 'dissolve'].includes(next))
+    artEffectProfile.value = 'expressive'
+  artHover.value = next
+}
+
+function calibratedSettings(cols = columns.value): ArtSettings {
+  return {
+    mode: artMode.value,
+    columns: cols,
+    phrase: phrase.value,
+    charset: charset.value,
+    background: backgroundColor.value,
+    ink: foregroundColor.value,
+    colored: phraseColor.value,
+    normalize: normalizeTone.value,
+    contrast: contrast.value,
+    exposure: exposure.value,
+    invert: previewInvert.value,
+    fillAll: phraseFillAll.value,
+    threshold: 1 - phraseThreshold.value,
+    fontFamily: previewFontFamily.value,
+    charAspect: previewAspect.value,
+    ditherStrength: ditherStrength.value,
+    ...(artQualityAvailable.value && artQuality.value !== 'classic'
+      ? artQuality.value === 'faithful'
+        ? { fontWeight: 600 as const, softwareRaster: true, colorFidelity: true }
+        : {
+            fontWeight: 600 as const,
+            rasterQuality:
+              artQuality.value === 'detailed' ? ('high' as const) : ('supersampled' as const),
+          }
+      : {}),
+  }
+}
+
+function destroyCalibratedRenderers() {
+  if (artAnimationRaf) cancelAnimationFrame(artAnimationRaf)
+  artAnimationRaf = 0
+  for (const renderer of artRenderers.values()) renderer.destroy()
+  artRenderers.clear()
+}
+
+function onArtVisibilityChange() {
+  artLastTick = 0
+  if (document.hidden && artAnimationRaf) {
+    cancelAnimationFrame(artAnimationRaf)
+    artAnimationRaf = 0
+  } else queueCalibratedAnimation()
+}
+
+function queueCalibratedAnimation() {
+  if (
+    artAnimationRaf ||
+    editorEngine.value !== 'calibrated' ||
+    !artFrame.value ||
+    document.hidden ||
+    (!artStageVisible && !fullscreen.value) ||
+    reducedArtMotion.value ||
+    downloading.value ||
+    videoPrerendering.value
+  )
+    return
+  if (
+    (artMotion.value === 'none' || artPaused.value || artMotionStrength.value === 0) &&
+    artPointer.strength < 0.002 &&
+    artPointer.target === 0
+  ) {
+    artLastTick = 0
+    return
+  }
+  artAnimationRaf = requestAnimationFrame((now) => {
+    artAnimationRaf = 0
+    if (artLastTick && now - artLastTick < 1000 / 30) {
+      queueCalibratedAnimation()
+      return
+    }
+    const delta = artLastTick ? Math.min(0.15, (now - artLastTick) / 1000) : 0
+    artLastTick = now
+    if (!artPaused.value) artElapsed += delta
+    artInteractionElapsed += delta
+    artPointer.strength +=
+      (artPointer.target - artPointer.strength) * (1 - Math.exp(-Math.max(delta, 1 / 60) / 0.14))
+    if (!artPointer.target && artPointer.strength < 0.002) artPointer.strength = 0
+    paintPreview()
+  })
+}
+
+function onCalibratedPointer(event: PointerEvent) {
+  if (
+    editorEngine.value !== 'calibrated' ||
+    artHover.value === 'none' ||
+    reducedArtMotion.value ||
+    showOriginal.value
+  )
+    return
+  const host = event.currentTarget as HTMLElement | null
+  const rect = host?.querySelector('canvas')?.getBoundingClientRect()
+  if (!rect) return
+  const x = (event.clientX - rect.left) / Math.max(1, rect.width)
+  const y = (event.clientY - rect.top) / Math.max(1, rect.height)
+  if (x < 0 || x > 1 || y < 0 || y > 1) {
+    onCalibratedPointerLeave()
+    return
+  }
+  artPointer.x = x
+  artPointer.y = y
+  artPointer.target = 1
+  queueCalibratedAnimation()
+}
+
+function onCalibratedPointerLeave() {
+  artPointer.target = 0
+  queueCalibratedAnimation()
+}
+
+function onCalibratedPointerUp(event: PointerEvent) {
+  if (event.pointerType !== 'mouse') onCalibratedPointerLeave()
+}
+
 function onColumnsRange(event: Event) {
   onColumnsChange(Number((event.target as HTMLInputElement).value))
 }
@@ -537,6 +751,8 @@ function clearVideoElement() {
 }
 
 function clearResult() {
+  artFrame.value = null
+  destroyCalibratedRenderers()
   ascii.value = ''
   asciiColors.value = null
   rows.value = 0
@@ -556,29 +772,30 @@ function clearPrerenderCache() {
 
 function cancelVideoPrerender() {
   prerenderAbort = true
-  videoPrerendering.value = false
 }
 
 function currentPrerenderCacheKey() {
-  return buildPrerenderCacheKey({
-    videoObjectUrl,
-    columns: columns.value,
-    mode: mode.value,
-    phrase: phrase.value,
-    charset: charset.value,
-    previewInvert: previewInvert.value,
-    exposure: exposure.value,
-    contrast: contrast.value,
-    normalize: normalizeTone.value,
-    ditherStrength: ditherStrength.value,
-    previewAspect: previewAspect.value,
-    phraseColor: phraseColor.value,
-    phraseThreshold: phraseThreshold.value,
-    phraseFillAll: phraseFillAll.value,
-    videoFps: videoFps.value,
-    clipStart: clipStart.value,
-    clipEnd: clipEnd.value,
-  })
+  return `${editorEngine.value}|${ART_ENGINE_VERSION}|${artMode.value}|${artQuality.value}|${backgroundColor.value}|${foregroundColor.value}|${previewFontFamily.value}|${buildPrerenderCacheKey(
+    {
+      videoObjectUrl,
+      columns: columns.value,
+      mode: mode.value,
+      phrase: phrase.value,
+      charset: charset.value,
+      previewInvert: previewInvert.value,
+      exposure: exposure.value,
+      contrast: contrast.value,
+      normalize: normalizeTone.value,
+      ditherStrength: ditherStrength.value,
+      previewAspect: previewAspect.value,
+      phraseColor: phraseColor.value,
+      phraseThreshold: phraseThreshold.value,
+      phraseFillAll: phraseFillAll.value,
+      videoFps: videoFps.value,
+      clipStart: clipStart.value,
+      clipEnd: clipEnd.value,
+    },
+  )}`
 }
 
 function invalidatePrerenderIfStale() {
@@ -654,6 +871,14 @@ function restoreCharsetFontDefaults() {
 }
 
 function restoreDefaults() {
+  artMode.value = 'density'
+  artQuality.value = 'classic'
+  artMotion.value = 'none'
+  artHover.value = 'light'
+  artEffectProfile.value = 'expressive'
+  artMotionSpeed.value = 1
+  artMotionStrength.value = 0.65
+  artPaused.value = false
   mode.value = 'charset'
   phrase.value = '我爱你中国'
   phraseThreshold.value = 0.55
@@ -748,6 +973,20 @@ function applyAutoZoom(force = false) {
   }
   const stage = refreshPreviewStageBox()
   if (stage.width < 40 || stage.height < 40) return
+  if (editorEngine.value === 'calibrated' && artFrame.value) {
+    zoom.value = Math.max(
+      10,
+      Math.min(
+        300,
+        Math.round(
+          (((stage.width / (artFrame.value.columns * artFrame.value.cellWidth)) * 22) /
+            fontSize.value) *
+            100,
+        ),
+      ),
+    )
+    return
+  }
   zoom.value = suggestFitZoom({
     columns: columnsOut.value,
     rows: rows.value,
@@ -802,30 +1041,40 @@ function convertFrame(
     forExport: options?.forExport,
   })
   const result =
-    mode.value === 'phrase'
-      ? convertSourceToPhraseAscii(frame, {
-          columns: cols,
-          phrase: phrase.value.trim() || '我爱你中国',
-          threshold: phraseThreshold.value,
-          invert: invertFlag,
-          fillAll: phraseFillAll.value,
-          charAspect: previewAspect.value,
-          withColors: phraseColor.value,
-          exposure: exposure.value,
-          contrast: contrast.value,
-          normalize: normalizeTone.value,
-        })
-      : convertSourceToAscii(frame, {
-          columns: cols,
-          charset: charset.value,
-          invert: invertFlag,
-          charAspect: previewAspect.value,
-          exposure: exposure.value,
-          contrast: contrast.value,
-          normalize: normalizeTone.value,
-          ditherStrength: ditherStrength.value,
-          withColors: phraseColor.value,
-        })
+    editorEngine.value === 'calibrated'
+      ? (() => {
+          const art = prepareArtFrame(
+            frame.source,
+            frame.width,
+            frame.height,
+            calibratedSettings(cols),
+          )
+          return { art, text: art.text, colors: art.colors, columns: art.columns, rows: art.rows }
+        })()
+      : mode.value === 'phrase'
+        ? convertSourceToPhraseAscii(frame, {
+            columns: cols,
+            phrase: phrase.value.trim() || '我爱你中国',
+            threshold: phraseThreshold.value,
+            invert: invertFlag,
+            fillAll: phraseFillAll.value,
+            charAspect: previewAspect.value,
+            withColors: phraseColor.value,
+            exposure: exposure.value,
+            contrast: contrast.value,
+            normalize: normalizeTone.value,
+          })
+        : convertSourceToAscii(frame, {
+            columns: cols,
+            charset: charset.value,
+            invert: invertFlag,
+            charAspect: previewAspect.value,
+            exposure: exposure.value,
+            contrast: contrast.value,
+            normalize: normalizeTone.value,
+            ditherStrength: ditherStrength.value,
+            withColors: phraseColor.value,
+          })
   return result
 }
 
@@ -858,6 +1107,7 @@ async function runConvert(options?: { fitZoom?: boolean }) {
     imageAspect.value = latest.width / Math.max(1, latest.height)
 
     const result = convertFrame(latest, options)
+    artFrame.value = result.art ?? null
     ascii.value = result.text
     asciiColors.value = result.colors ?? null
     rows.value = result.rows
@@ -888,6 +1138,8 @@ function buildExportAscii(): {
   text: string
   colors?: Uint8ClampedArray
 } {
+  if (editorEngine.value === 'calibrated' && artFrame.value)
+    return { text: artFrame.value.text, colors: artFrame.value.colors }
   const frame = getFrameSource()
   if (!frame) {
     return { text: ascii.value, colors: asciiColors.value ?? undefined }
@@ -928,6 +1180,7 @@ function onVideoSeeked() {
 function applyPrerenderFrame(index: number, options?: { fitZoom?: boolean }) {
   const frame = prerenderFrames[index]
   if (!frame) return
+  artFrame.value = frame.art ?? null
   prerenderPlayIndex = index
   ascii.value = frame.text
   asciiColors.value = frame.colors
@@ -949,6 +1202,9 @@ async function runPrerenderVideoFrames(): Promise<boolean> {
   videoPrerenderDone.value = 0
   videoPrerenderTotal.value = 0
   error.value = ''
+  const capturedCacheKey = currentPrerenderCacheKey()
+  const capturedSettings = calibratedSettings(columns.value)
+  const calibrated = editorEngine.value === 'calibrated'
 
   try {
     const result = await prerenderVideoFrames({
@@ -956,16 +1212,22 @@ async function runPrerenderVideoFrames(): Promise<boolean> {
       fps: videoFps.value,
       startTime: clipStart.value,
       endTime: clipEnd.value,
-      shouldAbort: () => prerenderAbort,
+      shouldAbort: () => prerenderAbort || capturedCacheKey !== currentPrerenderCacheKey(),
       getFrameSource,
-      convertFrame: (source) => convertFrame(source),
+      convertFrame: (source) => {
+        if (!calibrated) return convertFrame(source)
+        const art = prepareArtFrame(source.source, source.width, source.height, capturedSettings)
+        return { art, text: art.text, colors: art.colors, columns: art.columns, rows: art.rows }
+      },
       onPlan: ({ total }) => {
         videoPrerenderTotal.value = total
       },
       onProgress: ({ done, total, frame, index }) => {
+        if (prerenderAbort || capturedCacheKey !== currentPrerenderCacheKey()) return
         videoPrerenderDone.value = done
         videoPrerenderTotal.value = total
         if (index === 0) {
+          artFrame.value = frame.art ?? null
           ascii.value = frame.text
           asciiColors.value = frame.colors
           columnsOut.value = frame.columns
@@ -976,6 +1238,11 @@ async function runPrerenderVideoFrames(): Promise<boolean> {
       },
     })
 
+    if (capturedCacheKey !== currentPrerenderCacheKey()) {
+      clearPrerenderCache()
+      error.value = '解析期间参数已调整，请按当前设置重新解析'
+      return false
+    }
     if (!result.ok) {
       clearPrerenderCache()
       error.value = result.error
@@ -983,13 +1250,17 @@ async function runPrerenderVideoFrames(): Promise<boolean> {
     }
 
     prerenderFrames = result.frames
-    prerenderCacheKey = currentPrerenderCacheKey()
+    prerenderCacheKey = capturedCacheKey
     videoPrerenderReady.value = true
-    applyPrerenderFrame(0, { fitZoom: true })
-    videoCurrentTime.value = result.resumeTime
+    applyPrerenderFrame(nearestPrerenderIndex(result.frames, result.resumeTime), { fitZoom: true })
     return true
   } finally {
     videoPrerendering.value = false
+    if (!videoPrerenderReady.value && getFrameSource()) {
+      const failure = error.value
+      await runConvert({ fitZoom: autoZoom.value })
+      error.value = failure
+    }
   }
 }
 
@@ -1356,6 +1627,30 @@ async function downloadPng() {
   downloadProgress.value = ''
   error.value = ''
   try {
+    if (editorEngine.value === 'calibrated') {
+      const frame = artFrame.value
+      if (!frame) throw new Error('请先生成作品')
+      const canvas = document.createElement('canvas'),
+        renderer = createCanvasArtRenderer(canvas)
+      try {
+        renderer.render(frame, {
+          longEdge: exportLongEdge,
+          transparent: exportTransparent,
+          motion: 'none',
+          time: 0,
+        })
+        const blob = await new Promise<Blob>((resolve, reject) =>
+          canvas.toBlob(
+            (value) => (value ? resolve(value) : reject(new Error('图片导出失败'))),
+            'image/png',
+          ),
+        )
+        triggerDownload(blob, `${exportName || 'ascii-art'}.png`)
+      } finally {
+        renderer.destroy()
+      }
+      return
+    }
     const { text, colors } = buildExportAscii()
     const metrics = measureMonoCellMetrics(12, previewFontFamily.value, metricGlyph.value)
     const lines = text.split('\n')
@@ -1412,11 +1707,23 @@ async function downloadVideo() {
   downloadProgress.value = `0/${plan.total}`
   error.value = ''
   const resumeTime = video.currentTime
+  const capturedSettings = calibratedSettings(columns.value)
+  const capturedMotion = artMotion.value
+  const capturedEffects = {
+    effectProfile: artEffectProfile.value,
+    motionSpeed: artMotionSpeed.value,
+    motionStrength: artMotionStrength.value,
+  }
+  const capturedClip = { start: clipStart.value, end: clipEnd.value }
+  const calibrated = editorEngine.value === 'calibrated'
+  const raster = document.createElement('canvas')
+  const rasterRenderer = calibrated ? createCanvasArtRenderer(raster) : null
   pauseVideoPlayback()
 
   try {
     const result = await exportAsciiVideo({
       frameCount: plan.total,
+      bufferFrames: calibrated ? 0 : undefined,
       fps: plan.fps,
       fontSize: Math.max(8, fontSize.value),
       background: exportColors.background,
@@ -1428,10 +1735,20 @@ async function downloadVideo() {
         downloadProgress.value = `${done}/${total}`
       },
       getFrame: async (index) => {
-        const t = Math.min(clipEnd.value, clipStart.value + index * plan.step)
+        const t = Math.min(capturedClip.end, capturedClip.start + index * plan.step)
         await seekVideoTo(video, t)
         const frame = getFrameSource()
         if (!frame) return null
+        if (rasterRenderer) {
+          const art = prepareArtFrame(frame.source, frame.width, frame.height, capturedSettings)
+          rasterRenderer.render(art, {
+            longEdge: 1280,
+            time: index * plan.step,
+            motion: capturedMotion,
+            ...capturedEffects,
+          })
+          return { text: art.text, raster }
+        }
         const converted = convertFrame(frame, { forExport: true })
         return {
           text: converted.text,
@@ -1448,6 +1765,7 @@ async function downloadVideo() {
   } catch (e) {
     error.value = e instanceof Error ? e.message : '视频导出失败'
   } finally {
+    rasterRenderer?.destroy()
     downloading.value = false
     downloadProgress.value = ''
     try {
@@ -1487,6 +1805,48 @@ async function bitmapToDataUrl(source: ImageBitmap): Promise<string> {
 }
 
 async function downloadLiveHtml() {
+  if (editorEngine.value === 'calibrated') {
+    downloading.value = true
+    error.value = ''
+    try {
+      const frame = artFrame.value
+      if (!frame) throw new Error('请先生成作品')
+      let embeddedSource:
+        { kind: 'image' | 'video'; dataUrl: string; start: number; end: number } | undefined
+      if (sourceFile && hasVideo.value) {
+        if (sourceFile.size > 64 * 1024 * 1024)
+          throw new Error('离线网页的视频素材超过 64 MB，请先缩短或压缩视频')
+        const dataUrl = await new Promise<string>((resolve, reject) => {
+          const reader = new FileReader()
+          reader.onload = () => resolve(String(reader.result))
+          reader.onerror = () => reject(new Error('视频读取失败'))
+          reader.readAsDataURL(sourceFile!)
+        })
+        embeddedSource = { kind: 'video', dataUrl, start: clipStart.value, end: clipEnd.value }
+      }
+      const html = artworkEmbedPage(frame, {
+        title: projectTitle.value,
+        motion: artMotion.value,
+        hover: artHover.value,
+        effectProfile: artEffectProfile.value,
+        motionSpeed: artMotionSpeed.value,
+        motionStrength: artMotionStrength.value,
+        hoverStrength: hoverStrength.value,
+        hoverRadius: hoverRadius.value,
+        transparent: exportTransparent,
+        source: embeddedSource,
+      })
+      triggerDownload(
+        new Blob([html], { type: 'text/html;charset=utf-8' }),
+        `${exportName || 'astra-art'}.html`,
+      )
+    } catch (e) {
+      error.value = e instanceof Error ? e.message : '网页导出失败'
+    } finally {
+      downloading.value = false
+    }
+    return
+  }
   if (mode.value !== 'charset') {
     error.value = '动效网页仅支持灰度字符模式'
     return
@@ -1729,6 +2089,59 @@ async function syncArtStudio() {
 
 function paintTo(canvas: HTMLCanvasElement | null) {
   if (!canvas || !ascii.value) return
+  if (editorEngine.value === 'calibrated' && artFrame.value) {
+    const frame = artFrame.value
+    let renderer = artRenderers.get(canvas)
+    if (!renderer) {
+      renderer = createCanvasArtRenderer(canvas)
+      artRenderers.set(canvas, renderer)
+    }
+    let stage = refreshPreviewStageBox()
+    if (canvas === fullscreenCanvas.value && fullscreenScroll.value) {
+      const maxWidth = Math.max(64, fullscreenScroll.value.clientWidth - 32)
+      const maxHeight = Math.max(64, fullscreenScroll.value.clientHeight - 32)
+      const width = Math.min(maxWidth, maxHeight * (frame.width / frame.height))
+      stage = { width, height: width * (frame.height / frame.width) }
+    }
+    const cssWidth = autoZoom.value
+      ? stage.width
+      : (frame.columns * frame.cellWidth * displayFontSize.value) / 22
+    const cssHeight = (cssWidth * frame.height) / frame.width
+    const pointer = {
+      ...artPointer,
+      strength:
+        reducedArtMotion.value || downloading.value ? 0 : artPointer.strength * hoverStrength.value,
+    }
+    renderer.render(frame, {
+      longEdge: Math.max(cssWidth, cssHeight) * Math.min(2, devicePixelRatio || 1),
+      motion: reducedArtMotion.value ? 'none' : artMotion.value,
+      time: artElapsed,
+      hoverTime: artInteractionElapsed,
+      effectProfile: artEffectProfile.value,
+      motionSpeed: artMotionSpeed.value,
+      motionStrength: artMotionStrength.value,
+      hoverRadius: hoverRadius.value,
+      hover: artHover.value === 'none' ? 'light' : artHover.value,
+      pointer: artHover.value === 'none' ? undefined : pointer,
+    })
+    canvas.style.width = `${cssWidth}px`
+    canvas.style.height = `${cssHeight}px`
+    canvas.dataset.engine = 'calibrated'
+    canvas.dataset.columns = String(frame.columns)
+    canvas.dataset.mode = frame.settings.mode
+    canvas.dataset.quality = frame.settings.softwareRaster
+      ? 'faithful'
+      : frame.settings.rasterQuality === 'high'
+        ? 'detailed'
+        : frame.settings.rasterQuality === 'supersampled'
+          ? 'smooth'
+          : 'classic'
+    canvas.dataset.time = String(artElapsed)
+    canvas.dataset.interactionTime = String(artInteractionElapsed)
+    canvas.dataset.pointerStrength = String(artPointer.strength)
+    queueCalibratedAnimation()
+    return
+  }
   // Preview canvas is owned by Studio while hover/motion is on.
   if (canvas === previewCanvas.value && studioLiveActive.value && artStudio) {
     return
@@ -1791,6 +2204,7 @@ watch(
     invert,
     previewInvert,
     previewAspect,
+    previewFontFamily,
     mode,
     phrase,
     phraseThreshold,
@@ -1800,6 +2214,11 @@ watch(
     contrast,
     normalizeTone,
     ditherStrength,
+    editorEngine,
+    artMode,
+    artQuality,
+    backgroundColor,
+    foregroundColor,
   ],
   () => {
     if (hasVideo.value) {
@@ -1818,8 +2237,21 @@ watch(
 )
 
 watch(previewFontFamily, () => {
+  if (editorEngine.value === 'calibrated') return
   if (getFrameSource() && autoZoom.value) applyAutoZoom()
   schedulePaint()
+})
+
+watch([artQualityAvailable, artMode], ([available]) => {
+  if (!available || !artQualityOptions.value.some((item) => item.id === artQuality.value))
+    artQuality.value = 'classic'
+})
+
+watch(artPaused, () => {
+  if (artAnimationRaf) cancelAnimationFrame(artAnimationRaf)
+  artAnimationRaf = 0
+  artLastTick = 0
+  queueCalibratedAnimation()
 })
 
 watch(fontSize, () => {
@@ -1866,18 +2298,51 @@ watch(
   },
 )
 
-watch([ascii, displayFontSize, previewColors, phraseColor, asciiColors, zoom], async () => {
-  if (!hasResult.value) return
-  await nextTick()
-  if (studioLiveActive.value) {
-    resizeArtStudio()
-    return
-  }
-  schedulePaint()
-})
+watch(
+  [
+    ascii,
+    artFrame,
+    displayFontSize,
+    previewColors,
+    phraseColor,
+    asciiColors,
+    zoom,
+    artMotion,
+    artHover,
+    artPaused,
+    artEffectProfile,
+    artMotionSpeed,
+    artMotionStrength,
+    hoverStrength,
+    hoverRadius,
+    reducedArtMotion,
+  ],
+  async () => {
+    if (!hasResult.value) return
+    await nextTick()
+    if (studioLiveActive.value) {
+      resizeArtStudio()
+      return
+    }
+    schedulePaint()
+  },
+)
 
-watch(previewCanvas, (el) => {
+watch(previewCanvas, (el, previous) => {
+  if (previous) {
+    artRenderers.get(previous)?.destroy()
+    artRenderers.delete(previous)
+  }
   if (!el) return
+  artVisibilityObserver?.disconnect()
+  artVisibilityObserver = new IntersectionObserver((entries) => {
+    artStageVisible = Boolean(entries[0]?.isIntersecting)
+    if (!artStageVisible && artAnimationRaf) {
+      cancelAnimationFrame(artAnimationRaf)
+      artAnimationRaf = 0
+    } else queueCalibratedAnimation()
+  })
+  artVisibilityObserver.observe(el)
   if (studioLiveActive.value) void syncArtStudio()
   else if (ascii.value) schedulePaint()
 })
@@ -1914,7 +2379,11 @@ watch(fullscreenScroll, (el, _prev, onCleanup) => {
   onCleanup(() => el.removeEventListener('wheel', handler))
 })
 
-watch(fullscreenCanvas, (el) => {
+watch(fullscreenCanvas, (el, previous) => {
+  if (previous) {
+    artRenderers.get(previous)?.destroy()
+    artRenderers.delete(previous)
+  }
   if (el && ascii.value) schedulePaint()
 })
 
@@ -1923,6 +2392,14 @@ watch(fullscreen, (open) => {
 })
 
 const projectSettings: Record<string, Ref<string | number | boolean>> = {
+  editorEngine,
+  artMode,
+  artQuality,
+  artMotion,
+  artHover,
+  artEffectProfile,
+  artMotionSpeed,
+  artMotionStrength,
   mode,
   phrase,
   phraseThreshold,
@@ -1973,7 +2450,19 @@ function makeThumbnail() {
   const canvas = document.createElement('canvas')
   const frame = getFrameSource()
   if (!frame) return ''
-  const result = convertFrame(frame, { forExport: true })
+  const result =
+    editorEngine.value === 'calibrated' && artFrame.value
+      ? { art: artFrame.value, text: artFrame.value.text, colors: artFrame.value.colors }
+      : convertFrame(frame, { forExport: true })
+  if (result.art) {
+    const renderer = createCanvasArtRenderer(canvas)
+    try {
+      renderer.render(result.art, { longEdge: 420, motion: 'none', time: 0 })
+    } finally {
+      renderer.destroy()
+    }
+    return canvas.toDataURL('image/jpeg', 0.85)
+  }
   paintAsciiToCanvas(canvas, result.text, {
     fontSize: 5,
     background: backgroundColor.value,
@@ -1990,7 +2479,12 @@ function makeThumbnail() {
   thumb.getContext('2d')?.drawImage(canvas, 0, 0, thumb.width, thumb.height)
   return thumb.toDataURL('image/jpeg', 0.85)
 }
-function openExport() {
+async function openExport() {
+  if (editorEngine.value === 'calibrated' && videoPlaying.value) {
+    const wasPrerender = videoPlaybackMode.value === 'prerender'
+    pauseVideo()
+    if (!wasPrerender) await runConvert({ fitZoom: autoZoom.value })
+  }
   exportPreview.value = makeThumbnail()
   exportOpen.value = true
 }
@@ -2008,6 +2502,7 @@ async function saveProject() {
       updatedAt: Date.now(),
       thumbnail: makeThumbnail(),
       settings: JSON.parse(captured).settings,
+      engineVersion: editorEngine.value === 'calibrated' ? ART_ENGINE_VERSION : 'legacy-1',
     })
     projectId.value = id
     savedSnapshot = captured
@@ -2018,9 +2513,37 @@ async function saveProject() {
     savingProject.value = false
   }
 }
+async function downloadProjectPackage() {
+  if (!sourceFile || packingProject.value || pending.value || downloading.value) return
+  packingProject.value = true
+  packageStatus.value = '正在打包原始素材…'
+  error.value = ''
+  try {
+    const captured = JSON.parse(snapshot())
+    const blob = await createArtProjectPackage({
+      id: projectId.value || crypto.randomUUID(),
+      name: projectTitle.value.trim() || '未命名作品',
+      kind: hasVideo.value ? 'video' : 'image',
+      source: sourceFile,
+      updatedAt: Date.now(),
+      thumbnail: makeThumbnail(),
+      settings: captured.settings,
+      engineVersion: editorEngine.value === 'calibrated' ? ART_ENGINE_VERSION : 'legacy-1',
+    })
+    triggerDownload(blob, artProjectPackageFilename(captured.name))
+    packageStatus.value = '作品包已生成，可在“我的项目”导入继续创作。'
+  } catch (cause) {
+    packageStatus.value = ''
+    error.value = cause instanceof Error ? cause.message : '作品包下载失败，请重试。'
+  } finally {
+    packingProject.value = false
+  }
+}
 async function applyPreset(preset: ArtworkPreset, replaceSource = false) {
   activePreset.value = preset.id
   selectMode(preset.mode)
+  if (editorEngine.value === 'calibrated')
+    artMode.value = preset.mode === 'phrase' ? 'phrase' : preset.color ? 'color' : 'density'
   await nextTick()
   phrase.value = preset.phrase || '光与影'
   phraseFillAll.value = Boolean(preset.phrase)
@@ -2058,6 +2581,8 @@ async function applyPreset(preset: ArtworkPreset, replaceSource = false) {
   void runConvert({ fitZoom: true })
 }
 async function loadRouteProject() {
+  if (typeof route.query.project !== 'string')
+    editorEngine.value = route.query.engine === 'legacy' ? 'legacy' : 'calibrated'
   if (typeof route.query.project === 'string') {
     try {
       const project = await getArtProject(route.query.project)
@@ -2065,8 +2590,16 @@ async function loadRouteProject() {
         error.value = '没有找到这个本地项目。它可能已被删除，或保存在另一个浏览器中。'
         return
       }
+      assertArtProjectEngineCompatible(project)
+      editorEngine.value = project.settings.editorEngine === 'calibrated' ? 'calibrated' : 'legacy'
+      artQuality.value = 'classic'
       await loadFile(project.source)
       if (error.value) return
+      artEffectProfile.value =
+        project.settings.artEffectProfile === 'expressive' ? 'expressive' : 'classic'
+      artMotionSpeed.value = 1
+      artMotionStrength.value = 0.65
+      if (hasVideo.value) pauseVideoPlayback()
       if (project.settings.mode === 'phrase' || project.settings.mode === 'charset')
         selectMode(project.settings.mode)
       await nextTick()
@@ -2074,14 +2607,27 @@ async function loadRouteProject() {
         const target = projectSettings[key]
         if (target && typeof value === typeof target.value) target.value = value
       }
+      if (!ART_MODES.some((item) => item.id === artMode.value))
+        artMode.value = mode.value === 'phrase' ? 'phrase' : 'density'
+      if (
+        !artQualityOptions.value.some((item) => item.id === artQuality.value) ||
+        !artQualityAvailable.value
+      )
+        artQuality.value = 'classic'
+      if (hasVideo.value && sourceVideo.value) {
+        clipLength.value = Math.max(CLIP_MIN_SPAN, clipEnd.value - clipStart.value)
+        clipLengthCustom.value = true
+        await seekVideoTo(sourceVideo.value, clipStart.value)
+        videoCurrentTime.value = clipStart.value
+      }
       projectId.value = project.id
       projectTitle.value = project.name
       await nextTick()
+      await runConvert({ fitZoom: true })
       savedSnapshot = snapshot()
       projectStatus.value = '已从此浏览器恢复'
-      void runConvert({ fitZoom: true })
-    } catch {
-      error.value = '项目无法恢复，请检查浏览器存储权限。'
+    } catch (cause) {
+      error.value = cause instanceof Error ? cause.message : '项目无法恢复，请检查浏览器存储权限。'
     }
   } else {
     const preset = artworkPresets.find((p) => p.id === route.query.preset)
@@ -2099,11 +2645,22 @@ watch(
   },
 )
 onMounted(() => {
+  document.addEventListener('visibilitychange', onArtVisibilityChange)
+  const motionQuery = matchMedia('(prefers-reduced-motion: reduce)')
+  const onMotionChange = () => {
+    reducedArtMotion.value = motionQuery.matches
+    schedulePaint()
+  }
+  motionQuery.addEventListener('change', onMotionChange)
+  onBeforeUnmount(() => motionQuery.removeEventListener('change', onMotionChange))
   window.addEventListener('keydown', onFullscreenKey)
   void loadRouteProject()
 })
 
 onBeforeUnmount(() => {
+  destroyCalibratedRenderers()
+  artVisibilityObserver?.disconnect()
+  document.removeEventListener('visibilitychange', onArtVisibilityChange)
   destroyArtStudio()
   previewStageObserver?.disconnect()
   previewStageObserver = null
@@ -2119,7 +2676,8 @@ onBeforeUnmount(() => {
   <div class="page art-editor" :class="`mobile-${mobilePanel}`">
     <header class="editor-header">
       <div class="editor-brand">
-        <RouterLink to="/" class="art-wordmark">Astra</RouterLink
+        <RouterLink to="/" class="art-wordmark" aria-label="Astra 首页"
+          ><AstraLogo :height="28" /></RouterLink
         ><RouterLink to="/gallery" class="editor-back">← 返回作品</RouterLink>
       </div>
       <input v-model="projectTitle" class="project-title" aria-label="作品名称" maxlength="60" />
@@ -2408,6 +2966,16 @@ onBeforeUnmount(() => {
         <RouterLink to="/projects" class="editor-projects"
           ><ArtIcon name="folder" :size="17" /> 我的项目 <span>↗</span></RouterLink
         >
+        <button
+          class="editor-package"
+          :disabled="!hasResult || pending || downloading || packingProject"
+          @click="downloadProjectPackage"
+        >
+          <ArtIcon name="download" :size="17" /> {{ packingProject ? '打包中…' : '下载作品包' }}
+        </button>
+        <p class="package-hint" role="status" aria-live="polite">
+          {{ packageStatus || '备份原始素材与参数，换设备继续创作。' }}
+        </p>
       </aside>
       <nav class="mobile-editor-tabs" aria-label="编辑面板">
         <button :class="{ active: mobilePanel === 'presets' }" @click="mobilePanel = 'presets'">
@@ -2423,7 +2991,23 @@ onBeforeUnmount(() => {
           <h2>文字与风格</h2>
           <span>⌃</span>
         </div>
-        <div class="inspector-modes">
+        <p v-if="editorEngine === 'legacy'" class="hint legacy-project-note">
+          此项目保留旧版样式。选择下方六模式可尝试新版效果，保存后更新项目。
+        </p>
+        <div class="inspector-modes six-modes" aria-label="艺术模式">
+          <button
+            v-for="item in ART_MODES"
+            :key="item.id"
+            :class="{ selected: editorEngine === 'calibrated' && artMode === item.id }"
+            :disabled="downloading || videoPrerendering"
+            :aria-pressed="editorEngine === 'calibrated' && artMode === item.id"
+            :title="item.description"
+            @click="selectArtMode(item.id)"
+          >
+            {{ item.name }}
+          </button>
+        </div>
+        <div v-if="editorEngine === 'legacy'" class="inspector-modes">
           <button :class="{ selected: mode === 'charset' }" @click="selectMode('charset')">
             字符</button
           ><button :class="{ selected: mode === 'phrase' }" @click="selectMode('phrase')">
@@ -2485,7 +3069,10 @@ onBeforeUnmount(() => {
               spellcheck="false"
             />
           </div>
-          <div v-else class="field">
+          <div
+            v-else-if="editorEngine === 'legacy' || artMode === 'density' || artMode === 'color'"
+            class="field"
+          >
             <div class="field-label"><span>字符集</span></div>
             <div class="seg wrap" role="group">
               <button
@@ -2591,6 +3178,7 @@ onBeforeUnmount(() => {
               type="button"
               class="chip-toggle"
               :class="{ on: phraseColor }"
+              :disabled="editorEngine === 'calibrated' && artMode === 'color'"
               @click="phraseColor = !phraseColor"
             >
               彩色
@@ -2606,13 +3194,175 @@ onBeforeUnmount(() => {
           </div>
         </section>
 
+        <section
+          v-if="editorEngine === 'calibrated' && (artMode === 'density' || artMode === 'color')"
+          class="card"
+        >
+          <div class="card-head"><h2>渲染品质</h2></div>
+          <div
+            class="seg"
+            role="group"
+            aria-label="图片渲染品质"
+            aria-describedby="art-quality-hint"
+          >
+            <button
+              v-for="item in artQualityOptions"
+              :key="item.id"
+              type="button"
+              :data-quality="item.id"
+              :class="['seg-item', { on: artQuality === item.id }]"
+              :aria-pressed="artQuality === item.id"
+              :disabled="!artQualityAvailable"
+              @click="artQuality = item.id"
+            >
+              {{ item.label }}
+            </button>
+          </div>
+          <p id="art-quality-hint" class="hint">
+            {{
+              artQualityAvailable
+                ? artMode === 'color'
+                  ? '还原保留色彩与明暗层次，适用于图片创作。'
+                  : '精细强化纹理，柔和减轻锯齿，还原保留明暗层次。'
+                : '品质增强适用于光影字符的单色图片和原色字符图片。'
+            }}
+          </p>
+        </section>
+
         <section class="card palette-card">
           <label>背景 <input v-model="backgroundColor" type="color" aria-label="背景颜色" /></label
           ><label
             >文字颜色 <input v-model="foregroundColor" type="color" aria-label="文字颜色"
           /></label>
         </section>
-        <details class="card" :class="{ muted: mode !== 'charset' }">
+        <details v-if="editorEngine === 'calibrated'" class="card calibrated-effects">
+          <summary class="card-head">
+            <h2>动态效果</h2>
+            <span>＋</span>
+          </summary>
+          <div class="field">
+            <div class="seg" role="group" aria-label="效果风格">
+              <button
+                type="button"
+                :class="['seg-item', { on: artEffectProfile === 'expressive' }]"
+                @click="artEffectProfile = 'expressive'"
+              >
+                增强光影
+              </button>
+              <button
+                type="button"
+                :class="['seg-item', { on: artEffectProfile === 'classic' }]"
+                @click="artEffectProfile = 'classic'"
+              >
+                经典光影
+              </button>
+            </div>
+          </div>
+          <div class="field">
+            <div class="field-label"><span>悬停</span></div>
+            <div class="seg wrap" role="group" aria-label="六模式悬停">
+              <button
+                v-for="item in artHoverOptions"
+                :key="item.id"
+                type="button"
+                :class="['seg-item', { on: artHover === item.id }]"
+                @click="selectArtHover(item.id)"
+              >
+                {{ item.label }}
+              </button>
+            </div>
+          </div>
+          <template v-if="artHover !== 'none'">
+            <div class="field">
+              <div class="field-label">
+                <label for="art-hover-strength">悬停强度</label
+                ><span class="field-val">{{ Math.round(hoverStrength * 100) }}%</span>
+              </div>
+              <input
+                id="art-hover-strength"
+                v-model.number="hoverStrength"
+                class="range"
+                type="range"
+                min="0"
+                max="1"
+                step="0.01"
+              />
+            </div>
+            <div v-if="artEffectProfile === 'expressive'" class="field">
+              <div class="field-label">
+                <label for="art-hover-radius">悬停范围</label
+                ><span class="field-val">{{ Math.round(hoverRadius * 100) }}%</span>
+              </div>
+              <input
+                id="art-hover-radius"
+                v-model.number="hoverRadius"
+                class="range"
+                type="range"
+                min="0.05"
+                max="1"
+                step="0.01"
+              />
+            </div>
+          </template>
+          <div class="field">
+            <div class="field-label"><span>微动</span></div>
+            <div class="seg wrap" role="group" aria-label="六模式微动">
+              <button
+                v-for="item in artMotionOptions"
+                :key="item.id"
+                type="button"
+                :class="['seg-item', { on: artMotion === item.id }]"
+                @click="selectArtMotion(item.id)"
+              >
+                {{ item.label }}
+              </button>
+            </div>
+          </div>
+          <template v-if="artMotion !== 'none' && artEffectProfile === 'expressive'">
+            <div class="field">
+              <div class="field-label">
+                <label for="art-motion-speed">动效速度</label
+                ><span class="field-val">{{ artMotionSpeed.toFixed(1) }}×</span>
+              </div>
+              <input
+                id="art-motion-speed"
+                v-model.number="artMotionSpeed"
+                class="range"
+                type="range"
+                min="0.2"
+                max="2"
+                step="0.1"
+              />
+            </div>
+            <div class="field">
+              <div class="field-label">
+                <label for="art-motion-strength">动效强度</label
+                ><span class="field-val">{{ Math.round(artMotionStrength * 100) }}%</span>
+              </div>
+              <input
+                id="art-motion-strength"
+                v-model.number="artMotionStrength"
+                class="range"
+                type="range"
+                min="0"
+                max="1"
+                step="0.01"
+              />
+            </div>
+          </template>
+          <button
+            type="button"
+            class="btn ghost"
+            :aria-pressed="artPaused"
+            @click="artPaused = !artPaused"
+          >
+            {{ artPaused ? '继续动效' : '暂停动效' }}
+          </button>
+          <p class="hint">
+            暂停微动后仍可悬停探索。PNG 保存静态作品，视频保留微动，离线网页保留微动与悬停。
+          </p>
+        </details>
+        <details v-else class="card" :class="{ muted: mode !== 'charset' }">
           <summary class="card-head">
             <h2>动态效果</h2>
             <span>＋</span>
@@ -2762,7 +3512,7 @@ onBeforeUnmount(() => {
               </div>
             </details>
 
-            <details class="adv-group">
+            <details v-if="editorEngine === 'legacy'" class="adv-group">
               <summary class="adv-group-summary">导出字体</summary>
               <div class="adv-group-body">
                 <div class="field">
@@ -2881,6 +3631,11 @@ onBeforeUnmount(() => {
           ref="previewScroll"
           class="ascii-scroll fx-scroll"
           title="Ctrl + 滚轮缩放"
+          @pointermove="onCalibratedPointer"
+          @pointerdown="onCalibratedPointer"
+          @pointerup="onCalibratedPointerUp"
+          @pointercancel="onCalibratedPointerLeave"
+          @pointerleave="onCalibratedPointerLeave"
         >
           <div class="ascii-scroll-inner">
             <img
@@ -2898,7 +3653,7 @@ onBeforeUnmount(() => {
               :class="{ live: studioLiveActive, staged: stagePinned }"
               :style="previewHostStyle"
             >
-              <canvas ref="previewCanvas" class="ascii-canvas" />
+              <canvas :key="editorEngine" ref="previewCanvas" class="ascii-canvas" />
             </div>
           </div>
         </div>
@@ -2935,6 +3690,7 @@ onBeforeUnmount(() => {
       :error="error"
       :name="projectTitle"
       :preview="exportPreview"
+      :offline-html="editorEngine === 'calibrated'"
       @export="handleExport"
     />
 
@@ -2955,7 +3711,16 @@ onBeforeUnmount(() => {
             <button type="button" class="btn primary" @click="closeFullscreen">退出全屏</button>
           </div>
         </div>
-        <div ref="fullscreenScroll" class="fs-scroll fx-scroll" title="Ctrl + 滚轮缩放">
+        <div
+          ref="fullscreenScroll"
+          class="fs-scroll fx-scroll"
+          title="Ctrl + 滚轮缩放"
+          @pointermove="onCalibratedPointer"
+          @pointerdown="onCalibratedPointer"
+          @pointerup="onCalibratedPointerUp"
+          @pointercancel="onCalibratedPointerLeave"
+          @pointerleave="onCalibratedPointerLeave"
+        >
           <div class="ascii-scroll-inner">
             <canvas ref="fullscreenCanvas" class="ascii-canvas" />
           </div>

@@ -7,6 +7,7 @@ import ImageTracer from 'imagetracerjs'
 
 import type { SignatureStamp } from './extract'
 import type { Placement } from './layout'
+import { signatureTint } from './render-style'
 
 export type StampVector = {
   width: number
@@ -34,30 +35,8 @@ function tintHex(
   depth: number,
   literal = false,
 ): string {
-  let nr: number
-  let ng: number
-  let nb: number
-  if (literal) {
-    nr = r | 0
-    ng = g | 0
-    nb = b | 0
-  } else {
-    const d = clamp01(depth)
-    if (colorize) {
-      const k = 0.22 + (1 - d) * 0.28
-      const mix = 0.55 + d * 0.35
-      nr = Math.round(r * k * mix + 18 * (1 - mix))
-      ng = Math.round(g * k * mix + 16 * (1 - mix))
-      nb = Math.round(b * k * mix + 22 * (1 - mix))
-    } else {
-      const v = Math.round(18 + (1 - d) * 55)
-      nr = v
-      ng = v
-      nb = v + 2
-    }
-  }
   const h = (n: number) => Math.max(0, Math.min(255, n)).toString(16).padStart(2, '0')
-  return `#${h(nr)}${h(ng)}${h(nb)}`
+  return `#${signatureTint(colorize, r, g, b, depth, literal).map(h).join('')}`
 }
 
 function escAttr(s: string) {
@@ -97,7 +76,12 @@ export function traceStampCanvas(canvas: HTMLCanvasElement): StampVector {
     qtres: 0.8,
     pathomit: 6,
     numberofcolors: 2,
-    colorquantcycles: 2,
+    // Binary ink/paper inputs need fixed centroids. Spatial palette sampling can
+    // miss thin handwriting entirely, even when the canvas contains valid ink.
+    colorsampling: 0,
+    colorquantcycles: 1,
+    mincolorratio: 0,
+    pal: [{ r: 20, g: 20, b: 20, a: 255 }, { r: 255, g: 255, b: 255, a: 255 }],
     blurradius: 0,
     blurdelta: 20,
     scale: 1,
@@ -109,8 +93,7 @@ export function traceStampCanvas(canvas: HTMLCanvasElement): StampVector {
 
   const paths = extractPathDs(svg).filter((d) => d.length > 8)
   if (paths.length === 0) {
-    // 退化：用矩形占位避免导出空章
-    paths.push(`M0 0h${canvas.width}v${canvas.height}h-${canvas.width}z`)
+    throw new Error('签名没有可导出的笔迹，请重新添加清晰签名')
   }
 
   return {
@@ -195,8 +178,10 @@ export function buildPathSvgDocument(
   layoutW: number,
   layoutH: number,
   options: {
+    inkStyle?: 'ink' | 'cutout'
     background?: string
     colorize?: boolean
+    coverFill?: boolean
     portraitHref?: string | null
     underlay?: number
   } = {},
@@ -226,11 +211,19 @@ export function buildPathSvgDocument(
   parts.push(`<defs>`)
   for (let i = 0; i < traced.length; i++) {
     const v = traced[i]!.vector
-    parts.push(`<g id="stamp-${i}">`)
+    parts.push(`<g id="signature-paths-${i}">`)
     for (const d of v.paths) {
-      parts.push(`<path d="${escAttr(d)}" fill="currentColor"/>`)
+      parts.push(`<path d="${escAttr(d)}"/>`)
     }
     parts.push(`</g>`)
+    if (options.inkStyle === 'cutout') {
+      // Avoid multiplying the ink plate's antialiased border by an identical mask border.
+      const margin = Math.max(v.width, v.height)
+      parts.push(`<mask id="signature-mask-${i}" maskUnits="userSpaceOnUse" x="${-margin}" y="${-margin}" width="${v.width + margin * 2}" height="${v.height + margin * 2}" style="mask-type:luminance"><rect x="${-margin}" y="${-margin}" width="${v.width + margin * 2}" height="${v.height + margin * 2}" fill="white"/><use href="#signature-paths-${i}" fill="black"/></mask>`)
+      parts.push(`<g id="stamp-${i}"><rect width="${v.width}" height="${v.height}" mask="url(#signature-mask-${i})"/></g>`)
+    } else {
+      parts.push(`<g id="stamp-${i}"><use href="#signature-paths-${i}"/></g>`)
+    }
   }
   parts.push(`</defs>`)
 
@@ -257,6 +250,10 @@ export function buildPathSvgDocument(
     // 印章 path 原点在左上；摆放中心对齐
     const tx = p.x
     const ty = p.y
+    if (options.coverFill) {
+      const rgb = Object.values(p.tint).map(value => Math.max(0, Math.min(255, value | 0))).join(',')
+      parts.push(`<ellipse transform="translate(${tx.toFixed(2)} ${ty.toFixed(2)}) rotate(${deg.toFixed(3)})" rx="${Math.max(2, v.width * scale * .52).toFixed(3)}" ry="${Math.max(2, v.height * scale * .38).toFixed(3)}" fill="rgb(${rgb})" opacity="${(clamp01(.14 + p.depth * .28) * opacity).toFixed(4)}"/>`)
+    }
     parts.push(
       `<g transform="translate(${tx.toFixed(2)} ${ty.toFixed(2)}) rotate(${deg.toFixed(3)}) scale(${scale.toFixed(5)}) translate(${(-v.width / 2).toFixed(2)} ${(-v.height / 2).toFixed(2)})" fill="${fill}" opacity="${opacity.toFixed(3)}"${p.blend === 'ink' ? ' style="mix-blend-mode:multiply"' : ''}>`,
     )

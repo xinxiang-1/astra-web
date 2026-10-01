@@ -139,7 +139,7 @@ function resolveDarkDebugTarget(
     };
   }
   if (sourceId === "dark-bloom-composite" && bloom)
-    return { primary: bloom[0].horizontal };
+    return { primary: bloom[0]!.horizontal };
   if (
     sourceId === "dark-particle-light" &&
     bloom &&
@@ -171,12 +171,12 @@ function compileGraph(
     graph.glassFront.compile(scene),
     ...(graph.wireframe ? [graph.wireframe.compile(scene)] : []),
     graph.dust.compile(outputSignature),
-    graph.bloomExtract.compile(bloom[0].vertical),
+    graph.bloomExtract.compile(bloom[0]!.vertical),
     ...graph.bloomBlur.flatMap((level, index) => [
       level.horizontal.compile(bloom[index]!.horizontal),
       level.vertical.compile(bloom[index]!.vertical),
     ]),
-    graph.bloomComposite.compile(bloom[0].horizontal),
+    graph.bloomComposite.compile(bloom[0]!.horizontal),
     ...(graph.particleLightDownsample
       ? [
           graph.particleLightDownsample.compile(

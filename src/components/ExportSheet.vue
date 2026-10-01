@@ -10,6 +10,7 @@ const props = defineProps<{
   error: string
   name: string
   preview: string
+  offlineHtml?: boolean
 }>()
 const emit = defineEmits<{
   export: [options: { format: string; name: string; longEdge: number; transparent: boolean }]
@@ -24,8 +25,7 @@ const formats = [
   { id: 'live-html', label: '动态网页', sub: 'HTML', icon: 'sliders' },
   { id: 'txt', label: '文本', sub: 'TXT', icon: 'menu' },
 ]
-const unavailable = (id: string) =>
-  (id === 'mp4' && !props.video) || (id === 'live-html' && props.phrase)
+const unavailable = (id: string) => id === 'mp4' && !props.video
 const valid = computed(() => !unavailable(format.value))
 function submit() {
   if (valid.value)
@@ -79,7 +79,9 @@ function submit() {
       <p class="format-hint">
         {{
           format === 'live-html'
-            ? '动态网页在打开时需要联网加载动效引擎。'
+            ? offlineHtml
+              ? '将文字、色彩和动效一起保存，作品可离线打开。视频素材一并保存在网页中。'
+              : '动态网页在打开时需要联网加载动效引擎。'
             : format === 'mp4'
               ? '导出当前视频选段；不支持 MP4 的浏览器会保存为 WebM。'
               : format === 'txt'

@@ -42,6 +42,18 @@ export const EXPORT_CHAR_ASPECT = ASCII_ASPECT_PRESETS.notepad.value
 export const PREVIEW_MONO_FONT =
   'Consolas, "Cascadia Mono", "Courier New", monospace'
 
+/** Shared gallery/editor defaults; keep conversion and presentation in sync. */
+export const ASCII_ART_DEFAULTS = {
+  columns: ASCII_RESOLUTIONS.high.columns,
+  charset: ASCII_CHARSETS.dense,
+  exposure: 0,
+  contrast: 0.2,
+  normalize: true,
+  ditherStrength: 0.25,
+  background: '#111615',
+  foreground: '#eeeae2',
+} as const
+
 /**
  * Export / Notepad font from this machine's settings
  * (`Microsoft YaHei` / 微软雅黑).

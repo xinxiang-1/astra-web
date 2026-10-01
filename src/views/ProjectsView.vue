@@ -2,7 +2,19 @@
 import { computed, onMounted, ref } from 'vue'
 import ArtIcon from '@/components/ui/ArtIcon.vue'
 import ArtFooter from '@/components/ArtFooter.vue'
-import { listArtProjects, deleteArtProject, type ArtProject } from '@/lib/art-projects'
+import {
+  listArtProjects,
+  deleteArtProject,
+  saveArtProject,
+  type ArtProject,
+} from '@/lib/art-projects'
+import {
+  ART_PROJECT_PACKAGE_ACCEPT,
+  artProjectPackageFilename,
+  createArtProjectPackage,
+  readArtProjectPackage,
+} from '@/lib/art-project-package'
+import { triggerDownload } from '@/lib/ascii'
 const projects = ref<ArtProject[]>([])
 const loading = ref(true)
 const error = ref('')
@@ -10,6 +22,9 @@ const filter = ref('全部')
 const search = ref('')
 const removing = ref('')
 const busy = ref(false)
+const packageInput = ref<HTMLInputElement | null>(null)
+const transferring = ref('')
+const transferStatus = ref('')
 const shown = computed(() =>
   projects.value.filter(
     (p) =>
@@ -18,12 +33,55 @@ const shown = computed(() =>
   ),
 )
 async function refresh() {
+  error.value = ''
   try {
     projects.value = await listArtProjects()
   } catch {
     error.value = '无法读取本地项目，请检查浏览器存储权限后重试。'
   } finally {
     loading.value = false
+  }
+}
+async function downloadPackage(project: ArtProject) {
+  if (transferring.value) return
+  transferring.value = project.id
+  error.value = ''
+  transferStatus.value = '正在打包原始素材…'
+  try {
+    const blob = await createArtProjectPackage(project)
+    triggerDownload(blob, artProjectPackageFilename(project.name))
+    transferStatus.value = '作品包已生成。请保留下载文件，用于备份或换设备继续创作。'
+  } catch (cause) {
+    transferStatus.value = ''
+    error.value = cause instanceof Error ? cause.message : '作品包下载失败，请重试。'
+  } finally {
+    transferring.value = ''
+  }
+}
+async function importPackage(event: Event) {
+  const input = event.target as HTMLInputElement
+  const file = input.files?.[0]
+  input.value = ''
+  if (!file || transferring.value) return
+  transferring.value = 'import'
+  error.value = ''
+  transferStatus.value = '正在校验作品包与原始素材…'
+  try {
+    const { project, notice } = await readArtProjectPackage(file)
+    try {
+      await saveArtProject(project)
+    } catch {
+      throw new Error('浏览器未能保存作品包，存储空间可能不足。请保留备份文件后重试。')
+    }
+    filter.value = '全部'
+    search.value = ''
+    await refresh()
+    transferStatus.value = notice
+  } catch (cause) {
+    transferStatus.value = ''
+    error.value = cause instanceof Error ? cause.message : '无法导入作品包，请重试。'
+  } finally {
+    transferring.value = ''
   }
 }
 async function remove(id: string) {
@@ -51,14 +109,36 @@ onMounted(refresh)
           </h1>
           <p>每一次灵感，都值得继续。</p>
         </div>
-        <RouterLink to="/ascii-art" class="art-button primary"
-          ><ArtIcon name="plus" :size="18" /> 新建作品</RouterLink
-        >
+        <div class="project-heading-actions">
+          <button
+            class="art-button"
+            :disabled="!!transferring || busy"
+            @click="packageInput?.click()"
+          >
+            <ArtIcon name="upload" :size="18" />
+            {{ transferring === 'import' ? '导入中…' : '导入作品包' }}
+          </button>
+          <input
+            ref="packageInput"
+            type="file"
+            class="package-file-input"
+            hidden
+            :accept="ART_PROJECT_PACKAGE_ACCEPT"
+            aria-label="导入 Astra 作品包"
+            @change="importPackage"
+          />
+          <RouterLink to="/ascii-art" class="art-button primary"
+            ><ArtIcon name="plus" :size="18" /> 新建作品</RouterLink
+          >
+        </div>
       </header>
       <div class="local-notice">
         <ArtIcon name="shield" :size="18" /><span>保存在此浏览器 · 源文件不上传</span
-        ><small>清除浏览器数据会移除本地项目，请及时导出作品。</small>
+        ><small>下载作品包备份素材与参数，换设备后可导入继续创作。</small>
       </div>
+      <p v-if="transferStatus" class="package-status" role="status" aria-live="polite">
+        {{ transferStatus }}
+      </p>
       <div class="projects-tools">
         <div>
           <button
@@ -114,10 +194,14 @@ onMounted(refresh)
             <template v-if="removing === project.id"
               ><span>删除本地项目？</span
               ><button :disabled="busy" @click="remove(project.id)">确认删除</button
-              ><button @click="removing = ''">取消</button></template
+              ><button :disabled="busy" @click="removing = ''">取消</button></template
             ><template v-else
               ><span>保存在此设备</span
-              ><button @click="removing = project.id">删除</button></template
+              ><button :disabled="!!transferring || busy" @click="downloadPackage(project)">
+                {{ transferring === project.id ? '打包中…' : '下载作品包' }}</button
+              ><button :disabled="!!transferring || busy" @click="removing = project.id">
+                删除
+              </button></template
             >
           </div>
         </article>
@@ -144,6 +228,23 @@ onMounted(refresh)
   justify-content: space-between;
   align-items: center;
   gap: 20px;
+}
+.project-heading-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.project-heading-actions .art-button {
+  gap: 12px;
+}
+.package-file-input {
+  display: none;
+}
+.package-status {
+  color: #05787d;
+  font-size: 12px;
+  line-height: 1.8;
+  padding: 12px 0;
 }
 .projects-heading h1 {
   font-size: 60px;
@@ -257,6 +358,7 @@ onMounted(refresh)
   color: #91968c;
 }
 .project-actions button {
+  min-height: 44px;
   background: none;
   border: 0;
   color: #777e6d;
@@ -266,6 +368,10 @@ onMounted(refresh)
 }
 .project-actions button:hover {
   color: #b13e29;
+}
+.project-actions button:disabled {
+  opacity: 0.5;
+  cursor: wait;
 }
 .projects-empty {
   margin-top: 38px;
@@ -316,6 +422,9 @@ onMounted(refresh)
     font-size: 39px;
   }
   .projects-heading .art-button {
+    width: 100%;
+  }
+  .project-heading-actions {
     width: 100%;
   }
   .projects-tools {

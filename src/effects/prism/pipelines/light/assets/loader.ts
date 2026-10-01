@@ -76,7 +76,7 @@ function upload(
 ): Texture {
   const base = levels[0]!;
   const texture = gpu.device.createTexture({
-    kind: "2d",
+    dimension: "2d",
     size: [base.width, base.height],
     format: "rgba8unorm",
     mipLevelCount: levels.length,

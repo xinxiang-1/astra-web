@@ -1,0 +1,97 @@
+{
+  "retrievedAt": "2026-10-01T06:29:37.924Z",
+  "scope": "Targeted public GitHub search only; not an exhaustive web survey",
+  "results": [
+    {
+      "query": "ascii art chinese",
+      "repositories": [
+        {
+          "repository": "zhoulianxiang/ascii_art",
+          "url": "https://github.com/zhoulianxiang/ascii_art",
+          "license": null,
+          "description": "ascii art for Chinese characters",
+          "default_branch": "main"
+        },
+        {
+          "repository": "RenJDC/Chinese_characters_to_ASCII_art_text",
+          "url": "https://github.com/RenJDC/Chinese_characters_to_ASCII_art_text",
+          "license": "GPL-3.0",
+          "description": null,
+          "default_branch": "main"
+        },
+        {
+          "repository": "lautumn1990/chineseAsciiArt",
+          "url": "https://github.com/lautumn1990/chineseAsciiArt",
+          "license": null,
+          "description": "this is a chinese ascii art",
+          "default_branch": "master"
+        },
+        {
+          "repository": "caseymcrane/hanzi-ascii",
+          "url": "https://github.com/caseymcrane/hanzi-ascii",
+          "license": null,
+          "description": "A little toy program to render chinese characters (or any unicode characters) to the terminal as ASCII art. ",
+          "default_branch": "main"
+        },
+        {
+          "repository": "SUPERL0SER256/Indian-glyph-webcam-art-generator",
+          "url": "https://github.com/SUPERL0SER256/Indian-glyph-webcam-art-generator",
+          "license": null,
+          "description": "An ASCII webcam filter uses the ASCII character set as the pixels in its display.  While learning how to create it i figured that it had room for improvement in image clarity and depth perception. The character set wasnt good enough imo. Thus, I decided to make varying webcam filters using Indo-Chinese language characters as the projected pixels.  ",
+          "default_branch": "main"
+        }
+      ]
+    },
+    {
+      "query": "typographic portrait",
+      "repositories": [
+        {
+          "repository": "GuoBug/kindle-weather-station",
+          "url": "https://github.com/GuoBug/kindle-weather-station",
+          "license": "MIT",
+          "description": "A typographic e-ink weather & clock dashboard for jailbroken Amazon Kindles, featuring touchscreen-controlled rotation (portrait/landscape) and Chinese/English language toggles.",
+          "default_branch": "main"
+        },
+        {
+          "repository": "phoenixatom/pretext-waifu",
+          "url": "https://github.com/phoenixatom/pretext-waifu",
+          "license": null,
+          "description": "Typographic waifu portraits using @chenglou/pretext for variable-width text layout",
+          "default_branch": "main"
+        },
+        {
+          "repository": "suprith41/smeargle",
+          "url": "https://github.com/suprith41/smeargle",
+          "license": null,
+          "description": "Smeargle is a minimalist web studio transforming live video into high-accuracy, custom-text typographic portraits.",
+          "default_branch": "main"
+        },
+        {
+          "repository": "shivam110601/typographic-portrait",
+          "url": "https://github.com/shivam110601/typographic-portrait",
+          "license": null,
+          "description": "Automatic Portrait Typography generator",
+          "default_branch": "main"
+        },
+        {
+          "repository": "icze03/typographic-portrait",
+          "url": "https://github.com/icze03/typographic-portrait",
+          "license": null,
+          "description": null,
+          "default_branch": "main"
+        },
+        {
+          "repository": "dct-cell/typographic-portrait",
+          "url": "https://github.com/dct-cell/typographic-portrait",
+          "license": null,
+          "description": "字体肖像融合：正看是书法文字，旋转180°是人脸肖像的双重视觉深度学习项目",
+          "default_branch": "master"
+        }
+      ]
+    },
+    {
+      "query": "text art canvas glyph coverage",
+      "repositories": []
+    }
+  ]
+}

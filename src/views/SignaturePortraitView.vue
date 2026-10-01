@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, shallowRef, watch } from 'vue'
 
 import FxButton from '@/components/ui/FxButton.vue'
 import {
@@ -32,6 +32,8 @@ import {
   type NameBank,
   type Placement,
   type SignatureStamp,
+  type SignatureLayoutOptions,
+  type SignatureInkStyle,
 } from '@/lib/signature-portrait'
 import { useThemeStore } from '@/stores/theme'
 
@@ -51,6 +53,14 @@ const portrait = ref<HTMLImageElement | null>(null)
 const portraitName = ref('')
 const portraitObjectUrl = ref('')
 const hasResult = ref(false)
+const generatedResult = shallowRef<{
+  options: SignatureLayoutOptions
+  stamps: SignatureStamp[]
+  portrait: HTMLImageElement
+  placements: Placement[]
+  width: number
+  height: number
+} | null>(null)
 const placementCount = ref(0)
 /** Canvas2D 回退用的概览栅格 */
 let lastOverview: HTMLCanvasElement | null = null
@@ -93,13 +103,15 @@ const density = ref(30)
 /** 成图布局/导出最长边：影响点数与 PNG；屏上预览另有轻量概览 */
 const maxSide = ref(4096)
 const angleRange = ref(12)
-const minSizePct = ref(2.2)
-const maxSizePct = ref(6.5)
+const minSizePct = ref(1.4)
+const maxSizePct = ref(4)
 const colorize = ref(true)
-const coverFill = ref(true)
+const coverFill = ref(false)
 const fillHighlights = ref(false)
 /** true = 亮处密铺（密度反向）；null = 自动 */
-const invertDensity = ref<boolean | null>(true)
+const invertDensity = ref<boolean | null>(false)
+const signatureSurface = ref<'paper' | 'night'>('paper')
+const signatureInkStyle = ref<SignatureInkStyle>('ink')
 const allowVertical = ref(false)
 /** 边缘勾勒 */
 const edgeOutline = ref(true)
@@ -113,9 +125,46 @@ const brushSize = ref(3.2)
 const progressStage = ref('')
 const progressRatio = ref(0)
 
-const previewBg = computed(() =>
-  theme.isDark ? '#12161f' : '#f3efe6',
-)
+// Dark ink needs a stable paper substrate; UI theme must not hide the artwork.
+const previewBg = ref('#f5f3ef')
+
+/** Capture once: controls may change while the worker/preview/export is running. */
+function currentLayoutOptions(): SignatureLayoutOptions {
+  return {
+    inkStyle: signatureInkStyle.value,
+    maxSide: Math.round(maxSide.value),
+    density: density.value,
+    angleRange: angleRange.value,
+    allowVertical: allowVertical.value,
+    minSizeRatio: minSizePct.value / 100,
+    maxSizeRatio: maxSizePct.value / 100,
+    fillHighlights: fillHighlights.value,
+    invertDensity: invertDensity.value ?? undefined,
+    colorize: colorize.value,
+    coverFill: coverFill.value,
+    ink: signatureSurface.value === 'night' ? { r: 238, g: 234, b: 226 } : undefined,
+    overlap: 0.22,
+    gamma: 1.15,
+    background: previewBg.value,
+    underlay: 0,
+    seed: seed.value,
+    edgeOutline: edgeOutline.value,
+    edgeBoost: edgeBoost.value,
+    edgeThreshold: edgeThreshold.value,
+    edgeColorMode: edgeColorMode.value,
+    edgeColor: hexToRgb(edgeColorHex.value),
+  }
+}
+
+const resultSettingsChanged = computed(() => {
+  const result = generatedResult.value
+  return Boolean(result && (
+    JSON.stringify(currentLayoutOptions()) !== JSON.stringify(result.options) ||
+    portrait.value !== result.portrait ||
+    stamps.value.map(s => s.id).join(',') !== result.stamps.map(s => s.id).join(',')
+  ))
+})
+const resultBackground = computed(() => generatedResult.value?.options.background ?? previewBg.value)
 
 const portraitSrc = computed(
   () => portraitObjectUrl.value || portrait.value?.src || '',
@@ -136,7 +185,7 @@ const viewScaleLabel = computed(() => {
 
 const lastOutputMeta = computed(() => {
   if (!hasResult.value || layoutW <= 0) return ''
-  return `矢量 ${layoutW}×${layoutH} · ${placementCount.value} 笔 · ${previewBackend === 'webgl' ? 'WebGL' : 'Canvas'}`
+  return `${layoutW}×${layoutH} · ${placementCount.value} 枚签名`
 })
 
 const maxSideLabel = computed(() => {
@@ -362,6 +411,8 @@ function ensureCanvas2d(): HTMLCanvasElement {
 }
 
 function ensureGlPreview(): GlStampPreview | null {
+  // The new path-cutout contract has not passed a GPU renderer gate.
+  if (generatedResult.value?.options.inkStyle === 'cutout') return null
   if (glPreview) return glPreview
   // 新 canvas，避免已被 getContext('2d') 占用
   const canvas = document.createElement('canvas')
@@ -381,6 +432,7 @@ function clearResultStage() {
   }
   disposeGlPreview()
   hasResult.value = false
+  generatedResult.value = null
   placementCount.value = 0
   lastOverview = null
   lastPlacements = []
@@ -525,7 +577,8 @@ async function paintSharpViewport() {
   const canvas = resultCanvas.value
   const host = previewHost.value
   const root = compareRoot.value
-  if (!canvas || !host || !root || !lastPlacements.length || !portrait.value) return
+  const result = generatedResult.value
+  if (!canvas || !host || !root || !lastPlacements.length || !result) return
   if (layoutW <= 0) return
 
   const seq = ++zoomPaintSeq
@@ -555,18 +608,19 @@ async function paintSharpViewport() {
 
   const tile = paintPlacementsRegion(
     lastPlacements,
-    stamps.value,
+    result.stamps,
     region,
     outW,
     outH,
     {
-      background: previewBg.value,
-      colorize: colorize.value,
-      coverFill: coverFill.value,
-      portrait: portrait.value,
+      background: result.options.background,
+      inkStyle: result.options.inkStyle,
+      colorize: result.options.colorize,
+      coverFill: result.options.coverFill,
+      portrait: result.portrait,
       layoutW,
       layoutH,
-      underlay: coverFill.value ? 0.28 : 0.16,
+      underlay: 0,
       stampMaxLong: Math.min(1600, Math.max(800, Math.round(Math.max(outW, outH) * 0.65))),
     },
   )
@@ -585,7 +639,7 @@ async function paintSharpViewport() {
     ctx.imageSmoothingQuality = 'high'
     ctx.drawImage(lastOverview, 0, 0, fw, fh)
   } else {
-    ctx.fillStyle = previewBg.value
+    ctx.fillStyle = result.options.background ?? '#f5f3ef'
     ctx.fillRect(0, 0, fw, fh)
   }
   const dx = (visLeft / Math.max(1, rootRect.width)) * fw
@@ -939,7 +993,7 @@ async function loadDemo() {
       image.onerror = () => reject(new Error('示例画像加载失败'))
       image.src = demoPath
     })
-    invertDensity.value = true
+    invertDensity.value = signatureSurface.value === 'night'
     portrait.value = image
     portraitName.value = '示例 · 亚里士多德胸像'
     progressStage.value = '渲染'
@@ -1001,6 +1055,11 @@ async function renderNow() {
   paintSignal.cancelled = true
   paintSignal = { cancelled: false }
   const signal = paintSignal
+  const result = {
+    portrait: portrait.value,
+    stamps: stamps.value.map(stamp => ({ ...stamp })),
+    options: currentLayoutOptions(),
+  }
   pending.value = true
   progressStage.value = '准备中'
   progressRatio.value = 0
@@ -1010,29 +1069,12 @@ async function renderNow() {
 
     // 1) 只算矢量排版（坐标 / 印章编号 / 大小 / 角度）
     const { placements, width, height } = await renderSignaturePortrait(
-      portrait.value,
-      portrait.value.naturalWidth || portrait.value.width,
-      portrait.value.naturalHeight || portrait.value.height,
-      stamps.value,
+      result.portrait,
+      result.portrait.naturalWidth || result.portrait.width,
+      result.portrait.naturalHeight || result.portrait.height,
+      result.stamps,
       {
-        maxSide: Math.round(maxSide.value),
-        density: density.value,
-        angleRange: angleRange.value,
-        allowVertical: allowVertical.value,
-        minSizeRatio: minSizePct.value / 100,
-        maxSizeRatio: maxSizePct.value / 100,
-        fillHighlights: fillHighlights.value,
-        invertDensity: invertDensity.value ?? undefined,
-        colorize: colorize.value,
-        overlap: 0.22,
-        gamma: 1.15,
-        background: previewBg.value,
-        seed: seed.value,
-        edgeOutline: edgeOutline.value,
-        edgeBoost: edgeBoost.value,
-        edgeThreshold: edgeThreshold.value,
-        edgeColorMode: edgeColorMode.value,
-        edgeColor: hexToRgb(edgeColorHex.value),
+        ...result.options,
         skipPaint: true,
         onProgress: (stage, ratio) => {
           if (seq !== renderSeq) return
@@ -1045,6 +1087,7 @@ async function renderNow() {
     if (seq !== renderSeq || signal.cancelled) return
 
     lastPlacements = placements
+    generatedResult.value = { ...result, placements, width, height }
     layoutW = width
     layoutH = height
     placementCount.value = placements.length
@@ -1062,13 +1105,14 @@ async function renderNow() {
 
     disposeGlPreview()
     const gl = ensureGlPreview()
-    if (gl && portrait.value) {
+    if (gl) {
       progressStage.value = 'WebGL 实例化'
       progressRatio.value = 0.7
-      gl.setBackground(previewBg.value)
-      gl.setColorize(colorize.value)
-      gl.setPortrait(portrait.value, coverFill.value ? 0.28 : 0.16)
-      gl.setStamps(stamps.value)
+      gl.setBackground(result.options.background ?? '#f5f3ef')
+      gl.setColorize(Boolean(result.options.colorize))
+      gl.setCoverFill(Boolean(result.options.coverFill))
+      gl.setPortrait(null, 0)
+      gl.setStamps(result.stamps)
       gl.setPlacements(placements, layoutW, layoutH)
       if (seq !== renderSeq || signal.cancelled) return
       progressStage.value = '完成'
@@ -1082,17 +1126,18 @@ async function renderNow() {
       const outH = Math.max(1, Math.round(layoutH * (outW / layoutW)))
       const overview = await paintPlacementsTiled(
         placements,
-        stamps.value,
+        result.stamps,
         layoutW,
         layoutH,
         outW,
         outH,
         {
-          background: previewBg.value,
-          colorize: colorize.value,
-          coverFill: coverFill.value,
-          portrait: portrait.value,
-          underlay: coverFill.value ? 0.28 : 0.16,
+          background: result.options.background,
+          inkStyle: result.options.inkStyle,
+          colorize: result.options.colorize,
+          coverFill: result.options.coverFill,
+          portrait: result.portrait,
+          underlay: 0,
           tileSize: 320,
           onTile: ({ canvas: partial, done, total }) => {
             if (seq !== renderSeq || signal.cancelled) return
@@ -1129,22 +1174,25 @@ async function renderNow() {
 
 /** 导出矢量源（placements JSON），不含印章位图 */
 function downloadVectorJson() {
-  if (!lastPlacements.length || layoutW <= 0) return
+  const result = generatedResult.value
+  if (!lastPlacements.length || layoutW <= 0 || !result) return
   const doc = {
     version: 1,
     kind: 'astra-signature-portrait',
-    width: layoutW,
-    height: layoutH,
-    seed: seed.value,
-    density: density.value,
-    maxSide: maxSide.value,
-    colorize: colorize.value,
-    stampCount: stamps.value.length,
-    placementCount: lastPlacements.length,
-    placements: lastPlacements,
+    width: result.width,
+    height: result.height,
+    seed: result.options.seed,
+    density: result.options.density,
+    maxSide: result.options.maxSide,
+    colorize: result.options.colorize,
+    renderOptions: result.options,
+    stampIds: result.stamps.map(s => s.id),
+    stampCount: result.stamps.length,
+    placementCount: result.placements.length,
+    placements: result.placements,
   }
   const blob = new Blob([JSON.stringify(doc)], { type: 'application/json' })
-  triggerDownload(blob, `signature-portrait-${layoutW}x${layoutH}.json`)
+  triggerDownload(blob, `signature-portrait-${result.width}x${result.height}.json`)
 }
 
 /** 第三档：对当前写法模板做 path trace（不 trace 整幅成图） */
@@ -1183,38 +1231,42 @@ async function traceStampTemplates() {
 
 /** 导出 path 级 SVG（模板 path + placements transform） */
 async function downloadPathSvg() {
-  if (!lastPlacements.length || layoutW <= 0) return
+  const result = generatedResult.value
+  if (!lastPlacements.length || layoutW <= 0 || !result) return
   error.value = ''
   pending.value = true
   try {
-    if (tracedStampCount.value < stamps.value.length) {
+    let exportStamps = result.stamps
+    if (exportStamps.some(stamp => !stampHasVector(stamp))) {
       progressStage.value = '矢量化写法'
       progressRatio.value = 0
-      const traced = await traceStamps(stamps.value, {
+      const traced = await traceStamps(exportStamps, {
         onProgress: (done, total) => {
           progressStage.value = `矢量化 ${done}/${total}`
           progressRatio.value = done / Math.max(1, total) * 0.55
         },
       })
-      stamps.value = traced
+      exportStamps = traced
     }
     progressStage.value = '拼 Path SVG'
     progressRatio.value = 0.7
     await new Promise((r) => setTimeout(r, 0))
     const svg = buildPathSvgDocument(
-      lastPlacements,
-      stamps.value,
-      layoutW,
-      layoutH,
+      result.placements,
+      exportStamps,
+      result.width,
+      result.height,
       {
-        background: previewBg.value,
-        colorize: colorize.value,
+        background: result.options.background,
+        inkStyle: result.options.inkStyle,
+        colorize: result.options.colorize,
         underlay: 0,
+        coverFill: result.options.coverFill,
       },
     )
     triggerDownload(
       pathSvgToBlob(svg),
-      `signature-portrait-paths-${layoutW}x${layoutH}.svg`,
+      `signature-portrait-paths-${result.width}x${result.height}.svg`,
     )
   } catch (e) {
     error.value = e instanceof Error ? e.message : 'Path SVG 导出失败'
@@ -1226,7 +1278,8 @@ async function downloadPathSvg() {
 }
 
 async function downloadPng() {
-  if (!lastPlacements.length || layoutW <= 0 || !portrait.value) return
+  const result = generatedResult.value
+  if (!lastPlacements.length || layoutW <= 0 || !result) return
   error.value = ''
   pending.value = true
   progressStage.value = '导出 PNG'
@@ -1234,18 +1287,19 @@ async function downloadPng() {
   const signal = { cancelled: false }
   try {
     const canvas = await paintPlacementsTiled(
-      lastPlacements,
-      stamps.value,
-      layoutW,
-      layoutH,
-      layoutW,
-      layoutH,
+      result.placements,
+      result.stamps,
+      result.width,
+      result.height,
+      result.width,
+      result.height,
       {
-        background: previewBg.value,
-        colorize: colorize.value,
-        coverFill: coverFill.value,
-        portrait: portrait.value,
-        underlay: coverFill.value ? 0.28 : 0.16,
+        background: result.options.background,
+        inkStyle: result.options.inkStyle,
+        colorize: result.options.colorize,
+        coverFill: result.options.coverFill,
+        portrait: result.portrait,
+        underlay: 0,
         tileSize: 384,
         onTile: ({ done, total }) => {
           progressStage.value = `导出 ${done}/${total}`
@@ -1255,7 +1309,7 @@ async function downloadPng() {
       },
     )
     const blob = await canvasToPngBlob(canvas)
-    triggerDownload(blob, `signature-portrait-${layoutW}x${layoutH}.png`)
+    triggerDownload(blob, `signature-portrait-${result.width}x${result.height}.png`)
   } catch (e) {
     error.value = e instanceof Error ? e.message : '导出失败'
   } finally {
@@ -1287,6 +1341,13 @@ watch(previewBg, () => {
   if (canRender.value && hasResult.value) void renderNow()
   else if (!hasResult.value) clearResultStage()
 })
+watch(signatureSurface, value => {
+  invertDensity.value = value === 'night'
+  previewBg.value = value === 'night' ? '#111615' : '#f5f3ef'
+})
+watch([coverFill, colorize, signatureInkStyle], () => {
+  if (canRender.value && hasResult.value && !pending.value) void renderNow()
+})
 </script>
 
 <template>
@@ -1295,7 +1356,7 @@ watch(previewBg, () => {
       <p class="eyebrow">实验</p>
       <h1>签名画像</h1>
       <p class="lead">
-        矢量坐标为源；预览优先 WebGL。第三档可把写法 trace 成 path，再下 Path SVG。分辨率主要影响布局/导出。
+        用完整的手写签名，织出一幅肖像。远看光影，近看笔迹；在浏览器本地创作，可下载高清图片和矢量作品。
       </p>
     </header>
 
@@ -1506,13 +1567,28 @@ watch(previewBg, () => {
           </label>
 
           <label class="ink-control">
+            <span class="ink-control-head"><span>签名风格</span></span>
+            <select v-model="signatureInkStyle" aria-label="签名风格" :disabled="pending">
+              <option value="ink">笔迹织排</option>
+              <option value="cutout">镂空排印</option>
+            </select>
+            <p class="hint">笔迹织排保留手写墨迹；镂空排印将签名刻入墨版，呈现更鲜明的块面与光影。</p>
+          </label>
+
+          <label class="ink-control">
+            <span class="ink-control-head"><span>作品底色</span></span>
+            <select v-model="signatureSurface" aria-label="作品底色"><option value="paper">纸上书写</option><option value="night">夜光签名</option></select>
+            <p class="hint">纸白墨迹或深色发光笔迹，底色切换后自动生成。</p>
+          </label>
+
+          <label class="ink-control">
             <span class="ink-control-head">
               <span>填色垫底</span>
               <strong>{{ coverFill ? '开' : '关' }}</strong>
             </span>
             <label class="check edge-toggle">
               <input v-model="coverFill" type="checkbox" />
-              印章下垫软色块，补笔画空洞（默认开）
+              加入软色网点，增强肖像层次；纯签名时关闭
             </label>
           </label>
 
@@ -1559,7 +1635,7 @@ watch(previewBg, () => {
               </label>
             </div>
             <p class="hint res-hint">
-              浅色雕像 / 白衣深底选「亮处密」；普通写真选「暗处密」。现在默认亮处密。
+              纸上书写使用「暗处密」；深色底的夜光签名使用「亮处密」。
             </p>
           </label>
 
@@ -1666,11 +1742,11 @@ watch(previewBg, () => {
               </label>
               <label class="check">
                 <input v-model="allowVertical" type="checkbox" />
-                弱边缘处允许竖排
+                使用竖向排列
               </label>
               <label class="check">
-                <input v-model="colorize" type="checkbox" />
-                局部染色（更像原片）
+                <input v-model="colorize" type="checkbox" :disabled="signatureSurface === 'night'" />
+                局部染色（纸上书写）
               </label>
               <label class="check">
                 <input v-model="fillHighlights" type="checkbox" />
@@ -1718,15 +1794,18 @@ watch(previewBg, () => {
           <p v-if="hasResult || stamps.length" class="hint">
             JSON = 坐标源。Path SVG = 写法 trace 成真正 path 再按 placements 摆放（第三档）。PNG = 栅格导出。
           </p>
+          <p v-if="resultSettingsChanged && !pending" class="hint result-settings-changed" role="status">
+            参数已调整，点击「生成预览」应用。下载文件对应当前预览的作品。
+          </p>
           <p v-if="error" class="error">{{ error }}</p>
           <p v-else-if="pending && progressStage" class="meta">
             {{ progressStage }} · {{ Math.round(progressRatio * 100) }}%
           </p>
           <p v-else-if="placementCount" class="meta">
-            用 {{ stamps.length }} 种写法铺了 {{ placementCount }} 枚
-            <template v-if="edgeOutline">
+            用 {{ generatedResult?.stamps.length ?? stamps.length }} 种写法铺了 {{ placementCount }} 枚
+            <template v-if="generatedResult?.options.edgeOutline">
               · 边缘勾勒
-              {{ edgeColorMode === 'custom' ? edgeColorHex : edgeColorMode === 'ink' ? '纯墨' : '随画像' }}
+              {{ generatedResult.options.edgeColorMode === 'custom' ? '自定义' : generatedResult.options.edgeColorMode === 'ink' ? '纯墨' : '随画像' }}
             </template>
           </p>
         </section>
@@ -1772,7 +1851,7 @@ watch(previewBg, () => {
         <div
           ref="previewHost"
           class="stage"
-          :style="{ background: previewBg }"
+          :style="{ background: resultBackground }"
           @wheel.prevent="onStageWheel"
         >
           <div
@@ -1800,7 +1879,7 @@ watch(previewBg, () => {
               class="compare-clip"
               :style="{ width: canCompare ? `${comparePct}%` : '100%' }"
             >
-              <div ref="resultHost" class="result-host"><canvas ref="resultCanvas" class="result-canvas" /></div>
+              <div ref="resultHost" class="result-host" />
             </div>
             <template v-if="canCompare">
               <div
@@ -1829,8 +1908,8 @@ watch(previewBg, () => {
   padding: 1.25rem 0 2.5rem;
   font-family: var(--body);
   /* 顶栏下整页可滚，不用缩浏览器 */
-  height: calc(100dvh - 3.4rem);
-  max-height: calc(100dvh - 3.4rem);
+  height: 100%;
+  max-height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
   overscroll-behavior: contain;
@@ -1875,6 +1954,7 @@ h1 {
 
 .controls {
   display: grid;
+  min-width: 0;
   gap: 1rem;
 }
 
@@ -1887,6 +1967,7 @@ h1 {
 
 .preview-head {
   display: flex;
+  flex-wrap: wrap;
   align-items: baseline;
   justify-content: space-between;
   gap: 0.75rem;
@@ -1894,6 +1975,7 @@ h1 {
 }
 
 .panel {
+  min-width: 0;
   padding: 1rem 1.05rem 1.15rem;
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
@@ -2142,6 +2224,7 @@ h2 {
   min-height: 360px;
   max-height: min(70vh, 820px);
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   place-items: start center;
   border-radius: 12px;
   overflow: auto;
@@ -2372,7 +2455,7 @@ h2 {
 
 @media (max-width: 960px) {
   .layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .preview {

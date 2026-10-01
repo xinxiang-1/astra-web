@@ -1,0 +1,32 @@
+{
+  "retrievedAt": "2026-09-30T16:21:35.737Z",
+  "records": [
+    {
+      "repository": "codrops/HoverEffectIdeas",
+      "filename": "README.md",
+      "url": "https://api.github.com/repos/codrops/HoverEffectIdeas/contents/README.md",
+      "gitBlob": "0ee249d93962fb20bb3d68527a3be9fce422294f",
+      "sha256": "1b559d59001f59956e807967f5b8afeb1db59905ed3c2a5fb04f47834febda8c",
+      "excerpt": "Hover Effect Ideas\n=========\n\nSome inspiration and modern ideas for subtle hover effects.\n\n[Article on Codrops](http://tympanus.net/codrops/?p=19292)\n\n[Demo](http://tympanus.net/Development/HoverEffectIdeas/)\n\nImages by [Unsplash](http://unsplash.com/). [Feather Icons](https://gumroad.com/l/feather) by Cole Bemis. \n[Font Awesome Icon Font] (http://fortawesome.github.io/Font-Awesome/) created by Dave Gandy.\n\nIntegrate or build upon it for free in your personal or commercial projects. Don't republish, redistribute or sell \"as-is\". \n\nRead more here: [License](http://tympanus.net/codrops/licensing/)\n\n[© Codrops 2014](http://www.codrops.com)"
+    },
+    {
+      "error": "Error: 404 https://api.github.com/repos/codrops/HoverEffectIdeas/contents/LICENSE"
+    },
+    {
+      "repository": "codrops/MagneticButtons",
+      "filename": "README.md",
+      "url": "https://api.github.com/repos/codrops/MagneticButtons/contents/README.md",
+      "gitBlob": "780e0698441a0152bf5e682f2f94f0391034e324",
+      "sha256": "3a65c3530480209a0f67b29a06eac3c908d640326b04d9cf55fe4de863803654",
+      "excerpt": "# Magnetic Buttons\n\nA small set of magnetic buttons with some fun hover animations. Inspired by the button animation seen on [Cuberto](https://cuberto.com/services/).\n\n![Image](https://tympanus.net/codrops/wp-content/uploads/2020/08/Buttons_featured.png)\n\n[Article on Codrops](https://tympanus.net/codrops/?p=50513)\n\n[Demo](http://tympanus.net/Development/MagneticButtons/)\n\n\n## Installation\n\nInstall dependencies:\n\n```\nnpm install\n```\n\nCompile the code for development and start a local server:\n\n```\nnpm start\n```\n\nCreate the build:\n\n```\nnpm run build\n```\n\n\n## Misc\n\nFollow Codrops: [Twitter](http://www.twitter.com/codrops), [Facebook](http://www.facebook.com/codrops), [GitHub](https://github.com/codrops), [Instagram](https://www.instagram.com/codropsss/)\n\n## License\n[MIT](LICENSE)\n\nMade with :blue_heart: by [Codrops](http://www.codrops.com)\n\n\n\n\n\n"
+    },
+    {
+      "repository": "codrops/MagneticButtons",
+      "filename": "LICENSE",
+      "url": "https://api.github.com/repos/codrops/MagneticButtons/contents/LICENSE",
+      "gitBlob": "ec0612f544b4d7da380d3de7dbd9a3732584a0a5",
+      "sha256": "a4552773ea59e8272be04873aa1bcd617d9d31a03ddd7599c915b803b7cc8413",
+      "excerpt": "MIT License\n\nCopyright (c) 2009 - 2020 [Codrops](https://tympanus.net/codrops)\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n"
+    }
+  ]
+}

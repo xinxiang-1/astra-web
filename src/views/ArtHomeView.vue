@@ -1,17 +1,35 @@
 <script setup lang="ts">
+import { computed, ref } from 'vue'
 import CharacterArtwork from '@/components/CharacterArtwork.vue'
 import ArtIcon from '@/components/ui/ArtIcon.vue'
 import ArtFooter from '@/components/ArtFooter.vue'
 import { artworkPresets } from '@/content/artwork'
+import { ART_MODES, type ArtMode, type ArtHover } from '@/lib/art-engine'
+import { useScrollMotion } from '@/lib/scroll-motion'
 const featured = [artworkPresets[0]!, artworkPresets[1]!, artworkPresets[2]!]
+const home = ref<HTMLElement>()
+const showcaseMode = ref<ArtMode>('color')
+const showcaseHover = ref<ArtHover>('light')
+const showcaseDescription = computed(() => ART_MODES.find(item => item.id === showcaseMode.value)!)
+function moveShowcaseGlow(event: PointerEvent) {
+  if (event.pointerType === 'touch') return
+  const element = event.currentTarget as HTMLElement
+  const box = element.getBoundingClientRect()
+  element.style.setProperty('--glow-x', `${event.clientX - box.left}px`)
+  element.style.setProperty('--glow-y', `${event.clientY - box.top}px`)
+}
+useScrollMotion(home)
 </script>
 <template>
-  <div class="art-page home-art">
+  <div ref="home" class="art-page home-art">
     <section class="hero-gallery">
       <div class="hero-art">
         <CharacterArtwork
           src="/artwork/portrait-reference.png"
           compare
+          animated
+          interactive
+          engine="studio"
           label="女性肖像的原图与字符作品对比"
         />
       </div>
@@ -30,13 +48,14 @@ const featured = [artworkPresets[0]!, artworkPresets[1]!, artworkPresets[2]!]
         </div>
       </div>
       <span class="hero-side-label art-eyebrow">CHARACTERS. ENDLESS POSSIBILITIES.</span>
+      <div class="hero-coordinate" aria-hidden="true"><span>LOCAL RENDER / 02</span><span>SCROLL TO EXPLORE ↓</span></div>
     </section>
     <div class="trust-strip">
       <span class="art-eyebrow">PRIVATE<br />LOCAL<br />CREATIVE</span>
       <p><ArtIcon name="shield" :size="25" /> 本地处理 <i /> 无需上传 <i /> 图片与短视频</p>
       <span class="trust-aside">你的创作<br />始终属于你 <b>—</b></span>
     </div>
-    <section class="art-wrap featured-section">
+    <section class="art-wrap featured-section" data-reveal>
       <div class="art-section-heading">
         <div>
           <span class="art-eyebrow">SELECTED WORKS / 01</span>
@@ -68,7 +87,25 @@ const featured = [artworkPresets[0]!, artworkPresets[1]!, artworkPresets[2]!]
         ></RouterLink>
       </div>
     </section>
-    <section id="how-it-works" class="steps-section art-wrap">
+    <section class="engine-story" data-scroll-stage>
+      <div class="story-grid" aria-hidden="true" /><div class="story-orbit" aria-hidden="true" />
+      <div class="story-copy" data-reveal>
+        <span class="art-eyebrow">ONE IMAGE. MANY EXPRESSIONS. / 02</span>
+        <h2>让光影，<br />拥有更多语言。</h2>
+        <p>字符、中文、轮廓与点阵。<br />每一种表达，都来自同一张原图。</p>
+        <div class="story-modes" role="group" aria-label="切换引擎展示模式"><button v-for="(item, index) in ART_MODES" :key="item.id" :aria-pressed="showcaseMode === item.id" :class="{ active: showcaseMode === item.id }" @click="showcaseMode = item.id"><span class="mode-number" aria-hidden="true">0{{ index + 1 }}</span><span>{{ item.name }}</span><ArtIcon :size="13" /></button></div>
+        <p class="story-mode-description" aria-live="polite">{{ showcaseDescription.description }}</p>
+        <RouterLink to="/art-lab" class="art-button primary">探索六种表达 <ArtIcon :size="16" /></RouterLink>
+        <span class="story-note">新引擎验证版 · 本地生成 · 可下载 4K 图片</span>
+      </div>
+      <div class="story-art" data-reveal @pointermove="moveShowcaseGlow">
+        <div class="story-art-heading"><span><i aria-hidden="true" />{{ showcaseDescription.name }}</span><span class="art-eyebrow">LIVE CANVAS</span></div>
+        <div class="story-canvas"><CharacterArtwork src="/artwork/portrait-reference.png" :mode="showcaseMode" :phrase="showcaseMode === 'phrase' ? '光与影，皆是你' : ''" :color="showcaseMode === 'color'" :columns="140" animated interactive motion="breathe" :hover="showcaseHover" label="六种字符模式的真实图像演示" /></div>
+        <div class="story-art-toolbar"><span class="story-hover-hint">移动鼠标，唤醒光影</span><div role="group" aria-label="展示作品的悬停效果"><button :class="{ active: showcaseHover === 'light' }" :aria-pressed="showcaseHover === 'light'" @click="showcaseHover = 'light'">光晕</button><button :class="{ active: showcaseHover === 'ripple' }" :aria-pressed="showcaseHover === 'ripple'" @click="showcaseHover = 'ripple'">涟漪</button></div></div>
+        <span class="story-registration" aria-hidden="true">ASTRA / CHARACTER STUDY</span>
+      </div>
+    </section>
+    <section id="how-it-works" class="steps-section art-wrap" data-reveal>
       <div class="art-section-heading">
         <div>
           <span class="art-eyebrow">YOUR FIRST CREATION / 02</span>
@@ -107,7 +144,7 @@ const featured = [artworkPresets[0]!, artworkPresets[1]!, artworkPresets[2]!]
         </article>
       </div>
     </section>
-    <section class="closing-strip">
+    <section class="closing-strip" data-reveal>
       <div>
         <ArtIcon name="shield" :size="40" />
         <div>
@@ -215,6 +252,43 @@ const featured = [artworkPresets[0]!, artworkPresets[1]!, artworkPresets[2]!]
   color: #959c92;
   letter-spacing: 3px;
 }
+.hero-coordinate { position: absolute; bottom: 18px; left: 56px; right: 28px; display: flex; justify-content: space-between; color: #6c8880; font: 8px monospace; letter-spacing: 2px; pointer-events: none; }
+.motion-ready [data-reveal] { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.6,.2,1); }
+.motion-ready [data-reveal].is-revealed { opacity: 1; transform: translateY(0); }
+.engine-story { position: relative; display: grid; grid-template-columns: .9fr 1.1fr; min-height: 680px; background: #101a19; color: #eeece4; padding: 80px max(56px, calc((100vw - 1328px)/2)); gap: 60px; overflow: hidden; }
+.story-grid { position: absolute; inset: 0; opacity: .07; background-image: linear-gradient(#9dc3ba30 1px, transparent 1px), linear-gradient(90deg, #9dc3ba30 1px, transparent 1px); background-size: 70px 70px; transform: translateY(calc((var(--scroll-progress, .5) - .5) * 60px)); pointer-events: none; }
+.story-orbit { position: absolute; width: 850px; height: 850px; border: 1px solid #58e8ed0c; border-radius: 50%; top: -110px; left: 38%; transform: scale(calc(.95 + var(--scroll-progress, .5) * .15)); pointer-events: none; }
+.story-orbit::before, .story-orbit::after { content: ''; position: absolute; border: 1px solid #58e8ed14; border-radius: 50%; inset: 90px; }
+.story-orbit::after { inset: 180px; }
+.story-copy { position: relative; align-self: center; z-index: 1; }
+.story-copy > .art-eyebrow { color: var(--art-cyan); }
+.story-copy h2 { font-size: clamp(36px, 4vw, 60px); line-height: 1.25; margin: 28px 0 24px; }
+.story-copy p { font-size: 13px; line-height: 2; color: #9cb1a9; }
+.story-modes { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin: 28px 0 12px; max-width: 400px; }
+.story-modes button { display: flex; align-items: center; gap: 12px; border: 1px solid #ffffff20; border-radius: 5px; background: #101a19; color: #b9c8c2; font: 12px var(--font-body); padding: 16px 12px; cursor: pointer; transition: color .25s, border-color .25s, background .25s, box-shadow .25s; text-align: left; }
+.story-modes .mode-number { font: 9px Consolas, monospace; color: #6d9185; }
+.story-modes button svg { margin-left: auto; opacity: 0; transform: translateX(-4px); transition: opacity .25s, transform .25s; }
+.story-modes button:hover { background: #58e8ed0a; border-color: #58e8ed65; color: #eeece4; box-shadow: inset 0 0 18px #58e8ed08; }
+.story-modes button:hover svg, .story-modes button.active svg { opacity: 1; transform: translateX(0); }
+.story-modes button.active { color: var(--art-cyan); border-color: #58e8ed90; background: #58e8ed0b; }
+.story-modes button:focus-visible { outline: 2px solid var(--art-cyan); outline-offset: 3px; }
+.story-copy .story-mode-description { min-height: 24px; margin: 0 0 24px; color: #a7bdb3; font-size: 11px; }
+.story-note { display: block; margin-top: 16px; font: 9px var(--font-body); color: #8fa89e; }
+.story-art { position: relative; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; height: 568px; min-width: 0; border: 1px solid #5da89b44; border-radius: 8px; background: #111615; align-self: center; box-shadow: 0 28px 75px #030e0b55; }
+.story-art::after { content: ''; position: absolute; inset: -1px; border-radius: inherit; border: 1px solid #58e8ed55; background: radial-gradient(300px circle at var(--glow-x, 50%) var(--glow-y, 50%), #58e8ed12, transparent 75%); opacity: 0; transition: opacity .4s; pointer-events: none; }
+.story-art-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 20px; border-bottom: 1px solid #ffffff10; color: #c5d3ca; font-size: 11px; }
+.story-art-heading > span:first-child { display: flex; align-items: center; gap: 10px; }
+.story-art-heading i { width: 5px; height: 5px; border-radius: 50%; background: var(--art-cyan); box-shadow: 0 0 10px #58e8ed40; }
+.story-art-heading .art-eyebrow { font-size: 8px; color: #749187; letter-spacing: 1.5px; }
+.story-canvas { min-height: 0; overflow: hidden; }
+.story-art-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 56px; padding: 10px 18px; border-top: 1px solid #ffffff10; color: #8aa397; font-size: 10px; }
+.story-art-toolbar > div { display: flex; gap: 4px; }
+.story-art-toolbar button { padding: 7px 12px; border: 1px solid transparent; border-radius: 4px; background: transparent; color: #9aafa6; font: 11px var(--font-body); cursor: pointer; transition: color .2s, background .2s; }
+.story-art-toolbar button:hover, .story-art-toolbar button.active { color: var(--art-cyan); background: #58e8ed0b; border-color: #58e8ed22; }
+.story-art-toolbar button:focus-visible { outline: 2px solid var(--art-cyan); outline-offset: 2px; }
+@media (hover: hover) and (pointer: fine) { .story-art:hover::after { opacity: 1; } }
+@media (hover: none) { .story-hover-hint { display: none; } .story-art-toolbar { justify-content: flex-end; } }
+.story-registration { position: absolute; bottom: -28px; right: 0; font: 8px monospace; letter-spacing: 2px; color: #648c80; }
 .trust-strip {
   background: #151918;
   color: #dddcd4;
@@ -361,6 +435,7 @@ const featured = [artworkPresets[0]!, artworkPresets[1]!, artworkPresets[2]!]
   }
 }
 @media (max-width: 900px) {
+  .engine-story { padding: 50px 28px; gap: 26px; }.story-art { height: 470px; }.story-modes { grid-template-columns: 1fr 1fr; }
   .hero-copy {
     padding-left: 28px;
   }
@@ -395,6 +470,7 @@ const featured = [artworkPresets[0]!, artworkPresets[1]!, artworkPresets[2]!]
   }
 }
 @media (max-width: 600px) {
+  .engine-story { grid-template-columns: 1fr; padding: 48px 22px; min-height: 0; gap: 32px; }.story-copy h2 { font-size: 38px; }.story-art { height: 430px; }.hero-coordinate { display: none; }.hero-art { transform: none; }
   .hero-gallery {
     height: auto;
     min-height: 0;
@@ -508,4 +584,5 @@ const featured = [artworkPresets[0]!, artworkPresets[1]!, artworkPresets[2]!]
     font-size: 17px;
   }
 }
+@media (prefers-reduced-motion: reduce) { .story-grid, .story-orbit { transform: none !important; } [data-reveal], .story-modes button, .story-modes button svg, .story-art::after, .story-art-toolbar button { transition: none !important; } .story-art::after { display: none; } .story-hover-hint { display: none; } }
 </style>

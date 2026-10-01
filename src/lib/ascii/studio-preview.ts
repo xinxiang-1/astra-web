@@ -1,18 +1,18 @@
 import {
   mountStudio,
+  createStudioRenderer,
+  loadStudioMedia,
+  mountStudioMedia,
+  studioSourceSize,
+  type StudioSource,
   normalizeStudioSettings,
   type StudioInput,
   type StudioSettings,
 } from 'asciify-engine/studio'
+import type { AsciiFrameSource } from './types'
 
 export type AsciiStudioHoverEffect =
-  | 'none'
-  | 'trail'
-  | 'water'
-  | 'silk'
-  | 'vortex'
-  | 'contour'
-  | 'dissolve'
+  'none' | 'trail' | 'water' | 'silk' | 'vortex' | 'contour' | 'dissolve'
 
 export type AsciiStudioMotion = 'none' | 'current' | 'reform' | 'caustics'
 
@@ -37,9 +37,97 @@ export type AsciiStudioPreviewInput = {
   motion?: AsciiStudioMotion
   motionSpeed?: number
   backdrop?: string
+  /** Custom phrase characters are rendered by the same native glyph pipeline. */
+  phrase?: string
+  phraseFillAll?: boolean
+  ditherStrength?: number
+  normalize?: boolean
+  phraseThreshold?: number
 }
 
-export type CharsetStudioHandle = Awaited<ReturnType<typeof mountStudio>>
+export type AsciiStudioGridSpec = {
+  columns: number
+  rows: number
+  /** CSS box shared by static and animated previews. */
+  cssWidth: number
+  cssHeight: number
+}
+
+export type AsciiStudioRasterSpec = {
+  width: number
+  height: number
+  pixelRatio: number
+  cellSize: number
+  columns: number
+  rows: number
+}
+
+/** Minimum readable cell for the native-size character preview. */
+export const STUDIO_NATIVE_CELL_SIZE = 6
+
+export type CharsetStudioHandle = Awaited<ReturnType<typeof mountStudio>> & {
+  setSourceOptions(input: AsciiStudioPreviewInput): void
+}
+
+const preparedSources = new WeakMap<StudioSource, { key: string; canvas: HTMLCanvasElement }>()
+export function prepareStudioSource(
+  source: StudioSource,
+  input: AsciiStudioPreviewInput,
+): StudioSource {
+  const maskPhrase = Boolean(input.phrase && !input.phraseFillAll)
+  if (!input.normalize && !maskPhrase) return source
+  const [width, height] = studioSourceSize(source)
+  const key = JSON.stringify([
+    width,
+    height,
+    input.normalize,
+    maskPhrase,
+    input.phraseThreshold,
+    input.invert,
+  ])
+  const cached = preparedSources.get(source)
+  const moving = source instanceof HTMLVideoElement || source instanceof HTMLCanvasElement
+  if (cached?.key === key && !moving) return cached.canvas
+  const canvas = cached?.canvas ?? document.createElement('canvas')
+  const scale = Math.min(1, 1040 / Math.max(width, height))
+  canvas.width = Math.max(1, Math.round(width * scale))
+  canvas.height = Math.max(1, Math.round(height * scale))
+  const ctx = canvas.getContext('2d', { willReadFrequently: true })
+  if (!ctx) throw new Error('Canvas 2D unavailable')
+  ctx.drawImage(source, 0, 0, canvas.width, canvas.height)
+  const image = ctx.getImageData(0, 0, canvas.width, canvas.height)
+  const data = image.data
+  let min = 255
+  let max = 0
+  if (input.normalize) {
+    for (let i = 0; i < data.length; i += 4) {
+      if (data[i + 3]! < 16) continue
+      const lum = data[i]! * 0.299 + data[i + 1]! * 0.587 + data[i + 2]! * 0.114
+      min = Math.min(min, lum)
+      max = Math.max(max, lum)
+    }
+  }
+  const stretch = input.normalize && max > min ? 255 / (max - min) : 1
+  const offset = stretch === 1 ? 0 : min
+  for (let i = 0; i < data.length; i += 4) {
+    const lum = data[i]! * 0.299 + data[i + 1]! * 0.587 + data[i + 2]! * 0.114
+    const normalized = Math.max(0, Math.min(255, (lum - offset) * stretch))
+    if (
+      maskPhrase &&
+      (input.invert ? 1 - normalized / 255 : normalized / 255) > (input.phraseThreshold ?? 0.55)
+    ) {
+      data[i + 3] = 0
+    }
+    // Shift luminance while retaining source hue for colored character art.
+    const delta = normalized - lum
+    data[i] = data[i]! + delta
+    data[i + 1] = data[i + 1]! + delta
+    data[i + 2] = data[i + 2]! + delta
+  }
+  ctx.putImageData(image, 0, 0)
+  preparedSources.set(source, { key, canvas })
+  return canvas
+}
 
 const ASCII_FALLBACK = '@%#*+=-:. '
 
@@ -68,13 +156,37 @@ function clamp(n: number, min: number, max: number) {
  * glyph density while hover/motion is on.
  * target: ≈ `columns` cells across the CSS stage width.
  */
-export function studioCellSizeFromColumns(
-  stageCssWidth: number,
-  columns: number,
-): number {
+export function studioCellSizeFromColumns(stageCssWidth: number, columns: number): number {
   const w = Math.max(40, stageCssWidth)
   const cols = clamp(Math.round(columns), 20, 520)
   return clamp(Math.round(w / cols), 2, 14)
+}
+
+/**
+ * Studio 4.1 has a fixed ASCII row-height multiplier (1.65) and clamps
+ * cellSize to >= 3. Driving it from CSS width therefore collapses the high,
+ * ultra and max presets into nearly the same grid. Instead, render a raster
+ * whose physical dimensions encode the already-generated static grid, then
+ * let CSS fit that raster into the exact same stage box.
+ */
+export function studioRasterForGrid(grid: AsciiStudioGridSpec): AsciiStudioRasterSpec {
+  const columns = clamp(Math.round(grid.columns), 20, 520)
+  const cellSize = STUDIO_NATIVE_CELL_SIZE
+  const rowHeight = cellSize * 1.65
+  const cssRatio = Math.max(0.05, grid.cssWidth / Math.max(1, grid.cssHeight))
+  const width = Math.max(2, Math.round((columns - 0.01) * cellSize))
+  // Preserve Studio's native stage aspect. Encoding the static row count here
+  // squeezes Studio's 1.65 row grid and visibly degrades its effects.
+  const height = Math.max(2, Math.round(width / cssRatio))
+  const rows = Math.max(1, Math.ceil(height / rowHeight))
+  return {
+    width,
+    height,
+    pixelRatio: 1,
+    cellSize,
+    columns,
+    rows,
+  }
 }
 
 /** Map art-page exposure/contrast into Studio color fields. */
@@ -84,9 +196,7 @@ export function mapToneToStudio(exposure = 0, contrast = 0) {
   return { brightness, contrast: studioContrast }
 }
 
-export function buildAsciiStudioSettings(
-  input: AsciiStudioPreviewInput,
-): StudioSettings {
+export function buildAsciiStudioSettings(input: AsciiStudioPreviewInput): StudioSettings {
   const ink = input.ink?.trim() || '#e8e6e1'
   const tone = mapToneToStudio(input.exposure ?? 0, input.contrast ?? 0)
   const cellSize = clamp(Math.round(input.cellSize ?? 4), 2, 14)
@@ -98,7 +208,9 @@ export function buildAsciiStudioSettings(
     aspectRatio: 'original',
     style: 'ascii',
     cellSize,
-    charset: charsetForStudio(input.charset, input.invert ?? true),
+    charset: input.phrase
+      ? `${input.phraseFillAll ? '' : ' '}${input.phrase.replace(/\s/g, '') || '光与影'}`
+      : charsetForStudio(input.charset, input.invert ?? true),
     colorMode: input.colored ? 'source' : 'accent',
     ink,
     crop: { x: 0.5, y: 0.35, zoom: 1, rotation: 0 },
@@ -117,10 +229,10 @@ export function buildAsciiStudioSettings(
       blend: 'source-over',
     },
     dither: {
-      algorithm: 'none' as const,
+      algorithm: (input.ditherStrength ?? 0) > 0 ? ('bayer4' as const) : ('none' as const),
       palette: 'mono',
       colors: ['#080808', ink],
-      amount: 1,
+      amount: input.ditherStrength ?? 1,
       scale: 2,
       threshold: 0.5,
       motion: 'none' as const,
@@ -153,6 +265,49 @@ export function buildAsciiStudioSettings(
   })
 }
 
+/** One native renderer for still previews, thumbnails and exported frames.
+ * Reuse renderers per canvas; switching hover/motion never swaps glyph engines.
+ */
+const stillRenderers = new WeakMap<HTMLCanvasElement, ReturnType<typeof createStudioRenderer>>()
+export function paintStudioFrame(
+  canvas: HTMLCanvasElement,
+  frame: AsciiFrameSource,
+  input: AsciiStudioPreviewInput,
+  columns: number,
+  options: { longEdge?: number; transparent?: boolean; time?: number } = {},
+) {
+  const settings = buildAsciiStudioSettings({ ...input, cellSize: STUDIO_NATIVE_CELL_SIZE })
+  settings.hover.effect = 'none'
+  if (options.transparent) settings.backdrop.mode = 'transparent'
+  const raster = studioRasterForGrid({
+    columns,
+    rows: 1,
+    cssWidth: frame.width,
+    cssHeight: frame.height,
+  })
+  const scale = options.longEdge ? options.longEdge / Math.max(raster.width, raster.height) : 1
+  let renderer = stillRenderers.get(canvas)
+  if (!renderer) {
+    renderer = createStudioRenderer(canvas, settings, { maxDimension: 8192, maxCells: 180_000 })
+    stillRenderers.set(canvas, renderer)
+  }
+  renderer.configure(settings)
+  renderer.setPixelRatio(scale)
+  renderer.render(
+    prepareStudioSource(frame.source as StudioSource, input),
+    options.time ?? 0,
+    Math.round(raster.width * scale),
+    Math.round(raster.height * scale),
+    options.time ?? 0,
+  )
+  return canvas
+}
+
+export function disposeStudioFrame(canvas: HTMLCanvasElement) {
+  stillRenderers.get(canvas)?.destroy()
+  stillRenderers.delete(canvas)
+}
+
 export function studioPatchFromInput(input: AsciiStudioPreviewInput): StudioInput {
   const settings = buildAsciiStudioSettings(input)
   return {
@@ -174,10 +329,21 @@ export function studioPatchFromInput(input: AsciiStudioPreviewInput): StudioInpu
 export function resizeCharsetStudio(
   studio: CharsetStudioHandle,
   stage: HTMLElement,
+  grid?: { columns: number; rows: number },
 ) {
   const rect = stage.getBoundingClientRect()
   const cssW = Math.max(2, rect.width)
   const cssH = Math.max(2, rect.height)
+  if (grid && grid.columns > 0 && grid.rows > 0) {
+    const raster = studioRasterForGrid({
+      columns: grid.columns,
+      rows: grid.rows,
+      cssWidth: cssW,
+      cssHeight: cssH,
+    })
+    studio.resize(raster.width, raster.height, raster.pixelRatio)
+    return raster
+  }
   const dpr = Math.min(
     typeof devicePixelRatio === 'number' ? devicePixelRatio : 1,
     2,
@@ -198,18 +364,31 @@ export async function mountCharsetStudio(
   },
 ): Promise<CharsetStudioHandle> {
   const settings = buildAsciiStudioSettings(input)
-  return mountStudio(canvas, source, {
-    settings,
-    adaptive: false,
-    maxDimension: options?.maxDimension ?? 1920,
-    maxCells: options?.maxCells ?? 180_000,
-    signal: options?.signal,
+  const media = await loadStudioMedia(source, options?.signal)
+  let sourceOptions = input
+  const nativeFrame = media.frame.bind(media)
+  media.frame = (time) => prepareStudioSource(nativeFrame(time), sourceOptions)
+  let mounted: Awaited<ReturnType<typeof mountStudio>>
+  try {
+    mounted = mountStudioMedia(canvas, media, {
+      settings,
+      adaptive: false,
+      maxDimension: options?.maxDimension ?? 4096,
+      maxCells: options?.maxCells ?? 180_000,
+      signal: options?.signal,
+    })
+  } catch (error) {
+    media.destroy()
+    throw error
+  }
+  return Object.assign(mounted, {
+    setSourceOptions(next: AsciiStudioPreviewInput) {
+      sourceOptions = next
+      mounted.redraw()
+    },
   })
 }
 
-export function asciiStudioEffectsActive(
-  hover: AsciiStudioHoverEffect,
-  motion: AsciiStudioMotion,
-) {
+export function asciiStudioEffectsActive(hover: AsciiStudioHoverEffect, motion: AsciiStudioMotion) {
   return hover !== 'none' || motion !== 'none'
 }

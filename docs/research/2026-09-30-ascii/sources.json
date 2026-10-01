@@ -1,0 +1,138 @@
+[
+  {
+    "repository": "ayangabryl/asciify-engine",
+    "url": "https://github.com/ayangabryl/asciify-engine",
+    "branch": "main",
+    "retrievedAt": "2026-09-30T09:30:50.981Z",
+    "files": [
+      {
+        "filename": "LICENSE",
+        "url": "https://api.github.com/repos/ayangabryl/asciify-engine/contents/LICENSE?ref=02e9d8467727ae79dab919ea7e296ce43fd1b5d3",
+        "sha256": "60c568870b997b7082eadfaed333334b28e65921906a1f0b4f2566934cc42783"
+      },
+      {
+        "filename": "README.md",
+        "url": "https://raw.githubusercontent.com/ayangabryl/asciify-engine/02e9d8467727ae79dab919ea7e296ce43fd1b5d3/README.md",
+        "sha256": "a3b224110e2dc994f9b8f21dc711e4f3b4d6b1795ea556d013eedabfa9bfeed1"
+      },
+      {
+        "filename": "THIRD_PARTY.md",
+        "url": "https://raw.githubusercontent.com/ayangabryl/asciify-engine/02e9d8467727ae79dab919ea7e296ce43fd1b5d3/THIRD_PARTY.md",
+        "sha256": "140a58b95fa7c55aef86988f8946fc2bec4389a328ccd09a335e053e7b6c7207"
+      }
+    ],
+    "commit": "02e9d8467727ae79dab919ea7e296ce43fd1b5d3"
+  },
+  {
+    "repository": "humanbydefinition/p5.asciify",
+    "url": "https://github.com/humanbydefinition/p5.asciify",
+    "branch": "main",
+    "retrievedAt": "2026-09-30T09:30:50.983Z",
+    "files": [
+      {
+        "filename": "LICENSE",
+        "url": "https://api.github.com/repos/humanbydefinition/p5.asciify/contents/LICENSE?ref=3dbc91a81fbe6dea1e038a43bd3c2357e3401a32",
+        "sha256": "1140c3d354f6c6d4136c78b4594720849450332a6e51e34f06b1f1ec3e7b2315"
+      },
+      {
+        "filename": "README.md",
+        "url": "https://api.github.com/repos/humanbydefinition/p5.asciify/contents/README.md?ref=3dbc91a81fbe6dea1e038a43bd3c2357e3401a32",
+        "sha256": "05de2e9496e68fa51c1d3acd1a908d8116ce79f68f9d403f39eb53a207ed8a4e"
+      }
+    ],
+    "commit": "3dbc91a81fbe6dea1e038a43bd3c2357e3401a32"
+  },
+  {
+    "repository": "humanbydefinition/p5.asciify-accurate-renderer-plugin",
+    "url": "https://github.com/humanbydefinition/p5.asciify-accurate-renderer-plugin",
+    "branch": "main",
+    "retrievedAt": "2026-09-30T09:30:50.984Z",
+    "files": [
+      {
+        "filename": "LICENSE",
+        "url": "https://raw.githubusercontent.com/humanbydefinition/p5.asciify-accurate-renderer-plugin/1d8c9b1948c522d82a7231ef20b00ec884507a1c/LICENSE",
+        "sha256": "db3353a2e76ede29db1786eae6566bcc9cc1a8377af7a0afe41a5bf1b7420f62"
+      },
+      {
+        "filename": "README.md",
+        "url": "https://raw.githubusercontent.com/humanbydefinition/p5.asciify-accurate-renderer-plugin/1d8c9b1948c522d82a7231ef20b00ec884507a1c/README.md",
+        "sha256": "4169729f6e0c11e2dd9595b1fb84b0ae869991565f1c284f0cc8ef90b84c5437"
+      }
+    ],
+    "commit": "1d8c9b1948c522d82a7231ef20b00ec884507a1c"
+  },
+  {
+    "repository": "collidingScopes/ascii",
+    "url": "https://github.com/collidingScopes/ascii",
+    "branch": "main",
+    "retrievedAt": "2026-09-30T09:30:50.984Z",
+    "files": [
+      {
+        "filename": "LICENSE",
+        "url": "https://api.github.com/repos/collidingScopes/ascii/contents/LICENSE.txt?ref=af6b92f7c48e2b46f7f29d18ba8409a0f93900ff",
+        "sha256": "340bee5980e7be160811691f4584eafd0f35ccc7ae1ca849897a7712f1dd7e32"
+      },
+      {
+        "filename": "README.md",
+        "url": "https://api.github.com/repos/collidingScopes/ascii/contents/README.MD?ref=af6b92f7c48e2b46f7f29d18ba8409a0f93900ff",
+        "sha256": "7645ddb82a4436a62f122f221ce6bfe1c07fadcdcd1a7486bfc89f92f3591288"
+      }
+    ],
+    "commit": "af6b92f7c48e2b46f7f29d18ba8409a0f93900ff"
+  },
+  {
+    "repository": "TheZoraiz/ascii-image-converter",
+    "url": "https://github.com/TheZoraiz/ascii-image-converter",
+    "branch": "master",
+    "retrievedAt": "2026-09-30T09:30:50.985Z",
+    "files": [
+      {
+        "filename": "LICENSE",
+        "url": "https://api.github.com/repos/TheZoraiz/ascii-image-converter/contents/LICENSE.txt?ref=d05a757c5e02ab23e97b6f6fca4e1fbeb10ab559",
+        "sha256": "0cec06e0e55fbc3dc5cee4fca9b607f66cb8f4e4dbcf3b3c013594dd156732e9"
+      },
+      {
+        "filename": "README.md",
+        "url": "https://raw.githubusercontent.com/TheZoraiz/ascii-image-converter/d05a757c5e02ab23e97b6f6fca4e1fbeb10ab559/README.md",
+        "sha256": "13514079bfdd21c91cb0af2132e9bc1900b533d72cc99245ec58e6b921eedcb3"
+      }
+    ],
+    "commit": "d05a757c5e02ab23e97b6f6fca4e1fbeb10ab559"
+  },
+  {
+    "repository": "Kirilllive/ASCII_Art_Paint",
+    "url": "https://github.com/Kirilllive/ASCII_Art_Paint",
+    "branch": "main",
+    "retrievedAt": "2026-09-30T09:30:50.986Z",
+    "files": [
+      {
+        "filename": "LICENSE",
+        "url": "https://raw.githubusercontent.com/Kirilllive/ASCII_Art_Paint/3477035bc09e91c8c638d9039e5727eb1ef64630/LICENSE",
+        "sha256": "49d7382497ffb9dd7696271c78c761fd981234327098aa21ddc5328cddf7aa2f"
+      },
+      {
+        "filename": "README.md",
+        "url": "https://raw.githubusercontent.com/Kirilllive/ASCII_Art_Paint/3477035bc09e91c8c638d9039e5727eb1ef64630/README.md",
+        "sha256": "ae00ca83e2963c370f74245485bb4379241fe6f97cfbd8f1c2997d667c353e85"
+      }
+    ],
+    "commit": "3477035bc09e91c8c638d9039e5727eb1ef64630"
+  },
+  {
+    "repository": "humanbydefinition/textmode.js",
+    "url": "https://github.com/humanbydefinition/textmode.js",
+    "commit": "205dd5694aa40ecdf837ec5fbe39e39ed81f96df",
+    "files": [
+      {
+        "filename": "README.md",
+        "url": "https://api.github.com/repos/humanbydefinition/textmode.js/contents/README.md?ref=205dd5694aa40ecdf837ec5fbe39e39ed81f96df",
+        "sha256": "820e4e1ae6876d2b9e2d749d91863e27267e8344250aedcdf95a26dd3675f372"
+      },
+      {
+        "filename": "LICENSE",
+        "url": "https://api.github.com/repos/humanbydefinition/textmode.js/contents/LICENSE?ref=205dd5694aa40ecdf837ec5fbe39e39ed81f96df",
+        "sha256": "db3353a2e76ede29db1786eae6566bcc9cc1a8377af7a0afe41a5bf1b7420f62"
+      }
+    ]
+  }
+]

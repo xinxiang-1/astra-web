@@ -44,7 +44,7 @@ export function renderDarkGraph(
     );
     current.pass(
       profilePass(
-        { target: bloom[0].vertical, clear: [0, 0, 0, 1] },
+        { target: bloom[0]!.vertical, clear: [0, 0, 0, 1] },
         options.profile,
         "dark.bloom.extract"
       ),
@@ -100,7 +100,7 @@ export function renderDarkGraph(
     }
     current.pass(
       profilePass(
-        { target: bloom[0].horizontal, clear: [0, 0, 0, 1] },
+        { target: bloom[0]!.horizontal, clear: [0, 0, 0, 1] },
         options.profile,
         "dark.bloom.composite"
       ),

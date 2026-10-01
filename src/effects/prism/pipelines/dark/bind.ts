@@ -150,7 +150,7 @@ export function bindDarkGraph(
   );
   graph.present.set({
     sceneTexture: sceneTarget,
-    bloomTexture: bloomTargets[0].horizontal,
+    bloomTexture: bloomTargets[0]!.horizontal,
     bloomSampler: runtime.sceneSampler,
     params: {
       bloomStrength:
@@ -168,7 +168,7 @@ export function bindDarkGraph(
   });
   graph.dust.set({
     params: dustUniforms(runtime, time, reveal.revealProgress),
-    colorTexture: bloomTargets[1].vertical,
+    colorTexture: bloomTargets[1]!.vertical,
     lightTexture: particleTarget.vertical,
     lightSampler: runtime.sceneSampler,
   });

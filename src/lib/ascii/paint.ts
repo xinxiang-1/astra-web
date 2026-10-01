@@ -1,9 +1,5 @@
-import {
-  DEFAULT_CHAR_ASPECT,
-  EXPORT_MONO_FONT,
-  PREVIEW_MONO_FONT,
-} from './constants'
-import { hasCjkText } from './convert'
+import { DEFAULT_CHAR_ASPECT, EXPORT_MONO_FONT, PREVIEW_MONO_FONT } from './constants'
+import { hasCjkText, splitAsciiGlyphs } from './convert'
 import type {
   AsciiPaintOptions,
   AsciiPaintSize,
@@ -75,22 +71,18 @@ export function paintAsciiToCanvas(
   const padding = options.padding ?? 12
   const dpr = options.devicePixelRatio ?? 1
   const fontFamily = options.fontFamily ?? PREVIEW_MONO_FONT
-  const metricGlyph =
-    options.metricGlyph ?? pickMetricGlyph(text.slice(0, 64))
+  const metricGlyph = options.metricGlyph ?? pickMetricGlyph(text.slice(0, 64))
   const metrics = measureMonoCellMetrics(fontSize, fontFamily, metricGlyph)
   const charWidth = metrics.advance
   const aspect = options.charAspect
   const charHeight = Math.max(
     0.5,
-    options.lineHeight ??
-      (aspect && aspect > 0
-        ? charWidth / aspect
-        : metrics.lineHeight),
+    options.lineHeight ?? (aspect && aspect > 0 ? charWidth / aspect : metrics.lineHeight),
   )
   const font = `${fontSize}px ${fontFamily}`
   const colors = options.colors
 
-  const lines = text.length > 0 ? text.split('\n') : ['']
+  const lines = (text.length > 0 ? text.split('\n') : ['']).map(splitAsciiGlyphs)
   let maxCols = 1
   for (const line of lines) maxCols = Math.max(maxCols, line.length || 1)
 
@@ -146,10 +138,7 @@ export function paintAsciiToCanvas(
 }
 
 /** Render ASCII text onto a PNG blob for download. */
-export async function asciiToPngBlob(
-  text: string,
-  options: AsciiPngOptions = {},
-): Promise<Blob> {
+export async function asciiToPngBlob(text: string, options: AsciiPngOptions = {}): Promise<Blob> {
   const fontSize = options.fontSize ?? 10
   const padding = options.padding ?? 16
   const background = options.background ?? '#070a12'
@@ -169,9 +158,7 @@ export async function asciiToPngBlob(
     devicePixelRatio: 1,
   })
 
-  const blob = await new Promise<Blob | null>((resolve) =>
-    canvas.toBlob(resolve, 'image/png'),
-  )
+  const blob = await new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, 'image/png'))
   if (!blob) throw new Error('PNG 导出失败')
   return blob
 }
@@ -203,8 +190,7 @@ export function suggestFitZoom(options: FitZoomOptions): number {
   )
   const charWidth = metrics.advance
   const aspect = options.charAspect
-  const charHeight =
-    aspect && aspect > 0 ? charWidth / aspect : metrics.lineHeight
+  const charHeight = aspect && aspect > 0 ? charWidth / aspect : metrics.lineHeight
 
   const artW = options.columns * charWidth + padding * 2
   const artH = options.rows * charHeight + padding * 2

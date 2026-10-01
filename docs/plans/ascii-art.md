@@ -25,3 +25,4 @@
 ## 后续优化
 
 体验与产品方向见：[ascii-art-roadmap.md](./ascii-art-roadmap.md)。
+引擎参数 / 渲染效果的可复现实验见：[ascii-engine-optimizer.md](./ascii-engine-optimizer.md)（沙箱，不改 `src/`）。

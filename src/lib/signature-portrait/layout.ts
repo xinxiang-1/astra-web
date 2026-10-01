@@ -1,14 +1,19 @@
 /**
- * Weighted Voronoi Stippling（Secord 2002）签名画像：
- * 密度 ρ = 暗度^γ + 边缘/细节 → 拒绝采样撒点 → Lloyd 松弛
- * → 近邻距离定字号 → 沿梯度切向排字。远看明暗，近看签名。
+ * 签名画像：默认按实测笔迹区域错行织排，控制重叠并表达局部明暗。
+ * 旧 WVS / Lloyd 算法通过 layoutMethod='stipple' 保留作对照。
  */
 
 import type { SignatureStamp } from './extract'
 import { measureStampTraits } from './extract'
 import { autoInvertDensity } from './layout-compute'
+import { signatureTint, tintCacheKey } from './render-style'
+import { prepareSignatureInk, type SignatureInkStyle } from './ink-style'
+import { createVectorInkPainter } from './vector-ink'
 
 export type SignatureLayoutOptions = {
+  inkStyle?: SignatureInkStyle
+  layoutMethod?: 'woven' | 'stipple'
+  ink?: { r: number; g: number; b: number }
   maxSide?: number
   density?: number
   angleRange?: number
@@ -18,9 +23,11 @@ export type SignatureLayoutOptions = {
   fillHighlights?: boolean
   invertDensity?: boolean
   colorize?: boolean
-  /** 印章下垫软色块（仅栅格绘制时） */
+  /** 印章下垫软色椭圆（Canvas / Path SVG；GPU 候选另行验证） */
   coverFill?: boolean
   background?: string
+  /** Optional photograph underlay; pure signature artwork is the default. */
+  underlay?: number
   seed?: number
   overlap?: number
   gamma?: number
@@ -78,8 +85,8 @@ function yieldFrame(): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, 0))
 }
 
-function prepareStamp(stamp: SignatureStamp, maxLong = 512): StampMetrics {
-  const src = stamp.canvas
+function prepareStamp(stamp: SignatureStamp, maxLong = 512, inkStyle: SignatureInkStyle = 'ink'): StampMetrics {
+  const src = prepareSignatureInk(stamp.canvas, inkStyle)
   const long = Math.max(src.width, src.height)
   let canvas = src
   if (long > maxLong) {
@@ -118,23 +125,7 @@ function tintStamp(
   if (!ctx) return source
   ctx.drawImage(source, 0, 0)
   ctx.globalCompositeOperation = 'source-in'
-  if (literal) {
-    ctx.fillStyle = `rgb(${r | 0},${g | 0},${b | 0})`
-  } else {
-    const d = clamp01(depth)
-    if (colorize) {
-      // 更深、更像墨：保留少许色相
-      const k = 0.22 + (1 - d) * 0.28
-      const mix = 0.55 + d * 0.35
-      const nr = Math.round(r * k * mix + 18 * (1 - mix))
-      const ng = Math.round(g * k * mix + 16 * (1 - mix))
-      const nb = Math.round(b * k * mix + 22 * (1 - mix))
-      ctx.fillStyle = `rgb(${nr},${ng},${nb})`
-    } else {
-      const v = Math.round(18 + (1 - d) * 55)
-      ctx.fillStyle = `rgb(${v},${v},${v + 2})`
-    }
-  }
+  ctx.fillStyle = `rgb(${signatureTint(colorize, r, g, b, depth, literal).join(',')})`
   ctx.fillRect(0, 0, out.width, out.height)
   ctx.globalCompositeOperation = 'source-over'
   return out
@@ -186,7 +177,9 @@ export async function renderSignaturePortrait(
     options.onProgress?.(stage, clamp01(ratio))
   }
 
-  const maxSide = options.maxSide ?? 8192
+  if (![portraitWidth, portraitHeight, options.maxSide ?? 4096].every(value => Number.isFinite(value) && value > 0)) throw new Error('布局尺寸无效')
+  const maxSide = Math.min(8192, Math.max(128, options.maxSide ?? 4096))
+  const layoutMethod = options.layoutMethod ?? 'woven'
   const densityMul = Math.min(50, Math.max(0.7, options.density ?? 30))
   const angleRange = options.angleRange ?? 12
   const allowVertical = options.allowVertical ?? false
@@ -208,7 +201,7 @@ export async function renderSignaturePortrait(
   const edgeColor = options.edgeColor ?? { r: 28, g: 72, b: 96 }
 
   report('缩放画像', 0.02)
-  const scaleFit = Math.min(1, maxSide / Math.max(1, portraitWidth, portraitHeight))
+  const scaleFit = maxSide / Math.max(1, portraitWidth, portraitHeight)
   const outW = Math.max(1, Math.round(portraitWidth * scaleFit))
   const outH = Math.max(1, Math.round(portraitHeight * scaleFit))
   const shortSide = Math.min(outW, outH)
@@ -232,37 +225,37 @@ export async function renderSignaturePortrait(
     shortSide * Math.max(minSizeRatio, maxSizeRatio) * fineScale,
   )
 
-  // 全分辨率用于上色采样
-  const full = makeCanvas(outW, outH)
+  // Woven sampling does not allocate an 8K photograph for a vector preview.
+  const samplingScale = layoutMethod === 'woven' ? Math.min(1, 1024 / longSide) : 1
+  const full = makeCanvas(outW * samplingScale, outH * samplingScale)
   const fctx = full.getContext('2d', { willReadFrequently: true })
   if (!fctx) throw new Error('无法创建采样画布')
   fctx.imageSmoothingEnabled = true
   fctx.imageSmoothingQuality = 'high'
-  fctx.drawImage(portrait, 0, 0, outW, outH)
-  const fullPixels = fctx.getImageData(0, 0, outW, outH).data
+  fctx.drawImage(portrait, 0, 0, full.width, full.height)
+  const fullPixels = fctx.getImageData(0, 0, full.width, full.height).data
 
-  const invertDensity =
-    options.invertDensity ?? autoInvertDensity(fullPixels, outW, outH)
+  const invertDensity = options.invertDensity ?? (layoutMethod === 'woven' ? false : autoInvertDensity(fullPixels, full.width, full.height))
 
   // 分析分辨率随成图走
-  const analysisMax = Math.min(
+  const analysisMax = layoutMethod === 'woven' ? Math.min(1024, longSide) : Math.min(
     2800,
     Math.max(800, Math.round(longSide * 0.36)),
   )
   const aScale = Math.min(1, analysisMax / longSide)
   const aW = Math.max(1, Math.round(outW * aScale))
   const aH = Math.max(1, Math.round(outH * aScale))
-  const analysis = makeCanvas(aW, aH)
+  const analysis = layoutMethod === 'woven' ? full : makeCanvas(aW, aH)
   const actx = analysis.getContext('2d', { willReadFrequently: true })
   if (!actx) throw new Error('无法创建分析画布')
-  actx.drawImage(portrait, 0, 0, aW, aH)
-  const aPixels = actx.getImageData(0, 0, aW, aH).data
+  if (layoutMethod !== 'woven') actx.drawImage(portrait, 0, 0, aW, aH)
+  const aPixels = layoutMethod === 'woven' ? fullPixels : actx.getImageData(0, 0, aW, aH).data
 
   report('构建密度场', 0.08)
   await yieldFrame()
 
   const stampSrcLong = Math.min(1200, Math.max(480, Math.round(sizeMax * 4)))
-  const metrics = stamps.map((s) => prepareStamp(s, stampSrcLong))
+  const metrics = stamps.map((s) => prepareStamp(s, stampSrcLong, options.inkStyle))
   const stampMetrics = metrics.map((m) => ({
     inkRatio: m.inkRatio,
     width: m.width,
@@ -271,6 +264,8 @@ export async function renderSignaturePortrait(
   }))
 
   const computeOpts = {
+    layoutMethod,
+    inkColor: options.ink,
     density: densityMul,
     angleRange,
     allowVertical,
@@ -350,11 +345,12 @@ export async function renderSignaturePortrait(
 
   report('渲染', 0.93)
   const canvas = paintPlacements(placements, stamps, outW, outH, {
+    inkStyle: options.inkStyle,
     background,
     colorize,
-    coverFill: options.coverFill ?? true,
+    coverFill: options.coverFill ?? false,
     portrait,
-    underlay: options.coverFill === false ? 0.16 : 0.28,
+    underlay: Math.max(0, Math.min(1, options.underlay ?? 0)),
     onProgress: (r) => report('渲染', 0.93 + 0.06 * r),
     signal,
   })
@@ -373,6 +369,7 @@ export function paintPlacements(
   outW: number,
   outH: number,
   options: {
+    inkStyle?: SignatureInkStyle
     background?: string
     colorize?: boolean
     /** 印章下垫软色块，补稀疏笔迹空洞 */
@@ -387,10 +384,11 @@ export function paintPlacements(
 ): HTMLCanvasElement {
   const background = options.background ?? '#f5f0e8'
   const colorize = options.colorize ?? true
-  const coverFill = options.coverFill ?? true
+  const coverFill = options.coverFill ?? false
   const underlay = options.underlay ?? 0
+  const vectorPainter = options.inkStyle === 'cutout' ? createVectorInkPainter(stamps) : null
   const metrics = stamps.map((s) =>
-    prepareStamp(s, options.stampMaxLong ?? Math.max(640, Math.round(Math.max(outW, outH) * 0.35))),
+    prepareStamp(s, options.stampMaxLong ?? Math.max(640, Math.round(Math.max(outW, outH) * 0.35)), options.inkStyle),
   )
 
   const canvas = makeCanvas(outW, outH)
@@ -414,10 +412,11 @@ export function paintPlacements(
     depth: number,
     literal = false,
   ) => {
-    const key = `${index}:${(r / 16) | 0}:${(g / 16) | 0}:${(b / 16) | 0}:${(depth * 6) | 0}:${colorize ? 1 : 0}:${literal ? 1 : 0}`
+    const key = tintCacheKey(index, colorize, r, g, b, depth, literal)
     let cached = tintCache.get(key)
     if (!cached) {
       cached = tintStamp(metrics[index]!.canvas, colorize, r, g, b, depth, literal)
+      if (tintCache.size >= 64) tintCache.delete(tintCache.keys().next().value!)
       tintCache.set(key, cached)
     }
     return cached
@@ -443,12 +442,16 @@ export function paintPlacements(
     const scale = p.targetSize / stampLong
 
     if (coverFill) paintCoverBlob(ctx, p, glyph.width, glyph.height, scale)
+    if (vectorPainter) {
+      vectorPainter(ctx, p, colorize)
+      continue
+    }
 
     ctx.save()
     ctx.translate(p.x, p.y)
     ctx.rotate(p.angle)
     ctx.scale(scale, scale)
-    // 始终高质量平滑，避免放大字出现锯齿
+    // 高质量平滑，保持小笔迹与放大预览。
     ctx.imageSmoothingEnabled = true
     ctx.imageSmoothingQuality = 'high'
     ctx.globalAlpha = clamp01(p.strength)
@@ -475,6 +478,7 @@ export async function paintPlacementsTiled(
   outW: number,
   outH: number,
   options: {
+    inkStyle?: SignatureInkStyle
     background?: string
     colorize?: boolean
     coverFill?: boolean
@@ -498,11 +502,11 @@ export async function paintPlacementsTiled(
     x: p.x * sx,
     y: p.y * sy,
     targetSize: p.targetSize * sAvg,
-  }))
+  })).sort((a, b) => b.targetSize - a.targetSize || a.depth - b.depth)
 
   const background = options.background ?? '#f5f0e8'
   const colorize = options.colorize ?? true
-  const coverFill = options.coverFill ?? true
+  const coverFill = options.coverFill ?? false
   const underlay = options.underlay ?? 0
   const tileSize = Math.max(128, options.tileSize ?? 384)
   const metrics = stamps.map((s) =>
@@ -510,6 +514,7 @@ export async function paintPlacementsTiled(
       s,
       options.stampMaxLong ??
         Math.min(1000, Math.max(480, Math.round(Math.max(outW, outH) * 0.4))),
+      options.inkStyle,
     ),
   )
 
@@ -538,10 +543,11 @@ export async function paintPlacementsTiled(
     depth: number,
     literal = false,
   ) => {
-    const key = `${index}:${(r / 16) | 0}:${(g / 16) | 0}:${(b / 16) | 0}:${(depth * 6) | 0}:${colorize ? 1 : 0}:${literal ? 1 : 0}`
+    const key = tintCacheKey(index, colorize, r, g, b, depth, literal)
     let cached = tintCache.get(key)
     if (!cached) {
       cached = tintStamp(metrics[index]!.canvas, colorize, r, g, b, depth, literal)
+      if (tintCache.size >= 64) tintCache.delete(tintCache.keys().next().value!)
       tintCache.set(key, cached)
     }
     return cached
@@ -551,6 +557,7 @@ export async function paintPlacementsTiled(
   const tilesY = Math.ceil(outH / tileSize)
   const total = tilesX * tilesY
   let done = 0
+  const vectorPainter = options.inkStyle === 'cutout' ? createVectorInkPainter(stamps) : null
 
   for (let ty = 0; ty < tilesY; ty++) {
     for (let tx = 0; tx < tilesX; tx++) {
@@ -593,6 +600,10 @@ export async function paintPlacementsTiled(
           y: p.y - y0,
         }
         if (coverFill) paintCoverBlob(tctx, local, glyph.width, glyph.height, scale)
+        if (vectorPainter) {
+          vectorPainter(tctx, local, colorize)
+          continue
+        }
         tctx.save()
         tctx.translate(p.x - x0, p.y - y0)
         tctx.rotate(p.angle)
@@ -629,6 +640,7 @@ export function paintPlacementsScaled(
   outW: number,
   outH: number,
   options: {
+    inkStyle?: SignatureInkStyle
     background?: string
     colorize?: boolean
     coverFill?: boolean
@@ -665,6 +677,7 @@ export function paintPlacementsRegion(
   outW: number,
   outH: number,
   options: {
+    inkStyle?: SignatureInkStyle
     background?: string
     colorize?: boolean
     coverFill?: boolean
@@ -734,6 +747,7 @@ export function paintPlacementsRegion(
   }
 
   return paintPlacements(mapped, stamps, outW, outH, {
+    inkStyle: options.inkStyle,
     background: options.background,
     colorize: options.colorize,
     coverFill: options.coverFill,

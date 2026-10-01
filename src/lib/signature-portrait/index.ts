@@ -22,6 +22,7 @@ export {
 } from './layout'
 
 export {
+  SIGNATURE_GPU_PREVIEW_VERIFIED,
   createGlStampPreview,
   isGlStampPreview,
   type GlStampPreview,
@@ -64,3 +65,5 @@ export {
   generateHandwritingVariants,
   type VariantGenOptions,
 } from './variants'
+
+export { prepareSignatureInk, type SignatureInkStyle } from './ink-style'

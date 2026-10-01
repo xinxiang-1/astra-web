@@ -115,7 +115,8 @@ export async function decodeAnimatedImageBitmaps(file: File): Promise<{
   const delaysMs: number[] = []
   const limit = Math.min(count, LOOP_MAX_FRAMES)
   for (let i = 0; i < limit; i++) {
-    const { image, duration } = await decoder.decode({ frameIndex: i })
+    const { image } = await decoder.decode({ frameIndex: i })
+    const duration = image.duration ?? 100_000
     const bitmap = await createImageBitmap(image)
     image.close()
     bitmaps.push(bitmap)

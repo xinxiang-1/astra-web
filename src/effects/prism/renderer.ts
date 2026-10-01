@@ -98,7 +98,7 @@ function reuseBrowserAdapter(adapter: GPUAdapter): VGPUAdapter {
       validateRequiredFeatures(adapter.features, options.requiredFeatures);
       const device = await adapter.requestDevice({
         label: options.label,
-        requiredFeatures: options.requiredFeatures,
+        requiredFeatures: options.requiredFeatures ? [...options.requiredFeatures] : undefined,
         requiredLimits: options.requiredLimits,
       });
       return new Device(device, adapter.info ?? null);

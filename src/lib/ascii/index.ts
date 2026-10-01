@@ -2,6 +2,7 @@
 
 export {
   ASCII_ASPECT_PRESETS,
+  ASCII_ART_DEFAULTS,
   ASCII_CHARSETS,
   ASCII_FONT_PRESETS,
   ASCII_RESOLUTIONS,
@@ -58,7 +59,12 @@ export {
   buildAsciiStudioSettings,
   charsetForStudio,
   mountCharsetStudio,
+  paintStudioFrame,
+  disposeStudioFrame,
+  prepareStudioSource,
   resizeCharsetStudio,
+  studioRasterForGrid,
+  STUDIO_NATIVE_CELL_SIZE,
   studioCellSizeFromColumns,
   studioPatchFromInput,
   toStudioCharset,
@@ -111,8 +117,4 @@ export {
   type PrerenderVideoResult,
 } from './prerender'
 
-export {
-  createLiveFrameLoop,
-  createPrerenderFrameLoop,
-  type FrameLoopHandle,
-} from './playback'
+export { createLiveFrameLoop, createPrerenderFrameLoop, type FrameLoopHandle } from './playback'

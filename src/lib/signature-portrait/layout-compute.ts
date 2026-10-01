@@ -2,6 +2,8 @@
  * 纯计算排版（无 DOM），可在 Web Worker 中运行。
  */
 
+import { computeWovenPlacements } from './woven'
+
 export type Placement = {
   x: number
   y: number
@@ -24,6 +26,8 @@ export type StampMetricInput = {
 }
 
 export type LayoutComputeOptions = {
+  layoutMethod?: 'woven' | 'stipple'
+  inkColor?: { r: number; g: number; b: number }
   density?: number
   angleRange?: number
   allowVertical?: boolean
@@ -454,6 +458,8 @@ export function computePlacementsFromPixels(
     onProgress?.(stage, clamp01(ratio))
   }
 
+  if ((options.layoutMethod ?? 'woven') === 'woven') return computeWovenPlacements(input, report)
+
   const densityMul = Math.min(50, Math.max(0.7, options.density ?? 30))
   const angleRange = options.angleRange ?? 12
   const allowVertical = options.allowVertical ?? false
@@ -487,6 +493,11 @@ export function computePlacementsFromPixels(
     fillHighlights,
     edgeBoost,
   )
+
+  if (total <= 1e-6) {
+    report('排版完成', 1)
+    return []
+  }
 
   const meanD = total / Math.max(1, aW * aH)
   const areaBoost = Math.pow(longSide / refSide, 1.55)

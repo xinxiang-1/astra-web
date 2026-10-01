@@ -7,6 +7,8 @@ export interface ArtProject {
   source: File
   thumbnail: string
   settings: Record<string, string | number | boolean>
+  /** Absent on historical projects; do not invent a certified render version. */
+  engineVersion?: string
 }
 function openDatabase(): Promise<IDBDatabase> {
   return new Promise((resolve, reject) => {
@@ -26,7 +28,15 @@ async function transaction<T>(
   const db = await openDatabase()
   return new Promise((resolve, reject) => {
     const tx = db.transaction('projects', mode)
-    const request = action(tx.objectStore('projects'))
+    let request: IDBRequest<T>
+    try {
+      request = action(tx.objectStore('projects'))
+    } catch (cause) {
+      tx.abort()
+      db.close()
+      reject(cause)
+      return
+    }
     tx.oncomplete = () => {
       db.close()
       resolve(request.result)

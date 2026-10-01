@@ -1,0 +1,291 @@
+{
+  "scope": "Targeted public web searches and official reference pages; no third-party code copied or executed.",
+  "queries": [
+    "Awwwards",
+    "Lusion",
+    "GSAP ScrollTrigger"
+  ],
+  "records": [
+    {
+      "name": "search-1",
+      "url": "https://www.bing.com/search?format=rss&q=Awwwards",
+      "finalUrl": "https://cn.bing.com/search?format=rss&q=Awwwards",
+      "status": 200,
+      "retrievedAt": "2026-09-30T15:53:35.640Z",
+      "title": "必应：Awwwards",
+      "bytes": 5477,
+      "sha256": "20b1111b7995696b004d0d7d21b8b626d07f766e6b369690980b8b0aa73a5d0b",
+      "items": [
+        {
+          "title": "Awwwards - Website Awards - Best Web Design Trends",
+          "url": "https://www.awwwards.com/",
+          "description": "Awwwards are the Website Awards that recognize and promote the talent and effort of the best developers, designers and web agencies in the world."
+        },
+        {
+          "title": "Winning websites. Web Design Inspiration - Awwwards",
+          "url": "https://www.awwwards.com/websites/",
+          "description": "Discover the best website designs of the world. Awwwards recognizes the talent and effort of the best designers, web developers and digital agencies."
+        },
+        {
+          "title": "Awwwards | 收录全球365个最佳网站 - Boss设计",
+          "url": "https://www.bossdesign.cn/awwwards/",
+          "description": "Awwwards一个收录荣获全球优秀网页设计奖的社区，每年都会发布国外创意网站以及收录到《全球 365 个最佳网站》书籍上，帮助设计师提升网页设计水平，对最具创新的设计师进行颁奖。"
+        },
+        {
+          "title": "Awwwards_百度百科",
+          "url": "https://baike.baidu.com/item/Awwwards/67785388",
+          "description": "平台每年在世界各地举办线下研讨会，并发布《全球365个最佳网站》书籍。 Awwwards收录了超过10万件获奖作品，是网页设计师、开发人员及代理机构寻找灵感、学习技术与趋势的核心参考平台。"
+        },
+        {
+          "title": "AWWWARDS - 数英",
+          "url": "https://www.digitaling.com/awards/awwwards",
+          "description": "The awards that recognize the talent and effort of the best web designers, developers and agencies in the world.&lt;br/&gt;&lt;br/&gt;A meeting point, where digital design professionals from across the globe find inspiration, impart knowledge and experience, connect, and share constructive, respectful critiques. “Always questioning”, “always evolving”."
+        },
+        {
+          "title": "Awwwards｜网页设计界奥斯卡，前端设计师必备灵感站",
+          "url": "https://forum.trae.cn/t/topic/171679",
+          "description": "https://www.awwwards.com 简单介绍 全球权威网页设计评选社区，业内公认顶级创意站点合集平台，2009年上线，由国际专业评委从视觉、交互、技术、体验多维度打分，每日选出「当日最佳网站」，按月/年评选年度大奖，收录全球…"
+        },
+        {
+          "title": "Awwwards Archive — every Site of the Day since 2009",
+          "url": "https://awwwards.withseismic.com/",
+          "description": "Every Awwwards Site of the Day since 2009 29,965 award-winning websites — 6,266 Sites of the Day, 25,329 Honorable Mentions and 1,612 Developer Awards — plus 23,437 templates, searchable by year, category, technology and studio. Updated 29 September 2026."
+        },
+        {
+          "title": "Awwwards: 收录全球优秀的获奖网页设计 | AI设计导航",
+          "url": "https://aiiiii.com.cn/sites/5566.html",
+          "description": "灵感创意网站Awwwards收录了全球优秀的获奖的网页设计，你可以根据类别、标签和视觉风格筛选设计作品，从中学习专业人士的设计技巧和经验。 此外，Awwwards 每年都会发布一本《全球 365 个最佳网站》，收录上一年度所有获得荣誉的网站设计。"
+        },
+        {
+          "title": "10个国外获奖设计作品发布平台 - 知乎",
+          "url": "https://zhuanlan.zhihu.com/p/671117390",
+          "description": "1. awwwards 图像来源： awwwards Awwwards 是全世界最大且最有指标性的网站设计和竞赛网站。 专门认可和推广来自世界各地的 网页设计师 、开发人员的网页设计。 你可以主动提交作品给他们，若通过了评审投票、网友投票等机制，网站上就会刊登你的作品喔！"
+        },
+        {
+          "title": "Welcome to Awwwards - The best websites around the world",
+          "url": "https://www.awwwards.com/about-us/",
+          "description": "Awwwards are the awards that recognize and promote the talent and effort of the best developers, designers and web agencies in the world. Our mission is to discover, recognize and promote the talent and effort of web designers, developers and agencies around the world."
+        }
+      ]
+    },
+    {
+      "name": "search-2",
+      "url": "https://www.bing.com/search?format=rss&q=Lusion",
+      "finalUrl": "https://cn.bing.com/search?format=rss&q=Lusion",
+      "status": 200,
+      "retrievedAt": "2026-09-30T15:53:35.682Z",
+      "title": "必应：Lusion",
+      "bytes": 5813,
+      "sha256": "6822ec169f3cfb4b4a676e675605592df6de1313010bbb040525546f3c443980",
+      "items": [
+        {
+          "title": "Lusion - Award Winning 3D and Interactive Web Studio",
+          "url": "https://lusion.co/cn",
+          "description": "We design and produce 3D visual storytelling, immersive websites, and interactive digital experiences that help brands stand out online."
+        },
+        {
+          "title": "Lusion",
+          "url": "https://v2.lusion.co/",
+          "description": "We build epic, realtime interactive experiences to blow people’s minds. We build real-time graphics for agencies and studios. A small team of passionate artists and problem solvers. We execute ideas by using technical knowledge to craft beautiful artwork."
+        },
+        {
+          "title": "Lusion - About Us",
+          "url": "https://lusion.co/about/?trk=public_post-text",
+          "description": "Lusion is a boutique creative production studio with wide range of talents and capabilities for your next project."
+        },
+        {
+          "title": "Lusion",
+          "url": "https://v2.lusion.co/cn/work",
+          "description": "我們是一群藝術家和工程師，致力為大小品牌和傳統廣告設計公司解決互動設計上的技術問題﹐以完美的實時設計打造高品質的動態網頁、裝置藝術、 虛擬實境 VR 和 AR 裝置。 我們重視與我們合作的夥伴﹐並以高品質的製作來換取他們的信任。 着重原創和高品質的實時動畫，以超乎想像的製作技巧來打動我們尊貴的客戶。 以下是我們的一些重點項目 ： A cinematic exploration in global storytelling. Take Realtime Particle Effects to a whole new level."
+        },
+        {
+          "title": "Lusion - 關於我們",
+          "url": "https://v2.lusion.co/cn/about/",
+          "description": "Lusion 是一家以實時動畫和互動設計為核心的製作公司﹐由香港互動設計師於2017年於英國布里斯托創立。 融合中西方的文化與設計概念﹐以頂尖的實時動畫技術為大小品牌和傳統廣告設計公司解決互動設計上的技術問題﹐以完美的實時設計打造高品質的動態網頁、裝置藝術、 虛擬實境 VR 和 AR 裝置。 從前期創作到後期製作﹐我們的團隊也能為客戶於不同的層面提供服務，務求與客戶共同創作出超然不群的實時動畫和互動設計 。 着重原創和高品質的實時動畫，以超乎想像的製作技巧來打動我們尊貴的客戶。 以下是我們的一些重點項目 ： A cinematic exploration in global storytelling."
+        },
+        {
+          "title": "Lusion Labs",
+          "url": "https://labs.lusion.co/",
+          "description": "A space dedicated to anticipate how new technologies will affect brands and how we interact with them through R&amp;D."
+        },
+        {
+          "title": "Q: 我是真的好奇，这网站（lusion）是怎么做的，都用了 ...",
+          "url": "https://www.v2ex.com/t/1172052",
+          "description": "前端现在都要从 webgl 进化到 webgpu 了，花里胡哨的很多,差不多都是 canvas 相关的，物理引擎，3d 渲染，粒子，shader 之类的。 前端的未来是影像艺术。 之前看某个逝世的艺术家的线上展，那个网页就做得超级好。 不是用了多少技术，是艺术和交互做得好。 会设计，有想法才行。 想办法实现就行了. @ hushuikun 我这边全荧幕黑底，三个白色 0 在左下角，除此之外什么都没有。 大抵又是 Chrome 专享页面？ 或者最新版本浏览器专享页面？ 反正我 Firefox 140 ESR 是看不了。 好家伙，果然只有最新版本的 Chrome 才能看，用 Supermium 138 也打不开。"
+        },
+        {
+          "title": "Lusion: a social world where you live another life",
+          "url": "https://lusion.world/en/",
+          "description": "Lusion is a downloadable persistent social world on Unreal Engine 5. Avatars, virtual housing, and a real creator economy. 18+ verified access. Launching in Brazil."
+        },
+        {
+          "title": "Lusion | Communication Arts",
+          "url": "https://www.commarts.com/project/36283/lusion",
+          "description": "For the third version of its portfolio site, the studio combines immersive, interactive storytelling with advanced technologies like WebGL, real-time 3-D rendering and responsive animations."
+        },
+        {
+          "title": "Lusion.ai",
+          "url": "https://lusion.ai/",
+          "description": "As Lusion.ai, we are a team excited about exploring the future of technology through artificial intelligence products. Our mission is to transform user experiences by combining innovation and technology, making daily life smarter and more interactive."
+        }
+      ]
+    },
+    {
+      "name": "search-3",
+      "url": "https://www.bing.com/search?format=rss&q=GSAP%20ScrollTrigger",
+      "finalUrl": "https://cn.bing.com/search?format=rss&q=GSAP%20ScrollTrigger",
+      "status": 200,
+      "retrievedAt": "2026-09-30T15:53:35.683Z",
+      "title": "必应：GSAP ScrollTrigger",
+      "bytes": 6757,
+      "sha256": "12806a9e418c222b903ffdd8618641d713091b348d51aa6f5c65325841e0a932",
+      "items": [
+        {
+          "title": "ScrollTrigger | GSAP | 文档与学习 - 中文文档",
+          "url": "https://www.wuzao.com/gsap/docs/v3/Plugins/ScrollTrigger/index.html",
+          "description": "ScrollTrigger 使任何人都能用极少的代码创建令人惊叹的基于滚动的动画。 无限灵活。 可以进行 scrub、pin、snap，或者触发任何与滚动相关的操作，即使与动画无关也可以。"
+        },
+        {
+          "title": "ScrollTrigger | GSAP | Docs &amp; Learning",
+          "url": "https://gsap.com/docs/v3/Plugins/ScrollTrigger/",
+          "description": "Embed scroll triggers directly into any GSAP animation (including timelines) or create standalone instances and tap into the rich callback system to do anything you want. Advanced pinning capabilities can lock an element in place between certain scroll positions."
+        },
+        {
+          "title": "GSAP ScrollTrigger 详解深入学习 GSAP ScrollTrigger 插件 ...",
+          "url": "https://juejin.cn/post/7550894500625973274",
+          "description": "总结 ScrollTrigger 的本质是： 让滚动条变成动画的时间轴。 要点： 引入并注册插件。 用 trigger 、 start 、 end 控制触发区间。 开启 markers 调试。 scrub 、 pin 是进阶玩法的核心。 有了它，你能轻松实现滚动叙事： 从淡入淡出，到视差，再到横向切换。 （完）"
+        },
+        {
+          "title": "scrollTrigger | GSAP | Docs &amp; Learning",
+          "url": "https://gsap.com/docs/v3/Plugins/ScrollSmoother/scrollTrigger/",
+          "description": "Details The ScrollTrigger instance that ScrollSmoother created internally to manage the smooth scrolling effect of the page."
+        },
+        {
+          "title": "你离前端动画高手只差这个秘籍！GSAP ScrollTrigger 动画 ...",
+          "url": "https://juejin.cn/post/7572157115907375154",
+          "description": "GSAP 是什么？ GSAP 是国外顶尖的专业动画库，大多数让人“眼前一亮”的网页动画，背后都有它的身影（当然，像 Framer Motion 这类新秀也同样强大，后续我们也会推出相关高阶教程）。 现在，就来看看 GSAP 能做出哪些 炸裂的视觉效果 吧！"
+        },
+        {
+          "title": "scrollTrigger | GSAP | 文档与学习 - 中文文档",
+          "url": "https://www.wuzao.com/gsap/docs/v3/GSAP/Tween/scrollTrigger/index.html",
+          "description": "访问与补间动画相关联的 ScrollTrigger 的便捷方式。 只有当补间动画有 ScrollTrigger 时才可以访问到。 一个 \"scrollTrigger\" 属性 仅当 被添加到 Timeline 或 Tween 上 如果 它拥有一个 ScrollTrigger。 参考 ScrollTrigger 更多详细信息请参阅文档."
+        },
+        {
+          "title": "GSAP + ScrollTrigger 滑动动画 3分钟搞定-CSDN博客",
+          "url": "https://blog.csdn.net/qq_69183322/article/details/148919032",
+          "description": "GSAP（GreenSock Animation Platform）是一款功能强大的 JavaScript 动画库，被广泛应用于网页、应用程序和交互式媒体中，用于创建流畅、高性能的动画效果。 ScrollTrigger 是 GreenSock（GSAP）动画库中的一个强大插件，专门用于创建与滚动行为关联的动画。"
+        },
+        {
+          "title": "GSAP + ScrollTrigger 实现滚动驱动动画详解 - 技术栈",
+          "url": "https://jishuzhan.net/article/2005824145390092289",
+          "description": "GSAP（GreenSock Animation Platform）是一个强大的 JavaScript 动画库，而 ScrollTrigger 是其核心插件之一，用于创建基于滚动的动画效果（scroll-driven animations）。 它允许你将动画进度与页面滚动位置绑定，实现如视差、固定元素、擦除（scrub）动画等高级交互，而无需依赖 CSS 原生滚动驱动（虽然 CSS 版本已成熟，但 GSAP 提供更灵活的控制和跨浏览器兼容）。 ScrollTrigger 于 GSAP 3.x 中引入，目前（2025 年）版本已稳定在 3.12+，性能优化出色，尤其适合创意网站、scrollytelling 和交互式落地页。"
+        },
+        {
+          "title": "GSAP动画插件-ScrollTrigger（一） - 知乎",
+          "url": "https://zhuanlan.zhihu.com/p/346555713",
+          "description": "如果自己要手动实现这个需求，其实也不难，只需要监听页面滚动，当要滚动到该元素时，动态添加已经设置好动画的CSS类名，或者直接使用JS动态添加动画。 但自己实现会存在一些响应式界面造成元素高度不一致带来的兼容性问题，所以这个时候使用已经成熟的第三方动画框架就是最好的选择。 单纯的CSS动画库是不可能完成我预想的功能，而JS库我考虑过使用 scrollreveal 和 WOWJS。 下面是我最后放弃这两个库的原因： WOWJS：依赖 Animate.css，可以配合使用Animate.css动画，但是很久没有进行过维护， 并且不支持TypeScript。 scrollreveal：不依赖任何第三方库，使用方便，但是商业使用需要购买凭证，同时支持的功能较少。"
+        },
+        {
+          "title": "GSAP ScrollTrigger 详解 - 技术栈",
+          "url": "https://jishuzhan.net/article/1968368178239160322",
+          "description": "滚动条走到哪里，动画精确跟到哪里。 内容卡住一会儿，再接着滚动，就像苹果官网。 要实现这些，我们需要今天的主角： ScrollTrigger 。 它是 GSAP 官方提供的滚动插件。 一句话： 把滚动条变成动画的遥控器。 注册插件 我们还是用 CDN 的方式引入："
+        }
+      ]
+    },
+    {
+      "name": "awwwards",
+      "url": "https://www.awwwards.com/websites/animation/",
+      "finalUrl": "https://www.awwwards.com/websites/animation/",
+      "status": 200,
+      "retrievedAt": "2026-09-30T15:53:35.683Z",
+      "title": "Best Animation Websites | Web Design Inspiration",
+      "bytes": 599069,
+      "sha256": "ff6dc49dd50d856ad8c19a732256e06f06f59e2931e7623c3716669deeb70983"
+    },
+    {
+      "name": "codrops",
+      "url": "https://tympanus.net/codrops/",
+      "finalUrl": "https://tympanus.net/codrops/",
+      "status": 403,
+      "retrievedAt": "2026-09-30T15:53:35.684Z",
+      "title": "Just a moment...",
+      "bytes": 5534,
+      "sha256": "dc7b5f32ca2bea58b8484c44547aedceb10e90aeb5983f47b79291afde2a90a0"
+    },
+    {
+      "name": "lusion",
+      "url": "https://lusion.co/",
+      "retrievedAt": "2026-09-30T15:53:35.685Z",
+      "error": "TypeError: fetch failed"
+    },
+    {
+      "name": "active-theory",
+      "url": "https://activetheory.net/",
+      "finalUrl": "https://activetheory.net/",
+      "status": 200,
+      "retrievedAt": "2026-09-30T15:53:35.685Z",
+      "title": "Active Theory · Creative Digital Experiences",
+      "bytes": 5952,
+      "sha256": "e026e78b8db8823da1d2256fd7b011aa016b971d2bbd64e72e98f440f46626d5"
+    },
+    {
+      "name": "linear",
+      "url": "https://linear.app/",
+      "finalUrl": "https://linear.app/",
+      "status": 200,
+      "retrievedAt": "2026-09-30T15:53:35.686Z",
+      "title": "Linear – The system for product development",
+      "bytes": 1287158,
+      "sha256": "d680fa8c4d9159e8b35d4e8a423ea0020e7d1bdd2c07e9a6672c5a446081cf91"
+    },
+    {
+      "name": "gsap-scrolltrigger",
+      "url": "https://gsap.com/docs/v3/Plugins/ScrollTrigger/",
+      "finalUrl": "https://gsap.com/docs/v3/Plugins/ScrollTrigger/",
+      "status": 200,
+      "retrievedAt": "2026-09-30T15:53:35.687Z",
+      "title": "ScrollTrigger | GSAP | Docs &amp; Learning",
+      "bytes": 210051,
+      "sha256": "250b7707c36ede82e7c4d054a2fb3aaf578dd3520315771253950223e9c3a986"
+    },
+    {
+      "name": "motion-scroll",
+      "url": "https://motion.dev/docs/scroll",
+      "finalUrl": "https://motion.dev/docs/scroll",
+      "status": 200,
+      "retrievedAt": "2026-09-30T15:53:35.687Z",
+      "title": "Scroll animations in JavaScript with scroll() | Motion",
+      "bytes": 109776,
+      "sha256": "5eb25763ebd178d6af0be1e463e7628d33e66df31d807c51a2305b07cc1f7a0a"
+    },
+    {
+      "name": "codrops-scroll-animations",
+      "url": "https://tympanus.net/codrops/2023/05/25/kinetic-typography-with-three-js/",
+      "finalUrl": "https://tympanus.net/codrops/2023/05/25/kinetic-typography-with-three-js/",
+      "status": 403,
+      "retrievedAt": "2026-09-30T15:53:35.688Z",
+      "title": "Just a moment...",
+      "bytes": 5708,
+      "sha256": "10246d75958796a87e28b1e9e4c6deda5823b8c49b522f7d58240757918904ff"
+    },
+    {
+      "name": "codrops-github",
+      "url": "https://api.github.com/search/repositories?q=org%3Acodrops+scroll&sort=updated&per_page=8",
+      "finalUrl": "https://api.github.com/search/repositories?q=org%3Acodrops+scroll&sort=updated&per_page=8",
+      "status": 200,
+      "retrievedAt": "2026-09-30T15:53:35.689Z",
+      "bytes": 45348,
+      "sha256": "58d3f23a4597d619bd0e67eccc3d446e3b76feae4d7e934eee01b5d19fe59634"
+    },
+    {
+      "name": "webgl-pixel-store",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/pixelStorei",
+      "finalUrl": "https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/pixelStorei",
+      "status": 200,
+      "retrievedAt": "2026-09-30T15:53:35.689Z",
+      "title": "WebGLRenderingContext: pixelStorei() method - Web APIs | MDN",
+      "bytes": 173596,
+      "sha256": "c8a4daa7474bbe38c09b64adcd28099b6e2d1d1f1513313c58f6d725c1270b4b"
+    }
+  ]
+}

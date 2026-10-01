@@ -1,0 +1,147 @@
+{
+  "date": "2026-09-30",
+  "scope": "Targeted public GitHub search, not exhaustive web coverage",
+  "results": [
+    {
+      "query": "ascii art javascript canvas",
+      "repositories": [
+        {
+          "repository": "collidingScopes/ascii",
+          "url": "https://github.com/collidingScopes/ascii",
+          "license": "MIT",
+          "description": "Turn videos into ASCII pixel art using js and html canvas"
+        },
+        {
+          "repository": "birdneststream/asciibird",
+          "url": "https://github.com/birdneststream/asciibird",
+          "license": "NOASSERTION",
+          "description": "ASCII Creation"
+        },
+        {
+          "repository": "TheGreatRambler/AnimASCII.js",
+          "url": "https://github.com/TheGreatRambler/AnimASCII.js",
+          "license": "MIT",
+          "description": "ASCII art animation library in Javascript using Canvas"
+        },
+        {
+          "repository": "fionnfuchs/ascii-canvas-js",
+          "url": "https://github.com/fionnfuchs/ascii-canvas-js",
+          "license": null,
+          "description": "Library for drawing ASCII Art on a HTML5 Canvas"
+        },
+        {
+          "repository": "JayRichh/ascii",
+          "url": "https://github.com/JayRichh/ascii",
+          "license": null,
+          "description": "Real time GIF to ASCII art, with interactive controls and multiple export formats."
+        },
+        {
+          "repository": "deonvz/ImageToAsciiart",
+          "url": "https://github.com/deonvz/ImageToAsciiart",
+          "license": "MIT",
+          "description": "Converts any picture or your live Webcam feed into ascii art. Uses Javascript, P5.js, Asciiart repository and is based on the Coding Train Challenges."
+        },
+        {
+          "repository": "DMS055/AsciiImageConverter",
+          "url": "https://github.com/DMS055/AsciiImageConverter",
+          "license": null,
+          "description": "A canvas-based web app for converting images into colorful ASCII art"
+        }
+      ]
+    },
+    {
+      "query": "ascii image converter",
+      "repositories": [
+        {
+          "repository": "TheZoraiz/ascii-image-converter",
+          "url": "https://github.com/TheZoraiz/ascii-image-converter",
+          "license": "Apache-2.0",
+          "description": "A cross-platform command-line tool to convert images into ascii art and print them on the console. Now supports braille art!"
+        },
+        {
+          "repository": "Kirilllive/ASCII_Art_Paint",
+          "url": "https://github.com/Kirilllive/ASCII_Art_Paint",
+          "license": "MIT",
+          "description": "The editor for ASCII-graphics, combining a graphical editor and an image to text converter. Decorate your text and surprise your readers with an original social media post or blog post using ASCII graphics. The tool does not require an internet connection and can work offline in a browser."
+        },
+        {
+          "repository": "bkoc/BKAsciiImage",
+          "url": "https://github.com/bkoc/BKAsciiImage",
+          "license": "MIT",
+          "description": "Convert UIImage to ASCII art"
+        },
+        {
+          "repository": "EnotionZ/jscii",
+          "url": "https://github.com/EnotionZ/jscii",
+          "license": "MIT",
+          "description": "JavaScript image to ASCII converter"
+        },
+        {
+          "repository": "BEPb/image_to_ascii",
+          "url": "https://github.com/BEPb/image_to_ascii",
+          "license": "MIT",
+          "description": "Everything is very simple: you either download a picture file or specify its link when running a python script, and output you get a text file, and you can immediately view on the command line how it will look the result of your conversion."
+        },
+        {
+          "repository": "Rainbow-Dreamer/ascii-converter",
+          "url": "https://github.com/Rainbow-Dreamer/ascii-converter",
+          "license": "LGPL-2.1",
+          "description": "This is an easy-to-use Ascii converter that could convert any images and videos to ASCII art (text, images and videos), and you can easily customize the conversion parameters"
+        },
+        {
+          "repository": "christiangoltz/shaape",
+          "url": "https://github.com/christiangoltz/shaape",
+          "license": "NOASSERTION",
+          "description": "Shaape is an ascii art to image converter designed to be used with asciidoc."
+        }
+      ]
+    },
+    {
+      "query": "p5.asciify",
+      "repositories": [
+        {
+          "repository": "humanbydefinition/p5.asciify",
+          "url": "https://github.com/humanbydefinition/p5.asciify",
+          "license": "MIT",
+          "description": "Apply real-time ASCII conversion to your favorite WebGL p5.js sketches instantly."
+        },
+        {
+          "repository": "humanbydefinition/p5.asciify-vite-template-ts",
+          "url": "https://github.com/humanbydefinition/p5.asciify-vite-template-ts",
+          "license": null,
+          "description": "A simple p5.asciify template using vite and TypeScript."
+        },
+        {
+          "repository": "humanbydefinition/p5.asciify-vite-template-js",
+          "url": "https://github.com/humanbydefinition/p5.asciify-vite-template-js",
+          "license": null,
+          "description": "A simple p5.asciify template using vite and JavaScript."
+        },
+        {
+          "repository": "humanbydefinition/p5.asciify-plugin-template",
+          "url": "https://github.com/humanbydefinition/p5.asciify-plugin-template",
+          "license": "MIT",
+          "description": "A p5.asciify renderer plugin template to create reusable and easily shareable custom renderers."
+        },
+        {
+          "repository": "humanbydefinition/p5.asciify-pattern-renderer-plugin",
+          "url": "https://github.com/humanbydefinition/p5.asciify-pattern-renderer-plugin",
+          "license": "MIT",
+          "description": null
+        },
+        {
+          "repository": "humanbydefinition/p5.asciify-accurate-renderer-plugin",
+          "url": "https://github.com/humanbydefinition/p5.asciify-accurate-renderer-plugin",
+          "license": "MIT",
+          "description": "A p5.asciify renderer plugin that converts textures into accurate ASCII representations."
+        },
+        {
+          "repository": "joshua-moening/cubed",
+          "url": "https://github.com/joshua-moening/cubed",
+          "license": null,
+          "description": "a rotating ascii cube made with p5.js and asciify.js"
+        }
+      ]
+    }
+  ]
+}

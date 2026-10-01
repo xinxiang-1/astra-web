@@ -1,10 +1,15 @@
 /**
- * 第二档预览：WebGL2 图集 + 实例化绘制大量印章四边形。
+ * WebGL2 分层纹理 + 实例化绘制；独立 mipmaps 保留缩小后的完整笔迹。
  * placements 仍是矢量源；此处只负责屏上吞吐。
  */
 
 import type { SignatureStamp } from './extract'
 import type { Placement } from './layout'
+import { signatureTint } from './render-style'
+
+// Keep production on Canvas until test:signature-gpu passes. Experiments must
+// opt in explicitly; supporting WebGL2 is not a visual quality certificate.
+export const SIGNATURE_GPU_PREVIEW_VERIFIED: boolean = false
 
 const VS = `#version 300 es
 layout(location=0) in vec2 a_corner;
@@ -12,12 +17,18 @@ layout(location=1) in vec4 a_pose;   // x, y, angle, targetSize
 layout(location=2) in vec4 a_uv;     // u0, v0, u1, v1
 layout(location=3) in vec4 a_tint;   // r, g, b, opacity 0-1
 layout(location=4) in vec2 a_glyph;  // glyphW, glyphH (atlas px before scale)
+layout(location=5) in vec4 a_cover;
+layout(location=6) in float a_layer;
 
 uniform vec4 u_view;       // x, y, w, h in layout space
 uniform vec2 u_resolution; // canvas css*dpr pixels
+uniform bool u_cover;
 
 out vec2 v_uv;
 out vec4 v_tint;
+out vec4 v_cover;
+out vec2 v_corner;
+flat out float v_layer;
 
 void main() {
   float ang = a_pose.z;
@@ -25,7 +36,14 @@ void main() {
   float s = sin(ang);
   float stampLong = max(a_glyph.x, a_glyph.y);
   float sc = a_pose.w / max(1.0, stampLong);
-  vec2 local = a_corner * a_glyph * sc;
+  vec2 corner = u_cover ? a_corner * vec2(1.04, .76) : a_corner;
+  // Leave one screen pixel around the glyph for its filtered alpha. Clipping
+  // the quad at the source bounds otherwise cuts off ink at very small sizes.
+  if (!u_cover) {
+    float pixel = max(u_view.z / u_resolution.x, u_view.w / u_resolution.y);
+    corner *= 1. + vec2(2. * pixel) / max(vec2(.001), a_glyph * sc);
+  }
+  vec2 local = corner * a_glyph * sc;
   vec2 rot = vec2(c * local.x - s * local.y, s * local.x + c * local.y);
   vec2 world = a_pose.xy + rot;
 
@@ -34,21 +52,41 @@ void main() {
   clip.y = -clip.y;
   gl_Position = vec4(clip, 0.0, 1.0);
 
-  v_uv = mix(a_uv.xy, a_uv.zw, a_corner + 0.5);
+  v_uv = mix(a_uv.xy, a_uv.zw, corner + 0.5);
   v_tint = a_tint;
+  v_cover = a_cover;
+  v_corner = corner;
+  v_layer = a_layer;
 }
 `
 
 const FS = `#version 300 es
 precision highp float;
-uniform sampler2D u_atlas;
+uniform highp sampler2DArray u_atlas;
+uniform bool u_cover;
 in vec2 v_uv;
 in vec4 v_tint;
+in vec4 v_cover;
+in vec2 v_corner;
+flat in float v_layer;
 out vec4 outColor;
 
 void main() {
-  vec4 s = texture(u_atlas, v_uv);
-  float a = s.a * v_tint.a;
+  if (u_cover) {
+    float d = length(v_corner / vec2(.52, .38));
+    float alpha = v_cover.a * (1. - smoothstep(1. - fwidth(d), 1. + fwidth(d), d));
+    outColor = vec4(v_cover.rgb * alpha, alpha);
+    return;
+  }
+  vec2 dx = dFdx(v_uv) * .5, dy = dFdy(v_uv) * .5;
+  float alpha = 0.;
+  for (int y = -1; y <= 1; y += 2) {
+    for (int x = -1; x <= 1; x += 2) {
+      vec2 uv = v_uv + (float(x) * dx + float(y) * dy) * .5;
+      alpha += textureGrad(u_atlas, vec3(uv, v_layer), dx, dy).a * .25;
+    }
+  }
+  float a = alpha * v_tint.a;
   // 印章为透明底墨迹；用 tint 着色（与 canvas source-in 接近）
   vec3 rgb = v_tint.rgb * a;
   outColor = vec4(rgb, a);
@@ -63,6 +101,7 @@ export type GlStampPreview = {
   setStamps: (stamps: SignatureStamp[]) => void
   setPlacements: (placements: Placement[], layoutW: number, layoutH: number) => void
   setColorize: (on: boolean) => void
+  setCoverFill: (on: boolean) => void
   setBackground: (css: string) => void
   setPortrait: (img: CanvasImageSource | null, underlay?: number) => void
   setView: (view: GlViewRect) => void
@@ -71,7 +110,7 @@ export type GlStampPreview = {
   dispose: () => void
 }
 
-type AtlasEntry = { u0: number; v0: number; u1: number; v1: number; w: number; h: number }
+type AtlasEntry = { u0: number; v0: number; u1: number; v1: number; w: number; h: number; layer: number }
 
 function compile(gl: WebGL2RenderingContext, type: number, src: string) {
   const sh = gl.createShader(type)
@@ -123,21 +162,7 @@ function tintRgb(
   depth: number,
   literal = false,
 ): [number, number, number] {
-  if (literal) {
-    return [r / 255, g / 255, b / 255]
-  }
-  const d = Math.min(1, Math.max(0, depth))
-  if (colorize) {
-    const k = 0.22 + (1 - d) * 0.28
-    const mix = 0.55 + d * 0.35
-    return [
-      (r * k * mix + 18 * (1 - mix)) / 255,
-      (g * k * mix + 16 * (1 - mix)) / 255,
-      (b * k * mix + 22 * (1 - mix)) / 255,
-    ]
-  }
-  const v = (18 + (1 - d) * 55) / 255
-  return [v, v, (18 + (1 - d) * 55 + 2) / 255]
+  return signatureTint(colorize, r, g, b, depth, literal).map(channel => channel / 255) as [number, number, number]
 }
 
 function downscale(src: HTMLCanvasElement, maxLong: number): HTMLCanvasElement {
@@ -155,82 +180,14 @@ function downscale(src: HTMLCanvasElement, maxLong: number): HTMLCanvasElement {
   return out
 }
 
-function packAtlas(
-  stamps: SignatureStamp[],
-  maxStampLong: number,
-): { canvas: HTMLCanvasElement; entries: AtlasEntry[] } {
-  const pads = 2
-  const cells = stamps.map((s) => downscale(s.canvas, maxStampLong))
-  const sorted = cells
-    .map((c, i) => ({ c, i }))
-    .sort((a, b) => b.c.height - a.c.height)
-
-  let atlasW = 1024
-  const maxAtlas = 4096
-
-  const layoutAt = (width: number) => {
-    let shelfX = 0
-    let shelfY = 0
-    let shelfH = 0
-    const places: { i: number; x: number; y: number; w: number; h: number }[] = []
-    for (const item of sorted) {
-      const w = item.c.width + pads * 2
-      const h = item.c.height + pads * 2
-      if (shelfX + w > width) {
-        shelfX = 0
-        shelfY += shelfH
-        shelfH = 0
-      }
-      places.push({
-        i: item.i,
-        x: shelfX + pads,
-        y: shelfY + pads,
-        w: item.c.width,
-        h: item.c.height,
-      })
-      shelfX += w
-      shelfH = Math.max(shelfH, h)
-    }
-    return { places, height: shelfY + shelfH }
-  }
-
-  let packed = layoutAt(atlasW)
-  while (packed.height > atlasW && atlasW < maxAtlas) {
-    atlasW = Math.min(maxAtlas, atlasW * 2)
-    packed = layoutAt(atlasW)
-  }
-  let atlasH = 1
-  while (atlasH < packed.height) atlasH *= 2
-  atlasH = Math.min(maxAtlas, Math.max(64, atlasH))
-
-  const canvas = document.createElement('canvas')
-  canvas.width = atlasW
-  canvas.height = atlasH
-  const ctx = canvas.getContext('2d')
-  if (!ctx) throw new Error('atlas context failed')
-  ctx.clearRect(0, 0, atlasW, atlasH)
-  const entries: AtlasEntry[] = new Array(stamps.length)
-  for (const p of packed.places) {
-    const cell = cells[p.i]!
-    ctx.drawImage(cell, p.x, p.y)
-    entries[p.i] = {
-      u0: p.x / atlasW,
-      v0: p.y / atlasH,
-      u1: (p.x + p.w) / atlasW,
-      v1: (p.y + p.h) / atlasH,
-      w: p.w,
-      h: p.h,
-    }
-  }
-  return { canvas, entries }
-}
-
 /**
  * 创建 WebGL 预览器；不支持 WebGL2 时返回 null（调用方回退 Canvas 2D）。
  */
 export function createGlStampPreview(
   canvas?: HTMLCanvasElement,
+  options: { allowUnverified?: boolean } = {},
 ): GlStampPreview | null {
+  if (!SIGNATURE_GPU_PREVIEW_VERIFIED && !options.allowUnverified) return null
   const el = canvas ?? document.createElement('canvas')
   const gl = el.getContext('webgl2', {
     alpha: true,
@@ -250,13 +207,13 @@ export function createGlStampPreview(
   const uView = gl.getUniformLocation(prog, 'u_view')
   const uRes = gl.getUniformLocation(prog, 'u_resolution')
   const uAtlas = gl.getUniformLocation(prog, 'u_atlas')
+  const uCover = gl.getUniformLocation(prog, 'u_cover')
 
   const vao = gl.createVertexArray()
   const quadBuf = gl.createBuffer()
   const instBuf = gl.createBuffer()
-  const atlasTex = gl.createTexture()
+  let atlasTex = gl.createTexture()
   const portraitTex = gl.createTexture()
-
   // unit quad corners: (-0.5,-0.5) .. (0.5,0.5)
   const corners = new Float32Array([
     -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, 0.5, 0.5,
@@ -268,8 +225,8 @@ export function createGlStampPreview(
   gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0)
   gl.vertexAttribDivisor(0, 0)
 
-  // instance buffer layout: pose(4) + uv(4) + tint(4) + glyph(2) = 14 floats
-  const STRIDE = 14
+  // pose(4) + uv(4) + tint(4) + glyph(2) + cover(4) + layer(1)
+  const STRIDE = 19
   const BYTES = STRIDE * 4
   gl.bindBuffer(gl.ARRAY_BUFFER, instBuf)
   const bindInst = (loc: number, size: number, offset: number) => {
@@ -281,6 +238,8 @@ export function createGlStampPreview(
   bindInst(2, 4, 16)
   bindInst(3, 4, 32)
   bindInst(4, 2, 48)
+  bindInst(5, 4, 56)
+  bindInst(6, 1, 72)
   gl.bindVertexArray(null)
 
   let placements: Placement[] = []
@@ -288,6 +247,7 @@ export function createGlStampPreview(
   let layoutH = 1
   let entries: AtlasEntry[] = []
   let colorize = true
+  let coverFill = false
   let bg: [number, number, number, number] = [0.95, 0.94, 0.91, 1]
   let view: GlViewRect = { x: 0, y: 0, w: 1, h: 1 }
   let instanceCount = 0
@@ -296,16 +256,47 @@ export function createGlStampPreview(
   let disposed = false
 
   const uploadAtlas = (stamps: SignatureStamp[]) => {
+    entries = []
     if (!stamps.length) return
-    const packed = packAtlas(stamps, 256)
-    entries = packed.entries
-    gl.bindTexture(gl.TEXTURE_2D, atlasTex)
+    if (stamps.length > gl.getParameter(gl.MAX_ARRAY_TEXTURE_LAYERS)) throw new Error('签名模板超出 GPU 限制')
+    // At most ~64 MiB including mipmaps. Each signature has its own layer,
+    // so even the smallest mip level cannot bleed into another handwriting.
+    let side = Math.min(512, gl.getParameter(gl.MAX_TEXTURE_SIZE))
+    while (side > 32 && side * side * stamps.length * 4 * 4 / 3 > 64 * 1024 * 1024) side /= 2
+    gl.deleteTexture(atlasTex)
+    atlasTex = gl.createTexture()
+    gl.bindTexture(gl.TEXTURE_2D_ARRAY, atlasTex)
     gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, 0)
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR)
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR)
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE)
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE)
-    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, packed.canvas)
+    gl.texParameteri(gl.TEXTURE_2D_ARRAY, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_LINEAR)
+    gl.texParameteri(gl.TEXTURE_2D_ARRAY, gl.TEXTURE_MAG_FILTER, gl.LINEAR)
+    gl.texParameteri(gl.TEXTURE_2D_ARRAY, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE)
+    gl.texParameteri(gl.TEXTURE_2D_ARRAY, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE)
+    const levels = Math.floor(Math.log2(side)) + 1
+    gl.texStorage3D(gl.TEXTURE_2D_ARRAY, levels, gl.RGBA8, side, side, stamps.length)
+    const layerCanvas = document.createElement('canvas')
+    layerCanvas.width = layerCanvas.height = side
+    const context = layerCanvas.getContext('2d')
+    if (!context) throw new Error('无法创建签名纹理')
+    const mipCanvas = document.createElement('canvas')
+    const mipContext = mipCanvas.getContext('2d')
+    if (!mipContext) throw new Error('无法创建签名缩小纹理')
+    for (let layer = 0; layer < stamps.length; layer++) {
+      const stamp = stamps[layer]!
+      const cell = downscale(stamp.canvas, side - 4)
+      const x = (side - cell.width) / 2, y = (side - cell.height) / 2
+      context.clearRect(0, 0, side, side)
+      context.drawImage(cell, x, y)
+      gl.texSubImage3D(gl.TEXTURE_2D_ARRAY, 0, 0, 0, layer, side, side, 1, gl.RGBA, gl.UNSIGNED_BYTE, layerCanvas)
+      for (let level = 1; level < levels; level++) {
+        mipCanvas.width = mipCanvas.height = side >> level
+        mipContext.imageSmoothingEnabled = true
+        mipContext.imageSmoothingQuality = 'high'
+        mipContext.drawImage(layerCanvas, 0, 0, mipCanvas.width, mipCanvas.height)
+        gl.texSubImage3D(gl.TEXTURE_2D_ARRAY, level, 0, 0, layer, mipCanvas.width, mipCanvas.height, 1, gl.RGBA, gl.UNSIGNED_BYTE, mipCanvas)
+      }
+      entries.push({ u0: x / side, v0: y / side, u1: (x + cell.width) / side, v1: (y + cell.height) / side, w: stamp.canvas.width, h: stamp.canvas.height, layer })
+    }
+    if (gl.getError() !== gl.NO_ERROR) throw new Error('签名纹理上传失败')
   }
 
   const rebuildInstances = () => {
@@ -344,6 +335,11 @@ export function createGlStampPreview(
       data[o++] = Math.min(1, Math.max(0, p.strength))
       data[o++] = e.w
       data[o++] = e.h
+      data[o++] = p.tint.r / 255
+      data[o++] = p.tint.g / 255
+      data[o++] = p.tint.b / 255
+      data[o++] = Math.max(0, Math.min(1, .14 + p.depth * .28)) * Math.max(0, Math.min(1, p.strength))
+      data[o++] = e.layer
     }
     instanceCount = order.length
     gl.bindBuffer(gl.ARRAY_BUFFER, instBuf)
@@ -437,10 +433,11 @@ export function createGlStampPreview(
       colorize = on
       rebuildInstances()
     },
+    setCoverFill(on) { coverFill = on },
     setBackground(css) {
       bg = parseCssColor(css)
     },
-    setPortrait(img, underlay = 0.16) {
+    setPortrait(img, underlay = 0) {
       if (disposed) return
       portraitUnderlay = underlay
       uploadPortrait(img)
@@ -490,9 +487,11 @@ export function createGlStampPreview(
       gl.uniform4f(uView, view.x, view.y, view.w, view.h)
       gl.uniform2f(uRes, el.width, el.height)
       gl.activeTexture(gl.TEXTURE0)
-      gl.bindTexture(gl.TEXTURE_2D, atlasTex)
+      gl.bindTexture(gl.TEXTURE_2D_ARRAY, atlasTex)
       gl.uniform1i(uAtlas, 0)
       gl.bindVertexArray(vao)
+      if (coverFill) { gl.uniform1i(uCover, 1); gl.drawArraysInstanced(gl.TRIANGLES, 0, 6, instanceCount) }
+      gl.uniform1i(uCover, 0)
       gl.drawArraysInstanced(gl.TRIANGLES, 0, 6, instanceCount)
       gl.bindVertexArray(null)
     },

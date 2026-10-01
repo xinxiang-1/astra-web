@@ -1,6 +1,9 @@
+<script setup lang="ts">
+import AstraLogo from '@/components/ui/AstraLogo.vue'
+</script>
 <template>
   <footer class="art-footer">
-    <RouterLink to="/" class="art-wordmark">Astra</RouterLink>
+    <RouterLink to="/" class="art-wordmark" aria-label="Astra 首页"><AstraLogo :height="32" /></RouterLink>
     <p>用文字，创造更多可能。</p>
     <nav>
       <RouterLink to="/gallery">作品与模板</RouterLink><RouterLink to="/studio">实验室</RouterLink
@@ -9,3 +12,6 @@
     <span class="art-eyebrow">MADE OF CHARACTERS.</span>
   </footer>
 </template>
+<style scoped>
+.art-wordmark { display: inline-flex; align-items: center; gap: 10px; }
+</style>

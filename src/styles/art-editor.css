@@ -88,6 +88,30 @@
 .editor-save:disabled {
   opacity: 0.4;
 }
+.editor-package {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 44px;
+  margin-top: 10px;
+  border: 1px solid #ffffff26;
+  border-radius: 24px;
+  background: transparent;
+  color: #c3cbb7;
+  font: 12px var(--font-body);
+  cursor: pointer;
+}
+.editor-package:disabled {
+  opacity: 0.4;
+  cursor: wait;
+}
+.package-hint {
+  color: #909d86;
+  font-size: 10px;
+  line-height: 1.8;
+}
 .editor-header-actions .art-button {
   padding: 9px 25px;
   min-height: 37px;
@@ -96,6 +120,15 @@
 }
 .app-shell .art-editor > .mode-switch {
   display: none;
+}
+.app-shell .art-editor .inspector-modes.six-modes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+}
+.app-shell .art-editor .inspector-modes.six-modes button {
+  min-width: 0;
+  padding: 9px 6px;
 }
 .app-shell .art-editor .workspace {
   grid-template-columns: 245px minmax(0, 1fr) 295px;

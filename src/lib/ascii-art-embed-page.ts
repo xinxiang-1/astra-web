@@ -10,17 +10,16 @@ export function asciiArtEmbedPage(options: {
   title?: string
   /** Canvas glyph stack; defaults to AsciiArt preview Consolas stack. */
   fontFamily?: string
+  columns?: number
 }) {
-  const settingsJson = JSON.stringify(options.settings, null, 2).replace(
-    /</g,
-    '\\u003c',
-  )
+  const settingsJson = JSON.stringify(options.settings, null, 2).replace(/</g, '\\u003c')
   const dataUrlJson = options.dataUrl
     ? JSON.stringify(options.dataUrl).replace(/</g, '\\u003c')
     : 'null'
-  const fontJson = JSON.stringify(
-    options.fontFamily?.trim() || PREVIEW_MONO_FONT,
-  ).replace(/</g, '\\u003c')
+  const fontJson = JSON.stringify(options.fontFamily?.trim() || PREVIEW_MONO_FONT).replace(
+    /</g,
+    '\\u003c',
+  )
   const ratio = options.ratio > 0 ? options.ratio : 1
   const title = (options.title || '字符画动效').replace(/</g, '')
   const open = '<' + 'script type="module">'
@@ -137,8 +136,8 @@ export function asciiArtEmbedPage(options: {
     function fit() {
       if (!studio) return
       const rect = stage.getBoundingClientRect()
-      const dpr = Math.min(devicePixelRatio || 1, 2, 1920 / Math.max(rect.width, rect.height))
-      studio.resize(Math.round(rect.width * dpr), Math.round(rect.height * dpr), dpr)
+      const nativeWidth = ${Math.max(20, Math.min(520, Math.round(options.columns ?? 180)))} * 6
+      studio.resize(nativeWidth, Math.round(nativeWidth * rect.height / rect.width), 1)
     }
 
     function syncStatus() {
@@ -159,7 +158,7 @@ export function asciiArtEmbedPage(options: {
       studio = await mountStudio(canvas, source, {
         settings: { ...settings, ...effects },
         adaptive: false,
-        maxDimension: 1920,
+        maxDimension: 8192,
         maxCells: 180000,
       })
       const media = studio.media

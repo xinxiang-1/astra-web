@@ -4,6 +4,7 @@ import {
   ASCII_FONT_PRESETS,
   ASCII_RESOLUTIONS,
 } from './constants'
+import type { ArtFrame } from '../art-engine'
 
 export type AsciiCharsetKey = keyof typeof ASCII_CHARSETS
 export type AsciiResolutionKey = keyof typeof ASCII_RESOLUTIONS
@@ -61,6 +62,8 @@ export type MonoCellMetrics = {
 }
 
 export type AsciiConvertResult = {
+  /** Calibrated six-mode frame; the text is a companion export, not its renderer. */
+  art?: ArtFrame
   text: string
   columns: number
   rows: number
@@ -162,6 +165,9 @@ export type FitZoomOptions = {
 
 /** One cached ASCII video frame from prerender. */
 export type PrerenderFrame = {
+  art?: ArtFrame
+  /** Lossless native Studio raster; text remains available for TXT export. */
+  raster?: Blob
   text: string
   colors: Uint8ClampedArray | null
   columns: number

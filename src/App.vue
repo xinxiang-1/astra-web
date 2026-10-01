@@ -4,6 +4,7 @@ import { RouterLink, RouterView, useRoute } from 'vue-router'
 
 import ThemeToggle from '@/components/ui/ThemeToggle.vue'
 import ArtHeader from '@/components/ArtHeader.vue'
+import AstraLogo from '@/components/ui/AstraLogo.vue'
 import { authRouteNames, studioRouteNames, toolRouteNames } from '@/content/catalog'
 import { useAuthStore } from '@/stores/auth'
 import { useThemeStore } from '@/stores/theme'
@@ -18,9 +19,9 @@ onMounted(() => {
 
 const routeName = computed(() => String(route.name ?? ''))
 const isProduct = computed(() =>
-  ['home', 'gallery', 'projects', 'ascii-art'].includes(routeName.value),
+  ['home', 'gallery', 'projects', 'ascii-art', 'art-lab'].includes(routeName.value),
 )
-const isEditor = computed(() => routeName.value === 'ascii-art')
+const isEditor = computed(() => ['ascii-art', 'art-lab'].includes(routeName.value))
 
 const isAuthPage = computed(() => (authRouteNames as readonly string[]).includes(routeName.value))
 const isStudioHub = computed(() => routeName.value === 'studio')
@@ -48,7 +49,7 @@ const isScrollable = computed(() => isProduct.value || isStudioHub.value || isTo
   >
     <ArtHeader v-if="isProduct && !isEditor" />
     <header v-else-if="!isEditor" class="topbar">
-      <RouterLink v-if="!isAuthPage" class="brand" to="/">Astra</RouterLink>
+      <RouterLink v-if="!isAuthPage" class="brand" to="/" aria-label="Astra 首页"><AstraLogo :height="26" /></RouterLink>
       <span v-else class="topbar-spacer" aria-hidden="true" />
       <nav>
         <template v-if="!isAuthPage">
@@ -106,6 +107,7 @@ a {
 <style scoped>
 .app-shell {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   grid-template-rows: auto 1fr;
   height: 100%;
   background: var(--bg);
@@ -140,6 +142,7 @@ a {
 .topbar {
   z-index: 20;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;

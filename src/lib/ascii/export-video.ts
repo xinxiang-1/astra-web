@@ -1,20 +1,13 @@
-import {
-  BufferTarget,
-  CanvasSource,
-  Mp4OutputFormat,
-  Output,
-} from 'mediabunny'
+import { BufferTarget, CanvasSource, Mp4OutputFormat, Output } from 'mediabunny'
 
-import {
-  EXPORT_MONO_FONT,
-  VIDEO_EXPORT_BUFFER_FRAMES,
-  VIDEO_EXPORT_MAX_FRAMES,
-} from './constants'
+import { EXPORT_MONO_FONT, VIDEO_EXPORT_BUFFER_FRAMES, VIDEO_EXPORT_MAX_FRAMES } from './constants'
 import { paintAsciiToCanvas } from './paint'
 import type { AsciiPngOptions } from './types'
 
 export type AsciiVideoFrameInput = {
   text: string
+  /** Already-rendered native Studio frame; avoids a second ASCII painter. */
+  raster?: HTMLCanvasElement
   colors?: Uint8ClampedArray | null
 }
 
@@ -109,10 +102,7 @@ async function collectFrames(options: AsciiVideoExportOptions) {
   return frames
 }
 
-function createPaintSession(
-  sample: AsciiVideoFrameInput,
-  options: AsciiVideoExportOptions,
-) {
+function createPaintSession(sample: AsciiVideoFrameInput, options: AsciiVideoExportOptions) {
   const fontSize = Math.max(6, options.fontSize ?? 10)
   const padding = options.padding ?? 16
   const background = options.background ?? '#ffffff'
@@ -136,23 +126,25 @@ function createPaintSession(
   }
 
   const paint = (frame: AsciiVideoFrameInput) => {
-    paintAsciiToCanvas(paintCanvas, frame.text, {
-      ...paintOptions,
-      fontSize,
-      background,
-      foreground,
-      colors: frame.colors ?? undefined,
-      devicePixelRatio: 1,
-    })
+    if (!frame.raster)
+      paintAsciiToCanvas(paintCanvas, frame.text, {
+        ...paintOptions,
+        fontSize,
+        background,
+        foreground,
+        colors: frame.colors ?? undefined,
+        devicePixelRatio: 1,
+      })
+    const source = frame.raster ?? paintCanvas
     recordCtx.fillStyle = background
     recordCtx.fillRect(0, 0, recordCanvas.width, recordCanvas.height)
     recordCtx.imageSmoothingEnabled = false
     recordCtx.drawImage(
-      paintCanvas,
+      source,
       0,
       0,
-      paintCanvas.width,
-      paintCanvas.height,
+      source.width,
+      source.height,
       0,
       0,
       recordCanvas.width,
@@ -160,14 +152,16 @@ function createPaintSession(
     )
   }
 
-  const size = paintAsciiToCanvas(paintCanvas, sample.text, {
-    ...paintOptions,
-    fontSize,
-    background,
-    foreground,
-    colors: sample.colors ?? undefined,
-    devicePixelRatio: 1,
-  })
+  const size = sample.raster
+    ? { cssWidth: sample.raster.width, cssHeight: sample.raster.height }
+    : paintAsciiToCanvas(paintCanvas, sample.text, {
+        ...paintOptions,
+        fontSize,
+        background,
+        foreground,
+        colors: sample.colors ?? undefined,
+        devicePixelRatio: 1,
+      })
   const fitted = scaleToMaxEdge(size.cssWidth, size.cssHeight, maxEdge)
   recordCanvas.width = fitted.width
   recordCanvas.height = fitted.height
@@ -281,24 +275,18 @@ async function encodeWithRecorder(
   stream.getTracks().forEach((track) => track.stop())
   await stopped
 
-  const mimeType =
-    recorder.mimeType || pick.mimeType || chunks[0]?.type || 'video/webm'
+  const mimeType = recorder.mimeType || pick.mimeType || chunks[0]?.type || 'video/webm'
   const extension: 'mp4' | 'webm' = /mp4/i.test(mimeType) ? 'mp4' : 'webm'
   const blob = new Blob(chunks, { type: mimeType || `video/${extension}` })
   if (blob.size <= 0) throw new Error('视频导出失败：文件为空')
   return { blob, mimeType: blob.type || mimeType, extension }
 }
 
-async function* listFrames(
-  frames: AsciiVideoFrameInput[],
-): AsyncGenerator<AsciiVideoFrameInput> {
+async function* listFrames(frames: AsciiVideoFrameInput[]): AsyncGenerator<AsciiVideoFrameInput> {
   for (const frame of frames) yield frame
 }
 
-async function locateFirstFrame(
-  options: AsciiVideoExportOptions,
-  frameCount: number,
-) {
+async function locateFirstFrame(options: AsciiVideoExportOptions, frameCount: number) {
   for (let i = 0; i < frameCount; i++) {
     if (options.shouldAbort?.()) throw new Error(CANCELLED)
     const frame = await options.getFrame(i)
@@ -352,12 +340,7 @@ export async function exportAsciiVideo(
       return { blob, mimeType: 'video/mp4', extension: 'mp4' }
     } catch (error) {
       if (isCancelled(error)) throw error
-      return encodeWithRecorder(
-        session.recordCanvas,
-        listFrames(buffered),
-        session.paint,
-        options,
-      )
+      return encodeWithRecorder(session.recordCanvas, listFrames(buffered), session.paint, options)
     }
   }
 
@@ -368,19 +351,9 @@ export async function exportAsciiVideo(
     frame: located.frame,
   })
   if (typeof VideoEncoder === 'undefined') {
-    return encodeWithRecorder(
-      session.recordCanvas,
-      frames,
-      session.paint,
-      options,
-    )
+    return encodeWithRecorder(session.recordCanvas, frames, session.paint, options)
   }
-  const blob = await encodeMp4(
-    session.recordCanvas,
-    frames,
-    session.paint,
-    options,
-  )
+  const blob = await encodeMp4(session.recordCanvas, frames, session.paint, options)
   return { blob, mimeType: 'video/mp4', extension: 'mp4' }
 }
 

@@ -27,17 +27,8 @@ type RunArgs = {
   signal?: { cancelled?: boolean }
 }
 
-let worker: Worker | null = null
+const workers = new Map<Worker, () => void>()
 let seq = 0
-
-function getWorker(): Worker {
-  if (!worker) {
-    worker = new Worker(new URL('./layout.worker.ts', import.meta.url), {
-      type: 'module',
-    })
-  }
-  return worker
-}
 
 /**
  * 在 Web Worker 中跑密度采样 / Lloyd / placements，不堵主线程。
@@ -45,7 +36,8 @@ function getWorker(): Worker {
  */
 export function runLayoutInWorker(args: RunArgs): Promise<Placement[]> {
   const id = ++seq
-  const w = getWorker()
+  if (args.signal?.cancelled) return Promise.reject(new Error('已取消'))
+  const w = new Worker(new URL('./layout.worker.ts', import.meta.url), { type: 'module' })
 
   return new Promise((resolve, reject) => {
     const onMessage = (
@@ -77,17 +69,18 @@ export function runLayoutInWorker(args: RunArgs): Promise<Placement[]> {
       w.removeEventListener('message', onMessage)
       w.removeEventListener('error', onError)
       clearInterval(cancelWatch)
+      workers.delete(w)
+      w.terminate()
     }
+
+    const cancel = () => { cleanup(); reject(new Error('已取消')) }
+    workers.set(w, cancel)
 
     const cancelWatch = window.setInterval(() => {
       if (args.signal?.cancelled) {
-        w.postMessage({ type: 'cancel', id })
+        cancel()
       }
-    }, 80)
-
-    if (args.signal?.cancelled) {
-      w.postMessage({ type: 'cancel', id })
-    }
+    }, 20)
 
     w.addEventListener('message', onMessage)
     w.addEventListener('error', onError)
@@ -112,11 +105,11 @@ export function runLayoutInWorker(args: RunArgs): Promise<Placement[]> {
       stampMetrics: args.stampMetrics,
       options: args.options,
     }
-    w.postMessage(req, [fullCopy.buffer as ArrayBuffer, aCopy.buffer as ArrayBuffer])
+    try { w.postMessage(req, [fullCopy.buffer as ArrayBuffer, aCopy.buffer as ArrayBuffer]) }
+    catch (error) { cleanup(); reject(error) }
   })
 }
 
 export function terminateLayoutWorker() {
-  worker?.terminate()
-  worker = null
+  for (const cancel of [...workers.values()]) cancel()
 }
