@@ -238,7 +238,7 @@
 
 ### 6.2 再评估 Pro
 
-候选新增价值：批量处理、个人预设包、批量尺寸版式、项目可移植备份、经过授权的专业模板、更新支持；云同步和托管嵌入必须另算成本。
+首版候选新增价值：批量处理、批量尺寸版式、经过授权的私有排版内容及更新支持，具体范围见[商业PRD](./prd-commerce.md)。现有个人预设和可移植.astra作品包备份保持免费，不能再当新增Pro卖点；云同步和托管嵌入必须另算成本。
 
 - 先测试一次性功能/内容包，再判断复购和持续使用是否支持订阅。
 - 若确有持续价值，可测试 ¥29–49/月；年费须明确维护承诺和退款条件。
@@ -295,13 +295,13 @@
 
 ### 7.2 文档按模块生成
 
-当前只形成总计划；后续文档在相应阶段创建、评审并迭代：
+已形成总计划、创作/设计及模板交付记录；商业开发基线见[商业PRD](./prd-commerce.md)、[后端接口](../../../astra-cloud/docs/commerce/api-contracts.md)及[数据库方案](../../../astra-cloud/docs/commerce/database-design.md)。合同不等于已实现交易；其他文档在对应阶段继续创建和迭代：
 
 - `product-positioning.md`：用户、价值、使用场景、首版范围、验证假设。
 - `design-system-v2.md`：设计变量、排版、主题规则、组件、动效与文案。
 - `prototype-v2-review.md`：屏幕清单、关键路径、反馈与结论。
 - `prd-creation.md`：上传、预设、编辑、导出、错误恢复和本地保存。
-- `prd-commerce.md`：商品、许可、支付、退款与权益；开始商业开发前完成。
+- [prd-commerce.md](./prd-commerce.md)：商品、新增批量创作、许可、支付、退款、权益、定制咨询及成本验证；当前设计基线，功能待实现。
 - `prd-studio.md`：特效体验、嵌入范围、咨询与交付。
 - `frontend-architecture.md`、`backend-architecture.md`：模块边界、状态与计算职责。
 - `api-contracts.md`、`database-design.md`：接口、状态机、字段、索引与迁移。
