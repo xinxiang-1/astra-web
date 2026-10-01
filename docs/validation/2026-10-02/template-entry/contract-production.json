@@ -1,0 +1,88 @@
+{
+  "base": "http://127.0.0.1:5194",
+  "browser": "153.0.8010.12",
+  "scope": "Original starter entry and help, real local persistence and downloads; simulated touch/390px and injected network/quota failures; no commercial aesthetics, real devices or payment certification",
+  "cases": [
+    {
+      "name": "six-public-assets-exact"
+    },
+    {
+      "name": "filter-search-reset"
+    },
+    {
+      "name": "dialog-keyboard-focus-return"
+    },
+    {
+      "name": "orbital-light-create-edit-export-save-duplicate",
+      "originalSourceAndSettings": true,
+      "originalPngExact": true,
+      "actualEditedPackage": true,
+      "independentIdAndPreservation": true
+    },
+    {
+      "name": "spectral-fold-create-edit-export-save-duplicate",
+      "originalSourceAndSettings": true,
+      "originalPngExact": true,
+      "actualEditedPackage": true,
+      "independentIdAndPreservation": true
+    },
+    {
+      "name": "phrase-echo-create-edit-export-save-duplicate",
+      "originalSourceAndSettings": true,
+      "originalPngExact": true,
+      "actualEditedPackage": true,
+      "independentIdAndPreservation": true
+    },
+    {
+      "name": "help-formats-faq-keyboard-backup-link"
+    },
+    {
+      "name": "http-404-no-write-retryable"
+    },
+    {
+      "name": "network-no-write-retryable"
+    },
+    {
+      "name": "wrong-file-no-write-retryable"
+    },
+    {
+      "name": "wrong-hash-same-length-no-write-retryable"
+    },
+    {
+      "name": "real-15s-timeout-no-write-retryable"
+    },
+    {
+      "name": "quota-no-write-real-retry"
+    },
+    {
+      "name": "pending-duplicate-and-escape-guard"
+    },
+    {
+      "name": "unmount-aborts-late-template"
+    },
+    {
+      "name": "orbital-light-390px-navigation-create-export-backup-reopen",
+      "actualPngAndPackage": true,
+      "noOverflow": true,
+      "primaryActionFullyVisible": true
+    },
+    {
+      "name": "spectral-fold-390px-navigation-create-export-backup-reopen",
+      "actualPngAndPackage": true,
+      "noOverflow": true,
+      "primaryActionFullyVisible": true
+    },
+    {
+      "name": "phrase-echo-390px-navigation-create-export-backup-reopen",
+      "actualPngAndPackage": true,
+      "noOverflow": true,
+      "primaryActionFullyVisible": true
+    },
+    {
+      "name": "native-reveal-hover-no-text-transform-reduced-motion"
+    }
+  ],
+  "errors": [],
+  "uploads": [],
+  "passed": true
+}

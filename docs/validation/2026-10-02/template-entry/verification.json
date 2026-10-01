@@ -1,0 +1,92 @@
+{
+  "collectedAt": "2026-10-01T19:14:03.755Z",
+  "parent": "2cb1e0a93fef0f2712bb628bfc2172f001db2eb2",
+  "scope": "Original starter entry and help, real local persistence and downloads; simulated touch/390px and injected network/quota failures; no commercial aesthetics, real devices or payment certification",
+  "checks": {
+    "developmentTasks": 19,
+    "productionTasks": 19,
+    "primaryActionsFullyVisiblePerRun": 3,
+    "homeLinkChecks": 13,
+    "originalGalleryCards": 6,
+    "sourceFiles": 12,
+    "protectedFiles": 34,
+    "exactPublicAssets": 6,
+    "typesExitCode": 0,
+    "relevantEslintExitCode": 0,
+    "productionBuildExitCode": 0,
+    "uploads": 0,
+    "runtimeErrors": 0
+  },
+  "artifacts": [
+    {
+      "path": "contract-development.json",
+      "bytes": 2390,
+      "sha256": "76a7ca42b99b528d7ce4914be3b43d8b2377cad5f0acf54b63db1b85d2086093"
+    },
+    {
+      "path": "contract-production.json",
+      "bytes": 2390,
+      "sha256": "8f1772fd33cac70eb9ccb2b7a2869299df7031ec57ee159b86dfcba2c350cb2d"
+    },
+    {
+      "path": "source-manifest.json",
+      "bytes": 1607,
+      "sha256": "496df74e3a505453dc7e513bdfccdd01b192d2bcf53973c332f6b7861492f4d4"
+    },
+    {
+      "path": "home-regression.json",
+      "bytes": 6793,
+      "sha256": "c68afb87dc2a12a67109c44c1ef2a4ba2926fc863d107cbb9d0836f1a0cd1b11"
+    },
+    {
+      "path": "gallery-and-viewport.json",
+      "bytes": 280,
+      "sha256": "ba6d5a195a02888674ede98db723f816d0cadd71c5f57d05b6e1769be879021c"
+    },
+    {
+      "path": "protected-files.json",
+      "bytes": 5563,
+      "sha256": "09bd178fe053f79e47bc76f391950669ba1ba2fb63a7955a0048699aece4b437"
+    },
+    {
+      "path": "templates-desktop.png",
+      "bytes": 478154,
+      "sha256": "46c8a6a64c9235f2c7721932f2cae5520ff9b6ad6f0658c458193cd5caf2f328"
+    },
+    {
+      "path": "help-top-desktop.png",
+      "bytes": 210776,
+      "sha256": "b7dec754e0a0942f6a39eeba6d4a59bb5f58836163b7aca0902b5a695c36aae5"
+    },
+    {
+      "path": "help-mobile.png",
+      "bytes": 181330,
+      "sha256": "cd173d56c76d3567cfa234f22934d8b358fdfc780d7e9f6c113a357602197aff"
+    },
+    {
+      "path": "templates-desktop-viewport.png",
+      "bytes": 100717,
+      "sha256": "5c6a2eb33bbdc9efa3fc1268c3757872c8f5839f3304a24e5abb9ef95d83078f"
+    },
+    {
+      "path": "details-desktop-viewport.png",
+      "bytes": 252183,
+      "sha256": "47b5a6837c67a25a7b2f46ee87a4308cbfa1f05783a938f1246eb84cf136d9e6"
+    },
+    {
+      "path": "templates-mobile-viewport.png",
+      "bytes": 40367,
+      "sha256": "660a36ec3f7b6d3de288ff7befa62e1c489cfa39fac3069b9cdd5a1e0014360e"
+    },
+    {
+      "path": "details-mobile-viewport.png",
+      "bytes": 48349,
+      "sha256": "6bd6b6a0e2ccb238975b268dbba005a4525dcf424055a1c5077d2c4d39af7528"
+    },
+    {
+      "path": "help-mobile-viewport.png",
+      "bytes": 41770,
+      "sha256": "02a2ef5a889c4f62a3dbd8862f97caa70b7e5038c878bc33d4c662d08c77bcac"
+    }
+  ]
+}

@@ -23,8 +23,9 @@ const filtered = computed(() =>
     <div class="art-wrap gallery-main">
       <header class="gallery-heading">
         <span class="art-eyebrow">THE CHARACTER COLLECTION</span>
-        <h1>作品与模板<span> / 06</span></h1>
+        <h1>作品案例<span> / 06</span></h1>
         <p>从一个灵感开始，换成你的照片与文字。</p>
+        <RouterLink to="/templates" class="art-link gallery-template-link">浏览原创模板 <ArtIcon :size="16" /></RouterLink>
       </header>
       <div class="gallery-tools">
         <div class="gallery-filters">
@@ -65,7 +66,7 @@ const filtered = computed(() =>
               <h3>{{ art.title }}</h3>
               <p>{{ art.category }} · 图片</p>
             </div>
-            <span class="template-action">使用此模板 <ArtIcon :size="15" /></span></div
+            <span class="template-action">试用此风格 <ArtIcon :size="15" /></span></div
         ></RouterLink>
       </div>
       <div v-else class="gallery-empty">
@@ -120,6 +121,7 @@ const filtered = computed(() =>
 .gallery-heading > .art-eyebrow {
   color: #858b7e;
 }
+.gallery-template-link { margin-top: 12px; min-height: 44px; color: #276357; }
 .gallery-tools {
   display: flex;
   align-items: center;

@@ -1,0 +1,11 @@
+{
+  "exitCode": 0,
+  "logPreservedLocally": "sandbox/template-entry/2026-10-02-v1/build-r4.log",
+  "importantOutput": [
+    "[plugin rolldown:vite-resolve] Module \"stream\" has been externalized for browser compatibility, imported by \"E:/project/astra/astra-web/node_modules/jszip/lib/readable-stream-browser.js\". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.",
+    "[INEFFECTIVE_DYNAMIC_IMPORT] src/lib/signature-portrait/layout-compute.ts is dynamically imported by src/lib/signature-portrait/layout.ts but also statically imported by src/lib/signature-portrait/layout.ts, dynamic import will not move module into another chunk.",
+    "(!) Some chunks are larger than 500 kB after minification. Consider:",
+    "✓ built in 5.91s",
+    "[file-viewer:vite-plugin] Copied 18/18 renderer assets to E:\\project\\astra\\astra-web\\dist"
+  ]
+}

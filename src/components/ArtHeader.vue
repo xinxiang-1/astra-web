@@ -19,6 +19,7 @@ watch(
     <RouterLink to="/" class="art-wordmark" aria-label="Astra 首页"><AstraLogo /></RouterLink>
     <nav aria-label="主导航" :class="{ expanded: menu }">
       <RouterLink to="/gallery">作品</RouterLink
+      ><RouterLink to="/templates">模板</RouterLink
       ><RouterLink class="how-link" :to="{ path: '/', hash: '#how-it-works' }" :class="{ 'at-section': route.hash === '#how-it-works' }">如何创作</RouterLink
       ><RouterLink to="/studio">实验室 <span>↗</span></RouterLink
       ><RouterLink class="projects-link" to="/projects">我的项目</RouterLink>

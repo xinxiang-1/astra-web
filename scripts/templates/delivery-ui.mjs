@@ -70,6 +70,8 @@ export async function configure(page, recipe) {
 export async function download(page, action, destination) {
   await mkdir(path.dirname(destination), { recursive: true })
   const event = page.waitForEvent('download', { timeout: 120000 })
+  // Keep action failures authoritative; also observe a pending event rejected during cleanup.
+  void event.catch(() => {})
   await action()
   const file = await event
   assert.equal(await file.failure(), null)

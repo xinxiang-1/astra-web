@@ -19,7 +19,7 @@ onMounted(() => {
 
 const routeName = computed(() => String(route.name ?? ''))
 const isProduct = computed(() =>
-  ['home', 'gallery', 'projects', 'ascii-art', 'art-lab'].includes(routeName.value),
+  ['home', 'gallery', 'templates', 'creation-help', 'projects', 'ascii-art', 'art-lab'].includes(routeName.value),
 )
 const isEditor = computed(() => ['ascii-art', 'art-lab'].includes(routeName.value))
 

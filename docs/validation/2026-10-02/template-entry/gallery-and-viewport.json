@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "base": "http://127.0.0.1:5194",
+  "originalGalleryCards": 6,
+  "originalPresetLinkPreserved": true,
+  "templateBridgeWorks": true,
+  "screenshots": 5,
+  "pageErrors": [],
+  "helperSha256": "c28afdeffacb4657fc28bc7293fe39cd613c572082637d4309ab745b4cc71a06"
+}

@@ -1,0 +1,50 @@
+[
+  {
+    "path": "src/views/TemplatesView.vue",
+    "sha256": "07b433f8c15435edbb7a29418e85721057dd1af32f70c0a5f75f7825316b4f41"
+  },
+  {
+    "path": "src/views/CreationHelpView.vue",
+    "sha256": "b7886b2fc6e6465318c9a32aa68f831d5efcdc1a6e895434c328105406a6edd2"
+  },
+  {
+    "path": "src/lib/starter-templates.ts",
+    "sha256": "ef0f41dc81f707ba27fcce00de11ecbb896c74b43fddf03056c2995ea2068410"
+  },
+  {
+    "path": "src/content/starter-templates.ts",
+    "sha256": "f0da5e1184889a9342ebbf48d2077773b2fdd3482e49ef8988b8e2ecc611cd12"
+  },
+  {
+    "path": "src/router/index.ts",
+    "sha256": "900e3ec42a0e7ea097d9ade52564af08f8ddf4ce919389a8d4c094f2444d91e8"
+  },
+  {
+    "path": "src/App.vue",
+    "sha256": "a7f1ea0fe23013a290d35b8839fe694f96a3a6b41259d494ec380a997f07fc99"
+  },
+  {
+    "path": "src/components/ArtHeader.vue",
+    "sha256": "33787b3df70c140b211f7d9a5bb9d45e243f562f09436e5e78f90c4bfca9617e"
+  },
+  {
+    "path": "src/components/ArtFooter.vue",
+    "sha256": "7aced5269b3354f7afca95afea9152ede19e6da83e7cdaabc3d355569893ee97"
+  },
+  {
+    "path": "src/views/GalleryView.vue",
+    "sha256": "ce74ffb939ecb10e843b1408b0e9f1a2f81d5201e07240729b85edf36d626b9b"
+  },
+  {
+    "path": "scripts/art-template-entry-contract.mjs",
+    "sha256": "2500359024337e8ef6a32bd8032fc154cd5932027d235e15d1f730581e609d15"
+  },
+  {
+    "path": "scripts/publish-starter-demos.mjs",
+    "sha256": "8c5934a2dfdaf889eeaa847bb42c90f239e6369d6d44936388777d5559e92cff"
+  },
+  {
+    "path": "scripts/templates/delivery-ui.mjs",
+    "sha256": "5310ff43bce3f324f660c9a6377e8030faa69471228d1463623bc21ebf985bad"
+  }
+]

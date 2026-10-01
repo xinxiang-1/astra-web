@@ -1,0 +1,33 @@
+[
+  {
+    "directory": "development-r1",
+    "completedTasks": 6,
+    "message": "Expected values to be strictly equal:\n\n0 !== 5\n",
+    "originalPreservedLocally": true
+  },
+  {
+    "directory": "development-r2",
+    "completedTasks": 15,
+    "message": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.editor-package')\u001b[22m\n\u001b[2m    - locator resolved to <button data-v-4641f82a=\"\" class=\"editor-package\">…</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    57 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is not visible\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n",
+    "originalPreservedLocally": true
+  },
+  {
+    "directory": "development-r3",
+    "completedTasks": 15,
+    "message": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('link', { name: '我的项目', exact: true })\u001b[22m\n",
+    "originalPreservedLocally": true
+  },
+  {
+    "directory": "visual-r1",
+    "kind": "rendered-layout",
+    "contractPreviouslyPassed": true,
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "measuredPrimaryBottom": 826.734375,
+    "dialogBottom": 824,
+    "resolution": "Mobile preview 220→160px; all three primary actions independently checked fully visible in final development/production runs.",
+    "originalPreservedLocally": true
+  }
+]
