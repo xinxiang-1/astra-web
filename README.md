@@ -2,11 +2,11 @@
 
 本地优先的创意工具站，外加可嵌入网页的实时视觉。当前统一编辑器提供六模式、可选图片品质、六种微动与九种悬停、全屏预览和免费PNG/TXT/视频/离线HTML；完整 `.astra` 作品包可携带源素材和设置，在新浏览器导入恢复。
 
-本轮前后端交付范围、验证证据和后续任务见 [阶段交付记录](./docs/plans/stage-delivery-2026-10-01.md)。[产品总计划](./docs/plans/product-master-plan.md)持续跟踪模板包、新增付费创作和定制服务；订单、支付、公测和正式部署仍待实现。首页原Studio参数保留，原创Logo位于 `public/brand/`。
+本轮前后端交付范围、验证证据和后续任务见 [阶段交付记录](./docs/plans/stage-delivery-2026-10-01.md)。[产品总计划](./docs/plans/product-master-plan.md)持续跟踪模板包、新增付费创作和定制服务；订单与模拟支付后端已有技术验收，真实交易、前端购买、公测和正式部署仍待完成。首页原Studio参数保留，原创Logo位于 `public/brand/`。
 
-商业开发依据：[商品与付费创作PRD](./docs/plans/prd-commerce.md)、[商业合同执行记录](./docs/plans/commerce-contract-iteration-2026-10-02.md)；后端目录/鉴权及订单创建/查询、快照/幂等/安全到期已真实联调，见[订单接续阶段](./docs/plans/commerce-orders-iteration-2026-10-02.md)。支付与前端购买流程、批量工作台尚未实现，production新建订单与真实收款关闭，当前免费能力保持。
+商业开发依据：[商品与付费创作PRD](./docs/plans/prd-commerce.md)、[商业合同执行记录](./docs/plans/commerce-contract-iteration-2026-10-02.md)；后端目录/鉴权及订单创建/查询、快照/幂等/安全到期已真实联调，见[订单接续阶段](./docs/plans/commerce-orders-iteration-2026-10-02.md)。真实渠道、前端购买流程及批量工作台尚未实现，production新建订单与真实收款关闭，当前免费能力保持。
 
-后端[支付适配子阶段](./docs/plans/payment-provider-iteration-2026-10-02.md)已完成受控模拟账本、生产拒绝和checkout加密封装；尚无支付HTTP/真实SDK/权益及前端购买流程，不能将技术模拟当收款。最终54JUnit/193HTTP回归通过。
+后端[支付适配](./docs/plans/payment-provider-iteration-2026-10-02.md)及[支付接口/任务恢复/原子入账](./docs/plans/payment-flow-iteration-2026-10-02.md)已实现，67JUnit/25真实集成、268HTTP/260schema通过，含完整JVM重启与来源权益回滚恢复。尚无真实SDK、退款消费者、权益领取/私有交付及前端购买流程，技术模拟不当收款，production新建和支付继续关闭。
 
 每完成一个可验收小阶段，记录步骤/失败/检查后单独提交并立即推送，官方MCP核验远端SHA。提交推送使用用户指定的GitHub MCP连接账户 `xinxiang-1`。先核验账户与目标仓库权限；浏览器登录和本地Git凭证不替代MCP授权。
 
