@@ -214,12 +214,12 @@ const artMotionDescriptions: Record<ArtMotion, string> = {
 }
 const cinematicMotionDescriptions: Record<ArtMotion, string> = {
   none: '保留完整静态作品，悬停仍可独立使用。',
-  breathe: '光脉由中心向外推开字符，内圈余波缓缓收束。',
-  wave: '斜向波面抬起作品，亮脊和暗面随波峰移动。',
-  assemble: '原作字符沿连续光轨落位，完成后展示完整作品。',
-  current: '局部涡流缓慢扭转作品，流动光线勾出空间层次。',
-  reform: '宽片层错开，字符随片层散开，再完整归位停留。',
-  caustics: '窄光束沿真实笔画扫过，局部折射与暗影跟随光线。',
+  breathe: '共振脉冲：字符随冲击环舒展，近处抬起，余波缓缓收束。',
+  wave: '悬浮波面：作品成为连续曲面，透视与波峰光影一起移动。',
+  assemble: '星云聚像：原作字符沿螺旋轨道由远及近落位，最终完整呈现。',
+  current: '轨道流场：作品沿连续轨道扭转起伏，光线勾出前后层次。',
+  reform: '层片解构：字符片层错开进入前后空间，再顺滑归位停留。',
+  caustics: '棱镜扫光：窄光束放大沿途笔画，折射推移与暗影随光线扫过。',
 }
 const artHoverOptions: { id: ArtHover | 'none'; label: string }[] = [
   { id: 'light', label: '光晕' },

@@ -33,8 +33,13 @@ const context = await browser.newContext({
   reducedMotion: 'no-preference',
   recordVideo: { dir: path.join(out, 'raw'), size: { width: 1440, height: 960 } },
 })
-const created = Date.now()
 const page = await context.newPage()
+// Flush the initial compositor frame so the video epoch cannot begin only
+// after a slow production-page load. Trim times start after this known paint.
+await page.goto('about:blank')
+await page.screenshot()
+await page.waitForTimeout(200)
+const created = Date.now()
 page.setDefaultTimeout(60000)
 const errors = []
 page.on('pageerror', (e) => errors.push(e.message))
@@ -123,7 +128,7 @@ try {
   end = (Date.now() - created) / 1000
   report.recordedSeconds = end - start
   assert.deepEqual(errors, [])
-  report.passed = true
+  report.uiPassed = true
   raw = await page.video().path()
 } catch (error) {
   report.failure = error.stack
@@ -161,4 +166,36 @@ execFileSync(
   ],
   { windowsHide: true },
 )
+try {
+  const metadata = JSON.parse(
+    execFileSync(
+      'ffprobe',
+      [
+        '-v',
+        'error',
+        '-show_entries',
+        'format=duration:stream=codec_name,width,height',
+        '-of',
+        'json',
+        video,
+      ],
+      { encoding: 'utf8', windowsHide: true },
+    ),
+  )
+  const duration = Number(metadata.format.duration)
+  assert(
+    Math.abs(duration - report.recordedSeconds) < 1,
+    'The video contains the complete walkthrough',
+  )
+  assert.equal(metadata.streams[0].codec_name, 'h264')
+  assert.equal(metadata.streams[0].width, 1440)
+  assert.equal(metadata.streams[0].height, 960)
+  report.video = { file: path.basename(video), duration, width: 1440, height: 960, codec: 'h264' }
+  report.passed = true
+} catch (error) {
+  report.failure = error.stack
+  throw error
+} finally {
+  await writeFile(path.join(out, 'report.json'), JSON.stringify(report, null, 2))
+}
 console.log(`PASS actual six motion walkthrough: ${video}`)

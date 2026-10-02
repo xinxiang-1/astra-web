@@ -299,7 +299,8 @@ try {
       0,
       `${item.scene}/${item.motion}: complete-image hold must be exact`,
     )
-  assert(report.api.maxCells <= 96 * 96 && report.api.maxBytes <= 96 * 96 * 5 * 4)
+  // Six bounded channels now include positive glyph size for cinematic depth.
+  assert(report.api.maxCells <= 96 * 96 && report.api.maxBytes <= 96 * 96 * 6 * 4)
   assert(report.api.highResolution.glowBytes <= 1536 * 1536 * 4)
   assert.equal(report.api.destroyBytes, 0)
   assert.deepEqual(errors, [])

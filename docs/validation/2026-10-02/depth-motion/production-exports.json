@@ -1,0 +1,71 @@
+{
+  "originalPath": "sandbox/depth-motion/2026-10-02-v1/production-exports-final/report.json",
+  "originalSha256": "1d478c2793753d3311a7b707b78213932497df0267341d957f12c9bc4515d671",
+  "report": {
+    "base": "http://127.0.0.1:5194",
+    "cases": [
+      {
+        "id": "breathe",
+        "pngHash": "4b21e591a7f5e325e5a8ed066c048423d829f2491c156eda7a7b90a3a76d7665",
+        "htmlHash": "c010089060fe1485ff471b72ca5b9482683bf5a9fd0300806ef08315d5c3a90a",
+        "offlineMotion": true,
+        "pausedExact": true,
+        "sourceParameters": true,
+        "networkRequests": 0,
+        "license": true
+      },
+      {
+        "id": "wave",
+        "pngHash": "4b21e591a7f5e325e5a8ed066c048423d829f2491c156eda7a7b90a3a76d7665",
+        "htmlHash": "37b81eaaf2d76af7666d7a887c2f56a48aa162f279b39ccb0e96fa08b876a62e",
+        "offlineMotion": true,
+        "pausedExact": true,
+        "sourceParameters": true,
+        "networkRequests": 0,
+        "license": true
+      },
+      {
+        "id": "assemble",
+        "pngHash": "4b21e591a7f5e325e5a8ed066c048423d829f2491c156eda7a7b90a3a76d7665",
+        "htmlHash": "37239b6c5779ac08d49caa49a7ac0b4e9920cbf03668d45993f309d630364299",
+        "offlineMotion": true,
+        "pausedExact": true,
+        "sourceParameters": true,
+        "networkRequests": 0,
+        "license": true
+      },
+      {
+        "id": "current",
+        "pngHash": "4b21e591a7f5e325e5a8ed066c048423d829f2491c156eda7a7b90a3a76d7665",
+        "htmlHash": "0157e9573a4cbd79e3a708f22f1d793412cafc7388e0b4d5e3186dd39faf3e88",
+        "offlineMotion": true,
+        "pausedExact": true,
+        "sourceParameters": true,
+        "networkRequests": 0,
+        "license": true
+      },
+      {
+        "id": "reform",
+        "pngHash": "4b21e591a7f5e325e5a8ed066c048423d829f2491c156eda7a7b90a3a76d7665",
+        "htmlHash": "1e742ddaf5b182e399d0499f40838d6563491eec3e8734d91c86b39f9845aea4",
+        "offlineMotion": true,
+        "pausedExact": true,
+        "sourceParameters": true,
+        "networkRequests": 0,
+        "license": true
+      },
+      {
+        "id": "caustics",
+        "pngHash": "4b21e591a7f5e325e5a8ed066c048423d829f2491c156eda7a7b90a3a76d7665",
+        "htmlHash": "87400c7b9272031376f02f9d1a4225c83f4165b216951a5951fbbe3a1a97d8be",
+        "offlineMotion": true,
+        "pausedExact": true,
+        "sourceParameters": true,
+        "networkRequests": 0,
+        "license": true
+      }
+    ],
+    "errors": [],
+    "passed": true
+  }
+}

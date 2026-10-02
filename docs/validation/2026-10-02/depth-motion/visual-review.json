@@ -1,0 +1,27 @@
+{
+  "developerReview": true,
+  "userAestheticAcceptance": false,
+  "reviewed": [
+    "prototype-r1/density-wave.png",
+    "prototype-r1/color-assemble.png",
+    "prototype-r1/phrase-reform.png",
+    "prototype-r1/contact.png",
+    "prototype-r2/color-assemble.png",
+    "prototype-r2/density-reform.png",
+    "prototype-r2/phrase-wave.png",
+    "prototype-r2/contact.png",
+    "walkthrough-production-r2/contact.png",
+    "walkthrough-production-r2/assemble-1.8.png",
+    "walkthrough-production-r2/wave-1.8.png"
+  ],
+  "observations": "Second candidate removes the pinned frame; wave projection and coherent orbital arrival are clearer. Slice separation deliberately reduces recognition at its peak. No mirrored glyphs or grey photographic rectangles seen in the reviewed images.",
+  "limitations": "Contact sheets are sampled review, not frame-by-frame video inspection or independent preference scores. Snapshots use nominal wait markers; the ambient clock is not certified by their filenames.",
+  "video": {
+    "path": "sandbox/depth-motion/2026-10-02-v1/walkthrough-production-r2/studio_six_motions_depth.mp4",
+    "sha256": "b72f60778e03a5038c7a31813f7c4dbce6b367f832b6fd088389b3555942ad57",
+    "duration": 40.96,
+    "width": 1440,
+    "height": 960,
+    "codec": "h264"
+  }
+}

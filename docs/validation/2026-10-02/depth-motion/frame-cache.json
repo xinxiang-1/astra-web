@@ -1,0 +1,24 @@
+{
+  "originalPath": "sandbox/depth-motion/2026-10-02-v1/frame-cache-r1/report.json",
+  "originalSha256": "a7e0ecfaa179d36f3e454099b806a4bd5cada9ed61b48efdf15580feb0a15d7d",
+  "report": {
+    "passed": true,
+    "cases": [
+      {
+        "transparent": false,
+        "sharedGrid": true,
+        "aspectA": 0.8002853067047075,
+        "aspectB": 0.75,
+        "exactFreshRenderer": true
+      },
+      {
+        "transparent": true,
+        "sharedGrid": true,
+        "aspectA": 0.8002853067047075,
+        "aspectB": 0.75,
+        "exactFreshRenderer": true
+      }
+    ],
+    "sourceSha256": "22d63204a2de4018b400e64667cfe2d134970b6e5cb347c129a5ef84d829b5f7"
+  }
+}

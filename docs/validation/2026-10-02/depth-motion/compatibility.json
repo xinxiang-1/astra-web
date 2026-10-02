@@ -1,0 +1,21 @@
+{
+  "home": {
+    "src/views/ArtHomeView.vue": {
+      "unchanged": true,
+      "sha256": "db2b7e0ffa0d590be0e3e9d99caa8ecaba4716721b5d03b2d6269e46ad4458dd"
+    },
+    "src/components/CharacterArtwork.vue": {
+      "unchanged": true,
+      "sha256": "99da7635979b98f70aa622887bcf775047114529b4130de201cebf40d0ab2858"
+    },
+    "src/lib/ascii/studio-preview.ts": {
+      "unchanged": true,
+      "sha256": "87ef73fd4261872b1a6bc3d66fd2a05498bc73fa047294b4934174ede9af1a07"
+    }
+  },
+  "nativeInteractionUnchanged": true,
+  "nativeInteractionSha256": "04892afd91ef249f57487c90db7dc95de4a195efbaa5e7e7d96b2330f380d2fd",
+  "kineticV2FixtureMatchesBaselineExceptTypeImport": true,
+  "ambientKernel": "independent installed Studio reference: 720 samples / error 0",
+  "externalParametersUnchanged": true
+}

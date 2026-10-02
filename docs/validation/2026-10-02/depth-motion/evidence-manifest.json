@@ -1,0 +1,23 @@
+{
+  "encoding": "Archive text is Git LF; original report hashes retain original bytes",
+  "files": {
+    "comparison.png": "8be6f5f2967a2ac286f35a711b9ced089afcad13ddb3815b98894affeca822b8",
+    "compatibility.json": "e21982a9a3a3721b3df0240aa119da07b63aa21e37386f516e94e04a26bd957a",
+    "depth-contract.json": "fd345ac1f658881d271199e41d974eda2061feebb28ea0576b40f0c90f1a1e43",
+    "development-ui.json": "5ca7d7c719a250bccefc8f549aee05d4781386f284399e769a811055fd57bcb8",
+    "failures.json": "d635f8e23c6a460c18b97fc97b03b2fd8e7a32a986f2b6fc5f6db74641bca6d9",
+    "frame-cache.json": "0bc28b3cb9bb9a568ed06cba5392f68b0c5742caf28f14983ea6a7d1b8f6e470",
+    "home.json": "caf57a3130b7d7ab4c992493633bc536ec4175f16dd9cdb772f1a51b1e3b538e",
+    "hover.json": "1ebcffdb6e6d5cfe570b294a0a21042bb874b06f21a138c951ff242d774544ae",
+    "motion-contract.json": "8a6ab1f1348d2a629a157b10d075ef1dedf3a22e15c794945615a863d75f2a03",
+    "production-exports.json": "526c3c7a268b8b52c870af92f612a3f9467971a7b2ad1be8286013ab43b79027",
+    "production-media.json": "d39a91298812fc535a9d729809930c19f0ef0ba520ca292a1a88c10f5e7a0853",
+    "production-ui.json": "9d2281c02d501914ac50d3f32a92eb9554bbfbfc8b6af52a4593ad55b6e1f039",
+    "prototype.json": "d5da9e1b36e5a416b44bbc8d00377ebbda3971b15298f02c576f3af418581fd4",
+    "README.md": "1da1f03d45fb9e8d4721d73d450aae1879cb4966303d3ea94f104752bcad76ed",
+    "release-checks.json": "47977ff4343f49051d1ac8956df78955e7787f2cc15d3da5352681aa9e3c96ec",
+    "source-manifest.json": "258a26d79f6fca4dadb719edfcf50eb3c41b6cfce276fad21f7cb58ed50f1610",
+    "visual-review.json": "36ba272730532236d321aef3b20b27e34dfceb594f5905747030e2fecd4715b1",
+    "walkthrough.json": "616e6c5aed2f37aece580930febd87df175ecebd586bb34f83a3c364369453d1"
+  }
+}

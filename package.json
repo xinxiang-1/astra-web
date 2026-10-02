@@ -28,6 +28,8 @@
     "test:studio-field-parity": "node scripts/studio-field-parity.mjs",
     "test:cinematic-motion": "node scripts/studio-motion-contract.mjs --cinematic",
     "test:cinematic-visual": "node scripts/cinematic-motion-visual.mjs",
+    "test:depth-motion": "node scripts/depth-motion-contract.mjs",
+    "demo:depth-motion": "node scripts/depth-motion-prototype.mjs",
     "test:hover-parity": "node scripts/hover-parity-contract.mjs",
     "demo:hover-parity": "node scripts/hover-parity-walkthrough.mjs",
     "test:studio-motion": "node scripts/studio-motion-contract.mjs",

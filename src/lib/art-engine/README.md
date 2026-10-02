@@ -32,6 +32,8 @@
 
 ## 验证与范围
 
+空间深度阶段将表现网格扩为六个 Float32 信号：归一化位移 x/y、强度、透明度、字形光和正尺寸。上限仍为 96×96 点，backing 为 221,184 bytes；原 Studio 的尺寸信号固定 1，像素合同保持。电影感六效果现在为共振脉冲、悬浮波面、星云聚像、轨道流场、层片解构和棱镜扫光；所有字形保持正向，以中心为基准缩放。普通 Canvas、面积栅格与光层共用尺寸；面积遮罩缓存包含宽高。外部项目字段不变，`motionStyle` 仍为 Studio/电影感。`test:depth-motion` 检查正尺寸、周期接缝、冷热缓存和四倍面积重建；`demo:depth-motion` 录制[可操作三列原型](../../../docs/prototypes/v3-depth-motion/index.html)。详情见[空间深度记录](../../../docs/plans/depth-motion-iteration-2026-10-02.md)。上述五信号段落描述此前阶段，当前以本段为准。
+
 `npm run test:art-effects`覆盖独立旧Canvas静态兼容、全部效果的参数/相位、真实UI、全新存储恢复、断网HTML和触控模拟；`test:art-effects-media`使用ffmpeg/ffprobe验证实际H.264参数快照。默认输出目录不能已存在，复跑使用新的 `ASTRA_EFFECTS_OUTPUT` / `ASTRA_EFFECTS_MEDIA_OUTPUT`；服务器地址用 `ASTRA_PREVIEW_URL`。本轮生产证据和全部失败说明见 [效果记录](../../../docs/plans/art-effects-iteration-2026-10-01.md)。
 
 `npm run test:art-software` 在 train/dev 上核对选择性生产迁移、720/1080/3840透明与不透明实际像素、包装工厂、释放、六模式缺省以及不支持的请求；不重新使用已消费 holdout。`npm run test:art-quality` 检查原精细/柔和迁移；`npm run test:art-editor` 检查真实下载、本地恢复、移动布局、离线 HTML、全屏和选段视频。生产 minify 后用 `ASTRA_PREVIEW_URL` 指向本地生产预览再运行编辑器合同。

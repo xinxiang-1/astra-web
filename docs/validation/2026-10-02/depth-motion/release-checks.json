@@ -1,0 +1,32 @@
+{
+  "checks": {
+    "type-check-final.log": {
+      "exitCode": 0,
+      "originalSha256": "0a7d40c8ea67ee87b4bcdc91418a201a96bc30f3286185c82d8888ec96c6d6fb"
+    },
+    "lint-final.log": {
+      "exitCode": 0,
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "build-final.log": {
+      "exitCode": 0,
+      "originalSha256": "1e42a55f0fd6f93e148da6d7640437856adf3837062172f2c0c71499bc10c490"
+    },
+    "prototype-type-final.log": {
+      "exitCode": 0,
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "walkthrough-lint-final.log": {
+      "exitCode": 0,
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "buildSeconds": 6.09,
+  "warnings": [
+    "existing stream externalization",
+    "existing large chunks",
+    "existing ineffective dynamic import"
+  ],
+  "newDependencies": false,
+  "scope": "Chromium desktop plus touch/reduced-motion emulation; no real-device FPS or user aesthetic acceptance"
+}
