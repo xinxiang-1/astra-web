@@ -95,6 +95,9 @@ try {
     ['caustics', '光斑', 6],
   ]) {
     const caseStart = (Date.now() - created) / 1000
+    // Flush the new mode at an exact paused origin before its running clock.
+    const pause = page.getByRole('button', { name: '暂停动效', exact: true })
+    if (await pause.count()) await pause.click()
     await choices.getByRole('button', { name: label, exact: true }).click()
     assert(
       await choices
@@ -102,33 +105,39 @@ try {
         .evaluate((b) => b.classList.contains('on')),
     )
     await page.waitForFunction(
-      () => Number(document.querySelector('.ascii-scroll canvas')?.dataset.time) > 0,
+      () => document.querySelector('.ascii-scroll canvas')?.dataset.time === '0',
     )
+    await page.getByRole('button', { name: '继续动效', exact: true }).click()
     const intervals = [0.6, 1.8, duration - 0.2]
     const snapshots = []
     const observed = []
     for (const point of intervals) {
       // The editor caps long frame gaps. Wait on its rendered clock, rather
       // than assuming a wall-clock delay proves a complete regrouping cycle.
-      await page.waitForFunction((point) => {
+      const captured = await page.waitForFunction((point) => {
         const c = document.querySelector('.ascii-scroll canvas')
         const speed = Number(document.getElementById('art-motion-speed')?.value || 1)
-        return Number(c?.dataset.time) * speed >= point
+        const time = Number(c?.dataset.time)
+        // Capture in this callback: a second RPC can otherwise observe a later
+        // frame, or both samples can land on a still phase under load.
+        return time * speed >= point ? { image: c.toDataURL(), time, speed } : false
       }, point)
-      const capture = await canvas.evaluate((c) => ({
-        image: c.toDataURL(),
-        time: Number(c.dataset.time),
-        speed: Number(document.getElementById('art-motion-speed')?.value || 1),
-      }))
+      const capture = await captured.jsonValue()
+      await captured.dispose()
+      assert(capture.time * capture.speed <= point + 0.5, `${label}: missed the target phase`)
       const snapshot = capture.image
       await writeFile(
         path.join(out, `${id}-${point.toFixed(1)}.png`),
         Buffer.from(snapshot.split(',')[1], 'base64'),
       )
       snapshots.push(snapshot)
-      observed.push({ targetSeconds: point, ambientSeconds: capture.time, effectiveSeconds: capture.time * capture.speed, speed: capture.speed })
+      observed.push({
+        targetSeconds: point,
+        ambientSeconds: capture.time,
+        effectiveSeconds: capture.time * capture.speed,
+        speed: capture.speed,
+      })
     }
-    assert.notEqual(snapshots[0], snapshots[1], `${label} must have a visible animation process`)
     report.cases.push({
       id,
       label,
@@ -136,6 +145,7 @@ try {
       endSeconds: (Date.now() - created) / 1000 - start,
       observed,
     })
+    assert(snapshots[0] !== snapshots[1], `${label} must have a visible animation process`)
   }
   end = (Date.now() - created) / 1000
   report.recordedSeconds = end - start

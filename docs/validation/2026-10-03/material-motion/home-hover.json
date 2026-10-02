@@ -1,0 +1,341 @@
+{
+  "base": "http://127.0.0.1:5194",
+  "browser": "153.0.8010.12",
+  "viewportWidths": [
+    1440,
+    1100,
+    820,
+    620,
+    600,
+    550,
+    390
+  ],
+  "results": [
+    {
+      "name": "navigation logo link",
+      "before": {
+        "text": "",
+        "a": 1,
+        "b": 0,
+        "c": 0,
+        "d": 1,
+        "opacity": 1,
+        "writingMode": "horizontal-tb",
+        "width": 148.75,
+        "height": 34
+      },
+      "after": {
+        "text": "",
+        "a": 1,
+        "b": 0,
+        "c": 0,
+        "d": 1,
+        "opacity": 1,
+        "writingMode": "horizontal-tb",
+        "width": 148.75,
+        "height": 34
+      }
+    },
+    {
+      "name": "gallery navigation",
+      "before": {
+        "text": "作品",
+        "a": 1,
+        "b": 0,
+        "c": 0,
+        "d": 1,
+        "opacity": 1,
+        "writingMode": "horizontal-tb",
+        "width": 26,
+        "height": 72
+      },
+      "after": {
+        "text": "作品",
+        "a": 1,
+        "b": 0,
+        "c": 0,
+        "d": 1,
+        "opacity": 1,
+        "writingMode": "horizontal-tb",
+        "width": 26,
+        "height": 72
+      }
+    },
+    {
+      "name": "hero primary button",
+      "before": {
+        "text": "免费制作",
+        "a": 1,
+        "b": 0,
+        "c": 0,
+        "d": 1,
+        "opacity": 1,
+        "writingMode": "horizontal-tb",
+        "width": 154,
+        "height": 46
+      },
+      "after": {
+        "text": "免费制作",
+        "a": 1,
+        "b": 0,
+        "c": 0,
+        "d": 1,
+        "opacity": 1,
+        "writingMode": "horizontal-tb",
+        "width": 154,
+        "height": 46
+      }
+    },
+    {
+      "name": "browse works link",
+      "before": {
+        "text": "浏览作品",
+        "a": 1,
+        "b": 0,
+        "c": 0,
+        "d": 1,
+        "opacity": 1,
+        "writingMode": "horizontal-tb",
+        "width": 82,
+        "height": 16
+      },
+      "after": {
+        "text": "浏览作品",
+        "a": 1,
+        "b": 0,
+        "c": 0,
+        "d": 1,
+        "opacity": 1,
+        "writingMode": "horizontal-tb",
+        "width": 82,
+        "height": 16
+      }
+    },
+    {
+      "name": "all works link",
+      "before": {
+        "text": "全部作品",
+        "a": 1,
+        "b": 0,
+        "c": 0,
+        "d": 1,
+        "opacity": 1,
+        "writingMode": "horizontal-tb",
+        "width": 84,
+        "height": 18
+      },
+      "after": {
+        "text": "全部作品",
+        "a": 1,
+        "b": 0,
+        "c": 0,
+        "d": 1,
+        "opacity": 1,
+        "writingMode": "horizontal-tb",
+        "width": 84,
+        "height": 18
+      }
+    },
+    {
+      "name": "featured artwork card",
+      "before": {
+        "text": "光影之间让每一个字符，留下光的形状。",
+        "a": 1,
+        "b": 0,
+        "c": 0,
+        "d": 1,
+        "opacity": 1,
+        "writingMode": "horizontal-tb",
+        "width": 428,
+        "height": 472
+      },
+      "after": {
+        "text": "光影之间让每一个字符，留下光的形状。",
+        "a": 1,
+        "b": 0,
+        "c": 0,
+        "d": 1,
+        "opacity": 1,
+        "writingMode": "horizontal-tb",
+        "width": 428,
+        "height": 472
+      }
+    },
+    {
+      "name": "browse works / 1100px",
+      "before": {
+        "text": "浏览作品",
+        "a": 1,
+        "b": 0,
+        "c": 0,
+        "d": 1,
+        "opacity": 1,
+        "writingMode": "horizontal-tb",
+        "width": 82,
+        "height": 16
+      },
+      "after": {
+        "text": "浏览作品",
+        "a": 1,
+        "b": 0,
+        "c": 0,
+        "d": 1,
+        "opacity": 1,
+        "writingMode": "horizontal-tb",
+        "width": 82,
+        "height": 16
+      }
+    },
+    {
+      "name": "browse works / 820px",
+      "before": {
+        "text": "浏览作品",
+        "a": 1,
+        "b": 0,
+        "c": 0,
+        "d": 1,
+        "opacity": 1,
+        "writingMode": "horizontal-tb",
+        "width": 82,
+        "height": 16
+      },
+      "after": {
+        "text": "浏览作品",
+        "a": 1,
+        "b": 0,
+        "c": 0,
+        "d": 1,
+        "opacity": 1,
+        "writingMode": "horizontal-tb",
+        "width": 82,
+        "height": 16
+      }
+    },
+    {
+      "name": "browse works / 620px",
+      "before": {
+        "text": "浏览作品",
+        "a": 1,
+        "b": 0,
+        "c": 0,
+        "d": 1,
+        "opacity": 1,
+        "writingMode": "horizontal-tb",
+        "width": 82,
+        "height": 16
+      },
+      "after": {
+        "text": "浏览作品",
+        "a": 1,
+        "b": 0,
+        "c": 0,
+        "d": 1,
+        "opacity": 1,
+        "writingMode": "horizontal-tb",
+        "width": 82,
+        "height": 16
+      }
+    },
+    {
+      "name": "browse works / 600px",
+      "before": {
+        "text": "浏览作品",
+        "a": 1,
+        "b": 0,
+        "c": 0,
+        "d": 1,
+        "opacity": 1,
+        "writingMode": "horizontal-tb",
+        "width": 82,
+        "height": 16
+      },
+      "after": {
+        "text": "浏览作品",
+        "a": 1,
+        "b": 0,
+        "c": 0,
+        "d": 1,
+        "opacity": 1,
+        "writingMode": "horizontal-tb",
+        "width": 82,
+        "height": 16
+      }
+    },
+    {
+      "name": "browse works / 550px",
+      "before": {
+        "text": "浏览作品",
+        "a": 1,
+        "b": 0,
+        "c": 0,
+        "d": 1,
+        "opacity": 1,
+        "writingMode": "horizontal-tb",
+        "width": 82,
+        "height": 16
+      },
+      "after": {
+        "text": "浏览作品",
+        "a": 1,
+        "b": 0,
+        "c": 0,
+        "d": 1,
+        "opacity": 1,
+        "writingMode": "horizontal-tb",
+        "width": 82,
+        "height": 16
+      }
+    },
+    {
+      "name": "browse works / 390px",
+      "before": {
+        "text": "浏览作品",
+        "a": 1,
+        "b": 0,
+        "c": 0,
+        "d": 1,
+        "opacity": 1,
+        "writingMode": "horizontal-tb",
+        "width": 82,
+        "height": 16
+      },
+      "after": {
+        "text": "浏览作品",
+        "a": 1,
+        "b": 0,
+        "c": 0,
+        "d": 1,
+        "opacity": 1,
+        "writingMode": "horizontal-tb",
+        "width": 82,
+        "height": 16
+      }
+    },
+    {
+      "name": "browse works / reduced motion",
+      "before": {
+        "text": "浏览作品",
+        "a": 1,
+        "b": 0,
+        "c": 0,
+        "d": 1,
+        "opacity": 1,
+        "writingMode": "horizontal-tb",
+        "width": 82,
+        "height": 16
+      },
+      "after": {
+        "text": "浏览作品",
+        "a": 1,
+        "b": 0,
+        "c": 0,
+        "d": 1,
+        "opacity": 1,
+        "writingMode": "horizontal-tb",
+        "width": 82,
+        "height": 16
+      }
+    }
+  ],
+  "errors": []
+}

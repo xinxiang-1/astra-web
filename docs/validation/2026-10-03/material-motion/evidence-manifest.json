@@ -1,0 +1,128 @@
+{
+  "baseCommit": "4ee7a5cc94c38bf8709a056c460e1d8f1ed55941",
+  "sourceEncoding": "Git LF for text; raw bytes for PNG",
+  "sources": {
+    "src/lib/art-engine/canvas.ts": "3af4206d607eb60574c3ec05318632b8967be90bb2830d7f582e5be2b65c614b",
+    "src/views/AsciiArtView.vue": "80ff0d058b72bb51cf461488283c0936e397b34b3044027bcf89720c08f9b796",
+    "src/lib/art-engine/core.ts": "ce091baf6d11340ccdda8c21fabe8a7935134964aaf7d4c094fe4432fce414e4",
+    "src/lib/art-engine/embed.ts": "c99c491e7b06dfa4c92f80d8cb50696abf08df93aa490de27354cc6b671efa7e",
+    "src/lib/art-engine/types.ts": "1ae58e3305d0e1d8b7e5e06fd6ded2a6c70457664d8b162501223284be2b4819",
+    "src/views/ArtHomeView.vue": "db2b7e0ffa0d590be0e3e9d99caa8ecaba4716721b5d03b2d6269e46ad4458dd",
+    "src/components/CharacterArtwork.vue": "99da7635979b98f70aa622887bcf775047114529b4130de201cebf40d0ab2858",
+    "src/lib/ascii/studio-preview.ts": "87ef73fd4261872b1a6bc3d66fd2a05498bc73fa047294b4934174ede9af1a07",
+    "scripts/fixtures/fluid-v4-renderer.ts": "b444aad5ba670f7ac170ed59f7f7c9545126aae90c90a682c6a431ad822acaed",
+    "scripts/material-motion-prototype.mjs": "32733fa2da6f367bf51893a71e590dcb9a7b29adc11312756ecf1c34db8501d1",
+    "scripts/material-motion-surface-contract.mjs": "a9fc90509dcdc68bd84a4685b176114d802b17fb613ff58d8777c460d071f032",
+    "scripts/studio-motion-walkthrough.mjs": "4716fcd64af7f5552215d764bad3de90f6717e277b1354fdb9de7573b8e03988",
+    "docs/prototypes/v5-material-motion/main.ts": "bfdc2eb02bedb48cd46f02192fdddb53ce8c88c616d280ce0a2f76adef1bf583",
+    "docs/prototypes/v5-material-motion/index.html": "6ab095e5ddb03a96d8b4d48ef1b55abe84dd59f040050099df4e1be5f6c28e5b",
+    "docs/prototypes/v4-fluid-motion/main.ts": "46c062678414aa5073792007043b1ac5696c63149e072b72acb4232b178ee58a",
+    "package.json": "8b9914e78f4c535de8bf590d5e26c9ebe3e3ae9a84eaa814754d1a2d4179edd6",
+    "docs/plans/material-motion-iteration-2026-10-03.md": "e1da99eeb7272b5e984f3938b7b3a98001f263169843958c29f815983bb4683f",
+    "docs/plans/studio-effects-standard.md": "a26030e3348b3f68466989f53a9cda899e7ca483fc672fc1b4166ec2708fc0fc",
+    "docs/plans/product-master-plan.md": "09f1256891fd67c5efaa72b08f8f347dd5e930c839ef3d22146b5449d841638a"
+  },
+  "evidence": [
+    {
+      "file": "motion-contract.json",
+      "origin": "sandbox/material-motion/2026-10-03-v1/contract-final/report.json",
+      "sourceRawSha256": "51f17d3a62869d6532a9e2dc72f16be8e16d5be3d8d42eef79b47479f2c2eb37",
+      "sha256": "51f17d3a62869d6532a9e2dc72f16be8e16d5be3d8d42eef79b47479f2c2eb37"
+    },
+    {
+      "file": "raster-contract.json",
+      "origin": "sandbox/material-motion/2026-10-03-v1/depth-final/report.json",
+      "sourceRawSha256": "d979e94d5bf5328f80d6a9ed99c00a26c5a01cb440887f47932f56eca5362279",
+      "sha256": "d979e94d5bf5328f80d6a9ed99c00a26c5a01cb440887f47932f56eca5362279"
+    },
+    {
+      "file": "surface-orientation.json",
+      "origin": "sandbox/material-motion/2026-10-03-v1/surface-final/report.json",
+      "sourceRawSha256": "f6c9f35cf8ae532c2adce06bdab7c9318333a5a98cc7121da96ea364da51bec6",
+      "sha256": "f6c9f35cf8ae532c2adce06bdab7c9318333a5a98cc7121da96ea364da51bec6"
+    },
+    {
+      "file": "frame-cache.json",
+      "origin": "sandbox/material-motion/2026-10-03-v1/cache-final/report.json",
+      "sourceRawSha256": "0a72b803d21383f9a67b8536ea0c1f47e43f411c9318c6c260fb1716e020510a",
+      "sha256": "0a72b803d21383f9a67b8536ea0c1f47e43f411c9318c6c260fb1716e020510a"
+    },
+    {
+      "file": "ui-production.json",
+      "origin": "sandbox/material-motion/2026-10-03-v1/ui-final-r2/report.json",
+      "sourceRawSha256": "f3fcc58f94a848476fb1c928d39074383ca6757fe6f25cf8bd8ed601bd7c1852",
+      "sha256": "f3fcc58f94a848476fb1c928d39074383ca6757fe6f25cf8bd8ed601bd7c1852"
+    },
+    {
+      "file": "exports-production.json",
+      "origin": "sandbox/material-motion/2026-10-03-v1/exports-final/report.json",
+      "sourceRawSha256": "bed3dc7c3329b05638eb0e94ef48c69625026162b3474a1c7e89b095e6776253",
+      "sha256": "bed3dc7c3329b05638eb0e94ef48c69625026162b3474a1c7e89b095e6776253"
+    },
+    {
+      "file": "video-export.json",
+      "origin": "sandbox/material-motion/2026-10-03-v1/media-final/report.json",
+      "sourceRawSha256": "cfdc936e7e3117654c12de146ce9bca633a69b78777b0ed7912868016f623dd5",
+      "sha256": "cfdc936e7e3117654c12de146ce9bca633a69b78777b0ed7912868016f623dd5"
+    },
+    {
+      "file": "prototype.json",
+      "origin": "sandbox/material-motion/2026-10-03-v1/prototype-final/report.json",
+      "sourceRawSha256": "8141788534cc09427869117497583980e681286eab996c8b3bdf738858070234",
+      "sha256": "8141788534cc09427869117497583980e681286eab996c8b3bdf738858070234"
+    },
+    {
+      "file": "walkthrough.json",
+      "origin": "sandbox/material-motion/2026-10-03-v1/editor-final-r2/report.json",
+      "sourceRawSha256": "43d9a93b7efede65aef8326b0bbe9c1a3b39ee05271ce76152dcb1547ad05209",
+      "sha256": "43d9a93b7efede65aef8326b0bbe9c1a3b39ee05271ce76152dcb1547ad05209"
+    },
+    {
+      "file": "home-hover.json",
+      "origin": "sandbox/material-motion/2026-10-03-v1/home-final/hover-regression.json",
+      "sourceRawSha256": "03929518d72b672ed454d7311595d6d8b343ac603ac63cfbf3b389060e57cd41",
+      "sha256": "03929518d72b672ed454d7311595d6d8b343ac603ac63cfbf3b389060e57cd41"
+    },
+    {
+      "file": "comparison.png",
+      "origin": "sandbox/material-motion/2026-10-03-v1/prototype-final/comparison.png",
+      "sourceRawSha256": "1be59155b33941ac74ecde22f9b1bc72fb8677665148f63bee05223d308b58ae",
+      "sha256": "1be59155b33941ac74ecde22f9b1bc72fb8677665148f63bee05223d308b58ae"
+    },
+    {
+      "file": "reform-hold.png",
+      "origin": "sandbox/material-motion/2026-10-03-v1/editor-final-r2/reform-11.8.png",
+      "sourceRawSha256": "422f55db690c7e2bbda00a87d52f531429471acfae235216f68ed6c9b7c20df0",
+      "sha256": "422f55db690c7e2bbda00a87d52f531429471acfae235216f68ed6c9b7c20df0"
+    },
+    {
+      "file": "engineering-checks.json",
+      "sha256": "e0f5a540027259743bbc86ff6ad3f5a5e045deece7c2120931f1dbd82fd7ede2",
+      "origin": "generated stage audit"
+    },
+    {
+      "file": "preserved-failures.json",
+      "sha256": "5eb85e6969770d10d5af0d7f9dfa5109b2240e8b9f28d8b2a5c83ca3b350325e",
+      "origin": "generated stage audit"
+    },
+    {
+      "file": "README.md",
+      "sha256": "6109c0991b14ff020ad7001f208994779bd2e73c6d50cf67e9b843a716528602",
+      "origin": "generated stage audit"
+    }
+  ],
+  "videos": [
+    {
+      "file": "sandbox/material-motion/2026-10-03-v1/editor-final-r2/studio_six_motions_material_final_r2.mp4",
+      "sha256": "e898485a9d2f7e85a9d3efcb1a00f60b7ac62abc0c87754bfd9df558f4c1ca76"
+    },
+    {
+      "file": "sandbox/material-motion/2026-10-03-v1/prototype-final/six_motion_comparison.mp4",
+      "sha256": "f3c429807fb014ae47da3c145275202dd4bab497943e88197d23e6fe46c13541"
+    }
+  ],
+  "builtArtifacts": {
+    "dist/index.html": "9e2f917580217bfabfc9e1e87a2c3592db67661a60989da84ad2124f3750c133",
+    "dist/assets/index-DoOJPRJm.js": "d193594fe1818512a2dee4fac7a4e119d7f076cc38ffe341309d9609e7ef4914"
+  }
+}

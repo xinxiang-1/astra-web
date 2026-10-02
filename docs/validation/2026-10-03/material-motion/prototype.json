@@ -1,0 +1,182 @@
+{
+  "passed": true,
+  "base": "http://127.0.0.1:5180",
+  "browser": "153.0.8010.12",
+  "errors": [],
+  "cases": [
+    {
+      "source": "portrait-reference.png",
+      "mode": "density",
+      "motion": "breathe",
+      "changed": true,
+      "file": "density-breathe.png"
+    },
+    {
+      "source": "portrait-reference.png",
+      "mode": "density",
+      "motion": "wave",
+      "changed": true,
+      "file": "density-wave.png"
+    },
+    {
+      "source": "portrait-reference.png",
+      "mode": "density",
+      "motion": "assemble",
+      "changed": true,
+      "file": "density-assemble.png"
+    },
+    {
+      "source": "portrait-reference.png",
+      "mode": "density",
+      "motion": "current",
+      "changed": true,
+      "file": "density-current.png"
+    },
+    {
+      "source": "portrait-reference.png",
+      "mode": "density",
+      "motion": "reform",
+      "changed": true,
+      "file": "density-reform.png"
+    },
+    {
+      "source": "portrait-reference.png",
+      "mode": "density",
+      "motion": "caustics",
+      "changed": true,
+      "file": "density-caustics.png"
+    },
+    {
+      "source": "pet.jpg",
+      "mode": "color",
+      "motion": "breathe",
+      "changed": true,
+      "file": "color-breathe.png"
+    },
+    {
+      "source": "pet.jpg",
+      "mode": "color",
+      "motion": "wave",
+      "changed": true,
+      "file": "color-wave.png"
+    },
+    {
+      "source": "pet.jpg",
+      "mode": "color",
+      "motion": "assemble",
+      "changed": true,
+      "file": "color-assemble.png"
+    },
+    {
+      "source": "pet.jpg",
+      "mode": "color",
+      "motion": "current",
+      "changed": true,
+      "file": "color-current.png"
+    },
+    {
+      "source": "pet.jpg",
+      "mode": "color",
+      "motion": "reform",
+      "changed": true,
+      "file": "color-reform.png"
+    },
+    {
+      "source": "pet.jpg",
+      "mode": "color",
+      "motion": "caustics",
+      "changed": true,
+      "file": "color-caustics.png"
+    },
+    {
+      "source": "landscape.jpg",
+      "mode": "phrase",
+      "motion": "breathe",
+      "changed": true,
+      "file": "phrase-breathe.png"
+    },
+    {
+      "source": "landscape.jpg",
+      "mode": "phrase",
+      "motion": "wave",
+      "changed": true,
+      "file": "phrase-wave.png"
+    },
+    {
+      "source": "landscape.jpg",
+      "mode": "phrase",
+      "motion": "assemble",
+      "changed": true,
+      "file": "phrase-assemble.png"
+    },
+    {
+      "source": "landscape.jpg",
+      "mode": "phrase",
+      "motion": "current",
+      "changed": true,
+      "file": "phrase-current.png"
+    },
+    {
+      "source": "landscape.jpg",
+      "mode": "phrase",
+      "motion": "reform",
+      "changed": true,
+      "file": "phrase-reform.png"
+    },
+    {
+      "source": "landscape.jpg",
+      "mode": "phrase",
+      "motion": "caustics",
+      "changed": true,
+      "file": "phrase-caustics.png"
+    }
+  ],
+  "timeline": [
+    {
+      "motion": "breathe",
+      "actualTime": 7.116399999999998
+    },
+    {
+      "motion": "wave",
+      "actualTime": 5.016399999999995
+    },
+    {
+      "motion": "assemble",
+      "actualTime": 5.016599999999997
+    },
+    {
+      "motion": "current",
+      "actualTime": 5.016499999999999
+    },
+    {
+      "motion": "reform",
+      "actualTime": 12.099500000000006
+    },
+    {
+      "motion": "caustics",
+      "actualTime": 6.033
+    }
+  ],
+  "hashes": {
+    "scripts/fixtures/fluid-v4-renderer.ts": "b444aad5ba670f7ac170ed59f7f7c9545126aae90c90a682c6a431ad822acaed",
+    "src/lib/art-engine/canvas.ts": "3af4206d607eb60574c3ec05318632b8967be90bb2830d7f582e5be2b65c614b",
+    "docs/prototypes/v5-material-motion/main.ts": "bfdc2eb02bedb48cd46f02192fdddb53ce8c88c616d280ce0a2f76adef1bf583",
+    "docs/prototypes/v5-material-motion/index.html": "6ab095e5ddb03a96d8b4d48ef1b55abe84dd59f040050099df4e1be5f6c28e5b"
+  },
+  "prototypePassed": true,
+  "video": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "width": 1440,
+        "height": 960
+      }
+    ],
+    "format": {
+      "duration": "51.160000"
+    }
+  },
+  "expectedDuration": 51.123999999999995
+}

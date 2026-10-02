@@ -1,0 +1,103 @@
+{
+  "passed": true,
+  "sourceSha256": "3af4206d607eb60574c3ec05318632b8967be90bb2830d7f582e5be2b65c614b",
+  "cases": [
+    {
+      "aspect": 0.5,
+      "motion": "breathe",
+      "minJacobian": 0.7323139141143439,
+      "maxOffset": 0.023232936728069187
+    },
+    {
+      "aspect": 0.5,
+      "motion": "wave",
+      "minJacobian": 0.5360242953452101,
+      "maxOffset": 0.025485232446493485
+    },
+    {
+      "aspect": 0.5,
+      "motion": "current",
+      "minJacobian": 0.49491987920124003,
+      "maxOffset": 0.04655752166179445
+    },
+    {
+      "aspect": 0.5,
+      "motion": "caustics",
+      "minJacobian": 0.884331707377443,
+      "maxOffset": 0.007309184223413468
+    },
+    {
+      "aspect": 0.8,
+      "motion": "breathe",
+      "minJacobian": 0.7250274958542849,
+      "maxOffset": 0.024801962861348698
+    },
+    {
+      "aspect": 0.8,
+      "motion": "wave",
+      "minJacobian": 0.5360242953452101,
+      "maxOffset": 0.03657415328913329
+    },
+    {
+      "aspect": 0.8,
+      "motion": "current",
+      "minJacobian": 0.49491987920124003,
+      "maxOffset": 0.04669061983498894
+    },
+    {
+      "aspect": 0.8,
+      "motion": "caustics",
+      "minJacobian": 0.884331707377443,
+      "maxOffset": 0.00913384853812311
+    },
+    {
+      "aspect": 1.3,
+      "motion": "breathe",
+      "minJacobian": 0.6630598133995936,
+      "maxOffset": 0.033022747015064614
+    },
+    {
+      "aspect": 1.3,
+      "motion": "wave",
+      "minJacobian": 0.5360242953452101,
+      "maxOffset": 0.05648396607983528
+    },
+    {
+      "aspect": 1.3,
+      "motion": "current",
+      "minJacobian": 0.6729885887770332,
+      "maxOffset": 0.03915074257033247
+    },
+    {
+      "aspect": 1.3,
+      "motion": "caustics",
+      "minJacobian": 0.884331707377443,
+      "maxOffset": 0.012814231833338408
+    },
+    {
+      "aspect": 2.3,
+      "motion": "breathe",
+      "minJacobian": 0.6096123932707765,
+      "maxOffset": 0.04928347686495017
+    },
+    {
+      "aspect": 2.3,
+      "motion": "wave",
+      "minJacobian": 0.5360242953452101,
+      "maxOffset": 0.09768721411857555
+    },
+    {
+      "aspect": 2.3,
+      "motion": "current",
+      "minJacobian": 0.7928837400388047,
+      "maxOffset": 0.043100021441492206
+    },
+    {
+      "aspect": 2.3,
+      "motion": "caustics",
+      "minJacobian": 0.884331707377443,
+      "maxOffset": 0.02100370077261174
+    }
+  ],
+  "checks": 46208
+}

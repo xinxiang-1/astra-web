@@ -1,13 +1,17 @@
 import { prepareArtFrame } from '../../../src/lib/art-engine/index'
-import { createCanvasArtRenderer as baseline } from '../../../scripts/fixtures/depth-v3-renderer'
-import { createCanvasArtRenderer as candidate } from '../../../scripts/fixtures/fluid-v4-renderer'
+import { createCanvasArtRenderer as baseline } from '../../../scripts/fixtures/fluid-v4-renderer'
+import { createCanvasArtRenderer as candidate } from '../../../src/lib/art-engine/canvas'
 const motions = [
-  ['breathe', '弹性冲击', '冲击前沿推开字符，反向余波回弹，主体保持可辨识。'],
-  ['wave', '液态绸面', '连续流线带动画面，折痕反光跟随运动，不让人脸局部鼓包。'],
-  ['assemble', '流束显影', '字符沿弯曲流束从画面侧边汇入，顺序落位，停留展示完整作品。'],
-  ['current', '双涡流动', '两个相反方向的流场缓缓穿过作品，局部细节由 Studio 底座驱动。'],
-  ['reform', '爆散回弹', '原作字符向外爆散，沿原路径带回弹重组，之后完整停留。'],
-  ['caustics', '流光折射', '连续交叠焦散沿原作笔画流动，窄亮边与暗部形成材质层次。'],
+  ['breathe', '潮汐脉冲', '宽幅能量前沿与两层余波穿过原作，字形保持正向，结束后完整复原。'],
+  ['wave', '绸光波面', '大尺度斜向折面与跟随表面法线的明暗，减少五官局部拉扯。'],
+  ['assemble', '星流汇聚', '原作字符从画面内的星流展开，沿弧线汇聚，带阻尼落位并停留。'],
+  ['current', '流域漂移', '连续流域带动整个表面，反光沿流线移动，维持作品整体轮廓。'],
+  ['reform', '片层解构', '蓄势、片层爆散、漂移与阻尼归位；相邻字符一同运动，最终停留展示。'],
+  [
+    'caustics',
+    '棱镜扫光',
+    '主光束、窄反射与暗边共同扫过真实笔画，单色延续原墨色，原色延续素材色。',
+  ],
 ] as const
 const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T
 const canvases = ['studio', 'baseline', 'candidate'].map((id) => $<HTMLCanvasElement>(id))

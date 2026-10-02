@@ -1,0 +1,48 @@
+{
+  "passed": true,
+  "sourceSha256": "3af4206d607eb60574c3ec05318632b8967be90bb2830d7f582e5be2b65c614b",
+  "commands": [
+    {
+      "command": "npm run type-check",
+      "exit": 0
+    },
+    {
+      "command": "npm run build",
+      "exit": 0,
+      "buildSeconds": 15.57
+    },
+    {
+      "command": "npx eslint src/lib/art-engine/canvas.ts src/views/AsciiArtView.vue scripts/material-motion-prototype.mjs scripts/material-motion-surface-contract.mjs",
+      "exit": 0
+    },
+    {
+      "command": "npx eslint scripts/studio-motion-walkthrough.mjs",
+      "exit": 0
+    },
+    {
+      "command": "npx tsc --ignoreConfig --noEmit --strict --noUncheckedIndexedAccess --target es2022 --module esnext --moduleResolution bundler --lib dom,es2022 --skipLibCheck docs/prototypes/v5-material-motion/main.ts scripts/fixtures/fluid-v4-renderer.ts",
+      "exit": 0
+    }
+  ],
+  "nativeInteractionUnchanged": true,
+  "protectedHomeFilesUnchanged": true,
+  "frozenV4ImportOnlyDifference": true,
+  "surfaceChecks": 46208,
+  "minimumLocalJacobian": 0.49491987920124003,
+  "productionPreview": "http://127.0.0.1:5194",
+  "developmentPreview": "http://127.0.0.1:5180",
+  "buildWarnings": [
+    "existing stream browser externalization",
+    "large chunks",
+    "existing dynamic/static import overlap",
+    "plugin hook timings"
+  ],
+  "notVerified": [
+    "user visual acceptance",
+    "continuous isolated device FPS",
+    "real mobile hardware",
+    "new pointer fluid/particle effects",
+    "commercial image quality",
+    "complete commerce/deployment"
+  ]
+}

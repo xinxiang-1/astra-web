@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "cases": [
+    {
+      "transparent": false,
+      "sharedGrid": true,
+      "aspectA": 0.8002853067047075,
+      "aspectB": 0.75,
+      "exactFreshRenderer": true
+    },
+    {
+      "transparent": true,
+      "sharedGrid": true,
+      "aspectA": 0.8002853067047075,
+      "aspectB": 0.75,
+      "exactFreshRenderer": true
+    }
+  ],
+  "sourceSha256": "3af4206d607eb60574c3ec05318632b8967be90bb2830d7f582e5be2b65c614b"
+}

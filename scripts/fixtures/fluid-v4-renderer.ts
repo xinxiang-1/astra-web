@@ -1,4 +1,4 @@
-import type { ArtFrame, ArtRenderOptions } from './types'
+import type { ArtFrame, ArtRenderOptions } from '../../src/lib/art-engine/types'
 
 /** Self-contained Canvas implementation shared with the standalone HTML runtime. */
 export function createCanvasArtRenderer(target: HTMLCanvasElement) {
@@ -81,8 +81,8 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
     const t = Math.max(0, Math.min(1, (value - low) / (high - low)))
     return t * t * t * (t * (6 * t - 15) + 10)
   }
-  // A material surface, a spatial entrance and a staged fracture share the same
-  // upright glyphs. No stochastic frame state: seeks and offline exports agree.
+  // Coherent fluid surfaces and elastic choreography, using original glyphs.
+  // Coordinates are normalized; every scale stays positive and words stay upright.
   function sampleCinematic(
     mode: string,
     x: number,
@@ -92,25 +92,13 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
     out: Float32Array,
     identity = 0,
   ) {
-    const edge = motionSmooth(0, 0.16, Math.min(x, 1 - x, y, 1 - y))
+    const edge = motionSmooth(0, 0.14, Math.min(x, 1 - x, y, 1 - y))
     const rx = x - 0.5,
       ry = y - 0.5,
       aspect = frame.width / frame.height
     sampleStudioAmbient('current', x, y, time, ambientNative)
     const nativeX = ambientNative[0]! / 960,
       nativeY = ambientNative[1]! / 960
-    const gaussian = (value: number, width: number) => Math.exp(-((value / width) ** 2))
-    // Closed-form damped response. Its initial derivative is zero and the final
-    // smooth taper makes a genuinely still hold, including exact pixel recovery.
-    const response = (elapsed: number, duration: number) => {
-      const u = Math.max(0, elapsed) / duration
-      if (u >= 1) return 0
-      return (
-        Math.exp(-3.6 * u) *
-        (Math.cos(5.4 * u) + (2 / 3) * Math.sin(5.4 * u)) *
-        (1 - motionSmooth(0.78, 1, u))
-      )
-    }
     let dx = 0,
       dy = 0,
       intensity = 1,
@@ -120,113 +108,97 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
     if (mode === 'breathe') {
       const cycle = ((time % 7) + 7) % 7
       const distance = Math.hypot(rx * aspect, ry)
-      const envelope = motionSmooth(0, 0.28, cycle) * (1 - motionSmooth(5.6, 7, cycle))
-      const phase = distance - cycle * 0.24 + 0.04
-      const crest = gaussian(phase, 0.12)
-      const wake = gaussian(phase + 0.19, 0.15)
-      const echo = gaussian(phase + 0.37, 0.16)
-      const pulse = (crest - wake * 0.62 + echo * 0.24) * envelope
-      // A broad surface pulse. Low differential displacement keeps facial
-      // landmarks coherent; the crest is carried by actual glyph highlights.
-      dx = rx * pulse * 0.068 * edge
-      dy = ry * pulse * 0.068 * edge
-      size = 1 + (crest * 0.16 - wake * 0.09) * envelope * edge
-      intensity = 1 + (crest * 0.32 - wake * 0.2) * envelope * edge
-      glow = (crest * 0.82 + echo * 0.22) * envelope * edge
+      const envelope = motionSmooth(0, 0.18, cycle) * (1 - motionSmooth(5.2, 7, cycle))
+      const travel = distance - (-0.05 + cycle * 0.22)
+      // Signed displacement: a leading crest, an opposing wake, a small second echo.
+      const crest = Math.exp(-Math.pow(travel / 0.09, 2))
+      const wake = Math.exp(-Math.pow((travel + 0.14) / 0.11, 2))
+      const echo = Math.exp(-Math.pow((travel + 0.28) / 0.13, 2))
+      const push = (crest * 0.115 - wake * 0.075 + echo * 0.025) * envelope * edge
+      dx = (rx / Math.max(0.16, distance)) * push
+      dy = (ry / Math.max(0.16, distance)) * push
+      size = 1 + (crest * 0.28 - wake * 0.22) * envelope * edge
+      intensity = 1 + (crest * 0.12 - wake * 0.24) * envelope * edge
+      glow = (crest * 0.72 + echo * 0.18) * envelope * edge
     } else if (mode === 'wave') {
-      // Broad diagonal folds with bounded shear, rather than independently
-      // bulging features. Highlight and occlusion follow the same fold normal.
-      const phase = y * 6.4 + x * 1.6 - time * 1.35 + Math.sin(x * 4.1 - time * 0.23) * 0.34
+      // Flow along broad folds instead of radial perspective bulges on faces.
+      const phase = y * 8.5 - time * 1.55 + Math.sin(x * 4.5 + time * 0.4) * 0.8
       const fold = Math.sin(phase)
-      const normal = Math.cos(phase)
-      const highlight = Math.max(0, normal) ** 9
-      const shadow = Math.max(0, -normal) ** 3
-      dx = (fold * 0.035 + nativeX * 0.72) * edge
-      dy = (fold * 0.008 + Math.sin(x * 3.6 + time * 0.58) * 0.007 + nativeY * 0.62) * edge
-      size = 1 + (highlight * 0.045 - shadow * 0.035) * edge
-      intensity = 1 + (highlight * 0.35 - shadow * 0.3) * edge
-      glow = highlight * 0.75 * edge
+      const slope = Math.cos(phase)
+      dx = (fold * 0.082 + nativeX * 1.5) * edge
+      dy = (Math.sin(x * 6.5 + time * 0.8) * 0.029 + nativeY * 1.4) * edge
+      const ridge = Math.pow(Math.max(0, slope), 12)
+      const valley = Math.pow(Math.max(0, -slope), 4)
+      size = 1 + (ridge * 0.12 - valley * 0.08) * edge
+      intensity = 1 + (ridge * 0.13 - valley * 0.22) * edge
+      glow = ridge * 0.58 * edge
     } else if (mode === 'assemble') {
       const raw = Math.sin((identity + 1) * 127.1) * 43758.5453
       const noise = raw - Math.floor(raw)
-      const distance = Math.hypot(rx * aspect, ry)
-      const arrival = 3.25 + Math.min(0.9, distance * 0.75) + noise * 0.24
-      const remaining = response(Math.max(0, time), arrival)
-      const flight = Math.max(0, remaining)
-      const theta = flight * (2.25 + noise * 0.65)
-      const radius = 1 - flight * 0.72
-      const rotatedX = (rx * Math.cos(theta) - (ry * Math.sin(theta)) / aspect) * radius
-      const rotatedY = (rx * aspect * Math.sin(theta) + ry * Math.cos(theta)) * radius
-      // Start as an in-frame constellation, unfold and arrive with a damped
-      // overshoot. Letters move through space; their individual faces never turn.
-      dx = rotatedX - rx + remaining * Math.sin(y * 5.2) * 0.026
-      dy = rotatedY - ry + remaining * Math.cos(x * 4.8) * 0.035
-      // Preserve the small negative spring response after the main flight.
-      if (remaining < 0) {
-        dx += rx * remaining * 0.25
-        dy += ry * remaining * 0.25
-      }
-      size = 1 - flight * (0.42 + noise * 0.1)
-      opacity = 1 - flight * 0.64
+      const delay = x * 0.72 + y * 0.16 + noise * 0.12
+      // Start moving immediately, even in short slow-motion exports. Stagger
+      // landing times, rather than leaving every visible glyph waiting at onset.
+      const progress = Math.min(1, Math.max(0, time) / (3.5 + delay))
+      const flight = Math.pow(1 - progress, 3)
+      const arc = Math.sin(flight * Math.PI)
+      // Broad curved streams preserve image topology while arriving from the side.
+      dx = (-0.42 - x * 0.23) * flight + Math.sin(y * 6 + flight * 2.8) * arc * 0.075
+      dy = -ry * flight * 0.42 + Math.sin(x * 5.5 + y * 2) * arc * 0.105
+      size = 1 - flight * 0.44 + arc * 0.15
+      opacity = 1 - flight * 0.62
       intensity = 1 - flight * 0.08
-      glow = Math.abs(remaining) * (1 - flight) * 1.5 + flight * 0.12
+      glow = (arc * 0.62 + flight * 0.16) * edge
     } else if (mode === 'current') {
-      // Analytic streamfunction derivatives, integrated with a midpoint step.
-      // These are our own normalized velocities, not Studio's displacement API.
-      const amplitude = 0.035 / Math.max(0.8, aspect)
-      const a = x * Math.PI * 2 + Math.sin(time * 0.36) * 0.55
-      const b = y * Math.PI * 2 - time * 0.42
-      const firstX = Math.sin(a) * Math.cos(b) * amplitude
-      const firstY = -Math.cos(a) * Math.sin(b) * amplitude
-      const midA = a + firstX * Math.PI
-      const midB = b + firstY * Math.PI
-      dx = (Math.sin(midA) * Math.cos(midB) * amplitude + nativeX * 0.55) * edge
-      dy = (-Math.cos(midA) * Math.sin(midB) * amplitude + nativeY * 0.55) * edge
-      const direction = x * 5.4 - y * 4.2 + time * 0.62
-      const glint = Math.max(0, Math.cos(direction)) ** 12
-      const shade = Math.max(0, -Math.cos(direction)) ** 4
-      size = 1 + (glint * 0.025 - shade * 0.025) * edge
-      intensity = 1 + (glint * 0.22 - shade * 0.18) * edge
-      glow = glint * 0.5 * edge
+      // Counter-rotating localized vortices; distant cells do not orbit the whole face.
+      const cx = 0.36 + Math.sin(time * 0.48) * 0.12
+      const cy = 0.42 + Math.cos(time * 0.39) * 0.13
+      const ax = (x - cx) * aspect,
+        ay = y - cy,
+        bx = (x - (1 - cx)) * aspect,
+        by = y - (1 - cy)
+      const first = Math.exp(-(ax * ax + ay * ay) / 0.085)
+      const second = Math.exp(-(bx * bx + by * by) / 0.085)
+      const drive = 0.6 + 0.4 * Math.sin(time * 0.65)
+      dx = ((-ay * first + by * second) * 0.95 * drive / aspect + nativeX * 2.2) * edge
+      dy = ((ax * first - bx * second) * 0.95 * drive + nativeY * 2.2) * edge
+      const strain = Math.abs(first - second)
+      size = 1 + Math.sin(time * 0.7 + x * 5 - y * 4) * strain * 0.12 * edge
+      intensity = 1 - strain * 0.17 * edge
+      const glint = Math.pow(Math.max(0, Math.cos(x * 9 + y * 6 - time * 1.1)), 10)
+      glow = glint * strain * 0.62 * edge
     } else if (mode === 'reform') {
       const cycle = ((time % 12) + 12) % 12
-      // Spatially coherent fragments: neighboring glyphs travel together, with
-      // only fine deterministic grain, avoiding an unstructured noise explosion.
-      const column = Math.floor(x * 9),
-        row = Math.floor(y * 7)
-      const cluster = column + row * 9
-      const raw = Math.sin((cluster + 1) * 91.7) * 43758.5453
+      const raw = Math.sin((identity + 1) * 127.1) * 43758.5453
       const noise = raw - Math.floor(raw)
-      const delay = Math.hypot(rx * aspect, ry) * 0.3 + noise * 0.16
-      const opening = motionSmooth(0.4 + delay, 1.8 + delay, cycle)
-      const recovery = cycle < 3.6 + delay ? 1 : response(cycle - 3.6 - delay, 4.35)
-      const displacement = opening * recovery
-      const anticipation = motionSmooth(0, 0.12, cycle) * (1 - motionSmooth(0.32, 0.55, cycle))
-      const angle = Math.atan2(ry, rx * aspect) + (noise - 0.5) * 0.8
-      const distance = 0.09 + noise * 0.16
-      const outwardX = (Math.cos(angle) * distance) / aspect
-      const outwardY = Math.sin(angle) * distance
-      dx = outwardX * displacement - rx * anticipation * 0.025
-      dy = outwardY * displacement - ry * anticipation * 0.025
-      const separated = Math.max(0, displacement)
-      size = 1 - separated * (0.15 + noise * 0.2) + anticipation * 0.035
-      opacity = 1 - separated * 0.18
-      intensity = 1 - separated * 0.1
-      glow = Math.sin(Math.min(1, Math.abs(displacement)) * Math.PI) * 0.78 + anticipation * 0.3
+      const distance = Math.hypot(rx * aspect, ry)
+      const delay = Math.min(0.48, distance * 0.42) + noise * 0.12
+      const open = motionSmooth(0.22 + delay, 1.85 + delay, cycle)
+      const returned = motionSmooth(3.2 + delay, 6.8 + delay, cycle)
+      const scatter = open * (1 - returned)
+      // A tiny signed return overshoot settles before the exact full-image hold.
+      const settle = motionSmooth(6.7, 7.05, cycle) * (1 - motionSmooth(7.4, 8.1, cycle))
+      const spring = -Math.sin((cycle - 6.7) * 6.5) * Math.exp(-Math.max(0, cycle - 6.7) * 2.4) * settle * 0.018
+      const radial = scatter * (0.12 + noise * 0.07) + spring
+      const tangent = Math.sin(scatter * Math.PI) * (noise - 0.5) * 0.08
+      dx = (rx / Math.max(0.22, distance)) * radial - (ry / Math.max(0.22, distance)) * tangent / aspect
+      dy = (ry / Math.max(0.22, distance)) * radial + (rx * aspect / Math.max(0.22, distance)) * tangent
+      size = 1 - scatter * (0.2 + noise * 0.25)
+      opacity = 1 - scatter * 0.22
+      intensity = 1 - scatter * 0.12
+      glow = (Math.sin(scatter * Math.PI) * 0.58 + scatter * noise * 0.16) * edge
     } else if (mode === 'caustics') {
       const cycle = ((time % 6) + 6) % 6
-      const envelope = motionSmooth(0, 0.24, cycle) * (1 - motionSmooth(5.5, 6, cycle))
-      const diagonal = x * 0.7 + y * 0.3
-      const front = diagonal - ((cycle / 5.2) * 1.2 + 0.28)
-      const surface = Math.sin(x * 7.2 + y * 3.5 + time * 0.32) * 0.028
-      const light = gaussian(front + surface, 0.07) * envelope * edge
-      const reflection = gaussian(front + surface + 0.13, 0.025) * envelope * edge
-      const shadow = gaussian(front + surface - 0.1, 0.06) * envelope * edge
-      dx = (light - shadow * 0.45) * 0.009
-      dy = (light - shadow * 0.45) * -0.006
-      size = 1 + light * 0.06
-      intensity = 1 + light * 0.65 - shadow * 0.32
-      glow = light * 1.1 + reflection * 0.45
+      const envelope = motionSmooth(0, 0.22, cycle) * (1 - motionSmooth(5.5, 6, cycle))
+      const a = Math.sin(x * 9 + y * 3 - time * 1.2)
+      const b = Math.sin(y * 8 - x * 4 + time * 0.95)
+      const band = a + b
+      const light = Math.exp(-band * band * 24) * envelope * edge
+      const shadow = Math.exp(-Math.pow(Math.abs(band) - 0.42, 2) * 22) * envelope * edge
+      dx = Math.tanh(band * 4) * light * 0.012 + nativeX * envelope * 0.5
+      dy = (a - b) * light * 0.008 + nativeY * envelope * 0.5
+      size = 1 + light * 0.18 - shadow * 0.07
+      intensity = 1 + light * 0.2 - shadow * 0.26
+      glow = light * 0.8
     }
     out[0] = dx * amount
     out[1] = dy * amount
@@ -236,6 +208,7 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
     out[5] = 1 + (size - 1) * amount
     return out
   }
+
 
   function buildMotionField(mode: string, time: number, amount: number, cinematic: boolean) {
     if (mode === 'none' || amount === 0) {
@@ -1370,9 +1343,7 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
         opacity = alpha,
         ambientOpacity = 1,
         glow = 0,
-        size = 1,
-        traceX = 0,
-        traceY = 0
+        size = 1
       if (motionField) {
         const nx = (x + 0.5) / frame.columns,
           ny = (y + 0.5) / frame.rows
@@ -1388,19 +1359,6 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
         opacity = alpha * ambientOpacity
         glow = sample[4]!
         size = sample[5]!
-        if (cinematic && (motion === 'assemble' || motion === 'reform')) {
-          const previous = sampleCinematic(
-            motion,
-            nx,
-            ny,
-            Math.max(0, time - 0.075),
-            amount,
-            motionSample,
-            index,
-          )
-          traceX = previous[0]! * frame.columns * cw - dx
-          traceY = previous[1]! * frame.rows * ch - dy
-        }
       }
       let glyph = frame.indices[index]!
       if (interaction?.hasRefraction && expressive) {
@@ -1450,7 +1408,7 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
           glow += Math.min(0.45, (displacement / Math.max(1, Math.min(w, h))) * 14)
         }
       }
-      return { dx, dy, intensity, opacity, glow, glyph, size, traceX, traceY }
+      return { dx, dy, intensity, opacity, glow, glyph, size }
     }
     const needsGlow =
       Boolean(motionField) ||
@@ -1459,7 +1417,6 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
       expressive,
       needsGlow,
       motionLight: Boolean(motionField),
-      cinematicLight: cinematic && Boolean(motionField),
       motionTrace:
         cinematic && Boolean(motionField) && (motion === 'assemble' || motion === 'reform'),
       cell,
@@ -1491,7 +1448,7 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
           gc.clearRect(0, 0, gw, gh)
         }
         gc.globalAlpha = clamp(e.glow * Math.max(0.35, e.opacity) * e.intensity, 0, 1)
-        let lightColor = effect.cinematicLight ? frame.settings.ink : '#b5f5e9'
+        let lightColor = '#b5f5e9'
         if (effect.motionLight && (frame.settings.colored || frame.settings.mode === 'color')) {
           const lift = (channel: number) => Math.min(255, frame.colors[i * 3 + channel]! + 64)
           lightColor = `rgb(${lift(0)},${lift(1)},${lift(2)})`
@@ -1501,20 +1458,13 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
           dh = ch * e.size,
           left = x * cw + (cw - dw) * 0.5,
           top = y * ch + (ch - dh) * 0.5
-        if (effect.motionTrace && e.glow > 0.12 && Math.hypot(e.traceX, e.traceY) > cw * 0.12) {
-          // Two shutter samples along this glyph's actual time-dependent path.
-          // No persistent image history: seeking never creates stale echoes.
+        if (effect.motionTrace && e.glow > 0.12 && Math.hypot(e.dx, e.dy) > cw * 2) {
+          // Two bounded stroke echoes along the landing direction; no history buffer.
           const lightAlpha = gc.globalAlpha
-          gc.globalAlpha = lightAlpha * 0.12
-          gc.drawImage(glyphLight, left + e.dx + e.traceX, top + e.dy + e.traceY, dw, dh)
-          gc.globalAlpha = lightAlpha * 0.24
-          gc.drawImage(
-            glyphLight,
-            left + e.dx + e.traceX * 0.5,
-            top + e.dy + e.traceY * 0.5,
-            dw,
-            dh,
-          )
+          gc.globalAlpha = lightAlpha * 0.16
+          gc.drawImage(glyphLight, left + e.dx * 0.88, top + e.dy * 0.88, dw, dh)
+          gc.globalAlpha = lightAlpha * 0.32
+          gc.drawImage(glyphLight, left + e.dx * 0.95, top + e.dy * 0.95, dw, dh)
           gc.globalAlpha = lightAlpha
         }
         gc.drawImage(glyphLight, left + e.dx, top + e.dy, dw, dh)

@@ -1,0 +1,70 @@
+{
+  "passed": false,
+  "scope": "preserved failures; final reports separately passed",
+  "size": {
+    "origin": "sandbox/material-motion/2026-10-03-v1/depth-r1/failure.json",
+    "originalMinimum": 0.34,
+    "requiredMinimum": 0.45,
+    "fix": "Keep initial entrance scale >=0.48; unchanged assertion"
+  },
+  "earlyBeam": {
+    "origin": "sandbox/material-motion/2026-10-03-v1/contract-r1/report.json",
+    "failure": "AssertionError [ERR_ASSERTION]: braille/caustics/false: real motion must respond\n    at file:///E:/project/astra/astra-web/scripts/studio-motion-contract.mjs:285:5",
+    "hashes": {
+      "src/lib/art-engine/canvas.ts": "5d8e63c4c1ef5511c1d175d8502a10d184765e2c6156adf6fba15a85607a1e3f",
+      "src/lib/art-engine/core.ts": "ce091baf6d11340ccdda8c21fabe8a7935134964aaf7d4c094fe4432fce414e4",
+      "src/lib/art-engine/types.ts": "1ae58e3305d0e1d8b7e5e06fd6ded2a6c70457664d8b162501223284be2b4819",
+      "src/lib/art-engine/index.ts": "1d5ced6806e6abba6ab800e691416816ad9a803b50e868e6179d53760f1db5f3",
+      "src/lib/art-engine/embed.ts": "c99c491e7b06dfa4c92f80d8cb50696abf08df93aa490de27354cc6b671efa7e",
+      "src/views/AsciiArtView.vue": "b4745e42a62b98d2f5356996e48e651a604d1cae1e2a51925b151c2e03699a62",
+      "scripts/studio-motion-contract.mjs": "f5462946c98664848973d334bb95f84cee4c53f4f38240c9ba6cbdff787016d0",
+      "scripts/studio-motion-walkthrough.mjs": "64d19cd1c46a9a5127c69cb1da97ca087d92069a6c456c64ca786d93573263b7",
+      "node_modules/asciify-engine/dist/studio.js": "8ee86f03eba8338c9d7336c1f3180934448bfaf28fcc0d4926eedb79cae82ef5"
+    },
+    "case": {
+      "scene": "braille",
+      "motion": "caustics",
+      "transparent": false,
+      "changed": {
+        "mean": 0,
+        "channels": 0
+      },
+      "phase": {
+        "mean": 0.027470341435185185,
+        "channels": 9335
+      },
+      "zero": {
+        "mean": 0,
+        "channels": 0
+      },
+      "speed": {
+        "mean": 0,
+        "channels": 0
+      },
+      "seek": {
+        "mean": 0,
+        "channels": 0
+      },
+      "studioParity": {
+        "mean": 0,
+        "channels": 0
+      },
+      "newStyle": {
+        "mean": 0.6729926215277777,
+        "channels": 97788
+      }
+    },
+    "fix": "Start the beam inside the effective glyph region"
+  },
+  "productionHarness": {
+    "origin": "sandbox/material-motion/2026-10-03-v1/ui-final/report.json",
+    "failure": "Production preview has no /src/*.ts; API leg could not import. Final production run uses existing ASTRA_EFFECTS_SKIP_API=1; dedicated development engine contracts ran independently."
+  },
+  "walkthrough": {
+    "origin": "sandbox/material-motion/2026-10-03-v1/editor-final/report.json",
+    "failure": "Two regrouping captures were equal; time check and capture were separate RPCs without a paused-zero origin. Preserve failed raw video; capture final time/image atomically with <=0.5s phase tolerance."
+  },
+  "audit": {
+    "failure": "First temporary protection check searched for function canvas, but actual declaration is const canvas; corrected boundary to let interaction and proved exact native block and three files."
+  }
+}

@@ -1,0 +1,4554 @@
+{
+  "base": "http://127.0.0.1:5180",
+  "browser": "153.0.8010.12",
+  "errors": [],
+  "scope": "Chromium desktop; CPU timing samples are not device-independent FPS guarantees",
+  "passed": true,
+  "motionStyle": "cinematic",
+  "baselineCommit": "38bcb37de8ceeebc04be7bf09a08d675a5442e6a",
+  "baselineRendererSha256": "05eeeef336cfb12b4dcd545b85f6fae929cf2a6d2942f22e034ec6e56fdeb68b",
+  "hashes": {
+    "src/lib/art-engine/canvas.ts": "3af4206d607eb60574c3ec05318632b8967be90bb2830d7f582e5be2b65c614b",
+    "src/lib/art-engine/core.ts": "ce091baf6d11340ccdda8c21fabe8a7935134964aaf7d4c094fe4432fce414e4",
+    "src/lib/art-engine/types.ts": "1ae58e3305d0e1d8b7e5e06fd6ded2a6c70457664d8b162501223284be2b4819",
+    "src/lib/art-engine/index.ts": "1d5ced6806e6abba6ab800e691416816ad9a803b50e868e6179d53760f1db5f3",
+    "src/lib/art-engine/embed.ts": "c99c491e7b06dfa4c92f80d8cb50696abf08df93aa490de27354cc6b671efa7e",
+    "src/views/AsciiArtView.vue": "80ff0d058b72bb51cf461488283c0936e397b34b3044027bcf89720c08f9b796",
+    "scripts/studio-motion-contract.mjs": "f5462946c98664848973d334bb95f84cee4c53f4f38240c9ba6cbdff787016d0",
+    "scripts/studio-motion-walkthrough.mjs": "64d19cd1c46a9a5127c69cb1da97ca087d92069a6c456c64ca786d93573263b7",
+    "node_modules/asciify-engine/dist/studio.js": "8ee86f03eba8338c9d7336c1f3180934448bfaf28fcc0d4926eedb79cae82ef5"
+  },
+  "api": {
+    "nativeSamples": 720,
+    "maxNativeError": 0,
+    "cases": [
+      {
+        "scene": "density",
+        "motion": "breathe",
+        "transparent": false,
+        "changed": {
+          "mean": 6.210791015625,
+          "channels": 221433
+        },
+        "phase": {
+          "mean": 7.495433063271605,
+          "channels": 302792
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 6.879015359760802,
+          "channels": 230664
+        }
+      },
+      {
+        "scene": "density",
+        "motion": "wave",
+        "transparent": false,
+        "changed": {
+          "mean": 6.3398503809799385,
+          "channels": 114698
+        },
+        "phase": {
+          "mean": 5.06557014371142,
+          "channels": 127690
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 5.628609664351852,
+          "channels": 125782
+        }
+      },
+      {
+        "scene": "density",
+        "motion": "assemble",
+        "transparent": false,
+        "changed": {
+          "mean": 5.325691430362654,
+          "channels": 118885
+        },
+        "phase": {
+          "mean": 4.736551769868827,
+          "channels": 207067
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 2.5094557773919752,
+          "channels": 87984
+        }
+      },
+      {
+        "scene": "density",
+        "motion": "current",
+        "transparent": false,
+        "changed": {
+          "mean": 6.2969081548996915,
+          "channels": 133760
+        },
+        "phase": {
+          "mean": 6.198161410108025,
+          "channels": 137692
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 6.457256703317901,
+          "channels": 184086
+        }
+      },
+      {
+        "scene": "density",
+        "motion": "reform",
+        "transparent": false,
+        "changed": {
+          "mean": 1.0277410059799383,
+          "channels": 88787
+        },
+        "phase": {
+          "mean": 8.158797501929012,
+          "channels": 363343
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 6.438599537037037,
+          "channels": 206947
+        }
+      },
+      {
+        "scene": "density",
+        "motion": "caustics",
+        "transparent": false,
+        "changed": {
+          "mean": 6.107858916859568,
+          "channels": 217075
+        },
+        "phase": {
+          "mean": 7.392063319830247,
+          "channels": 279081
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 5.820102719907408,
+          "channels": 226579
+        }
+      },
+      {
+        "scene": "density",
+        "motion": "breathe",
+        "transparent": true,
+        "changed": {
+          "mean": 24.68719738618827,
+          "channels": 290740
+        },
+        "phase": {
+          "mean": 19.988727936921297,
+          "channels": 383395
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 23.881239752121914,
+          "channels": 303207
+        }
+      },
+      {
+        "scene": "density",
+        "motion": "wave",
+        "transparent": true,
+        "changed": {
+          "mean": 15.37337299864969,
+          "channels": 149643
+        },
+        "phase": {
+          "mean": 14.950231481481481,
+          "channels": 165386
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 15.786022497106481,
+          "channels": 164977
+        }
+      },
+      {
+        "scene": "density",
+        "motion": "assemble",
+        "transparent": true,
+        "changed": {
+          "mean": 15.84372227044753,
+          "channels": 158386
+        },
+        "phase": {
+          "mean": 23.0501766251929,
+          "channels": 272296
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 10.488582658179013,
+          "channels": 117018
+        }
+      },
+      {
+        "scene": "density",
+        "motion": "current",
+        "transparent": true,
+        "changed": {
+          "mean": 17.217531105324074,
+          "channels": 174252
+        },
+        "phase": {
+          "mean": 17.12113896122685,
+          "channels": 179026
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 21.325663700810185,
+          "channels": 244596
+        }
+      },
+      {
+        "scene": "density",
+        "motion": "reform",
+        "transparent": true,
+        "changed": {
+          "mean": 3.9550594376929014,
+          "channels": 109541
+        },
+        "phase": {
+          "mean": 43.639449508101855,
+          "channels": 483450
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 21.373860677083332,
+          "channels": 275948
+        }
+      },
+      {
+        "scene": "density",
+        "motion": "caustics",
+        "transparent": true,
+        "changed": {
+          "mean": 24.36159336419753,
+          "channels": 285538
+        },
+        "phase": {
+          "mean": 24.009484109760802,
+          "channels": 360453
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 19.623310305748458,
+          "channels": 295000
+        }
+      },
+      {
+        "scene": "color",
+        "motion": "breathe",
+        "transparent": false,
+        "changed": {
+          "mean": 4.331268687307099,
+          "channels": 193763
+        },
+        "phase": {
+          "mean": 5.165376639660494,
+          "channels": 246240
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 4.743512490354938,
+          "channels": 202819
+        }
+      },
+      {
+        "scene": "color",
+        "motion": "wave",
+        "transparent": false,
+        "changed": {
+          "mean": 3.7593382282021603,
+          "channels": 112012
+        },
+        "phase": {
+          "mean": 2.899335696373457,
+          "channels": 115752
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 3.305662254050926,
+          "channels": 115587
+        }
+      },
+      {
+        "scene": "color",
+        "motion": "assemble",
+        "transparent": false,
+        "changed": {
+          "mean": 3.480837070794753,
+          "channels": 104647
+        },
+        "phase": {
+          "mean": 3.2997661072530864,
+          "channels": 169006
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 1.7673671392746915,
+          "channels": 71749
+        }
+      },
+      {
+        "scene": "color",
+        "motion": "current",
+        "transparent": false,
+        "changed": {
+          "mean": 3.7229938271604937,
+          "channels": 119595
+        },
+        "phase": {
+          "mean": 3.580861786265432,
+          "channels": 119619
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 3.9782883632330246,
+          "channels": 162084
+        }
+      },
+      {
+        "scene": "color",
+        "motion": "reform",
+        "transparent": false,
+        "changed": {
+          "mean": 0.6045169029706791,
+          "channels": 87144
+        },
+        "phase": {
+          "mean": 5.660423297646605,
+          "channels": 287157
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 3.932937885802469,
+          "channels": 181974
+        }
+      },
+      {
+        "scene": "color",
+        "motion": "caustics",
+        "transparent": false,
+        "changed": {
+          "mean": 4.675027729552469,
+          "channels": 175908
+        },
+        "phase": {
+          "mean": 5.476904296875,
+          "channels": 229575
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 4.407363401813272,
+          "channels": 179056
+        }
+      },
+      {
+        "scene": "color",
+        "motion": "breathe",
+        "transparent": true,
+        "changed": {
+          "mean": 17.138838252314816,
+          "channels": 268559
+        },
+        "phase": {
+          "mean": 11.998519483024692,
+          "channels": 347541
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 15.940985484182098,
+          "channels": 279394
+        }
+      },
+      {
+        "scene": "color",
+        "motion": "wave",
+        "transparent": true,
+        "changed": {
+          "mean": 9.836926721643518,
+          "channels": 148802
+        },
+        "phase": {
+          "mean": 8.639916690779321,
+          "channels": 156750
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 9.49881606867284,
+          "channels": 157826
+        }
+      },
+      {
+        "scene": "color",
+        "motion": "assemble",
+        "transparent": true,
+        "changed": {
+          "mean": 10.170231119791667,
+          "channels": 145190
+        },
+        "phase": {
+          "mean": 14.866362244405865,
+          "channels": 237783
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 5.962406563464506,
+          "channels": 100904
+        }
+      },
+      {
+        "scene": "color",
+        "motion": "current",
+        "transparent": true,
+        "changed": {
+          "mean": 10.413676697530864,
+          "channels": 164888
+        },
+        "phase": {
+          "mean": 9.766267602237654,
+          "channels": 162123
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 14.522404875578705,
+          "channels": 224696
+        }
+      },
+      {
+        "scene": "color",
+        "motion": "reform",
+        "transparent": true,
+        "changed": {
+          "mean": 3.824393566743827,
+          "channels": 112617
+        },
+        "phase": {
+          "mean": 24.964272280092594,
+          "channels": 404752
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 13.972407286844136,
+          "channels": 248253
+        }
+      },
+      {
+        "scene": "color",
+        "motion": "caustics",
+        "transparent": true,
+        "changed": {
+          "mean": 15.955274643132716,
+          "channels": 249095
+        },
+        "phase": {
+          "mean": 14.48074966242284,
+          "channels": 321335
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 11.635918209876543,
+          "channels": 256904
+        }
+      },
+      {
+        "scene": "phrase",
+        "motion": "breathe",
+        "transparent": false,
+        "changed": {
+          "mean": 6.5542058497299385,
+          "channels": 296490
+        },
+        "phase": {
+          "mean": 7.893491994598765,
+          "channels": 437408
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 7.28612979841821,
+          "channels": 334650
+        }
+      },
+      {
+        "scene": "phrase",
+        "motion": "wave",
+        "transparent": false,
+        "changed": {
+          "mean": 5.732664207175926,
+          "channels": 202583
+        },
+        "phase": {
+          "mean": 5.707127700617284,
+          "channels": 234717
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 5.493175516010803,
+          "channels": 258250
+        }
+      },
+      {
+        "scene": "phrase",
+        "motion": "assemble",
+        "transparent": false,
+        "changed": {
+          "mean": 5.4098373601466045,
+          "channels": 195580
+        },
+        "phase": {
+          "mean": 5.332573784722222,
+          "channels": 384487
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 2.8217496141975307,
+          "channels": 135468
+        }
+      },
+      {
+        "scene": "phrase",
+        "motion": "current",
+        "transparent": false,
+        "changed": {
+          "mean": 6.10875229070216,
+          "channels": 250163
+        },
+        "phase": {
+          "mean": 5.831576726466049,
+          "channels": 252317
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 6.520615716628086,
+          "channels": 319647
+        }
+      },
+      {
+        "scene": "phrase",
+        "motion": "reform",
+        "transparent": false,
+        "changed": {
+          "mean": 1.6563181182484568,
+          "channels": 160951
+        },
+        "phase": {
+          "mean": 9.117952473958333,
+          "channels": 576221
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 6.155307798032408,
+          "channels": 365180
+        }
+      },
+      {
+        "scene": "phrase",
+        "motion": "caustics",
+        "transparent": false,
+        "changed": {
+          "mean": 6.906351875964506,
+          "channels": 353809
+        },
+        "phase": {
+          "mean": 8.388453655478395,
+          "channels": 440646
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 6.770633801118827,
+          "channels": 405287
+        }
+      },
+      {
+        "scene": "phrase",
+        "motion": "breathe",
+        "transparent": true,
+        "changed": {
+          "mean": 29.637334225501544,
+          "channels": 387621
+        },
+        "phase": {
+          "mean": 27.420817057291668,
+          "channels": 558318
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 31.860766902970678,
+          "channels": 439603
+        }
+      },
+      {
+        "scene": "phrase",
+        "motion": "wave",
+        "transparent": true,
+        "changed": {
+          "mean": 25.94862316743827,
+          "channels": 278994
+        },
+        "phase": {
+          "mean": 28.527293716242283,
+          "channels": 317136
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 31.826255063657406,
+          "channels": 351600
+        }
+      },
+      {
+        "scene": "phrase",
+        "motion": "assemble",
+        "transparent": true,
+        "changed": {
+          "mean": 25.1017276716821,
+          "channels": 268324
+        },
+        "phase": {
+          "mean": 42.97815634645062,
+          "channels": 506553
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 15.744083960262346,
+          "channels": 182392
+        }
+      },
+      {
+        "scene": "phrase",
+        "motion": "current",
+        "transparent": true,
+        "changed": {
+          "mean": 30.998847415123457,
+          "channels": 336660
+        },
+        "phase": {
+          "mean": 26.976198398919752,
+          "channels": 331118
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 36.81997673128858,
+          "channels": 430031
+        }
+      },
+      {
+        "scene": "phrase",
+        "motion": "reform",
+        "transparent": true,
+        "changed": {
+          "mean": 9.94366741415895,
+          "channels": 205853
+        },
+        "phase": {
+          "mean": 65.14879497010031,
+          "channels": 760086
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 35.40800660686728,
+          "channels": 481600
+        }
+      },
+      {
+        "scene": "phrase",
+        "motion": "caustics",
+        "transparent": true,
+        "changed": {
+          "mean": 38.10867513020833,
+          "channels": 464887
+        },
+        "phase": {
+          "mean": 36.12887128665123,
+          "channels": 565339
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 32.71512044270833,
+          "channels": 521395
+        }
+      },
+      {
+        "scene": "contour",
+        "motion": "breathe",
+        "transparent": false,
+        "changed": {
+          "mean": 3.654412615740741,
+          "channels": 289947
+        },
+        "phase": {
+          "mean": 5.307291063850308,
+          "channels": 461367
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 4.2628514419367285,
+          "channels": 338944
+        }
+      },
+      {
+        "scene": "contour",
+        "motion": "wave",
+        "transparent": false,
+        "changed": {
+          "mean": 3.3543987509645063,
+          "channels": 151581
+        },
+        "phase": {
+          "mean": 3.2820167824074074,
+          "channels": 192268
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 3.359276740933642,
+          "channels": 219119
+        }
+      },
+      {
+        "scene": "contour",
+        "motion": "assemble",
+        "transparent": false,
+        "changed": {
+          "mean": 3.32660831404321,
+          "channels": 180494
+        },
+        "phase": {
+          "mean": 3.6310830198688273,
+          "channels": 408544
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 1.972435016396605,
+          "channels": 141317
+        }
+      },
+      {
+        "scene": "contour",
+        "motion": "current",
+        "transparent": false,
+        "changed": {
+          "mean": 3.6608609423225307,
+          "channels": 207912
+        },
+        "phase": {
+          "mean": 3.6077064043209877,
+          "channels": 214056
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 3.793068214699074,
+          "channels": 292660
+        }
+      },
+      {
+        "scene": "contour",
+        "motion": "reform",
+        "transparent": false,
+        "changed": {
+          "mean": 0.6057520736882716,
+          "channels": 82370
+        },
+        "phase": {
+          "mean": 5.684041039737655,
+          "channels": 604784
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 3.7246443383487655,
+          "channels": 377814
+        }
+      },
+      {
+        "scene": "contour",
+        "motion": "caustics",
+        "transparent": false,
+        "changed": {
+          "mean": 4.2747612847222225,
+          "channels": 347940
+        },
+        "phase": {
+          "mean": 5.599327256944444,
+          "channels": 462331
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 4.3370002652391975,
+          "channels": 403978
+        }
+      },
+      {
+        "scene": "contour",
+        "motion": "breathe",
+        "transparent": true,
+        "changed": {
+          "mean": 33.897143253279324,
+          "channels": 384956
+        },
+        "phase": {
+          "mean": 32.76425238715278,
+          "channels": 582391
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 38.648377218364196,
+          "channels": 450554
+        }
+      },
+      {
+        "scene": "contour",
+        "motion": "wave",
+        "transparent": true,
+        "changed": {
+          "mean": 21.70785228587963,
+          "channels": 212783
+        },
+        "phase": {
+          "mean": 25.902789834104937,
+          "channels": 264641
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 29.458722752700616,
+          "channels": 301716
+        }
+      },
+      {
+        "scene": "contour",
+        "motion": "assemble",
+        "transparent": true,
+        "changed": {
+          "mean": 24.702606577932098,
+          "channels": 247242
+        },
+        "phase": {
+          "mean": 46.00424201871142,
+          "channels": 534489
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 17.0685546875,
+          "channels": 190456
+        }
+      },
+      {
+        "scene": "contour",
+        "motion": "current",
+        "transparent": true,
+        "changed": {
+          "mean": 28.153339602623458,
+          "channels": 284528
+        },
+        "phase": {
+          "mean": 24.87790858892747,
+          "channels": 282537
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 37.629111810378085,
+          "channels": 398512
+        }
+      },
+      {
+        "scene": "contour",
+        "motion": "reform",
+        "transparent": true,
+        "changed": {
+          "mean": 3.757641300154321,
+          "channels": 105689
+        },
+        "phase": {
+          "mean": 76.97720932195216,
+          "channels": 801583
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 45.72934932002315,
+          "channels": 510942
+        }
+      },
+      {
+        "scene": "contour",
+        "motion": "caustics",
+        "transparent": true,
+        "changed": {
+          "mean": 42.08808292341821,
+          "channels": 460861
+        },
+        "phase": {
+          "mean": 42.92529598283179,
+          "channels": 593324
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 35.60037434895833,
+          "channels": 522217
+        }
+      },
+      {
+        "scene": "braille",
+        "motion": "breathe",
+        "transparent": false,
+        "changed": {
+          "mean": 4.83944709683642,
+          "channels": 166540
+        },
+        "phase": {
+          "mean": 5.418527560763889,
+          "channels": 196607
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 5.280257161458334,
+          "channels": 170393
+        }
+      },
+      {
+        "scene": "braille",
+        "motion": "wave",
+        "transparent": false,
+        "changed": {
+          "mean": 4.748122227044753,
+          "channels": 88215
+        },
+        "phase": {
+          "mean": 4.2259313512731485,
+          "channels": 93493
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 4.375883125964506,
+          "channels": 92286
+        }
+      },
+      {
+        "scene": "braille",
+        "motion": "assemble",
+        "transparent": false,
+        "changed": {
+          "mean": 4.066053602430555,
+          "channels": 88115
+        },
+        "phase": {
+          "mean": 3.7345082224151236,
+          "channels": 148514
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 1.9867277922453703,
+          "channels": 60750
+        }
+      },
+      {
+        "scene": "braille",
+        "motion": "current",
+        "transparent": false,
+        "changed": {
+          "mean": 4.929189573688272,
+          "channels": 97948
+        },
+        "phase": {
+          "mean": 4.68593448591821,
+          "channels": 96163
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 4.986292558834877,
+          "channels": 141465
+        }
+      },
+      {
+        "scene": "braille",
+        "motion": "reform",
+        "transparent": false,
+        "changed": {
+          "mean": 0.884619140625,
+          "channels": 60688
+        },
+        "phase": {
+          "mean": 6.350226056134259,
+          "channels": 232618
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 4.886133415316358,
+          "channels": 156208
+        }
+      },
+      {
+        "scene": "braille",
+        "motion": "caustics",
+        "transparent": false,
+        "changed": {
+          "mean": 5.387880979938272,
+          "channels": 150338
+        },
+        "phase": {
+          "mean": 5.942456356095679,
+          "channels": 188252
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 5.063667052469135,
+          "channels": 147999
+        }
+      },
+      {
+        "scene": "braille",
+        "motion": "breathe",
+        "transparent": true,
+        "changed": {
+          "mean": 18.084510633680555,
+          "channels": 216708
+        },
+        "phase": {
+          "mean": 10.049490620177469,
+          "channels": 245436
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 16.63795753761574,
+          "channels": 222344
+        }
+      },
+      {
+        "scene": "braille",
+        "motion": "wave",
+        "transparent": true,
+        "changed": {
+          "mean": 11.382145182291667,
+          "channels": 114766
+        },
+        "phase": {
+          "mean": 10.711012852044753,
+          "channels": 121454
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 11.333063271604939,
+          "channels": 120981
+        }
+      },
+      {
+        "scene": "braille",
+        "motion": "assemble",
+        "transparent": true,
+        "changed": {
+          "mean": 12.063333695023148,
+          "channels": 117001
+        },
+        "phase": {
+          "mean": 16.675919897762345,
+          "channels": 194470
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 7.4222336757330245,
+          "channels": 80452
+        }
+      },
+      {
+        "scene": "braille",
+        "motion": "current",
+        "transparent": true,
+        "changed": {
+          "mean": 12.415620780285494,
+          "channels": 127211
+        },
+        "phase": {
+          "mean": 11.499834225501543,
+          "channels": 124581
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 15.613025655864197,
+          "channels": 186613
+        }
+      },
+      {
+        "scene": "braille",
+        "motion": "reform",
+        "transparent": true,
+        "changed": {
+          "mean": 1.9238793643904322,
+          "channels": 71612
+        },
+        "phase": {
+          "mean": 27.673033010223765,
+          "channels": 307780
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 16.211707899305555,
+          "channels": 207327
+        }
+      },
+      {
+        "scene": "braille",
+        "motion": "caustics",
+        "transparent": true,
+        "changed": {
+          "mean": 16.21320830922068,
+          "channels": 195670
+        },
+        "phase": {
+          "mean": 13.50897834683642,
+          "channels": 241267
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 11.05981143904321,
+          "channels": 190726
+        }
+      },
+      {
+        "scene": "halftone",
+        "motion": "breathe",
+        "transparent": false,
+        "changed": {
+          "mean": 5.029606119791667,
+          "channels": 206260
+        },
+        "phase": {
+          "mean": 6.267975983796297,
+          "channels": 289822
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 5.491444830246913,
+          "channels": 213853
+        }
+      },
+      {
+        "scene": "halftone",
+        "motion": "wave",
+        "transparent": false,
+        "changed": {
+          "mean": 5.032341700424383,
+          "channels": 84278
+        },
+        "phase": {
+          "mean": 3.9671826774691357,
+          "channels": 98123
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 4.441733579282407,
+          "channels": 93981
+        }
+      },
+      {
+        "scene": "halftone",
+        "motion": "assemble",
+        "transparent": false,
+        "changed": {
+          "mean": 4.008848138503087,
+          "channels": 101926
+        },
+        "phase": {
+          "mean": 3.6991825810185186,
+          "channels": 191237
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 2.0141227816358023,
+          "channels": 83818
+        }
+      },
+      {
+        "scene": "halftone",
+        "motion": "current",
+        "transparent": false,
+        "changed": {
+          "mean": 4.916841483410494,
+          "channels": 100897
+        },
+        "phase": {
+          "mean": 4.946182364004629,
+          "channels": 105640
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 5.096175733024691,
+          "channels": 164246
+        }
+      },
+      {
+        "scene": "halftone",
+        "motion": "reform",
+        "transparent": false,
+        "changed": {
+          "mean": 0.4138352382330247,
+          "channels": 60874
+        },
+        "phase": {
+          "mean": 6.57265926408179,
+          "channels": 345268
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 5.241453269675926,
+          "channels": 192347
+        }
+      },
+      {
+        "scene": "halftone",
+        "motion": "caustics",
+        "transparent": false,
+        "changed": {
+          "mean": 5.149266975308642,
+          "channels": 200571
+        },
+        "phase": {
+          "mean": 6.53051154996142,
+          "channels": 265443
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 4.918865740740741,
+          "channels": 211100
+        }
+      },
+      {
+        "scene": "halftone",
+        "motion": "breathe",
+        "transparent": true,
+        "changed": {
+          "mean": 25.573998119212963,
+          "channels": 272579
+        },
+        "phase": {
+          "mean": 19.88759825906636,
+          "channels": 368491
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 24.22732867959105,
+          "channels": 281704
+        }
+      },
+      {
+        "scene": "halftone",
+        "motion": "wave",
+        "transparent": true,
+        "changed": {
+          "mean": 13.017866874035494,
+          "channels": 112470
+        },
+        "phase": {
+          "mean": 13.117558232060185,
+          "channels": 128906
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 13.396173321759258,
+          "channels": 125572
+        }
+      },
+      {
+        "scene": "halftone",
+        "motion": "assemble",
+        "transparent": true,
+        "changed": {
+          "mean": 14.26209731867284,
+          "channels": 136682
+        },
+        "phase": {
+          "mean": 21.05339687017747,
+          "channels": 248528
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 10.244991198881173,
+          "channels": 111847
+        }
+      },
+      {
+        "scene": "halftone",
+        "motion": "current",
+        "transparent": true,
+        "changed": {
+          "mean": 14.73432918595679,
+          "channels": 134053
+        },
+        "phase": {
+          "mean": 15.158065080054012,
+          "channels": 139940
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 21.192933786651235,
+          "channels": 219334
+        }
+      },
+      {
+        "scene": "halftone",
+        "motion": "reform",
+        "transparent": true,
+        "changed": {
+          "mean": 4.046908757716049,
+          "channels": 73246
+        },
+        "phase": {
+          "mean": 43.50671356577932,
+          "channels": 460687
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 21.813694782021606,
+          "channels": 254293
+        }
+      },
+      {
+        "scene": "halftone",
+        "motion": "caustics",
+        "transparent": true,
+        "changed": {
+          "mean": 24.959251422646606,
+          "channels": 265018
+        },
+        "phase": {
+          "mean": 23.624696783371913,
+          "channels": 344305
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 19.912507836612654,
+          "channels": 275680
+        }
+      },
+      {
+        "scene": "density-high",
+        "motion": "breathe",
+        "transparent": false,
+        "changed": {
+          "mean": 6.067030164930555,
+          "channels": 240878
+        },
+        "phase": {
+          "mean": 7.581524281442901,
+          "channels": 323067
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 7.045973789544753,
+          "channels": 259551
+        }
+      },
+      {
+        "scene": "density-high",
+        "motion": "wave",
+        "transparent": false,
+        "changed": {
+          "mean": 6.833452088155864,
+          "channels": 188742
+        },
+        "phase": {
+          "mean": 5.0356909481095675,
+          "channels": 195755
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 5.989640600887346,
+          "channels": 196828
+        }
+      },
+      {
+        "scene": "density-high",
+        "motion": "assemble",
+        "transparent": false,
+        "changed": {
+          "mean": 6.269362461419753,
+          "channels": 170679
+        },
+        "phase": {
+          "mean": 5.521868369020062,
+          "channels": 231453
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 2.864822651427469,
+          "channels": 101372
+        }
+      },
+      {
+        "scene": "density-high",
+        "motion": "current",
+        "transparent": false,
+        "changed": {
+          "mean": 6.697694830246913,
+          "channels": 210345
+        },
+        "phase": {
+          "mean": 6.505044367283951,
+          "channels": 210086
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 6.997598982445988,
+          "channels": 234152
+        }
+      },
+      {
+        "scene": "density-high",
+        "motion": "reform",
+        "transparent": false,
+        "changed": {
+          "mean": 0.742725212191358,
+          "channels": 140541
+        },
+        "phase": {
+          "mean": 8.917059100115742,
+          "channels": 402079
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 6.888206500771605,
+          "channels": 239564
+        }
+      },
+      {
+        "scene": "density-high",
+        "motion": "caustics",
+        "transparent": false,
+        "changed": {
+          "mean": 5.854308328510802,
+          "channels": 250281
+        },
+        "phase": {
+          "mean": 7.341280261381173,
+          "channels": 304820
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 5.63172622492284,
+          "channels": 265273
+        }
+      },
+      {
+        "scene": "density-high",
+        "motion": "breathe",
+        "transparent": true,
+        "changed": {
+          "mean": 19.323203607253088,
+          "channels": 310745
+        },
+        "phase": {
+          "mean": 19.54032600308642,
+          "channels": 406011
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 21.507749807098765,
+          "channels": 337904
+        }
+      },
+      {
+        "scene": "density-high",
+        "motion": "wave",
+        "transparent": true,
+        "changed": {
+          "mean": 18.717878930362655,
+          "channels": 243322
+        },
+        "phase": {
+          "mean": 17.1468936873071,
+          "channels": 248188
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 19.320076195987653,
+          "channels": 254275
+        }
+      },
+      {
+        "scene": "density-high",
+        "motion": "assemble",
+        "transparent": true,
+        "changed": {
+          "mean": 20.94701847029321,
+          "channels": 226837
+        },
+        "phase": {
+          "mean": 25.880065465856482,
+          "channels": 304478
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 11.491838469328703,
+          "channels": 133868
+        }
+      },
+      {
+        "scene": "density-high",
+        "motion": "current",
+        "transparent": true,
+        "changed": {
+          "mean": 21.22128604841821,
+          "channels": 270739
+        },
+        "phase": {
+          "mean": 19.959257450810185,
+          "channels": 267803
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 22.65459526909722,
+          "channels": 307560
+        }
+      },
+      {
+        "scene": "density-high",
+        "motion": "reform",
+        "transparent": true,
+        "changed": {
+          "mean": 4.094084563078703,
+          "channels": 165325
+        },
+        "phase": {
+          "mean": 41.81419089988426,
+          "channels": 529264
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 19.46632908950617,
+          "channels": 315017
+        }
+      },
+      {
+        "scene": "density-high",
+        "motion": "caustics",
+        "transparent": true,
+        "changed": {
+          "mean": 21.042433449074075,
+          "channels": 325023
+        },
+        "phase": {
+          "mean": 22.539509789737654,
+          "channels": 389920
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 18.207139154128086,
+          "channels": 338442
+        }
+      },
+      {
+        "scene": "density-supersampled",
+        "motion": "breathe",
+        "transparent": false,
+        "changed": {
+          "mean": 6.26376651716821,
+          "channels": 238429
+        },
+        "phase": {
+          "mean": 7.772589337384259,
+          "channels": 321902
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 7.21532901716821,
+          "channels": 253447
+        }
+      },
+      {
+        "scene": "density-supersampled",
+        "motion": "wave",
+        "transparent": false,
+        "changed": {
+          "mean": 6.986103274498457,
+          "channels": 162273
+        },
+        "phase": {
+          "mean": 5.191493055555555,
+          "channels": 172249
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 6.101579378858025,
+          "channels": 173811
+        }
+      },
+      {
+        "scene": "density-supersampled",
+        "motion": "assemble",
+        "transparent": false,
+        "changed": {
+          "mean": 6.268589048032408,
+          "channels": 151414
+        },
+        "phase": {
+          "mean": 5.483695625964506,
+          "channels": 229818
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 2.837013527199074,
+          "channels": 98915
+        }
+      },
+      {
+        "scene": "density-supersampled",
+        "motion": "current",
+        "transparent": false,
+        "changed": {
+          "mean": 6.847645399305556,
+          "channels": 185638
+        },
+        "phase": {
+          "mean": 6.654956958912037,
+          "channels": 189496
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 7.134116391782407,
+          "channels": 221216
+        }
+      },
+      {
+        "scene": "density-supersampled",
+        "motion": "reform",
+        "transparent": false,
+        "changed": {
+          "mean": 0.7930543499228395,
+          "channels": 131007
+        },
+        "phase": {
+          "mean": 9.026035035686728,
+          "channels": 400929
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 7.034651692708334,
+          "channels": 234245
+        }
+      },
+      {
+        "scene": "density-supersampled",
+        "motion": "caustics",
+        "transparent": false,
+        "changed": {
+          "mean": 6.037653718171296,
+          "channels": 246293
+        },
+        "phase": {
+          "mean": 7.527789834104938,
+          "channels": 303668
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 5.792303843557098,
+          "channels": 260423
+        }
+      },
+      {
+        "scene": "density-supersampled",
+        "motion": "breathe",
+        "transparent": true,
+        "changed": {
+          "mean": 22.252497468171295,
+          "channels": 310233
+        },
+        "phase": {
+          "mean": 20.111246141975307,
+          "channels": 405236
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 23.09303566261574,
+          "channels": 331160
+        }
+      },
+      {
+        "scene": "density-supersampled",
+        "motion": "wave",
+        "transparent": true,
+        "changed": {
+          "mean": 18.19518048321759,
+          "channels": 208287
+        },
+        "phase": {
+          "mean": 16.849388141396606,
+          "channels": 218388
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 18.685729528356482,
+          "channels": 224310
+        }
+      },
+      {
+        "scene": "density-supersampled",
+        "motion": "assemble",
+        "transparent": true,
+        "changed": {
+          "mean": 19.062370997299382,
+          "channels": 201260
+        },
+        "phase": {
+          "mean": 25.681538146219136,
+          "channels": 302166
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 11.34709442515432,
+          "channels": 130967
+        }
+      },
+      {
+        "scene": "density-supersampled",
+        "motion": "current",
+        "transparent": true,
+        "changed": {
+          "mean": 20.5304012345679,
+          "channels": 238003
+        },
+        "phase": {
+          "mean": 19.778914689429012,
+          "channels": 241048
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 22.808878882137346,
+          "channels": 291409
+        }
+      },
+      {
+        "scene": "density-supersampled",
+        "motion": "reform",
+        "transparent": true,
+        "changed": {
+          "mean": 4.9904019579475305,
+          "channels": 157565
+        },
+        "phase": {
+          "mean": 43.686496310763886,
+          "channels": 529357
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 20.282826364776234,
+          "channels": 309893
+        }
+      },
+      {
+        "scene": "density-supersampled",
+        "motion": "caustics",
+        "transparent": true,
+        "changed": {
+          "mean": 23.474584056712963,
+          "channels": 322071
+        },
+        "phase": {
+          "mean": 24.091535855516977,
+          "channels": 390112
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 19.5359561873071,
+          "channels": 333381
+        }
+      },
+      {
+        "scene": "density-software",
+        "motion": "breathe",
+        "transparent": false,
+        "changed": {
+          "mean": 6.210356987847222,
+          "channels": 239103
+        },
+        "phase": {
+          "mean": 7.71474910783179,
+          "channels": 322229
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 7.181834129050926,
+          "channels": 255759
+        }
+      },
+      {
+        "scene": "density-software",
+        "motion": "wave",
+        "transparent": false,
+        "changed": {
+          "mean": 6.9509626977237655,
+          "channels": 168717
+        },
+        "phase": {
+          "mean": 5.155323471257716,
+          "channels": 176502
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 6.076114607445987,
+          "channels": 179210
+        }
+      },
+      {
+        "scene": "density-software",
+        "motion": "assemble",
+        "transparent": false,
+        "changed": {
+          "mean": 6.27576919367284,
+          "channels": 155932
+        },
+        "phase": {
+          "mean": 5.497639371141975,
+          "channels": 230198
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 2.84423828125,
+          "channels": 99923
+        }
+      },
+      {
+        "scene": "density-software",
+        "motion": "current",
+        "transparent": false,
+        "changed": {
+          "mean": 6.805964265046296,
+          "channels": 191816
+        },
+        "phase": {
+          "mean": 6.614531491126543,
+          "channels": 193775
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 7.098892626350309,
+          "channels": 224592
+        }
+      },
+      {
+        "scene": "density-software",
+        "motion": "reform",
+        "transparent": false,
+        "changed": {
+          "mean": 0.7536813994984568,
+          "channels": 134097
+        },
+        "phase": {
+          "mean": 8.996000313464506,
+          "channels": 401328
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 7.002555338541667,
+          "channels": 236194
+        }
+      },
+      {
+        "scene": "density-software",
+        "motion": "caustics",
+        "transparent": false,
+        "changed": {
+          "mean": 5.980106457368827,
+          "channels": 246822
+        },
+        "phase": {
+          "mean": 7.478191309799382,
+          "channels": 304050
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 5.740367597415124,
+          "channels": 261520
+        }
+      },
+      {
+        "scene": "density-software",
+        "motion": "breathe",
+        "transparent": true,
+        "changed": {
+          "mean": 21.621271580825617,
+          "channels": 308575
+        },
+        "phase": {
+          "mean": 19.941682339891976,
+          "channels": 404427
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 22.93543957368827,
+          "channels": 333170
+        }
+      },
+      {
+        "scene": "density-software",
+        "motion": "wave",
+        "transparent": true,
+        "changed": {
+          "mean": 18.789545355902778,
+          "channels": 213739
+        },
+        "phase": {
+          "mean": 17.202024257330248,
+          "channels": 219923
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 19.14722342785494,
+          "channels": 228116
+        }
+      },
+      {
+        "scene": "density-software",
+        "motion": "assemble",
+        "transparent": true,
+        "changed": {
+          "mean": 19.579832778742283,
+          "channels": 206949
+        },
+        "phase": {
+          "mean": 25.766793258101853,
+          "channels": 302412
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 11.4325008439429,
+          "channels": 132178
+        }
+      },
+      {
+        "scene": "density-software",
+        "motion": "current",
+        "transparent": true,
+        "changed": {
+          "mean": 20.982294680748456,
+          "channels": 242473
+        },
+        "phase": {
+          "mean": 19.952458887924383,
+          "channels": 242573
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 22.981803385416665,
+          "channels": 294911
+        }
+      },
+      {
+        "scene": "density-software",
+        "motion": "reform",
+        "transparent": true,
+        "changed": {
+          "mean": 4.717833719135802,
+          "channels": 155115
+        },
+        "phase": {
+          "mean": 43.38927348572531,
+          "channels": 529189
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 20.348911916473764,
+          "channels": 312226
+        }
+      },
+      {
+        "scene": "density-software",
+        "motion": "caustics",
+        "transparent": true,
+        "changed": {
+          "mean": 22.87895568094136,
+          "channels": 320043
+        },
+        "phase": {
+          "mean": 23.728456548996913,
+          "channels": 389396
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 19.10373866705247,
+          "channels": 332397
+        }
+      },
+      {
+        "scene": "color-software",
+        "motion": "breathe",
+        "transparent": false,
+        "changed": {
+          "mean": 6.665750385802469,
+          "channels": 241839
+        },
+        "phase": {
+          "mean": 8.271439766589506,
+          "channels": 325853
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 7.701136308834877,
+          "channels": 258671
+        }
+      },
+      {
+        "scene": "color-software",
+        "motion": "wave",
+        "transparent": false,
+        "changed": {
+          "mean": 7.406363329475309,
+          "channels": 168512
+        },
+        "phase": {
+          "mean": 5.4974157262731485,
+          "channels": 177542
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 6.478630762924383,
+          "channels": 181162
+        }
+      },
+      {
+        "scene": "color-software",
+        "motion": "assemble",
+        "transparent": false,
+        "changed": {
+          "mean": 6.701010923032407,
+          "channels": 156735
+        },
+        "phase": {
+          "mean": 5.896578414351852,
+          "channels": 235972
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 3.042356288580247,
+          "channels": 100981
+        }
+      },
+      {
+        "scene": "color-software",
+        "motion": "current",
+        "transparent": false,
+        "changed": {
+          "mean": 7.250225453317901,
+          "channels": 193369
+        },
+        "phase": {
+          "mean": 7.047251157407407,
+          "channels": 195674
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 7.58984073591821,
+          "channels": 230485
+        }
+      },
+      {
+        "scene": "color-software",
+        "motion": "reform",
+        "transparent": false,
+        "changed": {
+          "mean": 0.8044548128858025,
+          "channels": 137818
+        },
+        "phase": {
+          "mean": 9.656471836419753,
+          "channels": 408064
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 7.495537953317902,
+          "channels": 244651
+        }
+      },
+      {
+        "scene": "color-software",
+        "motion": "caustics",
+        "transparent": false,
+        "changed": {
+          "mean": 6.440996937692901,
+          "channels": 251016
+        },
+        "phase": {
+          "mean": 8.061042992862655,
+          "channels": 308787
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 6.1685185185185185,
+          "channels": 266730
+        }
+      },
+      {
+        "scene": "color-software",
+        "motion": "breathe",
+        "transparent": true,
+        "changed": {
+          "mean": 23.271828583140433,
+          "channels": 274464
+        },
+        "phase": {
+          "mean": 19.244933328510804,
+          "channels": 296381
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 23.62699291087963,
+          "channels": 284518
+        }
+      },
+      {
+        "scene": "color-software",
+        "motion": "wave",
+        "transparent": true,
+        "changed": {
+          "mean": 19.527531225887344,
+          "channels": 198581
+        },
+        "phase": {
+          "mean": 18.050353250385804,
+          "channels": 202275
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 20.250489486882717,
+          "channels": 213982
+        }
+      },
+      {
+        "scene": "color-software",
+        "motion": "assemble",
+        "transparent": true,
+        "changed": {
+          "mean": 20.512559076003086,
+          "channels": 194555
+        },
+        "phase": {
+          "mean": 27.63578800154321,
+          "channels": 273529
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 12.12645580150463,
+          "channels": 122603
+        }
+      },
+      {
+        "scene": "color-software",
+        "motion": "current",
+        "transparent": true,
+        "changed": {
+          "mean": 22.111201533564813,
+          "channels": 228665
+        },
+        "phase": {
+          "mean": 20.777392578125,
+          "channels": 220724
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 24.25871793016975,
+          "channels": 267441
+        }
+      },
+      {
+        "scene": "color-software",
+        "motion": "reform",
+        "transparent": true,
+        "changed": {
+          "mean": 5.377734375,
+          "channels": 121207
+        },
+        "phase": {
+          "mean": 46.120970775462965,
+          "channels": 481358
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 20.720703125,
+          "channels": 268213
+        }
+      },
+      {
+        "scene": "color-software",
+        "motion": "caustics",
+        "transparent": true,
+        "changed": {
+          "mean": 24.856306061921295,
+          "channels": 287149
+        },
+        "phase": {
+          "mean": 24.772007016782407,
+          "channels": 320209
+        },
+        "zero": {
+          "mean": 0,
+          "channels": 0
+        },
+        "speed": {
+          "mean": 0,
+          "channels": 0
+        },
+        "seek": {
+          "mean": 0,
+          "channels": 0
+        },
+        "studioParity": {
+          "mean": 0,
+          "channels": 0
+        },
+        "newStyle": {
+          "mean": 19.051757209683643,
+          "channels": 263612
+        }
+      }
+    ],
+    "holds": [
+      {
+        "scene": "density",
+        "transparent": false,
+        "motion": "assemble",
+        "delta": {
+          "mean": 0,
+          "channels": 0
+        }
+      },
+      {
+        "scene": "density",
+        "transparent": false,
+        "motion": "reform",
+        "delta": {
+          "mean": 0,
+          "channels": 0
+        }
+      },
+      {
+        "scene": "density",
+        "transparent": true,
+        "motion": "assemble",
+        "delta": {
+          "mean": 0,
+          "channels": 0
+        }
+      },
+      {
+        "scene": "density",
+        "transparent": true,
+        "motion": "reform",
+        "delta": {
+          "mean": 0,
+          "channels": 0
+        }
+      },
+      {
+        "scene": "color",
+        "transparent": false,
+        "motion": "assemble",
+        "delta": {
+          "mean": 0,
+          "channels": 0
+        }
+      },
+      {
+        "scene": "color",
+        "transparent": false,
+        "motion": "reform",
+        "delta": {
+          "mean": 0,
+          "channels": 0
+        }
+      },
+      {
+        "scene": "color",
+        "transparent": true,
+        "motion": "assemble",
+        "delta": {
+          "mean": 0,
+          "channels": 0
+        }
+      },
+      {
+        "scene": "color",
+        "transparent": true,
+        "motion": "reform",
+        "delta": {
+          "mean": 0,
+          "channels": 0
+        }
+      },
+      {
+        "scene": "phrase",
+        "transparent": false,
+        "motion": "assemble",
+        "delta": {
+          "mean": 0,
+          "channels": 0
+        }
+      },
+      {
+        "scene": "phrase",
+        "transparent": false,
+        "motion": "reform",
+        "delta": {
+          "mean": 0,
+          "channels": 0
+        }
+      },
+      {
+        "scene": "phrase",
+        "transparent": true,
+        "motion": "assemble",
+        "delta": {
+          "mean": 0,
+          "channels": 0
+        }
+      },
+      {
+        "scene": "phrase",
+        "transparent": true,
+        "motion": "reform",
+        "delta": {
+          "mean": 0,
+          "channels": 0
+        }
+      },
+      {
+        "scene": "contour",
+        "transparent": false,
+        "motion": "assemble",
+        "delta": {
+          "mean": 0,
+          "channels": 0
+        }
+      },
+      {
+        "scene": "contour",
+        "transparent": false,
+        "motion": "reform",
+        "delta": {
+          "mean": 0,
+          "channels": 0
+        }
+      },
+      {
+        "scene": "contour",
+        "transparent": true,
+        "motion": "assemble",
+        "delta": {
+          "mean": 0,
+          "channels": 0
+        }
+      },
+      {
+        "scene": "contour",
+        "transparent": true,
+        "motion": "reform",
+        "delta": {
+          "mean": 0,
+          "channels": 0
+        }
+      },
+      {
+        "scene": "braille",
+        "transparent": false,
+        "motion": "assemble",
+        "delta": {
+          "mean": 0,
+          "channels": 0
+        }
+      },
+      {
+        "scene": "braille",
+        "transparent": false,
+        "motion": "reform",
+        "delta": {
+          "mean": 0,
+          "channels": 0
+        }
+      },
+      {
+        "scene": "braille",
+        "transparent": true,
+        "motion": "assemble",
+        "delta": {
+          "mean": 0,
+          "channels": 0
+        }
+      },
+      {
+        "scene": "braille",
+        "transparent": true,
+        "motion": "reform",
+        "delta": {
+          "mean": 0,
+          "channels": 0
+        }
+      },
+      {
+        "scene": "halftone",
+        "transparent": false,
+        "motion": "assemble",
+        "delta": {
+          "mean": 0,
+          "channels": 0
+        }
+      },
+      {
+        "scene": "halftone",
+        "transparent": false,
+        "motion": "reform",
+        "delta": {
+          "mean": 0,
+          "channels": 0
+        }
+      },
+      {
+        "scene": "halftone",
+        "transparent": true,
+        "motion": "assemble",
+        "delta": {
+          "mean": 0,
+          "channels": 0
+        }
+      },
+      {
+        "scene": "halftone",
+        "transparent": true,
+        "motion": "reform",
+        "delta": {
+          "mean": 0,
+          "channels": 0
+        }
+      },
+      {
+        "scene": "density-high",
+        "transparent": false,
+        "motion": "assemble",
+        "delta": {
+          "mean": 0,
+          "channels": 0
+        }
+      },
+      {
+        "scene": "density-high",
+        "transparent": false,
+        "motion": "reform",
+        "delta": {
+          "mean": 0,
+          "channels": 0
+        }
+      },
+      {
+        "scene": "density-high",
+        "transparent": true,
+        "motion": "assemble",
+        "delta": {
+          "mean": 0,
+          "channels": 0
+        }
+      },
+      {
+        "scene": "density-high",
+        "transparent": true,
+        "motion": "reform",
+        "delta": {
+          "mean": 0,
+          "channels": 0
+        }
+      },
+      {
+        "scene": "density-supersampled",
+        "transparent": false,
+        "motion": "assemble",
+        "delta": {
+          "mean": 0,
+          "channels": 0
+        }
+      },
+      {
+        "scene": "density-supersampled",
+        "transparent": false,
+        "motion": "reform",
+        "delta": {
+          "mean": 0,
+          "channels": 0
+        }
+      },
+      {
+        "scene": "density-supersampled",
+        "transparent": true,
+        "motion": "assemble",
+        "delta": {
+          "mean": 0,
+          "channels": 0
+        }
+      },
+      {
+        "scene": "density-supersampled",
+        "transparent": true,
+        "motion": "reform",
+        "delta": {
+          "mean": 0,
+          "channels": 0
+        }
+      },
+      {
+        "scene": "density-software",
+        "transparent": false,
+        "motion": "assemble",
+        "delta": {
+          "mean": 0,
+          "channels": 0
+        }
+      },
+      {
+        "scene": "density-software",
+        "transparent": false,
+        "motion": "reform",
+        "delta": {
+          "mean": 0,
+          "channels": 0
+        }
+      },
+      {
+        "scene": "density-software",
+        "transparent": true,
+        "motion": "assemble",
+        "delta": {
+          "mean": 0,
+          "channels": 0
+        }
+      },
+      {
+        "scene": "density-software",
+        "transparent": true,
+        "motion": "reform",
+        "delta": {
+          "mean": 0,
+          "channels": 0
+        }
+      },
+      {
+        "scene": "color-software",
+        "transparent": false,
+        "motion": "assemble",
+        "delta": {
+          "mean": 0,
+          "channels": 0
+        }
+      },
+      {
+        "scene": "color-software",
+        "transparent": false,
+        "motion": "reform",
+        "delta": {
+          "mean": 0,
+          "channels": 0
+        }
+      },
+      {
+        "scene": "color-software",
+        "transparent": true,
+        "motion": "assemble",
+        "delta": {
+          "mean": 0,
+          "channels": 0
+        }
+      },
+      {
+        "scene": "color-software",
+        "transparent": true,
+        "motion": "reform",
+        "delta": {
+          "mean": 0,
+          "channels": 0
+        }
+      }
+    ],
+    "timings": [
+      {
+        "scene": "density",
+        "motion": "breathe",
+        "columns": 120,
+        "rows": 75,
+        "longEdge": 720,
+        "warmSamples": 8,
+        "medianMs": 54.5,
+        "maxMs": 68.30000001192093
+      },
+      {
+        "scene": "density",
+        "motion": "wave",
+        "columns": 120,
+        "rows": 75,
+        "longEdge": 720,
+        "warmSamples": 8,
+        "medianMs": 50.39999997615814,
+        "maxMs": 57.200000047683716
+      },
+      {
+        "scene": "density",
+        "motion": "assemble",
+        "columns": 120,
+        "rows": 75,
+        "longEdge": 720,
+        "warmSamples": 8,
+        "medianMs": 98.5,
+        "maxMs": 101.10000002384186
+      },
+      {
+        "scene": "density",
+        "motion": "current",
+        "columns": 120,
+        "rows": 75,
+        "longEdge": 720,
+        "warmSamples": 8,
+        "medianMs": 37.30000001192093,
+        "maxMs": 50.09999996423721
+      },
+      {
+        "scene": "density",
+        "motion": "reform",
+        "columns": 120,
+        "rows": 75,
+        "longEdge": 720,
+        "warmSamples": 8,
+        "medianMs": 48,
+        "maxMs": 83.19999998807907
+      },
+      {
+        "scene": "density",
+        "motion": "caustics",
+        "columns": 120,
+        "rows": 75,
+        "longEdge": 720,
+        "warmSamples": 8,
+        "medianMs": 53.40000003576279,
+        "maxMs": 54.39999997615814
+      },
+      {
+        "scene": "density-software",
+        "motion": "breathe",
+        "columns": 120,
+        "rows": 75,
+        "longEdge": 720,
+        "warmSamples": 8,
+        "medianMs": 30.600000023841858,
+        "maxMs": 33.39999997615814
+      },
+      {
+        "scene": "density-software",
+        "motion": "wave",
+        "columns": 120,
+        "rows": 75,
+        "longEdge": 720,
+        "warmSamples": 8,
+        "medianMs": 19.30000001192093,
+        "maxMs": 23
+      },
+      {
+        "scene": "density-software",
+        "motion": "assemble",
+        "columns": 120,
+        "rows": 75,
+        "longEdge": 720,
+        "warmSamples": 8,
+        "medianMs": 64.89999997615814,
+        "maxMs": 65.10000002384186
+      },
+      {
+        "scene": "density-software",
+        "motion": "current",
+        "columns": 120,
+        "rows": 75,
+        "longEdge": 720,
+        "warmSamples": 8,
+        "medianMs": 23.600000023841858,
+        "maxMs": 24.899999976158142
+      },
+      {
+        "scene": "density-software",
+        "motion": "reform",
+        "columns": 120,
+        "rows": 75,
+        "longEdge": 720,
+        "warmSamples": 8,
+        "medianMs": 46.5,
+        "maxMs": 56.69999998807907
+      },
+      {
+        "scene": "density-software",
+        "motion": "caustics",
+        "columns": 120,
+        "rows": 75,
+        "longEdge": 720,
+        "warmSamples": 8,
+        "medianMs": 28.80000001192093,
+        "maxMs": 29.80000001192093
+      },
+      {
+        "scene": "color-software",
+        "motion": "breathe",
+        "columns": 120,
+        "rows": 75,
+        "longEdge": 720,
+        "warmSamples": 8,
+        "medianMs": 30.399999976158142,
+        "maxMs": 32.40000003576279
+      },
+      {
+        "scene": "color-software",
+        "motion": "wave",
+        "columns": 120,
+        "rows": 75,
+        "longEdge": 720,
+        "warmSamples": 8,
+        "medianMs": 19.899999976158142,
+        "maxMs": 20.30000001192093
+      },
+      {
+        "scene": "color-software",
+        "motion": "assemble",
+        "columns": 120,
+        "rows": 75,
+        "longEdge": 720,
+        "warmSamples": 8,
+        "medianMs": 65.09999996423721,
+        "maxMs": 66.5
+      },
+      {
+        "scene": "color-software",
+        "motion": "current",
+        "columns": 120,
+        "rows": 75,
+        "longEdge": 720,
+        "warmSamples": 8,
+        "medianMs": 22.400000035762787,
+        "maxMs": 23.400000035762787
+      },
+      {
+        "scene": "color-software",
+        "motion": "reform",
+        "columns": 120,
+        "rows": 75,
+        "longEdge": 720,
+        "warmSamples": 8,
+        "medianMs": 45.89999997615814,
+        "maxMs": 55.90000003576279
+      },
+      {
+        "scene": "color-software",
+        "motion": "caustics",
+        "columns": 120,
+        "rows": 75,
+        "longEdge": 720,
+        "warmSamples": 8,
+        "medianMs": 29.599999964237213,
+        "maxMs": 32.30000001192093
+      }
+    ],
+    "maxBytes": 221184,
+    "maxCells": 9216,
+    "highResolution": {
+      "width": 3278,
+      "height": 4096,
+      "motionCells": 9216,
+      "motionBytes": 221184,
+      "entries": 14,
+      "backingBytes": 21952,
+      "maxBackingBytes": 16777216,
+      "scratchBytes": 1568,
+      "supersampleBytes": 6635520,
+      "glowBytes": 7550976,
+      "interactionCells": 0,
+      "interactionActive": false,
+      "interactionBytes": 0,
+      "softwareMaskBytes": 4006848,
+      "softwareMaskEntries": 16384,
+      "softwareWorkingBytes": 8294400,
+      "hits": 2918644,
+      "misses": 1756
+    },
+    "destroyBytes": 0
+  }
+}
