@@ -6,7 +6,7 @@ import { execFileSync } from 'node:child_process'
 import path from 'node:path'
 const base = process.env.ASTRA_PREVIEW_URL || 'http://127.0.0.1:5180'
 const out = path.resolve(
-  process.env.ASTRA_MATERIAL_PROTOTYPE_OUTPUT || `test-results/material-prototype-${Date.now()}`,
+  process.env.ASTRA_SPATIAL_PROTOTYPE_OUTPUT || `test-results/spatial-prototype-${Date.now()}`,
 )
 await mkdir(path.dirname(out), { recursive: true })
 await mkdir(out)
@@ -30,11 +30,10 @@ const errors = [],
   }
 page.on('pageerror', (error) => errors.push(error.message))
 for (const name of [
-  'scripts/fixtures/fluid-v4-renderer.ts',
   'scripts/fixtures/material-v5-renderer.ts',
   'src/lib/art-engine/canvas.ts',
-  'docs/prototypes/v5-material-motion/main.ts',
-  'docs/prototypes/v5-material-motion/index.html',
+  'docs/prototypes/v6-spatial-motion/main.ts',
+  'docs/prototypes/v6-spatial-motion/index.html',
 ])
   report.hashes[name] = createHash('sha256')
     .update(await readFile(name))
@@ -45,7 +44,7 @@ await page.screenshot()
 await page.waitForTimeout(200)
 const began = Date.now()
 try {
-  await page.goto(`${base}/docs/prototypes/v5-material-motion/index.html`, {
+  await page.goto(`${base}/docs/prototypes/v6-spatial-motion/index.html`, {
     waitUntil: 'domcontentloaded',
     timeout: 60000,
   })

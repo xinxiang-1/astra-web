@@ -1,0 +1,25 @@
+{
+  "passed": true,
+  "sourceSha256": "4562fe7122b852dfa1706cef80490e035ab81fe2a2178d62c8aec07f45a4b192",
+  "type": {
+    "exitCode": 0,
+    "log": "sandbox/spatial-motion/2026-10-03-v1/type-r3.log",
+    "logSha256": "0a7d40c8ea67ee87b4bcdc91418a201a96bc30f3286185c82d8888ec96c6d6fb"
+  },
+  "eslint": {
+    "exitCode": 0,
+    "log": "sandbox/spatial-motion/2026-10-03-v1/lint-r3.log",
+    "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "strictPrototype": {
+    "exitCode": 0,
+    "log": "sandbox/spatial-motion/2026-10-03-v1/prototype-type-r3.log",
+    "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "build": {
+    "exitCode": 0,
+    "log": "sandbox/spatial-motion/2026-10-03-v1/build-r3.log",
+    "logSha256": "1817f3c3f69691a21b3907394ffa4636243cffcdc7fe90add24c4ad159673315"
+  },
+  "limits": "Chromium desktop; touch emulation; no real-device, universal FPS or user aesthetic certification"
+}

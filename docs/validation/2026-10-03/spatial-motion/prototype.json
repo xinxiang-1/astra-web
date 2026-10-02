@@ -1,0 +1,182 @@
+{
+  "passed": true,
+  "base": "http://127.0.0.1:5180",
+  "browser": "153.0.8010.12",
+  "errors": [],
+  "cases": [
+    {
+      "source": "portrait-reference.png",
+      "mode": "density",
+      "motion": "breathe",
+      "changed": true,
+      "file": "density-breathe.png"
+    },
+    {
+      "source": "portrait-reference.png",
+      "mode": "density",
+      "motion": "wave",
+      "changed": true,
+      "file": "density-wave.png"
+    },
+    {
+      "source": "portrait-reference.png",
+      "mode": "density",
+      "motion": "assemble",
+      "changed": true,
+      "file": "density-assemble.png"
+    },
+    {
+      "source": "portrait-reference.png",
+      "mode": "density",
+      "motion": "current",
+      "changed": true,
+      "file": "density-current.png"
+    },
+    {
+      "source": "portrait-reference.png",
+      "mode": "density",
+      "motion": "reform",
+      "changed": true,
+      "file": "density-reform.png"
+    },
+    {
+      "source": "portrait-reference.png",
+      "mode": "density",
+      "motion": "caustics",
+      "changed": true,
+      "file": "density-caustics.png"
+    },
+    {
+      "source": "pet.jpg",
+      "mode": "color",
+      "motion": "breathe",
+      "changed": true,
+      "file": "color-breathe.png"
+    },
+    {
+      "source": "pet.jpg",
+      "mode": "color",
+      "motion": "wave",
+      "changed": true,
+      "file": "color-wave.png"
+    },
+    {
+      "source": "pet.jpg",
+      "mode": "color",
+      "motion": "assemble",
+      "changed": true,
+      "file": "color-assemble.png"
+    },
+    {
+      "source": "pet.jpg",
+      "mode": "color",
+      "motion": "current",
+      "changed": true,
+      "file": "color-current.png"
+    },
+    {
+      "source": "pet.jpg",
+      "mode": "color",
+      "motion": "reform",
+      "changed": true,
+      "file": "color-reform.png"
+    },
+    {
+      "source": "pet.jpg",
+      "mode": "color",
+      "motion": "caustics",
+      "changed": true,
+      "file": "color-caustics.png"
+    },
+    {
+      "source": "landscape.jpg",
+      "mode": "phrase",
+      "motion": "breathe",
+      "changed": true,
+      "file": "phrase-breathe.png"
+    },
+    {
+      "source": "landscape.jpg",
+      "mode": "phrase",
+      "motion": "wave",
+      "changed": true,
+      "file": "phrase-wave.png"
+    },
+    {
+      "source": "landscape.jpg",
+      "mode": "phrase",
+      "motion": "assemble",
+      "changed": true,
+      "file": "phrase-assemble.png"
+    },
+    {
+      "source": "landscape.jpg",
+      "mode": "phrase",
+      "motion": "current",
+      "changed": true,
+      "file": "phrase-current.png"
+    },
+    {
+      "source": "landscape.jpg",
+      "mode": "phrase",
+      "motion": "reform",
+      "changed": true,
+      "file": "phrase-reform.png"
+    },
+    {
+      "source": "landscape.jpg",
+      "mode": "phrase",
+      "motion": "caustics",
+      "changed": true,
+      "file": "phrase-caustics.png"
+    }
+  ],
+  "timeline": [
+    {
+      "motion": "breathe",
+      "actualTime": 7.033
+    },
+    {
+      "motion": "wave",
+      "actualTime": 5.083100000000002
+    },
+    {
+      "motion": "assemble",
+      "actualTime": 5.0663999999999945
+    },
+    {
+      "motion": "current",
+      "actualTime": 5.099700000000005
+    },
+    {
+      "motion": "reform",
+      "actualTime": 12.099499999999999
+    },
+    {
+      "motion": "caustics",
+      "actualTime": 6.116300000000001
+    }
+  ],
+  "hashes": {
+    "scripts/fixtures/material-v5-renderer.ts": "ea2bf1cef7f66519ccbb7a286ef968969babff994d793fcc70db5935f647c46d",
+    "src/lib/art-engine/canvas.ts": "4562fe7122b852dfa1706cef80490e035ab81fe2a2178d62c8aec07f45a4b192",
+    "docs/prototypes/v6-spatial-motion/main.ts": "eb2bc5d97b76a365bbcd7a242c4a02cec63b6f431692402b7bc53edf2b55cade",
+    "docs/prototypes/v6-spatial-motion/index.html": "5ebeee72b5a8c00b8308baeb92e4884d997c0cbf000bbd32c93c1711b7976a01"
+  },
+  "prototypePassed": true,
+  "video": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "width": 1440,
+        "height": 960
+      }
+    ],
+    "format": {
+      "duration": "49.640000"
+    }
+  },
+  "expectedDuration": 49.634
+}

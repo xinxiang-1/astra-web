@@ -1,4 +1,4 @@
-import type { ArtFrame, ArtRenderOptions } from './types'
+import type { ArtFrame, ArtRenderOptions } from '../../src/lib/art-engine/types'
 
 /** Self-contained Canvas implementation shared with the standalone HTML runtime. */
 export function createCanvasArtRenderer(target: HTMLCanvasElement) {
@@ -74,11 +74,6 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
   let motionColumns = 0,
     motionRows = 0,
     motionKey = ''
-  // Exact entrance/ribbon identity cannot be interpolated on the surface grid.
-  // Cache its six signals and two shutter offsets once, shared by all passes.
-  const choreographyLimit = 4 * 1024 * 1024
-  let choreography: Float64Array | null = null
-  let choreographyKey = ''
   const motionSample = new Float32Array(6)
   const ambientNative = new Float32Array(4)
   const ambientLight = new Float32Array(4)
@@ -86,8 +81,8 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
     const t = Math.max(0, Math.min(1, (value - low) / (high - low)))
     return t * t * t * (t * (6 * t - 15) + 10)
   }
-  // Choreography changes positions in space, never the faces of the glyphs.
-  // Every position is analytic: seeks, pauses and standalone exports agree.
+  // A material surface, a spatial entrance and a staged fracture share the same
+  // upright glyphs. No stochastic frame state: seeks and offline exports agree.
   function sampleCinematic(
     mode: string,
     x: number,
@@ -101,17 +96,18 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
     const rx = x - 0.5,
       ry = y - 0.5,
       aspect = frame.width / frame.height
-    if (mode === 'wave') sampleStudioAmbient('current', x, y, time, ambientNative)
+    sampleStudioAmbient('current', x, y, time, ambientNative)
     const nativeX = ambientNative[0]! / 960,
       nativeY = ambientNative[1]! / 960
     const gaussian = (value: number, width: number) => Math.exp(-((value / width) ** 2))
-    // Closed-form spring with zero initial velocity and a truly still final hold.
+    // Closed-form damped response. Its initial derivative is zero and the final
+    // smooth taper makes a genuinely still hold, including exact pixel recovery.
     const response = (elapsed: number, duration: number) => {
       const u = Math.max(0, elapsed) / duration
       if (u >= 1) return 0
       return (
-        Math.exp(-3.4 * u) *
-        (Math.cos(5 * u) + 0.68 * Math.sin(5 * u)) *
+        Math.exp(-3.6 * u) *
+        (Math.cos(5.4 * u) + (2 / 3) * Math.sin(5.4 * u)) *
         (1 - motionSmooth(0.78, 1, u))
       )
     }
@@ -124,115 +120,113 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
     if (mode === 'breathe') {
       const cycle = ((time % 7) + 7) % 7
       const distance = Math.hypot(rx * aspect, ry)
-      const envelope = motionSmooth(0, 0.22, cycle) * (1 - motionSmooth(5.8, 7, cycle))
-      const phase = distance - cycle * 0.25 + 0.04
-      const crest = gaussian(phase, 0.14)
-      const wake = gaussian(phase + 0.23, 0.19)
-      const echo = gaussian(phase + 0.46, 0.16)
-      const pulse = (crest - wake * 0.68 + echo * 0.22) * envelope
-      // A continuous expanding dome followed by a darker trough. The broad
-      // support keeps landmarks together while the bright front crosses them.
-      dx = rx * pulse * 0.11 * edge
-      dy = ry * pulse * 0.11 * edge
-      size = 1 + (crest * 0.24 - wake * 0.12) * envelope * edge
-      intensity = 1 + (crest * 0.42 - wake * 0.38) * envelope * edge
-      glow = (crest * 1.05 + echo * 0.38) * envelope * edge
+      const envelope = motionSmooth(0, 0.28, cycle) * (1 - motionSmooth(5.6, 7, cycle))
+      const phase = distance - cycle * 0.24 + 0.04
+      const crest = gaussian(phase, 0.12)
+      const wake = gaussian(phase + 0.19, 0.15)
+      const echo = gaussian(phase + 0.37, 0.16)
+      const pulse = (crest - wake * 0.62 + echo * 0.24) * envelope
+      // A broad surface pulse. Low differential displacement keeps facial
+      // landmarks coherent; the crest is carried by actual glyph highlights.
+      dx = rx * pulse * 0.068 * edge
+      dy = ry * pulse * 0.068 * edge
+      size = 1 + (crest * 0.16 - wake * 0.09) * envelope * edge
+      intensity = 1 + (crest * 0.32 - wake * 0.2) * envelope * edge
+      glow = (crest * 0.82 + echo * 0.22) * envelope * edge
     } else if (mode === 'wave') {
-      // The entire curtain moves, including its edges. A shallow perspective
-      // fold carries broad highlights, rather than stretching individual eyes.
-      const phase = y * 5.2 - x * 1.4 - time * 1.1
+      // Broad diagonal folds with bounded shear, rather than independently
+      // bulging features. Highlight and occlusion follow the same fold normal.
+      const phase = y * 6.4 + x * 1.6 - time * 1.35 + Math.sin(x * 4.1 - time * 0.23) * 0.34
       const fold = Math.sin(phase)
       const normal = Math.cos(phase)
-      const perspective = 1 + fold * 0.055
-      const drift = Math.sin(time * 0.42) * 0.014
-      dx = rx * (perspective - 1) + (fold * 0.057 + nativeX * 0.4) * edge + drift
-      dy = ry * (perspective - 1) + normal * 0.017 * edge
-      const highlight = Math.max(0, normal) ** 7
-      const shadow = Math.max(0, -normal) ** 2
-      size = perspective
-      intensity = 1 + (highlight * 0.4 - shadow * 0.34) * edge
-      glow = highlight * 0.88 * edge
+      const highlight = Math.max(0, normal) ** 9
+      const shadow = Math.max(0, -normal) ** 3
+      dx = (fold * 0.035 + nativeX * 0.72) * edge
+      dy = (fold * 0.008 + Math.sin(x * 3.6 + time * 0.58) * 0.007 + nativeY * 0.62) * edge
+      size = 1 + (highlight * 0.045 - shadow * 0.035) * edge
+      intensity = 1 + (highlight * 0.35 - shadow * 0.3) * edge
+      glow = highlight * 0.75 * edge
     } else if (mode === 'assemble') {
       const raw = Math.sin((identity + 1) * 127.1) * 43758.5453
       const noise = raw - Math.floor(raw)
-      const layer = Math.floor(y * 6)
-      const delay = x * 0.3 + layer * 0.065
-      const elapsed = Math.max(0, time - delay)
-      const arrival = 1 - motionSmooth(0.15, 3.1, elapsed)
-      const landing = motionSmooth(2.1, 3.1, elapsed) * response(Math.max(0, elapsed - 2.1), 2.05)
-      const remaining = arrival + Math.min(0, landing) * 0.38
+      const distance = Math.hypot(rx * aspect, ry)
+      const arrival = 3.25 + Math.min(0.9, distance * 0.75) + noise * 0.24
+      const remaining = response(Math.max(0, time), arrival)
       const flight = Math.max(0, remaining)
-      const theta =
-        Math.atan2(ry, rx * aspect) + flight * (2.8 + layer * 0.12 + Math.max(0, time) * 0.65)
-      const orbit = 0.17 + noise * 0.22
-      // Six elliptical orbits unwrap into the work. The initial constellation
-      // fills the stage; the spring gives one restrained overshoot then a hold.
-      const originX = Math.cos(theta) * orbit
-      const originY = Math.sin(theta) * orbit * 0.74 + (layer - 2.5) * 0.017
-      dx = (originX - rx) * remaining
-      dy = (originY - ry) * remaining
-      size = 1 - flight * (0.39 + noise * 0.12)
-      opacity = 1 - flight * (0.48 + noise * 0.12)
-      intensity = 1 - flight * 0.12
-      glow = flight * (1 - flight) * 2.3 + flight * 0.32
+      const theta = flight * (2.25 + noise * 0.65)
+      const radius = 1 - flight * 0.72
+      const rotatedX = (rx * Math.cos(theta) - (ry * Math.sin(theta)) / aspect) * radius
+      const rotatedY = (rx * aspect * Math.sin(theta) + ry * Math.cos(theta)) * radius
+      // Start as an in-frame constellation, unfold and arrive with a damped
+      // overshoot. Letters move through space; their individual faces never turn.
+      dx = rotatedX - rx + remaining * Math.sin(y * 5.2) * 0.026
+      dy = rotatedY - ry + remaining * Math.cos(x * 4.8) * 0.035
+      // Preserve the small negative spring response after the main flight.
+      if (remaining < 0) {
+        dx += rx * remaining * 0.25
+        dy += ry * remaining * 0.25
+      }
+      size = 1 - flight * (0.42 + noise * 0.1)
+      opacity = 1 - flight * 0.64
+      intensity = 1 - flight * 0.08
+      glow = Math.abs(remaining) * (1 - flight) * 1.5 + flight * 0.12
     } else if (mode === 'current') {
-      // A shallow curved sheet viewed by an orbiting camera. This is geometry,
-      // not a fluid simulation or a velocity inferred from Studio displacement.
-      const yaw = Math.sin(time * 0.5) * 0.34
-      const pitch = Math.cos(time * 0.37) * 0.13
-      const depth = Math.sin(x * Math.PI) * Math.sin(y * Math.PI) * 0.12
-      const px = rx * Math.cos(yaw) + depth * Math.sin(yaw)
-      const z = -rx * Math.sin(yaw) + depth * Math.cos(yaw)
-      const py = ry * Math.cos(pitch) - z * Math.sin(pitch)
-      const viewZ = ry * Math.sin(pitch) + z * Math.cos(pitch)
-      const perspective = 0.94 / (1 - viewZ * 0.32)
-      const roll = Math.sin(time * 0.31) * 0.035
-      dx = (px - py * roll) * perspective - rx + Math.sin(time * 0.41) * 0.012
-      dy = (py + px * roll) * perspective - ry + Math.cos(time * 0.43) * 0.008
-      const light = Math.max(0, Math.cos(x * 3.8 + yaw * 2.8 - 1.8)) ** 6
-      size = perspective
-      intensity = 0.88 + light * 0.28
-      glow = light * 0.48 * edge
+      // Analytic streamfunction derivatives, integrated with a midpoint step.
+      // These are our own normalized velocities, not Studio's displacement API.
+      const amplitude = 0.035 / Math.max(0.8, aspect)
+      const a = x * Math.PI * 2 + Math.sin(time * 0.36) * 0.55
+      const b = y * Math.PI * 2 - time * 0.42
+      const firstX = Math.sin(a) * Math.cos(b) * amplitude
+      const firstY = -Math.cos(a) * Math.sin(b) * amplitude
+      const midA = a + firstX * Math.PI
+      const midB = b + firstY * Math.PI
+      dx = (Math.sin(midA) * Math.cos(midB) * amplitude + nativeX * 0.55) * edge
+      dy = (-Math.cos(midA) * Math.sin(midB) * amplitude + nativeY * 0.55) * edge
+      const direction = x * 5.4 - y * 4.2 + time * 0.62
+      const glint = Math.max(0, Math.cos(direction)) ** 12
+      const shade = Math.max(0, -Math.cos(direction)) ** 4
+      size = 1 + (glint * 0.025 - shade * 0.025) * edge
+      intensity = 1 + (glint * 0.22 - shade * 0.18) * edge
+      glow = glint * 0.5 * edge
     } else if (mode === 'reform') {
       const cycle = ((time % 12) + 12) % 12
-      // Coherent ribbons peel into depth, instead of destroying the portrait
-      // with dozens of randomly oriented rectangular fragments.
-      const ribbon = Math.min(7, Math.floor(y * 8))
-      const side = ribbon % 2 ? 1 : -1
-      const delay = Math.abs(ribbon - 3.5) * 0.13
-      const opening = motionSmooth(0.45 + delay, 1.85 + delay, cycle)
-      const recovery = cycle < 3.65 + delay ? 1 : response(cycle - 3.65 - delay, 3.85)
-      const separation = opening * recovery
-      const anticipation = motionSmooth(0, 0.14, cycle) * (1 - motionSmooth(0.3, 0.6, cycle))
-      const travel = 0.065 + Math.abs(ribbon - 3.5) * 0.009
-      const separated = Math.max(0, separation)
-      const local = y * 8 - ribbon
-      const rim = gaussian(local - (side > 0 ? 0.12 : 0.88), 0.19)
-      size = 1 - separated * (0.12 + (ribbon % 3) * 0.035) + anticipation * 0.045
-      dx = side * travel * separation + rx * (size - 1) - rx * anticipation * 0.035
-      dy =
-        (ribbon - 3.5) * separation * 0.013 +
-        ((local - 0.5) * (size - 1)) / 8 -
-        ry * anticipation * 0.035
-      opacity = 1 - separated * 0.1
-      intensity = 1 - separated * 0.2 + rim * separated * 0.38
-      glow = rim * separated * 0.9 + Math.sin(Math.min(1, Math.abs(separation)) * Math.PI) * 0.6
+      // Spatially coherent fragments: neighboring glyphs travel together, with
+      // only fine deterministic grain, avoiding an unstructured noise explosion.
+      const column = Math.floor(x * 9),
+        row = Math.floor(y * 7)
+      const cluster = column + row * 9
+      const raw = Math.sin((cluster + 1) * 91.7) * 43758.5453
+      const noise = raw - Math.floor(raw)
+      const delay = Math.hypot(rx * aspect, ry) * 0.3 + noise * 0.16
+      const opening = motionSmooth(0.4 + delay, 1.8 + delay, cycle)
+      const recovery = cycle < 3.6 + delay ? 1 : response(cycle - 3.6 - delay, 4.35)
+      const displacement = opening * recovery
+      const anticipation = motionSmooth(0, 0.12, cycle) * (1 - motionSmooth(0.32, 0.55, cycle))
+      const angle = Math.atan2(ry, rx * aspect) + (noise - 0.5) * 0.8
+      const distance = 0.09 + noise * 0.16
+      const outwardX = (Math.cos(angle) * distance) / aspect
+      const outwardY = Math.sin(angle) * distance
+      dx = outwardX * displacement - rx * anticipation * 0.025
+      dy = outwardY * displacement - ry * anticipation * 0.025
+      const separated = Math.max(0, displacement)
+      size = 1 - separated * (0.15 + noise * 0.2) + anticipation * 0.035
+      opacity = 1 - separated * 0.18
+      intensity = 1 - separated * 0.1
+      glow = Math.sin(Math.min(1, Math.abs(displacement)) * Math.PI) * 0.78 + anticipation * 0.3
     } else if (mode === 'caustics') {
       const cycle = ((time % 6) + 6) % 6
       const envelope = motionSmooth(0, 0.24, cycle) * (1 - motionSmooth(5.5, 6, cycle))
-      const front = y + x * 0.16 - (0.16 + (cycle / 5.2) * 1.35)
-      const beam = gaussian(front, 0.036) * envelope
-      const echo = gaussian(front + 0.1, 0.022) * envelope
-      const occlusion = gaussian(front - 0.09, 0.1) * envelope
-      const scanned = 1 - motionSmooth(-0.07, 0.14, front)
-      // A readable dark-to-bright reveal, with a narrow luminous front and a
-      // second echo. Both are painted from actual strokes, never a cursor blob.
-      dx = beam * 0.011 * edge
-      dy = -beam * 0.006 * edge
-      size = 1 + beam * 0.09
-      intensity = 1 + beam * 0.62 - occlusion * 0.42
-      opacity = 1 - (1 - scanned) * envelope * 0.28
-      glow = (beam * 1.25 + echo * 0.55) * edge
+      const diagonal = x * 0.7 + y * 0.3
+      const front = diagonal - ((cycle / 5.2) * 1.2 + 0.28)
+      const surface = Math.sin(x * 7.2 + y * 3.5 + time * 0.32) * 0.028
+      const light = gaussian(front + surface, 0.07) * envelope * edge
+      const reflection = gaussian(front + surface + 0.13, 0.025) * envelope * edge
+      const shadow = gaussian(front + surface - 0.1, 0.06) * envelope * edge
+      dx = (light - shadow * 0.45) * 0.009
+      dy = (light - shadow * 0.45) * -0.006
+      size = 1 + light * 0.06
+      intensity = 1 + light * 0.65 - shadow * 0.32
+      glow = light * 1.1 + reflection * 0.45
     }
     out[0] = dx * amount
     out[1] = dy * amount
@@ -352,34 +346,6 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
         (motionField[a + i]! * (1 - fx) + motionField[a + 6 + i]! * fx) * (1 - fy) +
         (motionField[b + i]! * (1 - fx) + motionField[b + 6 + i]! * fx) * fy
     return motionSample
-  }
-  function buildChoreography(mode: string, time: number, amount: number, cinematic: boolean) {
-    const length = frame.columns * frame.rows * 8
-    if (
-      !cinematic ||
-      !motionField ||
-      (mode !== 'assemble' && mode !== 'reform') ||
-      length * Float64Array.BYTES_PER_ELEMENT > choreographyLimit
-    ) {
-      choreography = null
-      choreographyKey = ''
-      return
-    }
-    if (choreographyKey === motionKey) return
-    if (!choreography || choreography.length !== length) choreography = new Float64Array(length)
-    for (let y = 0; y < frame.rows; y++)
-      for (let x = 0; x < frame.columns; x++) {
-        const index = y * frame.columns + x,
-          offset = index * 8,
-          nx = (x + 0.5) / frame.columns,
-          ny = (y + 0.5) / frame.rows
-        sampleCinematic(mode, nx, ny, time, amount, motionSample, index)
-        for (let i = 0; i < 6; i++) choreography[offset + i] = motionSample[i]!
-        sampleCinematic(mode, nx, ny, Math.max(0, time - 0.075), amount, motionSample, index)
-        choreography[offset + 6] = motionSample[0]! - choreography[offset]!
-        choreography[offset + 7] = motionSample[1]! - choreography[offset + 1]!
-      }
-    choreographyKey = motionKey
   }
   function makeStudioInteraction(ratio: number) {
     /*! Native interaction and ambient fields adapted from asciify-engine 4.1.0.
@@ -1326,7 +1292,6 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
     const amount = clamp(options.motionStrength ?? 0.65, 0, 1)
     const cinematic = options.motionStyle === 'cinematic'
     buildMotionField(expressive ? motion : 'none', time, amount, cinematic)
-    buildChoreography(motion, time, amount, cinematic)
     const pointer = options.pointer
     const fieldMode = hover === 'ripple' ? 'water' : hover === 'displace' ? 'silk' : hover
     const strength = clamp(options.hoverStrength ?? pointer?.strength ?? 0, 0, 1)
@@ -1412,10 +1377,8 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
         const nx = (x + 0.5) / frame.columns,
           ny = (y + 0.5) / frame.rows
         // Exact per-glyph choreography avoids grid interpolation changing strand identity.
-        if (choreography) for (let i = 0; i < 6; i++) motionSample[i] = choreography[index * 8 + i]!
-        const sample = choreography
-          ? motionSample
-          : cinematic && (motion === 'assemble' || motion === 'reform')
+        const sample =
+          cinematic && (motion === 'assemble' || motion === 'reform')
             ? sampleCinematic(motion, nx, ny, time, amount, motionSample, index)
             : sampleMotionField(nx, ny)
         dx = sample[0]! * frame.columns * cw
@@ -1425,10 +1388,7 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
         opacity = alpha * ambientOpacity
         glow = sample[4]!
         size = sample[5]!
-        if (choreography) {
-          traceX = choreography[index * 8 + 6]! * frame.columns * cw
-          traceY = choreography[index * 8 + 7]! * frame.rows * ch
-        } else if (cinematic && (motion === 'assemble' || motion === 'reform')) {
+        if (cinematic && (motion === 'assemble' || motion === 'reform')) {
           const previous = sampleCinematic(
             motion,
             nx,
@@ -1826,7 +1786,6 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
         // The bounded grid can be the same size for two different aspect ratios.
         // Frozen ambient time must still rebuild choreography for the new work.
         motionKey = ''
-        choreographyKey = ''
         clearTiles()
         if (scratch) {
           scratch.width = frame.cellWidth
@@ -1964,8 +1923,6 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
       motionField = null
       motionColumns = motionRows = 0
       motionKey = ''
-      choreography = null
-      choreographyKey = ''
       current = null
       clearTiles()
       prefixes.clear()
@@ -2021,8 +1978,6 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
       return {
         motionCells: motionColumns * motionRows,
         motionBytes: motionField?.byteLength ?? 0,
-        choreographyBytes: choreography?.byteLength ?? 0,
-        choreographyLimit,
         entries: tinted.size,
         backingBytes,
         maxBackingBytes,

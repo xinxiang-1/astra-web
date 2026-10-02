@@ -1,0 +1,792 @@
+{
+  "passed": true,
+  "browser": "153.0.8010.12",
+  "sourceSha256": "4562fe7122b852dfa1706cef80490e035ab81fe2a2178d62c8aec07f45a4b192",
+  "field": {
+    "samples": 9504,
+    "minScale": 0.5080279111862183,
+    "maxScale": 1.2144434452056885,
+    "maxDisplacement": 1.0010721481192895,
+    "seams": [
+      {
+        "aspect": 0.5,
+        "motion": "breathe",
+        "error": 9.087685031577974e-13
+      },
+      {
+        "aspect": 0.5,
+        "motion": "reform",
+        "error": 5.716002622396452e-14
+      },
+      {
+        "aspect": 0.5,
+        "motion": "caustics",
+        "error": 4.813446191111181e-13
+      },
+      {
+        "aspect": 0.8,
+        "motion": "breathe",
+        "error": 9.087685031577974e-13
+      },
+      {
+        "aspect": 0.8,
+        "motion": "reform",
+        "error": 5.716002622396452e-14
+      },
+      {
+        "aspect": 0.8,
+        "motion": "caustics",
+        "error": 4.813446191111181e-13
+      },
+      {
+        "aspect": 1.3,
+        "motion": "breathe",
+        "error": 9.087685031577974e-13
+      },
+      {
+        "aspect": 1.3,
+        "motion": "reform",
+        "error": 5.716002622396452e-14
+      },
+      {
+        "aspect": 1.3,
+        "motion": "caustics",
+        "error": 4.813446191111181e-13
+      },
+      {
+        "aspect": 2.3,
+        "motion": "breathe",
+        "error": 9.087685031577974e-13
+      },
+      {
+        "aspect": 2.3,
+        "motion": "reform",
+        "error": 5.716002622396452e-14
+      },
+      {
+        "aspect": 2.3,
+        "motion": "caustics",
+        "error": 4.813446191111181e-13
+      }
+    ]
+  },
+  "errors": [],
+  "raster": {
+    "cases": [
+      {
+        "mode": "density",
+        "transparent": false,
+        "motion": "breathe",
+        "time": 0.5,
+        "changedChannels": 0
+      },
+      {
+        "mode": "density",
+        "transparent": false,
+        "motion": "breathe",
+        "time": 2.1,
+        "changedChannels": 0
+      },
+      {
+        "mode": "density",
+        "transparent": false,
+        "motion": "breathe",
+        "time": 0.5,
+        "changedChannels": 0
+      },
+      {
+        "mode": "density",
+        "transparent": false,
+        "motion": "breathe",
+        "time": 7.8,
+        "changedChannels": 0
+      },
+      {
+        "mode": "density",
+        "transparent": false,
+        "motion": "wave",
+        "time": 0.5,
+        "changedChannels": 0
+      },
+      {
+        "mode": "density",
+        "transparent": false,
+        "motion": "wave",
+        "time": 2.1,
+        "changedChannels": 0
+      },
+      {
+        "mode": "density",
+        "transparent": false,
+        "motion": "wave",
+        "time": 0.5,
+        "changedChannels": 0
+      },
+      {
+        "mode": "density",
+        "transparent": false,
+        "motion": "wave",
+        "time": 7.8,
+        "changedChannels": 0
+      },
+      {
+        "mode": "density",
+        "transparent": false,
+        "motion": "assemble",
+        "time": 0.5,
+        "changedChannels": 0
+      },
+      {
+        "mode": "density",
+        "transparent": false,
+        "motion": "assemble",
+        "time": 2.1,
+        "changedChannels": 0
+      },
+      {
+        "mode": "density",
+        "transparent": false,
+        "motion": "assemble",
+        "time": 0.5,
+        "changedChannels": 0
+      },
+      {
+        "mode": "density",
+        "transparent": false,
+        "motion": "assemble",
+        "time": 7.8,
+        "changedChannels": 0
+      },
+      {
+        "mode": "density",
+        "transparent": false,
+        "motion": "current",
+        "time": 0.5,
+        "changedChannels": 0
+      },
+      {
+        "mode": "density",
+        "transparent": false,
+        "motion": "current",
+        "time": 2.1,
+        "changedChannels": 0
+      },
+      {
+        "mode": "density",
+        "transparent": false,
+        "motion": "current",
+        "time": 0.5,
+        "changedChannels": 0
+      },
+      {
+        "mode": "density",
+        "transparent": false,
+        "motion": "current",
+        "time": 7.8,
+        "changedChannels": 0
+      },
+      {
+        "mode": "density",
+        "transparent": false,
+        "motion": "reform",
+        "time": 0.5,
+        "changedChannels": 0
+      },
+      {
+        "mode": "density",
+        "transparent": false,
+        "motion": "reform",
+        "time": 2.1,
+        "changedChannels": 0
+      },
+      {
+        "mode": "density",
+        "transparent": false,
+        "motion": "reform",
+        "time": 0.5,
+        "changedChannels": 0
+      },
+      {
+        "mode": "density",
+        "transparent": false,
+        "motion": "reform",
+        "time": 7.8,
+        "changedChannels": 0
+      },
+      {
+        "mode": "density",
+        "transparent": false,
+        "motion": "caustics",
+        "time": 0.5,
+        "changedChannels": 0
+      },
+      {
+        "mode": "density",
+        "transparent": false,
+        "motion": "caustics",
+        "time": 2.1,
+        "changedChannels": 0
+      },
+      {
+        "mode": "density",
+        "transparent": false,
+        "motion": "caustics",
+        "time": 0.5,
+        "changedChannels": 0
+      },
+      {
+        "mode": "density",
+        "transparent": false,
+        "motion": "caustics",
+        "time": 7.8,
+        "changedChannels": 0
+      },
+      {
+        "mode": "density",
+        "transparent": true,
+        "motion": "breathe",
+        "time": 0.5,
+        "changedChannels": 0
+      },
+      {
+        "mode": "density",
+        "transparent": true,
+        "motion": "breathe",
+        "time": 2.1,
+        "changedChannels": 0
+      },
+      {
+        "mode": "density",
+        "transparent": true,
+        "motion": "breathe",
+        "time": 0.5,
+        "changedChannels": 0
+      },
+      {
+        "mode": "density",
+        "transparent": true,
+        "motion": "breathe",
+        "time": 7.8,
+        "changedChannels": 0
+      },
+      {
+        "mode": "density",
+        "transparent": true,
+        "motion": "wave",
+        "time": 0.5,
+        "changedChannels": 0
+      },
+      {
+        "mode": "density",
+        "transparent": true,
+        "motion": "wave",
+        "time": 2.1,
+        "changedChannels": 0
+      },
+      {
+        "mode": "density",
+        "transparent": true,
+        "motion": "wave",
+        "time": 0.5,
+        "changedChannels": 0
+      },
+      {
+        "mode": "density",
+        "transparent": true,
+        "motion": "wave",
+        "time": 7.8,
+        "changedChannels": 0
+      },
+      {
+        "mode": "density",
+        "transparent": true,
+        "motion": "assemble",
+        "time": 0.5,
+        "changedChannels": 0
+      },
+      {
+        "mode": "density",
+        "transparent": true,
+        "motion": "assemble",
+        "time": 2.1,
+        "changedChannels": 0
+      },
+      {
+        "mode": "density",
+        "transparent": true,
+        "motion": "assemble",
+        "time": 0.5,
+        "changedChannels": 0
+      },
+      {
+        "mode": "density",
+        "transparent": true,
+        "motion": "assemble",
+        "time": 7.8,
+        "changedChannels": 0
+      },
+      {
+        "mode": "density",
+        "transparent": true,
+        "motion": "current",
+        "time": 0.5,
+        "changedChannels": 0
+      },
+      {
+        "mode": "density",
+        "transparent": true,
+        "motion": "current",
+        "time": 2.1,
+        "changedChannels": 0
+      },
+      {
+        "mode": "density",
+        "transparent": true,
+        "motion": "current",
+        "time": 0.5,
+        "changedChannels": 0
+      },
+      {
+        "mode": "density",
+        "transparent": true,
+        "motion": "current",
+        "time": 7.8,
+        "changedChannels": 0
+      },
+      {
+        "mode": "density",
+        "transparent": true,
+        "motion": "reform",
+        "time": 0.5,
+        "changedChannels": 0
+      },
+      {
+        "mode": "density",
+        "transparent": true,
+        "motion": "reform",
+        "time": 2.1,
+        "changedChannels": 0
+      },
+      {
+        "mode": "density",
+        "transparent": true,
+        "motion": "reform",
+        "time": 0.5,
+        "changedChannels": 0
+      },
+      {
+        "mode": "density",
+        "transparent": true,
+        "motion": "reform",
+        "time": 7.8,
+        "changedChannels": 0
+      },
+      {
+        "mode": "density",
+        "transparent": true,
+        "motion": "caustics",
+        "time": 0.5,
+        "changedChannels": 0
+      },
+      {
+        "mode": "density",
+        "transparent": true,
+        "motion": "caustics",
+        "time": 2.1,
+        "changedChannels": 0
+      },
+      {
+        "mode": "density",
+        "transparent": true,
+        "motion": "caustics",
+        "time": 0.5,
+        "changedChannels": 0
+      },
+      {
+        "mode": "density",
+        "transparent": true,
+        "motion": "caustics",
+        "time": 7.8,
+        "changedChannels": 0
+      },
+      {
+        "mode": "color",
+        "transparent": false,
+        "motion": "breathe",
+        "time": 0.5,
+        "changedChannels": 0
+      },
+      {
+        "mode": "color",
+        "transparent": false,
+        "motion": "breathe",
+        "time": 2.1,
+        "changedChannels": 0
+      },
+      {
+        "mode": "color",
+        "transparent": false,
+        "motion": "breathe",
+        "time": 0.5,
+        "changedChannels": 0
+      },
+      {
+        "mode": "color",
+        "transparent": false,
+        "motion": "breathe",
+        "time": 7.8,
+        "changedChannels": 0
+      },
+      {
+        "mode": "color",
+        "transparent": false,
+        "motion": "wave",
+        "time": 0.5,
+        "changedChannels": 0
+      },
+      {
+        "mode": "color",
+        "transparent": false,
+        "motion": "wave",
+        "time": 2.1,
+        "changedChannels": 0
+      },
+      {
+        "mode": "color",
+        "transparent": false,
+        "motion": "wave",
+        "time": 0.5,
+        "changedChannels": 0
+      },
+      {
+        "mode": "color",
+        "transparent": false,
+        "motion": "wave",
+        "time": 7.8,
+        "changedChannels": 0
+      },
+      {
+        "mode": "color",
+        "transparent": false,
+        "motion": "assemble",
+        "time": 0.5,
+        "changedChannels": 0
+      },
+      {
+        "mode": "color",
+        "transparent": false,
+        "motion": "assemble",
+        "time": 2.1,
+        "changedChannels": 0
+      },
+      {
+        "mode": "color",
+        "transparent": false,
+        "motion": "assemble",
+        "time": 0.5,
+        "changedChannels": 0
+      },
+      {
+        "mode": "color",
+        "transparent": false,
+        "motion": "assemble",
+        "time": 7.8,
+        "changedChannels": 0
+      },
+      {
+        "mode": "color",
+        "transparent": false,
+        "motion": "current",
+        "time": 0.5,
+        "changedChannels": 0
+      },
+      {
+        "mode": "color",
+        "transparent": false,
+        "motion": "current",
+        "time": 2.1,
+        "changedChannels": 0
+      },
+      {
+        "mode": "color",
+        "transparent": false,
+        "motion": "current",
+        "time": 0.5,
+        "changedChannels": 0
+      },
+      {
+        "mode": "color",
+        "transparent": false,
+        "motion": "current",
+        "time": 7.8,
+        "changedChannels": 0
+      },
+      {
+        "mode": "color",
+        "transparent": false,
+        "motion": "reform",
+        "time": 0.5,
+        "changedChannels": 0
+      },
+      {
+        "mode": "color",
+        "transparent": false,
+        "motion": "reform",
+        "time": 2.1,
+        "changedChannels": 0
+      },
+      {
+        "mode": "color",
+        "transparent": false,
+        "motion": "reform",
+        "time": 0.5,
+        "changedChannels": 0
+      },
+      {
+        "mode": "color",
+        "transparent": false,
+        "motion": "reform",
+        "time": 7.8,
+        "changedChannels": 0
+      },
+      {
+        "mode": "color",
+        "transparent": false,
+        "motion": "caustics",
+        "time": 0.5,
+        "changedChannels": 0
+      },
+      {
+        "mode": "color",
+        "transparent": false,
+        "motion": "caustics",
+        "time": 2.1,
+        "changedChannels": 0
+      },
+      {
+        "mode": "color",
+        "transparent": false,
+        "motion": "caustics",
+        "time": 0.5,
+        "changedChannels": 0
+      },
+      {
+        "mode": "color",
+        "transparent": false,
+        "motion": "caustics",
+        "time": 7.8,
+        "changedChannels": 0
+      },
+      {
+        "mode": "color",
+        "transparent": true,
+        "motion": "breathe",
+        "time": 0.5,
+        "changedChannels": 0
+      },
+      {
+        "mode": "color",
+        "transparent": true,
+        "motion": "breathe",
+        "time": 2.1,
+        "changedChannels": 0
+      },
+      {
+        "mode": "color",
+        "transparent": true,
+        "motion": "breathe",
+        "time": 0.5,
+        "changedChannels": 0
+      },
+      {
+        "mode": "color",
+        "transparent": true,
+        "motion": "breathe",
+        "time": 7.8,
+        "changedChannels": 0
+      },
+      {
+        "mode": "color",
+        "transparent": true,
+        "motion": "wave",
+        "time": 0.5,
+        "changedChannels": 0
+      },
+      {
+        "mode": "color",
+        "transparent": true,
+        "motion": "wave",
+        "time": 2.1,
+        "changedChannels": 0
+      },
+      {
+        "mode": "color",
+        "transparent": true,
+        "motion": "wave",
+        "time": 0.5,
+        "changedChannels": 0
+      },
+      {
+        "mode": "color",
+        "transparent": true,
+        "motion": "wave",
+        "time": 7.8,
+        "changedChannels": 0
+      },
+      {
+        "mode": "color",
+        "transparent": true,
+        "motion": "assemble",
+        "time": 0.5,
+        "changedChannels": 0
+      },
+      {
+        "mode": "color",
+        "transparent": true,
+        "motion": "assemble",
+        "time": 2.1,
+        "changedChannels": 0
+      },
+      {
+        "mode": "color",
+        "transparent": true,
+        "motion": "assemble",
+        "time": 0.5,
+        "changedChannels": 0
+      },
+      {
+        "mode": "color",
+        "transparent": true,
+        "motion": "assemble",
+        "time": 7.8,
+        "changedChannels": 0
+      },
+      {
+        "mode": "color",
+        "transparent": true,
+        "motion": "current",
+        "time": 0.5,
+        "changedChannels": 0
+      },
+      {
+        "mode": "color",
+        "transparent": true,
+        "motion": "current",
+        "time": 2.1,
+        "changedChannels": 0
+      },
+      {
+        "mode": "color",
+        "transparent": true,
+        "motion": "current",
+        "time": 0.5,
+        "changedChannels": 0
+      },
+      {
+        "mode": "color",
+        "transparent": true,
+        "motion": "current",
+        "time": 7.8,
+        "changedChannels": 0
+      },
+      {
+        "mode": "color",
+        "transparent": true,
+        "motion": "reform",
+        "time": 0.5,
+        "changedChannels": 0
+      },
+      {
+        "mode": "color",
+        "transparent": true,
+        "motion": "reform",
+        "time": 2.1,
+        "changedChannels": 0
+      },
+      {
+        "mode": "color",
+        "transparent": true,
+        "motion": "reform",
+        "time": 0.5,
+        "changedChannels": 0
+      },
+      {
+        "mode": "color",
+        "transparent": true,
+        "motion": "reform",
+        "time": 7.8,
+        "changedChannels": 0
+      },
+      {
+        "mode": "color",
+        "transparent": true,
+        "motion": "caustics",
+        "time": 0.5,
+        "changedChannels": 0
+      },
+      {
+        "mode": "color",
+        "transparent": true,
+        "motion": "caustics",
+        "time": 2.1,
+        "changedChannels": 0
+      },
+      {
+        "mode": "color",
+        "transparent": true,
+        "motion": "caustics",
+        "time": 0.5,
+        "changedChannels": 0
+      },
+      {
+        "mode": "color",
+        "transparent": true,
+        "motion": "caustics",
+        "time": 7.8,
+        "changedChannels": 0
+      }
+    ],
+    "reconstruction": [
+      {
+        "mode": "density",
+        "motion": "wave",
+        "premultipliedMae": 0.0023508626118993073
+      },
+      {
+        "mode": "density",
+        "motion": "assemble",
+        "premultipliedMae": 0.0033797382941736748
+      },
+      {
+        "mode": "density",
+        "motion": "current",
+        "premultipliedMae": 0.0014614499657511827
+      },
+      {
+        "mode": "density",
+        "motion": "reform",
+        "premultipliedMae": 0.0024600741932750826
+      },
+      {
+        "mode": "color",
+        "motion": "wave",
+        "premultipliedMae": 0.002495188294800465
+      },
+      {
+        "mode": "color",
+        "motion": "assemble",
+        "premultipliedMae": 0.0036014028220366897
+      },
+      {
+        "mode": "color",
+        "motion": "current",
+        "premultipliedMae": 0.0015237001318607695
+      },
+      {
+        "mode": "color",
+        "motion": "reform",
+        "premultipliedMae": 0.0026028017129024086
+      }
+    ]
+  }
+}

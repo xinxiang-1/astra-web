@@ -1,17 +1,13 @@
 import { prepareArtFrame } from '../../../src/lib/art-engine/index'
-import { createCanvasArtRenderer as baseline } from '../../../scripts/fixtures/fluid-v4-renderer'
-import { createCanvasArtRenderer as candidate } from '../../../scripts/fixtures/material-v5-renderer'
+import { createCanvasArtRenderer as baseline } from '../../../scripts/fixtures/material-v5-renderer'
+import { createCanvasArtRenderer as candidate } from '../../../src/lib/art-engine/canvas'
 const motions = [
-  ['breathe', '潮汐脉冲', '宽幅能量前沿与两层余波穿过原作，字形保持正向，结束后完整复原。'],
-  ['wave', '绸光波面', '大尺度斜向折面与跟随表面法线的明暗，减少五官局部拉扯。'],
-  ['assemble', '星流汇聚', '原作字符从画面内的星流展开，沿弧线汇聚，带阻尼落位并停留。'],
-  ['current', '流域漂移', '连续流域带动整个表面，反光沿流线移动，维持作品整体轮廓。'],
-  ['reform', '片层解构', '蓄势、片层爆散、漂移与阻尼归位；相邻字符一同运动，最终停留展示。'],
-  [
-    'caustics',
-    '棱镜扫光',
-    '主光束、窄反射与暗边共同扫过真实笔画，单色延续原墨色，原色延续素材色。',
-  ],
+  ['breathe', '光核冲击', '宽幅径向前沿穿过作品，明暗谷与余波跟随，最后完整复原。'],
+  ['wave', '悬浮幕布', '整幅字符幕布随连续波面起伏，浅透视与明暗一起运动。'],
+  ['assemble', '轨道入场', '六条椭圆轨道沿弧线展开，原作字符带一次回弹落位，完整停留。'],
+  ['current', '空间巡航', '作品成为浅曲面，视角缓慢环绕，远近、尺寸、光影连续变化。'],
+  ['reform', '分层绽放', '字符片带交错剥离、分层停留、顺序归位，保持主要轮廓。'],
+  ['caustics', '全息扫描', '由暗到亮的显影前沿与双层光迹逐行扫描真实笔画。'],
 ] as const
 const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T
 const canvases = ['studio', 'baseline', 'candidate'].map((id) => $<HTMLCanvasElement>(id))
@@ -25,7 +21,8 @@ let paused = matchMedia('(prefers-reduced-motion: reduce)').matches,
   generation = 0
 let pointer = { x: 0.5, y: 0.5, strength: 0.65, active: false },
   samples: { x: number; y: number; time: number; active: boolean }[] = []
-let ready = false
+let ready = false,
+  focused = false
 for (const [id, label] of motions) {
   const button = document.createElement('button')
   button.textContent = label
@@ -55,11 +52,13 @@ function draw() {
     pointer,
     pointerSamples: samples,
   }
-  renderers.forEach((renderer, i) =>
-    renderer.render(frame, {
-      ...options,
-      motionStyle: i === 0 ? 'studio' : 'cinematic',
-    } as Parameters<typeof renderer.render>[1]),
+  renderers.forEach(
+    (renderer, i) =>
+      (!focused || i === 2) &&
+      renderer.render(frame, {
+        ...options,
+        motionStyle: i === 0 ? 'studio' : 'cinematic',
+      } as Parameters<typeof renderer.render>[1]),
   )
   samples = []
   $<HTMLInputElement>('seek').value = String(time % 12)
@@ -84,6 +83,12 @@ async function load() {
   draw()
 }
 for (const id of ['source', 'mode']) $(id).addEventListener('change', load)
+$('focus').addEventListener('click', () => {
+  focused = !focused
+  document.querySelector('.boards')!.classList.toggle('focused', focused)
+  $('focus').textContent = focused ? '并排对照' : '只看新效果'
+  draw()
+})
 $('pause').addEventListener('click', () => {
   paused = !paused
   $('pause').textContent = paused ? '播放' : '暂停'

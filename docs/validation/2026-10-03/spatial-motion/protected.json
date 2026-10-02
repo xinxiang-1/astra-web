@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "baseline": "024e8d8",
+  "sourceSha256": "4562fe7122b852dfa1706cef80490e035ab81fe2a2178d62c8aec07f45a4b192",
+  "checks": {
+    "src/views/ArtHomeView.vue": true,
+    "src/components/CharacterArtwork.vue": true,
+    "src/lib/ascii/studio-preview.ts": true,
+    "native_interaction": true,
+    "v5_frozen_exact": true
+  }
+}
