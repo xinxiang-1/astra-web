@@ -1,0 +1,140 @@
+{
+  "passed": true,
+  "base": "http://127.0.0.1:5180",
+  "browser": "153.0.8010.12",
+  "errors": [],
+  "cases": [
+    {
+      "source": "portrait-reference.png",
+      "mode": "density",
+      "motion": "breathe",
+      "changed": true,
+      "file": "density-breathe.png"
+    },
+    {
+      "source": "portrait-reference.png",
+      "mode": "density",
+      "motion": "wave",
+      "changed": true,
+      "file": "density-wave.png"
+    },
+    {
+      "source": "portrait-reference.png",
+      "mode": "density",
+      "motion": "assemble",
+      "changed": true,
+      "file": "density-assemble.png"
+    },
+    {
+      "source": "portrait-reference.png",
+      "mode": "density",
+      "motion": "current",
+      "changed": true,
+      "file": "density-current.png"
+    },
+    {
+      "source": "portrait-reference.png",
+      "mode": "density",
+      "motion": "reform",
+      "changed": true,
+      "file": "density-reform.png"
+    },
+    {
+      "source": "portrait-reference.png",
+      "mode": "density",
+      "motion": "caustics",
+      "changed": true,
+      "file": "density-caustics.png"
+    },
+    {
+      "source": "pet.jpg",
+      "mode": "color",
+      "motion": "breathe",
+      "changed": true,
+      "file": "color-breathe.png"
+    },
+    {
+      "source": "pet.jpg",
+      "mode": "color",
+      "motion": "wave",
+      "changed": true,
+      "file": "color-wave.png"
+    },
+    {
+      "source": "pet.jpg",
+      "mode": "color",
+      "motion": "assemble",
+      "changed": true,
+      "file": "color-assemble.png"
+    },
+    {
+      "source": "pet.jpg",
+      "mode": "color",
+      "motion": "current",
+      "changed": true,
+      "file": "color-current.png"
+    },
+    {
+      "source": "pet.jpg",
+      "mode": "color",
+      "motion": "reform",
+      "changed": true,
+      "file": "color-reform.png"
+    },
+    {
+      "source": "pet.jpg",
+      "mode": "color",
+      "motion": "caustics",
+      "changed": true,
+      "file": "color-caustics.png"
+    },
+    {
+      "source": "landscape.jpg",
+      "mode": "phrase",
+      "motion": "breathe",
+      "changed": true,
+      "file": "phrase-breathe.png"
+    },
+    {
+      "source": "landscape.jpg",
+      "mode": "phrase",
+      "motion": "wave",
+      "changed": true,
+      "file": "phrase-wave.png"
+    },
+    {
+      "source": "landscape.jpg",
+      "mode": "phrase",
+      "motion": "assemble",
+      "changed": true,
+      "file": "phrase-assemble.png"
+    },
+    {
+      "source": "landscape.jpg",
+      "mode": "phrase",
+      "motion": "current",
+      "changed": true,
+      "file": "phrase-current.png"
+    },
+    {
+      "source": "landscape.jpg",
+      "mode": "phrase",
+      "motion": "reform",
+      "changed": true,
+      "file": "phrase-reform.png"
+    },
+    {
+      "source": "landscape.jpg",
+      "mode": "phrase",
+      "motion": "caustics",
+      "changed": true,
+      "file": "phrase-caustics.png"
+    }
+  ],
+  "hashes": {
+    "scripts/fixtures/cinematic-v1-renderer.ts": "562899a568728b19184417cd324a5fdb2763957fa4bc63c8063691896c508cd0",
+    "src/lib/art-engine/canvas.ts": "7710432fec0f7d0b2fadee54b24e3fc99c75ba9e5e8ab5bf990921ce46a2607a",
+    "docs/prototypes/v2-kinetic-motion/main.ts": "ad5d3dbdf35d156e9e34392d7135e919935805e81dde806edf96a828a79ab16b",
+    "docs/prototypes/v2-kinetic-motion/index.html": "dd1cbacfe651cf4aa90fb22463f0e1d4f78f08b50e62c28ec102494e1ec7d141"
+  }
+}

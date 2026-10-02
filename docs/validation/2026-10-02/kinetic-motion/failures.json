@@ -1,0 +1,24 @@
+{
+  "preserved": [
+    {
+      "source": "cache-baseline/report.json",
+      "failure": "AssertionError [ERR_ASSERTION]: Frozen time/image switch must rebuild the frame-dependent field\n    at file:///E:/project/astra/astra-web/scripts/kinetic-motion-cache-contract.mjs:39:5",
+      "originalSha256": "293fd8ac66c15e8e9039ba559988bb1d6af42cef01a569b2cda85da46f9fb45b"
+    },
+    {
+      "source": "media-production-r1/report.json",
+      "failure": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert(report.encoded.correct < report.encoded.wrongSpeed * 0.9)\n\n    at file:///E:/project/astra/astra-web/scripts/art-effects-media-contract.mjs:237:3",
+      "originalSha256": "96955e7f934a2cc6486671bb8a7f88dd2c91419128a286f63efdd1eab5ffba9e"
+    },
+    {
+      "source": "ui-production-r1/report.json",
+      "failure": "page.evaluate: TypeError: Failed to fetch dynamically imported module: http://127.0.0.1:5194/src/lib/art-engine/index.ts\n    at E:\\project\\astra\\astra-web\\scripts\\art-effects-contract.mjs:89:29",
+      "originalSha256": "d60a4d9e9db923d6903ef29c61644950a2a58e0aace951207669dcb79a80dcc1"
+    }
+  ],
+  "tooling": [
+    "TypeScript6 requires --ignoreConfig for explicitly named prototype files; strict check then passed",
+    "First prototype playback clock capped elapsed time and fell behind under three-canvas load; real cumulative clock and visibility reset fixed",
+    "First candidate glyph dispersion over-fragmented the subject; wider shards and reduced glyph jitter reviewed in second candidate"
+  ]
+}

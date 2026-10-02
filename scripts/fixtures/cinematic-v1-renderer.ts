@@ -1,4 +1,4 @@
-import type { ArtFrame, ArtRenderOptions } from './types'
+import type { ArtFrame, ArtRenderOptions } from '../../src/lib/art-engine/types'
 
 /** Self-contained Canvas implementation shared with the standalone HTML runtime. */
 export function createCanvasArtRenderer(target: HTMLCanvasElement) {
@@ -81,123 +81,6 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
     const t = Math.max(0, Math.min(1, (value - low) / (high - low)))
     return t * t * t * (t * (6 * t - 15) + 10)
   }
-  // Stateless choreography: position/light from the same original glyphs.
-  // Time is the ambient clock, never a pointer velocity or accumulated history.
-  function sampleCinematic(
-    mode: string,
-    x: number,
-    y: number,
-    time: number,
-    amount: number,
-    out: Float32Array,
-    identity = 0,
-  ) {
-    const edge = motionSmooth(0, 0.09, Math.min(x, 1 - x, y, 1 - y))
-    const rx = x - 0.5,
-      ry = y - 0.5
-    const nativeMode = mode === 'caustics' || mode === 'reform' ? mode : 'current'
-    sampleStudioAmbient(nativeMode, x, y, time + (mode === 'reform' ? 2.4 : 0), ambientNative)
-    const nativeX = ambientNative[0]! / 960,
-      nativeY = ambientNative[1]! / 960
-    let dx = 0,
-      dy = 0,
-      intensity = 1,
-      opacity = 1,
-      glow = 0
-    if (mode === 'breathe') {
-      const cycle = ((time % 7) + 7) % 7
-      const distance = Math.hypot((rx * frame.width) / frame.height, ry)
-      const front = -0.1 + cycle * 0.2
-      const envelope = motionSmooth(0, 0.45, cycle) * (1 - motionSmooth(4.7, 6.8, cycle))
-      const ring = Math.exp(-Math.pow((distance - front) / 0.065, 2)) * envelope
-      const wake = Math.exp(-Math.pow((distance - front + 0.14) / 0.13, 2)) * envelope
-      const swell = Math.sin((time * Math.PI) / 3.5) * 0.025
-      const push = ring * 0.105 - wake * 0.022 + swell
-      dx = (rx / Math.max(0.18, distance)) * push * edge + nativeX * 0.6 * envelope
-      dy = (ry / Math.max(0.18, distance)) * push * edge + nativeY * 0.6 * envelope
-      intensity = 1 - envelope * 0.16 + ring * 0.26 + wake * 0.08
-      glow = (ring * 1.05 + wake * 0.2) * edge
-    } else if (mode === 'wave') {
-      // A travelling folded surface: broad depth, narrow crest, shaded trough.
-      const phase = y * 9.2 + x * 3.5 - time * 1.6
-      const fold = Math.sin(phase) + Math.sin(phase * 2 + x * 2.4) * 0.22
-      const crest = Math.pow(Math.max(0, Math.cos(phase - 0.35)), 12)
-      const perspective = fold * 0.13 * edge
-      dx = (rx * perspective + Math.sin(phase) * 0.026 + nativeX * 1.5) * edge
-      dy = (fold * 0.085 + ry * perspective + nativeY * 1.5) * edge
-      intensity = 0.79 + (Math.cos(phase) + 1) * 0.11 + crest * 0.16
-      glow = (crest * 0.82 + Math.pow(Math.max(0, Math.cos(phase * 2)), 16) * 0.12) * edge
-    } else if (mode === 'current') {
-      // Differential angular shear around a moving centre, with upright glyphs.
-      const cx = 0.5 + Math.sin(time * 0.43) * 0.055
-      const cy = 0.5 + Math.cos(time * 0.36) * 0.04
-      const px = x - cx,
-        py = y - cy
-      const distance = Math.hypot(px, py)
-      const twist = Math.sin(distance * 8 - time * 0.8) * 0.32 * edge
-      dx = (px * (Math.cos(twist) - 1) - py * Math.sin(twist) + nativeX * 2) * edge
-      dy = (px * Math.sin(twist) + py * (Math.cos(twist) - 1) + nativeY * 2) * edge
-      const seam = Math.pow(Math.max(0, Math.sin(9 * distance - time * 0.8)), 10)
-      intensity = 0.88 + seam * 0.22 * edge
-      glow = seam * 0.65 * edge
-    } else if (mode === 'assemble' || mode === 'reform') {
-      const raw = Math.sin((identity + 1) * 127.1) * 43758.5453
-      const noise = raw - Math.floor(raw)
-      const delay = y * 0.6 + x * 0.35 + noise * 0.16
-      let flight = 0
-      if (mode === 'assemble') {
-        flight = 1 - motionSmooth(0.1 + delay, 3.7 + delay, Math.max(0, time))
-        // Coherent luminous filaments release original glyphs into their cells.
-        // Filaments keep flowing during staggered arrival; even a short export
-        // responds to speed instead of holding an identical opening pose.
-        const strand = y * 8 + flight * 3.5 - time * 0.55 * flight
-        const originX = 0.5 + Math.sin(strand) * 0.32 + (noise - 0.5) * 0.055
-        const originY =
-          0.12 + y * 0.76 + Math.cos(x * 5 + flight * 2 + time * 0.35 * flight) * 0.075
-        dx = (originX - x) * flight * edge
-        dy = (originY - y) * flight * edge
-        const arc = Math.sin(flight * Math.PI) * flight
-        dx += Math.sin(strand + x * 4) * arc * 0.045 * edge
-        dy -= arc * (0.035 + noise * 0.025) * edge
-        opacity = 1 - flight * 0.52
-      } else {
-        const cycle = ((time % 12) + 12) % 12
-        flight =
-          motionSmooth(0.1 + delay * 0.6, 1.7 + delay, cycle) *
-          (1 - motionSmooth(3.8 + delay, 6.7 + delay, cycle))
-        // Alternating fracture ribbons, then finer outward glyph dispersion.
-        const ribbon = Math.floor(x * 6 + y * 2)
-        const direction = ribbon % 2 === 0 ? 1 : -1
-        const fragment = Math.sin(ribbon * 7.13) * 0.5 + 0.5
-        dx = (direction * (0.08 + fragment * 0.065) + rx * 0.18) * flight * edge
-        dy = (direction * 0.035 + ry * 0.1 - fragment * 0.055) * flight * edge
-        const angle = noise * Math.PI * 2 + flight * 1.6
-        dx += Math.cos(angle) * flight * flight * 0.008 * edge
-        dy += Math.sin(angle) * flight * flight * 0.008 * edge
-        opacity = 1 - flight * 0.28
-      }
-      intensity = 1 - flight * 0.13
-      glow = (Math.sin(flight * Math.PI) * 0.65 + flight * 0.12) * (0.55 + noise * 0.45) * edge
-    } else if (mode === 'caustics') {
-      const cycle = ((time % 6) + 6) % 6
-      const sweep = -0.25 + cycle * 0.25 + Math.sin(y * 5 + time * 0.25) * 0.09
-      const delta = x - sweep
-      const core = Math.exp(-Math.pow(delta / 0.026, 2))
-      const light = Math.exp(-Math.pow((delta + 0.055) / 0.075, 2))
-      const shadow = Math.exp(-Math.pow((delta - 0.08) / 0.065, 2))
-      sampleStudioAmbient('caustics', x, y, time, ambientLight)
-      dx = (Math.tanh(delta * 35) * light * 0.025 + nativeX * 0.5) * edge
-      dy = Math.sin(y * 5 + time * 0.25) * light * 0.012 * edge
-      intensity = 1 - shadow * 0.26 * edge + core * 0.25 * edge
-      glow = (core * 1.05 + light * 0.22 + Math.max(0, ambientLight[2]!) * 0.9) * edge
-    }
-    out[0] = dx * amount
-    out[1] = dy * amount
-    out[2] = 1 + (intensity - 1) * amount
-    out[3] = 1 + (opacity - 1) * amount
-    out[4] = glow * amount
-    return out
-  }
   function buildMotionField(mode: string, time: number, amount: number, cinematic: boolean) {
     if (mode === 'none' || amount === 0) {
       motionField = null
@@ -227,15 +110,85 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
         const nativeMode = mode === 'caustics' || mode === 'reform' ? mode : 'current'
         // Start the repeating native reform just before its dispersal, then retain
         // the complete-image hold. No random per-frame state; seeking is exact.
-        if (!cinematic)
-          sampleStudioAmbient(nativeMode, x, y, time + (mode === 'reform' ? 2.4 : 0), ambientNative)
+        sampleStudioAmbient(nativeMode, x, y, time + (mode === 'reform' ? 2.4 : 0), ambientNative)
         if (cinematic) {
-          sampleCinematic(mode, x, y, time, amount, motionSample, row * columns + column)
-          dx = motionSample[0]!
-          dy = motionSample[1]!
-          intensity = motionSample[2]!
-          opacity = motionSample[3]!
-          glow = motionSample[4]!
+          // Astra presentation on the unchanged native Studio field. These are
+          // normalized positions, never velocities; time seeking is stateless.
+          const nativeX = ambientNative[0]! / 960,
+            nativeY = ambientNative[1]! / 960
+          if (mode === 'current') {
+            const a = 6.4 * x + 0.55 * Math.sin(time * 0.38),
+              b = 5.5 * y - time * 0.62
+            dx = (nativeX * 3.8 + Math.sin(a) * Math.cos(b) * 0.05 * edge) * amount
+            dy = (nativeY * 3.8 - Math.cos(a) * Math.sin(b) * 0.05 * edge) * amount
+            const fold = Math.pow(Math.max(0, Math.sin(a + b)), 8) * edge
+            intensity = 1 - 0.15 * amount + fold * 0.3 * amount
+            glow = fold * 0.65 * amount
+          } else if (mode === 'breathe') {
+            const rx = (x - 0.5) * (frame.width / frame.height),
+              ry = y - 0.48,
+              distance = Math.hypot(rx, ry),
+              phase = distance * 13 - time * 1.4,
+              pulse = Math.pow(Math.max(0, Math.cos(phase)), 10),
+              breath = 0.5 - 0.5 * Math.cos(time * 0.88),
+              swell = (0.02 + breath * 0.09 + Math.sin(phase) * 0.035) * edge * amount
+            dx = (x - 0.5) * swell + nativeX * amount
+            dy = (y - 0.48) * swell + nativeY * amount
+            intensity = 1 - amount * 0.22 + pulse * 0.36 * amount * edge
+            glow = (pulse * 0.95 + breath * 0.12) * edge * amount
+          } else if (mode === 'wave') {
+            const phase = 10 * y - time * 1.8 + Math.sin(4.5 * x + time * 0.3) * 0.9,
+              cross = 7 * x + 4 * y + time * 0.8,
+              crest = Math.pow(Math.max(0, Math.cos(phase)), 12)
+            dx = (nativeX * 2 + Math.sin(phase) * 0.057 * edge) * amount
+            dy = (nativeY * 2 + (Math.cos(phase) * 0.066 + Math.sin(cross) * 0.014) * edge) * amount
+            intensity = 1 - amount * 0.2 + crest * 0.45 * edge * amount
+            glow = (crest * 0.9 + Math.pow(Math.max(0, Math.cos(cross)), 16) * 0.2) * edge * amount
+          } else if (mode === 'assemble') {
+            const lane = x * 0.48 + y * 0.22,
+              remaining = 1 - motionSmooth(0.05 + lane * 0.8, 2.65 + lane * 1.4, Math.max(0, time)),
+              swirl = remaining * remaining * 1.8,
+              rx = x - 0.5,
+              ry = y - 0.5
+            dx =
+              (rx * (Math.cos(swirl) - 1) - ry * Math.sin(swirl) + nativeX * 3) *
+              remaining *
+              edge *
+              amount
+            dy =
+              (rx * Math.sin(swirl) + ry * (Math.cos(swirl) - 1) + nativeY * 3) *
+              remaining *
+              edge *
+              amount
+            opacity = 1 - remaining * amount * 0.22
+            intensity = 1 - remaining * amount * 0.18
+            glow = remaining * (1 - remaining) * 2.2 * edge * amount
+          } else if (mode === 'reform') {
+            const scatter = (1 - ambientNative[3]!) / 0.9,
+              swirl = scatter * 1.4,
+              rx = x - 0.5,
+              ry = y - 0.5
+            dx =
+              (rx * (Math.cos(swirl) - 1) - ry * Math.sin(swirl) + nativeX * 4) *
+              scatter *
+              edge *
+              amount
+            dy =
+              (rx * Math.sin(swirl) + ry * (Math.cos(swirl) - 1) + nativeY * 4) *
+              scatter *
+              edge *
+              amount
+            opacity = 1 - scatter * amount * 0.3
+            intensity = 1 - scatter * amount * 0.12
+            glow = scatter * (1 - scatter) * 1.8 * edge * amount
+          } else if (mode === 'caustics') {
+            sampleStudioAmbient('caustics', 1 - x, 1 - y, time + 3, ambientLight)
+            const sweep = Math.pow(Math.max(0, Math.cos(8 * x - 3 * y - time * 1.05)), 16),
+              ribbon = Math.max(0, ambientNative[2]!) * 3.8,
+              second = Math.max(0, ambientLight[2]!) * 1.7
+            intensity = 1 - amount * 0.26 + (sweep * 0.45 + ribbon * 0.6) * edge * amount
+            glow = (sweep * 1.1 + ribbon + second) * edge * amount
+          }
         } else if (mode === 'current') {
           dx = (ambientNative[0]! / 960) * 6.5 * amount
           dy = (ambientNative[1]! / 960) * 6.5 * amount
@@ -1329,19 +1282,37 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
         ambientOpacity = 1,
         glow = 0
       if (motionField) {
-        const nx = (x + 0.5) / frame.columns,
-          ny = (y + 0.5) / frame.rows
-        // Exact per-glyph choreography avoids grid interpolation changing strand identity.
-        const sample =
-          cinematic && (motion === 'assemble' || motion === 'reform')
-            ? sampleCinematic(motion, nx, ny, time, amount, motionSample, index)
-            : sampleMotionField(nx, ny)
+        const sample = sampleMotionField((x + 0.5) / frame.columns, (y + 0.5) / frame.rows)
         dx = sample[0]! * frame.columns * cw
         dy = sample[1]! * frame.rows * ch
         intensity = sample[2]!
         ambientOpacity = sample[3]!
         opacity = alpha * ambientOpacity
         glow = sample[4]!
+        if (cinematic && (motion === 'assemble' || motion === 'reform')) {
+          // Each original glyph follows a stable orbit, without remapping its
+          // identity/rotation. No random frame state or extra particle canvas.
+          const scatter = (1 - ambientOpacity) / (motion === 'assemble' ? 0.22 : 0.3)
+          if (scatter > 0.00001) {
+            const seed = Math.sin((index + 1) * 127.1) * 43758.5453,
+              noise = seed - Math.floor(seed),
+              angle = noise * Math.PI * 2 + scatter * (1.2 + noise),
+              radius = scatter * scatter * (0.025 + noise * 0.09),
+              edge = motionSmooth(
+                0,
+                0.1,
+                Math.min(
+                  (x + 0.5) / frame.columns,
+                  1 - (x + 0.5) / frame.columns,
+                  (y + 0.5) / frame.rows,
+                  1 - (y + 0.5) / frame.rows,
+                ),
+              )
+            dx += Math.cos(angle) * radius * frame.columns * cw * edge
+            dy += Math.sin(angle) * radius * frame.rows * ch * edge
+            glow += scatter * (1 - scatter) * noise * 0.6 * edge
+          }
+        }
       }
       let glyph = frame.indices[index]!
       if (interaction?.hasRefraction && expressive) {
@@ -1396,14 +1367,7 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
     const needsGlow =
       Boolean(motionField) ||
       Boolean(interaction?.hasRefraction && expressive && hover !== 'displace')
-    return {
-      expressive,
-      needsGlow,
-      motionLight: Boolean(motionField),
-      motionTrace:
-        cinematic && Boolean(motionField) && (motion === 'assemble' || motion === 'reform'),
-      cell,
-    }
+    return { expressive, needsGlow, motionLight: Boolean(motionField), cell }
   }
 
   function renderGlow(effect: ReturnType<typeof effects>, w: number, h: number) {
@@ -1436,17 +1400,7 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
           const lift = (channel: number) => Math.min(255, frame.colors[i * 3 + channel]! + 64)
           lightColor = `rgb(${lift(0)},${lift(1)},${lift(2)})`
         }
-        const glyphLight = tile(e.glyph, lightColor)
-        if (effect.motionTrace && e.glow > 0.12 && Math.hypot(e.dx, e.dy) > cw * 2) {
-          // Two bounded stroke echoes along the landing direction; no history buffer.
-          const lightAlpha = gc.globalAlpha
-          gc.globalAlpha = lightAlpha * 0.16
-          gc.drawImage(glyphLight, x * cw + e.dx * 0.88, y * ch + e.dy * 0.88, cw, ch)
-          gc.globalAlpha = lightAlpha * 0.32
-          gc.drawImage(glyphLight, x * cw + e.dx * 0.95, y * ch + e.dy * 0.95, cw, ch)
-          gc.globalAlpha = lightAlpha
-        }
-        gc.drawImage(glyphLight, x * cw + e.dx, y * ch + e.dy, cw, ch)
+        gc.drawImage(tile(e.glyph, lightColor), x * cw + e.dx, y * ch + e.dy, cw, ch)
       }
     if (!gc) return
     const spread = Math.max(2, Math.min(w, h) * 0.018)
@@ -1708,9 +1662,6 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
       frame = next
       if (current !== frame) {
         current = frame
-        // The bounded grid can be the same size for two different aspect ratios.
-        // Frozen ambient time must still rebuild choreography for the new work.
-        motionKey = ''
         clearTiles()
         if (scratch) {
           scratch.width = frame.cellWidth

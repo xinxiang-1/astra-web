@@ -1,0 +1,62 @@
+{
+  "motion-contract.json": {
+    "original": "contract-final/report.json",
+    "originalSha256": "e2dce2a8c82274c2a956ba38248e618e1d3d4949e2e2c76fe516d0b8630546ef",
+    "archivedSha256": "e2dce2a8c82274c2a956ba38248e618e1d3d4949e2e2c76fe516d0b8630546ef",
+    "archivedHashConvention": "Git LF text; raw binary"
+  },
+  "cache-contract.json": {
+    "original": "cache-final-r2/report.json",
+    "originalSha256": "e06c8340e168ebe05dfe7b0cf995f3c1fc54f7d2c298fc3b9539202690f7f685",
+    "archivedSha256": "e06c8340e168ebe05dfe7b0cf995f3c1fc54f7d2c298fc3b9539202690f7f685",
+    "archivedHashConvention": "Git LF text; raw binary"
+  },
+  "production-ui.json": {
+    "original": "ui-production-final/report.json",
+    "originalSha256": "2fb871c3c2d0320108a05d164ff8bb2e7e7425c58b6b5c9d7e432d56f17a7cc7",
+    "archivedSha256": "2fb871c3c2d0320108a05d164ff8bb2e7e7425c58b6b5c9d7e432d56f17a7cc7",
+    "archivedHashConvention": "Git LF text; raw binary"
+  },
+  "production-exports.json": {
+    "original": "exports-production-final/report.json",
+    "originalSha256": "5f8b1c8f1345102a21e503df5095ebf27478cb370de4fdfb2a8a3d399f6d89c9",
+    "archivedSha256": "5f8b1c8f1345102a21e503df5095ebf27478cb370de4fdfb2a8a3d399f6d89c9",
+    "archivedHashConvention": "Git LF text; raw binary"
+  },
+  "production-media.json": {
+    "original": "media-production-final/report.json",
+    "originalSha256": "7f0f9fca129426edcd9d0f8d481e71e89e9767f059af30376cd52fc7a2902bfc",
+    "archivedSha256": "7f0f9fca129426edcd9d0f8d481e71e89e9767f059af30376cd52fc7a2902bfc",
+    "archivedHashConvention": "Git LF text; raw binary"
+  },
+  "prototype.json": {
+    "original": "prototype-final-r2/report.json",
+    "originalSha256": "0bbfccf57a2c93d1f5c9e666fbd7c26f4e716110381d3956850ef9bc9f5e09dd",
+    "archivedSha256": "0bbfccf57a2c93d1f5c9e666fbd7c26f4e716110381d3956850ef9bc9f5e09dd",
+    "archivedHashConvention": "Git LF text; raw binary"
+  },
+  "walkthrough.json": {
+    "original": "walkthrough-production-final/report.json",
+    "originalSha256": "6bafbc469bdc67d2f857a991773e578a6fc8dbfa10d3a1ba453c4dc1e2b7e626",
+    "archivedSha256": "6bafbc469bdc67d2f857a991773e578a6fc8dbfa10d3a1ba453c4dc1e2b7e626",
+    "archivedHashConvention": "Git LF text; raw binary"
+  },
+  "development-before-final-fixes.json": {
+    "original": "ui-development-r1/report.json",
+    "originalSha256": "35252b9a03c83c6753b9e9a1ee09fb0862af874a17c114c185fa257dfd61dcd0",
+    "archivedSha256": "c141214b653ad7f8b0f3f055bf14fc9dd587b841702a8264031ca45ed2416cc4",
+    "archivedHashConvention": "Git LF text; raw binary"
+  },
+  "home.json": {
+    "original": "home-production-r1/hover-regression.json",
+    "originalSha256": "c68afb87dc2a12a67109c44c1ef2a4ba2926fc863d107cbb9d0836f1a0cd1b11",
+    "archivedSha256": "c68afb87dc2a12a67109c44c1ef2a4ba2926fc863d107cbb9d0836f1a0cd1b11",
+    "archivedHashConvention": "Git LF text; raw binary"
+  },
+  "comparison.png": {
+    "original": "prototype-final-r2/comparison.png",
+    "originalSha256": "74231bc1c84b2502199120dfb86219376c2e1e687d4c6df680d8f1b468d73831",
+    "archivedSha256": "74231bc1c84b2502199120dfb86219376c2e1e687d4c6df680d8f1b468d73831",
+    "archivedHashConvention": "Git LF text; raw binary"
+  }
+}

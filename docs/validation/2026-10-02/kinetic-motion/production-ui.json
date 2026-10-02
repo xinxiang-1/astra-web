@@ -1,0 +1,110 @@
+{
+  "base": "http://127.0.0.1:5194",
+  "browser": "153.0.8010.12",
+  "scope": "Chromium desktop/touch emulation; no real-device or universal frame-rate certification",
+  "api": null,
+  "ui": [
+    {
+      "name": "density-paused-light",
+      "hoverChanged": true
+    },
+    {
+      "name": "color-paused-light",
+      "hoverChanged": true
+    },
+    {
+      "name": "phrase-paused-light",
+      "hoverChanged": true
+    },
+    {
+      "name": "contour-paused-light",
+      "hoverChanged": true
+    },
+    {
+      "name": "braille-paused-light",
+      "hoverChanged": true
+    },
+    {
+      "name": "halftone-paused-light",
+      "hoverChanged": true
+    },
+    {
+      "name": "detailed-paused-light",
+      "hoverChanged": true
+    },
+    {
+      "name": "smooth-paused-light",
+      "hoverChanged": true
+    },
+    {
+      "name": "faithful-paused-light",
+      "hoverChanged": true
+    },
+    {
+      "name": "fullscreen-paused",
+      "hoverChanged": true
+    }
+  ],
+  "errors": [],
+  "passed": true,
+  "portable": {
+    "url": "http://127.0.0.1:5194/ascii-art?project=7f78a49f-ab93-4430-bfed-a6b715ba2fa9",
+    "settings": {
+      "editorEngine": "calibrated",
+      "artMode": "density",
+      "artQuality": "faithful",
+      "artMotion": "current",
+      "artHover": "light",
+      "artEffectProfile": "expressive",
+      "artMotionSpeed": 0.6,
+      "artMotionStrength": 0.73,
+      "artMotionStyle": "cinematic",
+      "mode": "charset",
+      "phrase": "我爱你中国",
+      "phraseThreshold": 0.55,
+      "phraseFillAll": false,
+      "phraseColor": false,
+      "exposure": 0,
+      "contrast": 0.2,
+      "normalizeTone": true,
+      "ditherStrength": 0.25,
+      "hoverEffect": "none",
+      "hoverStrength": 0.82,
+      "hoverRadius": 0.46,
+      "ambientMotion": "none",
+      "resolutionKey": "high",
+      "columns": 180,
+      "charsetKey": "dense",
+      "customCharset": "",
+      "invert": false,
+      "fontSize": 9,
+      "previewFontKey": "consolas",
+      "previewFontFamily": "Consolas, \"Cascadia Mono\", \"Courier New\", monospace",
+      "previewAspect": 0.4712611607142857,
+      "exportFontKey": "yahei",
+      "exportFontFamily": "\"Microsoft YaHei\", \"微软雅黑\", Cascadia Mono, Consolas, \"Courier New\", monospace",
+      "exportAspect": 0.85,
+      "backgroundColor": "#111615",
+      "foregroundColor": "#eeeae2",
+      "clipStart": 0,
+      "clipEnd": 0,
+      "videoFps": 15
+    },
+    "html": "current",
+    "noNetworkRequests": true,
+    "packageSha": "45d129496722841d870d1b968fbd99ecd4aedb038f5000e48ddd7a8b359072cb",
+    "offlineHover": true,
+    "offlineMotion": true
+  },
+  "stylePersistence": {
+    "dirtyState": true,
+    "cinematicRestored": true,
+    "previousExpressiveDefaultsToStudio": true
+  },
+  "touch": {
+    "width": 390,
+    "heldGlow": true,
+    "releaseFade": true,
+    "noHorizontalOverflow": true
+  }
+}

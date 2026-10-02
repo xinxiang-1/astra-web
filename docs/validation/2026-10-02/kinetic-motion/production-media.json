@@ -1,0 +1,29 @@
+{
+  "base": "http://127.0.0.1:5194",
+  "errors": [],
+  "passed": true,
+  "pause": {
+    "ambientTimeFrozen": true,
+    "hoverTimeContinues": true,
+    "outsideCanvasFades": true
+  },
+  "encoded": {
+    "correct": 0.0037102705014297388,
+    "ignored": 0.09284097988153595,
+    "wrongSpeed": 0.03177962957643995,
+    "wrongStrength": 0.09376653933057598,
+    "wrongStyle": 0.04907122922411152,
+    "motion": "assemble",
+    "motionSpeed": 0.4,
+    "motionStrength": 0.9,
+    "motionStyle": "cinematic"
+  },
+  "video": {
+    "codec": "h264",
+    "width": 1280,
+    "height": 960,
+    "duration": "0.533333",
+    "selectedStart": 0.2,
+    "selectedEnd": 0.7
+  }
+}

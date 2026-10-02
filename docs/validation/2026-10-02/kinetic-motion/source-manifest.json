@@ -1,0 +1,31 @@
+{
+  "baselineCommit": "46a74b00d7c3563262ffe613b4515b1a80489389",
+  "referenceCinematicCommit": "0840f8b8950d5091b9ae4cf06ff098514ec9bdb8",
+  "hashConvention": "Git LF text",
+  "files": {
+    "src/lib/art-engine/canvas.ts": "7710432fec0f7d0b2fadee54b24e3fc99c75ba9e5e8ab5bf990921ce46a2607a",
+    "src/views/AsciiArtView.vue": "6eaf28896ab660c60523102791bc7f106cb301ae3057bd41be3ba7b20592fd30",
+    "src/lib/art-engine/core.ts": "ce091baf6d11340ccdda8c21fabe8a7935134964aaf7d4c094fe4432fce414e4",
+    "src/lib/art-engine/types.ts": "1ae58e3305d0e1d8b7e5e06fd6ded2a6c70457664d8b162501223284be2b4819",
+    "src/lib/art-engine/index.ts": "1d5ced6806e6abba6ab800e691416816ad9a803b50e868e6179d53760f1db5f3",
+    "src/lib/art-engine/embed.ts": "c99c491e7b06dfa4c92f80d8cb50696abf08df93aa490de27354cc6b671efa7e",
+    "scripts/fixtures/cinematic-v1-renderer.ts": "2d27309cdd52433dd3da8553848e153f1a2af41403f0a8038afa87f01c084356",
+    "scripts/kinetic-motion-prototype.mjs": "1d288791b20b02ff065e13b173870477d9f96d67e9219082e45c8642479f52f8",
+    "scripts/kinetic-motion-cache-contract.mjs": "d8af4bab0b4c154dc81c45f4a346ece42b48500fcc7d0e16540d0a208028a74a",
+    "scripts/studio-motion-contract.mjs": "3d066b96bd22a7617812926fff251acdfd4a7ebb5ccf850e18dcc040788cc5f2",
+    "scripts/studio-motion-walkthrough.mjs": "ec632372817452a6cc262ecd9c499fa6d068fa68e0555d09cf5bf97963b932ae",
+    "scripts/studio-motion-export-contract.mjs": "7ccae434a62c384c37e0c541faea050b1f228f4a229f56ef386576199b151534",
+    "scripts/art-effects-contract.mjs": "7e95599c15dca42ad64b04b1eca826258526a8f6a70d39a89c99cc2ec9c3d364",
+    "scripts/art-effects-media-contract.mjs": "e62e14f0558773cddef93b14f119d11ced069770de6b01b0f543e8ff0f84f31c",
+    "scripts/home-hover-smoke.mjs": "9f816e30361860b5b8465d4b0db2b261e23f5638bc8515da4e38b9b5f3b096d1",
+    "docs/prototypes/v2-kinetic-motion/main.ts": "ad5d3dbdf35d156e9e34392d7135e919935805e81dde806edf96a828a79ab16b",
+    "docs/prototypes/v2-kinetic-motion/index.html": "dd1cbacfe651cf4aa90fb22463f0e1d4f78f08b50e62c28ec102494e1ec7d141"
+  },
+  "protectedHome": {
+    "src/views/ArtHomeView.vue": "db2b7e0ffa0d590be0e3e9d99caa8ecaba4716721b5d03b2d6269e46ad4458dd",
+    "src/components/CharacterArtwork.vue": "99da7635979b98f70aa622887bcf775047114529b4130de201cebf40d0ab2858",
+    "src/lib/ascii/studio-preview.ts": "87ef73fd4261872b1a6bc3d66fd2a05498bc73fa047294b4934174ede9af1a07"
+  },
+  "nativeInteractionUnchanged": true,
+  "nativeInteractionSha256": "04892afd91ef249f57487c90db7dc95de4a195efbaa5e7e7d96b2330f380d2fd"
+}
