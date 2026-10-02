@@ -134,7 +134,10 @@ try {
     decoded,
   ])
   const reference = await browser.newPage()
-  await reference.goto('http://127.0.0.1:5180/ascii-art', { waitUntil: 'domcontentloaded' })
+  reference.setDefaultNavigationTimeout(60000)
+  await reference.goto(`${process.env.ASTRA_REFERENCE_URL || 'http://127.0.0.1:5180'}/ascii-art`, {
+    waitUntil: 'domcontentloaded',
+  })
   report.encoded = await reference.evaluate(
     async ({ data, decoded }) => {
       const { createArtCore, createCanvasArtRenderer, ART_DEFAULTS, ART_ENGINE_VERSION } =

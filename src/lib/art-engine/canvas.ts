@@ -27,8 +27,161 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
   let colorProbe: HTMLCanvasElement | null = null
   const styleColors = new Map<string, number[]>()
   let glowCanvas: HTMLCanvasElement | null = null
+  // Native Studio ambient sampler is adapted under the MIT notice below.
+  // Offsets are reference pixels at 960px, followed by density and opacity.
+  function sampleStudioAmbient(
+    mode: string,
+    x: number,
+    y: number,
+    time: number,
+    out: Float32Array,
+  ) {
+    const smooth = (low: number, high: number, value: number) => {
+      const t = Math.max(0, Math.min(1, (value - low) / (high - low)))
+      return t * t * (3 - 2 * t)
+    }
+    out[0] = out[1] = out[2] = 0
+    out[3] = 1
+    if (mode === 'none') return out
+    const phase = (time * Math.PI) / 6
+    const edge = smooth(0, 0.12, Math.min(x, 1 - x, y, 1 - y))
+    if (mode === 'caustics') {
+      const bands = Math.sin(9 * x + 5 * y + phase) + Math.sin(8 * y - 3 * x - phase)
+      const ridge = Math.pow(Math.max(0, 1 - 0.72 * Math.abs(bands)), 3)
+      out[2] = (0.22 * ridge - 0.045) * edge
+    } else if (mode === 'current') {
+      out[0] = Math.sin(9 * y + phase) * Math.cos(7 * x - phase) * 10 * edge
+      out[1] = Math.cos(8 * x + phase) * Math.sin(6 * y - phase) * 7 * edge
+    } else if (mode === 'reform') {
+      const cycle = ((time % 12) + 12) % 12
+      const raw =
+        ((0.06711056 * Math.floor(160 * x) + 0.00583715 * Math.floor(100 * y)) % 1) * 52.9829189
+      const noise = raw - Math.floor(raw)
+      const delay = 0.65 * x + 0.2 * y + 0.15 * noise + 0.08 * Math.sin(8 * x - 5 * y)
+      const scatter =
+        smooth(1.8 + 1.2 * delay, 3.8 + 1.2 * delay, cycle) *
+        (1 - smooth(5 + 1.7 * delay, 7.2 + 1.7 * delay, cycle))
+      out[0] = Math.sin(9 * y + phase) * scatter * (1 - scatter) * 24 * edge
+      out[1] = -scatter * (1 - scatter) * (8 + 12 * noise) * edge
+      out[2] = -0.45 * scatter
+      out[3] = 1 - 0.9 * scatter
+    }
+    return out
+  }
+  // One bounded, deterministic field per frame, reused by glyph/glow/area paths.
+  // Five signals: normalized displacement x/y, intensity, opacity and glyph light.
+  let motionField: Float32Array | null = null
+  let motionColumns = 0,
+    motionRows = 0,
+    motionKey = ''
+  const motionSample = new Float32Array(5)
+  const ambientNative = new Float32Array(4)
+  const ambientLight = new Float32Array(4)
+  const motionSmooth = (low: number, high: number, value: number) => {
+    const t = Math.max(0, Math.min(1, (value - low) / (high - low)))
+    return t * t * t * (t * (6 * t - 15) + 10)
+  }
+  function buildMotionField(mode: string, time: number, amount: number) {
+    if (mode === 'none' || amount === 0) {
+      motionField = null
+      motionColumns = motionRows = 0
+      motionKey = ''
+      return
+    }
+    const columns = Math.max(2, Math.min(96, frame.columns + 1))
+    const rows = Math.max(2, Math.min(96, frame.rows + 1))
+    const key = `${mode}:${time}:${amount}:${columns}:${rows}`
+    if (motionKey === key) return
+    if (!motionField || motionField.length !== columns * rows * 5)
+      motionField = new Float32Array(columns * rows * 5)
+    motionColumns = columns
+    motionRows = rows
+    motionKey = key
+    for (let row = 0; row < rows; row++)
+      for (let column = 0; column < columns; column++) {
+        const x = column / (columns - 1),
+          y = row / (rows - 1),
+          edge = motionSmooth(0, 0.12, Math.min(x, 1 - x, y, 1 - y))
+        let dx = 0,
+          dy = 0,
+          intensity = 1,
+          opacity = 1,
+          glow = 0
+        const nativeMode = mode === 'caustics' || mode === 'reform' ? mode : 'current'
+        // Start the repeating native reform just before its dispersal, then retain
+        // the complete-image hold. No random per-frame state; seeking is exact.
+        sampleStudioAmbient(nativeMode, x, y, time + (mode === 'reform' ? 2.4 : 0), ambientNative)
+        if (mode === 'current') {
+          dx = (ambientNative[0]! / 960) * 6.5 * amount
+          dy = (ambientNative[1]! / 960) * 6.5 * amount
+          const fold = Math.abs(ambientNative[0]! * ambientNative[1]!) / 70
+          glow = fold * 0.6 * amount
+          intensity = 1 - amount * 0.12 + fold * amount * 0.18
+        } else if (mode === 'breathe') {
+          const breath = 0.5 - 0.5 * Math.cos(time * 0.95)
+          const swell = (0.005 + 0.1 * breath) * edge * amount
+          dx = (x - 0.5) * swell + (ambientNative[0]! / 960) * amount
+          dy = (y - 0.5) * swell + (ambientNative[1]! / 960) * amount
+          sampleStudioAmbient('caustics', x, y, time * 0.55, ambientLight)
+          intensity = 1 - amount * (1 - breath) * 0.24
+          glow = (breath * 0.28 * edge + Math.max(0, ambientLight[2]!) * 1.1) * amount
+        } else if (mode === 'wave') {
+          const wave = 9 * y - time * 1.65 + Math.sin(5 * x + time * 0.35) * 0.65
+          dx = ((ambientNative[0]! / 960) * 1.6 + Math.sin(wave) * 0.035 * edge) * amount
+          dy = ((ambientNative[1]! / 960) * 2.1 + Math.cos(wave) * 0.048 * edge) * amount
+          intensity = 1 - amount * 0.1 + Math.cos(wave) * amount * 0.12 * edge
+          glow = Math.pow(Math.max(0, Math.cos(wave)), 6) * 0.5 * edge * amount
+        } else if (mode === 'assemble') {
+          const lane = 0.65 * x + 0.2 * y + 0.08 * Math.sin(8 * x - 5 * y)
+          const remaining =
+            1 - motionSmooth(0.12 + lane * 0.85, 3.15 + lane * 0.85, Math.max(0, time))
+          dx = ((0.5 - x) * 0.8 + (ambientNative[0]! / 960) * 6) * remaining * amount
+          dy = ((0.5 - y) * 0.72 + (ambientNative[1]! / 960) * 6) * remaining * amount
+          opacity = 1 - remaining * amount * 0.85
+          intensity = 1 - remaining * amount * 0.12
+          glow = remaining * (1 - remaining) * amount * 1.3 * edge
+        } else if (mode === 'reform') {
+          const scatter = (1 - ambientNative[3]!) / 0.9
+          dx = ((ambientNative[0]! / 960) * 8 + (0.5 - x) * scatter * 0.16 * edge) * amount
+          dy = (ambientNative[1]! / 960) * 8 * amount
+          opacity = 1 + (ambientNative[3]! - 1) * amount
+          intensity = 1 + ambientNative[2]! * amount * 0.8
+          glow = scatter * (1 - scatter) * 1.4 * edge * amount
+        } else if (mode === 'caustics') {
+          sampleStudioAmbient('caustics', 1 - x, 1 - y, time + 3, ambientLight)
+          const ribbon = Math.max(0, ambientNative[2]!)
+          const second = Math.max(0, ambientLight[2]!)
+          intensity = 1 + (ambientNative[2]! * 3.3 + ambientLight[2]! * 0.7) * amount
+          glow = (ribbon * 3.8 + second * 1.1) * amount
+        }
+        const offset = (row * columns + column) * 5
+        motionField[offset] = dx
+        motionField[offset + 1] = dy
+        motionField[offset + 2] = intensity
+        motionField[offset + 3] = opacity
+        motionField[offset + 4] = glow
+      }
+  }
+  function sampleMotionField(x: number, y: number) {
+    motionSample[0] = motionSample[1] = motionSample[4] = 0
+    motionSample[2] = motionSample[3] = 1
+    if (!motionField) return motionSample
+    const px = Math.max(0, Math.min(1, x)) * (motionColumns - 1),
+      py = Math.max(0, Math.min(1, y)) * (motionRows - 1),
+      ix = Math.min(motionColumns - 2, Math.floor(px)),
+      iy = Math.min(motionRows - 2, Math.floor(py)),
+      fx = px - ix,
+      fy = py - iy,
+      a = (iy * motionColumns + ix) * 5,
+      b = a + motionColumns * 5
+    for (let i = 0; i < 5; i++)
+      motionSample[i] =
+        (motionField[a + i]! * (1 - fx) + motionField[a + 5 + i]! * fx) * (1 - fy) +
+        (motionField[b + i]! * (1 - fx) + motionField[b + 5 + i]! * fx) * fy
+    return motionSample
+  }
   function makeStudioInteraction(ratio: number) {
-    /*! Native interaction fields adapted from asciify-engine 4.1.0.
+    /*! Native interaction and ambient fields adapted from asciify-engine 4.1.0.
     MIT License
 
     Copyright (c) 2026 ayangabryl
@@ -969,6 +1122,7 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
     const time = (options.time ?? 0) * clamp(options.motionSpeed ?? 1, 0.2, 2)
     const interactionTime = options.hoverTime ?? options.time ?? 0
     const amount = clamp(options.motionStrength ?? 0.65, 0, 1)
+    buildMotionField(expressive ? motion : 'none', time, amount)
     const pointer = options.pointer
     const fieldMode = hover === 'ripple' ? 'water' : hover === 'displace' ? 'silk' : hover
     const strength = clamp(options.hoverStrength ?? pointer?.strength ?? 0, 0, 1)
@@ -1045,37 +1199,16 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
         dy = 0,
         intensity = 1,
         opacity = alpha,
+        ambientOpacity = 1,
         glow = 0
-      if (motion === 'breathe')
-        intensity = 1 - amount * (0.5 - 0.5 * Math.sin(time * 0.9 + x * 0.03 + y * 0.025)) * 0.28
-      if (motion === 'wave') {
-        dx = Math.sin(y * 0.075 + time * 0.85) * cw * 0.65 * amount
-        dy = Math.cos(x * 0.055 + time * 0.65) * ch * 0.38 * amount
-      }
-      if (motion === 'assemble') {
-        const fade = Math.exp(-Math.max(0, time) * 1.4) * amount
-        dx = Math.sin(index * 12.9898) * cw * 12 * fade
-        dy = Math.cos(index * 7.13) * ch * 10 * fade
-      }
-      if (motion === 'current') {
-        dx =
-          (Math.sin(y * 0.04 + time * 0.32) + Math.cos(x * 0.035 - time * 0.23)) *
-          cw *
-          0.65 *
-          amount
-        dy = Math.sin(x * 0.045 + y * 0.03 + time * 0.28) * ch * 0.5 * amount
-      }
-      if (motion === 'reform') {
-        const pulse = Math.pow(Math.max(0, Math.sin(time * 0.85)), 6) * amount
-        dx = Math.sin(index * 12.9898) * cw * 2.1 * pulse
-        dy = Math.cos(index * 7.13) * ch * 1.6 * pulse
-        intensity = 1 - pulse * 0.26
-      }
-      if (motion === 'caustics') {
-        const bands =
-          Math.sin(x * 0.075 + y * 0.04 - time * 0.8) * Math.cos(y * 0.085 - x * 0.025 + time * 0.5)
-        glow = Math.pow(Math.max(0, bands), 3) * amount * 0.55
-        intensity = 1 - amount * 0.12 + glow * 0.16
+      if (motionField) {
+        const sample = sampleMotionField((x + 0.5) / frame.columns, (y + 0.5) / frame.rows)
+        dx = sample[0]! * frame.columns * cw
+        dy = sample[1]! * frame.rows * ch
+        intensity = sample[2]!
+        ambientOpacity = sample[3]!
+        opacity = alpha * ambientOpacity
+        glow = sample[4]!
       }
       let glyph = frame.indices[index]!
       if (interaction?.hasRefraction && expressive) {
@@ -1098,11 +1231,11 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
             const targetTone = tone + (max - 2 * tone) * blend
             const mapped = densityAt(targetTone)
             glyph = mapped.glyph
-            opacity = mapped.opacity
-          } else opacity = alpha * (1 - blend * 0.9)
+            opacity = mapped.opacity * ambientOpacity
+          } else opacity *= 1 - blend * 0.9
           glow += signal * 0.16
         } else if (hover === 'light') {
-          opacity += (1 - alpha) * signal * 0.8
+          opacity += (1 - alpha) * signal * 0.8 * ambientOpacity
           glow += signal * 1.6
         } else if (hover === 'dissolve') {
           const noise = 0.5 + 0.5 * Math.sin(index * 12.9898)
@@ -1118,8 +1251,8 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
               tone + (frame.statistics.maxCoverage - tone) * clamp(signal * 1.6, 0, 1),
             )
             glyph = mapped.glyph
-            opacity = mapped.opacity
-          } else opacity += (1 - alpha) * signal * 0.7
+            opacity = mapped.opacity * ambientOpacity
+          } else opacity += (1 - alpha) * signal * 0.7 * ambientOpacity
         } else {
           const displacement = Math.hypot(interactionSample[0]! * w, interactionSample[1]! * h)
           glow += Math.min(0.45, (displacement / Math.max(1, Math.min(w, h))) * 14)
@@ -1128,9 +1261,9 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
       return { dx, dy, intensity, opacity, glow, glyph }
     }
     const needsGlow =
-      (motion === 'caustics' && amount > 0) ||
+      Boolean(motionField) ||
       Boolean(interaction?.hasRefraction && expressive && hover !== 'displace')
-    return { expressive, needsGlow, cell }
+    return { expressive, needsGlow, motionLight: Boolean(motionField), cell }
   }
 
   function renderGlow(effect: ReturnType<typeof effects>, w: number, h: number) {
@@ -1158,7 +1291,12 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
           gc.clearRect(0, 0, gw, gh)
         }
         gc.globalAlpha = clamp(e.glow * Math.max(0.35, e.opacity) * e.intensity, 0, 1)
-        gc.drawImage(tile(e.glyph, '#b5f5e9'), x * cw + e.dx, y * ch + e.dy, cw, ch)
+        let lightColor = '#b5f5e9'
+        if (effect.motionLight && (frame.settings.colored || frame.settings.mode === 'color')) {
+          const lift = (channel: number) => Math.min(255, frame.colors[i * 3 + channel]! + 64)
+          lightColor = `rgb(${lift(0)},${lift(1)},${lift(2)})`
+        }
+        gc.drawImage(tile(e.glyph, lightColor), x * cw + e.dx, y * ch + e.dy, cw, ch)
       }
     if (!gc) return
     const spread = Math.max(2, Math.min(w, h) * 0.018)
@@ -1544,6 +1682,9 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
       return { width: w, height: h, renderMs: performance.now() - start }
     },
     destroy() {
+      motionField = null
+      motionColumns = motionRows = 0
+      motionKey = ''
       current = null
       clearTiles()
       prefixes.clear()
@@ -1597,6 +1738,8 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
     },
     get cacheStats() {
       return {
+        motionCells: motionColumns * motionRows,
+        motionBytes: motionField?.byteLength ?? 0,
         entries: tinted.size,
         backingBytes,
         maxBackingBytes,

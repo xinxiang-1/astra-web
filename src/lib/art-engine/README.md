@@ -24,6 +24,8 @@
 
 环境暂停只冻结artElapsed，独立interactionTime和field.active驱动余波直到自然静止。pointer.active区分离开与强度变化，hoverStrength为包括余波的持续幅度；范围遵循原生0.1–1。无指针/零强度静态输出保持逐像素不变，classic历史三效果公式保持，已有expressive作品按原参数使用新交互。sampleInteraction提供只读位移/密度，供后续粒子/光场创新复用；不得再写另一套同名简化hover。见[长期Studio标准](../../../docs/plans/studio-effects-standard.md)及[本阶段记录](../../../docs/plans/hover-parity-iteration-2026-10-02.md)。
 
+2026-10-02环境动效重构：expressive六动效复用Studio原生current/reform/caustics环境核，加入光息的整体舒展、波浪的连续传播、有序聚合、空间慢流、散开/聚拢/完整停留和双层字符焦散。单份最多96×96×5个Float32的表现网格（backing最多184,320 bytes）在普通/软件栅格、字形光层和离线HTML复用，位移按画面尺寸缩放，不按列数改变幅度。时间/速度确定，可跳转、暂停和视频复现；聚合完成与重组完整停留恢复实际静态像素。彩色环境反光由原作RGB提亮，hover单独使用时保持原视觉。classic历史光息/波浪/聚合路径保持；已有expressive作品按原参数使用新环境表现，静态引擎仍2.2.0。步骤、实际证据和范围见[环境动效记录](../../../docs/plans/studio-motion-iteration-2026-10-02.md)，`npm run test:studio-motion`为独立原生核及模式/品质/透明合同，`demo:studio-motion`录制实际编辑器。
+
 代码中保留完整MIT许可，离线HTML包含同一许可正文；[许可归档](../../../docs/licenses/asciify-engine-interaction-MIT.txt)。新场会增加绘制成本，不能沿用静态品质档的计时承诺实时帧率。
 
 ## 验证与范围

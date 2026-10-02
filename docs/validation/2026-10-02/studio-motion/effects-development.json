@@ -1,0 +1,655 @@
+{
+  "base": "http://127.0.0.1:5180",
+  "browser": "153.0.8010.12",
+  "scope": "Chromium desktop/touch emulation; no real-device or universal frame-rate certification",
+  "api": {
+    "cases": [
+      {
+        "mode": "density",
+        "quality": "classic",
+        "legacyDelta": {
+          "channels": 0,
+          "mean": 0
+        },
+        "staticDelta": {
+          "channels": 0,
+          "mean": 0
+        },
+        "classic": {
+          "channels": 40136,
+          "mean": 0.05393819926697531
+        },
+        "light": {
+          "channels": 506640,
+          "mean": 2.6741325472608026
+        },
+        "duration": 51,
+        "glowBytes": 1658880
+      },
+      {
+        "mode": "color",
+        "quality": "classic",
+        "legacyDelta": {
+          "channels": 0,
+          "mean": 0
+        },
+        "staticDelta": {
+          "channels": 0,
+          "mean": 0
+        },
+        "classic": {
+          "channels": 30199,
+          "mean": 0.028613884066358026
+        },
+        "light": {
+          "channels": 516926,
+          "mean": 3.2130907600308642
+        },
+        "duration": 59.60000002384186,
+        "glowBytes": 1658880
+      },
+      {
+        "mode": "phrase",
+        "quality": "classic",
+        "legacyDelta": {
+          "channels": 0,
+          "mean": 0
+        },
+        "staticDelta": {
+          "channels": 0,
+          "mean": 0
+        },
+        "classic": {
+          "channels": 32568,
+          "mean": 0.0828661506558642
+        },
+        "light": {
+          "channels": 460616,
+          "mean": 1.8842104311342593
+        },
+        "duration": 70.09999996423721,
+        "glowBytes": 1658880
+      },
+      {
+        "mode": "contour",
+        "quality": "classic",
+        "legacyDelta": {
+          "channels": 0,
+          "mean": 0
+        },
+        "staticDelta": {
+          "channels": 0,
+          "mean": 0
+        },
+        "classic": {
+          "channels": 47337,
+          "mean": 0.19313633294753085
+        },
+        "light": {
+          "channels": 359751,
+          "mean": 1.4698579764660493
+        },
+        "duration": 49.69999998807907,
+        "glowBytes": 1658880
+      },
+      {
+        "mode": "braille",
+        "quality": "classic",
+        "legacyDelta": {
+          "channels": 0,
+          "mean": 0
+        },
+        "staticDelta": {
+          "channels": 0,
+          "mean": 0
+        },
+        "classic": {
+          "channels": 0,
+          "mean": 0
+        },
+        "light": {
+          "channels": 473842,
+          "mean": 2.579859302662037
+        },
+        "duration": 49.40000003576279,
+        "glowBytes": 1658880
+      },
+      {
+        "mode": "halftone",
+        "quality": "classic",
+        "legacyDelta": {
+          "channels": 0,
+          "mean": 0
+        },
+        "staticDelta": {
+          "channels": 0,
+          "mean": 0
+        },
+        "classic": {
+          "channels": 39998,
+          "mean": 0.13073338638117285
+        },
+        "light": {
+          "channels": 486442,
+          "mean": 2.165674430941358
+        },
+        "duration": 47.19999998807907,
+        "glowBytes": 1658880
+      },
+      {
+        "mode": "density",
+        "quality": "detailed",
+        "legacyDelta": {
+          "channels": 0,
+          "mean": 0
+        },
+        "staticDelta": {
+          "channels": 0,
+          "mean": 0
+        },
+        "classic": {
+          "channels": 55526,
+          "mean": 0.05845570505401235
+        },
+        "light": {
+          "channels": 545000,
+          "mean": 3.2454179928626545
+        },
+        "duration": 60,
+        "glowBytes": 1658880
+      },
+      {
+        "mode": "density",
+        "quality": "smooth",
+        "legacyDelta": {
+          "channels": 0,
+          "mean": 0
+        },
+        "staticDelta": {
+          "channels": 0,
+          "mean": 0
+        },
+        "classic": {
+          "channels": 52883,
+          "mean": 0.05836889949845679
+        },
+        "light": {
+          "channels": 544527,
+          "mean": 3.20155647183642
+        },
+        "duration": 82,
+        "glowBytes": 1658880
+      },
+      {
+        "mode": "density",
+        "quality": "faithful",
+        "legacyDelta": {
+          "channels": 0,
+          "mean": 0
+        },
+        "staticDelta": {
+          "channels": 0,
+          "mean": 0
+        },
+        "classic": {
+          "channels": 54577,
+          "mean": 0.05856722608024691
+        },
+        "light": {
+          "channels": 544632,
+          "mean": 3.203301625192901
+        },
+        "duration": 28.600000023841858,
+        "glowBytes": 1658880
+      },
+      {
+        "mode": "color",
+        "quality": "faithful",
+        "legacyDelta": {
+          "channels": 0,
+          "mean": 0
+        },
+        "staticDelta": {
+          "channels": 0,
+          "mean": 0
+        },
+        "classic": {
+          "channels": 61076,
+          "mean": 0.07060486593364197
+        },
+        "light": {
+          "channels": 551484,
+          "mean": 3.9144603587962963
+        },
+        "duration": 28,
+        "glowBytes": 1658880
+      }
+    ],
+    "hovers": [
+      {
+        "hover": "light",
+        "changed": {
+          "channels": 466251,
+          "mean": 2.0074821566358025
+        },
+        "moved": {
+          "channels": 527638,
+          "mean": 1.8021707417052468
+        },
+        "zero": {
+          "channels": 0,
+          "mean": 0
+        },
+        "fingerprint": {
+          "sha256": "2f09c165f5044d8db32ec8a83e77cdff222f1c95d69b2c1086551899efa0a645",
+          "scalarCount": 1664,
+          "encoding": "JSON UTF-8"
+        }
+      },
+      {
+        "hover": "ripple",
+        "changed": {
+          "channels": 247265,
+          "mean": 7.8747739438657405
+        },
+        "moved": {
+          "channels": 424100,
+          "mean": 13.417536530671295
+        },
+        "zero": {
+          "channels": 0,
+          "mean": 0
+        },
+        "fingerprint": {
+          "sha256": "8dc7b5b2609e337e8ac2f7700265a48362522a1b8506af64ad482aaa5737cd42",
+          "scalarCount": 1664,
+          "encoding": "JSON UTF-8"
+        }
+      },
+      {
+        "hover": "displace",
+        "changed": {
+          "channels": 92253,
+          "mean": 3.572362678433642
+        },
+        "moved": {
+          "channels": 107736,
+          "mean": 4.2958803530092595
+        },
+        "zero": {
+          "channels": 0,
+          "mean": 0
+        },
+        "fingerprint": {
+          "sha256": "dffd7f8350454f0d06d8ca6738976be03b82a05c8779c9b8f23c59210fb26966",
+          "scalarCount": 1664,
+          "encoding": "JSON UTF-8"
+        }
+      },
+      {
+        "hover": "trail",
+        "changed": {
+          "channels": 142266,
+          "mean": 3.1713252314814815
+        },
+        "moved": {
+          "channels": 215121,
+          "mean": 4.219195481288581
+        },
+        "zero": {
+          "channels": 0,
+          "mean": 0
+        },
+        "fingerprint": {
+          "sha256": "31214b99defd9d40b0214fab0768475eac45f641a51cc725161f90c0796a129b",
+          "scalarCount": 1664,
+          "encoding": "JSON UTF-8"
+        }
+      },
+      {
+        "hover": "water",
+        "changed": {
+          "channels": 256916,
+          "mean": 8.840183738425926
+        },
+        "moved": {
+          "channels": 434896,
+          "mean": 14.944941165123456
+        },
+        "zero": {
+          "channels": 0,
+          "mean": 0
+        },
+        "fingerprint": {
+          "sha256": "7f31ff3903908b35bfa7b8974c1c1ee4a68120903109f75b39967275b3d34ba7",
+          "scalarCount": 1664,
+          "encoding": "JSON UTF-8"
+        }
+      },
+      {
+        "hover": "silk",
+        "changed": {
+          "channels": 158015,
+          "mean": 4.562218484760803
+        },
+        "moved": {
+          "channels": 187510,
+          "mean": 5.304893663194444
+        },
+        "zero": {
+          "channels": 0,
+          "mean": 0
+        },
+        "fingerprint": {
+          "sha256": "bc908dbdfb7bb3a070857c4e5d5cbe4bf5c9ab6cc9cfc500cb46a4d7fef73c42",
+          "scalarCount": 1664,
+          "encoding": "JSON UTF-8"
+        }
+      },
+      {
+        "hover": "vortex",
+        "changed": {
+          "channels": 162572,
+          "mean": 4.883728780864198
+        },
+        "moved": {
+          "channels": 194835,
+          "mean": 5.773427252121913
+        },
+        "zero": {
+          "channels": 0,
+          "mean": 0
+        },
+        "fingerprint": {
+          "sha256": "96b8f743fb97cf18f5e444adae4a918612147d631591a05425f3c95e4bf16d64",
+          "scalarCount": 1664,
+          "encoding": "JSON UTF-8"
+        }
+      },
+      {
+        "hover": "contour",
+        "changed": {
+          "channels": 26391,
+          "mean": 0.5057098765432099
+        },
+        "moved": {
+          "channels": 67426,
+          "mean": 1.2730975115740741
+        },
+        "zero": {
+          "channels": 0,
+          "mean": 0
+        },
+        "fingerprint": {
+          "sha256": "f85e4d7b619ff840c6298afd0bc3eaed2e1db779bc670ba9ab7d98bfba53642a",
+          "scalarCount": 1664,
+          "encoding": "JSON UTF-8"
+        }
+      },
+      {
+        "hover": "dissolve",
+        "changed": {
+          "channels": 97658,
+          "mean": 2.63929759837963
+        },
+        "moved": {
+          "channels": 108670,
+          "mean": 2.4831458574459875
+        },
+        "zero": {
+          "channels": 0,
+          "mean": 0
+        },
+        "fingerprint": {
+          "sha256": "842bdbf2bb8af66641c4da39888970f208e2c41b8a0e688cc5044fceb53a1d74",
+          "scalarCount": 1664,
+          "encoding": "JSON UTF-8"
+        }
+      }
+    ],
+    "motions": [
+      {
+        "motion": "breathe",
+        "changed": {
+          "channels": 699008,
+          "mean": 26.11460925443673
+        },
+        "phase": {
+          "channels": 837684,
+          "mean": 26.658912037037037
+        },
+        "zero": {
+          "channels": 0,
+          "mean": 0
+        },
+        "speed": {
+          "channels": 0,
+          "mean": 0
+        }
+      },
+      {
+        "motion": "wave",
+        "changed": {
+          "channels": 799132,
+          "mean": 34.89013732156636
+        },
+        "phase": {
+          "channels": 836064,
+          "mean": 31.80221293885031
+        },
+        "zero": {
+          "channels": 0,
+          "mean": 0
+        },
+        "speed": {
+          "channels": 0,
+          "mean": 0
+        }
+      },
+      {
+        "motion": "assemble",
+        "changed": {
+          "channels": 518557,
+          "mean": 30.250144675925927
+        },
+        "phase": {
+          "channels": 202604,
+          "mean": 5.4965054735725305
+        },
+        "zero": {
+          "channels": 0,
+          "mean": 0
+        },
+        "speed": {
+          "channels": 0,
+          "mean": 0
+        }
+      },
+      {
+        "motion": "current",
+        "changed": {
+          "channels": 763789,
+          "mean": 32.65377905574846
+        },
+        "phase": {
+          "channels": 775858,
+          "mean": 30.050505762924384
+        },
+        "zero": {
+          "channels": 0,
+          "mean": 0
+        },
+        "speed": {
+          "channels": 0,
+          "mean": 0
+        }
+      },
+      {
+        "motion": "reform",
+        "changed": {
+          "channels": 860066,
+          "mean": 33.80780164930555
+        },
+        "phase": {
+          "channels": 891992,
+          "mean": 25.253542148919752
+        },
+        "zero": {
+          "channels": 0,
+          "mean": 0
+        },
+        "speed": {
+          "channels": 0,
+          "mean": 0
+        }
+      },
+      {
+        "motion": "caustics",
+        "changed": {
+          "channels": 669936,
+          "mean": 7.2654254677854935
+        },
+        "phase": {
+          "channels": 612258,
+          "mean": 4.4401789158950615
+        },
+        "zero": {
+          "channels": 0,
+          "mean": 0
+        },
+        "speed": {
+          "channels": 0,
+          "mean": 0
+        }
+      }
+    ],
+    "narrow": {
+      "channels": 25128,
+      "mean": 0.03552095389660494
+    },
+    "wide": {
+      "channels": 609949,
+      "mean": 1.1233531057098765
+    },
+    "fullInk": {
+      "channels": 242299,
+      "mean": 0.42163447627314815
+    },
+    "highResolutionGlowBytes": 7550976,
+    "nativeFieldCells": 13056,
+    "nativeFieldBytes": 1671168,
+    "performanceSamples": [
+      29.5,
+      27.100000023841858,
+      28.5,
+      22.599999964237213,
+      21.700000047683716,
+      22.099999964237213,
+      21.400000035762787,
+      21.599999964237213,
+      22.099999964237213,
+      21.600000023841858,
+      22,
+      28.600000023841858
+    ],
+    "backend": "canvas2d"
+  },
+  "ui": [
+    {
+      "name": "density-paused-light",
+      "hoverChanged": true
+    },
+    {
+      "name": "color-paused-light",
+      "hoverChanged": true
+    },
+    {
+      "name": "phrase-paused-light",
+      "hoverChanged": true
+    },
+    {
+      "name": "contour-paused-light",
+      "hoverChanged": true
+    },
+    {
+      "name": "braille-paused-light",
+      "hoverChanged": true
+    },
+    {
+      "name": "halftone-paused-light",
+      "hoverChanged": true
+    },
+    {
+      "name": "detailed-paused-light",
+      "hoverChanged": true
+    },
+    {
+      "name": "smooth-paused-light",
+      "hoverChanged": true
+    },
+    {
+      "name": "faithful-paused-light",
+      "hoverChanged": true
+    },
+    {
+      "name": "fullscreen-paused",
+      "hoverChanged": true
+    }
+  ],
+  "errors": [],
+  "passed": true,
+  "portable": {
+    "url": "http://127.0.0.1:5180/ascii-art?project=ce3b837c-9dcd-44a6-af2f-f6152880fb28",
+    "settings": {
+      "editorEngine": "calibrated",
+      "artMode": "density",
+      "artQuality": "faithful",
+      "artMotion": "current",
+      "artHover": "light",
+      "artEffectProfile": "expressive",
+      "artMotionSpeed": 0.6,
+      "artMotionStrength": 0.73,
+      "mode": "charset",
+      "phrase": "我爱你中国",
+      "phraseThreshold": 0.55,
+      "phraseFillAll": false,
+      "phraseColor": false,
+      "exposure": 0,
+      "contrast": 0.2,
+      "normalizeTone": true,
+      "ditherStrength": 0.25,
+      "hoverEffect": "none",
+      "hoverStrength": 0.82,
+      "hoverRadius": 0.46,
+      "ambientMotion": "none",
+      "resolutionKey": "high",
+      "columns": 180,
+      "charsetKey": "dense",
+      "customCharset": "",
+      "invert": false,
+      "fontSize": 9,
+      "previewFontKey": "consolas",
+      "previewFontFamily": "Consolas, \"Cascadia Mono\", \"Courier New\", monospace",
+      "previewAspect": 0.4712611607142857,
+      "exportFontKey": "yahei",
+      "exportFontFamily": "\"Microsoft YaHei\", \"微软雅黑\", Cascadia Mono, Consolas, \"Courier New\", monospace",
+      "exportAspect": 0.85,
+      "backgroundColor": "#111615",
+      "foregroundColor": "#eeeae2",
+      "clipStart": 0,
+      "clipEnd": 0,
+      "videoFps": 15
+    },
+    "html": "current",
+    "noNetworkRequests": true,
+    "packageSha": "a55c05696d67fb45d84dd0f1111a1ae1b2cb0c73bb857d82ba76afa5d32b3ea1",
+    "offlineHover": true,
+    "offlineMotion": true
+  },
+  "touch": {
+    "width": 390,
+    "heldGlow": true,
+    "releaseFade": true,
+    "noHorizontalOverflow": true
+  }
+}

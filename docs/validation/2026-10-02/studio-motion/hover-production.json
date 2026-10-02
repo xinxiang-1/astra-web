@@ -1,0 +1,197 @@
+{
+  "phase": "final",
+  "base": "http://127.0.0.1:5194",
+  "browser": "153.0.8010.12",
+  "errors": [],
+  "sourceHashes": {
+    "src/components/CharacterArtwork.vue": "99da7635979b98f70aa622887bcf775047114529b4130de201cebf40d0ab2858",
+    "src/views/ArtHomeView.vue": "db2b7e0ffa0d590be0e3e9d99caa8ecaba4716721b5d03b2d6269e46ad4458dd",
+    "src/lib/ascii/studio-preview.ts": "87ef73fd4261872b1a6bc3d66fd2a05498bc73fa047294b4934174ede9af1a07",
+    "src/lib/art-engine/canvas.ts": "05eeeef336cfb12b4dcd545b85f6fae929cf2a6d2942f22e034ec6e56fdeb68b"
+  },
+  "cases": [
+    {
+      "name": "home-native-trail",
+      "wakeMAE": 10.878745370370371,
+      "peakMAE": 11.385920953360769,
+      "settledMAE": null,
+      "timedPath": "24 segments / 16ms minimum event interval / S curve",
+      "canvas": {
+        "x": 561.59375,
+        "y": 76,
+        "width": 806.40625,
+        "height": 760
+      }
+    },
+    {
+      "name": "editor-trail",
+      "wakeMAE": 0.00263065461789189,
+      "peakMAE": 1.878311345711247,
+      "settledMAE": 0,
+      "timedPath": "24 segments / 16ms minimum event interval / S curve",
+      "canvas": {
+        "x": 409.5,
+        "y": 165.78125,
+        "width": 571,
+        "height": 713
+      }
+    },
+    {
+      "name": "editor-water",
+      "wakeMAE": 6.4122654578591725,
+      "peakMAE": 6.886070057451925,
+      "settledMAE": 0,
+      "timedPath": "24 segments / 16ms minimum event interval / S curve",
+      "canvas": {
+        "x": 409.5,
+        "y": 165.78125,
+        "width": 571,
+        "height": 713
+      }
+    },
+    {
+      "name": "editor-silk",
+      "wakeMAE": 2.520875754992963,
+      "peakMAE": 4.671419325363588,
+      "settledMAE": 0,
+      "timedPath": "24 segments / 16ms minimum event interval / S curve",
+      "canvas": {
+        "x": 409.5,
+        "y": 165.78125,
+        "width": 571,
+        "height": 713
+      }
+    },
+    {
+      "name": "editor-vortex",
+      "wakeMAE": 0.2075024009942941,
+      "peakMAE": 3.874941970854017,
+      "settledMAE": 0,
+      "timedPath": "24 segments / 16ms minimum event interval / S curve",
+      "canvas": {
+        "x": 409.5,
+        "y": 165.78125,
+        "width": 571,
+        "height": 713
+      }
+    },
+    {
+      "name": "editor-light",
+      "wakeMAE": 0.3417081569943236,
+      "peakMAE": 1.015107228036736,
+      "settledMAE": 0,
+      "timedPath": "24 segments / 16ms minimum event interval / S curve",
+      "canvas": {
+        "x": 409.5,
+        "y": 165.78125,
+        "width": 571,
+        "height": 713
+      }
+    },
+    {
+      "name": "editor-ripple",
+      "wakeMAE": 1.0842656887476267,
+      "peakMAE": 6.783715854913626,
+      "settledMAE": 0,
+      "timedPath": "24 segments / 16ms minimum event interval / S curve",
+      "canvas": {
+        "x": 409.5,
+        "y": 165.78125,
+        "width": 571,
+        "height": 713
+      }
+    },
+    {
+      "name": "editor-displace",
+      "wakeMAE": 3.088752661971935,
+      "peakMAE": 4.071486995330649,
+      "settledMAE": 0,
+      "timedPath": "24 segments / 16ms minimum event interval / S curve",
+      "canvas": {
+        "x": 409.5,
+        "y": 165.78125,
+        "width": 571,
+        "height": 713
+      }
+    },
+    {
+      "name": "editor-contour",
+      "wakeMAE": 0.0012226034883806613,
+      "peakMAE": 1.213847535020129,
+      "settledMAE": 0,
+      "timedPath": "24 segments / 16ms minimum event interval / S curve",
+      "canvas": {
+        "x": 409.5,
+        "y": 165.78125,
+        "width": 571,
+        "height": 713
+      }
+    },
+    {
+      "name": "editor-dissolve",
+      "wakeMAE": 0.8413949838255269,
+      "peakMAE": 2.460261395204889,
+      "settledMAE": 0,
+      "timedPath": "24 segments / 16ms minimum event interval / S curve",
+      "canvas": {
+        "x": 409.5,
+        "y": 165.78125,
+        "width": 571,
+        "height": 713
+      }
+    },
+    {
+      "name": "editor-detailed-trail",
+      "wakeMAE": 0.001737189989266143,
+      "peakMAE": 0.6251992641044598,
+      "settledMAE": 0,
+      "timedPath": "24 segments / 16ms minimum event interval / S curve",
+      "canvas": {
+        "x": 409.5,
+        "y": 165.78125,
+        "width": 571,
+        "height": 713
+      }
+    },
+    {
+      "name": "editor-smooth-trail",
+      "wakeMAE": 0.00021062430764167095,
+      "peakMAE": 0.3183841246994152,
+      "settledMAE": 0,
+      "timedPath": "24 segments / 16ms minimum event interval / S curve",
+      "canvas": {
+        "x": 409.5,
+        "y": 165.78125,
+        "width": 571,
+        "height": 713
+      }
+    },
+    {
+      "name": "editor-faithful-trail",
+      "wakeMAE": 0.2317070025520543,
+      "peakMAE": 1.8264308329423786,
+      "settledMAE": 0,
+      "timedPath": "24 segments / 16ms minimum event interval / S curve",
+      "canvas": {
+        "x": 409.5,
+        "y": 165.78125,
+        "width": 571,
+        "height": 713
+      }
+    },
+    {
+      "name": "editor-color-faithful-trail",
+      "wakeMAE": 0.1146594518118603,
+      "peakMAE": 2.124348784028414,
+      "settledMAE": 0,
+      "timedPath": "24 segments / 16ms minimum event interval / S curve",
+      "canvas": {
+        "x": 409.5,
+        "y": 165.78125,
+        "width": 571,
+        "height": 713
+      }
+    }
+  ],
+  "passed": true
+}

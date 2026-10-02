@@ -1,0 +1,97 @@
+{
+  "files": {
+    "native-motion.json": "d9f11291619a4032c32250568ae1a5c542054d215fa754007d155bc98421a723",
+    "effects-development.json": "b96672135fe7ceca9e7ee4e34c31642adef48ebaa168888e3b17f8e9874a97a4",
+    "effects-production.json": "22c4cd918d228085f26b39a0fc4f0b1da61caaf4562ea5b691b91cea741f679a",
+    "exports-production.json": "751535e4c309e20d6e9e450b030be15600a7fa428d9cb7c947d4a2eecc964de1",
+    "media-production.json": "a9863ea7c28fb25637c348bfa72dedd2817e58d415e58ee50e1215ec98c63b25",
+    "hover-production.json": "0df9b2e3253a9b1c2c714d70ee1d6eb6de0efca051fd16958db5f1dd60f87870",
+    "home-production.json": "c68afb87dc2a12a67109c44c1ef2a4ba2926fc863d107cbb9d0836f1a0cd1b11",
+    "walkthrough-production.json": "7698eec5681731145868f94c2f46c925ac5a06466595569ade22d4218006ec14",
+    "current.png": "c99825753b934bce33537081c51e380a75bee7f426984be6e8a40abb8783a0b9",
+    "reform.png": "6c1fa70af93f2fc88afc430845476534cf61514e0293b0096d4effad0a818246",
+    "assembled.png": "422f55db690c7e2bbda00a87d52f531429471acfae235216f68ed6c9b7c20df0"
+  },
+  "source": {
+    "src/lib/art-engine/canvas.ts": {
+      "worktreeSha256": "05eeeef336cfb12b4dcd545b85f6fae929cf2a6d2942f22e034ec6e56fdeb68b",
+      "gitLfSha256": "05eeeef336cfb12b4dcd545b85f6fae929cf2a6d2942f22e034ec6e56fdeb68b"
+    },
+    "src/lib/art-engine/core.ts": {
+      "worktreeSha256": "ce091baf6d11340ccdda8c21fabe8a7935134964aaf7d4c094fe4432fce414e4",
+      "gitLfSha256": "ce091baf6d11340ccdda8c21fabe8a7935134964aaf7d4c094fe4432fce414e4"
+    },
+    "src/lib/art-engine/types.ts": {
+      "worktreeSha256": "6f2746559b632704dd1c5ee0e19126d89ea3bc43bdb5c06897e03414200490f0",
+      "gitLfSha256": "6f2746559b632704dd1c5ee0e19126d89ea3bc43bdb5c06897e03414200490f0"
+    },
+    "src/lib/art-engine/index.ts": {
+      "worktreeSha256": "18c455b3562dbb358ccde7a56fdf31e6f8b89a234b038fa6b7ce03469092d6b7",
+      "gitLfSha256": "18c455b3562dbb358ccde7a56fdf31e6f8b89a234b038fa6b7ce03469092d6b7"
+    },
+    "src/lib/art-engine/embed.ts": {
+      "worktreeSha256": "2faff39bb2f0f3d0cf132dc4089eb97d8ad2af3ff33e7ca4d93632b8faa7b8eb",
+      "gitLfSha256": "2faff39bb2f0f3d0cf132dc4089eb97d8ad2af3ff33e7ca4d93632b8faa7b8eb"
+    },
+    "src/lib/art-engine/README.md": {
+      "worktreeSha256": "9eb347142d37d88361007808c2f56ff5f93893c10df17790712a5cab008e770c",
+      "gitLfSha256": "9eb347142d37d88361007808c2f56ff5f93893c10df17790712a5cab008e770c"
+    },
+    "src/views/AsciiArtView.vue": {
+      "worktreeSha256": "3c86fb11f1cd1fb927360e2ed50fa209d89b758bf4b75a2bdd2a8d2fa7cac71f",
+      "gitLfSha256": "3c86fb11f1cd1fb927360e2ed50fa209d89b758bf4b75a2bdd2a8d2fa7cac71f"
+    },
+    "src/components/CharacterArtwork.vue": {
+      "worktreeSha256": "99da7635979b98f70aa622887bcf775047114529b4130de201cebf40d0ab2858",
+      "gitLfSha256": "99da7635979b98f70aa622887bcf775047114529b4130de201cebf40d0ab2858"
+    },
+    "src/views/ArtHomeView.vue": {
+      "worktreeSha256": "db2b7e0ffa0d590be0e3e9d99caa8ecaba4716721b5d03b2d6269e46ad4458dd",
+      "gitLfSha256": "db2b7e0ffa0d590be0e3e9d99caa8ecaba4716721b5d03b2d6269e46ad4458dd"
+    },
+    "src/lib/ascii/studio-preview.ts": {
+      "worktreeSha256": "87ef73fd4261872b1a6bc3d66fd2a05498bc73fa047294b4934174ede9af1a07",
+      "gitLfSha256": "87ef73fd4261872b1a6bc3d66fd2a05498bc73fa047294b4934174ede9af1a07"
+    },
+    "src/lib/art-projects.ts": {
+      "worktreeSha256": "fb49da64cb01ab2cea9d9b4ad8ed656871ec8f981aad3552ff6976e136a1ffc9",
+      "gitLfSha256": "fb49da64cb01ab2cea9d9b4ad8ed656871ec8f981aad3552ff6976e136a1ffc9"
+    },
+    "src/lib/art-project-package.ts": {
+      "worktreeSha256": "f5e51d60238a8544e9600a87482507e1e8024629ea61b7b805538d93bf0027eb",
+      "gitLfSha256": "f5e51d60238a8544e9600a87482507e1e8024629ea61b7b805538d93bf0027eb"
+    },
+    "scripts/studio-motion-contract.mjs": {
+      "worktreeSha256": "55922fc240d2eb30f41e0eee63c4b5fd8dda10eee305b929892388088f7324df",
+      "gitLfSha256": "55922fc240d2eb30f41e0eee63c4b5fd8dda10eee305b929892388088f7324df"
+    },
+    "scripts/studio-motion-export-contract.mjs": {
+      "worktreeSha256": "098eadf2d8837fde2ff3ab53d38f9189f4a14ac2d370538baf1503268b2299eb",
+      "gitLfSha256": "098eadf2d8837fde2ff3ab53d38f9189f4a14ac2d370538baf1503268b2299eb"
+    },
+    "scripts/studio-motion-walkthrough.mjs": {
+      "worktreeSha256": "1f119429566981fd0960001dc4a84c67e5bd502697f80d24e38142fb9f8f5f2e",
+      "gitLfSha256": "1f119429566981fd0960001dc4a84c67e5bd502697f80d24e38142fb9f8f5f2e"
+    },
+    "scripts/art-effects-media-contract.mjs": {
+      "worktreeSha256": "77aefdd9469018ed0407b389f757e086730e2193840016a9538a6f5d9c096c88",
+      "gitLfSha256": "77aefdd9469018ed0407b389f757e086730e2193840016a9538a6f5d9c096c88"
+    },
+    "package.json": {
+      "worktreeSha256": "70f8bf2042c1bbfc899955ab1aaf1e943c56374a1be1a575364e49dec2e51634",
+      "gitLfSha256": "70f8bf2042c1bbfc899955ab1aaf1e943c56374a1be1a575364e49dec2e51634"
+    }
+  },
+  "walkthrough": {
+    "file": "sandbox/studio-motion/2026-10-02-v1/walkthrough-release-r2/studio_six_motions_release.mp4",
+    "sha256": "e7ec273b7bf24669935e47b764a96bd778a3a0b8e36a70a99269d42cbbf16262",
+    "durationSeconds": 49.68
+  },
+  "compaction": {
+    "file": "effects-development.json",
+    "field": "api.hovers[].fingerprint",
+    "rawReportSha256": "17d05a8c7ac520e5211d5acc38b544e30fd955cc72da1c8668fe4478a19465c4",
+    "rawReportPath": "sandbox/studio-motion/2026-10-02-v1/effects-development/report.json",
+    "scalarCountPerEffect": 1664
+  }
+}

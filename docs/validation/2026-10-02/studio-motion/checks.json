@@ -1,0 +1,32 @@
+{
+  "typeCheck": {
+    "command": "npm run type-check",
+    "exitCode": 0
+  },
+  "eslint": {
+    "scope": "Changed product source and test tools",
+    "exitCode": 0
+  },
+  "build": {
+    "command": "npm run build",
+    "exitCode": 0,
+    "existingWarnings": [
+      "stream externalized",
+      "ineffective signature dynamic import",
+      "large chunks"
+    ]
+  },
+  "homeReport": {
+    "results": 13,
+    "errors": []
+  },
+  "protectedHomeFiles": 3,
+  "productMatchesNativeContract": true,
+  "newDependencies": false,
+  "review": {
+    "actualVideoSampledAcrossInterval": true,
+    "actualCanvasKeyFrames": true,
+    "userVisualAcceptance": false,
+    "realDeviceCertification": false
+  }
+}

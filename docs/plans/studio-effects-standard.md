@@ -49,3 +49,5 @@ Astra继续负责六模式采样、原生字体、画质、中文铺字、本地
 持续规则入口为仓库 [AGENTS.md](../../AGENTS.md) 和 [.cursor 规则](../../.cursor/rules/studio-native-effects.mdc)。本次路线固化记录见 [Studio 路线阶段记录](./studio-roadmap-iteration-2026-10-02.md)。
 
 首次接入的步骤、验证和限制见[悬停对齐工程记录](./hover-parity-iteration-2026-10-02.md)。原生代码许可见[MIT正文](../licenses/asciify-engine-interaction-MIT.txt)。
+
+用户随后反馈环境动效也不满意，当前优先执行[六模式环境动效重构](./studio-motion-iteration-2026-10-02.md)：先移植原生环境核并打磨现有六动效的空间形变、聚散和字符光影，再继续上列新增创新。此阶段不等同于流体撕裂或新粒子效果已经完成。

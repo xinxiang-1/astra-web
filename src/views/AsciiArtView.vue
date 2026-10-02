@@ -202,6 +202,15 @@ const artMotionOptions: { id: ArtMotion; label: string }[] = [
   { id: 'reform', label: '重组' },
   { id: 'caustics', label: '光斑' },
 ]
+const artMotionDescriptions: Record<ArtMotion, string> = {
+  none: '保留完整静态作品，悬停仍可独立使用。',
+  breathe: '光影缓缓起伏，字符随作品一起舒展。',
+  wave: '连续波浪穿过画面，亮边跟随波峰流动。',
+  assemble: '字符沿空间流线汇入，逐步聚成完整作品。',
+  current: '层层流线卷动画面，边缘保持稳定。',
+  reform: '字符散开、重新聚拢，再停留展示完整作品。',
+  caustics: '交叠光带沿字符笔画游走，保留原作色彩。',
+}
 const artHoverOptions: { id: ArtHover | 'none'; label: string }[] = [
   { id: 'light', label: '光晕' },
   { id: 'ripple', label: '涟漪' },
@@ -3430,7 +3439,7 @@ onBeforeUnmount(() => {
             </div>
           </template>
           <div class="field">
-            <div class="field-label"><span>微动</span></div>
+            <div class="field-label"><span>环境动效</span></div>
             <div class="seg wrap" role="group" aria-label="六模式微动">
               <button
                 v-for="item in artMotionOptions"
@@ -3442,6 +3451,7 @@ onBeforeUnmount(() => {
                 {{ item.label }}
               </button>
             </div>
+            <p v-if="artEffectProfile === 'expressive'" class="hint">{{ artMotionDescriptions[artMotion] }}</p>
           </div>
           <template v-if="artMotion !== 'none' && artEffectProfile === 'expressive'">
             <div class="field">
