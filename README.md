@@ -6,6 +6,8 @@
 
 商业开发依据：[商品与付费创作PRD](./docs/plans/prd-commerce.md)、[商业合同执行记录](./docs/plans/commerce-contract-iteration-2026-10-02.md)；后端目录/鉴权及订单创建/查询、快照/幂等/安全到期已真实联调，见[订单接续阶段](./docs/plans/commerce-orders-iteration-2026-10-02.md)。支付与前端购买流程、批量工作台尚未实现，production新建订单与真实收款关闭，当前免费能力保持。
 
+后端[支付适配子阶段](./docs/plans/payment-provider-iteration-2026-10-02.md)已完成受控模拟账本、生产拒绝和checkout加密封装；尚无支付HTTP/真实SDK/权益及前端购买流程，不能将技术模拟当收款。最终54JUnit/193HTTP回归通过。
+
 每完成一个可验收小阶段，记录步骤/失败/检查后单独提交并立即推送，官方MCP核验远端SHA。提交推送使用用户指定的GitHub MCP连接账户 `xinxiang-1`。先核验账户与目标仓库权限；浏览器登录和本地Git凭证不替代MCP授权。
 
 - **主产品**：字符画（图片本地转铺字 / 彩色字符画）

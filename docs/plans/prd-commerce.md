@@ -6,6 +6,8 @@
 
 订单接续：已完成[后端订单快照/幂等/本人查询/安全到期](./commerce-orders-iteration-2026-10-02.md)，43JUnit/193实际HTTP，185商业响应schema通过；production新建暂503，支付/mock/权益和前端流程仍未实现。研发顺序第3项先完成订单子项，mock/支付抽象在下一个独立子阶段，不把整个第3项或真实交易验收记为完成。
 
+支付适配接续：[适配/mock/生产隔离/加密封装](./payment-provider-iteration-2026-10-02.md)已实现并验证54JUnit；mock独立MySQL账本仅技术模拟，没有新增支付HTTP/实际SDK/权益或模拟UI，capabilities三个标志继续false。研发第3项的底层适配完成，固定支付单号/command/outbox/完整恢复在下一子阶段，不提前记交易验收完成。
+
 依据：[产品总计划](./product-master-plan.md)、[已交付免费模板入口](./template-entry-iteration-2026-10-02.md)、[本阶段工程记录](./commerce-contract-iteration-2026-10-02.md)。后端合同唯一入口：[接口](../../../astra-cloud/docs/commerce/api-contracts.md)、[OpenAPI](../../../astra-cloud/docs/commerce/openapi.json)、[数据库与状态迁移](../../../astra-cloud/docs/commerce/database-design.md)。冲突时先修正文档与机器合同，再开发；不能让前端另定义金额或交易状态。
 
 ## 1. 用户问题与收入范围
