@@ -105,17 +105,28 @@ try {
       () => Number(document.querySelector('.ascii-scroll canvas')?.dataset.time) > 0,
     )
     const intervals = [0.6, 1.8, duration - 0.2]
-    let elapsed = 0
     const snapshots = []
+    const observed = []
     for (const point of intervals) {
-      await page.waitForTimeout((point - elapsed) * 1000)
-      elapsed = point
-      const snapshot = await canvas.evaluate((c) => c.toDataURL())
+      // The editor caps long frame gaps. Wait on its rendered clock, rather
+      // than assuming a wall-clock delay proves a complete regrouping cycle.
+      await page.waitForFunction((point) => {
+        const c = document.querySelector('.ascii-scroll canvas')
+        const speed = Number(document.getElementById('art-motion-speed')?.value || 1)
+        return Number(c?.dataset.time) * speed >= point
+      }, point)
+      const capture = await canvas.evaluate((c) => ({
+        image: c.toDataURL(),
+        time: Number(c.dataset.time),
+        speed: Number(document.getElementById('art-motion-speed')?.value || 1),
+      }))
+      const snapshot = capture.image
       await writeFile(
         path.join(out, `${id}-${point.toFixed(1)}.png`),
         Buffer.from(snapshot.split(',')[1], 'base64'),
       )
       snapshots.push(snapshot)
+      observed.push({ targetSeconds: point, ambientSeconds: capture.time, effectiveSeconds: capture.time * capture.speed, speed: capture.speed })
     }
     assert.notEqual(snapshots[0], snapshots[1], `${label} must have a visible animation process`)
     report.cases.push({
@@ -123,6 +134,7 @@ try {
       label,
       startSeconds: caseStart - start,
       endSeconds: (Date.now() - created) / 1000 - start,
+      observed,
     })
   }
   end = (Date.now() - created) / 1000

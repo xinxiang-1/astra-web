@@ -1,13 +1,13 @@
 import { prepareArtFrame } from '../../../src/lib/art-engine/index'
-import { createCanvasArtRenderer as baseline } from '../../../scripts/fixtures/kinetic-v2-renderer'
-import { createCanvasArtRenderer as candidate } from '../../../scripts/fixtures/depth-v3-renderer'
+import { createCanvasArtRenderer as baseline } from '../../../scripts/fixtures/depth-v3-renderer'
+import { createCanvasArtRenderer as candidate } from '../../../src/lib/art-engine/canvas'
 const motions = [
-  ['breathe', '共振脉冲', '字符随冲击环向外舒展，近处抬起，后方余波收束。'],
-  ['wave', '悬浮波面', '整幅作品成为悬浮曲面，前后透视与波峰光影一起移动。'],
-  ['assemble', '星云聚像', '原作字符沿螺旋轨道穿梭，由远及近落位，最终完整呈现。'],
-  ['current', '轨道流场', '作品沿连续轨道扭转起伏，原生 Studio 流场提供局部细节。'],
-  ['reform', '层片解构', '完整字符片层错开进入前后空间，再顺滑归位停留。'],
-  ['caustics', '棱镜扫光', '窄光束放大沿途真实笔画，折射推移与暗影随光线扫过。'],
+  ['breathe', '弹性冲击', '冲击前沿推开字符，反向余波回弹，主体保持可辨识。'],
+  ['wave', '液态绸面', '连续流线带动画面，折痕反光跟随运动，不让人脸局部鼓包。'],
+  ['assemble', '流束显影', '字符沿弯曲流束从画面侧边汇入，顺序落位，停留展示完整作品。'],
+  ['current', '双涡流动', '两个相反方向的流场缓缓穿过作品，局部细节由 Studio 底座驱动。'],
+  ['reform', '爆散回弹', '原作字符向外爆散，沿原路径带回弹重组，之后完整停留。'],
+  ['caustics', '流光折射', '连续交叠焦散沿原作笔画流动，窄亮边与暗部形成材质层次。'],
 ] as const
 const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T
 const canvases = ['studio', 'baseline', 'candidate'].map((id) => $<HTMLCanvasElement>(id))

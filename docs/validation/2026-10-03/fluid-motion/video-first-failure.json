@@ -1,0 +1,22 @@
+{
+  "base": "http://127.0.0.1:5194",
+  "errors": [],
+  "passed": false,
+  "pause": {
+    "ambientTimeFrozen": true,
+    "hoverTimeContinues": true,
+    "outsideCanvasFades": true
+  },
+  "encoded": {
+    "correct": 0.0018730213439542484,
+    "ignored": 0.07084724855111316,
+    "wrongSpeed": 0.0018730213439542484,
+    "wrongStrength": 0.06884048043045343,
+    "wrongStyle": 0.021270976945465685,
+    "motion": "assemble",
+    "motionSpeed": 0.4,
+    "motionStrength": 0.9,
+    "motionStyle": "cinematic"
+  },
+  "failure": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert(report.encoded.correct < report.encoded.wrongSpeed * 0.9)\n\n    at file:///E:/project/astra/astra-web/scripts/art-effects-media-contract.mjs:237:3\n    at runNextTicks (node:internal/process/task_queues:64:5)\n    at process.processImmediate (node:internal/timers:472:9)"
+}

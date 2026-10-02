@@ -1,0 +1,156 @@
+{
+  "passed": true,
+  "base": "http://127.0.0.1:5180",
+  "browser": "153.0.8010.12",
+  "errors": [],
+  "cases": [
+    {
+      "source": "portrait-reference.png",
+      "mode": "density",
+      "motion": "breathe",
+      "changed": true,
+      "file": "density-breathe.png"
+    },
+    {
+      "source": "portrait-reference.png",
+      "mode": "density",
+      "motion": "wave",
+      "changed": true,
+      "file": "density-wave.png"
+    },
+    {
+      "source": "portrait-reference.png",
+      "mode": "density",
+      "motion": "assemble",
+      "changed": true,
+      "file": "density-assemble.png"
+    },
+    {
+      "source": "portrait-reference.png",
+      "mode": "density",
+      "motion": "current",
+      "changed": true,
+      "file": "density-current.png"
+    },
+    {
+      "source": "portrait-reference.png",
+      "mode": "density",
+      "motion": "reform",
+      "changed": true,
+      "file": "density-reform.png"
+    },
+    {
+      "source": "portrait-reference.png",
+      "mode": "density",
+      "motion": "caustics",
+      "changed": true,
+      "file": "density-caustics.png"
+    },
+    {
+      "source": "pet.jpg",
+      "mode": "color",
+      "motion": "breathe",
+      "changed": true,
+      "file": "color-breathe.png"
+    },
+    {
+      "source": "pet.jpg",
+      "mode": "color",
+      "motion": "wave",
+      "changed": true,
+      "file": "color-wave.png"
+    },
+    {
+      "source": "pet.jpg",
+      "mode": "color",
+      "motion": "assemble",
+      "changed": true,
+      "file": "color-assemble.png"
+    },
+    {
+      "source": "pet.jpg",
+      "mode": "color",
+      "motion": "current",
+      "changed": true,
+      "file": "color-current.png"
+    },
+    {
+      "source": "pet.jpg",
+      "mode": "color",
+      "motion": "reform",
+      "changed": true,
+      "file": "color-reform.png"
+    },
+    {
+      "source": "pet.jpg",
+      "mode": "color",
+      "motion": "caustics",
+      "changed": true,
+      "file": "color-caustics.png"
+    },
+    {
+      "source": "landscape.jpg",
+      "mode": "phrase",
+      "motion": "breathe",
+      "changed": true,
+      "file": "phrase-breathe.png"
+    },
+    {
+      "source": "landscape.jpg",
+      "mode": "phrase",
+      "motion": "wave",
+      "changed": true,
+      "file": "phrase-wave.png"
+    },
+    {
+      "source": "landscape.jpg",
+      "mode": "phrase",
+      "motion": "assemble",
+      "changed": true,
+      "file": "phrase-assemble.png"
+    },
+    {
+      "source": "landscape.jpg",
+      "mode": "phrase",
+      "motion": "current",
+      "changed": true,
+      "file": "phrase-current.png"
+    },
+    {
+      "source": "landscape.jpg",
+      "mode": "phrase",
+      "motion": "reform",
+      "changed": true,
+      "file": "phrase-reform.png"
+    },
+    {
+      "source": "landscape.jpg",
+      "mode": "phrase",
+      "motion": "caustics",
+      "changed": true,
+      "file": "phrase-caustics.png"
+    }
+  ],
+  "hashes": {
+    "scripts/fixtures/depth-v3-renderer.ts": "d34192e0012b161471d0d20d619a384c5e7a37ec054b4a543755cd03bcd52176",
+    "src/lib/art-engine/canvas.ts": "d151566b771affad4ba24acaf4cfd63a45f7529cae7794db7f67d8e23db9a250",
+    "docs/prototypes/v4-fluid-motion/main.ts": "2ece12d333f8ecb60ae46ac637be5e400a0bbcd65eb6749a6e25abf65112ad12",
+    "docs/prototypes/v4-fluid-motion/index.html": "9695dc7dfe58375a9df6a0bdf81a40f98625187e1ff0106ac43a06556d36248b"
+  },
+  "prototypePassed": true,
+  "video": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "width": 1440,
+        "height": 960
+      }
+    ],
+    "format": {
+      "duration": "45.480000"
+    }
+  },
+  "expectedDuration": 45.518
+}

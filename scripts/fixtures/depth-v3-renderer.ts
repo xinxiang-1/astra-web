@@ -1,4 +1,4 @@
-import type { ArtFrame, ArtRenderOptions } from './types'
+import type { ArtFrame, ArtRenderOptions } from '../../src/lib/art-engine/types'
 
 /** Self-contained Canvas implementation shared with the standalone HTML runtime. */
 export function createCanvasArtRenderer(target: HTMLCanvasElement) {
@@ -81,8 +81,8 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
     const t = Math.max(0, Math.min(1, (value - low) / (high - low)))
     return t * t * t * (t * (6 * t - 15) + 10)
   }
-  // Coherent fluid surfaces and elastic choreography, using original glyphs.
-  // Coordinates are normalized; every scale stays positive and words stay upright.
+  // A projected character surface: one original glyph, one positive scale.
+  // Depth is local choreography, not camera rotation or a mirrored bitmap.
   function sampleCinematic(
     mode: string,
     x: number,
@@ -92,11 +92,12 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
     out: Float32Array,
     identity = 0,
   ) {
-    const edge = motionSmooth(0, 0.14, Math.min(x, 1 - x, y, 1 - y))
+    const edge = motionSmooth(0, 0.1, Math.min(x, 1 - x, y, 1 - y))
     const rx = x - 0.5,
       ry = y - 0.5,
       aspect = frame.width / frame.height
-    sampleStudioAmbient('current', x, y, time, ambientNative)
+    const nativeMode = mode === 'caustics' || mode === 'reform' ? mode : 'current'
+    sampleStudioAmbient(nativeMode, x, y, time, ambientNative)
     const nativeX = ambientNative[0]! / 960,
       nativeY = ambientNative[1]! / 960
     let dx = 0,
@@ -108,97 +109,97 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
     if (mode === 'breathe') {
       const cycle = ((time % 7) + 7) % 7
       const distance = Math.hypot(rx * aspect, ry)
-      const envelope = motionSmooth(0, 0.18, cycle) * (1 - motionSmooth(5.2, 7, cycle))
-      const travel = distance - (-0.05 + cycle * 0.22)
-      // Signed displacement: a leading crest, an opposing wake, a small second echo.
-      const crest = Math.exp(-Math.pow(travel / 0.09, 2))
-      const wake = Math.exp(-Math.pow((travel + 0.14) / 0.11, 2))
-      const echo = Math.exp(-Math.pow((travel + 0.28) / 0.13, 2))
-      const push = (crest * 0.115 - wake * 0.075 + echo * 0.025) * envelope * edge
-      dx = (rx / Math.max(0.16, distance)) * push
-      dy = (ry / Math.max(0.16, distance)) * push
-      size = 1 + (crest * 0.28 - wake * 0.22) * envelope * edge
-      intensity = 1 + (crest * 0.12 - wake * 0.24) * envelope * edge
-      glow = (crest * 0.72 + echo * 0.18) * envelope * edge
+      const envelope = motionSmooth(0, 0.4, cycle) * (1 - motionSmooth(5.2, 7, cycle))
+      const front = -0.12 + cycle * 0.205
+      const crest = Math.exp(-Math.pow((distance - front) / 0.085, 2)) * envelope
+      const wake = Math.exp(-Math.pow((distance - front + 0.19) / 0.13, 2)) * envelope
+      const breath = Math.sin((time * Math.PI * 2) / 7) * 0.025
+      const push = (crest * 0.09 - wake * 0.035 + breath) * edge
+      dx = (rx / Math.max(0.2, distance)) * push + nativeX * envelope * 0.5
+      dy = (ry / Math.max(0.2, distance)) * push + nativeY * envelope * 0.5
+      size = 1 + (crest * 0.38 - wake * 0.16 + breath) * edge
+      intensity = 1 - wake * 0.22 + crest * 0.2
+      glow = (crest * 0.75 + wake * 0.12) * edge
     } else if (mode === 'wave') {
-      // Flow along broad folds instead of radial perspective bulges on faces.
-      const phase = y * 8.5 - time * 1.55 + Math.sin(x * 4.5 + time * 0.4) * 0.8
-      const fold = Math.sin(phase)
-      const slope = Math.cos(phase)
-      dx = (fold * 0.082 + nativeX * 1.5) * edge
-      dy = (Math.sin(x * 6.5 + time * 0.8) * 0.029 + nativeY * 1.4) * edge
-      const ridge = Math.pow(Math.max(0, slope), 12)
-      const valley = Math.pow(Math.max(0, -slope), 4)
-      size = 1 + (ridge * 0.12 - valley * 0.08) * edge
-      intensity = 1 + (ridge * 0.13 - valley * 0.22) * edge
-      glow = ridge * 0.58 * edge
+      // A broad sheet in depth; perspective and parallax move together.
+      const phase = y * 7.2 + x * 2.2 - time * 1.45
+      const height = Math.sin(phase) * 0.19 + Math.sin(phase * 2 + x * 2) * 0.035
+      const depth = (height + rx * Math.sin(time * 0.45) * 0.12) * edge
+      const perspective = 1 / (1 - depth)
+      dx = rx * (perspective - 1) + nativeX * 0.8 * edge
+      dy = ry * (perspective - 1) - depth * 0.17 + Math.cos(phase) * 0.02 * edge
+      size = perspective
+      const crest = Math.pow(Math.max(0, Math.cos(phase - 0.4)), 9)
+      intensity = 1 - Math.max(0, -height) * 1.25 * edge + crest * 0.14 * edge
+      glow = (crest * 0.56 + Math.max(0, height) * 0.3) * edge
     } else if (mode === 'assemble') {
       const raw = Math.sin((identity + 1) * 127.1) * 43758.5453
       const noise = raw - Math.floor(raw)
-      const delay = x * 0.72 + y * 0.16 + noise * 0.12
-      // Start moving immediately, even in short slow-motion exports. Stagger
-      // landing times, rather than leaving every visible glyph waiting at onset.
-      const progress = Math.min(1, Math.max(0, time) / (3.5 + delay))
-      const flight = Math.pow(1 - progress, 3)
+      const delay = y * 0.5 + x * 0.25 + noise * 0.12
+      const flight = 1 - motionSmooth(0.05 + delay, 3.8 + delay, Math.max(0, time))
+      // Helical ribbons retain original colour and arrive along curved paths.
+      const angle = Math.atan2(ry, rx * aspect) + flight * 3.8 + time * flight * 0.5
+      const radius = 0.23 + Math.hypot(rx * aspect, ry) * 0.48 + noise * 0.035
+      const originX = 0.5 + (Math.cos(angle) * radius) / Math.max(0.65, aspect)
+      const originY = 0.5 + Math.sin(angle) * radius * 0.78
       const arc = Math.sin(flight * Math.PI)
-      // Broad curved streams preserve image topology while arriving from the side.
-      dx = (-0.42 - x * 0.23) * flight + Math.sin(y * 6 + flight * 2.8) * arc * 0.075
-      dy = -ry * flight * 0.42 + Math.sin(x * 5.5 + y * 2) * arc * 0.105
-      size = 1 - flight * 0.44 + arc * 0.15
-      opacity = 1 - flight * 0.62
-      intensity = 1 - flight * 0.08
-      glow = (arc * 0.62 + flight * 0.16) * edge
+      dx = (originX - x) * flight + Math.sin(angle) * arc * 0.05
+      dy = (originY - y) * flight - arc * 0.09
+      size = 1 - 0.52 * flight + arc * 0.25
+      opacity = 1 - flight * 0.58
+      intensity = 1 - flight * 0.1
+      glow = (arc * 0.58 + flight * 0.12) * edge
     } else if (mode === 'current') {
-      // Counter-rotating localized vortices; distant cells do not orbit the whole face.
-      const cx = 0.36 + Math.sin(time * 0.48) * 0.12
-      const cy = 0.42 + Math.cos(time * 0.39) * 0.13
-      const ax = (x - cx) * aspect,
-        ay = y - cy,
-        bx = (x - (1 - cx)) * aspect,
-        by = y - (1 - cy)
-      const first = Math.exp(-(ax * ax + ay * ay) / 0.085)
-      const second = Math.exp(-(bx * bx + by * by) / 0.085)
-      const drive = 0.6 + 0.4 * Math.sin(time * 0.65)
-      dx = ((-ay * first + by * second) * 0.95 * drive / aspect + nativeX * 2.2) * edge
-      dy = ((ax * first - bx * second) * 0.95 * drive + nativeY * 2.2) * edge
-      const strain = Math.abs(first - second)
-      size = 1 + Math.sin(time * 0.7 + x * 5 - y * 4) * strain * 0.12 * edge
-      intensity = 1 - strain * 0.17 * edge
-      const glint = Math.pow(Math.max(0, Math.cos(x * 9 + y * 6 - time * 1.1)), 10)
-      glow = glint * strain * 0.62 * edge
+      // A coherent orbital shear, with the native Studio flow underneath.
+      const cx = 0.5 + Math.sin(time * 0.31) * 0.045
+      const cy = 0.5 + Math.cos(time * 0.27) * 0.035
+      const px = x - cx,
+        py = y - cy,
+        distance = Math.hypot(px * aspect, py)
+      const phase = distance * 7.8 - time * 0.7
+      const twist = Math.sin(phase) * 0.42 * edge
+      const depth = Math.cos(phase - 0.7) * 0.13 * edge
+      const perspective = 1 / (1 - depth)
+      const tx = px * Math.cos(twist) - (py / aspect) * Math.sin(twist)
+      const ty = px * aspect * Math.sin(twist) + py * Math.cos(twist)
+      dx = tx * perspective - px + nativeX * 1.8 * edge
+      dy = ty * perspective - py + nativeY * 1.8 * edge - depth * 0.08
+      size = perspective
+      const seam = Math.pow(Math.max(0, Math.cos(phase)), 12)
+      intensity = 1 - Math.max(0, -depth) * 1.4 + seam * 0.13 * edge
+      glow = seam * 0.48 * edge
     } else if (mode === 'reform') {
       const cycle = ((time % 12) + 12) % 12
-      const raw = Math.sin((identity + 1) * 127.1) * 43758.5453
-      const noise = raw - Math.floor(raw)
-      const distance = Math.hypot(rx * aspect, ry)
-      const delay = Math.min(0.48, distance * 0.42) + noise * 0.12
-      const open = motionSmooth(0.22 + delay, 1.85 + delay, cycle)
-      const returned = motionSmooth(3.2 + delay, 6.8 + delay, cycle)
-      const scatter = open * (1 - returned)
-      // A tiny signed return overshoot settles before the exact full-image hold.
-      const settle = motionSmooth(6.7, 7.05, cycle) * (1 - motionSmooth(7.4, 8.1, cycle))
-      const spring = -Math.sin((cycle - 6.7) * 6.5) * Math.exp(-Math.max(0, cycle - 6.7) * 2.4) * settle * 0.018
-      const radial = scatter * (0.12 + noise * 0.07) + spring
-      const tangent = Math.sin(scatter * Math.PI) * (noise - 0.5) * 0.08
-      dx = (rx / Math.max(0.22, distance)) * radial - (ry / Math.max(0.22, distance)) * tangent / aspect
-      dy = (ry / Math.max(0.22, distance)) * radial + (rx * aspect / Math.max(0.22, distance)) * tangent
-      size = 1 - scatter * (0.2 + noise * 0.25)
-      opacity = 1 - scatter * 0.22
-      intensity = 1 - scatter * 0.12
-      glow = (Math.sin(scatter * Math.PI) * 0.58 + scatter * noise * 0.16) * edge
+      const lane = Math.min(6, Math.floor(y * 7))
+      const delay = lane * 0.07
+      const open =
+        motionSmooth(0.35 + delay, 2.3 + delay, cycle) *
+        (1 - motionSmooth(4.2 + delay, 7.3 + delay, cycle))
+      const direction = lane % 2 === 0 ? 1 : -1
+      // Wide slices separate into depth, keeping each slice's image structure.
+      const depth = ((lane - 3) * 0.045 + direction * 0.06) * open
+      const perspective = 1 / (1 - depth)
+      dx = direction * 0.13 * open + rx * (perspective - 1)
+      dy = (lane - 3) * 0.015 * open + ry * (perspective - 1) - depth * 0.13
+      size = perspective
+      opacity = 1 - open * 0.12
+      intensity = 1 - Math.max(0, -depth) * 1.2
+      const lip = Math.exp(-Math.pow(((y * 7) % 1) / 0.17, 2))
+      glow = (lip * 0.52 + Math.sin(open * Math.PI) * 0.2) * open * edge
     } else if (mode === 'caustics') {
       const cycle = ((time % 6) + 6) % 6
-      const envelope = motionSmooth(0, 0.22, cycle) * (1 - motionSmooth(5.5, 6, cycle))
-      const a = Math.sin(x * 9 + y * 3 - time * 1.2)
-      const b = Math.sin(y * 8 - x * 4 + time * 0.95)
-      const band = a + b
-      const light = Math.exp(-band * band * 24) * envelope * edge
-      const shadow = Math.exp(-Math.pow(Math.abs(band) - 0.42, 2) * 22) * envelope * edge
-      dx = Math.tanh(band * 4) * light * 0.012 + nativeX * envelope * 0.5
-      dy = (a - b) * light * 0.008 + nativeY * envelope * 0.5
-      size = 1 + light * 0.18 - shadow * 0.07
-      intensity = 1 + light * 0.2 - shadow * 0.26
-      glow = light * 0.8
+      const envelope = motionSmooth(0, 0.25, cycle) * (1 - motionSmooth(5.5, 6, cycle))
+      // Enter the image during the opening beat, including sparse braille/dot art.
+      const sweep = 0.18 + cycle * 0.14 + Math.sin(y * 5 + time * 0.2) * 0.09
+      const delta = x - sweep
+      const core = Math.exp(-Math.pow(delta / 0.022, 2)) * envelope
+      const lens = Math.exp(-Math.pow(delta / 0.075, 2)) * envelope
+      const shadow = Math.exp(-Math.pow((delta - 0.095) / 0.065, 2)) * envelope
+      dx = Math.tanh(delta * 30) * lens * 0.048 * edge
+      dy = -Math.sin(y * 5 + time * 0.2) * lens * 0.018 * edge
+      size = 1 + (lens * 0.23 - shadow * 0.08) * edge
+      intensity = 1 - shadow * 0.35 * edge + core * 0.18 * edge
+      glow = (core * 0.9 + lens * 0.2) * edge
     }
     out[0] = dx * amount
     out[1] = dy * amount
@@ -208,7 +209,6 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
     out[5] = 1 + (size - 1) * amount
     return out
   }
-
 
   function buildMotionField(mode: string, time: number, amount: number, cinematic: boolean) {
     if (mode === 'none' || amount === 0) {

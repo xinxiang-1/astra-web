@@ -1,0 +1,182 @@
+{
+  "phase": "fluid_final",
+  "base": "http://127.0.0.1:5194",
+  "motionStyle": "cinematic",
+  "browser": "153.0.8010.12",
+  "hashes": {
+    "src/lib/art-engine/canvas.ts": "d151566b771affad4ba24acaf4cfd63a45f7529cae7794db7f67d8e23db9a250",
+    "src/views/AsciiArtView.vue": "4b8ceba76f93f0ed8cc2fedf20cf29f33a88bf995aa690fbb03f1fa73fbfc6c0",
+    "src/components/CharacterArtwork.vue": "99da7635979b98f70aa622887bcf775047114529b4130de201cebf40d0ab2858",
+    "src/views/ArtHomeView.vue": "db2b7e0ffa0d590be0e3e9d99caa8ecaba4716721b5d03b2d6269e46ad4458dd",
+    "src/lib/ascii/studio-preview.ts": "87ef73fd4261872b1a6bc3d66fd2a05498bc73fa047294b4934174ede9af1a07"
+  },
+  "cases": [
+    {
+      "id": "breathe",
+      "label": "光息",
+      "startSeconds": 0,
+      "endSeconds": 5.91,
+      "observed": [
+        {
+          "targetSeconds": 0.6,
+          "ambientSeconds": 0.6167000000000008,
+          "effectiveSeconds": 0.6167000000000008,
+          "speed": 1
+        },
+        {
+          "targetSeconds": 1.8,
+          "ambientSeconds": 1.8333,
+          "effectiveSeconds": 1.8333,
+          "speed": 1
+        },
+        {
+          "targetSeconds": 5.8,
+          "ambientSeconds": 5.816399999999992,
+          "effectiveSeconds": 5.816399999999992,
+          "speed": 1
+        }
+      ]
+    },
+    {
+      "id": "wave",
+      "label": "流动",
+      "startSeconds": 5.91,
+      "endSeconds": 10.806000000000001,
+      "observed": [
+        {
+          "targetSeconds": 0.6,
+          "ambientSeconds": 0.6166000000000023,
+          "effectiveSeconds": 0.6166000000000023,
+          "speed": 1
+        },
+        {
+          "targetSeconds": 1.8,
+          "ambientSeconds": 1.8833000000000033,
+          "effectiveSeconds": 1.8833000000000033,
+          "speed": 1
+        },
+        {
+          "targetSeconds": 4.8,
+          "ambientSeconds": 4.816399999999999,
+          "effectiveSeconds": 4.816399999999999,
+          "speed": 1
+        }
+      ]
+    },
+    {
+      "id": "assemble",
+      "label": "聚合",
+      "startSeconds": 10.806000000000001,
+      "endSeconds": 15.785,
+      "observed": [
+        {
+          "targetSeconds": 0.6,
+          "ambientSeconds": 1.233200000000001,
+          "effectiveSeconds": 1.233200000000001,
+          "speed": 1
+        },
+        {
+          "targetSeconds": 1.8,
+          "ambientSeconds": 2.1665,
+          "effectiveSeconds": 2.1665,
+          "speed": 1
+        },
+        {
+          "targetSeconds": 4.8,
+          "ambientSeconds": 4.833099999999994,
+          "effectiveSeconds": 4.833099999999994,
+          "speed": 1
+        }
+      ]
+    },
+    {
+      "id": "current",
+      "label": "慢流",
+      "startSeconds": 15.785,
+      "endSeconds": 20.738000000000003,
+      "observed": [
+        {
+          "targetSeconds": 0.6,
+          "ambientSeconds": 0.6165999999999986,
+          "effectiveSeconds": 0.6165999999999986,
+          "speed": 1
+        },
+        {
+          "targetSeconds": 1.8,
+          "ambientSeconds": 1.8165999999999989,
+          "effectiveSeconds": 1.8165999999999989,
+          "speed": 1
+        },
+        {
+          "targetSeconds": 4.8,
+          "ambientSeconds": 4.833099999999998,
+          "effectiveSeconds": 4.833099999999998,
+          "speed": 1
+        }
+      ]
+    },
+    {
+      "id": "reform",
+      "label": "重组",
+      "startSeconds": 20.738000000000003,
+      "endSeconds": 32.666,
+      "observed": [
+        {
+          "targetSeconds": 0.6,
+          "ambientSeconds": 0.8499000000000017,
+          "effectiveSeconds": 0.8499000000000017,
+          "speed": 1
+        },
+        {
+          "targetSeconds": 1.8,
+          "ambientSeconds": 2.066600000000006,
+          "effectiveSeconds": 2.066600000000006,
+          "speed": 1
+        },
+        {
+          "targetSeconds": 11.8,
+          "ambientSeconds": 11.816200000000027,
+          "effectiveSeconds": 11.816200000000027,
+          "speed": 1
+        }
+      ]
+    },
+    {
+      "id": "caustics",
+      "label": "光斑",
+      "startSeconds": 32.666,
+      "endSeconds": 38.604,
+      "observed": [
+        {
+          "targetSeconds": 0.6,
+          "ambientSeconds": 0.6166000000000059,
+          "effectiveSeconds": 0.6166000000000059,
+          "speed": 1
+        },
+        {
+          "targetSeconds": 1.8,
+          "ambientSeconds": 1.833300000000003,
+          "effectiveSeconds": 1.833300000000003,
+          "speed": 1
+        },
+        {
+          "targetSeconds": 5.8,
+          "ambientSeconds": 5.849800000000001,
+          "effectiveSeconds": 5.849800000000001,
+          "speed": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "passed": true,
+  "recordedSeconds": 38.604,
+  "uiPassed": true,
+  "video": {
+    "file": "studio_six_motions_fluid_final.mp4",
+    "duration": 38.6,
+    "width": 1440,
+    "height": 960,
+    "codec": "h264"
+  }
+}
