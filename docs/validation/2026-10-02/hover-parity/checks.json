@@ -1,0 +1,25 @@
+{
+  "scope": "Windows / Chromium 153 / desktop and touch emulation; not real-device or commercial aesthetic certification",
+  "typeCheck": {
+    "command": "npm run type-check",
+    "exitCode": 0,
+    "rawLog": "sandbox/hover-parity/2026-10-02-v1/typecheck-contour.log"
+  },
+  "eslint": {
+    "command": "npx eslint src/lib/art-engine/canvas.ts src/lib/art-engine/types.ts src/lib/art-engine/embed.ts src/views/AsciiArtView.vue",
+    "exitCode": 0
+  },
+  "build": {
+    "command": "npm run build",
+    "exitCode": 0,
+    "rawLog": "sandbox/hover-parity/2026-10-02-v1/build-release.log"
+  },
+  "nativeFields": 27,
+  "batchedInput": 7,
+  "modeQualityWakes": 90,
+  "productionTrajectories": 14,
+  "exactEditorRestorations": 13,
+  "homeChecks": 13,
+  "offlineHtmlContainsMitLicense": true,
+  "protectedSourceIdentical": true
+}

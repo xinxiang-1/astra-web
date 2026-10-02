@@ -1,5 +1,5 @@
 import { ART_DEFAULTS, ART_ENGINE_VERSION, createArtCore, createCanvasArtRenderer } from './index'
-import type { ArtFrame, ArtHover, ArtMotion, ArtRenderOptions } from './types'
+import type { ArtFrame, ArtHover, ArtMotion, ArtRenderOptions, ArtPointerSample } from './types'
 
 type PortableFrame = Omit<ArtFrame, 'glyphs' | 'indices' | 'alpha' | 'colors'> & {
   glyphs: { char: string; coverage: number; png: string }[]
@@ -68,6 +68,7 @@ async function runArtworkPage(
     previousTime = 0
   const reduced = matchMedia('(prefers-reduced-motion: reduce)')
   const pointer = { x: 0.5, y: 0.5, strength: 0, target: 0 }
+  const pointerSamples: ArtPointerSample[] = []
   function paint() {
     const size = Math.max(
       64,
@@ -87,10 +88,13 @@ async function runArtworkPage(
       motionSpeed: data.motionSpeed,
       motionStrength: data.motionStrength,
       hoverRadius: data.hoverRadius,
+      hoverStrength: reduced.matches || data.hover === 'none' ? 0 : data.hoverStrength,
+      pointerSamples: pointerSamples.splice(0),
       motion: reduced.matches ? 'none' : data.motion,
       hover: data.hover === 'none' ? 'light' : data.hover,
       pointer: {
         ...pointer,
+        active: pointer.target > 0 && !reduced.matches && data.hover !== 'none',
         strength:
           data.hover === 'none' || reduced.matches
             ? 0
@@ -132,7 +136,8 @@ async function runArtworkPage(
     if (
       (running && (video || (!reduced.matches && data.motion !== 'none'))) ||
       pointer.strength > 0.002 ||
-      pointer.target > 0
+      pointer.target > 0 ||
+      renderer.interactionActive
     )
       queue()
   }
@@ -145,25 +150,30 @@ async function runArtworkPage(
     if (pointer.target) {
       pointer.x = x
       pointer.y = y
+      const samples = event.getCoalescedEvents?.() ?? []
+      for (const sample of samples.length ? samples : [event]) {
+        const sx = (sample.clientX - rect.left) / rect.width, sy = (sample.clientY - rect.top) / rect.height
+        if (sx >= 0 && sx <= 1 && sy >= 0 && sy <= 1) pointerSamples.push({ x: sx, y: sy, time: sample.timeStamp, active: true })
+      }
+      if (pointerSamples.length > 128) pointerSamples.splice(0, pointerSamples.length - 128)
     }
     queue()
   }
   host.addEventListener('pointermove', movePointer)
   host.addEventListener('pointerdown', movePointer)
+  function leavePointer() {
+    pointer.target = 0
+    pointerSamples.push({ x: pointer.x, y: pointer.y, time: performance.now(), active: false })
+    if (pointerSamples.length > 128) pointerSamples.shift()
+    queue()
+  }
   host.addEventListener('pointerup', (event) => {
     if (event.pointerType !== 'mouse') {
-      pointer.target = 0
-      queue()
+      leavePointer()
     }
   })
-  host.addEventListener('pointercancel', () => {
-    pointer.target = 0
-    queue()
-  })
-  host.addEventListener('pointerleave', () => {
-    pointer.target = 0
-    queue()
-  })
+  host.addEventListener('pointercancel', leavePointer)
+  host.addEventListener('pointerleave', leavePointer)
   button.onclick = async () => {
     running = !running
     previousTime = 0
@@ -266,5 +276,26 @@ export function artworkEmbedPage(frame: ArtFrame, options: Omit<PagePayload, 'fr
     .replace(/</g, '\\u003c')
     .replace(/>/g, '\\u003e')
     .replace(/&/g, '\\u0026')
-  return `<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Astra 作品</title><style>*{box-sizing:border-box}body{margin:0;color:#eeeae2;font:14px system-ui,sans-serif}main{max-width:1440px;margin:auto;padding:24px}header{display:flex;gap:20px;align-items:center;flex-wrap:wrap}header b{letter-spacing:.18em}h1{font-size:18px;font-weight:500}#art-stage{height:calc(100dvh - 180px);min-height:240px;display:flex;justify-content:center;align-items:center;overflow:hidden;margin:20px 0}canvas{display:block;max-width:100%;max-height:100%;object-fit:contain}nav{display:flex;gap:10px;flex-wrap:wrap}button{border:1px solid #ffffff40;background:#ffffff0b;color:inherit;padding:10px 18px;border-radius:24px;cursor:pointer}button:hover{border-color:#58e8ed}button:focus-visible{outline:2px solid #58e8ed;outline-offset:3px}p{font-size:12px;opacity:.7}</style><main><header><b>ASTRA</b><h1 id="title">正在打开作品</h1></header><div id="art-stage"><canvas aria-label="字符艺术作品"></canvas></div><nav><button id="play">播放作品</button><button id="restart">重新开始</button><button id="download-text">下载字符文本</button></nav><p id="art-status" role="status">正在准备作品…</p></main><script id="art-data" type="application/json">${json}</script><script>(${runArtworkPage.toString()})(${createArtCore.toString()},${createCanvasArtRenderer.toString()},${JSON.stringify(ART_DEFAULTS)},${JSON.stringify(ART_ENGINE_VERSION)}).catch(error=>{document.getElementById('art-status').textContent=error.message;console.error(error)})</script></html>`
+  return `<!doctype html><!-- Native interaction fields adapted from asciify-engine 4.1.0. MIT License
+
+Copyright (c) 2026 ayangabryl
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+ --><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Astra 作品</title><style>*{box-sizing:border-box}body{margin:0;color:#eeeae2;font:14px system-ui,sans-serif}main{max-width:1440px;margin:auto;padding:24px}header{display:flex;gap:20px;align-items:center;flex-wrap:wrap}header b{letter-spacing:.18em}h1{font-size:18px;font-weight:500}#art-stage{height:calc(100dvh - 180px);min-height:240px;display:flex;justify-content:center;align-items:center;overflow:hidden;margin:20px 0}canvas{display:block;max-width:100%;max-height:100%;object-fit:contain}nav{display:flex;gap:10px;flex-wrap:wrap}button{border:1px solid #ffffff40;background:#ffffff0b;color:inherit;padding:10px 18px;border-radius:24px;cursor:pointer}button:hover{border-color:#58e8ed}button:focus-visible{outline:2px solid #58e8ed;outline-offset:3px}p{font-size:12px;opacity:.7}</style><main><header><b>ASTRA</b><h1 id="title">正在打开作品</h1></header><div id="art-stage"><canvas aria-label="字符艺术作品"></canvas></div><nav><button id="play">播放作品</button><button id="restart">重新开始</button><button id="download-text">下载字符文本</button></nav><p id="art-status" role="status">正在准备作品…</p></main><script id="art-data" type="application/json">${json}</script><script>(${runArtworkPage.toString()})(${createArtCore.toString()},${createCanvasArtRenderer.toString()},${JSON.stringify(ART_DEFAULTS)},${JSON.stringify(ART_ENGINE_VERSION)}).catch(error=>{document.getElementById('art-status').textContent=error.message;console.error(error)})</script></html>`
 }

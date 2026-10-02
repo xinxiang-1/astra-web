@@ -158,13 +158,16 @@ try {
         const staticDelta = delta(base, pixels(c))
         r.render(frame, { ...options, hover: 'light', pointer: { x: 0.5, y: 0.4, strength: 1 } })
         const classic = delta(base, pixels(c))
-        const duration = r.render(frame, {
+        const lightOptions = {
           ...options,
           effectProfile: 'expressive',
           hover: 'light',
           hoverRadius: 0.38,
           pointer: { x: 0.5, y: 0.4, strength: 1 },
-        }).renderMs
+        }
+        let duration
+        for (let i = 0; i < 12; i++)
+          duration = r.render(frame, { ...lightOptions, hoverTime: i / 30 }).renderMs
         const light = delta(base, pixels(c))
         const stats = r.cacheStats
         cases.push({
@@ -201,6 +204,12 @@ try {
         'contour',
         'dissolve',
       ]) {
+        r.render(density, {
+          ...common,
+          hover,
+          hoverTime: 0.4,
+          pointer: { x: 0.3, y: 0.35, strength: 1 },
+        })
         r.render(density, {
           ...common,
           hover,
@@ -267,7 +276,8 @@ try {
           hoverTime: i * 0.04,
           pointer: { x: 0.2 + i * 0.02, y: 0.4, strength: 1 },
         })
-      const trailPoints = r.cacheStats.trailPoints
+      const nativeFieldCells = r.cacheStats.interactionCells
+      const nativeFieldBytes = r.cacheStats.interactionBytes
       for (let i = 0; i < 12; i++)
         performanceSamples.push(
           r.render(density, {
@@ -290,7 +300,8 @@ try {
         wide,
         fullInk,
         highResolutionGlowBytes,
-        trailPoints,
+        nativeFieldCells,
+        nativeFieldBytes,
         performanceSamples,
         backend,
       }
@@ -316,7 +327,8 @@ try {
     assert(report.api.wide.channels > report.api.narrow.channels * 2)
     assert(report.api.fullInk.mean > 0.15)
     assert(report.api.highResolutionGlowBytes <= 1536 * 1536 * 4)
-    assert(report.api.trailPoints <= 10)
+    assert(report.api.nativeFieldCells <= 128 * 128)
+    assert(report.api.nativeFieldBytes <= 2 * 1024 * 1024)
     assert.equal(report.api.backend, 'canvas2d')
     console.log('PASS API: 10 static/quality cases, 9 hovers, 6 motions, limits and controls')
   }
@@ -362,7 +374,11 @@ try {
   const still = await snapshot()
   await page.waitForTimeout(350)
   await page.waitForFunction(
-    () => document.querySelector('.ascii-scroll canvas')?.dataset.pointerStrength === '0',
+    () =>
+      document.querySelector('.ascii-scroll canvas')?.dataset.pointerStrength === '0' &&
+      document.querySelector('.ascii-scroll canvas')?.dataset.interactionActive === 'false',
+    undefined,
+    { timeout: 10000 },
   )
   const settled = await snapshot()
   await page.waitForTimeout(250)

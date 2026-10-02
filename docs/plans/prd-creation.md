@@ -104,6 +104,8 @@ snapshot含源素材revision、名称和参数；路由离开/同路由query/清
 
 ## 6. 保存字段与版本规则
 
+2026-10-02交互更新：九种增强hover接入原生Studio持久交互场，默认拖尾为速度驱动的流体/密度变化。classic保留历史三效果公式；已有expressive项目按相同已存参数使用升级交互，静态字形版本2.2.0保持。暂停仅冻结环境动画，余波继续直至自然停止；范围遵循原生最低0.1，旧更小值按0.1规范化。以后新特效须遵循[Studio交互标准](./studio-effects-standard.md)；实际证据见[本阶段记录](./hover-parity-iteration-2026-10-02.md)。
+
 项目settings当前包含editorEngine、artMode/artQuality/artMotion/artHover、artEffectProfile/artMotionSpeed/artMotionStrength、共享hoverStrength/hoverRadius、旧mode/hover/motion、phrase/阈值/填充/颜色、曝光/对比/归一化/抖动、清晰度/列数/字符集、反色/字号、预览与导出字体/字格、前景背景、选段与fps。项目运行态（鼠标、交互时钟、拖尾、进度、忙态、对象URL）不写入可移植包。
 
 所有新增参数先定义类型/范围/默认值/不适用条件、包版本兼容与缓存失效，再写代码；未知新版本拒绝或显式迁移，不能默默丢弃。商业模板sku/version与用户本地项目id独立，退款撤销未来下载权益，不承诺追回已经下载的明文文件。

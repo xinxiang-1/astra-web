@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "base": "http://127.0.0.1:5194",
+  "cases": [
+    "拖尾",
+    "水面",
+    "丝绸",
+    "漩涡",
+    "等高",
+    "溶解",
+    "涟漪",
+    "轻推",
+    "光晕"
+  ],
+  "errors": [],
+  "duration": 24.237000000000002,
+  "video": "E:\\project\\astra\\astra-web\\sandbox\\hover-parity\\2026-10-02-v1\\walkthrough-release\\studio_nine_hover_effects.mp4"
+}

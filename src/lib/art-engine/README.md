@@ -20,7 +20,11 @@
 
 六种 motion（breathe/wave/assemble/current/reform/caustics）与九种 hover（displace/light/ripple/trail/water/silk/vortex/contour/dissolve）保持布局方向和顺序文字语义，各自另有关闭选项。速度、强度和悬停范围进入保存、作品包、HTML和视频快照。`classic` profile保留旧公式；新编辑器默认 `expressive`，旧缺字段项目使用classic。新增效果与品质请求使用Canvas，工厂backend报告实际路径。
 
-字形光晕使用真实glyph遮罩，最长边1536、像素backing最多9MiB；拖尾最多10点、0.7秒。环境暂停只冻结artElapsed，独立interactionTime继续指针响应；越界/抬手按实际时间渐隐。没有照片底图或文字旋转。新效果会增加绘制成本，不能沿用静态品质档的计时承诺实时帧率。
+2026-10-02：增强hover改用asciify-engine 4.1原生MIT交互场，最多128×128、field backing最多2MiB。拖尾使用速度注入、平流、涡量约束、压力投影和局部密度重映射；水面为阻尼波动，丝绸/漩涡为持久残像，等高圈扩散、溶解按位置恢复。涟漪/轻推分别使用水面/丝绸场的独立幅度映射；光晕使用原生lens平滑及真实glyph遮罩（最长边1536、最多9MiB）。普通和软件面积栅格、离线HTML消费同一场；glyph不旋转/镜像，phrase保留字符序列。
+
+环境暂停只冻结artElapsed，独立interactionTime和field.active驱动余波直到自然静止。pointer.active区分离开与强度变化，hoverStrength为包括余波的持续幅度；范围遵循原生0.1–1。无指针/零强度静态输出保持逐像素不变，classic历史三效果公式保持，已有expressive作品按原参数使用新交互。sampleInteraction提供只读位移/密度，供后续粒子/光场创新复用；不得再写另一套同名简化hover。见[长期Studio标准](../../../docs/plans/studio-effects-standard.md)及[本阶段记录](../../../docs/plans/hover-parity-iteration-2026-10-02.md)。
+
+代码中保留完整MIT许可，离线HTML包含同一许可正文；[许可归档](../../../docs/licenses/asciify-engine-interaction-MIT.txt)。新场会增加绘制成本，不能沿用静态品质档的计时承诺实时帧率。
 
 ## 验证与范围
 

@@ -1,0 +1,93 @@
+{
+  "protectedFiles": [
+    "src/views/ArtHomeView.vue",
+    "src/components/CharacterArtwork.vue",
+    "src/lib/ascii/studio-preview.ts"
+  ],
+  "sourceHashes": {
+    "src/views/ArtHomeView.vue": {
+      "worktreeSha256": "db2b7e0ffa0d590be0e3e9d99caa8ecaba4716721b5d03b2d6269e46ad4458dd",
+      "gitLfSha256": "db2b7e0ffa0d590be0e3e9d99caa8ecaba4716721b5d03b2d6269e46ad4458dd"
+    },
+    "src/components/CharacterArtwork.vue": {
+      "worktreeSha256": "99da7635979b98f70aa622887bcf775047114529b4130de201cebf40d0ab2858",
+      "gitLfSha256": "99da7635979b98f70aa622887bcf775047114529b4130de201cebf40d0ab2858"
+    },
+    "src/lib/ascii/studio-preview.ts": {
+      "worktreeSha256": "87ef73fd4261872b1a6bc3d66fd2a05498bc73fa047294b4934174ede9af1a07",
+      "gitLfSha256": "87ef73fd4261872b1a6bc3d66fd2a05498bc73fa047294b4934174ede9af1a07"
+    },
+    "src/lib/art-engine/canvas.ts": {
+      "worktreeSha256": "01ac6c1734c4d1152c81aaa179af84c0c09fd4fb70c515276fa2ccbd2b015899",
+      "gitLfSha256": "01ac6c1734c4d1152c81aaa179af84c0c09fd4fb70c515276fa2ccbd2b015899"
+    },
+    "src/lib/art-engine/embed.ts": {
+      "worktreeSha256": "2faff39bb2f0f3d0cf132dc4089eb97d8ad2af3ff33e7ca4d93632b8faa7b8eb",
+      "gitLfSha256": "2faff39bb2f0f3d0cf132dc4089eb97d8ad2af3ff33e7ca4d93632b8faa7b8eb"
+    },
+    "src/lib/art-engine/types.ts": {
+      "worktreeSha256": "6f2746559b632704dd1c5ee0e19126d89ea3bc43bdb5c06897e03414200490f0",
+      "gitLfSha256": "6f2746559b632704dd1c5ee0e19126d89ea3bc43bdb5c06897e03414200490f0"
+    },
+    "src/lib/art-engine/core.ts": {
+      "worktreeSha256": "ce091baf6d11340ccdda8c21fabe8a7935134964aaf7d4c094fe4432fce414e4",
+      "gitLfSha256": "ce091baf6d11340ccdda8c21fabe8a7935134964aaf7d4c094fe4432fce414e4"
+    },
+    "src/lib/art-engine/index.ts": {
+      "worktreeSha256": "18c455b3562dbb358ccde7a56fdf31e6f8b89a234b038fa6b7ce03469092d6b7",
+      "gitLfSha256": "18c455b3562dbb358ccde7a56fdf31e6f8b89a234b038fa6b7ce03469092d6b7"
+    },
+    "src/lib/art-engine/gpu.ts": {
+      "worktreeSha256": "e169f6faf4abbd398f2d91671dcd953e977e8fd26c1730c362dc6fb323278adc",
+      "gitLfSha256": "e169f6faf4abbd398f2d91671dcd953e977e8fd26c1730c362dc6fb323278adc"
+    },
+    "src/views/AsciiArtView.vue": {
+      "worktreeSha256": "7ff6e1de7b6bdde7c0f10b5dbbc09b10ced4ba54a7993c91e8355a3d4cb76f9a",
+      "gitLfSha256": "7ff6e1de7b6bdde7c0f10b5dbbc09b10ced4ba54a7993c91e8355a3d4cb76f9a"
+    },
+    "package.json": {
+      "worktreeSha256": "16054c37b34e6a81ef3eb0a920f9955dc14785ecbc384288bb16687398ecc408",
+      "gitLfSha256": "16054c37b34e6a81ef3eb0a920f9955dc14785ecbc384288bb16687398ecc408"
+    },
+    "scripts/studio-field-parity.mjs": {
+      "worktreeSha256": "e2ab6fc332204695c50546813177933d004cbb4dfb0255eb0e40cc38d53b4110",
+      "gitLfSha256": "e2ab6fc332204695c50546813177933d004cbb4dfb0255eb0e40cc38d53b4110"
+    },
+    "scripts/hover-parity-contract.mjs": {
+      "worktreeSha256": "e2f1a6732b4baab779863f3f7f8b90104d20c34989b6b72efad509450af8dac7",
+      "gitLfSha256": "e2f1a6732b4baab779863f3f7f8b90104d20c34989b6b72efad509450af8dac7"
+    },
+    "scripts/hover-parity-walkthrough.mjs": {
+      "worktreeSha256": "677a72a7db87805dbb3e78a50e1ea9443477c870936fedb4057575bce104d576",
+      "gitLfSha256": "677a72a7db87805dbb3e78a50e1ea9443477c870936fedb4057575bce104d576"
+    },
+    "scripts/art-effects-contract.mjs": {
+      "worktreeSha256": "86d774981e00a5407713b6be198f7209e4abcfe34776c1d15128e362da6cb0e6",
+      "gitLfSha256": "86d774981e00a5407713b6be198f7209e4abcfe34776c1d15128e362da6cb0e6"
+    },
+    "scripts/art-effects-media-contract.mjs": {
+      "worktreeSha256": "e764254367a8a819f6378a3a225b4d50290a2a91984bcb20c3fa9e3b389bb855",
+      "gitLfSha256": "e764254367a8a819f6378a3a225b4d50290a2a91984bcb20c3fa9e3b389bb855"
+    },
+    ".cursor/rules/studio-native-effects.mdc": {
+      "worktreeSha256": "1bd8fd787d1a4d47d4d21a383dd2eec78410f7992ccab1f1d31da90edd3d3e4d",
+      "gitLfSha256": "1bd8fd787d1a4d47d4d21a383dd2eec78410f7992ccab1f1d31da90edd3d3e4d"
+    },
+    "docs/licenses/asciify-engine-interaction-MIT.txt": {
+      "worktreeSha256": "60c568870b997b7082eadfaed333334b28e65921906a1f0b4f2566934cc42783",
+      "gitLfSha256": "60c568870b997b7082eadfaed333334b28e65921906a1f0b4f2566934cc42783"
+    }
+  },
+  "reportHashes": {
+    "native-field.json": "e3c7bb576cbd6160032ff8703c57af4283aac02c7086da9231d5c11aa8d4cdac",
+    "effects-development.json": "e45ae9bf5b8787cb900144dca7bfec11b76be198a91453ed9139abff36c4be57",
+    "effects-production.json": "a0d38a613c61f18d9cc1232a390372d79201c47ef958411af757be3f73ba78de",
+    "trajectories-production.json": "a222fea186f2c767c90bea4a4ff2cb301ff8f95f1642ca69e540b440a9c6aa53",
+    "home-hover.json": "c68afb87dc2a12a67109c44c1ef2a4ba2926fc863d107cbb9d0836f1a0cd1b11",
+    "media.json": "614396fdb7fa04873e16794589dbc080c18ae8b3a38d99bd19bb653e65960889",
+    "walkthrough.json": "62a708c0f74e642026bd3b884d0ed4b0b71ea9ae2fa5a6e4dafba276be4c8f30"
+  },
+  "rawReportHashes": {
+    "effects-development.json": "07f3961ecf4a854ef5b2db5887c9825c34d6ecbf7f434e5d79811c64f2302be2"
+  }
+}

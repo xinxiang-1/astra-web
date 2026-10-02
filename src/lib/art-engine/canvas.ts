@@ -27,7 +27,887 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
   let colorProbe: HTMLCanvasElement | null = null
   const styleColors = new Map<string, number[]>()
   let glowCanvas: HTMLCanvasElement | null = null
-  const trail: { x: number; y: number; time: number }[] = []
+  function makeStudioInteraction(ratio: number) {
+    /*! Native interaction fields adapted from asciify-engine 4.1.0.
+    MIT License
+
+    Copyright (c) 2026 ayangabryl
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+    */
+    function studioEdge(t: number, e: number, i: number) {
+      const s = Math.min(
+          t * Math.max(1, i),
+          (1 - t) * Math.max(1, i),
+          e * Math.max(1, 1 / i),
+          (1 - e) * Math.max(1, 1 / i),
+        ),
+        a = Math.max(0, Math.min(1, (s - 0.035) / 0.105))
+      return a * a * a * (a * (6 * a - 15) + 10)
+    }
+    const StudioAfterimage = class {
+      edgeSafe: boolean
+      previous: { x: number; y: number } | null
+      peak: number
+      mode: string
+      width: number
+      height: number
+      pixels: Uint8Array
+      ink: Float32Array
+      targetX: Float32Array
+      targetY: Float32Array
+      offsetX: Float32Array
+      offsetY: Float32Array
+      edge: Float32Array
+
+      constructor(t: number, e: number) {
+        ;((this.edgeSafe = !1),
+          (this.previous = null),
+          (this.peak = 0),
+          (this.mode = 'dissolve'),
+          (this.width = t),
+          (this.height = e))
+        const i = t * e
+        ;((this.pixels = new Uint8Array(4 * i)),
+          (this.ink = new Float32Array(i)),
+          (this.targetX = new Float32Array(i)),
+          (this.targetY = new Float32Array(i)),
+          (this.offsetX = new Float32Array(i)),
+          (this.offsetY = new Float32Array(i)),
+          (this.edge = new Float32Array(i)))
+        for (let i = 0; i < e; i++)
+          for (let s = 0; s < t; s++)
+            this.edge[i * t + s]! = studioEdge(s / (t - 1), i / (e - 1), t / e)
+        this.clear()
+      }
+      get active() {
+        return this.peak > 2e-4
+      }
+      setMode(t: string) {
+        t !== this.mode && ((this.mode = t), this.clear())
+      }
+      clear() {
+        for (const t of [
+          this.ink,
+          this.targetX,
+          this.targetY,
+          this.offsetX,
+          this.offsetY,
+          this.pixels,
+        ])
+          t.fill(0)
+        if (((this.previous = null), (this.peak = 0), 'dissolve' !== this.mode))
+          for (let t = 0; t < this.pixels.length; t += 4)
+            this.pixels[t]! = this.pixels[t + 2]! = 128
+      }
+      leave() {
+        this.previous = null
+      }
+      move(t: number, e: number, i: number) {
+        if (!Number.isFinite(t + e + i)) return
+        ;((t = Math.max(0, Math.min(1, t))), (e = Math.max(0, Math.min(1, e))))
+        const s = this.previous
+        this.previous = { x: t, y: e }
+        const a = this.width,
+          r = this.height,
+          o = Math.max(1, a / r),
+          n = Math.max(1, r / a),
+          h = s ? (t - s.x) * o : 0,
+          l = s ? (e - s.y) * n : 0,
+          c = Math.hypot(h, l)
+        if (!s && 'dissolve' !== this.mode) return
+        if (s && c < 1e-4) return
+        const m = 0.035 + 0.11 * Math.max(0.1, Math.min(1, i)),
+          d = Math.min(128, Math.max(1, Math.ceil(c / (0.45 * m)))),
+          f = c ? h / c : 1,
+          u = c ? l / c : 0,
+          g = Math.min(1, (c / (m * d)) * 2.2)
+        for (let i = 0; i < d; i++) {
+          const h = (i + 0.5) / d,
+            l = s ? s.x + (t - s.x) * h : t,
+            c = s ? s.y + (e - s.y) * h : e,
+            p = Math.max(0, Math.floor((l - (2.5 * m) / o) * (a - 1))),
+            M = Math.min(a - 1, Math.ceil((l + (2.5 * m) / o) * (a - 1))),
+            x = Math.max(0, Math.floor((c - (2.5 * m) / n) * (r - 1))),
+            v = Math.min(r - 1, Math.ceil((c + (2.5 * m) / n) * (r - 1)))
+          for (let t = x; t <= v; t++)
+            for (let e = p; e <= M; e++) {
+              const i = ((e / (a - 1) - l) * o) / m,
+                s = ((t / (r - 1) - c) * n) / m,
+                h = Math.exp(1.5 * -(i * i + s * s)),
+                d = t * a + e
+              if ('dissolve' === this.mode) this.ink[d]! = Math.max(this.ink[d]!, h)
+              else {
+                const t = (-i * u + s * f) * h * 2.8,
+                  e = 'silk' === this.mode ? f * t : -s * h * 2.5,
+                  a = 'silk' === this.mode ? u * t : i * h * 2.5
+                ;((this.targetX[d]! = Math.max(-1, Math.min(1, this.targetX[d]! + e * g))),
+                  (this.targetY[d]! = Math.max(-1, Math.min(1, this.targetY[d]! + a * g))))
+              }
+            }
+        }
+        this.peak = 1
+      }
+      step(t: number) {
+        if (!this.active || !Number.isFinite(t)) return
+        const e = Math.max(0, Math.min(0.05, t)),
+          i = Math.exp(-('dissolve' === this.mode ? 2.15 : 3.2) * e),
+          s = 1 - Math.exp(-22 * e)
+        let a = 0
+        for (let t = 0; t < this.ink.length; t++)
+          if ('dissolve' === this.mode) {
+            ;((this.ink[t]! *= i), (a = Math.max(a, this.ink[t]!)))
+            const e = Math.round(65535 * this.ink[t]!)
+            ;((this.pixels[4 * t]! = e >>> 8), (this.pixels[4 * t + 1]! = 255 & e))
+          } else {
+            ;((this.targetX[t]! *= i),
+              (this.targetY[t]! *= i),
+              (this.offsetX[t]! += (this.targetX[t]! - this.offsetX[t]!) * s),
+              (this.offsetY[t]! += (this.targetY[t]! - this.offsetY[t]!) * s),
+              (a = Math.max(
+                a,
+                Math.abs(this.offsetX[t]!),
+                Math.abs(this.offsetY[t]!),
+                Math.abs(this.targetX[t]!),
+                Math.abs(this.targetY[t]!),
+              )))
+            const e = Math.round(
+                this.offsetX[t]! * (this.edgeSafe ? this.edge[t]! : 1) * 32767 + 32768,
+              ),
+              r = Math.round(this.offsetY[t]! * (this.edgeSafe ? this.edge[t]! : 1) * 32767 + 32768)
+            ;((this.pixels[4 * t]! = e >>> 8),
+              (this.pixels[4 * t + 1]! = 255 & e),
+              (this.pixels[4 * t + 2]! = r >>> 8),
+              (this.pixels[4 * t + 3]! = 255 & r))
+          }
+        ;((this.peak = a), this.active || this.clear())
+      }
+      sample(t: number, e: number, i: Float32Array) {
+        const s = Math.max(0, Math.min(this.width - 1.001, t * (this.width - 1))),
+          a = Math.max(0, Math.min(this.height - 1.001, e * (this.height - 1))),
+          r = Math.floor(s),
+          o = Math.floor(a),
+          n = s - r,
+          h = a - o,
+          l = o * this.width + r,
+          c = l + this.width,
+          m = (t: Float32Array) =>
+            (t[l]! * (1 - n) + t[l + 1]! * n) * (1 - h) + (t[c]! * (1 - n) + t[c + 1]! * n) * h
+        ;((i[0]! =
+          m(this.offsetX) *
+          (this.edgeSafe ? studioEdge(t, e, this.width / this.height) : 1) *
+          0.08),
+          (i[1]! =
+            m(this.offsetY) *
+            (this.edgeSafe ? studioEdge(t, e, this.width / this.height) : 1) *
+            0.08),
+          (i[2]! = 'dissolve' === this.mode ? 6 * -m(this.ink) : 0))
+      }
+    }
+    const StudioContour = class {
+      rings: { x: number; y: number; age: number; radius: number }[]
+      previous: { x: number; y: number } | null
+      elapsed: number
+      echoPeak: number
+      width: number
+      height: number
+      pixels: Uint8Array
+      echo: Float32Array
+
+      constructor(t: number, e: number) {
+        ;((this.rings = []),
+          (this.previous = null),
+          (this.elapsed = 1),
+          (this.echoPeak = 0),
+          (this.width = t),
+          (this.height = e),
+          (this.pixels = new Uint8Array(t * e * 4)),
+          (this.echo = new Float32Array(t * e)))
+      }
+      get active() {
+        return this.rings.length > 0 || this.echoPeak > 2e-4
+      }
+      clear() {
+        ;((this.rings = []),
+          (this.previous = null),
+          (this.elapsed = 1),
+          this.pixels.fill(0),
+          this.echo.fill(0),
+          (this.echoPeak = 0))
+      }
+      leave() {
+        this.previous = null
+      }
+      move(t: number, e: number, i: number) {
+        const s = Math.max(1, this.width / this.height),
+          a = Math.max(1, this.height / this.width)
+        ;(this.previous &&
+          (Math.hypot((t - this.previous.x) * s, (e - this.previous.y) * a) < 0.065 ||
+            this.elapsed < 0.3)) ||
+          (4 !== this.rings.length &&
+            ((this.previous = { x: t, y: e }),
+            (this.elapsed = 0),
+            this.rings.push({ x: t, y: e, age: 0, radius: i })))
+      }
+      ringSample(t: number, e: number) {
+        const i = Math.max(1, this.width / this.height),
+          s = Math.max(1, this.height / this.width)
+        let a = 0
+        for (const r of this.rings) {
+          const o = 0.015 + r.age * (0.15 + 0.22 * r.radius),
+            n = 0.009 + 0.014 * r.radius,
+            h = (Math.hypot((t - r.x) * i, (e - r.y) * s) - o) / n,
+            l =
+              Math.sin((Math.min(1, r.age / 0.07) * Math.PI) / 2) *
+              Math.max(0, 1 - r.age / 1.35) ** 2
+          a = Math.max(a, Math.exp(-h * h) * l)
+        }
+        return a
+      }
+      sample(t: number, e: number) {
+        const i = Math.max(0, Math.min(this.width - 1, Math.round(t * (this.width - 1)))),
+          s = Math.max(0, Math.min(this.height - 1, Math.round(e * (this.height - 1))))
+        return Math.max(this.ringSample(t, e), this.echo[s * this.width + i]!)
+      }
+      step(t: number) {
+        if (!Number.isFinite(t)) return
+        const e = Math.max(0, Math.min(0.05, t))
+        this.elapsed += e
+        for (const t of this.rings) t.age += e
+        if (((this.rings = this.rings.filter((t) => t.age < 1.35)), !this.active))
+          return void this.pixels.fill(0)
+        const i = Math.exp(-5.5 * e)
+        let s = 0
+        for (let t = 0; t < this.height; t++)
+          for (let e = 0; e < this.width; e++) {
+            const a = t * this.width + e
+            ;((this.echo[a]! = Math.max(
+              this.ringSample(e / (this.width - 1), t / (this.height - 1)),
+              this.echo[a]! * i,
+            )),
+              (s = Math.max(s, this.echo[a]!)))
+            const r = Math.round(65535 * this.echo[a]!),
+              o = 4 * a
+            ;((this.pixels[o]! = r >>> 8), (this.pixels[o + 1]! = 255 & r))
+          }
+        ;((this.echoPeak = s), this.active || (this.echo.fill(0), this.pixels.fill(0)))
+      }
+    }
+    const StudioFluidTrail = class {
+      previous: { x: number; y: number; time: number } | null
+      peak: number
+      width: number
+      height: number
+      pixels: Uint8Array
+      signal: Float32Array
+      offsetX: Float32Array
+      offsetY: Float32Array
+      driftX: Float32Array
+      driftY: Float32Array
+      u: Float32Array
+      v: Float32Array
+      ink: Float32Array
+      a: Float32Array
+      b: Float32Array
+      c: Float32Array
+      pressure: Float32Array
+      pressureNext: Float32Array
+      divergence: Float32Array
+      curl: Float32Array
+
+      constructor(t: number, e: number) {
+        ;((this.previous = null), (this.peak = 0), (this.width = t), (this.height = e))
+        const i = t * e
+        ;((this.pixels = new Uint8Array(4 * i)),
+          (this.signal = new Float32Array(i)),
+          (this.offsetX = new Float32Array(i)),
+          (this.offsetY = new Float32Array(i)),
+          (this.driftX = new Float32Array(i)),
+          (this.driftY = new Float32Array(i)),
+          (this.u = new Float32Array(i)),
+          (this.v = new Float32Array(i)),
+          (this.ink = new Float32Array(i)),
+          (this.a = new Float32Array(i)),
+          (this.b = new Float32Array(i)),
+          (this.c = new Float32Array(i)),
+          (this.pressure = new Float32Array(i)),
+          (this.pressureNext = new Float32Array(i)),
+          (this.divergence = new Float32Array(i)),
+          (this.curl = new Float32Array(i)))
+      }
+      get active() {
+        return this.peak > 2e-4
+      }
+      clear() {
+        for (const t of [
+          this.u,
+          this.v,
+          this.ink,
+          this.a,
+          this.b,
+          this.c,
+          this.pressure,
+          this.pressureNext,
+          this.divergence,
+          this.curl,
+          this.signal,
+          this.pixels,
+          this.offsetX,
+          this.offsetY,
+          this.driftX,
+          this.driftY,
+        ])
+          t.fill(0)
+        ;((this.previous = null), (this.peak = 0))
+      }
+      leave() {
+        this.previous = null
+      }
+      move(t: number, e: number, i: number, s = performance.now()) {
+        if (!Number.isFinite(t + e + i + s)) return
+        ;((t = Math.max(0, Math.min(1, t))),
+          (e = Math.max(0, Math.min(1, e))),
+          (i = Math.max(0.1, Math.min(1, i))))
+        const a = this.previous
+        if (((this.previous = { x: t, y: e, time: s }), !a)) return
+        const r = (t - a.x) * (this.width - 1),
+          o = (e - a.y) * (this.height - 1),
+          n = Math.hypot(r, o)
+        if (n < 0.001) return
+        const h = Math.min(this.width, this.height),
+          l = s > a.time ? Math.max(1 / 240, (s - a.time) / 1e3) : 1 / 60,
+          c = Math.min(12, n / h / l),
+          m = 1 - Math.exp(-c / 2.2),
+          d = h * (0.022 + 0.075 * i) * (0.65 + 0.95 * m),
+          f = Math.min(128, Math.max(1, Math.ceil(n / (0.4 * d)))),
+          u = ((n / d) * (0.32 + 0.22 * m)) / f,
+          g = r / n,
+          p = o / n,
+          M = -p,
+          x = g,
+          v = (n * (2 + 18 * m)) / f
+        for (let i = 0; i < f; i++) {
+          const s = (i + 0.5) / f,
+            r = (a.x + (t - a.x) * s) * (this.width - 1),
+            o = (a.y + (e - a.y) * s) * (this.height - 1),
+            n = Math.max(1, Math.floor(r - 3 * d)),
+            h = Math.min(this.width - 2, Math.ceil(r + 3 * d)),
+            l = Math.max(1, Math.floor(o - 3 * d)),
+            c = Math.min(this.height - 2, Math.ceil(o + 3 * d))
+          for (let t = l; t <= c; t++)
+            for (let e = n; e <= h; e++) {
+              const i = ((e - r) * g + (t - o) * p) / d,
+                s = ((e - r) * M + (t - o) * x) / d,
+                a = Math.exp(-i * i * 0.65 - s * s * 1.7),
+                n = t * this.width + e
+              this.ink[n]! = 1 - (1 - this.ink[n]!) * Math.exp(-a * u)
+              const h = 1 - s * s * 0.55,
+                l = i * s * 0.7
+              ;((this.u[n]! = Math.max(-80, Math.min(80, this.u[n]! + (g * h + M * l) * a * v))),
+                (this.v[n]! = Math.max(-80, Math.min(80, this.v[n]! + (p * h + x * l) * a * v))))
+            }
+        }
+        this.peak = 1
+      }
+      read(t: Float32Array, e: number, i: number) {
+        const s = 0 | (e = Math.max(0.5, Math.min(this.width - 1.5, e))),
+          a = 0 | (i = Math.max(0.5, Math.min(this.height - 1.5, i))),
+          r = e - s,
+          o = i - a,
+          n = a * this.width + s
+        return (
+          (t[n]! * (1 - r) + t[n + 1]! * r) * (1 - o) +
+          (t[n + this.width]! * (1 - r) + t[n + this.width + 1]! * r) * o
+        )
+      }
+      sample(t: number, e: number) {
+        return this.read(this.signal, t * (this.width - 1), e * (this.height - 1))
+      }
+      displacement(t: number, e: number, i: Float32Array) {
+        ;((i[0]! = this.read(this.offsetX, t * (this.width - 1), e * (this.height - 1))),
+          (i[1]! = this.read(this.offsetY, t * (this.width - 1), e * (this.height - 1))))
+      }
+      step(t: number) {
+        if (!this.active || !Number.isFinite(t)) return
+        let e = Math.max(0, Math.min(0.05, t))
+        const i = this.width,
+          s = this.height
+        for (; e > 1e-7;) {
+          const t = Math.min(1 / 60, e)
+          e -= t
+          const a = Math.exp(-1.9 * t),
+            r = Math.exp(-3.2 * t)
+          for (let e = 1; e < s - 1; e++)
+            for (let o = 1; o < i - 1; o++) {
+              const n = e * i + o,
+                h = Math.max(0.5, Math.min(i - 1.5, o - this.u[n]! * t)),
+                l = Math.max(0.5, Math.min(s - 1.5, e - this.v[n]! * t)),
+                c = 0 | h,
+                m = 0 | l,
+                d = h - c,
+                f = l - m,
+                u = m * i + c,
+                g = (1 - d) * (1 - f),
+                p = d * (1 - f),
+                M = (1 - d) * f,
+                x = d * f
+              ;((this.a[n]! =
+                (this.u[u]! * g +
+                  this.u[u + 1]! * p +
+                  this.u[u + i]! * M +
+                  this.u[u + i + 1]! * x) *
+                a),
+                (this.b[n]! =
+                  (this.v[u]! * g +
+                    this.v[u + 1]! * p +
+                    this.v[u + i]! * M +
+                    this.v[u + i + 1]! * x) *
+                  a),
+                (this.c[n]! =
+                  (this.ink[u]! * g +
+                    this.ink[u + 1]! * p +
+                    this.ink[u + i]! * M +
+                    this.ink[u + i + 1]! * x) *
+                  r))
+            }
+          ;(([this.u, this.a] = [this.a, this.u]),
+            ([this.v, this.b] = [this.b, this.v]),
+            ([this.ink, this.c] = [this.c, this.ink]))
+          for (let t = 1; t < s - 1; t++)
+            for (let e = 1; e < i - 1; e++) {
+              const s = t * i + e
+              this.curl[s]! =
+                0.5 * (this.v[s + 1]! - this.v[s - 1]! - this.u[s + i]! + this.u[s - i]!)
+            }
+          for (let e = 1; e < s - 1; e++)
+            for (let s = 1; s < i - 1; s++) {
+              const a = e * i + s,
+                r = Math.abs(this.curl[a + 1]!) - Math.abs(this.curl[a - 1]!),
+                o = Math.abs(this.curl[a + i]!) - Math.abs(this.curl[a - i]!),
+                n = Math.hypot(r, o) + 1e-4,
+                h = this.curl[a]! * t * 10,
+                l = Math.hypot(this.u[a]!, this.v[a]!)
+              ;((this.u[a]! += (o / n) * h), (this.v[a]! -= (r / n) * h))
+              const c = Math.min(1, l / (Math.hypot(this.u[a]!, this.v[a]!) + 1e-6))
+              ;((this.u[a]! *= c),
+                (this.v[a]! *= c),
+                (this.divergence[a]! =
+                  -0.5 * (this.u[a + 1]! - this.u[a - 1]! + this.v[a + i]! - this.v[a - i]!)))
+            }
+          this.pressure.fill(0)
+          for (let t = 0; t < 4; t++) {
+            for (let t = 1; t < s - 1; t++)
+              for (let e = 1; e < i - 1; e++) {
+                const s = t * i + e
+                this.pressureNext[s]! =
+                  0.25 *
+                  (this.divergence[s]! +
+                    this.pressure[s - 1]! +
+                    this.pressure[s + 1]! +
+                    this.pressure[s - i]! +
+                    this.pressure[s + i]!)
+              }
+            ;[this.pressure, this.pressureNext] = [this.pressureNext, this.pressure]
+          }
+          let o = 0
+          for (let e = 1; e < s - 1; e++)
+            for (let s = 1; s < i - 1; s++) {
+              const a = e * i + s
+              ;((this.u[a]! = Math.max(
+                -80,
+                Math.min(80, this.u[a]! - 0.5 * (this.pressure[a + 1]! - this.pressure[a - 1]!)),
+              )),
+                (this.v[a]! = Math.max(
+                  -80,
+                  Math.min(80, this.v[a]! - 0.5 * (this.pressure[a + i]! - this.pressure[a - i]!)),
+                )),
+                (this.driftX[a]! +=
+                  (3.6 * this.u[a]! - 58 * this.offsetX[a]! - 12 * this.driftX[a]!) * t),
+                (this.driftY[a]! +=
+                  (3.6 * this.v[a]! - 58 * this.offsetY[a]! - 12 * this.driftY[a]!) * t),
+                (this.offsetX[a]! = Math.max(
+                  -2,
+                  Math.min(2, this.offsetX[a]! + this.driftX[a]! * t),
+                )),
+                (this.offsetY[a]! = Math.max(
+                  -2,
+                  Math.min(2, this.offsetY[a]! + this.driftY[a]! * t),
+                )),
+                (this.signal[a]! =
+                  1 - Math.exp(0.06 * -Math.hypot(this.u[a]!, this.v[a]!) - 0.16 * this.ink[a]!)),
+                (o = Math.max(o, this.signal[a]!)))
+            }
+          this.peak = o
+        }
+        if (this.active)
+          for (let t = 0; t < this.ink.length; t++) {
+            const e = Math.round(65535 * Math.min(1, this.signal[t]!))
+            ;((this.pixels[4 * t]! = e >>> 8),
+              (this.pixels[4 * t + 1]! = 255 & e),
+              (this.pixels[4 * t + 2]! = Math.round(128 + 63.5 * this.offsetX[t]!)),
+              (this.pixels[4 * t + 3]! = Math.round(128 + 63.5 * this.offsetY[t]!)))
+          }
+        else this.clear()
+      }
+    }
+    const StudioInteraction = class {
+      mode: string
+      amount: number
+      radius: number
+      lensX: number
+      lensY: number
+      lensStrength: number
+      previous: { x: number; y: number } | null
+      energy: number
+      pending: boolean
+      remainder: number
+      columns: number
+      rows: number
+      xScale: number
+      yScale: number
+      trail: InstanceType<typeof StudioFluidTrail>
+      contour: InstanceType<typeof StudioContour>
+      afterimage: InstanceType<typeof StudioAfterimage>
+      refraction: {
+        width: number
+        height: number
+        pixels: Uint8Array
+        strength: number
+        mode: string
+        focus: [number, number, number, number]
+        edgeSafe?: boolean
+      }
+      heights: Float32Array
+      velocity: Float32Array
+      next: Float32Array
+      normals: Float32Array
+      edgeMask: Float32Array
+      waterPixels: Uint8Array
+
+      constructor(t = 1) {
+        ;((this.mode = 'water'),
+          (this.amount = 0.55),
+          (this.radius = 0.2),
+          (this.lensX = 0.5),
+          (this.lensY = 0.5),
+          (this.lensStrength = 0),
+          (this.previous = null),
+          (this.energy = 0),
+          (this.pending = !1),
+          (this.remainder = 0),
+          (t = Math.max(0.25, Math.min(4, t))),
+          (this.columns = Math.round(t >= 1 ? 128 : 128 * t)),
+          (this.rows = Math.round(t >= 1 ? 128 / t : 128)),
+          (this.xScale = Math.max(1, t)),
+          (this.yScale = Math.max(1, 1 / t)),
+          (this.heights = new Float32Array(this.columns * this.rows)),
+          (this.velocity = new Float32Array(this.heights.length)),
+          (this.next = new Float32Array(this.heights.length)),
+          (this.normals = new Float32Array(2 * this.heights.length)),
+          (this.edgeMask = new Float32Array(this.heights.length)))
+        for (let e = 0; e < this.rows; e++)
+          for (let i = 0; i < this.columns; i++)
+            this.edgeMask[e * this.columns + i]! = studioEdge(
+              i / (this.columns - 1),
+              e / (this.rows - 1),
+              t,
+            )
+        ;((this.refraction = {
+          width: this.columns,
+          height: this.rows,
+          pixels: new Uint8Array(4 * this.heights.length),
+          strength: 30,
+          mode: 'water',
+          focus: [0.5, 0.5, 0, 0.2],
+        }),
+          (this.waterPixels = this.refraction.pixels),
+          (this.trail = new StudioFluidTrail(this.columns, this.rows)),
+          (this.contour = new StudioContour(this.columns, this.rows)),
+          (this.afterimage = new StudioAfterimage(this.columns, this.rows)),
+          this.clear())
+      }
+      get invertsDensity() {
+        return 'trail' === this.mode
+      }
+      get densityTrail() {
+        return ['trail', 'contour', 'dissolve'].includes(this.mode)
+      }
+      get hasRefraction() {
+        return this.active || this.lensStrength > 15e-5
+      }
+      get active() {
+        return ['dissolve', 'silk', 'vortex'].includes(this.mode)
+          ? this.afterimage.active
+          : 'contour' === this.mode
+            ? this.contour.active
+            : 'trail' === this.mode
+              ? this.trail.active
+              : this.pending || this.energy > 15e-5
+      }
+      setMode(t: string) {
+        t !== this.mode &&
+          (this.clear(),
+          (this.mode = t),
+          (this.refraction.mode = t),
+          ('dissolve' !== t && 'silk' !== t && 'vortex' !== t) || this.afterimage.setMode(t),
+          (this.refraction.pixels =
+            'trail' === t
+              ? this.trail.pixels
+              : 'contour' === t
+                ? this.contour.pixels
+                : ['dissolve', 'silk', 'vortex'].includes(t)
+                  ? this.afterimage.pixels
+                  : this.waterPixels),
+          (this.refraction.strength =
+            'water' === t
+              ? (30 * this.amount) / 0.55
+              : 'silk' === t
+                ? 28 * this.amount
+                : 'vortex' === t
+                  ? 38 * this.amount
+                  : 0))
+      }
+      configure(t: string, e = 0.55, i = 0.2, s = !1) {
+        ;(this.setMode(t),
+          (this.refraction.edgeSafe = s),
+          (this.afterimage.edgeSafe = s),
+          (this.amount = Number.isFinite(e) ? Math.max(0, Math.min(1, e)) : 0.55),
+          (this.radius = Number.isFinite(i) ? Math.max(0.1, Math.min(1, i)) : 0.2),
+          (this.refraction.strength =
+            'water' === t
+              ? (30 * this.amount) / 0.55
+              : 'silk' === t
+                ? 28 * this.amount
+                : 'vortex' === t
+                  ? 38 * this.amount
+                  : 0),
+          (this.refraction.focus[2]! = this.densityTrail
+            ? this.amount
+            : this.lensStrength * this.amount),
+          (this.refraction.focus[3]! = this.radius))
+      }
+      move(t: number, e: number, i: number) {
+        if ('none' === this.mode || 0 === this.amount) return
+        if (!Number.isFinite(t + e)) return
+        if (
+          ((t = Math.max(0, Math.min(1, t))),
+          (e = Math.max(0, Math.min(1, e))),
+          ['dissolve', 'silk', 'vortex'].includes(this.mode))
+        )
+          return void this.afterimage.move(t, e, this.radius)
+        if ('contour' === this.mode) return void this.contour.move(t, e, this.radius)
+        if ('trail' === this.mode) return void this.trail.move(t, e, this.radius, i)
+        if ('water' !== this.mode)
+          return (
+            !this.previous && this.lensStrength < 0.001 && ((this.lensX = t), (this.lensY = e)),
+            (this.previous = { x: t, y: e }),
+            void (this.pending = !0)
+          )
+        if (!this.previous) return void (this.previous = { x: t, y: e })
+        const s = this.previous
+        this.previous = { x: t, y: e }
+        const a = (t - s.x) * this.xScale,
+          r = (e - s.y) * this.yScale,
+          o = Math.hypot(a, r)
+        if (o < 1e-5) return
+        const n = 0.035 + 0.1 * this.radius,
+          h = 3 * n,
+          l = Math.min(192, Math.max(1, Math.ceil(o / (0.5 * n)))),
+          c = (95 * Math.min(o, 1)) / l
+        for (let i = 0; i < l; i++) {
+          const a = (i + 0.5) / l,
+            r = s.x + (t - s.x) * a,
+            o = s.y + (e - s.y) * a,
+            m = Math.max(1, Math.floor((r - h / this.xScale) * (this.columns - 1))),
+            d = Math.min(this.columns - 2, Math.ceil((r + h / this.xScale) * (this.columns - 1))),
+            f = Math.max(1, Math.floor((o - h / this.yScale) * (this.rows - 1))),
+            u = Math.min(this.rows - 2, Math.ceil((o + h / this.yScale) * (this.rows - 1)))
+          for (let t = f; t <= u; t++)
+            for (let e = m; e <= d; e++) {
+              const i = (e / (this.columns - 1) - r) * this.xScale,
+                s = (t / (this.rows - 1) - o) * this.yScale,
+                a = Math.exp(-(i * i + s * s) / (n * n)) * c,
+                h = t * this.columns + e
+              this.velocity[h]! = Math.max(-12, this.velocity[h]! - a)
+            }
+        }
+        this.pending = !0
+      }
+      leave() {
+        ;(this.afterimage.leave(),
+          this.contour.leave(),
+          this.trail.leave(),
+          (this.previous = null),
+          'water' !== this.mode && this.lensStrength && (this.pending = !0))
+      }
+      clear() {
+        ;(this.trail.clear(),
+          this.contour.clear(),
+          this.afterimage.clear(),
+          this.heights.fill(0),
+          this.velocity.fill(0),
+          this.next.fill(0),
+          this.normals.fill(0),
+          (this.refraction.focus[2]! = 0),
+          (this.previous = null),
+          (this.lensStrength = 0),
+          (this.energy = 0),
+          (this.pending = !1),
+          (this.remainder = 0))
+        for (let t = 0; t < this.waterPixels.length; t += 4)
+          ((this.waterPixels[t]! = this.waterPixels[t + 2]! = 128),
+            (this.waterPixels[t + 1]! = this.waterPixels[t + 3]! = 0))
+      }
+      step(t: number) {
+        if (!this.active || !Number.isFinite(t)) return
+        if (['dissolve', 'silk', 'vortex'].includes(this.mode)) return void this.afterimage.step(t)
+        if ('contour' === this.mode) return void this.contour.step(t)
+        if ('trail' === this.mode) return void this.trail.step(t)
+        if ('water' !== this.mode) return void this.stepLight(Math.max(0, Math.min(0.05, t)))
+        this.remainder += Math.max(0, Math.min(0.05, t))
+        const e = 1 / 120,
+          i = Math.exp(-3.8 * e),
+          s = 0.3 * Math.min(this.columns, this.rows)
+        for (; this.remainder + 1e-8 >= e;) {
+          this.remainder -= e
+          let t = 0
+          for (let a = 1; a < this.rows - 1; a++)
+            for (let r = 1; r < this.columns - 1; r++) {
+              const o = a * this.columns + r,
+                n = this.heights[o]!,
+                h =
+                  this.heights[o - 1]! +
+                  this.heights[o + 1]! +
+                  this.heights[o - this.columns]! +
+                  this.heights[o + this.columns]! -
+                  4 * n,
+                l = Math.min(r, a, this.columns - 1 - r, this.rows - 1 - a),
+                c = l < 5 ? 0.88 + 0.024 * l : 1,
+                m = (this.velocity[o]! + (h * s * s - 8 * n) * e) * i * c
+              ;((this.velocity[o]! = m),
+                (this.next[o]! = (n + m * e) * c),
+                (t = Math.max(t, Math.abs(this.next[o]!), 0.1 * Math.abs(m))))
+            }
+          ;(this.heights.set(this.next), (this.energy = t), (this.pending = !1))
+        }
+        if (!this.active) return void this.clear()
+        const a = 0.18 * Math.min(this.columns, this.rows)
+        for (let t = 0; t < this.rows; t++)
+          for (let e = 0; e < this.columns; e++) {
+            const i = t * this.columns + e,
+              s =
+                (this.heights[t * this.columns + Math.max(0, e - 1)]! -
+                  this.heights[t * this.columns + Math.min(this.columns - 1, e + 1)]!) *
+                a,
+              r =
+                (this.heights[Math.max(0, t - 1) * this.columns + e]! -
+                  this.heights[Math.min(this.rows - 1, t + 1) * this.columns + e]!) *
+                a,
+              o = Math.tanh(s) * (this.refraction.edgeSafe ? this.edgeMask[i]! : 1),
+              n = Math.tanh(r) * (this.refraction.edgeSafe ? this.edgeMask[i]! : 1)
+            ;((this.normals[2 * i]! = o), (this.normals[2 * i + 1]! = n))
+            const h = Math.round(32767 * o + 32768),
+              l = Math.round(32767 * n + 32768)
+            ;((this.refraction.pixels[4 * i]! = h >>> 8),
+              (this.refraction.pixels[4 * i + 1]! = 255 & h),
+              (this.refraction.pixels[4 * i + 2]! = l >>> 8),
+              (this.refraction.pixels[4 * i + 3]! = 255 & l))
+          }
+      }
+      stepLight(t: number) {
+        const e = this.previous,
+          i = 1 - Math.exp(-30 * t),
+          s = 1 - Math.exp(-12 * t)
+        ;(e && ((this.lensX += (e.x - this.lensX) * i), (this.lensY += (e.y - this.lensY) * i)),
+          (this.lensStrength += ((e ? 1 : 0) - this.lensStrength) * s),
+          (this.energy = Math.max(
+            e ? Math.abs(e.x - this.lensX) + Math.abs(e.y - this.lensY) : 0,
+            Math.abs((e ? 1 : 0) - this.lensStrength),
+          )),
+          (this.pending = !1),
+          e || this.active
+            ? (this.refraction.focus = [
+                this.lensX,
+                this.lensY,
+                this.lensStrength * this.amount,
+                this.radius,
+              ])
+            : this.clear())
+      }
+      sample(t: number, e: number, i: Float32Array) {
+        if (['dissolve', 'silk', 'vortex'].includes(this.mode))
+          return (
+            this.afterimage.sample(t, e, i),
+            (i[0]! *= this.amount),
+            (i[1]! *= this.amount),
+            void (i[2]! *= this.amount)
+          )
+        if ('contour' === this.mode)
+          return ((i[0]! = i[1]! = 0), void (i[2]! = this.contour.sample(t, e) * this.amount * 3))
+        if ('trail' === this.mode)
+          return ((i[0]! = i[1]! = 0), void (i[2]! = this.trail.sample(t, e) * this.amount * 3))
+        const s = Math.max(0, Math.min(this.columns - 1.001, t * (this.columns - 1))),
+          a = Math.max(0, Math.min(this.rows - 1.001, e * (this.rows - 1))),
+          r = Math.floor(s),
+          o = Math.floor(a),
+          n = s - r,
+          h = a - o,
+          l = 2 * (o * this.columns + r),
+          c = l + 2 * this.columns
+        for (let t = 0; t < 2; t++)
+          i[t]! =
+            0.08 *
+            ((this.normals[l + t]! * (1 - n) + this.normals[l + 2 + t]! * n) * (1 - h) +
+              (this.normals[c + t]! * (1 - n) + this.normals[c + 2 + t]! * n) * h)
+        ;((i[0]! *= this.amount / 0.55),
+          (i[1]! *= this.amount / 0.55),
+          (i[2]! =
+            'light' === this.mode || 'scan' === this.mode
+              ? (function (t, e, i, s) {
+                  const [a, r, o, n] = i.focus,
+                    h = ((t - a) * Math.max(1, s)) / n,
+                    l = ((e - r) * Math.max(1, 1 / s)) / n
+                  return 'light' === i.mode
+                    ? Math.exp(-3 * (h * h + l * l)) * o
+                    : 'scan' === i.mode
+                      ? (1.3 * Math.exp(-h * h * 110) - 0.3 * Math.exp(-h * h * 12)) *
+                        Math.exp(-l * l * 1.8) *
+                        o
+                      : 0
+                })(t, e, this.refraction, this.xScale / this.yScale)
+              : 0))
+      }
+    }
+
+    return new StudioInteraction(ratio)
+  }
+
+  let interaction: ReturnType<typeof makeStudioInteraction> | null = null
+  let interactionRatio = 0
+  let interactionClock = -1
+  let interactionMode = ''
+  let interactionPointer: { x: number; y: number } | null = null
+  const interactionSample = new Float32Array(3)
+  const interactionOffset = new Float32Array(2)
+  let coverageOrder: number[] = []
+  let coverageGlyphs: ArtFrame['glyphs'] | null = null
   const clamp = (n: number, min: number, max: number) => Math.min(max, Math.max(min, n))
   const canvas = (width: number, height: number) => {
     const c = document.createElement('canvas')
@@ -90,19 +970,75 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
     const interactionTime = options.hoverTime ?? options.time ?? 0
     const amount = clamp(options.motionStrength ?? 0.65, 0, 1)
     const pointer = options.pointer
-    const radius = clamp(options.hoverRadius ?? 0.38, 0.05, 1) * Math.min(w, h) * 0.68
-    while (
-      trail.length &&
-      (interactionTime - trail[0]!.time > 0.7 || interactionTime < trail[0]!.time)
-    )
-      trail.shift()
-    if (hover === 'trail' && pointer && pointer.strength > 0.01) {
-      const previous = trail.at(-1)
-      if (!previous || Math.hypot(pointer.x - previous.x, pointer.y - previous.y) > 0.015) {
-        trail.push({ x: pointer.x, y: pointer.y, time: interactionTime })
-        if (trail.length > 10) trail.shift()
+    const fieldMode = hover === 'ripple' ? 'water' : hover === 'displace' ? 'silk' : hover
+    const strength = clamp(options.hoverStrength ?? pointer?.strength ?? 0, 0, 1)
+    if (expressive && pointer && strength > 0) {
+      if (!interaction || Math.abs(interactionRatio - w / h) > 0.001) {
+        interaction = makeStudioInteraction(w / h)
+        interactionRatio = w / h
+        interactionClock = -1
+        interactionPointer = null
       }
-    } else trail.length = 0
+      if (interactionMode !== fieldMode || interactionTime < interactionClock) {
+        interaction.clear()
+        interactionPointer = null
+      }
+      interactionMode = fieldMode
+      interaction.configure(fieldMode, strength, options.hoverRadius ?? 0.38, false)
+      for (const sample of options.pointerSamples?.slice(-128) ?? []) {
+        if (!sample.active) {
+          interaction.leave()
+          interactionPointer = null
+        } else if (Number.isFinite(sample.x + sample.y + sample.time)) {
+          interaction.move(clamp(sample.x, 0, 1), clamp(sample.y, 0, 1), sample.time)
+          interactionPointer = { x: sample.x, y: sample.y }
+        }
+      }
+      const active = pointer.active ?? pointer.strength > 0.001
+      if (
+        active &&
+        (!interactionPointer ||
+          pointer.x !== interactionPointer.x ||
+          pointer.y !== interactionPointer.y)
+      ) {
+        interaction.move(pointer.x, pointer.y, interactionTime * 1000)
+        interactionPointer = { x: pointer.x, y: pointer.y }
+      } else if (!active && interactionPointer) {
+        interaction.leave()
+        interactionPointer = null
+      }
+      let delta = interactionClock < 0 ? 1 / 60 : Math.max(0, interactionTime - interactionClock)
+      // Same fixed-step solver as Studio; catch up slow frames without dropping elapsed time.
+      delta = Math.min(0.25, delta)
+      while (delta > 1e-8) {
+        const step = Math.min(0.05, delta)
+        interaction.step(step)
+        delta -= step
+      }
+      interactionClock = interactionTime
+    } else {
+      interaction?.clear()
+      interactionPointer = null
+      interactionClock = -1
+      interactionMode = ''
+    }
+    if (coverageGlyphs !== frame.glyphs) {
+      coverageGlyphs = frame.glyphs
+      coverageOrder = frame.glyphs
+        .map((_, i) => i)
+        .sort((a, b) => frame.glyphs[a]!.coverage - frame.glyphs[b]!.coverage)
+    }
+    function densityAt(tone: number) {
+      let lo = 0,
+        hi = coverageOrder.length - 1
+      while (lo < hi) {
+        const mid = (lo + hi) >>> 1
+        if (frame.glyphs[coverageOrder[mid]!]!.coverage < tone) lo = mid + 1
+        else hi = mid
+      }
+      const glyph = coverageOrder[lo]!
+      return { glyph, opacity: clamp(tone / Math.max(0.001, frame.glyphs[glyph]!.coverage), 0, 1) }
+    }
     function cell(x: number, y: number, cw: number, ch: number, alpha: number) {
       const index = y * frame.columns + x
       let dx = 0,
@@ -141,72 +1077,59 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
         glow = Math.pow(Math.max(0, bands), 3) * amount * 0.55
         intensity = 1 - amount * 0.12 + glow * 0.16
       }
-      if (pointer?.strength) {
-        const px = ((x + 0.5) / frame.columns - pointer.x) * w
-        const py = ((y + 0.5) / frame.rows - pointer.y) * h
-        const distance = Math.hypot(px, py),
-          q = distance / radius
-        const falloff = Math.exp(-q * q * 2) * clamp(pointer.strength, 0, 1)
-        const ux = px / Math.max(1, distance),
-          uy = py / Math.max(1, distance)
-        const phase = q * 15 - interactionTime * 3.2
-        if (hover === 'light') {
-          opacity += (1 - alpha) * falloff * 0.6
-          glow += falloff * 0.95
-        } else if (hover === 'ripple') {
-          const ripple = Math.sin(phase) * falloff
-          dx += ux * cw * ripple * 0.8
-          dy += uy * ch * ripple * 0.55
-          glow += Math.max(0, ripple) * 0.28
-        } else if (hover === 'displace') {
-          dx += ux * cw * falloff * 1.15
-          dy += uy * ch * falloff * 0.85
-        } else if (hover === 'water') {
-          dx += (ux * Math.sin(phase) + Math.cos(phase * 0.6)) * cw * falloff * 0.7
-          dy += (uy * Math.sin(phase) + Math.sin(phase * 0.8)) * ch * falloff * 0.5
-          glow += (0.25 + Math.max(0, Math.cos(phase)) * 0.35) * falloff
-        } else if (hover === 'silk') {
-          const fold = Math.sin((py / radius) * 7 + interactionTime * 1.6)
-          dx += cw * falloff * (fold * 1.1 - uy * 0.45)
-          dy += ch * falloff * Math.cos((px / radius) * 4 - interactionTime) * 0.4
-          glow += (fold * 0.15 + 0.2) * falloff
-        } else if (hover === 'vortex') {
-          dx -= uy * cw * falloff * 1.8
-          dy += ux * ch * falloff * 1.3
-          glow += falloff * 0.22
-        } else if (hover === 'contour') {
-          const band = Math.pow(Math.max(0, Math.cos(q * 22 - interactionTime * 0.7)), 7)
-          glow += band * falloff * 0.85
-          intensity *= 1 - (1 - band) * falloff * 0.2
+      let glyph = frame.indices[index]!
+      if (interaction?.hasRefraction && expressive) {
+        const nx = (x + 0.5) / frame.columns,
+          ny = (y + 0.5) / frame.rows
+        interaction.sample(nx, ny, interactionSample)
+        const signal = interactionSample[2]! / 3
+        const displacementScale = hover === 'ripple' ? 0.45 : hover === 'displace' ? 0.4 : 1
+        dx += interactionSample[0]! * frame.columns * cw * displacementScale
+        dy += interactionSample[1]! * frame.rows * ch * displacementScale
+        if (hover === 'trail') {
+          interaction.trail.displacement(nx, ny, interactionOffset)
+          dx += interactionOffset[0]! * cw * strength
+          dy += interactionOffset[1]! * ch * strength
+          // Studio trail changes local density, rather than painting a cyan cursor blob.
+          const blend = clamp(signal * 2.4, 0, 1)
+          if (frame.settings.mode !== 'phrase' && frame.settings.mode !== 'contour') {
+            const max = frame.statistics.maxCoverage
+            const tone = frame.glyphs[glyph]!.coverage * alpha
+            const targetTone = tone + (max - 2 * tone) * blend
+            const mapped = densityAt(targetTone)
+            glyph = mapped.glyph
+            opacity = mapped.opacity
+          } else opacity = alpha * (1 - blend * 0.9)
+          glow += signal * 0.16
+        } else if (hover === 'light') {
+          opacity += (1 - alpha) * signal * 0.8
+          glow += signal * 1.6
         } else if (hover === 'dissolve') {
-          const noise =
-            Math.sin(index * 12.9898 + interactionTime * 1.4) *
-            Math.cos(index * 3.17 - interactionTime)
-          const dissolve = Math.max(0, noise) * falloff
-          opacity *= 1 - dissolve * 0.85
-          dx += Math.sin(index * 9.1) * cw * dissolve * 1.6
-          dy -= ch * dissolve * 1.2
-          glow += Math.max(0, -noise) * falloff * 0.4
-        } else if (hover === 'trail') {
-          let wake = falloff
-          for (const point of trail) {
-            const tx = (((x + 0.5) / frame.columns - point.x) * w) / radius
-            const ty = (((y + 0.5) / frame.rows - point.y) * h) / radius
-            wake = Math.max(
-              wake,
-              Math.exp(-(tx * tx + ty * ty) * 3) *
-                Math.max(0, 1 - (interactionTime - point.time) / 0.7) *
-                pointer.strength,
+          const noise = 0.5 + 0.5 * Math.sin(index * 12.9898)
+          const dissolve = clamp(-signal, 0, 1)
+          opacity *= 1 - dissolve * (0.55 + noise * 0.45)
+          dy -= ch * dissolve * (1 + noise)
+          glow += dissolve * (1 - noise) * 0.24
+        } else if (hover === 'contour') {
+          glow += signal * 1.25
+          if (frame.settings.mode !== 'phrase' && frame.settings.mode !== 'contour') {
+            const tone = frame.glyphs[glyph]!.coverage * alpha
+            const mapped = densityAt(
+              tone + (frame.statistics.maxCoverage - tone) * clamp(signal * 1.6, 0, 1),
             )
-          }
-          dx += Math.sin(y * 0.12 + interactionTime * 2) * cw * wake * 0.3
-          glow += wake * 0.8
+            glyph = mapped.glyph
+            opacity = mapped.opacity
+          } else opacity += (1 - alpha) * signal * 0.7
+        } else {
+          const displacement = Math.hypot(interactionSample[0]! * w, interactionSample[1]! * h)
+          glow += Math.min(0.45, (displacement / Math.max(1, Math.min(w, h))) * 14)
         }
       }
-      return { dx, dy, intensity, opacity, glow }
+      return { dx, dy, intensity, opacity, glow, glyph }
     }
     const needsGlow =
-      (motion === 'caustics' && amount > 0) || (!!pointer?.strength && hover !== 'displace')
+      (motion === 'caustics' && amount > 0) ||
+      Boolean(interaction?.hasRefraction && expressive && hover !== 'displace')
     return { expressive, needsGlow, cell }
   }
 
@@ -223,9 +1146,8 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
       for (let x = 0; x < frame.columns; x++) {
         const i = y * frame.columns + x,
           alpha = frame.alpha[i]!
-        if (alpha < 0.005 || frame.glyphs[frame.indices[i]!]!.coverage < 0.001) continue
         const e = effect.cell(x, y, cw, ch, alpha)
-        if (e.glow < 0.003) continue
+        if (e.glow < 0.003 || e.opacity < 0.005 || frame.glyphs[e.glyph]!.coverage < 0.001) continue
         if (!gc) {
           glowCanvas ??= canvas(gw, gh)
           if (glowCanvas.width !== gw || glowCanvas.height !== gh) {
@@ -236,7 +1158,7 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
           gc.clearRect(0, 0, gw, gh)
         }
         gc.globalAlpha = clamp(e.glow * Math.max(0.35, e.opacity) * e.intensity, 0, 1)
-        gc.drawImage(tile(frame.indices[i]!, '#86fff2'), x * cw + e.dx, y * ch + e.dy, cw, ch)
+        gc.drawImage(tile(e.glyph, '#b5f5e9'), x * cw + e.dx, y * ch + e.dy, cw, ch)
       }
     if (!gc) return
     const spread = Math.max(2, Math.min(w, h) * 0.018)
@@ -368,7 +1290,15 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
       maskBytes = 0
       softwareGeometry = geometry
     }
-    for (const index of new Set(frame.indices))
+    // A native density trail can reveal atlas glyphs absent from the still frame.
+    // Prepare their area integrals before drawing any strips; retain the same budget/fallback.
+    const usedGlyphs =
+      effect.expressive &&
+      ['trail', 'contour'].includes(options.hover ?? '') &&
+      interaction?.hasRefraction
+        ? coverageOrder
+        : new Set(frame.indices)
+    for (const index of usedGlyphs)
       if (frame.glyphs[index]!.coverage > 0.001 && !prefixOf(index)) return false
     const stripRows = Math.min(h, Math.max(1, Math.floor(softwareWorkingLimit / (w * 20))))
     if (!softwareImage || softwareImage.width !== w || softwareImage.height !== stripRows) {
@@ -394,9 +1324,10 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
       for (let y = 0; y < frame.rows; y++)
         for (let x = 0; x < frame.columns; x++) {
           const cell = y * frame.columns + x,
-            index = frame.indices[cell]!,
             alpha = frame.alpha[cell]!
-          if (alpha < 0.005 || frame.glyphs[index]!.coverage < 0.001) continue
+          let index = frame.indices[cell]!
+          if (!effect.expressive && (alpha < 0.005 || frame.glyphs[index]!.coverage < 0.001))
+            continue
           let dx = 0,
             dy = 0,
             intensity = 1,
@@ -407,6 +1338,7 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
             dy = e.dy
             intensity = e.intensity
             opacity = e.opacity
+            index = e.glyph
           } else {
             if (motion === 'breathe')
               intensity = 0.92 + Math.sin(time * 0.9 + x * 0.02 + y * 0.02) * 0.08
@@ -436,6 +1368,7 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
               }
             }
           }
+          if (opacity < 0.005 || frame.glyphs[index]!.coverage < 0.001) continue
           const px = x * cw + dx,
             py = y * ch + dy,
             left = Math.floor(px),
@@ -542,7 +1475,9 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
         for (let x = 0; x < frame.columns; x++) {
           const cell = y * frame.columns + x,
             alpha = frame.alpha[cell]!
-          if (alpha < 0.005 || frame.glyphs[frame.indices[cell]!]!.coverage < 0.001) continue
+          let index = frame.indices[cell]!
+          if (!effect.expressive && (alpha < 0.005 || frame.glyphs[index]!.coverage < 0.001))
+            continue
           let color = frame.settings.ink
           if (frame.settings.colored || frame.settings.mode === 'color') {
             // Preserve the same sampled RGB as GPU; bound the raster cache separately.
@@ -558,6 +1493,7 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
             dy = e.dy
             intensity = e.intensity
             hoveredAlpha = e.opacity
+            index = e.glyph
           } else {
             if (motion === 'breathe')
               intensity = 0.92 + Math.sin(time * 0.9 + x * 0.02 + y * 0.02) * 0.08
@@ -590,10 +1526,11 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
               }
             }
           }
+          if (hoveredAlpha < 0.005 || frame.glyphs[index]!.coverage < 0.001) continue
           ctx.globalAlpha = effect.expressive
             ? clamp(hoveredAlpha * intensity, 0, 1)
             : hoveredAlpha * intensity
-          ctx.drawImage(tile(frame.indices[cell]!, color), x * cw + dx, y * ch + dy, cw, ch)
+          ctx.drawImage(tile(index, color), x * cw + dx, y * ch + dy, cw, ch)
         }
 
       ctx.globalAlpha = 1
@@ -616,7 +1553,10 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
       softwareGlyphs = null
       softwarePixels = null
       softwareImage = null
-      trail.length = 0
+      interaction?.clear()
+      interaction = null
+      coverageGlyphs = null
+      coverageOrder = []
       if (glowCanvas) {
         glowCanvas.width = glowCanvas.height = 1
         glowCanvas = null
@@ -636,6 +1576,25 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
         scratch = null
       }
     },
+    get interactionActive() {
+      return interaction?.active ?? false
+    },
+    /** Shared native field for future particles/light layers, without re-reading the source image. */
+    sampleInteraction(x: number, y: number) {
+      interactionSample.fill(0)
+      interactionOffset.fill(0)
+      if (interaction) {
+        interaction.sample(clamp(x, 0, 1), clamp(y, 0, 1), interactionSample)
+        if (interaction.mode === 'trail') interaction.trail.displacement(x, y, interactionOffset)
+      }
+      return {
+        x: interactionSample[0]!,
+        y: interactionSample[1]!,
+        density: interactionSample[2]!,
+        trailX: interactionOffset[0]!,
+        trailY: interactionOffset[1]!,
+      }
+    },
     get cacheStats() {
       return {
         entries: tinted.size,
@@ -644,7 +1603,24 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
         scratchBytes: scratch ? scratch.width * scratch.height * 4 : 0,
         supersampleBytes: supersample ? supersample.width * supersample.height * 4 : 0,
         glowBytes: glowCanvas ? glowCanvas.width * glowCanvas.height * 4 : 0,
-        trailPoints: trail.length,
+        interactionCells: interaction ? interaction.columns * interaction.rows : 0,
+        interactionActive: interaction?.active ?? false,
+        interactionBytes: interaction
+          ? [
+              ...new Set(
+                [
+                  interaction,
+                  interaction.trail,
+                  interaction.contour,
+                  interaction.afterimage,
+                ].flatMap((field) =>
+                  Object.values(field)
+                    .filter((v): v is Float32Array | Uint8Array => ArrayBuffer.isView(v))
+                    .map((v) => v.buffer),
+                ),
+              ),
+            ].reduce((sum, buffer) => sum + buffer.byteLength, 0)
+          : 0,
         softwareMaskBytes: prefixBytes + maskBytes,
         softwareMaskEntries: softwareMasks.size,
         softwareWorkingBytes:

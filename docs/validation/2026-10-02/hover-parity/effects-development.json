@@ -1,0 +1,620 @@
+{
+  "base": "http://127.0.0.1:5180",
+  "browser": "153.0.8010.12",
+  "scope": "Chromium desktop/touch emulation; no real-device or universal frame-rate certification",
+  "api": {
+    "cases": [
+      {
+        "mode": "density",
+        "quality": "classic",
+        "legacyDelta": {
+          "channels": 0,
+          "mean": 0
+        },
+        "staticDelta": {
+          "channels": 0,
+          "mean": 0
+        },
+        "classic": {
+          "channels": 40136,
+          "mean": 0.05393819926697531
+        },
+        "light": {
+          "channels": 506640,
+          "mean": 2.6741325472608026
+        },
+        "duration": 48.80000001192093,
+        "glowBytes": 1658880
+      },
+      {
+        "mode": "color",
+        "quality": "classic",
+        "legacyDelta": {
+          "channels": 0,
+          "mean": 0
+        },
+        "staticDelta": {
+          "channels": 0,
+          "mean": 0
+        },
+        "classic": {
+          "channels": 30199,
+          "mean": 0.028613884066358026
+        },
+        "light": {
+          "channels": 516926,
+          "mean": 3.2130907600308642
+        },
+        "duration": 53.10000002384186,
+        "glowBytes": 1658880
+      },
+      {
+        "mode": "phrase",
+        "quality": "classic",
+        "legacyDelta": {
+          "channels": 0,
+          "mean": 0
+        },
+        "staticDelta": {
+          "channels": 0,
+          "mean": 0
+        },
+        "classic": {
+          "channels": 32568,
+          "mean": 0.0828661506558642
+        },
+        "light": {
+          "channels": 460616,
+          "mean": 1.8842104311342593
+        },
+        "duration": 71.89999997615814,
+        "glowBytes": 1658880
+      },
+      {
+        "mode": "contour",
+        "quality": "classic",
+        "legacyDelta": {
+          "channels": 0,
+          "mean": 0
+        },
+        "staticDelta": {
+          "channels": 0,
+          "mean": 0
+        },
+        "classic": {
+          "channels": 47337,
+          "mean": 0.19313633294753085
+        },
+        "light": {
+          "channels": 359751,
+          "mean": 1.4698579764660493
+        },
+        "duration": 50.69999998807907,
+        "glowBytes": 1658880
+      },
+      {
+        "mode": "braille",
+        "quality": "classic",
+        "legacyDelta": {
+          "channels": 0,
+          "mean": 0
+        },
+        "staticDelta": {
+          "channels": 0,
+          "mean": 0
+        },
+        "classic": {
+          "channels": 0,
+          "mean": 0
+        },
+        "light": {
+          "channels": 473842,
+          "mean": 2.579859302662037
+        },
+        "duration": 61.89999997615814,
+        "glowBytes": 1658880
+      },
+      {
+        "mode": "halftone",
+        "quality": "classic",
+        "legacyDelta": {
+          "channels": 0,
+          "mean": 0
+        },
+        "staticDelta": {
+          "channels": 0,
+          "mean": 0
+        },
+        "classic": {
+          "channels": 39998,
+          "mean": 0.13073338638117285
+        },
+        "light": {
+          "channels": 486442,
+          "mean": 2.165674430941358
+        },
+        "duration": 51.80000001192093,
+        "glowBytes": 1658880
+      },
+      {
+        "mode": "density",
+        "quality": "detailed",
+        "legacyDelta": {
+          "channels": 0,
+          "mean": 0
+        },
+        "staticDelta": {
+          "channels": 0,
+          "mean": 0
+        },
+        "classic": {
+          "channels": 55526,
+          "mean": 0.05845570505401235
+        },
+        "light": {
+          "channels": 545000,
+          "mean": 3.2454179928626545
+        },
+        "duration": 70.89999997615814,
+        "glowBytes": 1658880
+      },
+      {
+        "mode": "density",
+        "quality": "smooth",
+        "legacyDelta": {
+          "channels": 0,
+          "mean": 0
+        },
+        "staticDelta": {
+          "channels": 0,
+          "mean": 0
+        },
+        "classic": {
+          "channels": 52883,
+          "mean": 0.05836889949845679
+        },
+        "light": {
+          "channels": 544527,
+          "mean": 3.20155647183642
+        },
+        "duration": 80.30000001192093,
+        "glowBytes": 1658880
+      },
+      {
+        "mode": "density",
+        "quality": "faithful",
+        "legacyDelta": {
+          "channels": 0,
+          "mean": 0
+        },
+        "staticDelta": {
+          "channels": 0,
+          "mean": 0
+        },
+        "classic": {
+          "channels": 54577,
+          "mean": 0.05856722608024691
+        },
+        "light": {
+          "channels": 544632,
+          "mean": 3.203301625192901
+        },
+        "duration": 28.19999998807907,
+        "glowBytes": 1658880
+      },
+      {
+        "mode": "color",
+        "quality": "faithful",
+        "legacyDelta": {
+          "channels": 0,
+          "mean": 0
+        },
+        "staticDelta": {
+          "channels": 0,
+          "mean": 0
+        },
+        "classic": {
+          "channels": 61076,
+          "mean": 0.07060486593364197
+        },
+        "light": {
+          "channels": 551484,
+          "mean": 3.9144603587962963
+        },
+        "duration": 28.899999976158142,
+        "glowBytes": 1658880
+      }
+    ],
+    "hovers": [
+      {
+        "hover": "light",
+        "changed": {
+          "channels": 466251,
+          "mean": 2.0074821566358025
+        },
+        "moved": {
+          "channels": 527638,
+          "mean": 1.8021707417052468
+        },
+        "zero": {
+          "channels": 0,
+          "mean": 0
+        },
+        "fingerprintSHA256": "2f09c165f5044d8db32ec8a83e77cdff222f1c95d69b2c1086551899efa0a645"
+      },
+      {
+        "hover": "ripple",
+        "changed": {
+          "channels": 247265,
+          "mean": 7.8747739438657405
+        },
+        "moved": {
+          "channels": 424100,
+          "mean": 13.417536530671295
+        },
+        "zero": {
+          "channels": 0,
+          "mean": 0
+        },
+        "fingerprintSHA256": "8dc7b5b2609e337e8ac2f7700265a48362522a1b8506af64ad482aaa5737cd42"
+      },
+      {
+        "hover": "displace",
+        "changed": {
+          "channels": 92253,
+          "mean": 3.572362678433642
+        },
+        "moved": {
+          "channels": 107736,
+          "mean": 4.2958803530092595
+        },
+        "zero": {
+          "channels": 0,
+          "mean": 0
+        },
+        "fingerprintSHA256": "dffd7f8350454f0d06d8ca6738976be03b82a05c8779c9b8f23c59210fb26966"
+      },
+      {
+        "hover": "trail",
+        "changed": {
+          "channels": 142266,
+          "mean": 3.1713252314814815
+        },
+        "moved": {
+          "channels": 215121,
+          "mean": 4.219195481288581
+        },
+        "zero": {
+          "channels": 0,
+          "mean": 0
+        },
+        "fingerprintSHA256": "31214b99defd9d40b0214fab0768475eac45f641a51cc725161f90c0796a129b"
+      },
+      {
+        "hover": "water",
+        "changed": {
+          "channels": 256916,
+          "mean": 8.840183738425926
+        },
+        "moved": {
+          "channels": 434896,
+          "mean": 14.944941165123456
+        },
+        "zero": {
+          "channels": 0,
+          "mean": 0
+        },
+        "fingerprintSHA256": "7f31ff3903908b35bfa7b8974c1c1ee4a68120903109f75b39967275b3d34ba7"
+      },
+      {
+        "hover": "silk",
+        "changed": {
+          "channels": 158015,
+          "mean": 4.562218484760803
+        },
+        "moved": {
+          "channels": 187510,
+          "mean": 5.304893663194444
+        },
+        "zero": {
+          "channels": 0,
+          "mean": 0
+        },
+        "fingerprintSHA256": "bc908dbdfb7bb3a070857c4e5d5cbe4bf5c9ab6cc9cfc500cb46a4d7fef73c42"
+      },
+      {
+        "hover": "vortex",
+        "changed": {
+          "channels": 162572,
+          "mean": 4.883728780864198
+        },
+        "moved": {
+          "channels": 194835,
+          "mean": 5.773427252121913
+        },
+        "zero": {
+          "channels": 0,
+          "mean": 0
+        },
+        "fingerprintSHA256": "96b8f743fb97cf18f5e444adae4a918612147d631591a05425f3c95e4bf16d64"
+      },
+      {
+        "hover": "contour",
+        "changed": {
+          "channels": 26391,
+          "mean": 0.5057098765432099
+        },
+        "moved": {
+          "channels": 67426,
+          "mean": 1.2730975115740741
+        },
+        "zero": {
+          "channels": 0,
+          "mean": 0
+        },
+        "fingerprintSHA256": "f85e4d7b619ff840c6298afd0bc3eaed2e1db779bc670ba9ab7d98bfba53642a"
+      },
+      {
+        "hover": "dissolve",
+        "changed": {
+          "channels": 97658,
+          "mean": 2.63929759837963
+        },
+        "moved": {
+          "channels": 108670,
+          "mean": 2.4831458574459875
+        },
+        "zero": {
+          "channels": 0,
+          "mean": 0
+        },
+        "fingerprintSHA256": "842bdbf2bb8af66641c4da39888970f208e2c41b8a0e688cc5044fceb53a1d74"
+      }
+    ],
+    "motions": [
+      {
+        "motion": "breathe",
+        "changed": {
+          "channels": 353376,
+          "mean": 2.766723934220679
+        },
+        "phase": {
+          "channels": 367705,
+          "mean": 0.9355058834876543
+        },
+        "zero": {
+          "channels": 0,
+          "mean": 0
+        },
+        "speed": {
+          "channels": 0,
+          "mean": 0
+        }
+      },
+      {
+        "motion": "wave",
+        "changed": {
+          "channels": 625826,
+          "mean": 33.55445601851852
+        },
+        "phase": {
+          "channels": 560037,
+          "mean": 26.838315007716048
+        },
+        "zero": {
+          "channels": 0,
+          "mean": 0
+        },
+        "speed": {
+          "channels": 0,
+          "mean": 0
+        }
+      },
+      {
+        "motion": "assemble",
+        "changed": {
+          "channels": 609570,
+          "mean": 36.274279634452164
+        },
+        "phase": {
+          "channels": 528409,
+          "mean": 32.96841182002315
+        },
+        "zero": {
+          "channels": 0,
+          "mean": 0
+        },
+        "speed": {
+          "channels": 0,
+          "mean": 0
+        }
+      },
+      {
+        "motion": "current",
+        "changed": {
+          "channels": 660352,
+          "mean": 37.16101586612654
+        },
+        "phase": {
+          "channels": 510194,
+          "mean": 18.938374083719136
+        },
+        "zero": {
+          "channels": 0,
+          "mean": 0
+        },
+        "speed": {
+          "channels": 0,
+          "mean": 0
+        }
+      },
+      {
+        "motion": "reform",
+        "changed": {
+          "channels": 403175,
+          "mean": 2.1605589313271607
+        },
+        "phase": {
+          "channels": 635547,
+          "mean": 34.45633801118827
+        },
+        "zero": {
+          "channels": 0,
+          "mean": 0
+        },
+        "speed": {
+          "channels": 0,
+          "mean": 0
+        }
+      },
+      {
+        "motion": "caustics",
+        "changed": {
+          "channels": 567962,
+          "mean": 3.4964228877314816
+        },
+        "phase": {
+          "channels": 345568,
+          "mean": 1.4634651089891975
+        },
+        "zero": {
+          "channels": 0,
+          "mean": 0
+        },
+        "speed": {
+          "channels": 0,
+          "mean": 0
+        }
+      }
+    ],
+    "narrow": {
+      "channels": 25128,
+      "mean": 0.03552095389660494
+    },
+    "wide": {
+      "channels": 609949,
+      "mean": 1.1233531057098765
+    },
+    "fullInk": {
+      "channels": 242299,
+      "mean": 0.42163447627314815
+    },
+    "highResolutionGlowBytes": 7550976,
+    "nativeFieldCells": 13056,
+    "nativeFieldBytes": 1671168,
+    "performanceSamples": [
+      33.40000003576279,
+      24.100000023841858,
+      36.59999996423721,
+      24.400000035762787,
+      25.599999964237213,
+      25,
+      26.5,
+      27.399999976158142,
+      26.100000023841858,
+      25.5,
+      24.600000023841858,
+      32.09999996423721
+    ],
+    "backend": "canvas2d"
+  },
+  "ui": [
+    {
+      "name": "density-paused-light",
+      "hoverChanged": true
+    },
+    {
+      "name": "color-paused-light",
+      "hoverChanged": true
+    },
+    {
+      "name": "phrase-paused-light",
+      "hoverChanged": true
+    },
+    {
+      "name": "contour-paused-light",
+      "hoverChanged": true
+    },
+    {
+      "name": "braille-paused-light",
+      "hoverChanged": true
+    },
+    {
+      "name": "halftone-paused-light",
+      "hoverChanged": true
+    },
+    {
+      "name": "detailed-paused-light",
+      "hoverChanged": true
+    },
+    {
+      "name": "smooth-paused-light",
+      "hoverChanged": true
+    },
+    {
+      "name": "faithful-paused-light",
+      "hoverChanged": true
+    },
+    {
+      "name": "fullscreen-paused",
+      "hoverChanged": true
+    }
+  ],
+  "errors": [],
+  "passed": true,
+  "portable": {
+    "url": "http://127.0.0.1:5180/ascii-art?project=f549e152-22f8-435d-8e14-08fd0d6e47f8",
+    "settings": {
+      "editorEngine": "calibrated",
+      "artMode": "density",
+      "artQuality": "faithful",
+      "artMotion": "current",
+      "artHover": "light",
+      "artEffectProfile": "expressive",
+      "artMotionSpeed": 0.6,
+      "artMotionStrength": 0.73,
+      "mode": "charset",
+      "phrase": "我爱你中国",
+      "phraseThreshold": 0.55,
+      "phraseFillAll": false,
+      "phraseColor": false,
+      "exposure": 0,
+      "contrast": 0.2,
+      "normalizeTone": true,
+      "ditherStrength": 0.25,
+      "hoverEffect": "none",
+      "hoverStrength": 0.82,
+      "hoverRadius": 0.46,
+      "ambientMotion": "none",
+      "resolutionKey": "high",
+      "columns": 180,
+      "charsetKey": "dense",
+      "customCharset": "",
+      "invert": false,
+      "fontSize": 9,
+      "previewFontKey": "consolas",
+      "previewFontFamily": "Consolas, \"Cascadia Mono\", \"Courier New\", monospace",
+      "previewAspect": 0.4712611607142857,
+      "exportFontKey": "yahei",
+      "exportFontFamily": "\"Microsoft YaHei\", \"微软雅黑\", Cascadia Mono, Consolas, \"Courier New\", monospace",
+      "exportAspect": 0.85,
+      "backgroundColor": "#111615",
+      "foregroundColor": "#eeeae2",
+      "clipStart": 0,
+      "clipEnd": 0,
+      "videoFps": 15
+    },
+    "html": "current",
+    "noNetworkRequests": true,
+    "packageSha": "eebb219fd6efc3ce00b5df016969ac81e8a07f5c78be9255f831fa1b48ca8597",
+    "offlineHover": true,
+    "offlineMotion": true
+  },
+  "touch": {
+    "width": 390,
+    "heldGlow": true,
+    "releaseFade": true,
+    "noHorizontalOverflow": true
+  },
+  "rawReportSha256": "07f3961ecf4a854ef5b2db5887c9825c34d6ecbf7f434e5d79811c64f2302be2"
+}

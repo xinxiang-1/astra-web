@@ -2,6 +2,8 @@
 
 本地优先的创意工具站，外加可嵌入网页的实时视觉。当前统一编辑器提供六模式、可选图片品质、六种微动与九种悬停、全屏预览和免费PNG/TXT/视频/离线HTML；完整 `.astra` 作品包可携带源素材和设置，在新浏览器导入恢复。
 
+艺术交互已接入原生Studio持久场：流体拖尾/水面/丝绸/漩涡等共用六模式、品质档和离线输出；后续特效在此底座创新，遵循[Studio标准](./docs/plans/studio-effects-standard.md)，实际步骤与验证见[悬停对齐记录](./docs/plans/hover-parity-iteration-2026-10-02.md)。首页主图原Studio效果保持。
+
 本轮前后端交付范围、验证证据和后续任务见 [阶段交付记录](./docs/plans/stage-delivery-2026-10-01.md)。[产品总计划](./docs/plans/product-master-plan.md)持续跟踪模板包、新增付费创作和定制服务；订单与模拟支付后端已有技术验收，真实交易、前端购买、公测和正式部署仍待完成。首页原Studio参数保留，原创Logo位于 `public/brand/`。
 
 商业开发依据：[商品与付费创作PRD](./docs/plans/prd-commerce.md)、[商业合同执行记录](./docs/plans/commerce-contract-iteration-2026-10-02.md)；后端目录/鉴权及订单创建/查询、快照/幂等/安全到期已真实联调，见[订单接续阶段](./docs/plans/commerce-orders-iteration-2026-10-02.md)。真实渠道、前端购买流程及批量工作台尚未实现，production新建订单与真实收款关闭，当前免费能力保持。

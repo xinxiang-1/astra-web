@@ -25,6 +25,7 @@ import {
   type ArtMotion,
   type ArtHover,
   type ArtSettings,
+  type ArtPointerSample,
 } from '@/lib/art-engine'
 import { artworkEmbedPage } from '@/lib/art-engine/embed'
 import '@/styles/art-editor.css'
@@ -189,6 +190,7 @@ let artAnimationRaf = 0,
   artElapsed = 0,
   artInteractionElapsed = 0
 const artPointer = { x: 0.5, y: 0.5, strength: 0, target: 0 }
+const artPointerSamples: ArtPointerSample[] = []
 let artStageVisible = true
 let artVisibilityObserver: IntersectionObserver | null = null
 const artMotionOptions: { id: ArtMotion; label: string }[] = [
@@ -629,6 +631,7 @@ function calibratedSettings(cols = columns.value, kind = mediaKind.value): ArtSe
 }
 
 function destroyCalibratedRenderers() {
+  artPointerSamples.length = 0
   if (artAnimationRaf) cancelAnimationFrame(artAnimationRaf)
   artAnimationRaf = 0
   for (const renderer of artRenderers.values()) renderer.destroy()
@@ -658,7 +661,8 @@ function queueCalibratedAnimation() {
   if (
     (artMotion.value === 'none' || artPaused.value || artMotionStrength.value === 0) &&
     artPointer.strength < 0.002 &&
-    artPointer.target === 0
+    artPointer.target === 0 &&
+    ![...artRenderers.values()].some(renderer => renderer.interactionActive)
   ) {
     artLastTick = 0
     return
@@ -700,11 +704,20 @@ function onCalibratedPointer(event: PointerEvent) {
   artPointer.x = x
   artPointer.y = y
   artPointer.target = 1
+  const samples = event.getCoalescedEvents?.() ?? []
+  for (const sample of samples.length ? samples : [event]) {
+    const sx = (sample.clientX - rect.left) / Math.max(1, rect.width)
+    const sy = (sample.clientY - rect.top) / Math.max(1, rect.height)
+    if (sx >= 0 && sx <= 1 && sy >= 0 && sy <= 1) artPointerSamples.push({ x: sx, y: sy, time: sample.timeStamp, active: true })
+  }
+  if (artPointerSamples.length > 128) artPointerSamples.splice(0, artPointerSamples.length - 128)
   queueCalibratedAnimation()
 }
 
 function onCalibratedPointerLeave() {
   artPointer.target = 0
+  artPointerSamples.push({ x: artPointer.x, y: artPointer.y, time: performance.now(), active: false })
+  if (artPointerSamples.length > 128) artPointerSamples.shift()
   queueCalibratedAnimation()
 }
 
@@ -2122,7 +2135,7 @@ async function syncArtStudio() {
   }
 }
 
-function paintTo(canvas: HTMLCanvasElement | null) {
+function paintTo(canvas: HTMLCanvasElement | null, pointerSamples: readonly ArtPointerSample[] = []) {
   if (!canvas || !ascii.value) return
   if (editorEngine.value === 'calibrated' && artFrame.value) {
     const frame = artFrame.value
@@ -2144,6 +2157,7 @@ function paintTo(canvas: HTMLCanvasElement | null) {
     const cssHeight = (cssWidth * frame.height) / frame.width
     const pointer = {
       ...artPointer,
+      active: artPointer.target > 0 && !reducedArtMotion.value && !downloading.value,
       strength:
         reducedArtMotion.value || downloading.value ? 0 : artPointer.strength * hoverStrength.value,
     }
@@ -2156,6 +2170,8 @@ function paintTo(canvas: HTMLCanvasElement | null) {
       motionSpeed: artMotionSpeed.value,
       motionStrength: artMotionStrength.value,
       hoverRadius: hoverRadius.value,
+      hoverStrength: reducedArtMotion.value || downloading.value ? 0 : hoverStrength.value,
+      pointerSamples,
       hover: artHover.value === 'none' ? 'light' : artHover.value,
       pointer: artHover.value === 'none' ? undefined : pointer,
     })
@@ -2174,6 +2190,7 @@ function paintTo(canvas: HTMLCanvasElement | null) {
     canvas.dataset.time = String(artElapsed)
     canvas.dataset.interactionTime = String(artInteractionElapsed)
     canvas.dataset.pointerStrength = String(artPointer.strength)
+    canvas.dataset.interactionActive = String(renderer.interactionActive)
     queueCalibratedAnimation()
     return
   }
@@ -2199,8 +2216,9 @@ function paintTo(canvas: HTMLCanvasElement | null) {
 }
 
 function paintPreview() {
-  paintTo(previewCanvas.value)
-  if (fullscreen.value) paintTo(fullscreenCanvas.value)
+  const samples = artPointerSamples.splice(0)
+  paintTo(previewCanvas.value, samples)
+  if (fullscreen.value) paintTo(fullscreenCanvas.value, samples)
 }
 
 function schedulePaint() {
@@ -3405,7 +3423,7 @@ onBeforeUnmount(() => {
                 v-model.number="hoverRadius"
                 class="range"
                 type="range"
-                min="0.05"
+                min="0.1"
                 max="1"
                 step="0.01"
               />

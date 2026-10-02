@@ -2,6 +2,7 @@ export type ArtMode = 'density' | 'color' | 'phrase' | 'contour' | 'braille' | '
 export type ArtMotion = 'none' | 'breathe' | 'wave' | 'assemble' | 'current' | 'reform' | 'caustics'
 export type ArtHover =
   'displace' | 'light' | 'ripple' | 'trail' | 'water' | 'silk' | 'vortex' | 'contour' | 'dissolve'
+export type ArtPointerSample = { x: number; y: number; time: number; active: boolean }
 export type ArtSettings = {
   mode: ArtMode
   columns: number
@@ -55,7 +56,11 @@ export type ArtRenderOptions = {
   motionSpeed?: number
   motionStrength?: number
   hoverRadius?: number
+  /** Persistent field amplitude, including the residual wake after pointer leave. */
+  hoverStrength?: number
   /** Independent interaction clock keeps hover alive while ambient motion is paused. */
   hoverTime?: number
-  pointer?: { x: number; y: number; strength: number }
+  pointer?: { x: number; y: number; strength: number; active?: boolean }
+  /** Bounded real input events between render ticks; preserves speed and curved paths at low FPS. */
+  pointerSamples?: readonly ArtPointerSample[]
 }

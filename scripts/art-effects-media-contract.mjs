@@ -65,7 +65,7 @@ try {
   )
   await page.mouse.move(box.x - 8, box.y + box.height * 0.4)
   await page.waitForFunction(
-    () => document.querySelector('.ascii-scroll canvas')?.dataset.pointerStrength === '0',
+    () => document.querySelector('.ascii-scroll canvas')?.dataset.pointerStrength === '0' && document.querySelector('.ascii-scroll canvas')?.dataset.interactionActive === 'false',
   )
   const settled = await snapshot()
   await page.waitForTimeout(250)

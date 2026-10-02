@@ -1,0 +1,1043 @@
+{
+  "cases": [
+    {
+      "ratio": 0.5,
+      "effect": "trail",
+      "maxNativeDifference": 1.4901161193847656e-8,
+      "amplitude": 1.9234799146652222,
+      "activeBeforeLeave": true,
+      "settledAt": 4.033333333333333
+    },
+    {
+      "ratio": 0.5,
+      "effect": "water",
+      "maxNativeDifference": 0,
+      "amplitude": 0.09448875486850739,
+      "activeBeforeLeave": true,
+      "settledAt": 4.566666666666666
+    },
+    {
+      "ratio": 0.5,
+      "effect": "silk",
+      "maxNativeDifference": 0,
+      "amplitude": 0.04227210953831673,
+      "activeBeforeLeave": true,
+      "settledAt": 2.666666666666667
+    },
+    {
+      "ratio": 0.5,
+      "effect": "vortex",
+      "maxNativeDifference": 0,
+      "amplitude": 0.04571228474378586,
+      "activeBeforeLeave": true,
+      "settledAt": 2.666666666666667
+    },
+    {
+      "ratio": 0.5,
+      "effect": "contour",
+      "maxNativeDifference": 0,
+      "amplitude": 1.7342844009399414,
+      "activeBeforeLeave": true,
+      "settledAt": 1.8
+    },
+    {
+      "ratio": 0.5,
+      "effect": "dissolve",
+      "maxNativeDifference": 0,
+      "amplitude": 3.6758625507354736,
+      "activeBeforeLeave": true,
+      "settledAt": 3.9333333333333327
+    },
+    {
+      "ratio": 0.5,
+      "effect": "light",
+      "maxNativeDifference": 0,
+      "amplitude": 0.6487707495689392,
+      "activeBeforeLeave": true,
+      "settledAt": 0.7666666666666666
+    },
+    {
+      "ratio": 0.5,
+      "effect": "ripple",
+      "maxNativeDifference": 0,
+      "amplitude": 0.09448875486850739,
+      "activeBeforeLeave": true,
+      "settledAt": 4.566666666666666
+    },
+    {
+      "ratio": 0.5,
+      "effect": "displace",
+      "maxNativeDifference": 0,
+      "amplitude": 0.04227210953831673,
+      "activeBeforeLeave": true,
+      "settledAt": 2.666666666666667
+    },
+    {
+      "ratio": 1,
+      "effect": "trail",
+      "maxNativeDifference": 0,
+      "amplitude": 1.9383370876312256,
+      "activeBeforeLeave": true,
+      "settledAt": 4.5
+    },
+    {
+      "ratio": 1,
+      "effect": "water",
+      "maxNativeDifference": 0,
+      "amplitude": 0.09448830038309097,
+      "activeBeforeLeave": true,
+      "settledAt": 4.6
+    },
+    {
+      "ratio": 1,
+      "effect": "silk",
+      "maxNativeDifference": 0,
+      "amplitude": 0.04418191313743591,
+      "activeBeforeLeave": true,
+      "settledAt": 2.666666666666667
+    },
+    {
+      "ratio": 1,
+      "effect": "vortex",
+      "maxNativeDifference": 0,
+      "amplitude": 0.0452885739505291,
+      "activeBeforeLeave": true,
+      "settledAt": 2.666666666666667
+    },
+    {
+      "ratio": 1,
+      "effect": "contour",
+      "maxNativeDifference": 0,
+      "amplitude": 1.7549858093261719,
+      "activeBeforeLeave": true,
+      "settledAt": 1.8
+    },
+    {
+      "ratio": 1,
+      "effect": "dissolve",
+      "maxNativeDifference": 0,
+      "amplitude": 3.744610071182251,
+      "activeBeforeLeave": true,
+      "settledAt": 3.9333333333333327
+    },
+    {
+      "ratio": 1,
+      "effect": "light",
+      "maxNativeDifference": 0,
+      "amplitude": 0.648807168006897,
+      "activeBeforeLeave": true,
+      "settledAt": 0.7666666666666666
+    },
+    {
+      "ratio": 1,
+      "effect": "ripple",
+      "maxNativeDifference": 0,
+      "amplitude": 0.09448830038309097,
+      "activeBeforeLeave": true,
+      "settledAt": 4.6
+    },
+    {
+      "ratio": 1,
+      "effect": "displace",
+      "maxNativeDifference": 0,
+      "amplitude": 0.04418191313743591,
+      "activeBeforeLeave": true,
+      "settledAt": 2.666666666666667
+    },
+    {
+      "ratio": 2,
+      "effect": "trail",
+      "maxNativeDifference": 5.684341886080802e-14,
+      "amplitude": 1.8698005676269531,
+      "activeBeforeLeave": true,
+      "settledAt": 4.166666666666666
+    },
+    {
+      "ratio": 2,
+      "effect": "water",
+      "maxNativeDifference": 0,
+      "amplitude": 0.09420690685510635,
+      "activeBeforeLeave": true,
+      "settledAt": 4.6
+    },
+    {
+      "ratio": 2,
+      "effect": "silk",
+      "maxNativeDifference": 0,
+      "amplitude": 0.043321654200553894,
+      "activeBeforeLeave": true,
+      "settledAt": 2.666666666666667
+    },
+    {
+      "ratio": 2,
+      "effect": "vortex",
+      "maxNativeDifference": 0,
+      "amplitude": 0.042001672089099884,
+      "activeBeforeLeave": true,
+      "settledAt": 2.666666666666667
+    },
+    {
+      "ratio": 2,
+      "effect": "contour",
+      "maxNativeDifference": 0,
+      "amplitude": 1.6988792419433594,
+      "activeBeforeLeave": true,
+      "settledAt": 1.8
+    },
+    {
+      "ratio": 2,
+      "effect": "dissolve",
+      "maxNativeDifference": 0,
+      "amplitude": 3.6900970935821533,
+      "activeBeforeLeave": true,
+      "settledAt": 3.9333333333333327
+    },
+    {
+      "ratio": 2,
+      "effect": "light",
+      "maxNativeDifference": 0,
+      "amplitude": 0.6453104019165039,
+      "activeBeforeLeave": true,
+      "settledAt": 0.7666666666666666
+    },
+    {
+      "ratio": 2,
+      "effect": "ripple",
+      "maxNativeDifference": 0,
+      "amplitude": 0.09420690685510635,
+      "activeBeforeLeave": true,
+      "settledAt": 4.6
+    },
+    {
+      "ratio": 2,
+      "effect": "displace",
+      "maxNativeDifference": 0,
+      "amplitude": 0.043321654200553894,
+      "activeBeforeLeave": true,
+      "settledAt": 2.666666666666667
+    }
+  ],
+  "static": [
+    {
+      "mode": "density",
+      "quality": "classic",
+      "noPointerMAE": 0
+    },
+    {
+      "mode": "color",
+      "quality": "classic",
+      "noPointerMAE": 0
+    },
+    {
+      "mode": "phrase",
+      "quality": "classic",
+      "noPointerMAE": 0
+    },
+    {
+      "mode": "contour",
+      "quality": "classic",
+      "noPointerMAE": 0
+    },
+    {
+      "mode": "braille",
+      "quality": "classic",
+      "noPointerMAE": 0
+    },
+    {
+      "mode": "halftone",
+      "quality": "classic",
+      "noPointerMAE": 0
+    },
+    {
+      "mode": "density",
+      "quality": "detailed",
+      "noPointerMAE": 0
+    },
+    {
+      "mode": "density",
+      "quality": "smooth",
+      "noPointerMAE": 0
+    },
+    {
+      "mode": "density",
+      "quality": "faithful",
+      "noPointerMAE": 0
+    },
+    {
+      "mode": "color",
+      "quality": "faithful",
+      "noPointerMAE": 0
+    }
+  ],
+  "dynamics": [
+    {
+      "mode": "density",
+      "quality": "classic",
+      "effect": "trail",
+      "wakeMAE": 2.6325778537326388,
+      "residualMAE": 2.0378092447916667,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "density",
+      "quality": "classic",
+      "effect": "water",
+      "wakeMAE": 5.886857096354166,
+      "residualMAE": 5.479823133680555,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "density",
+      "quality": "classic",
+      "effect": "silk",
+      "wakeMAE": 3.4063218858506943,
+      "residualMAE": 2.434787326388889,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "density",
+      "quality": "classic",
+      "effect": "vortex",
+      "wakeMAE": 3.231034342447917,
+      "residualMAE": 2.274395073784722,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "density",
+      "quality": "classic",
+      "effect": "contour",
+      "wakeMAE": 2.1901923285590277,
+      "residualMAE": 1.7616346571180554,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "density",
+      "quality": "classic",
+      "effect": "dissolve",
+      "wakeMAE": 1.7413804796006944,
+      "residualMAE": 0.6769829644097223,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "density",
+      "quality": "classic",
+      "effect": "light",
+      "wakeMAE": 0.7314154730902778,
+      "residualMAE": 0.47995062934027777,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "density",
+      "quality": "classic",
+      "effect": "ripple",
+      "wakeMAE": 5.903632269965278,
+      "residualMAE": 4.6390367296006945,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "density",
+      "quality": "classic",
+      "effect": "displace",
+      "wakeMAE": 2.585982259114583,
+      "residualMAE": 1.7342976888020833,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "color",
+      "quality": "classic",
+      "effect": "trail",
+      "wakeMAE": 0.8305718315972223,
+      "residualMAE": 0.5064154730902778,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "color",
+      "quality": "classic",
+      "effect": "water",
+      "wakeMAE": 4.3681396484375,
+      "residualMAE": 4.333237033420139,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "color",
+      "quality": "classic",
+      "effect": "silk",
+      "wakeMAE": 2.227377658420139,
+      "residualMAE": 1.6193698459201389,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "color",
+      "quality": "classic",
+      "effect": "vortex",
+      "wakeMAE": 2.1039794921875,
+      "residualMAE": 1.4776380750868054,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "color",
+      "quality": "classic",
+      "effect": "contour",
+      "wakeMAE": 1.1565823025173612,
+      "residualMAE": 0.8376980251736111,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "color",
+      "quality": "classic",
+      "effect": "dissolve",
+      "wakeMAE": 0.9035061306423611,
+      "residualMAE": 0.33823920355902776,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "color",
+      "quality": "classic",
+      "effect": "light",
+      "wakeMAE": 0.8763481987847223,
+      "residualMAE": 0.5711724175347223,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "color",
+      "quality": "classic",
+      "effect": "ripple",
+      "wakeMAE": 4.377719455295139,
+      "residualMAE": 3.591611056857639,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "color",
+      "quality": "classic",
+      "effect": "displace",
+      "wakeMAE": 1.3504597981770834,
+      "residualMAE": 0.8678087022569444,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "phrase",
+      "quality": "classic",
+      "effect": "trail",
+      "wakeMAE": 1.0059380425347222,
+      "residualMAE": 0.39674072265625,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "phrase",
+      "quality": "classic",
+      "effect": "water",
+      "wakeMAE": 5.763985188802083,
+      "residualMAE": 5.272639973958333,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "phrase",
+      "quality": "classic",
+      "effect": "silk",
+      "wakeMAE": 3.3178670247395834,
+      "residualMAE": 2.4730550130208333,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "phrase",
+      "quality": "classic",
+      "effect": "vortex",
+      "wakeMAE": 3.209521484375,
+      "residualMAE": 2.393459743923611,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "phrase",
+      "quality": "classic",
+      "effect": "contour",
+      "wakeMAE": 1.0582465277777777,
+      "residualMAE": 0.5981920030381944,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "phrase",
+      "quality": "classic",
+      "effect": "dissolve",
+      "wakeMAE": 1.5252983940972222,
+      "residualMAE": 0.5570014105902777,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "phrase",
+      "quality": "classic",
+      "effect": "light",
+      "wakeMAE": 1.6263509114583334,
+      "residualMAE": 1.10345458984375,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "phrase",
+      "quality": "classic",
+      "effect": "ripple",
+      "wakeMAE": 5.6750244140625,
+      "residualMAE": 4.762064615885417,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "phrase",
+      "quality": "classic",
+      "effect": "displace",
+      "wakeMAE": 2.5871880425347222,
+      "residualMAE": 1.8552544487847222,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "contour",
+      "quality": "classic",
+      "effect": "trail",
+      "wakeMAE": 0.6818454318576389,
+      "residualMAE": 0.2642822265625,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "contour",
+      "quality": "classic",
+      "effect": "water",
+      "wakeMAE": 3.9895399305555554,
+      "residualMAE": 3.710979546440972,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "contour",
+      "quality": "classic",
+      "effect": "silk",
+      "wakeMAE": 2.187060546875,
+      "residualMAE": 1.7018717447916667,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "contour",
+      "quality": "classic",
+      "effect": "vortex",
+      "wakeMAE": 2.2221435546875,
+      "residualMAE": 1.7216471354166667,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "contour",
+      "quality": "classic",
+      "effect": "contour",
+      "wakeMAE": 0.6122124565972222,
+      "residualMAE": 0.35821668836805554,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "contour",
+      "quality": "classic",
+      "effect": "dissolve",
+      "wakeMAE": 0.9637369791666667,
+      "residualMAE": 0.4637451171875,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "contour",
+      "quality": "classic",
+      "effect": "light",
+      "wakeMAE": 0.9635918511284722,
+      "residualMAE": 0.6855088975694444,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "contour",
+      "quality": "classic",
+      "effect": "ripple",
+      "wakeMAE": 3.8285630967881943,
+      "residualMAE": 3.2998860677083335,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "contour",
+      "quality": "classic",
+      "effect": "displace",
+      "wakeMAE": 1.6591539171006944,
+      "residualMAE": 1.0683539496527779,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "braille",
+      "quality": "classic",
+      "effect": "trail",
+      "wakeMAE": 2.2871134440104166,
+      "residualMAE": 1.6970445421006946,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "braille",
+      "quality": "classic",
+      "effect": "water",
+      "wakeMAE": 4.708387586805555,
+      "residualMAE": 4.411703830295139,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "braille",
+      "quality": "classic",
+      "effect": "silk",
+      "wakeMAE": 2.7162570529513888,
+      "residualMAE": 1.8858927408854167,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "braille",
+      "quality": "classic",
+      "effect": "vortex",
+      "wakeMAE": 2.514301215277778,
+      "residualMAE": 1.7798285590277778,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "braille",
+      "quality": "classic",
+      "effect": "contour",
+      "wakeMAE": 1.609433322482639,
+      "residualMAE": 1.0536431206597223,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "braille",
+      "quality": "classic",
+      "effect": "dissolve",
+      "wakeMAE": 1.238515896267361,
+      "residualMAE": 0.5713962131076389,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "braille",
+      "quality": "classic",
+      "effect": "light",
+      "wakeMAE": 0.5262613932291667,
+      "residualMAE": 0.34879828559027776,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "braille",
+      "quality": "classic",
+      "effect": "ripple",
+      "wakeMAE": 4.697866482204861,
+      "residualMAE": 3.8146864149305557,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "braille",
+      "quality": "classic",
+      "effect": "displace",
+      "wakeMAE": 2.0797349717881946,
+      "residualMAE": 1.54141845703125,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "halftone",
+      "quality": "classic",
+      "effect": "trail",
+      "wakeMAE": 1.5542426215277778,
+      "residualMAE": 1.1699381510416667,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "halftone",
+      "quality": "classic",
+      "effect": "water",
+      "wakeMAE": 4.58026123046875,
+      "residualMAE": 4.182832845052084,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "halftone",
+      "quality": "classic",
+      "effect": "silk",
+      "wakeMAE": 2.6002875434027777,
+      "residualMAE": 1.8686754014756946,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "halftone",
+      "quality": "classic",
+      "effect": "vortex",
+      "wakeMAE": 2.491707356770833,
+      "residualMAE": 1.7857367621527778,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "halftone",
+      "quality": "classic",
+      "effect": "contour",
+      "wakeMAE": 1.3660047743055554,
+      "residualMAE": 0.9171725802951389,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "halftone",
+      "quality": "classic",
+      "effect": "dissolve",
+      "wakeMAE": 1.2558905707465278,
+      "residualMAE": 0.37701551649305554,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "halftone",
+      "quality": "classic",
+      "effect": "light",
+      "wakeMAE": 0.5898044162326389,
+      "residualMAE": 0.3862386067708333,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "halftone",
+      "quality": "classic",
+      "effect": "ripple",
+      "wakeMAE": 4.714533148871528,
+      "residualMAE": 3.6128065321180554,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "halftone",
+      "quality": "classic",
+      "effect": "displace",
+      "wakeMAE": 1.8674709743923612,
+      "residualMAE": 1.0732706705729167,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "density",
+      "quality": "detailed",
+      "effect": "trail",
+      "wakeMAE": 2.667352973090278,
+      "residualMAE": 1.740908474392361,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "density",
+      "quality": "detailed",
+      "effect": "water",
+      "wakeMAE": 6.117184787326389,
+      "residualMAE": 5.941314019097222,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "density",
+      "quality": "detailed",
+      "effect": "silk",
+      "wakeMAE": 3.448189290364583,
+      "residualMAE": 2.3675550672743055,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "density",
+      "quality": "detailed",
+      "effect": "vortex",
+      "wakeMAE": 3.146396213107639,
+      "residualMAE": 2.1470228407118057,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "density",
+      "quality": "detailed",
+      "effect": "contour",
+      "wakeMAE": 2.57816162109375,
+      "residualMAE": 1.8001763237847221,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "density",
+      "quality": "detailed",
+      "effect": "dissolve",
+      "wakeMAE": 1.7095757378472223,
+      "residualMAE": 0.5075100368923611,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "density",
+      "quality": "detailed",
+      "effect": "light",
+      "wakeMAE": 0.8986843532986111,
+      "residualMAE": 0.5788642035590278,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "density",
+      "quality": "detailed",
+      "effect": "ripple",
+      "wakeMAE": 6.0276299370659725,
+      "residualMAE": 4.691880967881945,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "density",
+      "quality": "detailed",
+      "effect": "displace",
+      "wakeMAE": 2.394245062934028,
+      "residualMAE": 1.3441107855902779,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "density",
+      "quality": "smooth",
+      "effect": "trail",
+      "wakeMAE": 2.6442437065972224,
+      "residualMAE": 1.7844401041666667,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "density",
+      "quality": "smooth",
+      "effect": "water",
+      "wakeMAE": 6.149723307291667,
+      "residualMAE": 5.8986328125,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "density",
+      "quality": "smooth",
+      "effect": "silk",
+      "wakeMAE": 3.5055338541666665,
+      "residualMAE": 2.406608072916667,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "density",
+      "quality": "smooth",
+      "effect": "vortex",
+      "wakeMAE": 3.21488037109375,
+      "residualMAE": 2.197658962673611,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "density",
+      "quality": "smooth",
+      "effect": "contour",
+      "wakeMAE": 2.503329806857639,
+      "residualMAE": 1.7844712999131944,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "density",
+      "quality": "smooth",
+      "effect": "dissolve",
+      "wakeMAE": 1.7029486762152777,
+      "residualMAE": 0.5101114908854166,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "density",
+      "quality": "smooth",
+      "effect": "light",
+      "wakeMAE": 0.9017713758680556,
+      "residualMAE": 0.5811333550347222,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "density",
+      "quality": "smooth",
+      "effect": "ripple",
+      "wakeMAE": 6.079264322916667,
+      "residualMAE": 4.695460340711805,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "density",
+      "quality": "smooth",
+      "effect": "displace",
+      "wakeMAE": 2.4711073133680554,
+      "residualMAE": 1.4259914822048612,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "density",
+      "quality": "faithful",
+      "effect": "trail",
+      "wakeMAE": 2.6758124457465278,
+      "residualMAE": 1.80374755859375,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "density",
+      "quality": "faithful",
+      "effect": "water",
+      "wakeMAE": 6.1909600151909725,
+      "residualMAE": 5.921255154079861,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "density",
+      "quality": "faithful",
+      "effect": "silk",
+      "wakeMAE": 3.524233669704861,
+      "residualMAE": 2.415665690104167,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "density",
+      "quality": "faithful",
+      "effect": "vortex",
+      "wakeMAE": 3.2426554361979165,
+      "residualMAE": 2.2088636610243055,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "density",
+      "quality": "faithful",
+      "effect": "contour",
+      "wakeMAE": 2.518929036458333,
+      "residualMAE": 1.7954928927951388,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "density",
+      "quality": "faithful",
+      "effect": "dissolve",
+      "wakeMAE": 1.71904296875,
+      "residualMAE": 0.5159681532118056,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "density",
+      "quality": "faithful",
+      "effect": "light",
+      "wakeMAE": 0.8969631618923611,
+      "residualMAE": 0.5781684027777778,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "density",
+      "quality": "faithful",
+      "effect": "ripple",
+      "wakeMAE": 6.112152777777778,
+      "residualMAE": 4.719700792100695,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "density",
+      "quality": "faithful",
+      "effect": "displace",
+      "wakeMAE": 2.4994249131944444,
+      "residualMAE": 1.4520819769965279,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "color",
+      "quality": "faithful",
+      "effect": "trail",
+      "wakeMAE": 2.856540256076389,
+      "residualMAE": 1.9295260959201388,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "color",
+      "quality": "faithful",
+      "effect": "water",
+      "wakeMAE": 6.464283582899306,
+      "residualMAE": 6.1148261176215275,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "color",
+      "quality": "faithful",
+      "effect": "silk",
+      "wakeMAE": 3.6918050130208333,
+      "residualMAE": 2.5126695421006944,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "color",
+      "quality": "faithful",
+      "effect": "vortex",
+      "wakeMAE": 3.3943074544270835,
+      "residualMAE": 2.300484212239583,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "color",
+      "quality": "faithful",
+      "effect": "contour",
+      "wakeMAE": 2.5875447591145835,
+      "residualMAE": 1.8521647135416666,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "color",
+      "quality": "faithful",
+      "effect": "dissolve",
+      "wakeMAE": 1.8279364691840279,
+      "residualMAE": 0.5510538736979167,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "color",
+      "quality": "faithful",
+      "effect": "light",
+      "wakeMAE": 0.8632839626736111,
+      "residualMAE": 0.5569566514756944,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "color",
+      "quality": "faithful",
+      "effect": "ripple",
+      "wakeMAE": 6.3804443359375,
+      "residualMAE": 4.882967122395834,
+      "zeroStrengthMAE": 0
+    },
+    {
+      "mode": "color",
+      "quality": "faithful",
+      "effect": "displace",
+      "wakeMAE": 2.6621351453993056,
+      "residualMAE": 1.55035400390625,
+      "zeroStrengthMAE": 0
+    }
+  ],
+  "batchedInput": [
+    {
+      "effect": "trail",
+      "maxDifference": 0,
+      "events": 80,
+      "renderTicks": 20
+    },
+    {
+      "effect": "water",
+      "maxDifference": 0,
+      "events": 80,
+      "renderTicks": 20
+    },
+    {
+      "effect": "silk",
+      "maxDifference": 0,
+      "events": 80,
+      "renderTicks": 20
+    },
+    {
+      "effect": "vortex",
+      "maxDifference": 0,
+      "events": 80,
+      "renderTicks": 20
+    },
+    {
+      "effect": "contour",
+      "maxDifference": 0,
+      "events": 80,
+      "renderTicks": 20
+    },
+    {
+      "effect": "dissolve",
+      "maxDifference": 0,
+      "events": 80,
+      "renderTicks": 20
+    },
+    {
+      "effect": "light",
+      "maxDifference": 0,
+      "events": 80,
+      "renderTicks": 20
+    }
+  ],
+  "maxFieldBytes": 2097152,
+  "maxNativeDifference": 1.4901161193847656e-8,
+  "passed": true,
+  "errors": [],
+  "upstreamSha256": "8ee86f03eba8338c9d7336c1f3180934448bfaf28fcc0d4926eedb79cae82ef5"
+}
