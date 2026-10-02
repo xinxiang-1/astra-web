@@ -65,7 +65,9 @@ try {
   )
   await page.mouse.move(box.x - 8, box.y + box.height * 0.4)
   await page.waitForFunction(
-    () => document.querySelector('.ascii-scroll canvas')?.dataset.pointerStrength === '0' && document.querySelector('.ascii-scroll canvas')?.dataset.interactionActive === 'false',
+    () =>
+      document.querySelector('.ascii-scroll canvas')?.dataset.pointerStrength === '0' &&
+      document.querySelector('.ascii-scroll canvas')?.dataset.interactionActive === 'false',
   )
   const settled = await snapshot()
   await page.waitForTimeout(250)
@@ -194,17 +196,26 @@ try {
         effectProfile: data.effectProfile,
         motionSpeed: data.motionSpeed,
         motionStrength: data.motionStrength,
+        motionStyle: data.motionStyle,
       })
       const ignored = error({})
       const wrongSpeed = error({
         effectProfile: data.effectProfile,
         motionSpeed: 1,
         motionStrength: data.motionStrength,
+        motionStyle: data.motionStyle,
       })
       const wrongStrength = error({
         effectProfile: data.effectProfile,
         motionSpeed: data.motionSpeed,
         motionStrength: 0.2,
+        motionStyle: data.motionStyle,
+      })
+      const wrongStyle = error({
+        effectProfile: data.effectProfile,
+        motionSpeed: data.motionSpeed,
+        motionStrength: data.motionStrength,
+        motionStyle: 'studio',
       })
       r.destroy()
       return {
@@ -212,9 +223,11 @@ try {
         ignored,
         wrongSpeed,
         wrongStrength,
+        wrongStyle,
         motion: data.motion,
         motionSpeed: data.motionSpeed,
         motionStrength: data.motionStrength,
+        motionStyle: data.motionStyle,
       }
     },
     { data, decoded: 'data:image/png;base64,' + (await readFile(decoded)).toString('base64') },
@@ -223,6 +236,8 @@ try {
   assert(report.encoded.correct < report.encoded.ignored * 0.8)
   assert(report.encoded.correct < report.encoded.wrongSpeed * 0.9)
   assert(report.encoded.correct < report.encoded.wrongStrength * 0.8)
+  assert.equal(report.encoded.motionStyle, 'cinematic')
+  assert(report.encoded.correct < report.encoded.wrongStyle * 0.8)
   report.video = {
     codec: stream.codec_name,
     width: stream.width,

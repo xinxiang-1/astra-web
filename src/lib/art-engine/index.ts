@@ -49,6 +49,7 @@ export function createArtRenderer(
       if (
         !gpu ||
         options.effectProfile === 'expressive' ||
+        options.motionStyle === 'cinematic' ||
         ['current', 'reform', 'caustics'].includes(options.motion ?? 'none') ||
         ['trail', 'water', 'silk', 'vortex', 'contour', 'dissolve'].includes(
           options.hover ?? 'light',

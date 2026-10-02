@@ -85,6 +85,7 @@ try {
     assert.equal(payload.motionSpeed, 0.7)
     assert.equal(payload.motionStrength, 0.8)
     assert.equal(payload.effectProfile, 'expressive')
+    assert.equal(payload.motionStyle, 'cinematic')
     assert(text.includes('MIT License') && text.includes('Copyright (c) 2026 ayangabryl'))
     const offlineContext = await browser.newContext({
       viewport: { width: 900, height: 800 },

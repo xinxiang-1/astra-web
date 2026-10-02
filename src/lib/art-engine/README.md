@@ -28,6 +28,8 @@
 
 代码中保留完整MIT许可，离线HTML包含同一许可正文；[许可归档](../../../docs/licenses/asciify-engine-interaction-MIT.txt)。新场会增加绘制成本，不能沿用静态品质档的计时承诺实时帧率。
 
+电影感表现层通过 `ArtRenderOptions.motionStyle = 'cinematic'` 使用相同原生环境核及五信号网格。六动效加入扩散光脉、交叠波峰、逐字旋流聚合、空间流场、逐字散开重组和双层扫光；不改变源字形身份/方向、静态采样或 hover 求解器。`studio` 或缺省继续上一版本表现。新编辑器默认电影感，旧项目缺 `artMotionStyle` 回退 Studio；风格、速度和强度共同保存/导出。`npm run test:cinematic-motion` 核对新场景、旧源码像素对照及完整恢复，`test:cinematic-visual` 生成实际同源对照板。测试要求 git 历史含基线提交 `38bcb37`，复跑使用新的 `ASTRA_MOTION_OUTPUT` / `ASTRA_CINEMATIC_VISUAL_OUTPUT`。详见[电影感阶段记录](../../../docs/plans/cinematic-motion-iteration-2026-10-02.md)。
+
 ## 验证与范围
 
 `npm run test:art-effects`覆盖独立旧Canvas静态兼容、全部效果的参数/相位、真实UI、全新存储恢复、断网HTML和触控模拟；`test:art-effects-media`使用ffmpeg/ffprobe验证实际H.264参数快照。默认输出目录不能已存在，复跑使用新的 `ASTRA_EFFECTS_OUTPUT` / `ASTRA_EFFECTS_MEDIA_OUTPUT`；服务器地址用 `ASTRA_PREVIEW_URL`。本轮生产证据和全部失败说明见 [效果记录](../../../docs/plans/art-effects-iteration-2026-10-01.md)。

@@ -171,6 +171,7 @@ const artHover = ref<ArtHover | 'none'>('light')
 const artEffectProfile = ref<'classic' | 'expressive'>('expressive')
 const artMotionSpeed = ref(1)
 const artMotionStrength = ref(0.65)
+const artMotionStyle = ref<'studio' | 'cinematic'>('cinematic')
 const artPaused = ref(false)
 const artQualityOptions = computed(() => [
   { id: 'classic' as const, label: '经典' },
@@ -210,6 +211,15 @@ const artMotionDescriptions: Record<ArtMotion, string> = {
   current: '层层流线卷动画面，边缘保持稳定。',
   reform: '字符散开、重新聚拢，再停留展示完整作品。',
   caustics: '交叠光带沿字符笔画游走，保留原作色彩。',
+}
+const cinematicMotionDescriptions: Record<ArtMotion, string> = {
+  none: '保留完整静态作品，悬停仍可独立使用。',
+  breathe: '环形光脉扩散，字符随光影舒展。',
+  wave: '交叠波浪穿过作品，亮边随波峰起伏。',
+  assemble: '原作字符从旋流中归位，逐层聚成完整画面。',
+  current: '空间流场卷动字符，光线勾出流动的折面。',
+  reform: '字符沿独立轨迹散开，再归位停留。',
+  caustics: '双层光带扫过真实笔画，保留作品原色。',
 }
 const artHoverOptions: { id: ArtHover | 'none'; label: string }[] = [
   { id: 'light', label: '光晕' },
@@ -601,6 +611,12 @@ function selectArtMotion(next: ArtMotion) {
   artLastTick = 0
 }
 
+function selectArtMotionStyle(next: 'studio' | 'cinematic') {
+  artMotionStyle.value = next
+  artElapsed = 0
+  artLastTick = 0
+}
+
 function selectArtHover(next: ArtHover | 'none') {
   if (['trail', 'water', 'silk', 'vortex', 'contour', 'dissolve'].includes(next))
     artEffectProfile.value = 'expressive'
@@ -923,6 +939,7 @@ function restoreDefaults() {
   artEffectProfile.value = 'expressive'
   artMotionSpeed.value = 1
   artMotionStrength.value = 0.65
+  artMotionStyle.value = 'cinematic'
   artPaused.value = false
   mode.value = 'charset'
   phrase.value = '我爱你中国'
@@ -1770,6 +1787,7 @@ async function downloadVideo() {
     effectProfile: artEffectProfile.value,
     motionSpeed: artMotionSpeed.value,
     motionStrength: artMotionStrength.value,
+    motionStyle: artEffectProfile.value === 'expressive' ? artMotionStyle.value : 'studio',
   }
   const capturedClip = { start: clipStart.value, end: clipEnd.value }
   const calibrated = editorEngine.value === 'calibrated'
@@ -1888,6 +1906,7 @@ async function downloadLiveHtml() {
         effectProfile: artEffectProfile.value,
         motionSpeed: artMotionSpeed.value,
         motionStrength: artMotionStrength.value,
+        motionStyle: artEffectProfile.value === 'expressive' ? artMotionStyle.value : 'studio',
         hoverStrength: hoverStrength.value,
         hoverRadius: hoverRadius.value,
         transparent: exportTransparent,
@@ -2178,6 +2197,7 @@ function paintTo(canvas: HTMLCanvasElement | null, pointerSamples: readonly ArtP
       effectProfile: artEffectProfile.value,
       motionSpeed: artMotionSpeed.value,
       motionStrength: artMotionStrength.value,
+      motionStyle: artEffectProfile.value === 'expressive' ? artMotionStyle.value : 'studio',
       hoverRadius: hoverRadius.value,
       hoverStrength: reducedArtMotion.value || downloading.value ? 0 : hoverStrength.value,
       pointerSamples,
@@ -2197,6 +2217,7 @@ function paintTo(canvas: HTMLCanvasElement | null, pointerSamples: readonly ArtP
           ? 'smooth'
           : 'classic'
     canvas.dataset.time = String(artElapsed)
+    canvas.dataset.motionStyle = artEffectProfile.value === 'expressive' ? artMotionStyle.value : 'studio'
     canvas.dataset.interactionTime = String(artInteractionElapsed)
     canvas.dataset.pointerStrength = String(artPointer.strength)
     canvas.dataset.interactionActive = String(renderer.interactionActive)
@@ -2375,6 +2396,7 @@ watch(
     artEffectProfile,
     artMotionSpeed,
     artMotionStrength,
+    artMotionStyle,
     hoverStrength,
     hoverRadius,
     reducedArtMotion,
@@ -2462,6 +2484,7 @@ const projectSettings: Record<string, Ref<string | number | boolean>> = {
   artEffectProfile,
   artMotionSpeed,
   artMotionStrength,
+  artMotionStyle,
   mode,
   phrase,
   phraseThreshold,
@@ -2724,6 +2747,7 @@ async function loadRouteProject() {
         project.settings.artEffectProfile === 'expressive' ? 'expressive' : 'classic'
       artMotionSpeed.value = 1
       artMotionStrength.value = 0.65
+      artMotionStyle.value = 'studio'
       if (hasVideo.value) pauseVideoPlayback()
       if (project.settings.mode === 'phrase' || project.settings.mode === 'charset')
         selectMode(project.settings.mode)
@@ -2732,6 +2756,7 @@ async function loadRouteProject() {
         const target = projectSettings[key]
         if (target && typeof value === typeof target.value) target.value = value
       }
+      if (!['studio', 'cinematic'].includes(artMotionStyle.value)) artMotionStyle.value = 'studio'
       if (!ART_MODES.some((item) => item.id === artMode.value))
         artMode.value = mode.value === 'phrase' ? 'phrase' : 'density'
       if (
@@ -3451,7 +3476,14 @@ onBeforeUnmount(() => {
                 {{ item.label }}
               </button>
             </div>
-            <p v-if="artEffectProfile === 'expressive'" class="hint">{{ artMotionDescriptions[artMotion] }}</p>
+            <p v-if="artEffectProfile === 'expressive' && artMotionStyle === 'studio'" class="hint">{{ artMotionDescriptions[artMotion] }}</p>
+            <template v-if="artEffectProfile === 'expressive'">
+              <div class="seg" role="group" aria-label="动效风格">
+                <button type="button" :class="['seg-item', { on: artMotionStyle === 'cinematic' }]" :aria-pressed="artMotionStyle === 'cinematic'" @click="selectArtMotionStyle('cinematic')">电影感</button>
+                <button type="button" :class="['seg-item', { on: artMotionStyle === 'studio' }]" :aria-pressed="artMotionStyle === 'studio'" @click="selectArtMotionStyle('studio')">Studio</button>
+              </div>
+              <p v-if="artMotionStyle === 'cinematic'" class="hint">{{ cinematicMotionDescriptions[artMotion] }}</p>
+            </template>
           </div>
           <template v-if="artMotion !== 'none' && artEffectProfile === 'expressive'">
             <div class="field">

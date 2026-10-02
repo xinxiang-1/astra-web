@@ -26,6 +26,8 @@
     "test:art-software": "node scripts/art-software-contract.mjs",
     "test:home-hover": "node scripts/home-hover-smoke.mjs",
     "test:studio-field-parity": "node scripts/studio-field-parity.mjs",
+    "test:cinematic-motion": "node scripts/studio-motion-contract.mjs --cinematic",
+    "test:cinematic-visual": "node scripts/cinematic-motion-visual.mjs",
     "test:hover-parity": "node scripts/hover-parity-contract.mjs",
     "demo:hover-parity": "node scripts/hover-parity-walkthrough.mjs",
     "test:studio-motion": "node scripts/studio-motion-contract.mjs",

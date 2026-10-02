@@ -81,7 +81,7 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
     const t = Math.max(0, Math.min(1, (value - low) / (high - low)))
     return t * t * t * (t * (6 * t - 15) + 10)
   }
-  function buildMotionField(mode: string, time: number, amount: number) {
+  function buildMotionField(mode: string, time: number, amount: number, cinematic: boolean) {
     if (mode === 'none' || amount === 0) {
       motionField = null
       motionColumns = motionRows = 0
@@ -90,7 +90,7 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
     }
     const columns = Math.max(2, Math.min(96, frame.columns + 1))
     const rows = Math.max(2, Math.min(96, frame.rows + 1))
-    const key = `${mode}:${time}:${amount}:${columns}:${rows}`
+    const key = `${mode}:${time}:${amount}:${columns}:${rows}:${cinematic}`
     if (motionKey === key) return
     if (!motionField || motionField.length !== columns * rows * 5)
       motionField = new Float32Array(columns * rows * 5)
@@ -111,7 +111,85 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
         // Start the repeating native reform just before its dispersal, then retain
         // the complete-image hold. No random per-frame state; seeking is exact.
         sampleStudioAmbient(nativeMode, x, y, time + (mode === 'reform' ? 2.4 : 0), ambientNative)
-        if (mode === 'current') {
+        if (cinematic) {
+          // Astra presentation on the unchanged native Studio field. These are
+          // normalized positions, never velocities; time seeking is stateless.
+          const nativeX = ambientNative[0]! / 960,
+            nativeY = ambientNative[1]! / 960
+          if (mode === 'current') {
+            const a = 6.4 * x + 0.55 * Math.sin(time * 0.38),
+              b = 5.5 * y - time * 0.62
+            dx = (nativeX * 3.8 + Math.sin(a) * Math.cos(b) * 0.05 * edge) * amount
+            dy = (nativeY * 3.8 - Math.cos(a) * Math.sin(b) * 0.05 * edge) * amount
+            const fold = Math.pow(Math.max(0, Math.sin(a + b)), 8) * edge
+            intensity = 1 - 0.15 * amount + fold * 0.3 * amount
+            glow = fold * 0.65 * amount
+          } else if (mode === 'breathe') {
+            const rx = (x - 0.5) * (frame.width / frame.height),
+              ry = y - 0.48,
+              distance = Math.hypot(rx, ry),
+              phase = distance * 13 - time * 1.4,
+              pulse = Math.pow(Math.max(0, Math.cos(phase)), 10),
+              breath = 0.5 - 0.5 * Math.cos(time * 0.88),
+              swell = (0.02 + breath * 0.09 + Math.sin(phase) * 0.035) * edge * amount
+            dx = (x - 0.5) * swell + nativeX * amount
+            dy = (y - 0.48) * swell + nativeY * amount
+            intensity = 1 - amount * 0.22 + pulse * 0.36 * amount * edge
+            glow = (pulse * 0.95 + breath * 0.12) * edge * amount
+          } else if (mode === 'wave') {
+            const phase = 10 * y - time * 1.8 + Math.sin(4.5 * x + time * 0.3) * 0.9,
+              cross = 7 * x + 4 * y + time * 0.8,
+              crest = Math.pow(Math.max(0, Math.cos(phase)), 12)
+            dx = (nativeX * 2 + Math.sin(phase) * 0.057 * edge) * amount
+            dy = (nativeY * 2 + (Math.cos(phase) * 0.066 + Math.sin(cross) * 0.014) * edge) * amount
+            intensity = 1 - amount * 0.2 + crest * 0.45 * edge * amount
+            glow = (crest * 0.9 + Math.pow(Math.max(0, Math.cos(cross)), 16) * 0.2) * edge * amount
+          } else if (mode === 'assemble') {
+            const lane = x * 0.48 + y * 0.22,
+              remaining = 1 - motionSmooth(0.05 + lane * 0.8, 2.65 + lane * 1.4, Math.max(0, time)),
+              swirl = remaining * remaining * 1.8,
+              rx = x - 0.5,
+              ry = y - 0.5
+            dx =
+              (rx * (Math.cos(swirl) - 1) - ry * Math.sin(swirl) + nativeX * 3) *
+              remaining *
+              edge *
+              amount
+            dy =
+              (rx * Math.sin(swirl) + ry * (Math.cos(swirl) - 1) + nativeY * 3) *
+              remaining *
+              edge *
+              amount
+            opacity = 1 - remaining * amount * 0.22
+            intensity = 1 - remaining * amount * 0.18
+            glow = remaining * (1 - remaining) * 2.2 * edge * amount
+          } else if (mode === 'reform') {
+            const scatter = (1 - ambientNative[3]!) / 0.9,
+              swirl = scatter * 1.4,
+              rx = x - 0.5,
+              ry = y - 0.5
+            dx =
+              (rx * (Math.cos(swirl) - 1) - ry * Math.sin(swirl) + nativeX * 4) *
+              scatter *
+              edge *
+              amount
+            dy =
+              (rx * Math.sin(swirl) + ry * (Math.cos(swirl) - 1) + nativeY * 4) *
+              scatter *
+              edge *
+              amount
+            opacity = 1 - scatter * amount * 0.3
+            intensity = 1 - scatter * amount * 0.12
+            glow = scatter * (1 - scatter) * 1.8 * edge * amount
+          } else if (mode === 'caustics') {
+            sampleStudioAmbient('caustics', 1 - x, 1 - y, time + 3, ambientLight)
+            const sweep = Math.pow(Math.max(0, Math.cos(8 * x - 3 * y - time * 1.05)), 16),
+              ribbon = Math.max(0, ambientNative[2]!) * 3.8,
+              second = Math.max(0, ambientLight[2]!) * 1.7
+            intensity = 1 - amount * 0.26 + (sweep * 0.45 + ribbon * 0.6) * edge * amount
+            glow = (sweep * 1.1 + ribbon + second) * edge * amount
+          }
+        } else if (mode === 'current') {
           dx = (ambientNative[0]! / 960) * 6.5 * amount
           dy = (ambientNative[1]! / 960) * 6.5 * amount
           const fold = Math.abs(ambientNative[0]! * ambientNative[1]!) / 70
@@ -1117,12 +1195,14 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
       hover = options.hover ?? 'displace'
     const expressive =
       options.effectProfile === 'expressive' ||
+      options.motionStyle === 'cinematic' ||
       ['current', 'reform', 'caustics'].includes(motion) ||
       ['trail', 'water', 'silk', 'vortex', 'contour', 'dissolve'].includes(hover)
     const time = (options.time ?? 0) * clamp(options.motionSpeed ?? 1, 0.2, 2)
     const interactionTime = options.hoverTime ?? options.time ?? 0
     const amount = clamp(options.motionStrength ?? 0.65, 0, 1)
-    buildMotionField(expressive ? motion : 'none', time, amount)
+    const cinematic = options.motionStyle === 'cinematic'
+    buildMotionField(expressive ? motion : 'none', time, amount, cinematic)
     const pointer = options.pointer
     const fieldMode = hover === 'ripple' ? 'water' : hover === 'displace' ? 'silk' : hover
     const strength = clamp(options.hoverStrength ?? pointer?.strength ?? 0, 0, 1)
@@ -1209,6 +1289,30 @@ export function createCanvasArtRenderer(target: HTMLCanvasElement) {
         ambientOpacity = sample[3]!
         opacity = alpha * ambientOpacity
         glow = sample[4]!
+        if (cinematic && (motion === 'assemble' || motion === 'reform')) {
+          // Each original glyph follows a stable orbit, without remapping its
+          // identity/rotation. No random frame state or extra particle canvas.
+          const scatter = (1 - ambientOpacity) / (motion === 'assemble' ? 0.22 : 0.3)
+          if (scatter > 0.00001) {
+            const seed = Math.sin((index + 1) * 127.1) * 43758.5453,
+              noise = seed - Math.floor(seed),
+              angle = noise * Math.PI * 2 + scatter * (1.2 + noise),
+              radius = scatter * scatter * (0.025 + noise * 0.09),
+              edge = motionSmooth(
+                0,
+                0.1,
+                Math.min(
+                  (x + 0.5) / frame.columns,
+                  1 - (x + 0.5) / frame.columns,
+                  (y + 0.5) / frame.rows,
+                  1 - (y + 0.5) / frame.rows,
+                ),
+              )
+            dx += Math.cos(angle) * radius * frame.columns * cw * edge
+            dy += Math.sin(angle) * radius * frame.rows * ch * edge
+            glow += scatter * (1 - scatter) * noise * 0.6 * edge
+          }
+        }
       }
       let glyph = frame.indices[index]!
       if (interaction?.hasRefraction && expressive) {

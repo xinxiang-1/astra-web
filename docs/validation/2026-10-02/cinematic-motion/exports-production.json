@@ -1,0 +1,67 @@
+{
+  "base": "http://127.0.0.1:5194",
+  "cases": [
+    {
+      "id": "breathe",
+      "pngHash": "4b21e591a7f5e325e5a8ed066c048423d829f2491c156eda7a7b90a3a76d7665",
+      "htmlHash": "b6af2b6b25ed0676b95bb8c913d781045172d9efde823063bdaa580ccdf42022",
+      "offlineMotion": true,
+      "pausedExact": true,
+      "sourceParameters": true,
+      "networkRequests": 0,
+      "license": true
+    },
+    {
+      "id": "wave",
+      "pngHash": "4b21e591a7f5e325e5a8ed066c048423d829f2491c156eda7a7b90a3a76d7665",
+      "htmlHash": "540b35f22132d1004ff13c32e0f3e610fc0386cd61d662025a679b9e9d51e1c2",
+      "offlineMotion": true,
+      "pausedExact": true,
+      "sourceParameters": true,
+      "networkRequests": 0,
+      "license": true
+    },
+    {
+      "id": "assemble",
+      "pngHash": "4b21e591a7f5e325e5a8ed066c048423d829f2491c156eda7a7b90a3a76d7665",
+      "htmlHash": "af4382b6835455fdc8dcba9041d1072673a52bd390656809ec545f4b59c42ec8",
+      "offlineMotion": true,
+      "pausedExact": true,
+      "sourceParameters": true,
+      "networkRequests": 0,
+      "license": true
+    },
+    {
+      "id": "current",
+      "pngHash": "4b21e591a7f5e325e5a8ed066c048423d829f2491c156eda7a7b90a3a76d7665",
+      "htmlHash": "0f441fcbaae56387b0dfb648d1c644c207ad75e2dad3daa836de1910835f6326",
+      "offlineMotion": true,
+      "pausedExact": true,
+      "sourceParameters": true,
+      "networkRequests": 0,
+      "license": true
+    },
+    {
+      "id": "reform",
+      "pngHash": "4b21e591a7f5e325e5a8ed066c048423d829f2491c156eda7a7b90a3a76d7665",
+      "htmlHash": "6faac0f59518e928e9f2f6a57d9ff037dbf2d9fdc8df9a15091adc881bb89c6a",
+      "offlineMotion": true,
+      "pausedExact": true,
+      "sourceParameters": true,
+      "networkRequests": 0,
+      "license": true
+    },
+    {
+      "id": "caustics",
+      "pngHash": "4b21e591a7f5e325e5a8ed066c048423d829f2491c156eda7a7b90a3a76d7665",
+      "htmlHash": "7b281df529589afd4785e8b9fdd4551b12af8b9f1787151ab64e2ad5e20dda3b",
+      "offlineMotion": true,
+      "pausedExact": true,
+      "sourceParameters": true,
+      "networkRequests": 0,
+      "license": true
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

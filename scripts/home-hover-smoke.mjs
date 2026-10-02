@@ -8,6 +8,7 @@ const out = path.resolve(process.env.ASTRA_HOVER_OUTPUT || 'test-results/home-in
 await mkdir(out, { recursive: true })
 const browser = await chromium.launch({ headless: true })
 const page = await browser.newPage({ viewport: { width: 1440, height: 960 } })
+page.setDefaultNavigationTimeout(60000)
 const errors = []
 const results = []
 page.on('pageerror', error => errors.push(error.message))

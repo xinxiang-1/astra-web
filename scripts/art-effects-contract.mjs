@@ -420,6 +420,7 @@ try {
   assert.equal(settings.artEffectProfile, 'expressive')
   assert.equal(settings.artMotionSpeed, 0.6)
   assert.equal(settings.artMotionStrength, 0.73)
+  assert.equal(settings.artMotionStyle, 'cinematic')
   assert.equal(settings.hoverStrength, 0.82)
   assert.equal(settings.hoverRadius, 0.46)
   await page.locator('.editor-save').click()
@@ -441,6 +442,11 @@ try {
       }),
   )
   const url = `${base}/ascii-art?project=${savedId}`
+  const styleChoices = page.getByRole('group', { name: '动效风格', exact: true })
+  await styleChoices.getByRole('button', { name: 'Studio', exact: true }).click()
+  await page.locator('.save-status').filter({ hasText: '有未保存的更改' }).waitFor()
+  await styleChoices.getByRole('button', { name: '电影感', exact: true }).click()
+  await page.locator('.save-status').filter({ hasText: '已保存到此浏览器' }).waitFor()
   await page.goto(url, { waitUntil: 'domcontentloaded' })
   await page.locator('.save-status').filter({ hasText: '已从此浏览器恢复' }).waitFor()
   await ready()
@@ -452,6 +458,7 @@ try {
       html.match(/<script id="art-data" type="application\/json">([\s\S]*?)<\/script>/)[1],
     )
   assert.equal(payload.effectProfile, 'expressive')
+  assert.equal(payload.motionStyle, 'cinematic')
   assert.equal(payload.motionSpeed, 0.6)
   assert.equal(payload.motionStrength, 0.73)
   assert.equal(payload.hoverStrength, 0.82)
@@ -497,6 +504,7 @@ try {
   // An old project with no effect profile stays classic; fresh-context package import keeps the new values.
   const fresh = await browser.newContext({ reducedMotion: 'reduce' }),
     restored = await fresh.newPage()
+  restored.setDefaultNavigationTimeout(60000)
   await restored.goto(`${base}/projects`, { waitUntil: 'domcontentloaded' })
   await restored.locator('input[type=file]').setInputFiles(packed)
   await restored.locator('.project-card').first().waitFor()
@@ -506,6 +514,61 @@ try {
     d.open = true
   })
   assert.equal(await restored.locator('#art-motion-speed').inputValue(), '0.6')
+  assert(
+    await restored
+      .getByRole('group', { name: '动效风格', exact: true })
+      .getByRole('button', { name: '电影感', exact: true })
+      .evaluate((b) => b.classList.contains('on')),
+  )
+  const oldExpressiveId = await restored.evaluate(
+    () =>
+      new Promise((resolve, reject) => {
+        const request = indexedDB.open('astra-art-projects', 1)
+        request.onerror = () => reject(request.error)
+        request.onsuccess = () => {
+          const db = request.result,
+            tx = db.transaction('projects', 'readwrite'),
+            store = tx.objectStore('projects'),
+            query = store.getAll()
+          let id
+          query.onsuccess = () => {
+            const project = query.result[0]
+            id = project.id
+            delete project.settings.artMotionStyle
+            store.put(project)
+          }
+          tx.oncomplete = () => {
+            db.close()
+            resolve(id)
+          }
+          tx.onerror = () => reject(tx.error)
+        }
+      }),
+  )
+  await restored.goto(`${base}/ascii-art?project=${oldExpressiveId}`, {
+    waitUntil: 'domcontentloaded',
+  })
+  await restored.locator('.save-status').filter({ hasText: '已从此浏览器恢复' }).waitFor()
+  await restored.locator('details.calibrated-effects').evaluate((d) => {
+    d.open = true
+  })
+  assert(
+    await restored
+      .getByRole('button', { name: '增强光影', exact: true })
+      .evaluate((b) => b.classList.contains('on')),
+  )
+  assert.equal(
+    await restored
+      .getByRole('group', { name: '动效风格', exact: true })
+      .getByRole('button', { name: 'Studio', exact: true })
+      .getAttribute('aria-pressed'),
+    'true',
+  )
+  report.stylePersistence = {
+    dirtyState: true,
+    cinematicRestored: true,
+    previousExpressiveDefaultsToStudio: true,
+  }
   const legacyId = await restored.evaluate(
     () =>
       new Promise((resolve, reject) => {
@@ -523,6 +586,7 @@ try {
             delete p.settings.artEffectProfile
             delete p.settings.artMotionSpeed
             delete p.settings.artMotionStrength
+            delete p.settings.artMotionStyle
             store.put(p)
           }
           tx.oncomplete = () => {
@@ -541,6 +605,13 @@ try {
   assert(
     await restored
       .getByRole('button', { name: '经典光影', exact: true })
+      .evaluate((b) => b.classList.contains('on')),
+  )
+  await restored.getByRole('button', { name: '增强光影', exact: true }).click()
+  assert(
+    await restored
+      .getByRole('group', { name: '动效风格', exact: true })
+      .getByRole('button', { name: 'Studio', exact: true })
       .evaluate((b) => b.classList.contains('on')),
   )
   await fresh.close()

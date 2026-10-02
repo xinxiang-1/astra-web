@@ -16,6 +16,7 @@ type PagePayload = {
   effectProfile?: ArtRenderOptions['effectProfile']
   motionSpeed?: number
   motionStrength?: number
+  motionStyle?: ArtRenderOptions['motionStyle']
   hoverStrength?: number
   hoverRadius?: number
   source?: { kind: 'image' | 'video'; dataUrl: string; start: number; end: number }
@@ -87,6 +88,7 @@ async function runArtworkPage(
       effectProfile: data.effectProfile,
       motionSpeed: data.motionSpeed,
       motionStrength: data.motionStrength,
+      motionStyle: data.motionStyle,
       hoverRadius: data.hoverRadius,
       hoverStrength: reduced.matches || data.hover === 'none' ? 0 : data.hoverStrength,
       pointerSamples: pointerSamples.splice(0),
@@ -152,8 +154,10 @@ async function runArtworkPage(
       pointer.y = y
       const samples = event.getCoalescedEvents?.() ?? []
       for (const sample of samples.length ? samples : [event]) {
-        const sx = (sample.clientX - rect.left) / rect.width, sy = (sample.clientY - rect.top) / rect.height
-        if (sx >= 0 && sx <= 1 && sy >= 0 && sy <= 1) pointerSamples.push({ x: sx, y: sy, time: sample.timeStamp, active: true })
+        const sx = (sample.clientX - rect.left) / rect.width,
+          sy = (sample.clientY - rect.top) / rect.height
+        if (sx >= 0 && sx <= 1 && sy >= 0 && sy <= 1)
+          pointerSamples.push({ x: sx, y: sy, time: sample.timeStamp, active: true })
       }
       if (pointerSamples.length > 128) pointerSamples.splice(0, pointerSamples.length - 128)
     }

@@ -40,6 +40,7 @@ const enums: Record<string, readonly string[]> = {
     'dissolve',
   ],
   artEffectProfile: ['classic', 'expressive'],
+  artMotionStyle: ['studio', 'cinematic'],
   mode: ['charset', 'phrase'],
   hoverEffect: ['none', 'trail', 'water', 'silk', 'vortex', 'contour', 'dissolve'],
   ambientMotion: ['none', 'current', 'reform', 'caustics'],

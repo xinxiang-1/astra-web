@@ -55,6 +55,8 @@ export type ArtRenderOptions = {
   effectProfile?: 'classic' | 'expressive'
   motionSpeed?: number
   motionStrength?: number
+  /** Missing preserves Studio v1; cinematic uses the same glyphs with a new presentation layer. */
+  motionStyle?: 'studio' | 'cinematic'
   hoverRadius?: number
   /** Persistent field amplitude, including the residual wake after pointer leave. */
   hoverStrength?: number

@@ -7,6 +7,7 @@ import path from 'node:path'
 
 const base = process.env.ASTRA_PREVIEW_URL || 'http://127.0.0.1:5180'
 const phase = process.env.ASTRA_MOTION_PHASE || 'candidate'
+const motionStyle = process.env.ASTRA_MOTION_STYLE || 'cinematic'
 const out = path.resolve(
   process.env.ASTRA_MOTION_DEMO_OUTPUT || `test-results/studio-motion-demo-${Date.now()}`,
 )
@@ -37,7 +38,16 @@ const page = await context.newPage()
 page.setDefaultTimeout(60000)
 const errors = []
 page.on('pageerror', (e) => errors.push(e.message))
-const report = { phase, base, browser: browser.version(), hashes, cases: [], errors, passed: false }
+const report = {
+  phase,
+  base,
+  motionStyle,
+  browser: browser.version(),
+  hashes,
+  cases: [],
+  errors,
+  passed: false,
+}
 let start, end, raw
 try {
   await page.goto(`${base}/ascii-art`, { waitUntil: 'domcontentloaded' })
@@ -57,6 +67,11 @@ try {
   await page.locator('details.calibrated-effects').evaluate((d) => {
     d.open = true
   })
+  const styleChoice = page
+    .getByRole('group', { name: '动效风格', exact: true })
+    .getByRole('button', { name: motionStyle === 'studio' ? 'Studio' : '电影感', exact: true })
+  await styleChoice.click()
+  assert.equal(await styleChoice.getAttribute('aria-pressed'), 'true')
   await page
     .getByRole('group', { name: '六模式悬停', exact: true })
     .getByRole('button', { name: '关闭', exact: true })

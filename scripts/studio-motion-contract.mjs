@@ -4,6 +4,7 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import ts from 'typescript'
 import { createHash } from 'node:crypto'
+import { execFileSync } from 'node:child_process'
 
 const base = process.env.ASTRA_PREVIEW_URL || 'http://127.0.0.1:5180'
 const out = path.resolve(
@@ -13,6 +14,16 @@ await mkdir(path.dirname(out), { recursive: true })
 await mkdir(out)
 const vendor = await readFile('node_modules/asciify-engine/dist/studio.js', 'utf8')
 const source = await readFile('src/lib/art-engine/canvas.ts', 'utf8')
+const motionStyle =
+  process.env.ASTRA_MOTION_STYLE || (process.argv.includes('--cinematic') ? 'cinematic' : 'studio')
+assert(['studio', 'cinematic'].includes(motionStyle))
+const baselineSource = execFileSync('git', ['show', '38bcb37:src/lib/art-engine/canvas.ts'], {
+  encoding: 'utf8',
+  windowsHide: true,
+})
+const baselineCode = ts.transpileModule(baselineSource, {
+  compilerOptions: { target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.CommonJS },
+}).outputText
 const vendorAst = ts.createSourceFile('studio.js', vendor, ts.ScriptTarget.Latest, true)
 const sourceAst = ts.createSourceFile('canvas.ts', source, ts.ScriptTarget.Latest, true)
 let nativeFunction, nativeSmooth, localFunction
@@ -55,6 +66,9 @@ const report = {
   errors,
   scope: 'Chromium desktop; CPU timing samples are not device-independent FPS guarantees',
   passed: false,
+  motionStyle,
+  baselineCommit: '38bcb37de8ceeebc04be7bf09a08d675a5442e6a',
+  baselineRendererSha256: createHash('sha256').update(baselineSource).digest('hex'),
   hashes: {},
 }
 for (const file of [
@@ -74,7 +88,7 @@ for (const file of [
 try {
   await page.goto(`${base}/ascii-art`, { waitUntil: 'domcontentloaded', timeout: 60000 })
   report.api = await page.evaluate(
-    async ({ reference, local }) => {
+    async ({ reference, local, motionStyle, baselineCode }) => {
       const native = new Function(reference)()
       const sampler = new Function(local)()
       const expected = new Float32Array(4),
@@ -93,6 +107,12 @@ try {
             }
       const { prepareArtFrame, createCanvasArtRenderer } =
         await import('/src/lib/art-engine/index.ts')
+      const makePrevious = new Function(
+        'exports',
+        baselineCode + ';return exports.createCanvasArtRenderer',
+      )({})
+      const previousCanvas = document.createElement('canvas'),
+        previous = makePrevious(previousCanvas)
       await document.fonts.ready
       const image = new Image()
       image.src = '/artwork/portrait-reference.png'
@@ -150,6 +170,7 @@ try {
             longEdge: 720,
             effectProfile: 'expressive',
             motionStrength: 0.65,
+            motionStyle,
             transparent,
           }
           r.render(frame, { ...common, motion: 'none' })
@@ -158,6 +179,12 @@ try {
             const options = { ...common, motion, time: 0.5 }
             r.render(frame, options)
             const first = bytes()
+            previous.render(frame, { ...options, motionStyle: undefined })
+            r.render(frame, { ...options, motionStyle: 'studio' })
+            const studioParity = delta(
+              previousCanvas.getContext('2d').getImageData(0, 0, c.width, c.height).data,
+              bytes(),
+            )
             r.render(frame, { ...options, time: 1.1 })
             const phase = delta(first, bytes())
             r.render(frame, { ...options, motionStrength: 0 })
@@ -178,6 +205,11 @@ try {
               zero,
               speed,
               seek,
+              studioParity,
+              newStyle: delta(
+                first,
+                previousCanvas.getContext('2d').getImageData(0, 0, c.width, c.height).data,
+              ),
             })
           }
           for (const [motion, time] of [
@@ -201,6 +233,7 @@ try {
                   motion,
                   time: 0.3 + i / 30,
                   motionStrength: 0.65,
+                  motionStyle,
                 }).renderMs,
               )
             const sorted = samples.slice(2).sort((a, b) => a - b)
@@ -222,10 +255,12 @@ try {
         motion: 'current',
         effectProfile: 'expressive',
         motionStrength: 1,
+        motionStyle,
         time: 1.2,
       })
       const highResolution = { width: c.width, height: c.height, ...r.cacheStats }
       r.destroy()
+      previous.destroy()
       return {
         nativeSamples,
         maxNativeError,
@@ -238,7 +273,7 @@ try {
         destroyBytes: r.cacheStats.motionBytes,
       }
     },
-    { reference, local },
+    { reference, local, motionStyle, baselineCode },
   )
   assert(
     report.api.maxNativeError <= 1e-6,
@@ -254,6 +289,9 @@ try {
     assert.equal(item.zero.channels, 0, 'Zero strength restores exact still pixels')
     assert.equal(item.speed.channels, 0, 'Equivalent speed/time gives the same output')
     assert.equal(item.seek.channels, 0, 'Seek and replay are deterministic')
+    assert.equal(item.studioParity.channels, 0, 'Old Studio output preserves exact pixels')
+    if (motionStyle === 'cinematic')
+      assert(item.newStyle.channels > 0, 'New presentation differs visibly from Studio')
   }
   for (const item of report.api.holds)
     assert.equal(

@@ -1,0 +1,137 @@
+{
+  "base": "http://127.0.0.1:5180",
+  "browser": "153.0.8010.12",
+  "scope": "Development visual evidence, not independent human preference scores",
+  "errors": [],
+  "passed": true,
+  "hashes": {
+    "src/lib/art-engine/canvas.ts": "f35633a892d68ba3f9dae5a242f19ff9ceeb02365f0604492641105ad9f18432",
+    "src/views/AsciiArtView.vue": "de40d62ad68a4930c8eb23c7ba5aa8e83a23f887e2d8be8a92455a279d581ced",
+    "scripts/cinematic-motion-visual.mjs": "f8d25a6310ba0055e03b3c7705ea81922b521cecbbde087f83c538353e3984d9"
+  },
+  "boards": [
+    {
+      "source": "portrait-reference.png",
+      "mode": "density",
+      "file": "density-comparison.png",
+      "details": [
+        {
+          "motion": "breathe",
+          "time": 1.8,
+          "different": true
+        },
+        {
+          "motion": "wave",
+          "time": 1.8,
+          "different": true
+        },
+        {
+          "motion": "assemble",
+          "time": 1.1,
+          "different": true
+        },
+        {
+          "motion": "current",
+          "time": 1.8,
+          "different": true
+        },
+        {
+          "motion": "reform",
+          "time": 1.8,
+          "different": true
+        },
+        {
+          "motion": "caustics",
+          "time": 1.8,
+          "different": true
+        }
+      ],
+      "wrapper": {
+        "backend": "canvas2d",
+        "exactPixels": true
+      }
+    },
+    {
+      "source": "pet.jpg",
+      "mode": "color",
+      "file": "color-comparison.png",
+      "details": [
+        {
+          "motion": "breathe",
+          "time": 1.8,
+          "different": true
+        },
+        {
+          "motion": "wave",
+          "time": 1.8,
+          "different": true
+        },
+        {
+          "motion": "assemble",
+          "time": 1.1,
+          "different": true
+        },
+        {
+          "motion": "current",
+          "time": 1.8,
+          "different": true
+        },
+        {
+          "motion": "reform",
+          "time": 1.8,
+          "different": true
+        },
+        {
+          "motion": "caustics",
+          "time": 1.8,
+          "different": true
+        }
+      ],
+      "wrapper": {
+        "backend": "canvas2d",
+        "exactPixels": true
+      }
+    },
+    {
+      "source": "landscape.jpg",
+      "mode": "phrase",
+      "file": "phrase-comparison.png",
+      "details": [
+        {
+          "motion": "breathe",
+          "time": 1.8,
+          "different": true
+        },
+        {
+          "motion": "wave",
+          "time": 1.8,
+          "different": true
+        },
+        {
+          "motion": "assemble",
+          "time": 1.1,
+          "different": true
+        },
+        {
+          "motion": "current",
+          "time": 1.8,
+          "different": true
+        },
+        {
+          "motion": "reform",
+          "time": 1.8,
+          "different": true
+        },
+        {
+          "motion": "caustics",
+          "time": 1.8,
+          "different": true
+        }
+      ],
+      "wrapper": {
+        "backend": "canvas2d",
+        "exactPixels": true
+      }
+    }
+  ]
+}
