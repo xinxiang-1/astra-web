@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Astra · 流体撕裂实验</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: #080d10;
+        color: #e1e9e8;
+        font:
+          14px/1.6 system-ui,
+          'Microsoft YaHei',
+          sans-serif;
+      }
+      main {
+        max-width: 1560px;
+        margin: auto;
+        padding: 28px 32px;
+      }
+      .eyebrow {
+        font-size: 11px;
+        color: #7bdccb;
+        letter-spacing: 0.16em;
+      }
+      h1 {
+        font-weight: 550;
+        font-size: 32px;
+        letter-spacing: -0.04em;
+        margin: 6px 0;
+      }
+      p {
+        color: #91a7aa;
+        margin: 0;
+      }
+      .controls {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        flex-wrap: wrap;
+        margin: 22px 0;
+      }
+      button,
+      select {
+        color: #e5efec;
+        background: #142329;
+        border: 1px solid #2c4249;
+        border-radius: 8px;
+        padding: 9px 13px;
+        font: inherit;
+        cursor: pointer;
+      }
+      button:hover,
+      button:focus-visible,
+      select:focus-visible {
+        border-color: #83e1cc;
+        outline: 2px solid #83e1cc;
+        outline-offset: 2px;
+      }
+      select:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+      button[aria-pressed='true'] {
+        background: #7fe0ca;
+        color: #081711;
+      }
+      label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      input {
+        accent-color: #7fe0ca;
+      }
+      output {
+        font-variant-numeric: tabular-nums;
+        min-width: 3em;
+      }
+      .boards {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+      }
+      .board {
+        border: 1px solid #20373c;
+        border-radius: 12px;
+        overflow: hidden;
+        background: #0b1215;
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        padding: 14px 18px;
+        border-bottom: 1px solid #20373c;
+      }
+      header span {
+        font-size: 11px;
+        color: #8ca5a6;
+      }
+      .stage {
+        height: 640px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 18px;
+      }
+      canvas {
+        display: block;
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+        touch-action: none;
+        cursor: crosshair;
+      }
+      .focused .board:first-child {
+        display: none;
+      }
+      .focused {
+        grid-template-columns: 1fr;
+      }
+      .focused .stage {
+        height: 720px;
+      }
+      footer {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+        margin-top: 20px;
+        color: #91a7aa;
+        font-size: 12px;
+      }
+      #status {
+        color: #7fe0ca;
+      }
+      .boards:fullscreen {
+        background: #080d10;
+        padding: 24px;
+        height: 100vh;
+        align-content: center;
+      }
+      .boards:fullscreen .stage {
+        height: calc(100vh - 130px);
+      }
+      @media (max-width: 720px) {
+        main {
+          padding: 20px 14px;
+        }
+        .boards {
+          grid-template-columns: 1fr;
+        }
+        .stage {
+          height: 440px;
+        }
+        .focused .stage {
+          height: 560px;
+        }
+        h1 {
+          font-size: 27px;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="eyebrow">ASTRA / STUDIO INTERACTION STUDY</div>
+      <h1>划开光影，再让它归位。</h1>
+      <p>在任一作品上慢拖、快速划过或绕圈，两侧同步响应。停住或移开，观察余波与复原。</p>
+      <div class="controls">
+        <label
+          >作品<select id="source">
+            <option value="portrait-reference.png">人像</option>
+            <option value="pet.jpg">多色</option>
+            <option value="landscape.jpg">风景</option>
+          </select></label
+        >
+        <label
+          >模式<select id="mode">
+            <option value="density">光影字符</option>
+            <option value="color">原色字符</option>
+            <option value="phrase">中文铺字</option>
+            <option value="contour">轮廓线稿</option>
+            <option value="braille">点阵细节</option>
+            <option value="halftone">印刷网点</option>
+          </select></label
+        >
+        <label
+          >画质<select id="quality">
+            <option value="classic">经典</option>
+            <option value="high">精细</option>
+            <option value="software">还原</option>
+          </select></label
+        >
+        <label
+          >强度<input id="strength" type="range" min="0" max="1" step=".05" value=".65" /><output
+            id="amount"
+            >0.65</output
+          ></label
+        >
+        <button id="focus">只看新效果</button><button id="reset">清除余波</button
+        ><button id="full">全屏</button> <button id="ambient" aria-pressed="false">环境波面</button
+        ><button id="pause">暂停环境</button>
+      </div>
+      <div class="boards">
+        <section class="board">
+          <header>原生 Studio 拖尾<span>0ad0a5f · 固定对照</span></header>
+          <div class="stage"><canvas id="native" aria-label="原生拖尾对照"></canvas></div>
+        </section>
+        <section class="board">
+          <header>流体撕裂与回弹<span>候选 · 可操作</span></header>
+          <div class="stage"><canvas id="rift" aria-label="流体撕裂候选"></canvas></div>
+        </section>
+      </div>
+      <footer>
+        <span>同素材 · 同路径 · 同强度与范围 · 字形正向</span
+        ><span id="status" aria-live="polite">正在准备作品…</span>
+      </footer>
+    </main>
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>

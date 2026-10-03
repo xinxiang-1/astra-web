@@ -61,3 +61,5 @@ npm run lint
 | `/studio` | 工作室 | 特效目录 |
 | `/prism` 等 | 工作室 | 各特效沉浸页 |
 | `/login` 等 | 账户 | 邮箱验证码 / 密码登录（依赖 astra-cloud 网关） |
+
+Studio指针创新原型：[流体撕裂与回弹对照](./docs/prototypes/v7-studio-rift/index.html)，开发服务下访问 `/docs/prototypes/v7-studio-rift/index.html`。原生拖尾与候选同素材/事件序列同步，支持六模式、适用品质、全屏/减少动效/触控；仅为实验候选，尚未接入正式编辑器或项目/输出。步骤与实际失败/限制见[工程记录](./docs/plans/studio-rift-prototype-2026-10-03.md)，长期要求见[Studio标准](./docs/plans/studio-effects-standard.md)。

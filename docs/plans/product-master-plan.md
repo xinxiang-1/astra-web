@@ -561,4 +561,8 @@ CI：安装锁定依赖 → 严格类型检查 → 相关 lint/测试 → 前端
 
 后端[本人已购权益查询](../../../astra-cloud/docs/commerce/entitlements-runtime.md)已独立提交推送451b8f1；全7模块128tests/34真实集成，410HTTP/402schema通过，记录见[权益阶段](../../../astra-cloud/docs/plans/entitlement-query-iteration-2026-10-02.md)。此前只有17单元/未提交的描述属于当时进度，当前由本段更新；列表可读仍不等于私有资产交付、退款或真实收款完成。
 
-用户最新仍不满意动效，六项电影感按[材质与编舞阶段](./material-motion-iteration-2026-10-03.md)全面重做，新增[v5同步对照](../prototypes/v5-material-motion/index.html)，v4冻结到4ee7a5c。复用Studio底座、原作字形和输出合同，主形变/局部明暗/蓄势与完整归位分开审查；不以数值通过代替审美认可。下一步继续指针流体撕裂/粒子/光场候选、商业画质/签名及模板内容，后台接下载票据/私有交付、退款对账、前端交易和最终部署；S1/S2/S5/S6及总目标保持未完成。
+六项环境动效接续[空间编舞阶段](./spatial-motion-iteration-2026-10-03.md)已实现并推送0ad0a5f，提供[v6同步对照](../prototypes/v6-spatial-motion/index.html)。当前进入[Studio流体撕裂与回弹原型](./studio-rift-prototype-2026-10-03.md)和[v7指针对照](../prototypes/v7-studio-rift/index.html)：复用原生速度/密度/回弹位移和Astra字形，不凭工程通过代替审美认可。候选尚未接入正式创作参数、项目和输出。
+
+后端[下载票据与私有文件交付](../../../astra-cloud/docs/commerce/private-delivery-runtime.md)已实现并独立推送0f11a58，160tests/46真实集成及216交付HTTP验证通过。默认交付/支付关闭，filesystem仅单实例独占私有卷；开始交付不等于完整收货，Redis消费与SQL审计不是跨系统原子事务。旧“私有交付未实现”记录属于当时进度，当前由本段更新。退款审批/渠道消费者/对账、真实SDK、云存储多副本、前端交易与已购下载继续。
+
+下一步对撕裂候选继续实际主体/原色与中文速度打磨，冻结正式API后接通六模式、适用品质、减少动效、触控、项目/作品包及离线输出；之后逐个完成粒子/光场。商业画质/中文/签名、授权模板/宣传内容、真机、公测和最终部署继续；S1/S2/S5/S6及总目标保持未完成。

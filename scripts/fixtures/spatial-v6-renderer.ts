@@ -1,42 +1,7 @@
-import type { ArtFrame, ArtRenderOptions } from './types'
-
-/** Experimental presentation only; omitted in the editor and portable runtime. */
-export type CanvasArtPrototypeOptions = {
-  experimentalTrail?: (
-    sample: (x: number, y: number) => ArtFluidFieldSample,
-    frame: ArtFrame,
-    strength: number,
-    width: number,
-    height: number,
-  ) =>
-    | ((
-        x: number,
-        y: number,
-      ) => {
-        offsetX: number
-        offsetY: number
-        light: number
-        opacity: number
-        glow: number
-      })
-    | null
-}
-
-/** UV velocities per second and UV offsets; raw density, without strength applied. */
-export type ArtFluidFieldSample = {
-  velocityX: number
-  velocityY: number
-  offsetX: number
-  offsetY: number
-  density: number
-  active: boolean
-}
+import type { ArtFrame, ArtRenderOptions } from '../../src/lib/art-engine/types'
 
 /** Self-contained Canvas implementation shared with the standalone HTML runtime. */
-export function createCanvasArtRenderer(
-  target: HTMLCanvasElement,
-  prototype: CanvasArtPrototypeOptions = {},
-) {
+export function createCanvasArtRenderer(target: HTMLCanvasElement) {
   let current: ArtFrame | null = null
   let frame: ArtFrame
   const tinted = new Map<string, HTMLCanvasElement | ImageBitmap>()
@@ -1295,22 +1260,6 @@ export function createCanvasArtRenderer(
   let interactionPointer: { x: number; y: number } | null = null
   const interactionSample = new Float32Array(3)
   const interactionOffset = new Float32Array(2)
-
-  function sampleFluidField(x: number, y: number): ArtFluidFieldSample {
-    const field = interaction?.mode === 'trail' ? interaction.trail : null
-    if (!field?.active)
-      return { velocityX: 0, velocityY: 0, offsetX: 0, offsetY: 0, density: 0, active: false }
-    const px = clamp(x, 0, 1) * (field.width - 1),
-      py = clamp(y, 0, 1) * (field.height - 1)
-    return {
-      velocityX: field.read(field.u, px, py) / (field.width - 1),
-      velocityY: field.read(field.v, px, py) / (field.height - 1),
-      offsetX: field.read(field.offsetX, px, py) / (field.width - 1),
-      offsetY: field.read(field.offsetY, px, py) / (field.height - 1),
-      density: field.sample(clamp(x, 0, 1), clamp(y, 0, 1)),
-      active: true,
-    }
-  }
   let coverageOrder: number[] = []
   let coverageGlyphs: ArtFrame['glyphs'] | null = null
   const clamp = (n: number, min: number, max: number) => Math.min(max, Math.max(min, n))
@@ -1431,10 +1380,6 @@ export function createCanvasArtRenderer(
       interactionClock = -1
       interactionMode = ''
     }
-    const trailPresentation =
-      hover === 'trail' && expressive
-        ? prototype.experimentalTrail?.(sampleFluidField, frame, strength, w, h)
-        : null
     if (coverageGlyphs !== frame.glyphs) {
       coverageGlyphs = frame.glyphs
       coverageOrder = frame.glyphs
@@ -1507,29 +1452,20 @@ export function createCanvasArtRenderer(
         dx += interactionSample[0]! * frame.columns * cw * displacementScale
         dy += interactionSample[1]! * frame.rows * ch * displacementScale
         if (hover === 'trail') {
-          if (trailPresentation) {
-            const detail = trailPresentation(nx, ny)
-            dx += detail.offsetX * frame.columns * cw
-            dy += detail.offsetY * frame.rows * ch
-            intensity *= detail.light
-            opacity *= detail.opacity
-            glow += detail.glow
-          } else {
-            interaction.trail.displacement(nx, ny, interactionOffset)
-            dx += interactionOffset[0]! * cw * strength
-            dy += interactionOffset[1]! * ch * strength
-            // Studio trail changes local density, rather than painting a cyan cursor blob.
-            const blend = clamp(signal * 2.4, 0, 1)
-            if (frame.settings.mode !== 'phrase' && frame.settings.mode !== 'contour') {
-              const max = frame.statistics.maxCoverage
-              const tone = frame.glyphs[glyph]!.coverage * alpha
-              const targetTone = tone + (max - 2 * tone) * blend
-              const mapped = densityAt(targetTone)
-              glyph = mapped.glyph
-              opacity = mapped.opacity * ambientOpacity
-            } else opacity *= 1 - blend * 0.9
-            glow += signal * 0.16
-          }
+          interaction.trail.displacement(nx, ny, interactionOffset)
+          dx += interactionOffset[0]! * cw * strength
+          dy += interactionOffset[1]! * ch * strength
+          // Studio trail changes local density, rather than painting a cyan cursor blob.
+          const blend = clamp(signal * 2.4, 0, 1)
+          if (frame.settings.mode !== 'phrase' && frame.settings.mode !== 'contour') {
+            const max = frame.statistics.maxCoverage
+            const tone = frame.glyphs[glyph]!.coverage * alpha
+            const targetTone = tone + (max - 2 * tone) * blend
+            const mapped = densityAt(targetTone)
+            glyph = mapped.glyph
+            opacity = mapped.opacity * ambientOpacity
+          } else opacity *= 1 - blend * 0.9
+          glow += signal * 0.16
         } else if (hover === 'light') {
           opacity += (1 - alpha) * signal * 0.8 * ambientOpacity
           glow += signal * 1.6
@@ -1564,7 +1500,6 @@ export function createCanvasArtRenderer(
       needsGlow,
       motionLight: Boolean(motionField),
       cinematicLight: cinematic && Boolean(motionField),
-      sourceLight: Boolean(trailPresentation),
       motionTrace:
         cinematic && Boolean(motionField) && (motion === 'assemble' || motion === 'reform'),
       cell,
@@ -1596,12 +1531,8 @@ export function createCanvasArtRenderer(
           gc.clearRect(0, 0, gw, gh)
         }
         gc.globalAlpha = clamp(e.glow * Math.max(0.35, e.opacity) * e.intensity, 0, 1)
-        let lightColor =
-          effect.cinematicLight || effect.sourceLight ? frame.settings.ink : '#b5f5e9'
-        if (
-          (effect.motionLight || effect.sourceLight) &&
-          (frame.settings.colored || frame.settings.mode === 'color')
-        ) {
+        let lightColor = effect.cinematicLight ? frame.settings.ink : '#b5f5e9'
+        if (effect.motionLight && (frame.settings.colored || frame.settings.mode === 'color')) {
           const lift = (channel: number) => Math.min(255, frame.colors[i * 3 + channel]! + 64)
           lightColor = `rgb(${lift(0)},${lift(1)},${lift(2)})`
         }
@@ -2086,8 +2017,6 @@ export function createCanvasArtRenderer(
         trailY: interactionOffset[1]!,
       }
     },
-    /** Read-only native trail state for prototype presentation; never advances the solver. */
-    sampleFluidField,
     get cacheStats() {
       return {
         motionCells: motionColumns * motionRows,

@@ -1,0 +1,44 @@
+{
+  "textProtocol": "Git LF source/Markdown; Node JSON and PNG raw bytes",
+  "sources": {
+    "src/lib/art-engine/canvas.ts": "4630dfced504b4e34a817fb9f91c3acd2b6f8b582e6550bff0540e35cea107f9",
+    "src/lib/art-engine/core.ts": "ce091baf6d11340ccdda8c21fabe8a7935134964aaf7d4c094fe4432fce414e4",
+    "src/lib/art-engine/types.ts": "1ae58e3305d0e1d8b7e5e06fd6ded2a6c70457664d8b162501223284be2b4819",
+    "src/lib/art-engine/index.ts": "1d5ced6806e6abba6ab800e691416816ad9a803b50e868e6179d53760f1db5f3",
+    "src/lib/art-engine/embed.ts": "c99c491e7b06dfa4c92f80d8cb50696abf08df93aa490de27354cc6b671efa7e",
+    "src/views/ArtHomeView.vue": "db2b7e0ffa0d590be0e3e9d99caa8ecaba4716721b5d03b2d6269e46ad4458dd",
+    "src/components/CharacterArtwork.vue": "99da7635979b98f70aa622887bcf775047114529b4130de201cebf40d0ab2858",
+    "src/lib/ascii/studio-preview.ts": "87ef73fd4261872b1a6bc3d66fd2a05498bc73fa047294b4934174ede9af1a07",
+    "scripts/fixtures/spatial-v6-renderer.ts": "330ad97567b53089d4cbdb09ed457dd9a654d15553a3439aa9f444e3edab570d",
+    "scripts/studio-rift-contract.mjs": "5e4dcd04c60f4ee63dd21cc09bd7f2c635e87449aac74b42ad4c0913af246c3e",
+    "scripts/studio-rift-walkthrough.mjs": "d4e37aef9f2732a6e6a281dbcfea87db954d73f5f5affd225900560b53bf8287",
+    "docs/prototypes/v7-studio-rift/main.ts": "f902ca9e5154db8689d819d1bafeae78376becb16c83086c58e7c6bd0aa67b61",
+    "docs/prototypes/v7-studio-rift/index.html": "1b2de1a73b5951e95a6413cb3ea9b75d0fbc6d94d2731ee04ef4b4e6467ef3b7",
+    "docs/prototypes/v7-studio-rift/presentation.ts": "030df5798d2f35a0840158bada1970bf097c76ce13f7fa963c833f8c01f111c0",
+    "docs/plans/studio-rift-prototype-2026-10-03.md": "1e04336465d9d2845a11eb9c4c308690bfb4165a84875190e316da62adbb5254",
+    "docs/plans/studio-effects-standard.md": "39d969e5f8dcfa210417f14f35e16fe295e085ffcf0f5868c7655bcefd0e19f7",
+    "docs/plans/product-master-plan.md": "fd0ab46524c903706e39be558c714bbbb11b1dfc300166d1b0bf9ea1087044c6",
+    "docs/licenses/asciify-engine-interaction-MIT.txt": "60c568870b997b7082eadfaed333334b28e65921906a1f0b4f2566934cc42783",
+    "README.md": "25ea8d70e6b1944d0f61629b4e2a49239961282acbbcc97b27bae45321411305"
+  },
+  "artifacts": {
+    "docs/validation/2026-10-03/studio-rift/README.md": "373ceb20796812c78f3ba6697dc648a76d6ac79a95d6cde7b883c2c93930df00",
+    "docs/validation/2026-10-03/studio-rift/contract.json": "e17605b5b2cc6ce1b8d23d9a7e1424703307992926fccf506bac139d6ffb2837",
+    "docs/validation/2026-10-03/studio-rift/walkthrough.json": "b2eee122b48c85059a09de574376b561f6378513a8bd8f9420dedea465ec1a54",
+    "docs/validation/2026-10-03/studio-rift/exports.json": "1ab3705af78eb7f57b5849c04edffb1ade272eefadfdc05ce5c9ed4329f395f9",
+    "docs/validation/2026-10-03/studio-rift/home.json": "c68afb87dc2a12a67109c44c1ef2a4ba2926fc863d107cbb9d0836f1a0cd1b11",
+    "docs/validation/2026-10-03/studio-rift/during.png": "2a6f5418ec182be1ef7a642d7a3c2c268ddba3b47cc1fae22c71369738b6e464",
+    "docs/validation/2026-10-03/studio-rift/recovered.png": "6161e3c5b2b95933445f68a05b00922b1782f3afa15d8ac46d43812792cb3e4d",
+    "docs/validation/2026-10-03/studio-rift/review.png": "b9916b9e9430a0104eb0322fb06f5fba30dcaa5b27afdcdac610fb1406704ff5",
+    "docs/validation/2026-10-03/studio-rift/engineering.json": "25e625dfd24452a00f584760c21b824408170462e4e63f64fdc670d1f755207b"
+  },
+  "inputs": {
+    "public/artwork/portrait-reference.png": "dcedb28b650aa9b644847026c41bf21159d1ba704e440e12d6ec2e741f1266e1",
+    "public/artwork/pet.jpg": "177e6791c1ec8b62640fb1877bd8d3813561542d4716669cf65bee6eb81ab75f",
+    "public/artwork/landscape.jpg": "6b8865b691747d831a00f33017c97cbc5beed21575601a3442918de61361ef31"
+  },
+  "localLinks": {
+    "checked": 94,
+    "broken": 0
+  }
+}
