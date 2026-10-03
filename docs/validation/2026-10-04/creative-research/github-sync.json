@@ -1,0 +1,15 @@
+{
+  "status": "remote-sync-not-completed",
+  "verifiedLogin": "xinxiang-1",
+  "repository": "xinxiang-1/astra-web",
+  "repositoryPermissionResponse": { "push": true },
+  "verifiedRemoteMainBeforeWrite": "10fab501c0c90a4bd7954410aaab51fc74a252e2",
+  "failedOperation": "GitHub MCP create_blob",
+  "httpStatus": 403,
+  "message": "Resource not accessible by integration",
+  "accountSwitched": false,
+  "localCredentialsUsedForPush": false,
+  "forcedRefUpdate": false,
+  "requiredExternalAction": "Reauthorize the existing GitHub connection with Contents write access to this repository; keep the xinxiang-1 account.",
+  "goalWork": "Local implementation may continue; this is not commercial completion."
+}

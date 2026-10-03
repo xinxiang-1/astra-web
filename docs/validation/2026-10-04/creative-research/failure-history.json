@@ -1,0 +1,96 @@
+[
+  {
+    "path": "test-results\\glyph-particles-1791055720656\\report.json",
+    "passed": false,
+    "cases": 0,
+    "failure": "Error: page.evaluate: Error: density/classic distinguishable response\n    at require (eval at evaluate (:311:30), <anonymous>:7:21)\n    at eval (eval at evaluate (:311:30), <anonymous>:91:11)\n    at async <anonymous>:337:30"
+  },
+  {
+    "path": "test-results\\glyph-particles-1791055752261\\report.json",
+    "passed": false,
+    "cases": 0,
+    "failure": "Error: page.evaluate: Error: density deterministic actual RGBA\n    at require (eval at evaluate (:311:30), <anonymous>:7:21)\n    at eval (eval at evaluate (:311:30), <anonymous>:86:15)\n    at async <anonymous>:337:30"
+  },
+  {
+    "path": "test-results\\glyph-particles-1791055786278\\report.json",
+    "passed": false,
+    "cases": 0,
+    "failure": "Error: page.evaluate: Error: density deterministic actual RGBA: {\"a\":{\"bytes\":81920,\"limit\":4194304,\"peak\":0.1017895958610854,\"moving\":1181,\"clock\":0.49999999999999994},\"b\":{\"bytes\":81920,\"limit\":4194304,\"peak\":0.1017895958610854,\"moving\":1181,\"clock\":0.49999999999999994},\"changed\":0,\"fa\":{\"velocityX\":0.27745997079528206,\"velocityY\":-0.07565885359846701,\"offsetX\":0.019801980198019802,\"offsetY\":-0.015748031496062992,\"density\":0.8352545648813248,\"active\":true},\"fb\":{\"velocityX\":0.27745997079528206,\"velocityY\":-0.07565885359846701,\"offsetX\":0.019801980198019802,\"offsetY\":-0.015748031496062992,\"density\":0.8352545648813248,\"active\":true}}\n    at require (eval at evaluate (:311:30), <anonymous>:7:21)\n    at eval (eval at evaluate (:311:30), <anonymous>:86:15)\n    at async <anonymous>:337:30"
+  },
+  {
+    "path": "test-results\\glyph-particles-1791055822705\\report.json",
+    "passed": false,
+    "cases": 0,
+    "failure": "Error: page.evaluate: Error: density/software/true exact natural recovery\n    at require (eval at evaluate (:311:30), <anonymous>:7:21)\n    at eval (eval at evaluate (:311:30), <anonymous>:107:11)\n    at async <anonymous>:337:30"
+  },
+  {
+    "path": "test-results\\glyph-particles-1791055940921\\report.json",
+    "passed": false,
+    "cases": 0,
+    "failure": "Error: page.evaluate: Error: density/software/true exact natural recovery\n    at require (eval at evaluate (:311:30), <anonymous>:7:21)\n    at eval (eval at evaluate (:311:30), <anonymous>:107:11)\n    at async <anonymous>:337:30"
+  },
+  {
+    "path": "test-results\\glyph-particles-1791056040838\\report.json",
+    "passed": false,
+    "cases": 0,
+    "failure": "Error: page.evaluate: Error: density/software/true exact natural recovery {\"changed\":790,\"stats\":{\"bytes\":81920,\"limit\":4194304,\"peak\":0,\"moving\":0,\"clock\":5.316666666666665},\"fluid\":{\"velocityX\":0,\"velocityY\":0,\"offsetX\":0,\"offsetY\":0,\"density\":0,\"active\":false},\"cache\":{\"rift\":{\"columns\":0,\"rows\":0,\"bytes\":0,\"peakOffset\":0,\"rawPeakOffset\":0,\"maxStrain\":0,\"minJacobian\":1,\"limit\":262144},\"motionCells\":0,\"motionBytes\":0,\"choreographyBytes\":0,\"choreographyLimit\":4194304,\"effectCellBytes\":186880,\"effectCellLimit\":4194304,\"entries\":13,\"backingBytes\":20384,\"maxBackingBytes\":16777216,\"scratchBytes\":1568,\"supersampleBytes\":0,\"glowBytes\":414720,\"interactionCells\":13056,\"interactionActive\":false,\"interactionBytes\":1671168,\"softwareMaskBytes\":1708084,\"softwareMaskEntries\":7708,\"softwareWorkingBytes\":2073600,\"hits\":9968,\"misses\":13}}\n    at require (eval at evaluate (:311:30), <anonymous>:7:21)\n    at eval (eval at evaluate (:311:30), <anonymous>:107:11)\n    at async <anonymous>:337:30"
+  },
+  {
+    "path": "test-results\\glyph-particles-1791056256921\\report.json",
+    "passed": false,
+    "cases": 0,
+    "failure": "Error: page.evaluate: Error: density/software/true exact natural recovery {\"pixelExamples\":[{\"pixel\":717,\"rest\":[236,232,225,68],\"now\":[236,233,225,68]},{\"pixel\":720,\"rest\":[255,255,212,6],\"now\":[255,255,213,6]},{\"pixel\":1005,\"rest\":[236,232,225,68],\"now\":[236,233,225,68]},{\"pixel\":1008,\"rest\":[255,255,212,6],\"now\":[255,255,213,6]},{\"pixel\":1293,\"rest\":[236,232,225,68],\"now\":[236,233,225,68]},{\"pixel\":1296,\"rest\":[255,255,212,6],\"now\":[255,255,213,6]},{\"pixel\":1584,\"rest\":[255,255,212,6],\"now\":[255,255,213,6]},{\"pixel\":1861,\"rest\":[255,255,212,6],\"now\":[255,255,213,6]},{\"pixel\":2751,\"rest\":[255,255,212,6],\"now\":[255,255,213,6]},{\"pixel\":3027,\"rest\":[240,232,225,34],\"now\":[240,233,225,34]},{\"pixel\":3854,\"rest\":[240,232,225,34],\"now\":[240,233,225,34]},{\"pixel\":4132,\"rest\":[240,232,225,34],\"now\":[240,233,225,34]}],\"changed\":764,\"stats\":{\"bytes\":81920,\"limit\":4194304,\"peak\":0,\"moving\":0,\"clock\":5.316666666666665},\"fluid\":{\"velocityX\":0,\"velocityY\":0,\"offsetX\":0,\"offsetY\":0,\"density\":0,\"active\":false}}\n    at require (eval at evaluate (:311:30), <anonymous>:7:21)\n    at eval (eval at evaluate (:311:30), <anonymous>:111:11)\n    at async <anonymous>:337:30"
+  },
+  {
+    "path": "test-results\\glyph-particles-1791056338300\\report.json",
+    "passed": false,
+    "cases": 0,
+    "failure": "Error: page.evaluate: Error: readback diagnostic {\"mode\":\"density\",\"quality\":\"software\",\"transparent\":true,\"raw\":764,\"zero\":764,\"reset\":764}\n    at eval (eval at evaluate (:311:30), <anonymous>:115:19)\n    at async <anonymous>:337:30"
+  },
+  {
+    "path": "test-results\\glyph-particles-1791056377392\\report.json",
+    "passed": false,
+    "cases": 0,
+    "failure": "Error: page.evaluate: Error: readback diagnostic {\"mode\":\"density\",\"quality\":\"software\",\"transparent\":true,\"raw\":764,\"zero\":764,\"refreshedReference\":0,\"vsRefreshed\":764,\"reset\":764}\n    at eval (eval at evaluate (:311:30), <anonymous>:118:19)\n    at async <anonymous>:337:30"
+  },
+  {
+    "path": "test-results\\glyph-particles-1791056407313\\report.json",
+    "passed": false,
+    "cases": 0,
+    "failure": "Error: page.evaluate: Error: readback diagnostic {\"mode\":\"density\",\"quality\":\"software\",\"transparent\":true,\"raw\":764,\"zero\":764,\"refreshedReference\":0,\"vsRefreshed\":764,\"reset\":764}\n    at eval (eval at evaluate (:311:30), <anonymous>:118:19)\n    at async <anonymous>:337:30"
+  },
+  {
+    "path": "test-results\\glyph-particles-1791056491528\\report.json",
+    "passed": false,
+    "cases": 1,
+    "failure": "AssertionError [ERR_ASSERTION]: real pointer response"
+  },
+  {
+    "path": "test-results\\glyph-particles-1791056551889\\report.json",
+    "passed": false,
+    "cases": 20,
+    "failure": "AssertionError [ERR_ASSERTION]: real pointer response"
+  },
+  {
+    "path": "test-results\\glyph-particles-1791056916632\\report.json",
+    "passed": false,
+    "cases": 1,
+    "failure": "AssertionError [ERR_ASSERTION]: real pointer response: {\"clock\":8.4108,\"ambient\":5.484900000095367,\"pointer\":{\"x\":0.8000001093842977,\"y\":0.4499999781229873,\"active\":true,\"strength\":0.65},\"strength\":0.65,\"mode\":\"density\",\"stats\":{\"bytes\":250880,\"limit\":4194304,\"peak\":0.00020514387413615018,\"moving\":2,\"clock\":8.4108},\"timings\":[35.5,59.799999952316284,519.3000000715256,236.69999992847443,238.90000009536743,227.90000009536743,227.10000002384186,202.89999997615814,199.09999990463257,207.29999995231628,202.5,180.29999995231628,195.30000007152557,176.5,177.20000004768372,210.79999995231628,195.89999997615814,204.20000004768372,248.39999997615814,256.39999997615814,258.89999997615814,301.7000000476837,247.10000002384186,201.5,167.89999997615814],\"paintCount\":25,\"renderCounts\":[25,25]}"
+  },
+  {
+    "path": "test-results\\glyph-particles-1791057008198\\report.json",
+    "passed": false,
+    "cases": 1,
+    "failure": "AssertionError [ERR_ASSERTION]: real pointer response: {\"clock\":13.186399999999999,\"ambient\":9.55839999997616,\"pointer\":{\"x\":0.8000001093842977,\"y\":0.4499999781229873,\"active\":true,\"strength\":0.65},\"strength\":0.65,\"mode\":\"density\",\"stats\":{\"bytes\":250880,\"limit\":4194304,\"peak\":0.00010301909439563299,\"moving\":1,\"clock\":13.186399999999999},\"timings\":[132.89999997615814,84.79999995231628,678,423,287.7000000476837,230.40000009536743,234.89999997615814,235.70000004768372,261.5,251.79999995231628,227.30000007152557,235.10000002384186,235.5,245.79999995231628,241.5,250.69999992847443,251.69999992847443,221.69999992847443,288,262.2999999523163,246.70000004768372,224.79999995231628,229.20000004768372,233.70000004768372],\"paintCount\":24,\"renderCounts\":[24,24]}"
+  },
+  {
+    "path": "test-results\\glyph-particles-1791057166597\\report.json",
+    "passed": true,
+    "cases": 1
+  },
+  {
+    "path": "test-results\\glyph-particles-1791057351770\\report.json",
+    "passed": true,
+    "cases": 20
+  }
+]

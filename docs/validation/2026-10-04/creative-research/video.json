@@ -1,0 +1,55 @@
+{
+  "mime": "video/webm;codecs=vp9",
+  "requestedCaptureFPS": 30,
+  "width": 576,
+  "height": 720,
+  "wallSeconds": 7.799300000071526,
+  "simulationSeconds": 5,
+  "timeline": [
+    {
+      "tick": 0,
+      "simulationTime": 0,
+      "wallTime": 0.022,
+      "peak": 0
+    },
+    {
+      "tick": 15,
+      "simulationTime": 0.5,
+      "wallTime": 0.75,
+      "peak": 0
+    },
+    {
+      "tick": 32,
+      "simulationTime": 1.0666666666666667,
+      "wallTime": 1.7158000000715257,
+      "peak": 0.10331145825148949
+    },
+    {
+      "tick": 47,
+      "simulationTime": 1.5666666666666667,
+      "wallTime": 2.5365,
+      "peak": 0.10503396404944744
+    },
+    {
+      "tick": 70,
+      "simulationTime": 2.3333333333333335,
+      "wallTime": 3.7259000000953675,
+      "peak": 0.0573603463428049
+    },
+    {
+      "tick": 100,
+      "simulationTime": 3.3333333333333335,
+      "wallTime": 5.247100000023842,
+      "peak": 0.004734324382824468
+    },
+    {
+      "tick": 149,
+      "simulationTime": 4.966666666666667,
+      "wallTime": 7.749600000023841,
+      "peak": 0.00006216054116827016
+    }
+  ],
+  "scope": "Native recording of a deterministic 30Hz research trajectory; requested capture FPS is not a verified delivered-frame count. Not a real user recording or a commercial performance certification.",
+  "bytes": 1435356,
+  "sha256": "46afda99522d0d97562598958e9cfe8acf1e6c3ae4385a7b914d5905176fac66"
+}

@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Astra · 字符聚散研究</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: #101514;
+        color: #eeeae2;
+        font:
+          14px/1.65 system-ui,
+          'Microsoft YaHei',
+          sans-serif;
+      }
+      main {
+        max-width: 1480px;
+        margin: auto;
+        padding: 32px;
+      }
+      .eyebrow {
+        color: #92cbc2;
+        letter-spacing: 0.18em;
+        font-size: 11px;
+      }
+      h1 {
+        font-size: 36px;
+        letter-spacing: -0.04em;
+        font-weight: 500;
+        margin: 8px 0;
+      }
+      p {
+        color: #a0aeaa;
+        margin: 0;
+        max-width: 780px;
+      }
+      .controls {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin: 26px 0;
+      }
+      button,
+      select {
+        background: #1a2421;
+        border: 1px solid #3c514b;
+        border-radius: 5px;
+        padding: 9px 13px;
+        font: inherit;
+        color: inherit;
+      }
+      button {
+        cursor: pointer;
+      }
+      button:hover {
+        background: #2b3b35;
+      }
+      :focus-visible {
+        outline: 2px solid #b0e6d7;
+        outline-offset: 3px;
+      }
+      label {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+      input {
+        accent-color: #a3d8c9;
+      }
+      output {
+        font-variant-numeric: tabular-nums;
+      }
+      select:disabled {
+        opacity: 0.45;
+      }
+      .boards {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+      .board {
+        background: #111615;
+        border: 1px solid #30413c;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      .board header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 20px;
+        border-bottom: 1px solid #30413c;
+      }
+      .board header span {
+        font-size: 11px;
+        color: #8aa49a;
+      }
+      .stage {
+        height: 590px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 16px;
+      }
+      canvas {
+        display: block;
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+        touch-action: none;
+        cursor: crosshair;
+      }
+      .boards.focused {
+        grid-template-columns: 1fr;
+      }
+      .focused .board:first-child {
+        display: none;
+      }
+      .focused .stage {
+        height: 690px;
+      }
+      .boards:fullscreen {
+        background: #101514;
+        padding: 16px;
+        overflow: auto;
+      }
+      .boards:fullscreen .stage {
+        height: calc(100dvh - 100px);
+      }
+      footer {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 20px 0;
+        color: #8ea59b;
+      }
+      .note {
+        border-top: 1px solid #30413c;
+        padding-top: 18px;
+        font-size: 12px;
+      }
+      a {
+        color: #a3d8c9;
+      }
+      @media (max-width: 760px) {
+        main {
+          padding: 20px 14px;
+        }
+        h1 {
+          font-size: 28px;
+        }
+        .boards {
+          grid-template-columns: 1fr;
+        }
+        .stage {
+          height: 420px;
+        }
+        .focused .stage {
+          height: 510px;
+        }
+        .controls {
+          gap: 9px;
+        }
+        footer {
+          font-size: 12px;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          scroll-behavior: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="eyebrow">ASTRA / INTERACTION STUDIES · 09</div>
+      <h1>让文字散开，再回到画中</h1>
+      <p>
+        慢慢划过看局部松动，快速划动看字符散开；停下后，原来的字与颜色重新归位。两侧使用相同素材、字形和输入轨迹。
+      </p>
+      <div class="controls">
+        <label
+          >素材
+          <select id="source">
+            <option value="porcelain-study-v1.png">瓷像 · 新素材</option>
+            <option value="portrait-reference.png">人像</option>
+            <option value="pet.jpg">宠物</option>
+            <option value="landscape.jpg">山水</option>
+          </select></label
+        >
+        <label
+          >模式
+          <select id="mode">
+            <option value="density">光影字符</option>
+            <option value="color">原色字符</option>
+            <option value="phrase">中文铺字</option>
+            <option value="contour">轮廓线稿</option>
+            <option value="braille">点阵细节</option>
+            <option value="halftone">印刷网点</option>
+          </select></label
+        >
+        <label
+          >品质
+          <select id="quality">
+            <option value="classic">经典</option>
+            <option value="high">精细</option>
+            <option value="software">面积栅格</option>
+          </select></label
+        >
+        <label
+          >强度 <input id="strength" type="range" min="0" max="1" step="0.05" value="0.65" /><output
+            id="amount"
+            >0.65</output
+          ></label
+        >
+        <button id="reset">重新归位</button><button id="focus">并排对照</button
+        ><button id="full">全屏</button> <button id="ambient" aria-pressed="false">环境波动</button
+        ><button id="pause">暂停环境</button>
+        <button id="download">下载静态 PNG</button>
+      </div>
+      <section class="boards focused" aria-label="同源交互对照">
+        <article class="board">
+          <header>原生 Studio 拖尾<span>REFERENCE</span></header>
+          <div class="stage"><canvas id="native" aria-label="原生拖尾画布"></canvas></div>
+        </article>
+        <article class="board">
+          <header>字符聚散与重组<span>CANDIDATE</span></header>
+          <div class="stage"><canvas id="particles" aria-label="字符聚散画布"></canvas></div>
+        </article>
+      </section>
+      <footer>
+        <span id="status" role="status">准备作品…</span><span id="performance"></span>
+      </footer>
+      <p class="note">
+        研究候选 ·
+        鼠标与触控可操作，系统减少动效时显示静态作品。尚未接入正式编辑器、作品包或离线动态导出；PNG
+        下载保留原作。<a href="../../research/2026-10-04-creative-effects/README.md"
+          >研究与算法记录</a
+        >
+      </p>
+    </main>
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,531 @@
+{
+  "browser": "154.0.4258.53",
+  "signature": [
+    {
+      "name": "Astra",
+      "count": 40,
+      "generatedTypography": true,
+      "coverageP10": 0.12221049103401888,
+      "coverageMedian": 0.15286497923070252,
+      "coverageP90": 0.1966684193506151,
+      "wovenCoverageP25": 0.0745980805565065,
+      "averageAspect": 3.01416970641349,
+      "maxSide": 242,
+      "note": "Measured existing generated font variants, not real handwritten signatures; mean alpha in full bounding boxes and the woven geometric slot."
+    },
+    {
+      "name": "李云舟",
+      "count": 40,
+      "generatedTypography": true,
+      "coverageP10": 0.1073452922553018,
+      "coverageMedian": 0.14630433146388963,
+      "coverageP90": 0.18214379084967325,
+      "wovenCoverageP25": 0.07068490135421869,
+      "averageAspect": 2.7693654737603017,
+      "maxSide": 265,
+      "note": "Measured existing generated font variants, not real handwritten signatures; mean alpha in full bounding boxes and the woven geometric slot."
+    },
+    {
+      "name": "张思雨",
+      "count": 40,
+      "generatedTypography": true,
+      "coverageP10": 0.1330735910716469,
+      "coverageMedian": 0.17333090494262007,
+      "coverageP90": 0.21435059493883582,
+      "wovenCoverageP25": 0.08720626769107087,
+      "averageAspect": 2.9196608066110388,
+      "maxSide": 270,
+      "note": "Measured existing generated font variants, not real handwritten signatures; mean alpha in full bounding boxes and the woven geometric slot."
+    },
+    {
+      "name": "Alexander Montgomery",
+      "count": 40,
+      "generatedTypography": true,
+      "coverageP10": 0.07315183216143573,
+      "coverageMedian": 0.11174531351001835,
+      "coverageP90": 0.17492081447963678,
+      "wovenCoverageP25": 0.026435683298655997,
+      "averageAspect": 7.855685163380947,
+      "maxSide": 280,
+      "note": "Measured existing generated font variants, not real handwritten signatures; mean alpha in full bounding boxes and the woven geometric slot."
+    },
+    {
+      "name": "把名字写成光",
+      "count": 40,
+      "generatedTypography": true,
+      "coverageP10": 0.09458442393350637,
+      "coverageMedian": 0.13595584308551592,
+      "coverageP90": 0.18869334097275128,
+      "wovenCoverageP25": 0.05054648544325723,
+      "averageAspect": 4.873684600554156,
+      "maxSide": 280,
+      "note": "Measured existing generated font variants, not real handwritten signatures; mean alpha in full bounding boxes and the woven geometric slot."
+    }
+  ],
+  "routes": [
+    {
+      "route": "/",
+      "desktop": {
+        "title": "把照片，变成由文字组成的作品。",
+        "body": {
+          "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+          "color": "rgb(18, 24, 38)",
+          "background": "rgb(233, 238, 248)",
+          "fontSize": "16px"
+        },
+        "heading": {
+          "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+          "color": "rgb(243, 240, 233)",
+          "background": "rgba(0, 0, 0, 0)",
+          "fontSize": "67.68px"
+        },
+        "header": {
+          "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+          "color": "rgb(244, 240, 232)",
+          "background": "rgb(17, 22, 21)",
+          "fontSize": "16px"
+        },
+        "headerClass": "art-header",
+        "overflow": false,
+        "links": [
+          "",
+          "作品",
+          "模板",
+          "如何创作",
+          "实验室 ↗",
+          "我的项目",
+          "登录",
+          "免费制作"
+        ]
+      },
+      "mobile": {
+        "overflow": false,
+        "h1": 346,
+        "scrollWidth": 390
+      }
+    },
+    {
+      "route": "/gallery",
+      "desktop": {
+        "title": "作品案例 / 06",
+        "body": {
+          "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+          "color": "rgb(18, 24, 38)",
+          "background": "rgb(233, 238, 248)",
+          "fontSize": "16px"
+        },
+        "heading": {
+          "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+          "color": "rgb(21, 25, 24)",
+          "background": "rgba(0, 0, 0, 0)",
+          "fontSize": "62px"
+        },
+        "header": {
+          "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+          "color": "rgb(244, 240, 232)",
+          "background": "rgb(17, 22, 21)",
+          "fontSize": "16px"
+        },
+        "headerClass": "art-header",
+        "overflow": false,
+        "links": [
+          "",
+          "作品",
+          "模板",
+          "如何创作",
+          "实验室 ↗",
+          "我的项目",
+          "登录",
+          "免费制作",
+          "浏览原创模板"
+        ]
+      },
+      "mobile": {
+        "overflow": false,
+        "h1": 278,
+        "scrollWidth": 390
+      }
+    },
+    {
+      "route": "/templates",
+      "desktop": {
+        "title": "从一束灵感，开始创作。",
+        "body": {
+          "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+          "color": "rgb(18, 24, 38)",
+          "background": "rgb(233, 238, 248)",
+          "fontSize": "16px"
+        },
+        "heading": {
+          "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+          "color": "rgb(245, 243, 239)",
+          "background": "rgba(0, 0, 0, 0)",
+          "fontSize": "66px"
+        },
+        "header": {
+          "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+          "color": "rgb(244, 240, 232)",
+          "background": "rgb(17, 22, 21)",
+          "fontSize": "16px"
+        },
+        "headerClass": "art-header",
+        "overflow": false,
+        "links": [
+          "",
+          "作品",
+          "模板",
+          "如何创作",
+          "实验室 ↗",
+          "我的项目",
+          "登录",
+          "免费制作",
+          "挑选模板",
+          "第一次创作？查看使用帮助 ↗"
+        ]
+      },
+      "mobile": {
+        "overflow": false,
+        "h1": 346,
+        "scrollWidth": 390
+      }
+    },
+    {
+      "route": "/help",
+      "desktop": {
+        "title": "让灵感，成为作品。",
+        "body": {
+          "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+          "color": "rgb(18, 24, 38)",
+          "background": "rgb(233, 238, 248)",
+          "fontSize": "16px"
+        },
+        "heading": {
+          "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+          "color": "rgb(21, 25, 24)",
+          "background": "rgba(0, 0, 0, 0)",
+          "fontSize": "58px"
+        },
+        "header": {
+          "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+          "color": "rgb(244, 240, 232)",
+          "background": "rgb(17, 22, 21)",
+          "fontSize": "16px"
+        },
+        "headerClass": "art-header",
+        "overflow": false,
+        "links": [
+          "",
+          "作品",
+          "模板",
+          "如何创作",
+          "实验室 ↗",
+          "我的项目",
+          "登录",
+          "免费制作",
+          "从原创模板开始",
+          "使用自己的素材"
+        ]
+      },
+      "mobile": {
+        "overflow": false,
+        "h1": 346,
+        "scrollWidth": 390
+      }
+    },
+    {
+      "route": "/projects",
+      "desktop": {
+        "title": "我的项目 / 00",
+        "body": {
+          "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+          "color": "rgb(18, 24, 38)",
+          "background": "rgb(233, 238, 248)",
+          "fontSize": "16px"
+        },
+        "heading": {
+          "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+          "color": "rgb(21, 25, 24)",
+          "background": "rgba(0, 0, 0, 0)",
+          "fontSize": "60px"
+        },
+        "header": {
+          "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+          "color": "rgb(244, 240, 232)",
+          "background": "rgb(17, 22, 21)",
+          "fontSize": "16px"
+        },
+        "headerClass": "art-header",
+        "overflow": false,
+        "links": [
+          "",
+          "作品",
+          "模板",
+          "如何创作",
+          "实验室 ↗",
+          "我的项目",
+          "登录",
+          "免费制作",
+          "新建作品"
+        ]
+      },
+      "mobile": {
+        "overflow": false,
+        "h1": 278,
+        "scrollWidth": 390
+      }
+    },
+    {
+      "route": "/tools",
+      "desktop": {
+        "title": "本地出结果",
+        "body": {
+          "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+          "color": "rgb(18, 24, 38)",
+          "background": "rgb(233, 238, 248)",
+          "fontSize": "16px"
+        },
+        "heading": {
+          "font": "Syne, \"Segoe UI\", sans-serif",
+          "color": "rgb(18, 24, 38)",
+          "background": "rgba(0, 0, 0, 0)",
+          "fontSize": "37.6px"
+        },
+        "header": {
+          "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+          "color": "rgb(18, 24, 38)",
+          "background": "rgba(233, 238, 248, 0.78)",
+          "fontSize": "16px"
+        },
+        "headerClass": "topbar",
+        "overflow": false,
+        "links": [
+          "",
+          "字符画",
+          "工具",
+          "工作室",
+          "登录",
+          "开始做字符画"
+        ]
+      },
+      "mobile": {
+        "overflow": false,
+        "h1": 350,
+        "scrollWidth": 390
+      }
+    },
+    {
+      "route": "/studio",
+      "desktop": {
+        "title": "实时视觉，可铺进网页",
+        "body": {
+          "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+          "color": "rgb(18, 24, 38)",
+          "background": "rgb(233, 238, 248)",
+          "fontSize": "16px"
+        },
+        "heading": {
+          "font": "Syne, \"Segoe UI\", sans-serif",
+          "color": "rgb(238, 242, 255)",
+          "background": "rgba(0, 0, 0, 0)",
+          "fontSize": "38.4px"
+        },
+        "header": {
+          "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+          "color": "rgb(238, 242, 255)",
+          "background": "rgba(0, 0, 0, 0)",
+          "fontSize": "16px"
+        },
+        "headerClass": "topbar",
+        "overflow": false,
+        "links": [
+          "",
+          "字符画",
+          "工具",
+          "工作室",
+          "登录"
+        ]
+      },
+      "mobile": {
+        "overflow": false,
+        "h1": 342,
+        "scrollWidth": 390
+      }
+    },
+    {
+      "route": "/login",
+      "desktop": {
+        "title": "欢迎回来",
+        "body": {
+          "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+          "color": "rgb(0, 0, 0)",
+          "background": "rgba(0, 0, 0, 0)",
+          "fontSize": "16px"
+        },
+        "heading": {
+          "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+          "color": "rgb(18, 24, 38)",
+          "background": "rgba(0, 0, 0, 0)",
+          "fontSize": "23.2px"
+        },
+        "header": {
+          "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+          "color": "rgb(18, 24, 38)",
+          "background": "rgba(0, 0, 0, 0)",
+          "fontSize": "16px"
+        },
+        "headerClass": "topbar",
+        "overflow": false,
+        "links": [
+          "← 返回"
+        ]
+      },
+      "mobile": {
+        "overflow": false,
+        "h1": 350,
+        "scrollWidth": 390
+      }
+    },
+    {
+      "route": "/register",
+      "desktop": {
+        "title": "创建账户",
+        "body": {
+          "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+          "color": "rgb(18, 24, 38)",
+          "background": "rgb(233, 238, 248)",
+          "fontSize": "16px"
+        },
+        "heading": {
+          "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+          "color": "rgb(18, 24, 38)",
+          "background": "rgba(0, 0, 0, 0)",
+          "fontSize": "23.2px"
+        },
+        "header": {
+          "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+          "color": "rgb(18, 24, 38)",
+          "background": "rgba(0, 0, 0, 0)",
+          "fontSize": "16px"
+        },
+        "headerClass": "topbar",
+        "overflow": false,
+        "links": [
+          "← 返回"
+        ]
+      },
+      "mobile": {
+        "overflow": false,
+        "h1": 350,
+        "scrollWidth": 390
+      }
+    },
+    {
+      "route": "/forgot",
+      "desktop": {
+        "title": "找回密码",
+        "body": {
+          "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+          "color": "rgb(18, 24, 38)",
+          "background": "rgb(233, 238, 248)",
+          "fontSize": "16px"
+        },
+        "heading": {
+          "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+          "color": "rgb(18, 24, 38)",
+          "background": "rgba(0, 0, 0, 0)",
+          "fontSize": "23.2px"
+        },
+        "header": {
+          "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+          "color": "rgb(18, 24, 38)",
+          "background": "rgba(0, 0, 0, 0)",
+          "fontSize": "16px"
+        },
+        "headerClass": "topbar",
+        "overflow": false,
+        "links": [
+          "← 返回"
+        ]
+      },
+      "mobile": {
+        "overflow": false,
+        "h1": 350,
+        "scrollWidth": 390
+      }
+    },
+    {
+      "route": "/signature-portrait",
+      "desktop": {
+        "title": "签名画像",
+        "body": {
+          "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+          "color": "rgb(18, 24, 38)",
+          "background": "rgb(233, 238, 248)",
+          "fontSize": "16px"
+        },
+        "heading": {
+          "font": "Syne, \"Segoe UI\", sans-serif",
+          "color": "rgb(18, 24, 38)",
+          "background": "rgba(0, 0, 0, 0)",
+          "fontSize": "33.6px"
+        },
+        "header": {
+          "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+          "color": "rgb(18, 24, 38)",
+          "background": "rgba(233, 238, 248, 0.78)",
+          "fontSize": "16px"
+        },
+        "headerClass": "topbar",
+        "overflow": false,
+        "links": [
+          "",
+          "字符画",
+          "工具",
+          "工作室",
+          "登录"
+        ]
+      },
+      "mobile": {
+        "overflow": false,
+        "h1": 343,
+        "scrollWidth": 390
+      }
+    },
+    {
+      "route": "/ascii-art",
+      "desktop": {
+        "title": "从一张照片开始",
+        "body": {
+          "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+          "color": "rgb(18, 24, 38)",
+          "background": "rgb(233, 238, 248)",
+          "fontSize": "16px"
+        },
+        "heading": {
+          "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+          "color": "rgb(228, 232, 220)",
+          "background": "rgba(0, 0, 0, 0)",
+          "fontSize": "32px"
+        },
+        "header": {
+          "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+          "color": "rgb(233, 235, 227)",
+          "background": "rgb(19, 26, 22)",
+          "fontSize": "16px"
+        },
+        "headerClass": "editor-header",
+        "overflow": false,
+        "links": [
+          "",
+          "← 返回作品"
+        ]
+      },
+      "mobile": {
+        "overflow": false,
+        "h1": 182,
+        "scrollWidth": 390
+      }
+    }
+  ],
+  "errors": []
+}

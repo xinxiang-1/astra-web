@@ -1,0 +1,270 @@
+{
+  "passed": true,
+  "base": "http://127.0.0.1:5180",
+  "cases": [
+    {
+      "mode": "density",
+      "quality": "classic",
+      "transparent": false,
+      "peak": 0.1017895958610854,
+      "maxChanged": 49480,
+      "settlingSeconds": 4.7,
+      "tailPeak": 0,
+      "bytes": 81920,
+      "exactRecovery": true,
+      "deterministic": true
+    },
+    {
+      "mode": "density",
+      "quality": "classic",
+      "transparent": true,
+      "peak": 0.1017895958610854,
+      "maxChanged": 59261,
+      "settlingSeconds": 4.7,
+      "tailPeak": 0,
+      "bytes": 81920,
+      "exactRecovery": true,
+      "deterministic": true
+    },
+    {
+      "mode": "density",
+      "quality": "high",
+      "transparent": false,
+      "peak": 0.1017895958610854,
+      "maxChanged": 67586,
+      "settlingSeconds": 4.7,
+      "tailPeak": 0,
+      "bytes": 81920,
+      "exactRecovery": true,
+      "deterministic": true
+    },
+    {
+      "mode": "density",
+      "quality": "high",
+      "transparent": true,
+      "peak": 0.1017895958610854,
+      "maxChanged": 81252,
+      "settlingSeconds": 4.7,
+      "tailPeak": 0,
+      "bytes": 81920,
+      "exactRecovery": true,
+      "deterministic": true
+    },
+    {
+      "mode": "density",
+      "quality": "software",
+      "transparent": false,
+      "peak": 0.1017895958610854,
+      "maxChanged": 57186,
+      "settlingSeconds": 4.7,
+      "tailPeak": 0,
+      "bytes": 81920,
+      "exactRecovery": true,
+      "deterministic": true
+    },
+    {
+      "mode": "density",
+      "quality": "software",
+      "transparent": true,
+      "peak": 0.1017895958610854,
+      "maxChanged": 67205,
+      "settlingSeconds": 4.7,
+      "tailPeak": 0,
+      "bytes": 81920,
+      "exactRecovery": true,
+      "deterministic": true
+    },
+    {
+      "mode": "color",
+      "quality": "classic",
+      "transparent": false,
+      "peak": 0.1017895958610854,
+      "maxChanged": 48117,
+      "settlingSeconds": 4.7,
+      "tailPeak": 0,
+      "bytes": 81920,
+      "exactRecovery": true,
+      "deterministic": true
+    },
+    {
+      "mode": "color",
+      "quality": "classic",
+      "transparent": true,
+      "peak": 0.1017895958610854,
+      "maxChanged": 59393,
+      "settlingSeconds": 4.7,
+      "tailPeak": 0,
+      "bytes": 81920,
+      "exactRecovery": true,
+      "deterministic": true
+    },
+    {
+      "mode": "color",
+      "quality": "high",
+      "transparent": false,
+      "peak": 0.1017895958610854,
+      "maxChanged": 48117,
+      "settlingSeconds": 4.7,
+      "tailPeak": 0,
+      "bytes": 81920,
+      "exactRecovery": true,
+      "deterministic": true
+    },
+    {
+      "mode": "color",
+      "quality": "high",
+      "transparent": true,
+      "peak": 0.1017895958610854,
+      "maxChanged": 59393,
+      "settlingSeconds": 4.7,
+      "tailPeak": 0,
+      "bytes": 81920,
+      "exactRecovery": true,
+      "deterministic": true
+    },
+    {
+      "mode": "color",
+      "quality": "software",
+      "transparent": false,
+      "peak": 0.1017895958610854,
+      "maxChanged": 58282,
+      "settlingSeconds": 4.7,
+      "tailPeak": 0,
+      "bytes": 81920,
+      "exactRecovery": true,
+      "deterministic": true
+    },
+    {
+      "mode": "color",
+      "quality": "software",
+      "transparent": true,
+      "peak": 0.1017895958610854,
+      "maxChanged": 59831,
+      "settlingSeconds": 4.7,
+      "tailPeak": 0,
+      "bytes": 81920,
+      "exactRecovery": true,
+      "deterministic": true
+    },
+    {
+      "mode": "phrase",
+      "quality": "classic",
+      "transparent": false,
+      "peak": 0.11151198194212449,
+      "maxChanged": 53736,
+      "settlingSeconds": 4.7,
+      "tailPeak": 0,
+      "bytes": 129024,
+      "exactRecovery": true,
+      "deterministic": true
+    },
+    {
+      "mode": "phrase",
+      "quality": "classic",
+      "transparent": true,
+      "peak": 0.11151198194212449,
+      "maxChanged": 65177,
+      "settlingSeconds": 4.7,
+      "tailPeak": 0,
+      "bytes": 129024,
+      "exactRecovery": true,
+      "deterministic": true
+    },
+    {
+      "mode": "contour",
+      "quality": "classic",
+      "transparent": false,
+      "peak": 0.1017895958610854,
+      "maxChanged": 30516,
+      "settlingSeconds": 4.7,
+      "tailPeak": 0,
+      "bytes": 81920,
+      "exactRecovery": true,
+      "deterministic": true
+    },
+    {
+      "mode": "contour",
+      "quality": "classic",
+      "transparent": true,
+      "peak": 0.1017895958610854,
+      "maxChanged": 38642,
+      "settlingSeconds": 4.7,
+      "tailPeak": 0,
+      "bytes": 81920,
+      "exactRecovery": true,
+      "deterministic": true
+    },
+    {
+      "mode": "braille",
+      "quality": "classic",
+      "transparent": false,
+      "peak": 0.10748343873001369,
+      "maxChanged": 46081,
+      "settlingSeconds": 4.7,
+      "tailPeak": 0,
+      "bytes": 100352,
+      "exactRecovery": true,
+      "deterministic": true
+    },
+    {
+      "mode": "braille",
+      "quality": "classic",
+      "transparent": true,
+      "peak": 0.10748343873001369,
+      "maxChanged": 55710,
+      "settlingSeconds": 4.7,
+      "tailPeak": 0,
+      "bytes": 100352,
+      "exactRecovery": true,
+      "deterministic": true
+    },
+    {
+      "mode": "halftone",
+      "quality": "classic",
+      "transparent": false,
+      "peak": 0.1017895958610854,
+      "maxChanged": 28663,
+      "settlingSeconds": 4.7,
+      "tailPeak": 0,
+      "bytes": 81920,
+      "exactRecovery": true,
+      "deterministic": true
+    },
+    {
+      "mode": "halftone",
+      "quality": "classic",
+      "transparent": true,
+      "peak": 0.1017895958610854,
+      "maxChanged": 35458,
+      "settlingSeconds": 4.7,
+      "tailPeak": 0,
+      "bytes": 81920,
+      "exactRecovery": true,
+      "deterministic": true
+    }
+  ],
+  "errors": [],
+  "hashes": {
+    "docs/prototypes/v9-glyph-particles/main.ts": "bfd570c67d273fc4dfbca3b86ab2e1aa9841010edc0015e76a262e265a461b1c",
+    "docs/prototypes/v9-glyph-particles/presentation.ts": "18f23511498b2782b6ae168e55c5ae7a27d2e4aec9df58fd5a16302f2391744b",
+    "src/lib/art-engine/canvas.ts": "a9b2dee173a06f77dfe40c5822543314472d2ee641eae9d36f2153890824c69f",
+    "public/artwork/porcelain-study-v1.png": "0ce4707016f8fd4c7348fd7a6bead069789e1aaa2b1b0b12551b5227bddb36d5"
+  },
+  "browser": "154.0.4258.53",
+  "springError": 1.4901161193847656e-8,
+  "ui": {
+    "realMouse": true,
+    "idle": true,
+    "reducedMotion": true,
+    "mobileWidth": 390,
+    "touch": {
+      "events": {
+        "down": 1,
+        "move": 10,
+        "up": 1,
+        "cancel": 0
+      },
+      "scope": "390px desktop Chromium touch emulation; not a real phone"
+    }
+  }
+}
