@@ -13,3 +13,5 @@ manifest 版本 1，包含项目名、所有保存参数、源 File 的 name/typ
 包携带字体设置，不分发系统字体，也不捆绑历史引擎程序；跨设备字体/浏览器可能改变可编辑作品画面。需要固定成品时可同时保留 PNG 或含字形图集的离线 HTML。当前包用于继续编辑和备份，不是 DRM 或已上线付费模板授权系统。
 
 验证入口：`node scripts/art-project-package-contract.mjs`。用 `ASTRA_PACKAGE_OUTPUT` 指定不存在的独占输出目录，`ASTRA_PREVIEW_URL` 指定开发或构建预览地址；拒绝覆盖旧报告。具体本轮证据见 `docs/plans/project-package-iteration-2026-10-01.md`。
+
+2026-10-03增加`artHover: rift`试用选项，仍使用v1包布局和现有artHover参数；源素材、强度/范围、脏状态与恢复共用既有合同。当前读取器接受该标识，旧读取器遇到未知枚举会拒绝，不能据引擎版本相同保证旧程序可打开新增效果。静态采样/旧效果不变，未把试用选项作为已通过商业审美的模板能力。设置`ASTRA_PACKAGE_HOVER=rift`可运行实际UI下载、空存储导入和参数/PNG恢复；步骤见[接入记录](../../docs/plans/studio-rift-integration-2026-10-03.md)。

@@ -33,6 +33,7 @@ const enums: Record<string, readonly string[]> = {
     'ripple',
     'displace',
     'trail',
+    'rift',
     'water',
     'silk',
     'vortex',

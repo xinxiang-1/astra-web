@@ -1,0 +1,328 @@
+{
+  "passed": true,
+  "base": "http://127.0.0.1:5194",
+  "errors": [],
+  "cases": [
+    {
+      "mode": "density",
+      "quality": "classic",
+      "hover": "rift",
+      "changed": true,
+      "exactRecovery": true
+    },
+    {
+      "mode": "color",
+      "quality": "classic",
+      "hover": "rift",
+      "changed": true,
+      "exactRecovery": true
+    },
+    {
+      "mode": "phrase",
+      "quality": "classic",
+      "hover": "rift",
+      "changed": true,
+      "exactRecovery": true
+    },
+    {
+      "mode": "contour",
+      "quality": "classic",
+      "hover": "rift",
+      "changed": true,
+      "exactRecovery": true
+    },
+    {
+      "mode": "braille",
+      "quality": "classic",
+      "hover": "rift",
+      "changed": true,
+      "exactRecovery": true
+    },
+    {
+      "mode": "halftone",
+      "quality": "classic",
+      "hover": "rift",
+      "changed": true,
+      "exactRecovery": true
+    },
+    {
+      "mode": "density",
+      "quality": "detailed",
+      "hover": "rift",
+      "changed": true,
+      "exactRecovery": true
+    },
+    {
+      "mode": "density",
+      "quality": "smooth",
+      "hover": "rift",
+      "changed": true,
+      "exactRecovery": true
+    },
+    {
+      "mode": "density",
+      "quality": "faithful",
+      "hover": "rift",
+      "changed": true,
+      "exactRecovery": true
+    },
+    {
+      "mode": "color",
+      "quality": "faithful",
+      "hover": "rift",
+      "changed": true,
+      "exactRecovery": true
+    },
+    {
+      "name": "paused ambient still interacts",
+      "passed": true
+    },
+    {
+      "name": "zero strength",
+      "passed": true
+    },
+    {
+      "name": "fullscreen input and exact recovery",
+      "passed": true
+    },
+    {
+      "name": "idle stops painting",
+      "passed": true
+    },
+    {
+      "name": "free actual TXT and transparent 4K static output",
+      "txtExact": true,
+      "staticPngExact": true,
+      "txtHash": "dd39ca6a7c8a6a67fd380da1b593ef5ebd6b1eea25f40329a047f276c8e7fc19",
+      "pngHash": "1e543d17f2d87f05b8a94c5509810abf6888b92c3694dbbb916c4eccd028da08",
+      "width": 3073,
+      "height": 3840,
+      "clearPixels": 11139124,
+      "visiblePixels": 661196
+    },
+    {
+      "name": "real reduced motion",
+      "passed": true
+    },
+    {
+      "name": "390px continuous touch release and exact recovery",
+      "counters": {
+        "pointerdown": 1,
+        "pointermove": 10,
+        "pointerup": 1,
+        "pointercancel": 0
+      },
+      "changed": true,
+      "exactRecovery": true
+    },
+    {
+      "name": "390px fullscreen continuous touch",
+      "counters": {
+        "pointerdown": 1,
+        "pointermove": 10,
+        "pointerup": 1,
+        "pointercancel": 0
+      },
+      "changed": true,
+      "exactRecovery": true
+    },
+    {
+      "name": "touch scope: original, zero strength, old trail, dynamic reduced motion",
+      "passed": true
+    },
+    {
+      "name": "390px offline continuous touch, recovery and reduced motion",
+      "httpRequests": 0,
+      "counters": {
+        "pointerdown": 1,
+        "pointermove": 10,
+        "pointerup": 1,
+        "pointercancel": 0
+      },
+      "changed": true,
+      "exactRecovery": true
+    }
+  ],
+  "offline": [
+    {
+      "mode": "density",
+      "quality": "classic",
+      "staticPngExact": true,
+      "pngHash": "2af0ca31e39326583ff6d636f51370867db3cfead5080de7a505d37b5b77521d",
+      "htmlHash": "bb07e2708025e044dd38c1ae740e83b386ecb7bf5df13d26da16d9d4f206193a",
+      "actualRift": true,
+      "exactRecovery": true,
+      "httpRequests": 0
+    },
+    {
+      "mode": "color",
+      "quality": "classic",
+      "staticPngExact": true,
+      "pngHash": "144f235df9af0d83e40baf228ba8a7583073709225f1ec0b7719acdf6ac0c6b1",
+      "htmlHash": "65c376481dd73f4b14eed8854c4928e4ea767561244698b1cd00e7258e80eb33",
+      "actualRift": true,
+      "exactRecovery": true,
+      "httpRequests": 0
+    },
+    {
+      "mode": "phrase",
+      "quality": "classic",
+      "staticPngExact": true,
+      "pngHash": "29c0682ff2eb80d1ad562c53e3c8d83a781a2b010179ede1134dba867a262d7f",
+      "htmlHash": "178cb9769cc154a1b28f7edbfce665285563f502fa42ce599a191b2e53be1e17",
+      "actualRift": true,
+      "exactRecovery": true,
+      "httpRequests": 0
+    },
+    {
+      "mode": "contour",
+      "quality": "classic",
+      "staticPngExact": true,
+      "pngHash": "ec7b2196eab139d5e318533d1327ca45219b5d61b938d13cbac5c6c91f091906",
+      "htmlHash": "1eabdd2af20408867be7a4799e9725140f8322c64ddabca83bb80f060aa21e8e",
+      "actualRift": true,
+      "exactRecovery": true,
+      "httpRequests": 0
+    },
+    {
+      "mode": "braille",
+      "quality": "classic",
+      "staticPngExact": true,
+      "pngHash": "2098c703cfbda317fc3af21341c305bda936ccfc7a49eea299b3bced32e5b0ce",
+      "htmlHash": "b90b4a7e83fe9ad884ae3e75874fd974b3b92bfa7a0f7d150f7f1fd1febe6fc7",
+      "actualRift": true,
+      "exactRecovery": true,
+      "httpRequests": 0
+    },
+    {
+      "mode": "halftone",
+      "quality": "classic",
+      "staticPngExact": true,
+      "pngHash": "9cd836904f1e3c5bb76b29c2c668b9c863c37e83eaa4abdff419387f8d1f7600",
+      "htmlHash": "ceb4df1c6d9b49222325f1c2fb6a36904ff66d4a9970a8c3ec545aa23e1c1cb5",
+      "actualRift": true,
+      "exactRecovery": true,
+      "httpRequests": 0
+    },
+    {
+      "mode": "density",
+      "quality": "detailed",
+      "staticPngExact": true,
+      "pngHash": "497c2c3bb61ca98f508ed0cc542979510e41155b41b014ef1c8a2a47f399d1e0",
+      "htmlHash": "7ef7153c4403ebc6bcf500111143361e3add2069250407b01a61c7418cf90361",
+      "actualRift": true,
+      "exactRecovery": true,
+      "httpRequests": 0
+    },
+    {
+      "mode": "density",
+      "quality": "smooth",
+      "staticPngExact": true,
+      "pngHash": "497c2c3bb61ca98f508ed0cc542979510e41155b41b014ef1c8a2a47f399d1e0",
+      "htmlHash": "82c13cc32dedc13286193001f6cc4905f8ae9111456bcbbe44cc1dd70fd6586c",
+      "actualRift": true,
+      "exactRecovery": true,
+      "httpRequests": 0
+    },
+    {
+      "mode": "density",
+      "quality": "faithful",
+      "staticPngExact": true,
+      "pngHash": "baf1b19a875382d712b48ed4aeafac171f162504ace06a6b5eff31d0db68e20a",
+      "htmlHash": "da1961e64a331587e5109961e182e382a0bb57859152fad02192287c2fb6e988",
+      "actualRift": true,
+      "exactRecovery": true,
+      "httpRequests": 0
+    },
+    {
+      "mode": "color",
+      "quality": "faithful",
+      "staticPngExact": true,
+      "pngHash": "dc56e47512ccce10c07de7c145b5568c64a6e41a3fbf4b11568dae219f59afd1",
+      "htmlHash": "ac33a5cba1a242338c92d0ace04f71a06d208d0750d7fd730d87e32670b43459",
+      "actualRift": true,
+      "exactRecovery": true,
+      "httpRequests": 0
+    }
+  ],
+  "input": [
+    {
+      "mode": "density",
+      "quality": "classic",
+      "shape": "s",
+      "moves": 13,
+      "actualMs": 616
+    },
+    {
+      "mode": "color",
+      "quality": "classic",
+      "shape": "s",
+      "moves": 13,
+      "actualMs": 604
+    },
+    {
+      "mode": "phrase",
+      "quality": "classic",
+      "shape": "s",
+      "moves": 13,
+      "actualMs": 554
+    },
+    {
+      "mode": "contour",
+      "quality": "classic",
+      "shape": "s",
+      "moves": 13,
+      "actualMs": 556
+    },
+    {
+      "mode": "braille",
+      "quality": "classic",
+      "shape": "s",
+      "moves": 13,
+      "actualMs": 523
+    },
+    {
+      "mode": "halftone",
+      "quality": "classic",
+      "shape": "s",
+      "moves": 13,
+      "actualMs": 542
+    },
+    {
+      "mode": "density",
+      "quality": "detailed",
+      "shape": "s",
+      "moves": 13,
+      "actualMs": 587
+    },
+    {
+      "mode": "density",
+      "quality": "smooth",
+      "shape": "s",
+      "moves": 13,
+      "actualMs": 604
+    },
+    {
+      "mode": "density",
+      "quality": "faithful",
+      "shape": "s",
+      "moves": 13,
+      "actualMs": 523
+    },
+    {
+      "mode": "color",
+      "quality": "faithful",
+      "shape": "s",
+      "moves": 13,
+      "actualMs": 532
+    }
+  ],
+  "video": {
+    "file": "studio_rift_editor.mp4",
+    "sha256": "bb39c0a578d9839bb40eef5fbf930cbc4ab81808c4210ba0f597312ae5f27209",
+    "codec": "h264",
+    "width": 1440,
+    "height": 960,
+    "duration": 54.48
+  }
+}

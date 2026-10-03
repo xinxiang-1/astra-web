@@ -1,0 +1,16 @@
+{
+  "passed": false,
+  "errors": [],
+  "hashes": {
+    "src/lib/art-engine/canvas.ts": "a9b2dee173a06f77dfe40c5822543314472d2ee641eae9d36f2153890824c69f",
+    "src/lib/art-engine/index.ts": "218b060bf5c50fda4c4fecb51743d087a9148b620c771fb8eed32a31c8571b6d",
+    "src/lib/art-engine/gpu.ts": "9ba0e13d08fa3506b507a5fc02fb545061e36f4445d7c00a2d8ce397f6e29a73",
+    "src/lib/art-engine/types.ts": "3bbed2e776639fcb09e9a7eac1852412d47ace83e708158cc6d5d3a0fdfc0357",
+    "src/views/AsciiArtView.vue": "3945ba4f6c61288101e517a6b540b6e5c19286b520155625cdc2feec4986d61e",
+    "src/lib/art-project-package.ts": "07cb7b434da827fcddc94da58f87e7aec054bebdcca39c92e3442313408e1ed7",
+    "src/lib/art-engine/embed.ts": "c99c491e7b06dfa4c92f80d8cb50696abf08df93aa490de27354cc6b671efa7e",
+    "scripts/fixtures/rift-v8-renderer.ts": "626daedeadb64f44dac9eae44934364cc97fd7e0dbedd7c67bcca39717e571fc",
+    "docs/prototypes/v8-studio-rift/presentation.ts": "05b72621fcc424d9015c165ef349f309887d91cd321e15560d8e23daaffb4180"
+  },
+  "failure": "Error: page.evaluate: Execution context was destroyed, most likely because of a navigation."
+}

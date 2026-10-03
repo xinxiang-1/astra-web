@@ -1,0 +1,8 @@
+{
+  "base": "http://127.0.0.1:5194",
+  "pendingFontCss": 1,
+  "domReady": false,
+  "appReady": false,
+  "failure": "TimeoutError: page.goto: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:5194/ascii-art\", waiting until \"domcontentloaded\"\u001b[22m\n",
+  "elapsedMs": 5009
+}

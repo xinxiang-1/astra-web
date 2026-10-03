@@ -612,6 +612,8 @@
   }
   .app-shell .art-editor .stage-head {
     align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
   }
   .app-shell .art-editor .stage-head .status {
     font-size: 8px;
@@ -619,9 +621,6 @@
   }
   .stage-view-actions button {
     padding: 7px 11px;
-  }
-  .stage-view-actions .stage-fullscreen {
-    display: none;
   }
   .mobile-editor-tabs {
     order: 1;

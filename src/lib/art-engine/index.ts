@@ -51,7 +51,7 @@ export function createArtRenderer(
         options.effectProfile === 'expressive' ||
         options.motionStyle === 'cinematic' ||
         ['current', 'reform', 'caustics'].includes(options.motion ?? 'none') ||
-        ['trail', 'water', 'silk', 'vortex', 'contour', 'dissolve'].includes(
+        ['trail', 'rift', 'water', 'silk', 'vortex', 'contour', 'dissolve'].includes(
           options.hover ?? 'light',
         ) ||
         (frame.settings.softwareRaster &&

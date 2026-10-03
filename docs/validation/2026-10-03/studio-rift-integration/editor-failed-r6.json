@@ -1,0 +1,295 @@
+{
+  "passed": false,
+  "base": "http://127.0.0.1:5194",
+  "errors": [],
+  "cases": [
+    {
+      "mode": "density",
+      "quality": "classic",
+      "hover": "rift",
+      "changed": true,
+      "exactRecovery": true
+    },
+    {
+      "mode": "color",
+      "quality": "classic",
+      "hover": "rift",
+      "changed": true,
+      "exactRecovery": true
+    },
+    {
+      "mode": "phrase",
+      "quality": "classic",
+      "hover": "rift",
+      "changed": true,
+      "exactRecovery": true
+    },
+    {
+      "mode": "contour",
+      "quality": "classic",
+      "hover": "rift",
+      "changed": true,
+      "exactRecovery": true
+    },
+    {
+      "mode": "braille",
+      "quality": "classic",
+      "hover": "rift",
+      "changed": true,
+      "exactRecovery": true
+    },
+    {
+      "mode": "halftone",
+      "quality": "classic",
+      "hover": "rift",
+      "changed": true,
+      "exactRecovery": true
+    },
+    {
+      "mode": "density",
+      "quality": "detailed",
+      "hover": "rift",
+      "changed": true,
+      "exactRecovery": true
+    },
+    {
+      "mode": "density",
+      "quality": "smooth",
+      "hover": "rift",
+      "changed": true,
+      "exactRecovery": true
+    },
+    {
+      "mode": "density",
+      "quality": "faithful",
+      "hover": "rift",
+      "changed": true,
+      "exactRecovery": true
+    },
+    {
+      "mode": "color",
+      "quality": "faithful",
+      "hover": "rift",
+      "changed": true,
+      "exactRecovery": true
+    },
+    {
+      "name": "paused ambient still interacts",
+      "passed": true
+    },
+    {
+      "name": "zero strength",
+      "passed": true
+    },
+    {
+      "name": "fullscreen input and exact recovery",
+      "passed": true
+    },
+    {
+      "name": "idle stops painting",
+      "passed": true
+    },
+    {
+      "name": "free actual TXT and transparent 4K static output",
+      "txtExact": true,
+      "staticPngExact": true,
+      "txtHash": "dd39ca6a7c8a6a67fd380da1b593ef5ebd6b1eea25f40329a047f276c8e7fc19",
+      "pngHash": "1e543d17f2d87f05b8a94c5509810abf6888b92c3694dbbb916c4eccd028da08",
+      "width": 3073,
+      "height": 3840,
+      "clearPixels": 11139124,
+      "visiblePixels": 661196
+    },
+    {
+      "name": "real reduced motion",
+      "passed": true
+    },
+    {
+      "name": "390px continuous touch release and exact recovery",
+      "counters": {
+        "pointerdown": 1,
+        "pointermove": 10,
+        "pointerup": 1,
+        "pointercancel": 0
+      },
+      "changed": true,
+      "exactRecovery": true
+    }
+  ],
+  "offline": [
+    {
+      "mode": "density",
+      "quality": "classic",
+      "staticPngExact": true,
+      "pngHash": "2af0ca31e39326583ff6d636f51370867db3cfead5080de7a505d37b5b77521d",
+      "htmlHash": "c4e1753bb56364a3f27e1e504e9e7a0e9ef32e175d7101777efa147b56a6f374",
+      "actualRift": true,
+      "exactRecovery": true,
+      "httpRequests": 0
+    },
+    {
+      "mode": "color",
+      "quality": "classic",
+      "staticPngExact": true,
+      "pngHash": "144f235df9af0d83e40baf228ba8a7583073709225f1ec0b7719acdf6ac0c6b1",
+      "htmlHash": "25f7d2054b44036e45d875f3e561e1702b20b45b18043ccd3b7a0a79307b960b",
+      "actualRift": true,
+      "exactRecovery": true,
+      "httpRequests": 0
+    },
+    {
+      "mode": "phrase",
+      "quality": "classic",
+      "staticPngExact": true,
+      "pngHash": "29c0682ff2eb80d1ad562c53e3c8d83a781a2b010179ede1134dba867a262d7f",
+      "htmlHash": "967110db6bd157bdbd5f9e6c1421b1028d1baff7220ef64464360522c082ad91",
+      "actualRift": true,
+      "exactRecovery": true,
+      "httpRequests": 0
+    },
+    {
+      "mode": "contour",
+      "quality": "classic",
+      "staticPngExact": true,
+      "pngHash": "ec7b2196eab139d5e318533d1327ca45219b5d61b938d13cbac5c6c91f091906",
+      "htmlHash": "acc84e4361bee1131a4ad7814987d7099da973ee238099c541abad9423f4c8a7",
+      "actualRift": true,
+      "exactRecovery": true,
+      "httpRequests": 0
+    },
+    {
+      "mode": "braille",
+      "quality": "classic",
+      "staticPngExact": true,
+      "pngHash": "2098c703cfbda317fc3af21341c305bda936ccfc7a49eea299b3bced32e5b0ce",
+      "htmlHash": "9578cae805981f302f1271719242a60e664a69905335a0915012deb194108300",
+      "actualRift": true,
+      "exactRecovery": true,
+      "httpRequests": 0
+    },
+    {
+      "mode": "halftone",
+      "quality": "classic",
+      "staticPngExact": true,
+      "pngHash": "9cd836904f1e3c5bb76b29c2c668b9c863c37e83eaa4abdff419387f8d1f7600",
+      "htmlHash": "4b4ebcd0bce90ac084da29e5a27276d82c370bc1a1de81a57bc75d61c57764c1",
+      "actualRift": true,
+      "exactRecovery": true,
+      "httpRequests": 0
+    },
+    {
+      "mode": "density",
+      "quality": "detailed",
+      "staticPngExact": true,
+      "pngHash": "497c2c3bb61ca98f508ed0cc542979510e41155b41b014ef1c8a2a47f399d1e0",
+      "htmlHash": "f14e3a29d92c9175235977e8e552d7aca72f25c8e388c9d68a8eb7471488c94b",
+      "actualRift": true,
+      "exactRecovery": true,
+      "httpRequests": 0
+    },
+    {
+      "mode": "density",
+      "quality": "smooth",
+      "staticPngExact": true,
+      "pngHash": "497c2c3bb61ca98f508ed0cc542979510e41155b41b014ef1c8a2a47f399d1e0",
+      "htmlHash": "ee70a64389d609d841c40c73aef17681b88e90361cc14e017942b8db7302cb6a",
+      "actualRift": true,
+      "exactRecovery": true,
+      "httpRequests": 0
+    },
+    {
+      "mode": "density",
+      "quality": "faithful",
+      "staticPngExact": true,
+      "pngHash": "baf1b19a875382d712b48ed4aeafac171f162504ace06a6b5eff31d0db68e20a",
+      "htmlHash": "c58bd5b3510156b5a7b0aa01a119191f3dab87025b7d171d8f9ed6ca27f6d03a",
+      "actualRift": true,
+      "exactRecovery": true,
+      "httpRequests": 0
+    },
+    {
+      "mode": "color",
+      "quality": "faithful",
+      "staticPngExact": true,
+      "pngHash": "dc56e47512ccce10c07de7c145b5568c64a6e41a3fbf4b11568dae219f59afd1",
+      "htmlHash": "64c3c27a07c2c421b8a3965cc25e2aefa32e1378e256f2af02fc464c484a6cd0",
+      "actualRift": true,
+      "exactRecovery": true,
+      "httpRequests": 0
+    }
+  ],
+  "input": [
+    {
+      "mode": "density",
+      "quality": "classic",
+      "shape": "s",
+      "moves": 13,
+      "actualMs": 639
+    },
+    {
+      "mode": "color",
+      "quality": "classic",
+      "shape": "s",
+      "moves": 13,
+      "actualMs": 608
+    },
+    {
+      "mode": "phrase",
+      "quality": "classic",
+      "shape": "s",
+      "moves": 13,
+      "actualMs": 595
+    },
+    {
+      "mode": "contour",
+      "quality": "classic",
+      "shape": "s",
+      "moves": 13,
+      "actualMs": 561
+    },
+    {
+      "mode": "braille",
+      "quality": "classic",
+      "shape": "s",
+      "moves": 13,
+      "actualMs": 541
+    },
+    {
+      "mode": "halftone",
+      "quality": "classic",
+      "shape": "s",
+      "moves": 13,
+      "actualMs": 629
+    },
+    {
+      "mode": "density",
+      "quality": "detailed",
+      "shape": "s",
+      "moves": 13,
+      "actualMs": 574
+    },
+    {
+      "mode": "density",
+      "quality": "smooth",
+      "shape": "s",
+      "moves": 13,
+      "actualMs": 591
+    },
+    {
+      "mode": "density",
+      "quality": "faithful",
+      "shape": "s",
+      "moves": 13,
+      "actualMs": 585
+    },
+    {
+      "mode": "color",
+      "quality": "faithful",
+      "shape": "s",
+      "moves": 13,
+      "actualMs": 603
+    }
+  ],
+  "video": null,
+  "failure": "TimeoutError: locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.stage-fullscreen')\u001b[22m\n\u001b[2m    - locator resolved to <button data-v-e6de300b=\"\" class=\"stage-fullscreen\">全屏 ↗</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    58 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is not visible\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n"
+}

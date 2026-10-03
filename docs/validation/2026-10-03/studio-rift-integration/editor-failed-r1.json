@@ -1,0 +1,40 @@
+{
+  "passed": false,
+  "base": "http://127.0.0.1:5194",
+  "errors": [],
+  "cases": [
+    {
+      "mode": "density",
+      "quality": "classic",
+      "hover": "rift",
+      "changed": true,
+      "exactRecovery": true
+    },
+    {
+      "mode": "color",
+      "quality": "classic",
+      "hover": "rift",
+      "changed": true,
+      "exactRecovery": true
+    }
+  ],
+  "offline": [],
+  "input": [
+    {
+      "mode": "density",
+      "quality": "classic",
+      "shape": "s",
+      "moves": 13,
+      "actualMs": 1526
+    },
+    {
+      "mode": "color",
+      "quality": "classic",
+      "shape": "s",
+      "moves": 13,
+      "actualMs": 634
+    }
+  ],
+  "video": null,
+  "failure": "TimeoutError: locator.click: Timeout 60000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('button[data-quality=\"classic\"]')\u001b[22m\n"
+}

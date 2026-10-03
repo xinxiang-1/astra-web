@@ -65,3 +65,7 @@ npm run lint
 Studio指针创新原型：[流体撕裂与回弹对照](./docs/prototypes/v7-studio-rift/index.html)，开发服务下访问 `/docs/prototypes/v7-studio-rift/index.html`。原生拖尾与候选同素材/事件序列同步，支持六模式、适用品质、全屏/减少动效/触控；仅为实验候选，尚未接入正式编辑器或项目/输出。步骤与实际失败/限制见[工程记录](./docs/plans/studio-rift-prototype-2026-10-03.md)，长期要求见[Studio标准](./docs/plans/studio-effects-standard.md)。
 
 接续原型：[v8撕裂打磨对照](./docs/prototypes/v8-studio-rift/index.html)，开发服务下访问 `/docs/prototypes/v8-studio-rift/index.html`。左侧冻结v7，右侧约束局部折叠并保留回弹；空闲停止重绘，“只看新效果”停止隐藏对照绘制。原色性能、用户审美与正式参数/输出仍待验收，步骤/真实失败见[打磨记录](./docs/plans/studio-rift-refinement-2026-10-03.md)。
+
+最新接入：`/ascii-art`“动态效果 → 悬停 → 撕裂试用”，可随本地项目/`.astra`保存并在离线HTML中操作；旧拖尾及默认保持，PNG/TXT保留静态作品，视频继续环境动画。试用不代表审美/性能/商业验收完成，工程合同和真实失败见[接入记录](./docs/plans/studio-rift-integration-2026-10-03.md)。
+
+2026-10-03暂停归档：[当前目标、已完成阶段、验证与恢复计划](./docs/plans/project-pause-handoff-2026-10-03.md)。用户要求暂停，等待明确恢复再继续开发。

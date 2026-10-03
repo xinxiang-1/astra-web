@@ -1,0 +1,280 @@
+{
+  "passed": false,
+  "base": "http://127.0.0.1:5194",
+  "errors": [],
+  "cases": [
+    {
+      "mode": "density",
+      "quality": "classic",
+      "hover": "rift",
+      "changed": true,
+      "exactRecovery": true
+    },
+    {
+      "mode": "color",
+      "quality": "classic",
+      "hover": "rift",
+      "changed": true,
+      "exactRecovery": true
+    },
+    {
+      "mode": "phrase",
+      "quality": "classic",
+      "hover": "rift",
+      "changed": true,
+      "exactRecovery": true
+    },
+    {
+      "mode": "contour",
+      "quality": "classic",
+      "hover": "rift",
+      "changed": true,
+      "exactRecovery": true
+    },
+    {
+      "mode": "braille",
+      "quality": "classic",
+      "hover": "rift",
+      "changed": true,
+      "exactRecovery": true
+    },
+    {
+      "mode": "halftone",
+      "quality": "classic",
+      "hover": "rift",
+      "changed": true,
+      "exactRecovery": true
+    },
+    {
+      "mode": "density",
+      "quality": "detailed",
+      "hover": "rift",
+      "changed": true,
+      "exactRecovery": true
+    },
+    {
+      "mode": "density",
+      "quality": "smooth",
+      "hover": "rift",
+      "changed": true,
+      "exactRecovery": true
+    },
+    {
+      "mode": "density",
+      "quality": "faithful",
+      "hover": "rift",
+      "changed": true,
+      "exactRecovery": true
+    },
+    {
+      "mode": "color",
+      "quality": "faithful",
+      "hover": "rift",
+      "changed": true,
+      "exactRecovery": true
+    },
+    {
+      "name": "paused ambient still interacts",
+      "passed": true
+    },
+    {
+      "name": "zero strength",
+      "passed": true
+    },
+    {
+      "name": "fullscreen input and exact recovery",
+      "passed": true
+    },
+    {
+      "name": "idle stops painting",
+      "passed": true
+    },
+    {
+      "name": "free actual TXT and transparent 4K static output",
+      "txtExact": true,
+      "staticPngExact": true,
+      "txtHash": "dd39ca6a7c8a6a67fd380da1b593ef5ebd6b1eea25f40329a047f276c8e7fc19",
+      "pngHash": "1e543d17f2d87f05b8a94c5509810abf6888b92c3694dbbb916c4eccd028da08",
+      "width": 3073,
+      "height": 3840,
+      "clearPixels": 11139124,
+      "visiblePixels": 661196
+    }
+  ],
+  "offline": [
+    {
+      "mode": "density",
+      "quality": "classic",
+      "staticPngExact": true,
+      "pngHash": "2af0ca31e39326583ff6d636f51370867db3cfead5080de7a505d37b5b77521d",
+      "htmlHash": "2baa95a92a6ae7b4eec9f05276da46c6c56b068fbc8be3ca9e0a765746b658fb",
+      "actualRift": true,
+      "exactRecovery": true,
+      "httpRequests": 0
+    },
+    {
+      "mode": "color",
+      "quality": "classic",
+      "staticPngExact": true,
+      "pngHash": "144f235df9af0d83e40baf228ba8a7583073709225f1ec0b7719acdf6ac0c6b1",
+      "htmlHash": "db57471486800f2bbb623184b28022f3e448bfbd19496c6477727be423f17043",
+      "actualRift": true,
+      "exactRecovery": true,
+      "httpRequests": 0
+    },
+    {
+      "mode": "phrase",
+      "quality": "classic",
+      "staticPngExact": true,
+      "pngHash": "29c0682ff2eb80d1ad562c53e3c8d83a781a2b010179ede1134dba867a262d7f",
+      "htmlHash": "b1edd847f9a7b2a4c73828e905130c2e3792e2fcb6bfec14ba9f90c96b68943e",
+      "actualRift": true,
+      "exactRecovery": true,
+      "httpRequests": 0
+    },
+    {
+      "mode": "contour",
+      "quality": "classic",
+      "staticPngExact": true,
+      "pngHash": "ec7b2196eab139d5e318533d1327ca45219b5d61b938d13cbac5c6c91f091906",
+      "htmlHash": "f7ec026489d4f4e58f6c4fdd2badfe402c1cb1fbf64bb927005a1144f3b70ee3",
+      "actualRift": true,
+      "exactRecovery": true,
+      "httpRequests": 0
+    },
+    {
+      "mode": "braille",
+      "quality": "classic",
+      "staticPngExact": true,
+      "pngHash": "2098c703cfbda317fc3af21341c305bda936ccfc7a49eea299b3bced32e5b0ce",
+      "htmlHash": "63f8edf4a1a6e71f6f1accf374bdcbee2892e4e6bccbee9a247ac56950cb3331",
+      "actualRift": true,
+      "exactRecovery": true,
+      "httpRequests": 0
+    },
+    {
+      "mode": "halftone",
+      "quality": "classic",
+      "staticPngExact": true,
+      "pngHash": "9cd836904f1e3c5bb76b29c2c668b9c863c37e83eaa4abdff419387f8d1f7600",
+      "htmlHash": "a7bb5d7681fafe3e5771b8d1d10fab8378eec486ef7a8ca53967086aef575e55",
+      "actualRift": true,
+      "exactRecovery": true,
+      "httpRequests": 0
+    },
+    {
+      "mode": "density",
+      "quality": "detailed",
+      "staticPngExact": true,
+      "pngHash": "497c2c3bb61ca98f508ed0cc542979510e41155b41b014ef1c8a2a47f399d1e0",
+      "htmlHash": "3453936541be54825be55ef2ee61a1f81f43389ba836565e96f5dc7a8157fdce",
+      "actualRift": true,
+      "exactRecovery": true,
+      "httpRequests": 0
+    },
+    {
+      "mode": "density",
+      "quality": "smooth",
+      "staticPngExact": true,
+      "pngHash": "497c2c3bb61ca98f508ed0cc542979510e41155b41b014ef1c8a2a47f399d1e0",
+      "htmlHash": "ff37c28a5349fa867b3c526d99f4045d5df3497a34a440a80cc9a7d176fc43d8",
+      "actualRift": true,
+      "exactRecovery": true,
+      "httpRequests": 0
+    },
+    {
+      "mode": "density",
+      "quality": "faithful",
+      "staticPngExact": true,
+      "pngHash": "baf1b19a875382d712b48ed4aeafac171f162504ace06a6b5eff31d0db68e20a",
+      "htmlHash": "4af1264d37862fbeef1b04288a34d53ffb37ce06971a11ae886a0bc0f62d0470",
+      "actualRift": true,
+      "exactRecovery": true,
+      "httpRequests": 0
+    },
+    {
+      "mode": "color",
+      "quality": "faithful",
+      "staticPngExact": true,
+      "pngHash": "dc56e47512ccce10c07de7c145b5568c64a6e41a3fbf4b11568dae219f59afd1",
+      "htmlHash": "d6386fa079319b6e4eccc905be9ed10af316c43582dd7b3a25f9805145c04347",
+      "actualRift": true,
+      "exactRecovery": true,
+      "httpRequests": 0
+    }
+  ],
+  "input": [
+    {
+      "mode": "density",
+      "quality": "classic",
+      "shape": "s",
+      "moves": 13,
+      "actualMs": 607
+    },
+    {
+      "mode": "color",
+      "quality": "classic",
+      "shape": "s",
+      "moves": 13,
+      "actualMs": 566
+    },
+    {
+      "mode": "phrase",
+      "quality": "classic",
+      "shape": "s",
+      "moves": 13,
+      "actualMs": 570
+    },
+    {
+      "mode": "contour",
+      "quality": "classic",
+      "shape": "s",
+      "moves": 13,
+      "actualMs": 581
+    },
+    {
+      "mode": "braille",
+      "quality": "classic",
+      "shape": "s",
+      "moves": 13,
+      "actualMs": 520
+    },
+    {
+      "mode": "halftone",
+      "quality": "classic",
+      "shape": "s",
+      "moves": 13,
+      "actualMs": 590
+    },
+    {
+      "mode": "density",
+      "quality": "detailed",
+      "shape": "s",
+      "moves": 13,
+      "actualMs": 601
+    },
+    {
+      "mode": "density",
+      "quality": "smooth",
+      "shape": "s",
+      "moves": 13,
+      "actualMs": 607
+    },
+    {
+      "mode": "density",
+      "quality": "faithful",
+      "shape": "s",
+      "moves": 13,
+      "actualMs": 578
+    },
+    {
+      "mode": "color",
+      "quality": "faithful",
+      "shape": "s",
+      "moves": 13,
+      "actualMs": 594
+    }
+  ],
+  "video": null,
+  "failure": "TimeoutError: page.goto: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:5194/ascii-art\", waiting until \"domcontentloaded\"\u001b[22m\n"
+}

@@ -5,6 +5,8 @@ import { createHash } from 'node:crypto'
 import path from 'node:path'
 
 const base = process.env.ASTRA_PREVIEW_URL || 'http://127.0.0.1:5180'
+const hover = process.env.ASTRA_PACKAGE_HOVER
+if (hover) assert.equal(hover, 'rift')
 const out = path.resolve(
   process.env.ASTRA_PACKAGE_OUTPUT || 'sandbox/project-package/2026-10-01-v1/development',
 )
@@ -192,6 +194,18 @@ try {
       .getByLabel('作品名称')
       .fill(key === 'density-classic' ? '</script>山河🌙' : `作品-${key}`)
     await ready(page, mode)
+    if (hover) {
+      await page.locator('details.calibrated-effects').evaluate((d) => {
+        d.open = true
+      })
+      await page
+        .getByRole('group', { name: '六模式悬停', exact: true })
+        .getByRole('button', { name: '撕裂试用', exact: true })
+        .click()
+      await page.waitForFunction(
+        () => document.querySelector('.ascii-scroll canvas')?.dataset.hover === 'rift',
+      )
+    }
     const before = await png(page, `${key}-before.png`)
     await page.keyboard.press('Escape')
     // Download an unsaved editor state, then independently save for metadata comparison.
@@ -206,6 +220,7 @@ try {
     assert.equal(manifest.engine.version, '2.2.0')
     assert.equal(manifest.project.settings.artMode, mode)
     assert.equal(manifest.project.settings.artQuality, quality)
+    if (hover) assert.equal(manifest.project.settings.artHover, hover)
     assert.equal(manifest.source.size, fixture.length)
     await page.locator('.editor-save').click()
     await page.locator('.save-status').filter({ hasText: '已保存到此浏览器' }).waitFor()
@@ -225,6 +240,8 @@ try {
     await restored.goto(`${base}/ascii-art?project=${imported.id}`)
     await restored.locator('.save-status').filter({ hasText: '已从此浏览器恢复' }).waitFor()
     await ready(restored, mode)
+    if (hover)
+      assert.equal(await restored.locator('.ascii-scroll canvas').getAttribute('data-hover'), hover)
     const returned = await png(restored, `${key}-restored.png`)
     assert.equal(sha(returned.bytes), sha(before.bytes), `${key}: restored real PNG differs`)
     await restored.keyboard.press('Escape')

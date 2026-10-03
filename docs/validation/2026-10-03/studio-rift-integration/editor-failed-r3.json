@@ -1,0 +1,152 @@
+{
+  "passed": false,
+  "base": "http://127.0.0.1:5194",
+  "errors": [],
+  "cases": [
+    {
+      "mode": "density",
+      "quality": "classic",
+      "hover": "rift",
+      "changed": true,
+      "exactRecovery": true
+    },
+    {
+      "mode": "color",
+      "quality": "classic",
+      "hover": "rift",
+      "changed": true,
+      "exactRecovery": true
+    },
+    {
+      "mode": "phrase",
+      "quality": "classic",
+      "hover": "rift",
+      "changed": true,
+      "exactRecovery": true
+    },
+    {
+      "mode": "contour",
+      "quality": "classic",
+      "hover": "rift",
+      "changed": true,
+      "exactRecovery": true
+    },
+    {
+      "mode": "braille",
+      "quality": "classic",
+      "hover": "rift",
+      "changed": true,
+      "exactRecovery": true
+    },
+    {
+      "mode": "halftone",
+      "quality": "classic",
+      "hover": "rift",
+      "changed": true,
+      "exactRecovery": true
+    },
+    {
+      "mode": "density",
+      "quality": "detailed",
+      "hover": "rift",
+      "changed": true,
+      "exactRecovery": true
+    },
+    {
+      "mode": "density",
+      "quality": "smooth",
+      "hover": "rift",
+      "changed": true,
+      "exactRecovery": true
+    },
+    {
+      "mode": "density",
+      "quality": "faithful",
+      "hover": "rift",
+      "changed": true,
+      "exactRecovery": true
+    },
+    {
+      "mode": "color",
+      "quality": "faithful",
+      "hover": "rift",
+      "changed": true,
+      "exactRecovery": true
+    }
+  ],
+  "offline": [],
+  "input": [
+    {
+      "mode": "density",
+      "quality": "classic",
+      "shape": "s",
+      "moves": 13,
+      "actualMs": 555
+    },
+    {
+      "mode": "color",
+      "quality": "classic",
+      "shape": "s",
+      "moves": 13,
+      "actualMs": 566
+    },
+    {
+      "mode": "phrase",
+      "quality": "classic",
+      "shape": "s",
+      "moves": 13,
+      "actualMs": 581
+    },
+    {
+      "mode": "contour",
+      "quality": "classic",
+      "shape": "s",
+      "moves": 13,
+      "actualMs": 592
+    },
+    {
+      "mode": "braille",
+      "quality": "classic",
+      "shape": "s",
+      "moves": 13,
+      "actualMs": 540
+    },
+    {
+      "mode": "halftone",
+      "quality": "classic",
+      "shape": "s",
+      "moves": 13,
+      "actualMs": 630
+    },
+    {
+      "mode": "density",
+      "quality": "detailed",
+      "shape": "s",
+      "moves": 13,
+      "actualMs": 561
+    },
+    {
+      "mode": "density",
+      "quality": "smooth",
+      "shape": "s",
+      "moves": 13,
+      "actualMs": 582
+    },
+    {
+      "mode": "density",
+      "quality": "faithful",
+      "shape": "s",
+      "moves": 13,
+      "actualMs": 581
+    },
+    {
+      "mode": "color",
+      "quality": "faithful",
+      "shape": "s",
+      "moves": 13,
+      "actualMs": 534
+    }
+  ],
+  "video": null,
+  "failure": "TimeoutError: locator.click: Timeout 60000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('button[data-quality=\"classic\"]')\u001b[22m\n\u001b[2m    - locator resolved to <button disabled type=\"button\" data-v-4808544b=\"\" class=\"seg-item on\" aria-pressed=\"true\" data-quality=\"classic\">经典</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    116 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m        - element is not enabled\u001b[22m\n\u001b[2m      - retrying click action\u001b[22m\n\u001b[2m        - waiting 500ms\u001b[22m\n"
+}

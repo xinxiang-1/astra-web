@@ -1,0 +1,120 @@
+{
+  "passed": true,
+  "provenance": "Renderer/package/media passed before later rift touch-action, mobile fullscreen visibility and render-state telemetry changes. Renderer, package serialization and MP4 algorithm did not change afterward. Final product type/lint/build, prototype tsc and editor HTML/touch/PNG/TXT validate final sources. Logs stay in sandbox; final exit codes were drained at their actual runs. Initial type-check R1 failure is preserved but exact exit code is unavailable in the handoff (null).",
+  "checks": [
+    {
+      "command": "npm run type-check",
+      "log": "sandbox/rift-integration-type-r6.log",
+      "exitCode": 0,
+      "sha256": "0a7d40c8ea67ee87b4bcdc91418a201a96bc30f3286185c82d8888ec96c6d6fb"
+    },
+    {
+      "command": "npm run build",
+      "log": "sandbox/rift-integration-build-r5.log",
+      "exitCode": 0,
+      "sha256": "42d718acd8ba2ad6ef6786ef6fec6f301f988b783f0eb628d2bcd2775bbab7c4"
+    },
+    {
+      "command": "related ESLint product/prototype/contracts",
+      "log": "sandbox/rift-integration-lint-r7.log",
+      "exitCode": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/brand-font-startup-contract.mjs (external CSS held pending)",
+      "log": "sandbox/rift-integration-font-startup-r1.log",
+      "exitCode": 0,
+      "sha256": "c408c5848356575b36aded971fc579cbcbddfa894f9f2bca3272ecef96213bfc"
+    },
+    {
+      "command": "strict tsc --ignoreConfig --noUncheckedIndexedAccess v8",
+      "log": "sandbox/rift-integration-prototype-type-r1.log",
+      "exitCode": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/studio-rift-integration-contract.mjs",
+      "log": "sandbox/rift-integration-renderer-r2.log",
+      "exitCode": 0,
+      "sha256": "563e79177caa493dce66aed3de4b45be5b85192188f12ae86f440b62f6912289"
+    },
+    {
+      "command": "ASTRA_PACKAGE_HOVER=rift node scripts/art-project-package-contract.mjs",
+      "log": "sandbox/rift-integration-packages-r1.log",
+      "exitCode": 0,
+      "sha256": "cc5d2f7df8d2d87c8c1e54560088c7f61a5eb8031ac16cfca2c25885db70de2e"
+    },
+    {
+      "command": "ASTRA_PREVIEW_URL=5194 ASTRA_EFFECTS_MEDIA_HOVER=rift node scripts/art-effects-media-contract.mjs",
+      "log": "sandbox/rift-integration-media-r1.log",
+      "exitCode": 0,
+      "sha256": "e33e11974aaa9fe74483cc83a06508501298e147b453a75fb480ffb89f25e704"
+    },
+    {
+      "command": "node scripts/studio-rift-editor-walkthrough.mjs (editor-r9)",
+      "log": "sandbox/rift-integration-editor-r9.log",
+      "exitCode": 0,
+      "sha256": "fb7c37cad26df6dddc622b22fe885272dd8075cff3e19446a7ebe9539eae7bc5"
+    },
+    {
+      "command": "type-check R1 (failed; exact exit unavailable in handoff)",
+      "log": "sandbox/rift-integration-type-r1.log",
+      "exitCode": null,
+      "sha256": "8ee384a14653fbff8a9c1f0ebebc59ecad241ff3feb5338f565c1efa42ecaa2e"
+    },
+    {
+      "command": "renderer R1 (destroyed context)",
+      "log": "sandbox/rift-integration-renderer-r1.log",
+      "exitCode": 1,
+      "sha256": "a1e53eff183e8f610ee09a74c3f6849438384aa68dcafa0c2f0b4abad442edb6"
+    },
+    {
+      "command": "editor R1 (failure retained)",
+      "log": "sandbox/rift-integration-editor-r1.log",
+      "exitCode": 1,
+      "sha256": "a50cc599753ac1d6bd662e187838c8b5bdf6a52f4d9833320fbd9967d4d52a8d"
+    },
+    {
+      "command": "editor R2 (failure retained)",
+      "log": "sandbox/rift-integration-editor-r2.log",
+      "exitCode": 1,
+      "sha256": "15213505851d1cc4808fd49b9627cc7bf485597f13f3ea01afac55a0126f4de2"
+    },
+    {
+      "command": "editor R3 (failure retained)",
+      "log": "sandbox/rift-integration-editor-r3.log",
+      "exitCode": 1,
+      "sha256": "64a96ff663ba24a828535b38382540e7172c1c6e432aa4c7e8e40a1d5c28501b"
+    },
+    {
+      "command": "editor R4 (failure retained)",
+      "log": "sandbox/rift-integration-editor-r4.log",
+      "exitCode": 1,
+      "sha256": "b19691f5a94349fc6e90f2d3e8798c2cab1ac33f56677f9a60f112962d7951b7"
+    },
+    {
+      "command": "editor R5 (failure retained)",
+      "log": "sandbox/rift-integration-editor-r5.log",
+      "exitCode": 1,
+      "sha256": "a997eac62fdae637d9bc6cb6d7d58fafb3641c533bfb60f156deb137df7cae0e"
+    },
+    {
+      "command": "editor R6 (failure retained)",
+      "log": "sandbox/rift-integration-editor-r6.log",
+      "exitCode": 1,
+      "sha256": "07de09036e885b604b57e3e1ddc820a649e7fd5ff3931d522f7bd646814e18d4"
+    },
+    {
+      "command": "editor R7 (failure retained)",
+      "log": "sandbox/rift-integration-editor-r7.log",
+      "exitCode": 1,
+      "sha256": "aceff54272eea2fb960ed4ba33d147abf96b2fb5dea3da533a42bf0514e58c66"
+    },
+    {
+      "command": "editor R8 (failure retained)",
+      "log": "sandbox/rift-integration-editor-r8.log",
+      "exitCode": 1,
+      "sha256": "5eb6acd122e44d495ff30a97cf66e32e9241c75336bd157040f3687ccc40aeb5"
+    }
+  ]
+}

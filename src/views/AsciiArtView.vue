@@ -226,6 +226,7 @@ const artHoverOptions: { id: ArtHover | 'none'; label: string }[] = [
   { id: 'ripple', label: '涟漪' },
   { id: 'displace', label: '轻推' },
   { id: 'trail', label: '拖尾' },
+  { id: 'rift', label: '撕裂试用' },
   { id: 'water', label: '水面' },
   { id: 'silk', label: '丝绸' },
   { id: 'vortex', label: '漩涡' },
@@ -249,6 +250,14 @@ const ditherStrength = ref(0.25)
 /** Studio hover / motion (charset mode only; same stack as /ascii-live). */
 const hoverEffect = ref<AsciiStudioHoverEffect>('none')
 const hoverStrength = ref(0.65)
+const riftTouchActive = computed(
+  () =>
+    editorEngine.value === 'calibrated' &&
+    artHover.value === 'rift' &&
+    hoverStrength.value > 0 &&
+    !reducedArtMotion.value &&
+    !showOriginal.value,
+)
 const hoverRadius = ref(0.38)
 const ambientMotion = ref<AsciiStudioMotion>('none')
 
@@ -618,7 +627,7 @@ function selectArtMotionStyle(next: 'studio' | 'cinematic') {
 }
 
 function selectArtHover(next: ArtHover | 'none') {
-  if (['trail', 'water', 'silk', 'vortex', 'contour', 'dissolve'].includes(next))
+  if (['trail', 'rift', 'water', 'silk', 'vortex', 'contour', 'dissolve'].includes(next))
     artEffectProfile.value = 'expressive'
   artHover.value = next
 }
@@ -1785,6 +1794,9 @@ async function downloadVideo() {
   const capturedMotion = artMotion.value
   const capturedEffects = {
     effectProfile: artEffectProfile.value,
+    hover: artHover.value === 'none' ? 'light' as const : artHover.value,
+    hoverStrength: hoverStrength.value,
+    hoverRadius: hoverRadius.value,
     motionSpeed: artMotionSpeed.value,
     motionStrength: artMotionStrength.value,
     motionStyle: artEffectProfile.value === 'expressive' ? artMotionStyle.value : 'studio',
@@ -2221,6 +2233,12 @@ function paintTo(canvas: HTMLCanvasElement | null, pointerSamples: readonly ArtP
     canvas.dataset.interactionTime = String(artInteractionElapsed)
     canvas.dataset.pointerStrength = String(artPointer.strength)
     canvas.dataset.interactionActive = String(renderer.interactionActive)
+    canvas.dataset.hover = artHover.value
+    canvas.dataset.paused = String(artPaused.value)
+    canvas.dataset.motion = reducedArtMotion.value ? 'none' : artMotion.value
+    canvas.dataset.hoverStrength = String(
+      reducedArtMotion.value || downloading.value ? 0 : hoverStrength.value,
+    )
     queueCalibratedAnimation()
     return
   }
@@ -3430,6 +3448,7 @@ onBeforeUnmount(() => {
                 {{ item.label }}
               </button>
             </div>
+            <p v-if="artHover === 'rift'" class="hint">快速划过，字符随流体拉开再回弹。撕裂效果正在打磨，复杂原色作品可能响应较慢。</p>
           </div>
           <template v-if="artHover !== 'none'">
             <div class="field">
@@ -3826,7 +3845,12 @@ onBeforeUnmount(() => {
               :class="{ live: studioLiveActive, staged: stagePinned }"
               :style="previewHostStyle"
             >
-              <canvas :key="editorEngine" ref="previewCanvas" class="ascii-canvas" />
+              <canvas
+                :key="editorEngine"
+                ref="previewCanvas"
+                class="ascii-canvas"
+                :class="{ 'rift-touch': riftTouchActive }"
+              />
             </div>
           </div>
         </div>
@@ -3904,7 +3928,11 @@ onBeforeUnmount(() => {
           @pointerleave="onCalibratedPointerLeave"
         >
           <div class="ascii-scroll-inner">
-            <canvas ref="fullscreenCanvas" class="ascii-canvas" />
+            <canvas
+              ref="fullscreenCanvas"
+              class="ascii-canvas"
+              :class="{ 'rift-touch': riftTouchActive }"
+            />
           </div>
         </div>
       </div>
@@ -4752,6 +4780,10 @@ onBeforeUnmount(() => {
   min-width: 100%;
   min-height: 100%;
   vertical-align: top;
+}
+
+.ascii-canvas.rift-touch {
+  touch-action: none;
 }
 
 .ascii-host {

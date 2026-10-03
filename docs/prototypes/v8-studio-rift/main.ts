@@ -6,7 +6,7 @@ import {
 } from '../../../src/lib/art-engine/index'
 import { createCanvasArtRenderer as previousRenderer } from '../../../scripts/fixtures/rift-v7-renderer'
 import { createRiftPresentation as previousPresentation } from '../v7-studio-rift/presentation'
-import { createCanvasArtRenderer } from '../../../src/lib/art-engine/canvas'
+import { createCanvasArtRenderer } from '../../../scripts/fixtures/rift-v8-renderer'
 import { createRiftPresentation } from './presentation'
 
 const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T

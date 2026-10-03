@@ -1,0 +1,18 @@
+{
+  "base": "http://127.0.0.1:5180",
+  "rect": {
+    "x": 51.5,
+    "y": 148.078125,
+    "width": 287,
+    "height": 358
+  },
+  "counters": {
+    "pointerdown": 1,
+    "pointermove": 10,
+    "pointerup": 1,
+    "pointercancel": 0,
+    "touchAction": "auto"
+  },
+  "changed": true,
+  "exactRecovery": true
+}

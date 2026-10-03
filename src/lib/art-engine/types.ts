@@ -1,7 +1,16 @@
 export type ArtMode = 'density' | 'color' | 'phrase' | 'contour' | 'braille' | 'halftone'
 export type ArtMotion = 'none' | 'breathe' | 'wave' | 'assemble' | 'current' | 'reform' | 'caustics'
 export type ArtHover =
-  'displace' | 'light' | 'ripple' | 'trail' | 'water' | 'silk' | 'vortex' | 'contour' | 'dissolve'
+  | 'displace'
+  | 'light'
+  | 'ripple'
+  | 'trail'
+  | 'rift'
+  | 'water'
+  | 'silk'
+  | 'vortex'
+  | 'contour'
+  | 'dissolve'
 export type ArtPointerSample = { x: number; y: number; time: number; active: boolean }
 export type ArtSettings = {
   mode: ArtMode

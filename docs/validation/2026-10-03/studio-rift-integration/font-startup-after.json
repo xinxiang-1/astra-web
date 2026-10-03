@@ -1,0 +1,9 @@
+{
+  "base": "http://127.0.0.1:5194",
+  "scope": "Brand CSS remains pending; actual editor must mount. Not a remote font availability, layout shift or page FPS certification.",
+  "pendingFontCss": 1,
+  "domReady": true,
+  "appReady": true,
+  "passed": true,
+  "elapsedMs": 570
+}

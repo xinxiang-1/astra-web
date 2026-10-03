@@ -68,6 +68,11 @@ async function runArtworkPage(
     interactionTime = 0,
     previousTime = 0
   const reduced = matchMedia('(prefers-reduced-motion: reduce)')
+  function updateTouchAction() {
+    canvas.style.touchAction =
+      data.hover === 'rift' && (data.hoverStrength ?? 1) > 0 && !reduced.matches ? 'none' : ''
+  }
+  updateTouchAction()
   const pointer = { x: 0.5, y: 0.5, strength: 0, target: 0 }
   const pointerSamples: ArtPointerSample[] = []
   function paint() {
@@ -211,6 +216,7 @@ async function runArtworkPage(
     paint()
   }).observe(host)
   reduced.addEventListener('change', () => {
+    updateTouchAction()
     pointer.target = 0
     pointer.strength = 0
     queue()

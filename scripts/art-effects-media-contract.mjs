@@ -4,6 +4,8 @@ import { execFileSync } from 'node:child_process'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 const base = process.env.ASTRA_PREVIEW_URL || 'http://127.0.0.1:5192'
+const hover = process.env.ASTRA_EFFECTS_MEDIA_HOVER
+if (hover) assert.equal(hover, 'rift')
 const out = path.resolve(
   process.env.ASTRA_EFFECTS_MEDIA_OUTPUT || 'sandbox/art-effects/2026-10-01-v2/media-final',
 )
@@ -108,12 +110,18 @@ try {
     .click()
   await range('art-motion-speed', 0.4)
   await range('art-motion-strength', 0.9)
+  if (hover)
+    await page
+      .getByRole('group', { name: '六模式悬停', exact: true })
+      .getByRole('button', { name: '撕裂试用', exact: true })
+      .click()
   const htmlFile = await exportFile('动态网页', 'video-effects')
   const html = await readFile(htmlFile, 'utf8'),
     data = JSON.parse(
       html.match(/<script id="art-data" type="application\/json">([\s\S]*?)<\/script>/)[1],
     )
   const movie = await exportFile('视频', 'video-effects')
+  if (hover) assert.equal(data.hover, hover)
   const probe = JSON.parse(
     execFileSync(
       'ffprobe',
@@ -193,6 +201,9 @@ try {
         return sum / (pixels.length * 255)
       }
       const correct = error({
+        hover: data.hover === 'none' ? 'light' : data.hover,
+        hoverStrength: data.hoverStrength,
+        hoverRadius: data.hoverRadius,
         effectProfile: data.effectProfile,
         motionSpeed: data.motionSpeed,
         motionStrength: data.motionStrength,
