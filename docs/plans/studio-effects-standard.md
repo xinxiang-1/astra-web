@@ -48,6 +48,8 @@ Astra继续负责六模式采样、原生字体、画质、中文铺字、本地
 
 固定画布尺寸、列数、素材、设备和品质报告实际帧耗时、内存及退场时间；发现性能问题时先分析场采样、字形栅格和光层的实际成本，再决定是否需要 GPU，避免提前维护第二套不一致的引擎。
 
+最新撕裂打磨见[响应与局部形变记录](./studio-rift-refinement-2026-10-03.md)与[v8可操作对照](../prototypes/v8-studio-rift/index.html)。v7工厂/表现已冻结至8f4a9c5；v8约束相邻过大位移及双线性局部梯度，保留速度反馈、原字形反光和回弹。环境关闭时验证正向局部映射，不将该保证外推到任意环境叠加。原型空闲停止绘制，只看新效果时隐藏对照停止绘制，恢复对照从同一原作开始。共享绘制的同帧精确形变复用仍有4MiB上限；真实帧成本和原色限制以阶段报告为准，候选仍未接入正式项目/输出合同。
+
 持续规则入口为仓库 [AGENTS.md](../../AGENTS.md) 和 [.cursor 规则](../../.cursor/rules/studio-native-effects.mdc)。本次路线固化记录见 [Studio 路线阶段记录](./studio-roadmap-iteration-2026-10-02.md)。
 
 首次接入的步骤、验证和限制见[悬停对齐工程记录](./hover-parity-iteration-2026-10-02.md)。原生代码许可见[MIT正文](../licenses/asciify-engine-interaction-MIT.txt)。

@@ -1,0 +1,53 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "command": "npm run type-check",
+      "log": "sandbox/rift-refinement-type-r1.log",
+      "exitCode": 0,
+      "sha256": "0a7d40c8ea67ee87b4bcdc91418a201a96bc30f3286185c82d8888ec96c6d6fb"
+    },
+    {
+      "command": "npm run build",
+      "log": "sandbox/rift-refinement-build-r1.log",
+      "exitCode": 0,
+      "sha256": "e0758d2ed4c43752a96190d1915b6b08f9a988d1da406e02952025e9485fcd6d"
+    },
+    {
+      "command": "strict tsc --ignoreConfig --noUncheckedIndexedAccess v8 prototype",
+      "log": "sandbox/rift-refinement-prototype-type-r2.log",
+      "exitCode": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "related ESLint",
+      "log": "sandbox/rift-refinement-lint-r2.log",
+      "exitCode": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node scripts/studio-rift-refinement-contract.mjs",
+      "log": "sandbox/rift-refinement-contract-r2.log",
+      "exitCode": 0,
+      "sha256": "174f8ed822a9d100ed87cecf1378981f3a8f8d8ca4b8eba1a24f5546cc0b5d63"
+    },
+    {
+      "command": "ASTRA_RIFT_PROTOTYPE=v8-studio-rift node scripts/studio-rift-contract.mjs",
+      "log": "sandbox/rift-refinement-matrix-r2.log",
+      "exitCode": 0,
+      "sha256": "84aff8d3c038dbb96c734f98f287e339b4e938b884b20de1f162ec45774684d6"
+    },
+    {
+      "command": "node scripts/studio-rift-refinement-walkthrough.mjs",
+      "log": "sandbox/rift-refinement-walkthrough-r2.log",
+      "exitCode": 0,
+      "sha256": "fee6ae7758386df6c545171b7ff2fcf4a8c45589bb24cc869b44d593c0446d9b"
+    },
+    {
+      "command": "node scripts/studio-motion-export-contract.mjs",
+      "log": "sandbox/rift-refinement-exports-r1.log",
+      "exitCode": 0,
+      "sha256": "df777fbfc49075bc47c4692311f08f56f7b2d68b76ad822a1356f9f61011e5a6"
+    }
+  ]
+}

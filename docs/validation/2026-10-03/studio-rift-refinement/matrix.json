@@ -1,0 +1,374 @@
+{
+  "passed": true,
+  "hashes": {
+    "src/views/ArtHomeView.vue": "db2b7e0ffa0d590be0e3e9d99caa8ecaba4716721b5d03b2d6269e46ad4458dd",
+    "src/components/CharacterArtwork.vue": "99da7635979b98f70aa622887bcf775047114529b4130de201cebf40d0ab2858",
+    "src/lib/ascii/studio-preview.ts": "87ef73fd4261872b1a6bc3d66fd2a05498bc73fa047294b4934174ede9af1a07",
+    "src/lib/art-engine/canvas.ts": "f7d528abf504f735ba5b1906ac7a41bcc74776f18d0ab17624d8670e8eebf1e2",
+    "docs/prototypes/v8-studio-rift/presentation.ts": "05b72621fcc424d9015c165ef349f309887d91cd321e15560d8e23daaffb4180",
+    "docs/prototypes/v8-studio-rift/main.ts": "6f9095e67c758d38d4f9d4e366a689359cc648adb0692f6d364c817b77ff1cfe",
+    "docs/prototypes/v8-studio-rift/index.html": "790aec57b67a0c980c3df693bf621acb6388058cb97d9d3e7be8c139eeb779c2"
+  },
+  "nativeSolverUnchanged": true,
+  "protectedFilesUnchanged": true,
+  "defaultCases": [
+    {
+      "mode": "density",
+      "quality": "classic",
+      "transparent": false,
+      "exactFrames": 24,
+      "readOnlyChecks": 24
+    },
+    {
+      "mode": "density",
+      "quality": "classic",
+      "transparent": true,
+      "exactFrames": 24,
+      "readOnlyChecks": 24
+    },
+    {
+      "mode": "density",
+      "quality": "high",
+      "transparent": false,
+      "exactFrames": 24,
+      "readOnlyChecks": 24
+    },
+    {
+      "mode": "density",
+      "quality": "high",
+      "transparent": true,
+      "exactFrames": 24,
+      "readOnlyChecks": 24
+    },
+    {
+      "mode": "density",
+      "quality": "software",
+      "transparent": false,
+      "exactFrames": 24,
+      "readOnlyChecks": 24
+    },
+    {
+      "mode": "density",
+      "quality": "software",
+      "transparent": true,
+      "exactFrames": 24,
+      "readOnlyChecks": 24
+    },
+    {
+      "mode": "color",
+      "quality": "classic",
+      "transparent": false,
+      "exactFrames": 24,
+      "readOnlyChecks": 24
+    },
+    {
+      "mode": "color",
+      "quality": "classic",
+      "transparent": true,
+      "exactFrames": 24,
+      "readOnlyChecks": 24
+    },
+    {
+      "mode": "color",
+      "quality": "high",
+      "transparent": false,
+      "exactFrames": 24,
+      "readOnlyChecks": 24
+    },
+    {
+      "mode": "color",
+      "quality": "high",
+      "transparent": true,
+      "exactFrames": 24,
+      "readOnlyChecks": 24
+    },
+    {
+      "mode": "color",
+      "quality": "software",
+      "transparent": false,
+      "exactFrames": 24,
+      "readOnlyChecks": 24
+    },
+    {
+      "mode": "color",
+      "quality": "software",
+      "transparent": true,
+      "exactFrames": 24,
+      "readOnlyChecks": 24
+    },
+    {
+      "mode": "phrase",
+      "quality": "classic",
+      "transparent": false,
+      "exactFrames": 24,
+      "readOnlyChecks": 24
+    },
+    {
+      "mode": "phrase",
+      "quality": "classic",
+      "transparent": true,
+      "exactFrames": 24,
+      "readOnlyChecks": 24
+    },
+    {
+      "mode": "contour",
+      "quality": "classic",
+      "transparent": false,
+      "exactFrames": 24,
+      "readOnlyChecks": 24
+    },
+    {
+      "mode": "contour",
+      "quality": "classic",
+      "transparent": true,
+      "exactFrames": 24,
+      "readOnlyChecks": 24
+    },
+    {
+      "mode": "braille",
+      "quality": "classic",
+      "transparent": false,
+      "exactFrames": 24,
+      "readOnlyChecks": 24
+    },
+    {
+      "mode": "braille",
+      "quality": "classic",
+      "transparent": true,
+      "exactFrames": 24,
+      "readOnlyChecks": 24
+    },
+    {
+      "mode": "halftone",
+      "quality": "classic",
+      "transparent": false,
+      "exactFrames": 24,
+      "readOnlyChecks": 24
+    },
+    {
+      "mode": "halftone",
+      "quality": "classic",
+      "transparent": true,
+      "exactFrames": 24,
+      "readOnlyChecks": 24
+    }
+  ],
+  "candidateCases": [
+    {
+      "mode": "density",
+      "quality": "classic",
+      "transparent": false,
+      "maxNativeMae": 6.458206114477041,
+      "settledAt": 5.466666666666667,
+      "exactRecovery": true,
+      "zeroAmplitude": true
+    },
+    {
+      "mode": "density",
+      "quality": "classic",
+      "transparent": true,
+      "maxNativeMae": 23.711643016581633,
+      "settledAt": 5.466666666666667,
+      "exactRecovery": true,
+      "zeroAmplitude": true
+    },
+    {
+      "mode": "density",
+      "quality": "high",
+      "transparent": false,
+      "maxNativeMae": 7.799859494579081,
+      "settledAt": 5.466666666666667,
+      "exactRecovery": true,
+      "zeroAmplitude": true
+    },
+    {
+      "mode": "density",
+      "quality": "high",
+      "transparent": true,
+      "maxNativeMae": 34.6667330994898,
+      "settledAt": 5.466666666666667,
+      "exactRecovery": true,
+      "zeroAmplitude": true
+    },
+    {
+      "mode": "density",
+      "quality": "software",
+      "transparent": false,
+      "maxNativeMae": 5.7775390625,
+      "settledAt": 5.466666666666667,
+      "exactRecovery": true,
+      "zeroAmplitude": true
+    },
+    {
+      "mode": "density",
+      "quality": "software",
+      "transparent": true,
+      "maxNativeMae": 28.197305484693878,
+      "settledAt": 5.466666666666667,
+      "exactRecovery": true,
+      "zeroAmplitude": true
+    },
+    {
+      "mode": "color",
+      "quality": "classic",
+      "transparent": false,
+      "maxNativeMae": 2.184191645408163,
+      "settledAt": 5.466666666666667,
+      "exactRecovery": true,
+      "zeroAmplitude": true
+    },
+    {
+      "mode": "color",
+      "quality": "classic",
+      "transparent": true,
+      "maxNativeMae": 16.707322225765306,
+      "settledAt": 5.466666666666667,
+      "exactRecovery": true,
+      "zeroAmplitude": true
+    },
+    {
+      "mode": "color",
+      "quality": "high",
+      "transparent": false,
+      "maxNativeMae": 2.184191645408163,
+      "settledAt": 5.466666666666667,
+      "exactRecovery": true,
+      "zeroAmplitude": true
+    },
+    {
+      "mode": "color",
+      "quality": "high",
+      "transparent": true,
+      "maxNativeMae": 16.707322225765306,
+      "settledAt": 5.466666666666667,
+      "exactRecovery": true,
+      "zeroAmplitude": true
+    },
+    {
+      "mode": "color",
+      "quality": "software",
+      "transparent": false,
+      "maxNativeMae": 6.186838329081633,
+      "settledAt": 5.466666666666667,
+      "exactRecovery": true,
+      "zeroAmplitude": true
+    },
+    {
+      "mode": "color",
+      "quality": "software",
+      "transparent": true,
+      "maxNativeMae": 28.84468769929847,
+      "settledAt": 5.466666666666667,
+      "exactRecovery": true,
+      "zeroAmplitude": true
+    },
+    {
+      "mode": "phrase",
+      "quality": "classic",
+      "transparent": false,
+      "maxNativeMae": 2.807957987882653,
+      "settledAt": 5.466666666666667,
+      "exactRecovery": true,
+      "zeroAmplitude": true
+    },
+    {
+      "mode": "phrase",
+      "quality": "classic",
+      "transparent": true,
+      "maxNativeMae": 10.585288783482143,
+      "settledAt": 5.466666666666667,
+      "exactRecovery": true,
+      "zeroAmplitude": true
+    },
+    {
+      "mode": "contour",
+      "quality": "classic",
+      "transparent": false,
+      "maxNativeMae": 1.1289789939413266,
+      "settledAt": 5.466666666666667,
+      "exactRecovery": true,
+      "zeroAmplitude": true
+    },
+    {
+      "mode": "contour",
+      "quality": "classic",
+      "transparent": true,
+      "maxNativeMae": 11.10023118622449,
+      "settledAt": 5.466666666666667,
+      "exactRecovery": true,
+      "zeroAmplitude": true
+    },
+    {
+      "mode": "braille",
+      "quality": "classic",
+      "transparent": false,
+      "maxNativeMae": 6.1517348931760205,
+      "settledAt": 5.466666666666667,
+      "exactRecovery": true,
+      "zeroAmplitude": true
+    },
+    {
+      "mode": "braille",
+      "quality": "classic",
+      "transparent": true,
+      "maxNativeMae": 26.31226881377551,
+      "settledAt": 5.466666666666667,
+      "exactRecovery": true,
+      "zeroAmplitude": true
+    },
+    {
+      "mode": "halftone",
+      "quality": "classic",
+      "transparent": false,
+      "maxNativeMae": 4.991521843112245,
+      "settledAt": 5.466666666666667,
+      "exactRecovery": true,
+      "zeroAmplitude": true
+    },
+    {
+      "mode": "halftone",
+      "quality": "classic",
+      "transparent": true,
+      "maxNativeMae": 22.723568040497447,
+      "settledAt": 5.466666666666667,
+      "exactRecovery": true,
+      "zeroAmplitude": true
+    }
+  ],
+  "fieldCases": [
+    {
+      "ratio": 0.5,
+      "samples": 72,
+      "maxError": 9.973218171449583e-11,
+      "maxVelocity": 0.78214599187865
+    },
+    {
+      "ratio": 1,
+      "samples": 72,
+      "maxError": 7.039918821505342e-11,
+      "maxVelocity": 0.7986908296713605
+    },
+    {
+      "ratio": 2,
+      "samples": 72,
+      "maxError": 6.944187824590997e-11,
+      "maxVelocity": 1.0954552373917423
+    }
+  ],
+  "errors": [],
+  "maxBytes": 156800,
+  "maxOffset": 0.0452724669063291,
+  "maxFieldError": 9.973218171449583e-11,
+  "speeds": [
+    {
+      "secondsPerEvent": 0.008333333333333333,
+      "peakVelocity": 0.997073271300224,
+      "peakRiftOffset": 0.047671013112920976
+    },
+    {
+      "secondsPerEvent": 0.08333333333333333,
+      "peakVelocity": 0.48526574051788307,
+      "peakRiftOffset": 0.025695869375725714
+    }
+  ]
+}

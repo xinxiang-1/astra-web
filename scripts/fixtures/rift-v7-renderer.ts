@@ -1,4 +1,4 @@
-import type { ArtFrame, ArtRenderOptions } from './types'
+import type { ArtFrame, ArtRenderOptions } from '../../src/lib/art-engine/types'
 
 /** Experimental presentation only; omitted in the editor and portable runtime. */
 export type CanvasArtPrototypeOptions = {
@@ -117,10 +117,6 @@ export function createCanvasArtRenderer(
   const motionSample = new Float32Array(6)
   const ambientNative = new Float32Array(4)
   const ambientLight = new Float32Array(4)
-  // Same-frame glyph/area/glow reuse; exact doubles and bounded backing memory.
-  const effectCellLimit = 4 * 1024 * 1024
-  let effectCells: Float64Array | null = null,
-    effectCellValid: Uint8Array | null = null
   const motionSmooth = (low: number, high: number, value: number) => {
     const t = Math.max(0, Math.min(1, (value - low) / (high - low)))
     return t * t * t * (t * (6 * t - 15) + 10)
@@ -1456,17 +1452,7 @@ export function createCanvasArtRenderer(
       const glyph = coverageOrder[lo]!
       return { glyph, opacity: clamp(tone / Math.max(0.001, frame.glyphs[glyph]!.coverage), 0, 1) }
     }
-    const cellCount = frame.columns * frame.rows
-    if (cellCount * 73 <= effectCellLimit) {
-      if (effectCellValid?.length !== cellCount) {
-        effectCells = new Float64Array(cellCount * 9)
-        effectCellValid = new Uint8Array(cellCount)
-      }
-      effectCellValid!.fill(0)
-    } else effectCells = effectCellValid = null
-    let cachedWidth = -1,
-      cachedHeight = -1
-    function computeCell(x: number, y: number, cw: number, ch: number, alpha: number) {
+    function cell(x: number, y: number, cw: number, ch: number, alpha: number) {
       const index = y * frame.columns + x
       let dx = 0,
         dy = 0,
@@ -1569,41 +1555,6 @@ export function createCanvasArtRenderer(
         }
       }
       return { dx, dy, intensity, opacity, glow, glyph, size, traceX, traceY }
-    }
-    function cell(x: number, y: number, cw: number, ch: number, alpha: number) {
-      if (!effectCells || !effectCellValid) return computeCell(x, y, cw, ch, alpha)
-      if (cw !== cachedWidth || ch !== cachedHeight) {
-        effectCellValid.fill(0)
-        cachedWidth = cw
-        cachedHeight = ch
-      }
-      const index = y * frame.columns + x,
-        at = index * 9
-      if (!effectCellValid[index]) {
-        const value = computeCell(x, y, cw, ch, alpha)
-        effectCells[at] = value.dx
-        effectCells[at + 1] = value.dy
-        effectCells[at + 2] = value.intensity
-        effectCells[at + 3] = value.opacity
-        effectCells[at + 4] = value.glow
-        effectCells[at + 5] = value.glyph
-        effectCells[at + 6] = value.size
-        effectCells[at + 7] = value.traceX
-        effectCells[at + 8] = value.traceY
-        effectCellValid[index] = 1
-        return value
-      }
-      return {
-        dx: effectCells[at]!,
-        dy: effectCells[at + 1]!,
-        intensity: effectCells[at + 2]!,
-        opacity: effectCells[at + 3]!,
-        glow: effectCells[at + 4]!,
-        glyph: effectCells[at + 5]!,
-        size: effectCells[at + 6]!,
-        traceX: effectCells[at + 7]!,
-        traceY: effectCells[at + 8]!,
-      }
     }
     const needsGlow =
       Boolean(motionField) ||
@@ -2079,7 +2030,6 @@ export function createCanvasArtRenderer(
       return { width: w, height: h, renderMs: performance.now() - start }
     },
     destroy() {
-      effectCells = effectCellValid = null
       motionField = null
       motionColumns = motionRows = 0
       motionKey = ''
@@ -2144,8 +2094,6 @@ export function createCanvasArtRenderer(
         motionBytes: motionField?.byteLength ?? 0,
         choreographyBytes: choreography?.byteLength ?? 0,
         choreographyLimit,
-        effectCellBytes: (effectCells?.byteLength ?? 0) + (effectCellValid?.byteLength ?? 0),
-        effectCellLimit,
         entries: tinted.size,
         backingBytes,
         maxBackingBytes,

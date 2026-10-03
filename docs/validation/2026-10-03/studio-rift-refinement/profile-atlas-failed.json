@@ -1,0 +1,179 @@
+{
+  "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.12 Safari/537.36",
+  "samples": 22,
+  "diagnosticTimingsIncludeInstrumentation": true,
+  "results": [
+    {
+      "source": "portrait-reference.png",
+      "quality": "classic",
+      "geometry": [
+        112,
+        115
+      ],
+      "size": [
+        576,
+        720
+      ],
+      "completedP50": 31.200000047683716,
+      "completedP95": 128.5999999642372,
+      "profile": {
+        "tileMs": 46.00000065565109,
+        "tileCalls": 94329,
+        "effectsMs": 56.90000009536743,
+        "effectsCalls": 22,
+        "renderGlowMs": 645.7000000476837,
+        "renderGlowCalls": 22
+      },
+      "cache": {
+        "motionCells": 0,
+        "motionBytes": 0,
+        "choreographyBytes": 0,
+        "choreographyLimit": 4194304,
+        "entries": 1604,
+        "atlasPages": 2,
+        "backingBytes": 8388608,
+        "maxBackingBytes": 16777216,
+        "scratchBytes": 2576,
+        "supersampleBytes": 0,
+        "glowBytes": 1658880,
+        "interactionCells": 13056,
+        "interactionActive": true,
+        "interactionBytes": 1671168,
+        "softwareMaskBytes": 0,
+        "softwareMaskEntries": 0,
+        "softwareWorkingBytes": 0,
+        "hits": 118132,
+        "misses": 1604
+      }
+    },
+    {
+      "source": "portrait-reference.png",
+      "quality": "software",
+      "geometry": [
+        112,
+        115
+      ],
+      "size": [
+        576,
+        720
+      ],
+      "completedP50": 23.30000001192093,
+      "completedP95": 26,
+      "profile": {
+        "tileMs": 6.900000214576721,
+        "tileCalls": 28526,
+        "effectsMs": 58.5,
+        "effectsCalls": 22,
+        "renderGlowMs": 127.3999999165535,
+        "renderGlowCalls": 22
+      },
+      "cache": {
+        "motionCells": 0,
+        "motionBytes": 0,
+        "choreographyBytes": 0,
+        "choreographyLimit": 4194304,
+        "entries": 14,
+        "atlasPages": 1,
+        "backingBytes": 4194304,
+        "maxBackingBytes": 16777216,
+        "scratchBytes": 2576,
+        "supersampleBytes": 0,
+        "glowBytes": 1658880,
+        "interactionCells": 13056,
+        "interactionActive": true,
+        "interactionBytes": 1671168,
+        "softwareMaskBytes": 1901644,
+        "softwareMaskEntries": 10428,
+        "softwareWorkingBytes": 8294400,
+        "hits": 30022,
+        "misses": 14
+      }
+    },
+    {
+      "source": "pet.jpg",
+      "quality": "classic",
+      "geometry": [
+        112,
+        123
+      ],
+      "size": [
+        540,
+        720
+      ],
+      "completedP50": 84,
+      "completedP95": 178.30000001192093,
+      "profile": {
+        "tileMs": 142.79999881982803,
+        "tileCalls": 357532,
+        "effectsMs": 59.599999845027924,
+        "effectsCalls": 22,
+        "renderGlowMs": 1221.9999998807907,
+        "renderGlowCalls": 22
+      },
+      "cache": {
+        "motionCells": 0,
+        "motionBytes": 0,
+        "choreographyBytes": 0,
+        "choreographyLimit": 4194304,
+        "entries": 4939,
+        "atlasPages": 4,
+        "backingBytes": 16777216,
+        "maxBackingBytes": 16777216,
+        "scratchBytes": 2576,
+        "supersampleBytes": 0,
+        "glowBytes": 1555200,
+        "interactionCells": 12288,
+        "interactionActive": true,
+        "interactionBytes": 1572864,
+        "softwareMaskBytes": 0,
+        "softwareMaskEntries": 0,
+        "softwareWorkingBytes": 0,
+        "hits": 466165,
+        "misses": 4939
+      }
+    },
+    {
+      "source": "pet.jpg",
+      "quality": "software",
+      "geometry": [
+        112,
+        123
+      ],
+      "size": [
+        540,
+        720
+      ],
+      "completedP50": 38.09999996423721,
+      "completedP95": 53.19999998807907,
+      "profile": {
+        "tileMs": 26.700000047683716,
+        "tileCalls": 71183,
+        "effectsMs": 56.699999928474426,
+        "effectsCalls": 22,
+        "renderGlowMs": 453.39999985694885,
+        "renderGlowCalls": 22
+      },
+      "cache": {
+        "motionCells": 0,
+        "motionBytes": 0,
+        "choreographyBytes": 0,
+        "choreographyLimit": 4194304,
+        "entries": 622,
+        "atlasPages": 1,
+        "backingBytes": 4194304,
+        "maxBackingBytes": 16777216,
+        "scratchBytes": 2576,
+        "supersampleBytes": 0,
+        "glowBytes": 1555200,
+        "interactionCells": 12288,
+        "interactionActive": true,
+        "interactionBytes": 1572864,
+        "softwareMaskBytes": 1791856,
+        "softwareMaskEntries": 10985,
+        "softwareWorkingBytes": 7776000,
+        "hits": 79900,
+        "misses": 622
+      }
+    }
+  ]
+}

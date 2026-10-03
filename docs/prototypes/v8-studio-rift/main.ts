@@ -4,15 +4,16 @@ import {
   type ArtMode,
   type ArtPointerSample,
 } from '../../../src/lib/art-engine/index'
-import { createCanvasArtRenderer as native } from '../../../scripts/fixtures/spatial-v6-renderer'
-import { createCanvasArtRenderer } from '../../../scripts/fixtures/rift-v7-renderer'
+import { createCanvasArtRenderer as previousRenderer } from '../../../scripts/fixtures/rift-v7-renderer'
+import { createRiftPresentation as previousPresentation } from '../v7-studio-rift/presentation'
+import { createCanvasArtRenderer } from '../../../src/lib/art-engine/canvas'
 import { createRiftPresentation } from './presentation'
 
 const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T
 const canvases = [$<HTMLCanvasElement>('native'), $<HTMLCanvasElement>('rift')]
 const presentation = createRiftPresentation()
 let renderers = [
-  native(canvases[0]!),
+  previousRenderer(canvases[0]!, { experimentalTrail: previousPresentation().prepare }),
   createCanvasArtRenderer(canvases[1]!, { experimentalTrail: presentation.prepare }),
 ]
 let frame: ArtFrame,
@@ -21,6 +22,10 @@ let frame: ArtFrame,
   manual = false,
   visible = true,
   disposed = false
+let dirty = true,
+  paintCount = 0,
+  focused = false
+const renderCounts = [0, 0]
 let strength = 0.65,
   clock = performance.now() / 1000,
   ambient = 0,
@@ -33,6 +38,8 @@ let previous = performance.now()
 function paint() {
   if (!ready || disposed) return
   const start = performance.now()
+  dirty = false
+  paintCount++
   const options = {
     longEdge: 720,
     effectProfile: 'expressive' as const,
@@ -47,7 +54,11 @@ function paint() {
     pointer: { ...pointer, strength: reduced.matches ? 0 : strength },
     pointerSamples: reduced.matches ? [] : samples,
   }
-  renderers.forEach((renderer) => renderer.render(frame, options))
+  renderers.forEach((renderer, index) => {
+    if (focused && index === 0) return
+    renderer.render(frame, options)
+    renderCounts[index] = renderCounts[index]! + 1
+  })
   samples = []
   timings.push(performance.now() - start)
   if (timings.length > 180) timings.shift()
@@ -63,7 +74,7 @@ const timings: number[] = []
 function reset() {
   renderers.forEach((renderer) => renderer.destroy())
   renderers = [
-    native(canvases[0]!),
+    previousRenderer(canvases[0]!, { experimentalTrail: previousPresentation().prepare }),
     createCanvasArtRenderer(canvases[1]!, { experimentalTrail: presentation.prepare }),
   ]
   pointer = { ...pointer, active: false }
@@ -112,8 +123,10 @@ $('strength').addEventListener('input', () => {
 })
 $('reset').addEventListener('click', reset)
 $('focus').addEventListener('click', () => {
-  const focused = document.querySelector('.boards')!.classList.toggle('focused')
+  focused = document.querySelector('.boards')!.classList.toggle('focused')
   $('focus').textContent = focused ? '并排对照' : '只看新效果'
+  // Re-enter comparison from the same neutral field after the hidden side slept.
+  reset()
 })
 $('full').addEventListener('click', () => {
   const host = document.querySelector<HTMLElement>('.boards')!
@@ -178,7 +191,13 @@ function loop(now: number) {
   if (!manual && !document.hidden && visible) {
     clock = now / 1000
     if (!paused && !reduced.matches) ambient += delta
-    paint()
+    if (
+      dirty ||
+      samples.length ||
+      renderers.some((renderer) => renderer.interactionActive) ||
+      (wave && !paused && !reduced.matches)
+    )
+      paint()
   }
   requestAnimationFrame(loop)
 }
@@ -198,6 +217,8 @@ Object.assign(window, {
         mode: frame.settings.mode,
         stats: presentation.stats,
         timings: [...timings],
+        paintCount,
+        renderCounts: [...renderCounts],
       }
     },
     get fields() {

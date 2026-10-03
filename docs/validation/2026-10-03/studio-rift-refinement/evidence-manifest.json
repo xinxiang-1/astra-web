@@ -1,0 +1,50 @@
+{
+  "textProtocol": "Git LF source/Markdown; original Node JSON and PNG bytes",
+  "sources": {
+    "src/lib/art-engine/canvas.ts": "f7d528abf504f735ba5b1906ac7a41bcc74776f18d0ab17624d8670e8eebf1e2",
+    "scripts/fixtures/rift-v7-renderer.ts": "e7693d10e20af6cd7bb0787a803fea8ff6fdb3cc49076a1659779aa9575d1af5",
+    "scripts/studio-rift-contract.mjs": "d61f54b2b15a53101e89e8ac5a4b9c203d7289726670dacb4900dbe46dd18a70",
+    "scripts/studio-rift-refinement-contract.mjs": "d82e3d293aeb4d5682c77522c68e67eb5685bbca4bbba6e889217faaa7d5bbb6",
+    "scripts/studio-rift-refinement-walkthrough.mjs": "3fcd4dd848b32a6e7e442a413e9eb8c2b8786f4b76ff9707f9fff1c20c46680f",
+    "docs/prototypes/v7-studio-rift/main.ts": "a9cd8574ed464de829c99115168607a726bda8e7d5839275692392efd48b5c6c",
+    "docs/prototypes/v8-studio-rift/main.ts": "6f9095e67c758d38d4f9d4e366a689359cc648adb0692f6d364c817b77ff1cfe",
+    "docs/prototypes/v8-studio-rift/presentation.ts": "05b72621fcc424d9015c165ef349f309887d91cd321e15560d8e23daaffb4180",
+    "docs/prototypes/v8-studio-rift/index.html": "790aec57b67a0c980c3df693bf621acb6388058cb97d9d3e7be8c139eeb779c2",
+    "docs/plans/studio-rift-refinement-2026-10-03.md": "3de864da31e772519f2cf9ab2a7d8624791e189da77b81aa9bd3f0f6f65e24d6",
+    "docs/plans/studio-effects-standard.md": "8610bdb22689b48aa12e54d23c96145d99d75f038cde004b1c41e82b8786703e",
+    "docs/plans/product-master-plan.md": "93d0847842970e39cd79f84d8a515f79848d77fab4fb987f1413d2d8010dc3a6",
+    "README.md": "668d83c01e44f7a1259d69b53b9249f270652d049b4baa605e2547e0d47a0939",
+    "src/lib/art-engine/core.ts": "ce091baf6d11340ccdda8c21fabe8a7935134964aaf7d4c094fe4432fce414e4",
+    "src/lib/art-engine/types.ts": "1ae58e3305d0e1d8b7e5e06fd6ded2a6c70457664d8b162501223284be2b4819",
+    "src/lib/art-engine/embed.ts": "c99c491e7b06dfa4c92f80d8cb50696abf08df93aa490de27354cc6b671efa7e",
+    "src/lib/art-engine/index.ts": "1d5ced6806e6abba6ab800e691416816ad9a803b50e868e6179d53760f1db5f3",
+    "src/views/ArtHomeView.vue": "db2b7e0ffa0d590be0e3e9d99caa8ecaba4716721b5d03b2d6269e46ad4458dd",
+    "src/components/CharacterArtwork.vue": "99da7635979b98f70aa622887bcf775047114529b4130de201cebf40d0ab2858",
+    "src/lib/ascii/studio-preview.ts": "87ef73fd4261872b1a6bc3d66fd2a05498bc73fa047294b4934174ede9af1a07",
+    "docs/prototypes/v7-studio-rift/presentation.ts": "030df5798d2f35a0840158bada1970bf097c76ce13f7fa963c833f8c01f111c0",
+    "docs/licenses/asciify-engine-interaction-MIT.txt": "60c568870b997b7082eadfaed333334b28e65921906a1f0b4f2566934cc42783"
+  },
+  "inputs": {
+    "public/artwork/portrait-reference.png": "dcedb28b650aa9b644847026c41bf21159d1ba704e440e12d6ec2e741f1266e1",
+    "public/artwork/pet.jpg": "177e6791c1ec8b62640fb1877bd8d3813561542d4716669cf65bee6eb81ab75f",
+    "public/artwork/landscape.jpg": "6b8865b691747d831a00f33017c97cbc5beed21575601a3442918de61361ef31"
+  },
+  "artifacts": {
+    "docs/validation/2026-10-03/studio-rift-refinement/README.md": "fbc5f16f3c9bec2a3f5e6037f730f01a8a5dd36086ce699d599f559ba17ea437",
+    "docs/validation/2026-10-03/studio-rift-refinement/engineering.json": "2dfced0cd8f580429764886fce08de45a3c82d78c5b7d248763a3997e7e26b23",
+    "docs/validation/2026-10-03/studio-rift-refinement/contract.json": "ea0f7aa72f535e043344dc1722a06201b1d93f92318e2b3093fc31d0397d46f9",
+    "docs/validation/2026-10-03/studio-rift-refinement/matrix.json": "7579a9cdfa2d864fecd641210035d3dbbf31e2aeb7a49b3328d4721209ec6b6a",
+    "docs/validation/2026-10-03/studio-rift-refinement/walkthrough.json": "398bee14e01b005bfa68af99b5724f65cec5621078ac766cee4784c251f56b18",
+    "docs/validation/2026-10-03/studio-rift-refinement/exports.json": "d043a76976a8613f9f8291b1ecd3e78ed9147c815763110d56b119bbc143c75f",
+    "docs/validation/2026-10-03/studio-rift-refinement/contract-r1.json": "ff2ce57b4e0345bea762227cf844c26807bea6ad98722bba5adf23ed3e77e98c",
+    "docs/validation/2026-10-03/studio-rift-refinement/profile-before.json": "453576e972364003d984ae6d5d3fbf263c84866efa46f33bbd8df9396a386e9e",
+    "docs/validation/2026-10-03/studio-rift-refinement/profile-atlas-failed.json": "cd39e7f81bef1f9ffadd231845ea28f77e835c75502b7bccc97e05937233fd84",
+    "docs/validation/2026-10-03/studio-rift-refinement/during.png": "80ffcd35ba53d7900b76c23d51e421f3783e86da693e144bb0303e3fef506ecf",
+    "docs/validation/2026-10-03/studio-rift-refinement/recovered.png": "cd44a00f6bc0e332a20c1d4d5a4acc30e94a932139e25a957e9fb54cfb633511",
+    "docs/validation/2026-10-03/studio-rift-refinement/review.png": "d6cf41527205b9eb96b476038936695bbf72684ceb9206e9f45e1bfd2c30ebeb"
+  },
+  "localLinks": {
+    "checked": 105,
+    "broken": 0
+  }
+}

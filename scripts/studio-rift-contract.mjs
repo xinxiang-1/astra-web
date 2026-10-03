@@ -7,6 +7,8 @@ import ts from 'typescript'
 import path from 'node:path'
 
 const base = process.env.ASTRA_PREVIEW_URL || 'http://127.0.0.1:5180'
+const prototypePath = process.env.ASTRA_RIFT_PROTOTYPE || 'v7-studio-rift'
+assert(['v7-studio-rift', 'v8-studio-rift'].includes(prototypePath))
 const out = path.resolve(process.env.ASTRA_RIFT_OUTPUT || `test-results/studio-rift-${Date.now()}`)
 await mkdir(path.dirname(out), { recursive: true })
 await mkdir(out)
@@ -19,9 +21,9 @@ const hashes = {},
 for (const name of [
   ...protectedFiles,
   'src/lib/art-engine/canvas.ts',
-  'docs/prototypes/v7-studio-rift/presentation.ts',
-  'docs/prototypes/v7-studio-rift/main.ts',
-  'docs/prototypes/v7-studio-rift/index.html',
+  `docs/prototypes/${prototypePath}/presentation.ts`,
+  `docs/prototypes/${prototypePath}/main.ts`,
+  `docs/prototypes/${prototypePath}/index.html`,
 ]) {
   const raw = await readFile(name)
   hashes[name] = createHash('sha256').update(raw).digest('hex')
@@ -86,19 +88,20 @@ const page = await browser.newPage({
 page.on('pageerror', (error) => report.errors.push(error.message))
 page.setDefaultTimeout(60000)
 try {
-  await page.goto(`${base}/docs/prototypes/v7-studio-rift/index.html`)
+  await page.goto(`${base}/docs/prototypes/${prototypePath}/index.html`)
   await page.waitForFunction(() => window.astraRiftPrototype?.ready)
   await page.evaluate(() => window.astraRiftPrototype.setManual(true))
   Object.assign(
     report,
     await page.evaluate(
-      async ({ reference }) => {
+      async ({ reference, prototypePath }) => {
         const { prepareArtFrame } = await import('/src/lib/art-engine/index.ts')
         const { createCanvasArtRenderer: renderer } = await import('/src/lib/art-engine/canvas.ts')
         const { createCanvasArtRenderer: old } =
           await import('/scripts/fixtures/spatial-v6-renderer.ts')
-        const { createRiftPresentation } =
-          await import('/docs/prototypes/v7-studio-rift/presentation.ts')
+        const { createRiftPresentation } = await import(
+          `/docs/prototypes/${prototypePath}/presentation.ts`
+        )
         const image = new Image()
         image.src = '/artwork/portrait-reference.png'
         await image.decode()
@@ -296,7 +299,7 @@ try {
           speeds,
         }
       },
-      { reference },
+      { reference, prototypePath },
     ),
   )
   assert.equal(report.errors.length, 0)
