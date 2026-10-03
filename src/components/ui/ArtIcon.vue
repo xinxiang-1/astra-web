@@ -13,6 +13,8 @@ const paths: Record<string, string> = {
   menu: 'M4 6h16M4 12h16M4 18h16',
   folder: 'M3 6h7l2 3h9v11H3Z',
   check: 'm4 12 5 5L20 6',
+  sun: 'M12 3V1m0 22v-2M3 12H1m22 0h-2M5.6 5.6 4.2 4.2m15.6 15.6-1.4-1.4M5.6 18.4l-1.4 1.4M19.8 4.2l-1.4 1.4M17 12a5 5 0 1 1-10 0 5 5 0 0 1 10 0',
+  moon: 'M20.8 13.3A9 9 0 0 1 10.7 3.2a9 9 0 1 0 10.1 10.1Z',
 }
 </script>
 <template>

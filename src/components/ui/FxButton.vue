@@ -30,13 +30,13 @@ function onMove(event: MouseEvent) {
 
 <template>
   <RouterLink
-    v-if="isLink && to"
+    v-if="isLink && to && !disabled"
     class="fx-btn"
     :class="variant"
     :to="to"
     @mousemove="onMove"
   >
-    <span class="shine" />
+    <span class="shine" aria-hidden="true" />
     <span class="label"><slot /></span>
   </RouterLink>
   <button
@@ -47,7 +47,7 @@ function onMove(event: MouseEvent) {
     :disabled="disabled"
     @mousemove="onMove"
   >
-    <span class="shine" />
+    <span class="shine" aria-hidden="true" />
     <span class="label"><slot /></span>
   </button>
 </template>
@@ -61,7 +61,7 @@ function onMove(event: MouseEvent) {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 2.65rem;
+  min-height: 44px;
   padding: 0 1.15rem;
   overflow: hidden;
   border: 1px solid var(--border);
@@ -70,7 +70,7 @@ function onMove(event: MouseEvent) {
   color: var(--text);
   text-decoration: none;
   cursor: pointer;
-  font: inherit;
+  font: 500 13px var(--font-body);
   transition:
     transform 0.18s ease,
     background 0.18s ease,
@@ -90,20 +90,20 @@ function onMove(event: MouseEvent) {
 
 .fx-btn:disabled {
   opacity: 0.65;
-  cursor: wait;
+  cursor: not-allowed;
   transform: none;
 }
 
 .fx-btn.primary {
   border-color: transparent;
-  background: linear-gradient(120deg, var(--accent), var(--accent-2));
-  color: var(--accent-text);
-  font-weight: 700;
-  box-shadow: 0 10px 30px color-mix(in srgb, var(--accent) 28%, transparent);
+  background: var(--action-bg);
+  color: var(--action-text);
+  font-weight: 600;
+  box-shadow: 0 4px 20px #58e8ed10;
 }
 
 .fx-btn.primary:hover {
-  box-shadow: 0 14px 34px color-mix(in srgb, var(--accent) 36%, transparent);
+  box-shadow: 0 8px 28px #58e8ed28;
 }
 
 .fx-btn.ghost {
@@ -131,5 +131,15 @@ function onMove(event: MouseEvent) {
 .label {
   position: relative;
   z-index: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fx-btn:hover,
+  .fx-btn:active {
+    transform: none;
+  }
+  .shine {
+    display: none;
+  }
 }
 </style>

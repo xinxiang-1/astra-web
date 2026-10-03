@@ -66,9 +66,7 @@ function goPreview() {
     <header class="head">
       <p class="eyebrow">本地预览</p>
       <h1>上传文件</h1>
-      <p class="lead">
-        文件留在浏览器内，不会上传到服务器。支持 Office、PDF、图片与常见压缩包。
-      </p>
+      <p class="lead">文件留在浏览器内，不会上传到服务器。支持 Office、PDF、图片与常见压缩包。</p>
     </header>
 
     <section
@@ -79,54 +77,38 @@ function goPreview() {
       @dragleave.prevent="dragging = false"
       @drop.prevent="onDrop"
     >
-      <input
-        ref="fileInput"
-        class="sr-only"
-        type="file"
-        :accept="ACCEPT"
-        @change="onInputChange"
-      />
+      <input ref="fileInput" class="sr-only" type="file" :accept="ACCEPT" @change="onInputChange" />
 
       <template v-if="!selected">
         <p class="drop-title">拖拽文件到这里</p>
         <p class="drop-hint">或点击下方按钮从本地选择</p>
-        <FxButton variant="primary" type="button" @click="openPicker">
-          选择文件
-        </FxButton>
+        <FxButton variant="primary" type="button" @click="openPicker"> 选择文件 </FxButton>
       </template>
 
       <template v-else>
         <p class="file-name">{{ selected.name }}</p>
         <p class="file-meta">{{ selectedMeta }}</p>
         <div class="actions">
-          <FxButton variant="primary" type="button" @click="goPreview">
-            打开预览
-          </FxButton>
-          <FxButton variant="ghost" type="button" @click="openPicker">
-            更换文件
-          </FxButton>
-          <FxButton variant="soft" type="button" @click="clearSelected">
-            清除
-          </FxButton>
+          <FxButton variant="primary" type="button" @click="goPreview"> 打开预览 </FxButton>
+          <FxButton variant="ghost" type="button" @click="openPicker"> 更换文件 </FxButton>
+          <FxButton variant="soft" type="button" @click="clearSelected"> 清除 </FxButton>
         </div>
       </template>
     </section>
 
     <p v-if="error" class="error" role="alert">{{ error }}</p>
 
-    <p class="note">
-      预览使用 FlyFish File Viewer（Office preset），按路由懒加载，离开预览页会释放渲染实例。
-    </p>
+    <p class="note">选好文件后打开预览，可以更换文件或清除当前文件。</p>
   </div>
 </template>
 
 <style scoped>
 .upload-page {
-  --display: 'Syne', 'Segoe UI', sans-serif;
-  --body: 'DM Sans', 'Segoe UI', sans-serif;
+  --display: var(--font-display);
+  --body: var(--font-body);
   max-width: 720px;
   margin: 0 auto;
-  padding: 5.5rem 1.25rem 3rem;
+  padding: 3.5rem 1.25rem 4rem;
   font-family: var(--body);
 }
 
@@ -146,7 +128,7 @@ h1 {
   margin: 0 0 0.55rem;
   font-family: var(--display);
   font-size: clamp(1.8rem, 4vw, 2.4rem);
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: -0.03em;
 }
 
@@ -161,13 +143,13 @@ h1 {
   display: grid;
   gap: 0.75rem;
   justify-items: start;
+  align-items: start;
   min-height: 240px;
   padding: 1.75rem;
   border: 1px dashed var(--border-strong);
   border-radius: var(--radius-lg);
   background:
-    radial-gradient(120% 80% at 10% 0%, var(--glow-a), transparent 55%),
-    var(--bg-elevated);
+    radial-gradient(120% 80% at 10% 0%, var(--glow-a), transparent 55%), var(--bg-elevated);
   box-shadow: var(--shadow);
   transition:
     border-color 0.18s ease,

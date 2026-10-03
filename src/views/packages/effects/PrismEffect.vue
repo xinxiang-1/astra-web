@@ -21,6 +21,10 @@ const props = withDefaults(
 
 const canvasRef = ref<HTMLCanvasElement | null>(null)
 const error = ref('')
+const emit = defineEmits<{ error: [message: string] }>()
+watch(error, (message) => {
+  if (message) emit('error', message)
+})
 const ready = ref(false)
 
 let renderer: PrismRenderer | undefined
@@ -89,10 +93,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <section
-    class="stage"
-    :style="{ background: normalizeHex(wallColor) }"
-  >
+  <section class="stage" :style="{ background: normalizeHex(wallColor) }">
     <canvas ref="canvasRef" class="canvas" :class="{ ready }" />
     <aside v-if="error" class="error">{{ error }}</aside>
   </section>
@@ -119,7 +120,7 @@ onBeforeUnmount(() => {
 }
 .error {
   position: absolute;
-  top: 4.5rem;
+  top: calc(var(--effect-header-height, 0px) + 16px);
   left: 1.25rem;
   max-width: 28rem;
   padding: 0.75rem 1rem;

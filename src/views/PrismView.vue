@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { reactive } from 'vue'
+import { reactive, ref } from 'vue'
 
 import { PrismEffect } from '@/views/packages/effects'
+const failed = ref(false)
 
 const config = reactive({
   mode: 'dark' as 'dark' | 'light',
@@ -24,8 +25,9 @@ const presets = [
       :mode="config.mode"
       :quality="config.quality"
       :wall-color="config.wallColor"
+      @error="failed = true"
     />
-    <aside class="panel">
+    <aside v-if="!failed" class="panel">
       <h2>Prism 配置</h2>
       <label>
         主题
@@ -63,24 +65,28 @@ const presets = [
 
 <style scoped>
 .page {
+  --effect-header-height: var(--site-header-height);
   position: relative;
   height: 100%;
   min-height: 0;
 }
 .panel {
   position: absolute;
-  top: 4.5rem;
+  top: calc(var(--site-header-height) + 16px);
   right: 1rem;
   z-index: 5;
   display: grid;
   gap: 0.7rem;
   width: min(220px, calc(100vw - 2rem));
+  max-height: calc(100dvh - var(--site-header-height) - 32px);
+  overflow-y: auto;
+  color-scheme: dark;
   padding: 0.9rem 1rem;
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 14px;
-  background: rgba(8, 12, 22, 0.72);
+  background: #111615eb;
   backdrop-filter: blur(12px);
-  color: #eef2ff;
+  color: #f4f0e8;
   font-size: 0.82rem;
 }
 h2 {
@@ -88,18 +94,18 @@ h2 {
   font-size: 0.78rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(238, 242, 255, 0.55);
+  color: #a0afa1;
   font-weight: 600;
 }
 label {
   display: grid;
   gap: 0.35rem;
-  color: rgba(238, 242, 255, 0.78);
+  color: #c4cec1;
 }
 select,
 input[type='color'] {
   width: 100%;
-  min-height: 2rem;
+  min-height: 44px;
   border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.06);
@@ -111,7 +117,7 @@ input[type='color'] {
 }
 code {
   font-size: 0.75rem;
-  color: rgba(238, 242, 255, 0.55);
+  color: #a0afa1;
 }
 .presets {
   display: flex;
@@ -119,6 +125,7 @@ code {
   gap: 0.4rem;
 }
 .presets button {
+  min-height: 44px;
   padding: 0.3rem 0.55rem;
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 999px;

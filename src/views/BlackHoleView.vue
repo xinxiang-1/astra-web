@@ -3,5 +3,5 @@ import { BlackHoleEffect } from '@/views/packages/effects'
 </script>
 
 <template>
-  <BlackHoleEffect />
+  <BlackHoleEffect hint="移动指针，让星盘随你旋转" />
 </template>

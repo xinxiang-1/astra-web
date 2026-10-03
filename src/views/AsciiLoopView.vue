@@ -424,7 +424,7 @@ onBeforeUnmount(() => {
 
 h1 {
   margin: 0;
-  font-family: Syne, var(--font);
+  font-family: var(--font-display);
   font-size: 1.35rem;
   font-weight: 700;
 }

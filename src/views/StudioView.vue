@@ -1,258 +1,188 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { RouterLink } from 'vue-router'
-
 import FxButton from '@/components/ui/FxButton.vue'
+import ArtIcon from '@/components/ui/ArtIcon.vue'
+import CatalogRows from '@/components/ui/CatalogRows.vue'
 import { PrismEffect } from '@/views/packages/effects'
 import { studioCatalog } from '@/content/catalog'
 import { useThemeStore } from '@/stores/theme'
-
+import { useScrollMotion } from '@/lib/scroll-motion'
+const root = ref<HTMLElement>()
+useScrollMotion(root)
 const theme = useThemeStore()
 const prismMode = computed(() => (theme.isDark ? 'dark' : 'light'))
-const wallColor = computed(() => (theme.isDark ? '#05070e' : '#dfe6f4'))
+const wallColor = computed(() => (theme.isDark ? '#111615' : '#e4e4dd'))
 </script>
-
 <template>
-  <div class="studio">
+  <div ref="root" class="studio">
     <section class="hero">
       <div class="hero-fx" aria-hidden="true">
-        <PrismEffect
-          :mode="prismMode"
-          :wall-color="wallColor"
-          quality="auto"
-        />
+        <PrismEffect :mode="prismMode" :wall-color="wallColor" quality="auto" />
       </div>
-      <div class="hero-veil" />
-      <div class="hero-copy">
-        <p class="eyebrow">工作室</p>
-        <h1>实时视觉，可铺进网页</h1>
-        <p class="lead">
-          WebGPU / WebGL 特效做成可复用组件。适合品牌首屏与定制落地页——先看
-          Prism。
-        </p>
-        <FxButton variant="primary" to="/prism">打开 Prism</FxButton>
+      <div class="hero-veil" aria-hidden="true" />
+      <div class="hero-copy site-wrap">
+        <p class="art-eyebrow">THE VISUAL LAB / 01</p>
+        <h1>让网页，<br />有自己的光。</h1>
+        <p class="lead">从折射、烟雾到流体，<br />探索可以触摸的光与空间。</p>
+        <FxButton variant="primary" to="/prism">打开 Prism <ArtIcon :size="17" /></FxButton>
+        <span class="hero-coordinate art-eyebrow" aria-hidden="true"
+          >LIGHT. SPACE. INTERACTION.</span
+        >
       </div>
     </section>
-
-    <section class="catalog">
-      <h2>全部特效</h2>
-      <p class="section-lead">展示与接单样板，不是订阅产品。</p>
-      <ul class="list">
-        <li v-for="item in studioCatalog" :key="item.to">
-          <RouterLink class="row" :to="item.to">
-            <span class="name">
-              {{ item.name }}
-              <span v-if="item.tag" class="tag">{{ item.tag }}</span>
-            </span>
-            <span class="line">{{ item.line }}</span>
-            <span class="go" aria-hidden="true">→</span>
-          </RouterLink>
-        </li>
-      </ul>
+    <section class="catalog site-wrap" data-reveal>
+      <div class="catalog-heading">
+        <div>
+          <p class="art-eyebrow">EXPLORE THE COLLECTION / 02</p>
+          <h2>视觉实验室</h2>
+        </div>
+        <p>在浏览器中体验实时视觉，<br />寻找适合自己网站的表达。</p>
+      </div>
+      <CatalogRows :items="studioCatalog" />
+      <div class="studio-note">
+        <span>从视觉实验，到你的创作。</span
+        ><RouterLink class="text-link" to="/help">查看创作帮助 <ArtIcon :size="17" /></RouterLink>
+      </div>
     </section>
   </div>
 </template>
-
 <style scoped>
 .studio {
-  --display: var(--font-display);
-  --body: var(--font-body);
-  font-family: var(--body);
   background: var(--bg);
   color: var(--text);
 }
-
+.site-wrap {
+  width: min(1328px, calc(100% - 112px));
+  margin-inline: auto;
+}
 .hero {
   position: relative;
-  min-height: 72vh;
-  min-height: 72dvh;
+  min-height: 650px;
   display: grid;
-  align-items: end;
+  align-items: center;
   overflow: hidden;
-  color: #eef2ff;
+  background: #111615;
+  color: #f4f0e8;
 }
-
 .hero-fx {
   position: absolute;
   inset: 0;
 }
-
 .hero-veil {
   position: absolute;
   inset: 0;
   z-index: 1;
   pointer-events: none;
   background:
-    linear-gradient(
-      to bottom,
-      rgba(4, 6, 12, 0.2) 0%,
-      rgba(4, 6, 12, 0.35) 50%,
-      rgba(4, 6, 12, 0.82) 100%
-    );
+    linear-gradient(90deg, #111615e8 0%, #111615a6 40%, #11161516 80%),
+    linear-gradient(0deg, #11161599, transparent 40%);
 }
-
 .hero-copy {
   position: relative;
   z-index: 2;
-  width: min(640px, calc(100% - 2.5rem));
-  margin: 0 auto;
-  padding: 5rem 0.25rem 2.5rem;
-  animation: rise 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
+  padding-block: 84px;
 }
-
-.eyebrow {
-  margin: 0 0 0.45rem;
-  color: rgba(126, 220, 200, 0.9);
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+.hero-copy > .art-eyebrow {
+  color: #b6cec2;
+  margin: 0 0 28px;
 }
-
 h1 {
-  margin: 0 0 0.55rem;
-  max-width: 14ch;
-  font-family: var(--display);
-  font-size: clamp(1.65rem, 4.2vw, 2.4rem);
-  font-weight: 700;
-  letter-spacing: -0.035em;
-  line-height: 1.1;
+  margin: 0 0 24px;
+  font: 500 clamp(42px, 4.6vw, 68px)/1.22 var(--font-display);
+  letter-spacing: -1px;
 }
-
 .lead {
-  margin: 0 0 1.15rem;
-  max-width: 30rem;
-  color: rgba(238, 242, 255, 0.64);
-  font-size: 0.92rem;
-  line-height: 1.55;
+  margin: 0 0 32px;
+  font-size: 14px;
+  line-height: 1.9;
+  color: #c4cfc4;
 }
-
-.hero-copy :deep(.fx-btn.primary) {
-  color: #061018;
-  border-color: transparent;
-  background: linear-gradient(120deg, #5b7cff, #2fbfa8);
-}
-
-.catalog {
-  width: min(820px, calc(100% - 2.5rem));
-  margin: 0 auto;
-  padding: 3.25rem 0 4.5rem;
-}
-
-h2 {
-  margin: 0 0 0.45rem;
-  font-family: var(--display);
-  font-size: clamp(1.35rem, 3vw, 1.75rem);
-  letter-spacing: -0.03em;
-}
-
-.section-lead {
-  margin: 0 0 1.35rem;
-  color: var(--text-muted);
-  font-size: 0.92rem;
-  line-height: 1.55;
-}
-
-.list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  border-top: 1px solid var(--border);
-}
-
-.row {
-  display: grid;
-  grid-template-columns: minmax(6.5rem, 0.26fr) 1fr auto;
-  gap: 0.85rem;
-  align-items: baseline;
-  padding: 1rem 0.15rem;
-  border-bottom: 1px solid var(--border);
-  text-decoration: none;
-  color: inherit;
-  transition:
-    background 0.2s ease,
-    padding-left 0.2s ease;
-}
-
-.row:hover {
-  padding-left: 0.55rem;
-  background: linear-gradient(
-    90deg,
-    color-mix(in srgb, var(--accent) 10%, transparent),
-    transparent 70%
-  );
-}
-
-.name {
-  display: inline-flex;
-  flex-wrap: wrap;
+.hero-copy :deep(.label) {
+  display: flex;
   align-items: center;
-  gap: 0.4rem;
-  font-family: var(--display);
-  font-size: 1.05rem;
-  letter-spacing: -0.02em;
+  gap: 22px;
 }
-
-.tag {
-  padding: 0.12rem 0.45rem;
-  border: 1px solid color-mix(in srgb, var(--accent) 40%, var(--border));
-  border-radius: var(--radius-pill);
+.hero-coordinate {
+  display: block;
+  margin-top: 58px;
+  font-size: 9px;
+  color: #a4b5a7;
+}
+.catalog {
+  padding-block: 70px 72px;
+}
+.catalog-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 26px;
+}
+.catalog-heading .art-eyebrow {
+  margin: 0 0 12px;
   color: var(--accent);
-  font-family: var(--body);
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
 }
-
-.line {
+h2 {
+  margin: 0;
+  font: 500 30px/1.3 var(--font-display);
+}
+.catalog-heading > p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.8;
   color: var(--text-muted);
-  font-size: 0.9rem;
 }
-
-.go {
+.studio-note {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: center;
+  padding-top: 28px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 44px;
+  text-decoration: none;
+  color: var(--text);
+}
+.text-link:hover {
   color: var(--accent);
-  transition: transform 0.2s ease;
 }
-
-.row:hover .go {
-  transform: translateX(4px);
-}
-
-@keyframes rise {
-  from {
-    opacity: 0;
-    transform: translate3d(0, 18px, 0);
-  }
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
+@media (max-width: 1000px) {
+  .site-wrap {
+    width: calc(100% - 56px);
   }
 }
-
-@media (max-width: 720px) {
-  .row {
-    grid-template-columns: 1fr auto;
-    grid-template-areas:
-      'name go'
-      'line line';
+@media (max-width: 700px) {
+  .site-wrap {
+    width: calc(100% - 44px);
   }
-
-  .name {
-    grid-area: name;
+  .hero {
+    min-height: 570px;
   }
-
-  .line {
-    grid-area: line;
-  }
-
-  .go {
-    grid-area: go;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
   .hero-copy {
-    animation: none;
+    padding-block: 58px;
+  }
+  .hero-veil {
+    background:
+      linear-gradient(90deg, #111615c9, #11161544),
+      linear-gradient(0deg, #111615d9, transparent 80%);
+  }
+  .catalog {
+    padding-block: 42px;
+  }
+  .catalog-heading {
+    align-items: start;
+    flex-direction: column;
+  }
+  .catalog-heading > p br {
+    display: none;
   }
 }
 </style>

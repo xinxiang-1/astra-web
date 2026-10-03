@@ -1,0 +1,26 @@
+{
+  "studio": {
+    "ready": true,
+    "errors": []
+  },
+  "gpuUnavailable": [
+    {
+      "route": "/prism",
+      "errorY": 82,
+      "headerHeight": 66,
+      "text": "当前浏览器不支持 WebGPU，请使用较新的 Chrome / Edge。"
+    },
+    {
+      "route": "/black-hole",
+      "errorY": 82,
+      "headerHeight": 66,
+      "text": "当前浏览器不支持 WebGPU，请使用较新的 Chrome / Edge。"
+    },
+    {
+      "route": "/fluid",
+      "errorY": 82,
+      "headerHeight": 66,
+      "text": "当前浏览器不支持 WebGPU，请使用较新的 Chrome / Edge。"
+    }
+  ]
+}

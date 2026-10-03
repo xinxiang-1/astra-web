@@ -3,6 +3,7 @@ import { computed, ref, watch } from 'vue'
 import { RouterLink, useRouter } from 'vue-router'
 import { FileViewer } from '@file-viewer/vue3'
 import officePreset from '@file-viewer/preset-office'
+import textRenderer from '@file-viewer/renderer-text'
 
 import FxButton from '@/components/ui/FxButton.vue'
 import { useFilePreviewStore } from '@/stores/filePreview'
@@ -14,9 +15,14 @@ const theme = useThemeStore()
 
 const fileInput = ref<HTMLInputElement | null>(null)
 const viewerFile = ref<File | undefined>()
+// Keep every capability explicit in the per-viewer preset.
+const filePreset = {
+  id: 'astra-office-and-text',
+  renderers: [...officePreset.renderers, textRenderer],
+}
 
 const options = computed(() => ({
-  preset: officePreset,
+  preset: filePreset,
   rendererMode: 'replace' as const,
   theme: theme.isDark ? ('dark' as const) : ('light' as const),
   styleIsolation: 'shadow' as const,
@@ -70,12 +76,8 @@ function clearAndBack() {
           accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.csv,.ofd,.txt,.md,.png,.jpg,.jpeg,.webp,.gif,.zip,.rar,.7z"
           @change="onInputChange"
         />
-        <FxButton variant="ghost" type="button" @click="openPicker">
-          更换文件
-        </FxButton>
-        <FxButton variant="soft" type="button" @click="clearAndBack">
-          清除并返回
-        </FxButton>
+        <FxButton variant="ghost" type="button" @click="openPicker"> 更换文件 </FxButton>
+        <FxButton variant="soft" type="button" @click="clearAndBack"> 清除并返回 </FxButton>
       </div>
     </header>
 
@@ -89,22 +91,20 @@ function clearAndBack() {
 
     <div v-else class="empty">
       <p>还没有可预览的文件</p>
-      <FxButton variant="primary" to="/file-upload">
-        去上传
-      </FxButton>
+      <FxButton variant="primary" to="/file-upload"> 去上传 </FxButton>
     </div>
   </div>
 </template>
 
 <style scoped>
 .preview-page {
-  --display: 'Syne', 'Segoe UI', sans-serif;
-  --body: 'DM Sans', 'Segoe UI', sans-serif;
+  --display: var(--font-display);
+  --body: var(--font-body);
   display: flex;
   flex-direction: column;
-  height: calc(100dvh - 3.4rem);
-  min-height: 0;
-  padding: 4.4rem 1rem 1rem;
+  height: calc(100dvh - var(--site-header-height));
+  min-height: 480px;
+  padding: 1.75rem 1.25rem 1.25rem;
   font-family: var(--body);
 }
 
@@ -141,7 +141,7 @@ function clearAndBack() {
   white-space: nowrap;
   font-family: var(--display);
   font-size: clamp(1.15rem, 2.6vw, 1.55rem);
-  font-weight: 700;
+  font-weight: 500;
 }
 
 .titles p {

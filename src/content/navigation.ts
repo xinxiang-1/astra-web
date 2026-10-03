@@ -1,0 +1,34 @@
+/** Shared public navigation; editor keeps its workspace actions. */
+export const siteNavigation = [
+  { label: '作品', to: '/gallery', group: 'gallery' },
+  { label: '模板', to: '/templates', group: 'templates' },
+  { label: '创作工具', to: '/tools', group: 'tools' },
+  { label: '如何创作', to: '/#how-it-works', group: 'guide' },
+  { label: '实验室', to: '/studio', group: 'studio' },
+  { label: '我的项目', to: '/projects', group: 'projects' },
+] as const
+
+export const routeTitles: Record<string, string> = {
+  home: '把照片变成由文字组成的作品',
+  gallery: '作品案例',
+  templates: '原创模板',
+  'creation-help': '创作帮助',
+  projects: '我的项目',
+  tools: '创作工具',
+  studio: '视觉实验室',
+  'ascii-art': '字符画工作台',
+  'art-lab': '字符引擎实验',
+  'ascii-loop': '循环字符',
+  'ascii-live': '动态字符',
+  'signature-portrait': '签名画像',
+  'file-upload': '上传文件',
+  'file-preview': '文件预览',
+  login: '登录',
+  register: '创建账户',
+  forgot: '找回密码',
+  'wechat-login': '微信登录',
+  prism: 'Prism 棱镜',
+  'black-hole': '黑洞',
+  fluid: '流体',
+  'webgl-fluid': '彩烟',
+}

@@ -170,9 +170,9 @@ const title = computed(() => {
 const subtitle = computed(() => {
   switch (mode.value) {
     case 'register':
-      return '几步即可保存偏好与作品入口'
+      return '创建账户，继续你的创作与探索'
     case 'forgot':
-      return '验证码将发到绑定邮箱（本地 mock 看 Auth 日志）'
+      return '用绑定的邮箱找回账户密码'
     case 'wechat':
       return '使用微信扫一扫完成登录'
     default:
@@ -219,8 +219,7 @@ function hashString(input: string) {
 }
 
 function isFinder(x: number, y: number, size: number) {
-  const inCorner = (cx: number, cy: number) =>
-    x >= cx && x < cx + 7 && y >= cy && y < cy + 7
+  const inCorner = (cx: number, cy: number) => x >= cx && x < cx + 7 && y >= cy && y < cy + 7
   return inCorner(0, 0) || inCorner(size - 7, 0) || inCorner(0, size - 7)
 }
 
@@ -482,11 +481,7 @@ async function onSubmit() {
       }
       return
     }
-    const ok = await auth.resetPassword(
-      form.email.trim(),
-      form.code.trim(),
-      form.password,
-    )
+    const ok = await auth.resetPassword(form.email.trim(), form.code.trim(), form.password)
     if (ok) {
       resetSent.value = false
       form.password = ''
@@ -529,7 +524,7 @@ async function onSubmit() {
     <section class="auth fx-scroll">
       <div class="stage">
         <header class="hero">
-          <p class="wordmark">Astra</p>
+          <p class="wordmark">YOUR CREATIVE SPACE</p>
           <h1>{{ title }}</h1>
           <p class="lede">{{ subtitle }}</p>
         </header>
@@ -541,11 +536,7 @@ async function onSubmit() {
             :class="{ expired: wechatStatus === 'expired', scanned: wechatStatus === 'scanned' }"
             aria-hidden="true"
           >
-            <svg
-              class="qr"
-              viewBox="0 0 21 21"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+            <svg class="qr" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
               <rect width="21" height="21" fill="#fff" />
               <rect
                 v-for="(dark, i) in qrCells.cells"
@@ -561,9 +552,7 @@ async function onSubmit() {
             <div class="qr-badge">微</div>
             <div v-if="wechatStatus === 'expired'" class="qr-mask">
               <p>二维码已过期</p>
-              <button type="button" class="link" @click="refreshWechatQr">
-                点击刷新
-              </button>
+              <button type="button" class="link" @click="refreshWechatQr">点击刷新</button>
             </div>
             <div v-else-if="wechatStatus === 'scanned'" class="qr-mask ok-mask">
               <p>扫码成功</p>
@@ -587,9 +576,7 @@ async function onSubmit() {
             {{ auth.pending ? '登录中…' : '模拟扫码确认' }}
           </FxButton>
 
-          <button type="button" class="text-btn" @click="refreshWechatQr">
-            刷新二维码
-          </button>
+          <button type="button" class="text-btn" @click="refreshWechatQr">刷新二维码</button>
         </div>
 
         <!-- Account forms -->
@@ -709,12 +696,7 @@ async function onSubmit() {
                   title="点击刷新"
                   @click="refreshCaptcha"
                 >
-                  <img
-                    v-if="captchaImage"
-                    :src="captchaImage"
-                    alt="验证码"
-                    draggable="false"
-                  />
+                  <img v-if="captchaImage" :src="captchaImage" alt="验证码" draggable="false" />
                   <span v-else class="captcha-placeholder">
                     {{ captchaLoading ? '…' : '加载' }}
                   </span>
@@ -792,12 +774,7 @@ async function onSubmit() {
                   title="点击刷新"
                   @click="refreshCaptcha"
                 >
-                  <img
-                    v-if="captchaImage"
-                    :src="captchaImage"
-                    alt="验证码"
-                    draggable="false"
-                  />
+                  <img v-if="captchaImage" :src="captchaImage" alt="验证码" draggable="false" />
                   <span v-else class="captcha-placeholder">
                     {{ captchaLoading ? '…' : '加载' }}
                   </span>
@@ -808,7 +785,9 @@ async function onSubmit() {
 
           <template v-else>
             <label class="field">
-              <span>{{ mode === 'login' ? '账号' : mode === 'forgot' ? '邮箱 / 手机号' : '邮箱' }}</span>
+              <span>{{
+                mode === 'login' ? '账号' : mode === 'forgot' ? '邮箱 / 手机号' : '邮箱'
+              }}</span>
               <input
                 v-model="form.email"
                 :type="mode === 'register' ? 'email' : 'text'"
@@ -861,25 +840,16 @@ async function onSubmit() {
                     v-model="form.password"
                     :type="showPassword ? 'text' : 'password'"
                     name="password"
-                    :autocomplete="
-                      mode === 'login' ? 'current-password' : 'new-password'
-                    "
+                    :autocomplete="mode === 'login' ? 'current-password' : 'new-password'"
                     placeholder="至少 6 位"
                   />
-                  <button
-                    type="button"
-                    class="ghost"
-                    @click="showPassword = !showPassword"
-                  >
+                  <button type="button" class="ghost" @click="showPassword = !showPassword">
                     {{ showPassword ? '隐藏' : '显示' }}
                   </button>
                 </div>
               </label>
 
-              <label
-                v-if="mode === 'register' || (mode === 'forgot' && resetSent)"
-                class="field"
-              >
+              <label v-if="mode === 'register' || (mode === 'forgot' && resetSent)" class="field">
                 <span>确认密码</span>
                 <input
                   v-model="form.confirm"
@@ -928,12 +898,7 @@ async function onSubmit() {
                   title="点击刷新"
                   @click="refreshCaptcha"
                 >
-                  <img
-                    v-if="captchaImage"
-                    :src="captchaImage"
-                    alt="验证码"
-                    draggable="false"
-                  />
+                  <img v-if="captchaImage" :src="captchaImage" alt="验证码" draggable="false" />
                   <span v-else class="captcha-placeholder">
                     {{ captchaLoading ? '…' : '加载' }}
                   </span>
@@ -945,22 +910,13 @@ async function onSubmit() {
           <p v-if="error" class="error">{{ error }}</p>
           <p v-else-if="auth.lastMessage" class="ok">{{ auth.lastMessage }}</p>
 
-          <FxButton
-            class="submit"
-            variant="primary"
-            type="submit"
-            :disabled="auth.pending"
-          >
+          <FxButton class="submit" variant="primary" type="submit" :disabled="auth.pending">
             {{ submitLabel }}
           </FxButton>
 
           <div v-if="mode === 'login'" class="alt">
             <div class="divider"><span>其他方式</span></div>
-            <button
-              type="button"
-              class="wechat-entry"
-              @click="switchMode('wechat')"
-            >
+            <button type="button" class="wechat-entry" @click="switchMode('wechat')">
               <span class="wx-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" width="16" height="16">
                   <path
@@ -977,27 +933,19 @@ async function onSubmit() {
         <p class="foot">
           <template v-if="mode === 'login'">
             还没有账号？
-            <button type="button" class="link" @click="switchMode('register')">
-              注册
-            </button>
+            <button type="button" class="link" @click="switchMode('register')">注册</button>
           </template>
           <template v-else-if="mode === 'register'">
             已有账号？
-            <button type="button" class="link" @click="switchMode('login')">
-              登录
-            </button>
+            <button type="button" class="link" @click="switchMode('login')">登录</button>
           </template>
           <template v-else-if="mode === 'forgot'">
             想起密码了？
-            <button type="button" class="link" @click="switchMode('login')">
-              返回登录
-            </button>
+            <button type="button" class="link" @click="switchMode('login')">返回登录</button>
           </template>
           <template v-else>
             使用邮箱登录？
-            <button type="button" class="link" @click="switchMode('login')">
-              返回
-            </button>
+            <button type="button" class="link" @click="switchMode('login')">返回</button>
           </template>
         </p>
       </div>
@@ -1012,8 +960,7 @@ async function onSubmit() {
   justify-items: center;
   height: 100%;
   min-height: 0;
-  padding: max(3.5rem, env(safe-area-inset-top, 0px) + 2.5rem)
-    1.25rem
+  padding: max(2.5rem, env(safe-area-inset-top, 0px) + 1.5rem) 1.25rem
     max(1.5rem, env(safe-area-inset-bottom, 0px) + 1rem);
   overflow: auto;
   font-size: 0.9375rem;
@@ -1033,18 +980,19 @@ async function onSubmit() {
 
 .wordmark {
   margin: 0 0 0.95rem;
-  font-family: Syne, 'Segoe UI', sans-serif;
-  font-weight: 700;
-  font-size: 0.78rem;
-  letter-spacing: 0.28em;
+  font-family: Consolas, monospace;
+  font-weight: 400;
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--text);
 }
 
 .hero h1 {
+  font-family: var(--font-display);
   margin: 0 0 0.35rem;
-  font-size: 1.45rem;
-  font-weight: 600;
+  font-size: 2rem;
+  font-weight: 500;
   letter-spacing: -0.03em;
   line-height: 1.25;
 }
@@ -1061,7 +1009,7 @@ async function onSubmit() {
   gap: 0.85rem;
   padding: 1.35rem 1.25rem 1.25rem;
   border: 1px solid var(--border);
-  border-radius: 14px;
+  border-radius: var(--radius-lg);
   background: color-mix(in srgb, var(--bg-elevated) 94%, transparent);
   backdrop-filter: blur(18px) saturate(1.3);
   -webkit-backdrop-filter: blur(18px) saturate(1.3);
@@ -1310,7 +1258,9 @@ input[type='tel'] {
   overflow: hidden;
   background: #eef1f5;
   cursor: pointer;
-  transition: opacity 0.15s ease, filter 0.15s ease;
+  transition:
+    opacity 0.15s ease,
+    filter 0.15s ease;
 }
 
 .captcha-shot:hover:not(:disabled) {

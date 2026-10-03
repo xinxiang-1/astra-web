@@ -4,9 +4,12 @@ import { mkdir, readFile } from 'node:fs/promises'
 import path from 'node:path'
 
 const base = process.env.ASTRA_PREVIEW_URL || 'http://127.0.0.1:5173'
-const out = path.resolve('test-results/art-ui')
+const out = path.resolve(process.env.ASTRA_ART_UI_OUTPUT || 'test-results/art-ui')
 await mkdir(out, { recursive: true })
-const browser = await chromium.launch({ headless: true })
+const browser = await chromium.launch({
+  headless: true,
+  ...(process.env.ASTRA_BROWSER_CHANNEL ? { channel: process.env.ASTRA_BROWSER_CHANNEL } : {}),
+})
 const context = await browser.newContext({
   viewport: { width: 1440, height: 960 },
   acceptDownloads: true,

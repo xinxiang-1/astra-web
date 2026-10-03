@@ -1,77 +1,81 @@
 :root,
 [data-theme='light'] {
   color-scheme: light;
-  /* Astra: cool paper + cobalt/teal instrument — not purple-indigo template */
-  --bg: #e9eef8;
-  --bg-elevated: rgba(255, 255, 255, 0.78);
-  --bg-soft: rgba(20, 28, 48, 0.04);
-  --bg-soft-hover: rgba(20, 28, 48, 0.08);
-  --text: #121826;
-  --text-muted: rgba(18, 24, 38, 0.64);
-  --text-faint: rgba(18, 24, 38, 0.48);
-  --border: rgba(18, 28, 48, 0.1);
-  --border-strong: rgba(18, 28, 48, 0.16);
-  --accent: #3d5fe8;
-  --accent-2: #1f9d8a;
-  --accent-text: #f4fbfa;
+  /* Shared Astra palette: warm paper, charcoal green, cyan accents. */
+  --bg: #f5f3ef;
+  --bg-elevated: #fdfcf9;
+  --bg-soft: #eae8e1;
+  --bg-soft-hover: #e0e0d7;
+  --text: #151918;
+  --text-muted: #59645e;
+  --text-faint: #68736d;
+  --border: #d8ddd4;
+  --border-strong: #afbcb2;
+  --accent: #087b82;
+  --accent-2: #087b82;
+  --accent-text: #f5f3ef;
+  --action-bg: #58e8ed;
+  --action-text: #102020;
   --danger: #c62828;
   --ok: #1b7a4a;
-  --glow-a: rgba(70, 110, 255, 0.2);
-  --glow-b: rgba(40, 180, 160, 0.14);
-  --glow-c: rgba(60, 190, 160, 0.1);
-  --spotlight: rgba(70, 110, 255, 0.11);
-  --shadow: 0 24px 70px rgba(40, 60, 110, 0.14);
-  --topbar: rgba(233, 238, 248, 0.78);
-  --grad-hero-1: rgba(70, 110, 255, 0.16);
-  --grad-hero-2: rgba(40, 180, 160, 0.12);
-  --input-bg: rgba(255, 255, 255, 0.7);
-  --focus-ring: rgba(70, 110, 255, 0.18);
-  --scroll-thumb: rgba(18, 28, 48, 0.22);
-  --scroll-thumb-hover: color-mix(in srgb, var(--accent) 55%, rgba(18, 28, 48, 0.35));
+  --glow-a: #58e8ed1a;
+  --glow-b: #69b9a61a;
+  --glow-c: #8e9f7e12;
+  --spotlight: #087b8210;
+  --shadow: 0 24px 70px #172d2010;
+  --topbar: #111615ed;
+  --grad-hero-1: #58e8ed16;
+  --grad-hero-2: #69b9a614;
+  --input-bg: #fffefa;
+  --focus-ring: #087b8233;
+  --scroll-thumb: #5f746c55;
+  --scroll-thumb-hover: #087b8290;
   --scroll-track: transparent;
-  --radius-lg: 22px;
-  --radius-md: 14px;
+  --radius-lg: 12px;
+  --radius-md: 8px;
   --radius-pill: 999px;
-  --font-display: 'Syne', 'Segoe UI', sans-serif;
-  --font-body:
-    'DM Sans',
-    'Segoe UI',
-    'PingFang SC',
-    'Microsoft YaHei',
-    system-ui,
-    sans-serif;
+  --font-display: var(--art-serif);
+  --site-header-height: 76px;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --font-body: 'DM Sans', 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
   --font: var(--font-body);
 }
 
 [data-theme='dark'] {
   color-scheme: dark;
-  --bg: #070a12;
-  --bg-elevated: rgba(12, 16, 28, 0.78);
-  --bg-soft: rgba(255, 255, 255, 0.045);
-  --bg-soft-hover: rgba(255, 255, 255, 0.09);
-  --text: #eef2ff;
-  --text-muted: rgba(238, 242, 255, 0.62);
-  --text-faint: rgba(238, 242, 255, 0.48);
-  --border: rgba(255, 255, 255, 0.12);
-  --border-strong: rgba(255, 255, 255, 0.18);
-  --accent: #8eabff;
-  --accent-2: #4ecfbc;
-  --accent-text: #061018;
+  --bg: #111615;
+  --bg-elevated: #1a211c;
+  --bg-soft: #ffffff08;
+  --bg-soft-hover: #ffffff16;
+  --text: #f4f0e8;
+  --text-muted: #b9c4b8;
+  --text-faint: #a0afa1;
+  --border: #ffffff24;
+  --border-strong: #ffffff44;
+  --accent: #58e8ed;
+  --accent-2: #58e8ed;
+  --accent-text: #102020;
   --danger: #ffb4b4;
   --ok: #9dffc4;
-  --glow-a: rgba(99, 130, 255, 0.28);
-  --glow-b: rgba(60, 210, 185, 0.16);
-  --glow-c: rgba(70, 210, 180, 0.1);
-  --spotlight: rgba(140, 170, 255, 0.16);
-  --shadow: 0 24px 80px rgba(0, 0, 0, 0.38);
-  --topbar: rgba(7, 10, 18, 0.72);
-  --grad-hero-1: rgba(90, 130, 255, 0.2);
-  --grad-hero-2: rgba(50, 200, 175, 0.12);
-  --input-bg: rgba(255, 255, 255, 0.04);
-  --focus-ring: rgba(110, 140, 255, 0.18);
-  --scroll-thumb: rgba(238, 242, 255, 0.18);
-  --scroll-thumb-hover: color-mix(in srgb, var(--accent) 65%, rgba(238, 242, 255, 0.28));
+  --glow-a: #58e8ed18;
+  --glow-b: #69b9a61a;
+  --glow-c: #8e9f7e12;
+  --spotlight: #58e8ed18;
+  --shadow: 0 24px 80px #0005;
+  --topbar: #111615ed;
+  --grad-hero-1: #58e8ed18;
+  --grad-hero-2: #69b9a614;
+  --input-bg: #ffffff08;
+  --focus-ring: #58e8ed44;
+  --scroll-thumb: #b9c4b844;
+  --scroll-thumb-hover: #58e8ed77;
   --scroll-track: transparent;
+}
+
+@media (max-width: 700px) {
+  :root {
+    --site-header-height: 66px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -132,8 +136,7 @@ body::-webkit-scrollbar-thumb:hover,
 /* Idle: quieter; hover the pane to wake the thumb (overlay-ish feel) */
 @supports (scrollbar-color: auto) {
   .fx-scroll {
-    scrollbar-color: color-mix(in srgb, var(--scroll-thumb) 55%, transparent)
-      transparent;
+    scrollbar-color: color-mix(in srgb, var(--scroll-thumb) 55%, transparent) transparent;
   }
 
   .fx-scroll:hover,
@@ -141,4 +144,3 @@ body::-webkit-scrollbar-thumb:hover,
     scrollbar-color: var(--scroll-thumb) transparent;
   }
 }
-

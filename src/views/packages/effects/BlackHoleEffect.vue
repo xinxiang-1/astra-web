@@ -37,9 +37,7 @@ onMounted(async () => {
     return
   }
   try {
-    const { createRenderer } = await import(
-      '@/effects/optimized-black-hole/renderer'
-    )
+    const { createRenderer } = await import('@/effects/optimized-black-hole/renderer')
     const renderer = createRenderer({
       canvas: canvasRef.value,
       baseDiskSpeed: props.baseDiskSpeed,
@@ -107,7 +105,7 @@ onBeforeUnmount(() => {
 }
 .error {
   position: absolute;
-  top: 4.5rem;
+  top: calc(var(--site-header-height, 0px) + 16px);
   left: 1.25rem;
   max-width: 28rem;
   padding: 0.75rem 1rem;

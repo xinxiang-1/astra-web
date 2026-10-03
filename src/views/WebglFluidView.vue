@@ -93,15 +93,9 @@ const presets = [
       </label>
       <label>
         喷溅半径 {{ config.splatRadius.toFixed(2) }}
-        <input
-          v-model.number="config.splatRadius"
-          type="range"
-          min="0.1"
-          max="0.8"
-          step="0.05"
-        />
+        <input v-model.number="config.splatRadius" type="range" min="0.1" max="0.8" step="0.05" />
       </label>
-      <p class="note">改参会重建画布（库只在启动时读配置）</p>
+      <p class="note">调整配置后，当前烟雾将重新开始。</p>
     </aside>
   </div>
 </template>
@@ -114,20 +108,21 @@ const presets = [
 }
 .panel {
   position: absolute;
-  top: 4.5rem;
+  top: calc(var(--site-header-height) + 16px);
   right: 1rem;
   z-index: 5;
   display: grid;
   gap: 0.65rem;
   width: min(230px, calc(100vw - 2rem));
-  max-height: calc(100% - 5.5rem);
+  max-height: calc(100% - var(--site-header-height) - 32px);
   overflow: auto;
   padding: 0.9rem 1rem;
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 14px;
-  background: rgba(8, 12, 22, 0.72);
+  background: #111615eb;
+  color-scheme: dark;
   backdrop-filter: blur(12px);
-  color: #eef2ff;
+  color: #f4f0e8;
   font-size: 0.82rem;
 }
 h2 {
@@ -135,15 +130,16 @@ h2 {
   font-size: 0.78rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(238, 242, 255, 0.55);
+  color: #a0afa1;
   font-weight: 600;
 }
 label {
   display: grid;
   gap: 0.3rem;
-  color: rgba(238, 242, 255, 0.78);
+  color: #c4cec1;
 }
 label.check {
+  min-height: 44px;
   grid-template-columns: auto 1fr;
   align-items: center;
   gap: 0.5rem;
@@ -155,7 +151,7 @@ input[type='range'] {
 }
 select,
 input[type='color'] {
-  min-height: 2rem;
+  min-height: 44px;
   border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.06);
@@ -167,7 +163,7 @@ input[type='color'] {
 }
 code {
   font-size: 0.75rem;
-  color: rgba(238, 242, 255, 0.55);
+  color: #a0afa1;
 }
 .presets {
   display: flex;
@@ -175,6 +171,7 @@ code {
   gap: 0.4rem;
 }
 .presets button {
+  min-height: 44px;
   padding: 0.3rem 0.55rem;
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 999px;

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Astra shared control fixture</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module">
+      import { createApp, h, ref } from 'vue'
+      import { createRouter, createMemoryHistory } from 'vue-router'
+      import FxButton from '@/components/ui/FxButton.vue'
+      import '@/styles/art-system.css'
+      import '@/styles/tokens.css'
+      const disabled = ref(true)
+      const router = createRouter({
+        history: createMemoryHistory(),
+        routes: [
+          { path: '/', component: { render: () => null } },
+          { path: '/destination', component: { render: () => null } },
+        ],
+      })
+      await router.push('/')
+      const app = createApp({
+        setup: () => () =>
+          h('main', [
+            h(
+              'button',
+              {
+                onClick: () => {
+                  disabled.value = !disabled.value
+                },
+              },
+              '切换可用状态',
+            ),
+            h(
+              FxButton,
+              { to: '/destination', disabled: disabled.value, variant: 'primary' },
+              () => '继续创作',
+            ),
+            h('output', { 'aria-label': '当前路径' }, router.currentRoute.value.path),
+          ]),
+      })
+      app.use(router).mount('#app')
+    </script>
+  </body>
+</html>
