@@ -5,10 +5,10 @@ import { createHash } from 'node:crypto'
 import path from 'node:path'
 
 const base = process.env.ASTRA_PREVIEW_URL || 'http://127.0.0.1:5180'
-const directory = path.resolve('test-results/signature-result-contract')
+const directory = path.resolve(process.env.ASTRA_SIGNATURE_RESULT_OUTPUT || 'test-results/signature-result-contract')
 await mkdir(directory, { recursive: true })
 const sha = bytes => createHash('sha256').update(bytes).digest('hex')
-const browser = await chromium.launch({ headless: true })
+const browser = await chromium.launch({ headless: true, ...(process.env.ASTRA_BROWSER_CHANNEL ? { channel: process.env.ASTRA_BROWSER_CHANNEL } : {}) })
 try {
   const page = await browser.newPage({ viewport: { width: 1440, height: 960 }, deviceScaleFactor: 1, reducedMotion: 'reduce', acceptDownloads: true })
   const errors = []

@@ -1,13 +1,11 @@
-/**
- * 细线伪手写多写法：尽量细但可见，方便多层叠色而不糊成黑块。
- */
-
+/** Licensed font variations are typography, not a substitute for someone's handwriting. */
 import type { SignatureStamp } from './extract'
+import { loadSignatureFont, type SignatureFontId } from './fonts'
 
 function makeCanvas(w: number, h: number) {
   const canvas = document.createElement('canvas')
-  canvas.width = Math.max(1, Math.round(w))
-  canvas.height = Math.max(1, Math.round(h))
+  canvas.width = Math.max(1, Math.ceil(w))
+  canvas.height = Math.max(1, Math.ceil(h))
   return canvas
 }
 
@@ -21,163 +19,124 @@ function mulberry32(seed: number) {
   }
 }
 
-/** 偏细的字体栈（避免黑体/粗笔） */
-const FONT_STACKS = [
-  '"FangSong", "STFangsong", "仿宋", serif',
-  '"KaiTi", "STKaiti", "楷体", serif',
-  '"STXingkai", "华文行楷", "KaiTi", cursive',
-  '"Segoe Script", "Lucida Handwriting", cursive',
-  '"SimSun", "宋体", serif',
-  '"Microsoft YaHei Light", "Microsoft YaHei", sans-serif',
-  'cursive',
-  '"Brush Script MT", "Segoe Script", cursive',
-  '"Times New Roman", "SimSun", serif',
-  '"Palatino Linotype", "KaiTi", serif',
-]
-
 export type VariantGenOptions = {
   count?: number
   seed?: number
   maxSide?: number
+  font?: SignatureFontId
+  signal?: AbortSignal
   onProgress?: (ratio: number) => void
 }
 
-function buildStyle(i: number, rand: () => number) {
-  const font = FONT_STACKS[i % FONT_STACKS.length]!
-  // 细：200–450，绝大多数偏轻
-  const weightRoll = rand()
-  const weight =
-    weightRoll < 0.45 ? 200 : weightRoll < 0.75 ? 300 : weightRoll < 0.92 ? 400 : 450
-  const italic = rand() > 0.35
-  const fontSize = 48 + Math.floor(rand() * 28)
-  const skewX = (rand() - 0.5) * 0.28
-  const skewY = (rand() - 0.5) * 0.08
-  const scaleX = 0.78 + rand() * 0.55
-  const scaleY = 0.82 + rand() * 0.4
-  const rot = ((rand() - 0.5) * 14 * Math.PI) / 180
-  const tracking = Math.floor((rand() - 0.35) * 6)
-  // 极细描边增强可见度，不加粗填充
-  const hairline = 0.35 + rand() * 0.55
-  const fillAlpha = 0.55 + rand() * 0.4
+export type SignatureVariantStyle = {
+  fontSize: number
+  skewX: number
+  skewY: number
+  scaleX: number
+  scaleY: number
+  rotation: number
+  tracking: number
+  stroke: number
+}
+
+function buildStyle(rand: () => number): SignatureVariantStyle {
   return {
-    font,
-    weight,
-    italic,
-    fontSize,
-    skewX,
-    skewY,
-    scaleX,
-    scaleY,
-    rot,
-    tracking,
-    hairline,
-    fillAlpha,
+    fontSize: 58 + Math.floor(rand() * 18),
+    skewX: (rand() - 0.5) * 0.13,
+    skewY: (rand() - 0.5) * 0.035,
+    scaleX: 0.92 + rand() * 0.22,
+    scaleY: 0.94 + rand() * 0.12,
+    rotation: ((rand() - 0.5) * 10 * Math.PI) / 180,
+    tracking: (rand() - 0.4) * 1.3,
+    stroke: 0.2 + rand() * 0.6,
   }
 }
 
-function drawOneVariant(
+/** Allocate transformed ink bounds before drawing: long rotated names cannot be cropped. */
+export function renderSignatureVariant(
   text: string,
-  style: ReturnType<typeof buildStyle>,
-  id: string,
+  family: string,
+  style: SignatureVariantStyle,
   maxSide: number,
-): SignatureStamp {
-  const fontCss = `${style.italic ? 'italic' : 'normal'} ${style.weight} ${style.fontSize}px ${style.font}`
-  const measure = makeCanvas(8, 8)
+): HTMLCanvasElement {
+  const measure = makeCanvas(1, 1)
   const mctx = measure.getContext('2d')
   if (!mctx) throw new Error('无法创建画布')
-  mctx.font = fontCss
-  if (style.tracking) {
-    ;(mctx as CanvasRenderingContext2D & { letterSpacing?: string }).letterSpacing =
-      `${style.tracking}px`
+  const configure = (ctx: CanvasRenderingContext2D) => {
+    ctx.font = `400 ${style.fontSize}px "${family}"`
+    ctx.textAlign = 'left'
+    ctx.textBaseline = 'alphabetic'
+    ctx.letterSpacing = `${style.tracking}px`
+    ctx.lineJoin = 'round'
+    ctx.lineCap = 'round'
+    ctx.lineWidth = style.stroke
+    ctx.fillStyle = '#121018'
+    ctx.strokeStyle = '#121018'
   }
+  configure(mctx)
   const metrics = mctx.measureText(text)
-  const tw = Math.ceil(metrics.width) + 24
-  const ascent = metrics.actualBoundingBoxAscent || style.fontSize * 0.8
-  const descent = metrics.actualBoundingBoxDescent || style.fontSize * 0.28
-  const th = Math.ceil(ascent + descent + 20)
-
-  const pad = 18
-  const raw = makeCanvas(tw + pad * 2, th + pad * 2)
-  const rctx = raw.getContext('2d')
-  if (!rctx) throw new Error('无法创建画布')
-  rctx.clearRect(0, 0, raw.width, raw.height)
-  rctx.save()
-  rctx.translate(raw.width / 2, raw.height / 2)
-  rctx.rotate(style.rot)
-  rctx.transform(1, style.skewY, style.skewX, 1, 0, 0)
-  rctx.scale(style.scaleX, style.scaleY)
-  rctx.font = fontCss
-  if (style.tracking) {
-    ;(rctx as CanvasRenderingContext2D & { letterSpacing?: string }).letterSpacing =
-      `${style.tracking}px`
+  const margin = style.stroke / 2 + 2
+  const left = -metrics.actualBoundingBoxLeft - margin
+  const right = metrics.actualBoundingBoxRight + margin
+  const top = -metrics.actualBoundingBoxAscent - margin
+  const bottom = metrics.actualBoundingBoxDescent + margin
+  // R · K · S, identical to rotate → skew → scale in Canvas2D.
+  const cos = Math.cos(style.rotation),
+    sin = Math.sin(style.rotation)
+  const a = (cos - sin * style.skewY) * style.scaleX
+  const b = (sin + cos * style.skewY) * style.scaleX
+  const c = (cos * style.skewX - sin) * style.scaleY
+  const d = (sin * style.skewX + cos) * style.scaleY
+  const corners = [
+    [left, top],
+    [right, top],
+    [left, bottom],
+    [right, bottom],
+  ].map(([x, y]) => ({ x: a * x! + c * y!, y: b * x! + d * y! }))
+  const minX = Math.floor(Math.min(...corners.map((p) => p.x)))
+  const minY = Math.floor(Math.min(...corners.map((p) => p.y)))
+  const rawW = Math.ceil(Math.max(...corners.map((p) => p.x))) - minX + 8
+  const rawH = Math.ceil(Math.max(...corners.map((p) => p.y))) - minY + 8
+  if (!Number.isFinite(rawW * rawH) || rawW * rawH > 8_000_000 || rawW < 1 || rawH < 1) {
+    throw new Error('名字过长，请缩短或使用手写签名')
   }
-  rctx.textAlign = 'center'
-  rctx.textBaseline = 'middle'
-  rctx.lineJoin = 'round'
-  rctx.lineCap = 'round'
-  // 先细描边再半透明填充 → 细但可见
-  rctx.strokeStyle = `rgba(20,20,28,${0.75 + style.fillAlpha * 0.2})`
-  rctx.lineWidth = style.hairline
-  rctx.strokeText(text, 0, 0)
-  rctx.fillStyle = `rgba(18,16,24,${style.fillAlpha})`
-  rctx.fillText(text, 0, 0)
-  rctx.restore()
-
-  const { data, width, height } = rctx.getImageData(0, 0, raw.width, raw.height)
-  let minX = width
-  let minY = height
-  let maxX = -1
-  let maxY = -1
-  for (let y = 0; y < height; y++) {
-    for (let x = 0; x < width; x++) {
-      const a = data[(y * width + x) * 4 + 3] ?? 0
-      if (a < 12) continue
-      if (x < minX) minX = x
-      if (y < minY) minY = y
-      if (x > maxX) maxX = x
-      if (y > maxY) maxY = y
+  const raw = makeCanvas(rawW, rawH)
+  const ctx = raw.getContext('2d', { willReadFrequently: true })
+  if (!ctx) throw new Error('无法创建画布')
+  configure(ctx)
+  ctx.setTransform(a, b, c, d, 4 - minX, 4 - minY)
+  ctx.strokeText(text, 0, 0)
+  ctx.fillText(text, 0, 0)
+  const pixels = ctx.getImageData(0, 0, raw.width, raw.height).data
+  let x0 = raw.width,
+    y0 = raw.height,
+    x1 = -1,
+    y1 = -1
+  for (let y = 0; y < raw.height; y++) {
+    for (let x = 0; x < raw.width; x++) {
+      if (!pixels[(y * raw.width + x) * 4 + 3]) continue
+      x0 = Math.min(x0, x)
+      y0 = Math.min(y0, y)
+      x1 = Math.max(x1, x)
+      y1 = Math.max(y1, y)
     }
   }
-  if (maxX < minX) {
-    minX = 0
-    minY = 0
-    maxX = width - 1
-    maxY = height - 1
+  if (x1 < x0) throw new Error('没有可用的名字笔画，请换字体或手写名字')
+  if (x0 < 1 || y0 < 1 || x1 >= raw.width - 1 || y1 >= raw.height - 1) {
+    throw new Error('名字笔画超出边界，请换字体或手写名字')
   }
-  const bw = maxX - minX + 1
-  const bh = maxY - minY + 1
-  const cropPad = 3
-  let outW = bw + cropPad * 2
-  let outH = bh + cropPad * 2
-  let out = makeCanvas(outW, outH)
+  const width = x1 - x0 + 1,
+    height = y1 - y0 + 1
+  const scale = Math.min(1, (maxSide - 8) / Math.max(width, height))
+  const targetW = Math.max(1, Math.floor(width * scale))
+  const targetH = Math.max(1, Math.floor(height * scale))
+  const out = makeCanvas(targetW + 8, targetH + 8)
   const octx = out.getContext('2d')
   if (!octx) throw new Error('无法创建画布')
-  octx.drawImage(raw, minX, minY, bw, bh, cropPad, cropPad, bw, bh)
-
-  const scale = Math.min(1, maxSide / Math.max(outW, outH))
-  if (scale < 0.999) {
-    const sw = Math.max(1, Math.round(outW * scale))
-    const sh = Math.max(1, Math.round(outH * scale))
-    const scaled = makeCanvas(sw, sh)
-    const sctx = scaled.getContext('2d')
-    if (sctx) {
-      sctx.imageSmoothingEnabled = true
-      sctx.imageSmoothingQuality = 'high'
-      sctx.drawImage(out, 0, 0, sw, sh)
-      out = scaled
-      outW = sw
-      outH = sh
-    }
-  }
-
-  return {
-    id,
-    label: `#${id.split(':').pop() ?? ''}`,
-    canvas: out,
-    width: outW,
-    height: outH,
-    previewUrl: out.toDataURL('image/png'),
-  }
+  octx.imageSmoothingEnabled = true
+  octx.imageSmoothingQuality = 'high'
+  octx.drawImage(raw, x0, y0, width, height, 4, 4, targetW, targetH)
+  return out
 }
 
 export async function generateHandwritingVariants(
@@ -185,20 +144,41 @@ export async function generateHandwritingVariants(
   options: VariantGenOptions = {},
 ): Promise<SignatureStamp[]> {
   const raw = text.trim() || '名字'
-  const count = Math.max(8, Math.min(200, options.count ?? 100))
-  const maxSide = options.maxSide ?? 280
-  const rand = mulberry32(options.seed ?? 20260322)
+  if (Array.from(raw).length > 32) throw new Error('名字最多支持 32 个字符')
+  const requestedCount = options.count ?? 100
+  const maxSide = options.maxSide ?? 420
+  const seed = options.seed ?? 20260322
+  if (!Number.isFinite(requestedCount) || !Number.isInteger(requestedCount))
+    throw new Error('写法数量须为整数')
+  if (!Number.isFinite(maxSide) || maxSide < 64 || maxSide > 1024)
+    throw new Error('印章尺寸须在 64–1024 之间')
+  if (!Number.isInteger(seed) || seed < 0 || seed > 0xffffffff)
+    throw new Error('生成种子须为 32 位正整数或零')
+  const count = Math.max(8, Math.min(200, requestedCount))
+  const font = options.font ?? 'mashanzheng'
+  options.signal?.throwIfAborted()
+  options.onProgress?.(0)
+  const family = await loadSignatureFont(font, raw, options.signal)
+  const rand = mulberry32(seed)
   const out: SignatureStamp[] = []
-
   for (let i = 0; i < count; i++) {
-    out.push(
-      drawOneVariant(raw, buildStyle(i, rand), `var:${raw}:${i}`, maxSide),
-    )
-    if (i % 8 === 0) {
-      options.onProgress?.(i / count)
-      await new Promise((r) => setTimeout(r, 0))
+    options.signal?.throwIfAborted()
+    const canvas = renderSignatureVariant(raw, family, buildStyle(rand), maxSide)
+    out.push({
+      id: `font-v2:${font}:${seed}:${raw}:${i}`,
+      label: `字体写法 #${i + 1}`,
+      canvas,
+      width: canvas.width,
+      height: canvas.height,
+      previewUrl: canvas.toDataURL('image/png'),
+      source: { kind: 'font', version: 2, font, text: raw, seed, variant: i },
+    })
+    if (i % 8 === 7) {
+      options.onProgress?.((i + 1) / count)
+      await new Promise((resolve) => setTimeout(resolve, 0))
     }
   }
+  options.signal?.throwIfAborted()
   options.onProgress?.(1)
   return out
 }

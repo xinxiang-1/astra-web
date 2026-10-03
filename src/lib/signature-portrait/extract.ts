@@ -8,6 +8,15 @@ export type SignatureStamp = {
   height: number
   /** 缩略图 data URL，方便列表预览 */
   previewUrl: string
+  /** 自动字体写法的可复现配方；手写及旧条目不需要此字段。 */
+  source?: {
+    kind: 'font'
+    version: 2
+    font: 'mashanzheng' | 'longcang'
+    text: string
+    seed: number
+    variant: number
+  }
   /** 第三档：模板 path（trace 后写入） */
   vector?: {
     width: number

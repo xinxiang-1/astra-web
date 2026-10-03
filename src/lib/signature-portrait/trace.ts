@@ -211,17 +211,14 @@ export function buildPathSvgDocument(
   parts.push(`<defs>`)
   for (let i = 0; i < traced.length; i++) {
     const v = traced[i]!.vector
-    parts.push(`<g id="signature-paths-${i}">`)
-    for (const d of v.paths) {
-      parts.push(`<path d="${escAttr(d)}"/>`)
-    }
-    parts.push(`</g>`)
     if (options.inkStyle === 'cutout') {
-      // Avoid multiplying the ink plate's antialiased border by an identical mask border.
-      const margin = Math.max(v.width, v.height)
-      parts.push(`<mask id="signature-mask-${i}" maskUnits="userSpaceOnUse" x="${-margin}" y="${-margin}" width="${v.width + margin * 2}" height="${v.height + margin * 2}" style="mask-type:luminance"><rect x="${-margin}" y="${-margin}" width="${v.width + margin * 2}" height="${v.height + margin * 2}" fill="white"/><use href="#signature-paths-${i}" fill="black"/></mask>`)
-      parts.push(`<g id="stamp-${i}"><rect width="${v.width}" height="${v.height}" mask="url(#signature-mask-${i})"/></g>`)
+      // One compound coverage pass matches Canvas and avoids thousands of SVG mask surfaces.
+      const plate = `M0 0H${v.width}V${v.height}H0Z`
+      parts.push(`<g id="stamp-${i}"><path fill-rule="evenodd" d="${escAttr(`${plate} ${v.paths.join(' ')}`)}"/></g>`)
     } else {
+      parts.push(`<g id="signature-paths-${i}">`)
+      for (const d of v.paths) parts.push(`<path d="${escAttr(d)}"/>`)
+      parts.push(`</g>`)
       parts.push(`<g id="stamp-${i}"><use href="#signature-paths-${i}"/></g>`)
     }
   }

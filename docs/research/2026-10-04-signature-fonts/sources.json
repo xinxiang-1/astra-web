@@ -1,0 +1,50 @@
+[
+  {
+    "family": "mashanzheng",
+    "file": "MaShanZheng-Regular.ttf",
+    "commit": "406197b91ff39a93061c2c2eeaee67ddf2ae1f0d",
+    "retrievedAt": "2026-10-03T20:09:54.206Z",
+    "files": [
+      {
+        "filename": "OFL.txt",
+        "target": "mashanzheng-OFL.txt",
+        "url": "https://api.github.com/repos/google/fonts/git/blobs/9e252e1997092670936a7f1d38560973d919f6b0",
+        "gitSha": "9e252e1997092670936a7f1d38560973d919f6b0",
+        "sha256": "d7bdb1cee215b689e23c2f95672a6084c790542170648267a55114103d756a08",
+        "bytes": 4397
+      },
+      {
+        "filename": "MaShanZheng-Regular.ttf",
+        "target": "MaShanZheng-Regular.ttf",
+        "url": "https://api.github.com/repos/google/fonts/git/blobs/11bbfb9867d70612158229d037e7a5f622bd0e38",
+        "gitSha": "11bbfb9867d70612158229d037e7a5f622bd0e38",
+        "sha256": "6d2546bb189c732a8ca29af9e22457b152387d158aa459e4ac2ce1e51788b7fb",
+        "bytes": 5857936
+      }
+    ]
+  },
+  {
+    "family": "longcang",
+    "file": "LongCang-Regular.ttf",
+    "commit": "35e5529ffaf259a96693b048d9d97cdaa76b6837",
+    "retrievedAt": "2026-10-03T20:09:58.035Z",
+    "files": [
+      {
+        "filename": "OFL.txt",
+        "target": "longcang-OFL.txt",
+        "url": "https://api.github.com/repos/google/fonts/git/blobs/06a1757ca2ae5ff689aac4b410fffa98cd73dad0",
+        "gitSha": "06a1757ca2ae5ff689aac4b410fffa98cd73dad0",
+        "sha256": "603546b7219a94bb59bf8294458194a5010119486354092b66a09a3fd61aeacc",
+        "bytes": 4390
+      },
+      {
+        "filename": "LongCang-Regular.ttf",
+        "target": "LongCang-Regular.ttf",
+        "url": "https://api.github.com/repos/google/fonts/git/blobs/363bb08696fe4d3827bd36d3d2fbc028d1205161",
+        "gitSha": "363bb08696fe4d3827bd36d3d2fbc028d1205161",
+        "sha256": "e5bf2c3f24ef2327c6f136d8f73e2f9dfdf44896fdbeb35a9515f44777bb91bc",
+        "bytes": 5162508
+      }
+    ]
+  }
+]

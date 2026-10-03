@@ -1,5 +1,7 @@
 # Astra
 
+2026-10-04名字画接续：[字体与安全保存](./docs/plans/signature-font-bank-iteration-2026-10-04.md)已接入授权本地行楷/草书、完整长名字渲染和失败保留原库；修复镂空Canvas/SVG差异。夜光/自然布局/真实手写商业画质继续验收，整体目标保持进行。
+
 本地优先的创意工具站，外加可嵌入网页的实时视觉。当前统一编辑器提供六模式、可选图片品质、六种微动与九种悬停、全屏预览和免费PNG/TXT/视频/离线HTML；完整 `.astra` 作品包可携带源素材和设置，在新浏览器导入恢复。
 
 艺术交互已接入原生Studio持久场：流体拖尾/水面/丝绸/漩涡等共用六模式、品质档和离线输出；后续特效在此底座创新，遵循[Studio标准](./docs/plans/studio-effects-standard.md)，实际步骤与验证见[悬停对齐记录](./docs/plans/hover-parity-iteration-2026-10-02.md)。首页主图原Studio效果保持。

@@ -4,9 +4,9 @@ import { mkdir, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 
 const base = process.env.ASTRA_PREVIEW_URL || 'http://127.0.0.1:5180'
-const output = path.resolve('test-results/signature-quality')
+const output = path.resolve(process.env.ASTRA_SIGNATURE_QUALITY_OUTPUT || 'test-results/signature-quality')
 await mkdir(output, { recursive: true })
-const browser = await chromium.launch({ headless: true })
+const browser = await chromium.launch({ headless: true, ...(process.env.ASTRA_BROWSER_CHANNEL ? { channel: process.env.ASTRA_BROWSER_CHANNEL } : {}) })
 const page = await browser.newPage()
 try {
   await page.goto(`${base}/signature-portrait`)

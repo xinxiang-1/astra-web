@@ -1,0 +1,112 @@
+{
+  "bankSize": 100,
+  "tracedSize": 100,
+  "allHavePaths": true,
+  "deterministicTrace": true,
+  "records": [
+    {
+      "surface": "paper",
+      "colorize": false,
+      "coverFill": false,
+      "placements": 4379,
+      "canvasMs": 1205.6000000238419,
+      "canvasTiledMae": 0.000039469167145700605,
+      "canvasRegionMae": 0,
+      "canvasSvgMae": 0.020073093083232654,
+      "masks": 100,
+      "hasImage": false,
+      "hasEllipse": false
+    },
+    {
+      "surface": "paper",
+      "colorize": false,
+      "coverFill": true,
+      "placements": 4379,
+      "canvasMs": 1904.5,
+      "canvasTiledMae": 0.0009072530568499178,
+      "canvasRegionMae": 0,
+      "canvasSvgMae": 0.018459919085848712,
+      "masks": 100,
+      "hasImage": false,
+      "hasEllipse": true
+    },
+    {
+      "surface": "paper",
+      "colorize": true,
+      "coverFill": false,
+      "placements": 4379,
+      "canvasMs": 1156.5,
+      "canvasTiledMae": 0.00003784748834388539,
+      "canvasRegionMae": 0,
+      "canvasSvgMae": 0.021042665731780975,
+      "masks": 100,
+      "hasImage": false,
+      "hasEllipse": false
+    },
+    {
+      "surface": "paper",
+      "colorize": true,
+      "coverFill": true,
+      "placements": 4379,
+      "canvasMs": 1310.1999999284744,
+      "canvasTiledMae": 0.0009056313780481054,
+      "canvasRegionMae": 0,
+      "canvasSvgMae": 0.019426791708496215,
+      "masks": 100,
+      "hasImage": false,
+      "hasEllipse": true
+    },
+    {
+      "surface": "night",
+      "colorize": false,
+      "coverFill": false,
+      "placements": 4379,
+      "canvasMs": 407.7000000476837,
+      "canvasTiledMae": 0.000036855076359184735,
+      "canvasRegionMae": 0,
+      "canvasSvgMae": 0.015935200819908908,
+      "masks": 100,
+      "hasImage": false,
+      "hasEllipse": false
+    },
+    {
+      "surface": "night",
+      "colorize": false,
+      "coverFill": true,
+      "placements": 4379,
+      "canvasMs": 424.2000000476837,
+      "canvasTiledMae": 0.0006040628792228626,
+      "canvasRegionMae": 0,
+      "canvasSvgMae": 0.015242621999131777,
+      "masks": 100,
+      "hasImage": false,
+      "hasEllipse": true
+    },
+    {
+      "surface": "night",
+      "colorize": true,
+      "coverFill": false,
+      "placements": 4379,
+      "canvasMs": 390.09999990463257,
+      "canvasTiledMae": 0.000036855076359184735,
+      "canvasRegionMae": 0,
+      "canvasSvgMae": 0.015935200819908908,
+      "masks": 100,
+      "hasImage": false,
+      "hasEllipse": false
+    },
+    {
+      "surface": "night",
+      "colorize": true,
+      "coverFill": true,
+      "placements": 4379,
+      "canvasMs": 477.3000000715256,
+      "canvasTiledMae": 0.0006040628792228626,
+      "canvasRegionMae": 0,
+      "canvasSvgMae": 0.015242621999131777,
+      "masks": 100,
+      "hasImage": false,
+      "hasEllipse": true
+    }
+  ]
+}

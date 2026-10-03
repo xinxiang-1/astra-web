@@ -57,6 +57,7 @@ export {
   listBanks,
   loadBankAsStamps,
   revokeEntryUrls,
+  replaceBankStamps,
   type BankEntryView,
   type NameBank,
 } from './bank'
@@ -65,5 +66,7 @@ export {
   generateHandwritingVariants,
   type VariantGenOptions,
 } from './variants'
+
+export { SIGNATURE_FONTS, type SignatureFontId } from './fonts'
 
 export { prepareSignatureInk, type SignatureInkStyle } from './ink-style'

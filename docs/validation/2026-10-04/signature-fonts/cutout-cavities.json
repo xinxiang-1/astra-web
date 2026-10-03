@@ -1,0 +1,118 @@
+{
+  "rows": [
+    {
+      "size": 8,
+      "angle": 0,
+      "strength": 0.4,
+      "mae": 2.34468787515006e-7,
+      "changed": 16,
+      "inkMassCanvas": 1039,
+      "inkMassSvg": 1039
+    },
+    {
+      "size": 8,
+      "angle": 0,
+      "strength": 1,
+      "mae": 4.1683340002667736e-7,
+      "changed": 16,
+      "inkMassCanvas": 2598,
+      "inkMassSvg": 2599
+    },
+    {
+      "size": 8,
+      "angle": 0.07,
+      "strength": 0.4,
+      "mae": 3.12625050020008e-7,
+      "changed": 22,
+      "inkMassCanvas": 1047,
+      "inkMassSvg": 1045
+    },
+    {
+      "size": 8,
+      "angle": 0.07,
+      "strength": 1,
+      "mae": 4.1683340002667736e-7,
+      "changed": 25,
+      "inkMassCanvas": 2619,
+      "inkMassSvg": 2617
+    },
+    {
+      "size": 24,
+      "angle": 0,
+      "strength": 0.4,
+      "mae": 0.0000014328648125917032,
+      "changed": 190,
+      "inkMassCanvas": 10598,
+      "inkMassSvg": 10586
+    },
+    {
+      "size": 24,
+      "angle": 0,
+      "strength": 1,
+      "mae": 0.0000027094171001734025,
+      "changed": 190,
+      "inkMassCanvas": 26438,
+      "inkMassSvg": 26420
+    },
+    {
+      "size": 24,
+      "angle": 0.07,
+      "strength": 0.4,
+      "mae": 0.0000010420835000666933,
+      "changed": 172,
+      "inkMassCanvas": 9945,
+      "inkMassSvg": 9940
+    },
+    {
+      "size": 24,
+      "angle": 0.07,
+      "strength": 1,
+      "mae": 0.00000234468787515006,
+      "changed": 176,
+      "inkMassCanvas": 24839,
+      "inkMassSvg": 24831
+    },
+    {
+      "size": 96,
+      "angle": 0,
+      "strength": 0.4,
+      "mae": 0.0000031262505002000802,
+      "changed": 2151,
+      "inkMassCanvas": 164425,
+      "inkMassSvg": 164433
+    },
+    {
+      "size": 96,
+      "angle": 0,
+      "strength": 1,
+      "mae": 0.000006434865612911831,
+      "changed": 2172,
+      "inkMassCanvas": 410425,
+      "inkMassSvg": 410423
+    },
+    {
+      "size": 96,
+      "angle": 0.07,
+      "strength": 0.4,
+      "mae": 0.000004923844537815126,
+      "changed": 2202,
+      "inkMassCanvas": 163054,
+      "inkMassSvg": 163046
+    },
+    {
+      "size": 96,
+      "angle": 0.07,
+      "strength": 1,
+      "mae": 0.000013468929238362012,
+      "changed": 2225,
+      "inkMassCanvas": 406765,
+      "inkMassSvg": 406786
+    }
+  ],
+  "cavities": {
+    "innerHole": 19,
+    "inkRing": 245,
+    "outerPlate": 19,
+    "outside": 245
+  }
+}

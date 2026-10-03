@@ -430,6 +430,12 @@ export function paintPlacements(
     if (options.signal?.cancelled) throw new Error('已取消')
     if (i > 0 && i % 400 === 0) options.onProgress?.(i / Math.max(1, drawOrder.length))
     const p = drawOrder[i]!
+    if (vectorPainter) {
+      const metric = metrics[p.stampIndex]!
+      if (coverFill) paintCoverBlob(ctx, p, metric.width, metric.height, p.targetSize / Math.max(metric.width, metric.height))
+      vectorPainter(ctx, p, colorize)
+      continue
+    }
     const glyph = getTinted(
       p.stampIndex,
       p.tint.r,
@@ -442,10 +448,6 @@ export function paintPlacements(
     const scale = p.targetSize / stampLong
 
     if (coverFill) paintCoverBlob(ctx, p, glyph.width, glyph.height, scale)
-    if (vectorPainter) {
-      vectorPainter(ctx, p, colorize)
-      continue
-    }
 
     ctx.save()
     ctx.translate(p.x, p.y)
@@ -584,6 +586,13 @@ export async function paintPlacementsTiled(
         ) {
           continue
         }
+        if (vectorPainter) {
+          const metric = metrics[p.stampIndex]!
+          const local = { ...p, x: p.x - x0, y: p.y - y0 }
+          if (coverFill) paintCoverBlob(tctx, local, metric.width, metric.height, p.targetSize / Math.max(metric.width, metric.height))
+          vectorPainter(tctx, local, colorize)
+          continue
+        }
         const glyph = getTinted(
           p.stampIndex,
           p.tint.r,
@@ -600,10 +609,6 @@ export async function paintPlacementsTiled(
           y: p.y - y0,
         }
         if (coverFill) paintCoverBlob(tctx, local, glyph.width, glyph.height, scale)
-        if (vectorPainter) {
-          vectorPainter(tctx, local, colorize)
-          continue
-        }
         tctx.save()
         tctx.translate(p.x - x0, p.y - y0)
         tctx.rotate(p.angle)

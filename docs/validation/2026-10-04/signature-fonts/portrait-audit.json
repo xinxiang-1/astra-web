@@ -1,0 +1,139 @@
+{
+  "date": "2026-10-03T20:38:19.866Z",
+  "browser": "154.0.4258.53",
+  "scope": "Font source comparison with unchanged production woven layout. Developer inspection, no user aesthetic acceptance.",
+  "records": [
+    {
+      "name": "李云舟",
+      "font": "old-platform",
+      "surface": "paper",
+      "width": 768,
+      "height": 960,
+      "placements": 8700,
+      "elapsed": 5877.200000047684,
+      "underlay": 0,
+      "photographLayer": false
+    },
+    {
+      "name": "李云舟",
+      "font": "mashanzheng",
+      "surface": "paper",
+      "width": 768,
+      "height": 960,
+      "placements": 9135,
+      "elapsed": 6232.300000071526,
+      "underlay": 0,
+      "photographLayer": false
+    },
+    {
+      "name": "李云舟",
+      "font": "longcang",
+      "surface": "paper",
+      "width": 768,
+      "height": 960,
+      "placements": 8352,
+      "elapsed": 6136.699999928474,
+      "underlay": 0,
+      "photographLayer": false
+    },
+    {
+      "name": "李云舟",
+      "font": "old-platform",
+      "surface": "night",
+      "width": 768,
+      "height": 960,
+      "placements": 8700,
+      "elapsed": 529,
+      "underlay": 0,
+      "photographLayer": false
+    },
+    {
+      "name": "李云舟",
+      "font": "mashanzheng",
+      "surface": "night",
+      "width": 768,
+      "height": 960,
+      "placements": 9135,
+      "elapsed": 441.60000002384186,
+      "underlay": 0,
+      "photographLayer": false
+    },
+    {
+      "name": "李云舟",
+      "font": "longcang",
+      "surface": "night",
+      "width": 768,
+      "height": 960,
+      "placements": 8352,
+      "elapsed": 393.5,
+      "underlay": 0,
+      "photographLayer": false
+    },
+    {
+      "name": "Alexander Montgomery",
+      "font": "old-platform",
+      "surface": "paper",
+      "width": 768,
+      "height": 960,
+      "placements": 3045,
+      "elapsed": 2330.100000023842,
+      "underlay": 0,
+      "photographLayer": false
+    },
+    {
+      "name": "Alexander Montgomery",
+      "font": "mashanzheng",
+      "surface": "paper",
+      "width": 768,
+      "height": 960,
+      "placements": 4002,
+      "elapsed": 3577.899999976158,
+      "underlay": 0,
+      "photographLayer": false
+    },
+    {
+      "name": "Alexander Montgomery",
+      "font": "longcang",
+      "surface": "paper",
+      "width": 768,
+      "height": 960,
+      "placements": 2784,
+      "elapsed": 1450.5,
+      "underlay": 0,
+      "photographLayer": false
+    },
+    {
+      "name": "Alexander Montgomery",
+      "font": "old-platform",
+      "surface": "night",
+      "width": 768,
+      "height": 960,
+      "placements": 3045,
+      "elapsed": 299.3000000715256,
+      "underlay": 0,
+      "photographLayer": false
+    },
+    {
+      "name": "Alexander Montgomery",
+      "font": "mashanzheng",
+      "surface": "night",
+      "width": 768,
+      "height": 960,
+      "placements": 4002,
+      "elapsed": 236.29999995231628,
+      "underlay": 0,
+      "photographLayer": false
+    },
+    {
+      "name": "Alexander Montgomery",
+      "font": "longcang",
+      "surface": "night",
+      "width": 768,
+      "height": 960,
+      "placements": 2784,
+      "elapsed": 264.7999999523163,
+      "underlay": 0,
+      "photographLayer": false
+    }
+  ]
+}

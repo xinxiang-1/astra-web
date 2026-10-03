@@ -22,6 +22,8 @@ import {
   pathSvgToBlob,
   renderSignaturePortrait,
   revokeEntryUrls,
+  replaceBankStamps,
+  SIGNATURE_FONTS,
   stampFromDrawnCanvas,
   stampFromFile,
   stampHasVector,
@@ -34,6 +36,7 @@ import {
   type SignatureStamp,
   type SignatureLayoutOptions,
   type SignatureInkStyle,
+  type SignatureFontId,
 } from '@/lib/signature-portrait'
 import { useThemeStore } from '@/stores/theme'
 
@@ -90,6 +93,9 @@ const pending = ref(false)
 const hasInk = ref(false)
 const bankSaving = ref(false)
 const generatingVariants = ref(false)
+const bankBusy = computed(() => pending.value || bankSaving.value || generatingVariants.value)
+const signatureFont = ref<SignatureFontId>('mashanzheng')
+let generationController: AbortController | null = null
 
 const demoName = ref('心上人')
 const bankGoal = ref(100)
@@ -237,6 +243,7 @@ async function reloadActiveBankEntries() {
 }
 
 async function saveWritingToBank() {
+  if (bankBusy.value) return
   error.value = ''
   const canvas = drawCanvas.value
   if (!canvas || !hasInk.value) {
@@ -268,6 +275,7 @@ async function saveWritingToBank() {
 }
 
 async function useBankForPainting() {
+  if (bankBusy.value) return
   error.value = ''
   if (!activeBank.value) {
     error.value = '请先创建名字库并写入至少一遍'
@@ -295,50 +303,50 @@ async function useBankForPainting() {
 }
 
 async function generate100Styles() {
+  if (bankBusy.value) return
   error.value = ''
   const name = demoName.value.trim() || '心上人'
-  if (
-    activeBank.value &&
-    activeBank.value.count > 0 &&
-    !confirm(`将清空「${activeBank.value.label}」现有 ${activeBank.value.count} 遍，再写入新生成的写法？`)
-  ) {
-    return
-  }
   generatingVariants.value = true
-  progressStage.value = '生成写法'
+  generationController = new AbortController()
+  const controller = generationController
+  const font = signatureFont.value
+  const count = bankGoal.value || 100
+  progressStage.value = '加载书写字体'
   progressRatio.value = 0
   try {
-    if (activeBank.value && activeBank.value.count > 0) {
-      await deleteBank(activeBank.value.id)
-      revokeEntryUrls(bankEntries.value)
-      bankEntries.value = []
-      activeBank.value = null
-      localStorage.removeItem(BANK_ID_KEY)
-    }
-    await openOrCreateBank(name)
-    if (!activeBank.value) throw new Error('名字库创建失败')
+    const target = (await listBanks()).find(bank => bank.label === name) ?? null
+    controller.signal.throwIfAborted()
+    if (target && target.count > 0 && !confirm(`将替换「${name}」现有 ${target.count} 遍为字体写法。建议保留手写库，改用另一个名字新建库。继续替换？`)) return
     const variants = await generateHandwritingVariants(name, {
-      count: bankGoal.value || 100,
+      count,
+      font,
+      signal: controller.signal,
       seed: seed.value,
       onProgress: (r) => {
-        progressStage.value = '生成写法'
+        progressStage.value = r ? '生成字体写法' : '加载书写字体'
         progressRatio.value = r * 0.55
       },
     })
     progressStage.value = '写入名字库'
-    const views = await addStampsToBank(activeBank.value.id, variants, (r) => {
-      progressStage.value = '写入名字库'
-      progressRatio.value = 0.55 + r * 0.45
+    const result = await replaceBankStamps(name, variants, {
+      expected: target,
+      goal: count,
+      signal: controller.signal,
+      onProgress: r => { progressRatio.value = 0.55 + r * 0.45 },
     })
-    bankEntries.value = views
-    await reloadActiveBankEntries()
+    revokeEntryUrls(bankEntries.value)
+    bankEntries.value = result.entries
+    activeBank.value = result.bank
+    localStorage.setItem(BANK_ID_KEY, result.bank.id)
+    await refreshBanks()
     stamps.value = variants
     progressStage.value = '完成'
     progressRatio.value = 1
     if (portrait.value) await renderNow()
   } catch (e) {
-    error.value = e instanceof Error ? e.message : '生成写法失败'
+    if (!controller.signal.aborted) error.value = e instanceof Error ? e.message : '生成写法失败，原名字库已保留'
   } finally {
+    if (generationController === controller) generationController = null
     generatingVariants.value = false
     progressStage.value = ''
     progressRatio.value = 0
@@ -346,10 +354,12 @@ async function generate100Styles() {
 }
 
 async function uploadPortraitThenPaint() {
+  if (bankBusy.value) return
   portraitInput.value?.click()
 }
 
 async function removeBankEntry(id: string) {
+  if (bankBusy.value) return
   try {
     await deleteBankEntry(id)
     await reloadActiveBankEntries()
@@ -359,6 +369,7 @@ async function removeBankEntry(id: string) {
 }
 
 async function clearActiveBank() {
+  if (bankBusy.value) return
   if (!activeBank.value) return
   if (!confirm(`清空「${activeBank.value.label}」名字库？共 ${activeBank.value.count} 遍`)) return
   try {
@@ -374,6 +385,7 @@ async function clearActiveBank() {
 }
 
 async function switchBank(bankId: string) {
+  if (bankBusy.value) return
   const b = banks.value.find((x) => x.id === bankId)
   if (!b) return
   activeBank.value = b
@@ -880,6 +892,7 @@ function onWindowResize() {
 }
 
 onBeforeUnmount(() => {
+  generationController?.abort()
   paintSignal.cancelled = true
   disposeGlPreview()
   if (zoomPaintTimer) clearTimeout(zoomPaintTimer)
@@ -892,6 +905,7 @@ onBeforeUnmount(() => {
 })
 
 async function addSignatureFiles(files: FileList | File[] | null) {
+  if (bankBusy.value) return
   if (!files || files.length === 0) return
   error.value = ''
   pending.value = true
@@ -947,8 +961,11 @@ function clearStamps() {
 }
 
 async function loadDemo() {
+  if (bankBusy.value) return
   error.value = ''
   pending.value = true
+  generationController = new AbortController()
+  const controller = generationController
   progressStage.value = '准备示例'
   progressRatio.value = 0
   try {
@@ -959,6 +976,8 @@ async function loadDemo() {
       progressStage.value = '生成写法'
       const variants = await generateHandwritingVariants(demoName.value, {
         count: Math.min(100, Math.max(40, bankGoal.value || 100)),
+        font: signatureFont.value,
+        signal: controller.signal,
         seed: seed.value,
         onProgress: (r) => {
           progressStage.value = '生成写法'
@@ -1000,12 +1019,15 @@ async function loadDemo() {
     progressRatio.value = 0.8
     await renderNow()
   } catch (e) {
-    error.value = e instanceof Error ? e.message : '示例加载失败'
+    if (!controller.signal.aborted) error.value = e instanceof Error ? e.message : '示例加载失败'
+  } finally {
+    if (generationController === controller) generationController = null
     pending.value = false
   }
 }
 
 async function onPortraitChange(event: Event) {
+  if (bankBusy.value) return
   const input = event.target as HTMLInputElement
   const file = input.files?.item(0)
   if (!file) return
@@ -1365,25 +1387,31 @@ watch([coverFill, colorize, signatureInkStyle], () => {
         <section class="panel">
           <h2>1. 名字库（同名写很多遍）</h2>
           <p class="hint">
-            推荐：填名字 →「一键生成写法」→ 上传画像。点画密度跟暗部走，脸颊会明显更疏。
+            填名字 → 选择书写字体 → 生成写法 → 上传画像。字体变化是创作辅助；也可在下方亲手签名，保留自己的笔迹。
           </p>
 
           <div class="row">
             <label class="inline">
               名字
-              <input v-model="demoName" type="text" maxlength="16" />
+              <input v-model="demoName" type="text" maxlength="32" :disabled="bankBusy" />
+            </label>
+            <label class="inline">
+              书写字体
+              <select v-model="signatureFont" aria-label="书写字体" :disabled="bankBusy">
+                <option v-for="font in SIGNATURE_FONTS" :key="font.id" :value="font.id">{{ font.name }}</option>
+              </select>
             </label>
             <label class="inline">
               目标遍数
-              <input v-model.number="bankGoal" type="number" min="10" max="200" step="10" />
+              <input v-model.number="bankGoal" type="number" min="10" max="200" step="10" :disabled="bankBusy" />
             </label>
-            <FxButton type="button" @click="openOrCreateBank(demoName)">
+            <FxButton type="button" :disabled="bankBusy" @click="openOrCreateBank(demoName)">
               打开 / 新建库
             </FxButton>
             <FxButton
               type="button"
               variant="primary"
-              :disabled="generatingVariants || pending"
+              :disabled="bankBusy"
               @click="generate100Styles"
             >
               {{ generatingVariants ? '生成中…' : `一键生成 ${bankGoal} 种写法` }}
@@ -1404,6 +1432,7 @@ watch([coverFill, colorize, signatureInkStyle], () => {
               切换库
               <select
                 :value="activeBank?.id ?? ''"
+                :disabled="bankBusy"
                 @change="switchBank(($event.target as HTMLSelectElement).value)"
               >
                 <option disabled value="">选择…</option>
@@ -1434,7 +1463,7 @@ watch([coverFill, colorize, signatureInkStyle], () => {
             <FxButton
               type="button"
               variant="primary"
-              :disabled="!hasInk || bankSaving"
+              :disabled="!hasInk || bankBusy"
               @click="saveWritingToBank"
             >
               {{ bankSaving ? '保存中…' : '存入名字库' }}
@@ -1447,7 +1476,7 @@ watch([coverFill, colorize, signatureInkStyle], () => {
           <div class="paint-strip">
             <p class="paint-strip-title">下一步：选画像作画</p>
             <div class="row">
-              <FxButton type="button" variant="primary" @click="uploadPortraitThenPaint">
+              <FxButton type="button" variant="primary" :disabled="bankBusy" @click="uploadPortraitThenPaint">
                 上传画像照片
               </FxButton>
               <input
@@ -1457,12 +1486,12 @@ watch([coverFill, colorize, signatureInkStyle], () => {
                 accept="image/*"
                 @change="onPortraitChange"
               />
-              <FxButton type="button" @click="loadDemo">
+              <FxButton type="button" :disabled="bankBusy" @click="loadDemo">
                 一键试用示例
               </FxButton>
               <FxButton
                 type="button"
-                :disabled="!activeBank || bankProgress.count < 1 || pending"
+                :disabled="!activeBank || bankProgress.count < 1 || bankBusy"
                 @click="useBankForPainting"
               >
                 {{ portrait ? `用名字库重画（${bankProgress.count} 遍）` : `已写 ${bankProgress.count} 遍 · 先上传画像` }}
@@ -1472,7 +1501,7 @@ watch([coverFill, colorize, signatureInkStyle], () => {
             <p v-else class="hint">还没选画像 — 点上面「上传画像照片」，或用示例胸像试效果。</p>
             <FxButton
               type="button"
-              :disabled="!activeBank || bankProgress.count < 1"
+              :disabled="!activeBank || bankProgress.count < 1 || bankBusy"
               @click="clearActiveBank"
             >
               清空本库
@@ -1483,7 +1512,7 @@ watch([coverFill, colorize, signatureInkStyle], () => {
             <li v-for="e in bankEntries" :key="e.id">
               <img :src="e.previewUrl" :alt="`#${e.index}`" />
               <span class="stamp-label">#{{ e.index }}</span>
-              <button type="button" class="linkish" @click="removeBankEntry(e.id)">
+              <button type="button" class="linkish" :disabled="bankBusy" @click="removeBankEntry(e.id)">
                 删
               </button>
             </li>
@@ -1496,7 +1525,7 @@ watch([coverFill, colorize, signatureInkStyle], () => {
               <FxButton type="button" :disabled="!hasInk" @click="commitDrawnStamp">
                 仅加入临时池
               </FxButton>
-              <FxButton type="button" @click="signatureInput?.click()">
+              <FxButton type="button" :disabled="bankBusy" @click="signatureInput?.click()">
                 上传签名
               </FxButton>
               <input
@@ -1542,10 +1571,10 @@ watch([coverFill, colorize, signatureInkStyle], () => {
           <div class="row">
             <span v-if="portraitName" class="meta">画像：{{ portraitName }}</span>
             <span v-else class="meta">尚未上传画像</span>
-            <FxButton type="button" @click="uploadPortraitThenPaint">
+            <FxButton type="button" :disabled="bankBusy" @click="uploadPortraitThenPaint">
               更换画像
             </FxButton>
-            <FxButton type="button" @click="loadDemo">试用示例</FxButton>
+            <FxButton type="button" :disabled="bankBusy" @click="loadDemo">试用示例</FxButton>
           </div>
 
           <label class="ink-control">
