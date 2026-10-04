@@ -1,0 +1,312 @@
+{
+  "browser": "154.0.8037.57",
+  "channel": "chrome",
+  "errors": [],
+  "cases": [
+    {
+      "label": "beethoven-porcelain-paper",
+      "profile": "candidate",
+      "mobile": false,
+      "width": 819,
+      "height": 1024,
+      "rgbaSha256": "7dae3be0d2aefc599daad27cbfbbc29519f5ff9ee200c1509df78abef14d4706",
+      "cropChangedChannels": 0,
+      "cropChannels": 201600,
+      "overflow": 0,
+      "controls": [
+        {
+          "width": 298,
+          "height": 46,
+          "disabled": false
+        },
+        {
+          "width": 298,
+          "height": 46,
+          "disabled": false
+        },
+        {
+          "width": 298,
+          "height": 46,
+          "disabled": false
+        },
+        {
+          "width": 298,
+          "height": 46,
+          "disabled": false
+        },
+        {
+          "width": 308.28125,
+          "height": 46,
+          "disabled": false
+        }
+      ]
+    },
+    {
+      "label": "beethoven-portrait-night",
+      "profile": "ink",
+      "mobile": false,
+      "width": 819,
+      "height": 1024,
+      "rgbaSha256": "9b286f252d43fc755a88ee84cf0eb3b5adfe64a7a582a2eecb6d2019f18bd4fc",
+      "cropChangedChannels": 0,
+      "cropChannels": 201600,
+      "overflow": 0,
+      "controls": [
+        {
+          "width": 298,
+          "height": 46,
+          "disabled": false
+        },
+        {
+          "width": 298,
+          "height": 46,
+          "disabled": false
+        },
+        {
+          "width": 298,
+          "height": 46,
+          "disabled": false
+        },
+        {
+          "width": 298,
+          "height": 46,
+          "disabled": false
+        },
+        {
+          "width": 308.28125,
+          "height": 46,
+          "disabled": false
+        }
+      ]
+    },
+    {
+      "label": "chinese-porcelain-paper",
+      "profile": "cutout",
+      "mobile": false,
+      "width": 819,
+      "height": 1024,
+      "rgbaSha256": "899e740a08bc6f354f5889924a4e05c3b576a026313df1634cd4731f61dc5151",
+      "cropChangedChannels": 0,
+      "cropChannels": 201600,
+      "overflow": 0,
+      "controls": [
+        {
+          "width": 298,
+          "height": 46,
+          "disabled": false
+        },
+        {
+          "width": 298,
+          "height": 46,
+          "disabled": false
+        },
+        {
+          "width": 298,
+          "height": 46,
+          "disabled": false
+        },
+        {
+          "width": 298,
+          "height": 46,
+          "disabled": false
+        },
+        {
+          "width": 308.28125,
+          "height": 46,
+          "disabled": false
+        }
+      ]
+    },
+    {
+      "label": "chinese-portrait-night",
+      "profile": "candidate",
+      "mobile": false,
+      "width": 819,
+      "height": 1024,
+      "rgbaSha256": "672fabec1f2dd863dbae0b0e3d8f3038fb1d5667fe15533f53c07006ddf0e68f",
+      "cropChangedChannels": 0,
+      "cropChannels": 201600,
+      "overflow": 0,
+      "controls": [
+        {
+          "width": 298,
+          "height": 46,
+          "disabled": false
+        },
+        {
+          "width": 298,
+          "height": 46,
+          "disabled": false
+        },
+        {
+          "width": 298,
+          "height": 46,
+          "disabled": false
+        },
+        {
+          "width": 298,
+          "height": 46,
+          "disabled": false
+        },
+        {
+          "width": 308.28125,
+          "height": 46,
+          "disabled": false
+        }
+      ]
+    },
+    {
+      "label": "english-porcelain-night",
+      "profile": "cutout",
+      "mobile": false,
+      "width": 819,
+      "height": 1024,
+      "rgbaSha256": "daac0aa07828e63c0e19a22d04378e71e5f50d7204b7fbef65010164211cee02",
+      "cropChangedChannels": 0,
+      "cropChannels": 201600,
+      "overflow": 0,
+      "controls": [
+        {
+          "width": 298,
+          "height": 46,
+          "disabled": false
+        },
+        {
+          "width": 298,
+          "height": 46,
+          "disabled": false
+        },
+        {
+          "width": 298,
+          "height": 46,
+          "disabled": false
+        },
+        {
+          "width": 298,
+          "height": 46,
+          "disabled": false
+        },
+        {
+          "width": 308.28125,
+          "height": 46,
+          "disabled": false
+        }
+      ]
+    },
+    {
+      "label": "english-portrait-paper",
+      "profile": "candidate",
+      "mobile": false,
+      "width": 819,
+      "height": 1024,
+      "rgbaSha256": "969a51fdbfab2d6ab87f00f6e342cb36bdb6f650c0339712e9909e1384b165cd",
+      "cropChangedChannels": 0,
+      "cropChannels": 201600,
+      "overflow": 0,
+      "controls": [
+        {
+          "width": 298,
+          "height": 46,
+          "disabled": false
+        },
+        {
+          "width": 298,
+          "height": 46,
+          "disabled": false
+        },
+        {
+          "width": 298,
+          "height": 46,
+          "disabled": false
+        },
+        {
+          "width": 298,
+          "height": 46,
+          "disabled": false
+        },
+        {
+          "width": 308.28125,
+          "height": 46,
+          "disabled": false
+        }
+      ]
+    },
+    {
+      "label": "beethoven-porcelain-paper",
+      "profile": "candidate",
+      "mobile": true,
+      "width": 819,
+      "height": 1024,
+      "rgbaSha256": "7dae3be0d2aefc599daad27cbfbbc29519f5ff9ee200c1509df78abef14d4706",
+      "cropChangedChannels": 0,
+      "cropChannels": 201600,
+      "overflow": 0,
+      "controls": [
+        {
+          "width": 167,
+          "height": 46,
+          "disabled": false
+        },
+        {
+          "width": 167,
+          "height": 46,
+          "disabled": false
+        },
+        {
+          "width": 167,
+          "height": 46,
+          "disabled": false
+        },
+        {
+          "width": 167,
+          "height": 46,
+          "disabled": false
+        },
+        {
+          "width": 312,
+          "height": 46,
+          "disabled": false
+        }
+      ]
+    },
+    {
+      "label": "english-portrait-paper",
+      "profile": "candidate",
+      "mobile": true,
+      "width": 819,
+      "height": 1024,
+      "rgbaSha256": "969a51fdbfab2d6ab87f00f6e342cb36bdb6f650c0339712e9909e1384b165cd",
+      "cropChangedChannels": 0,
+      "cropChannels": 201600,
+      "overflow": 0,
+      "controls": [
+        {
+          "width": 167,
+          "height": 46,
+          "disabled": false
+        },
+        {
+          "width": 167,
+          "height": 46,
+          "disabled": false
+        },
+        {
+          "width": 167,
+          "height": 46,
+          "disabled": false
+        },
+        {
+          "width": 167,
+          "height": 46,
+          "disabled": false
+        },
+        {
+          "width": 312,
+          "height": 46,
+          "disabled": false
+        }
+      ]
+    }
+  ],
+  "passed": true
+}

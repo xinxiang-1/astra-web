@@ -1,0 +1,21 @@
+{
+  "id": "signature-capacity-partition-v1",
+  "baselineCommit": "b2051ba955418ea26af64a137edcede9ce83a11b",
+  "purpose": "Quantify actual signature tone capacity and evaluate a distinct adaptive positive/negative signature collage; natural pure-ink handwriting remains a separate unmet requirement.",
+  "hypothesis": "Measured full masks can choose positive or negative polarity per irregular partition, permitting a wider tonal range without overlapping, mirroring, clipping or adding a photograph underlay.",
+  "implementationRoundsMaximum": 2,
+  "round": 1,
+  "profiles": ["production-woven-ink", "production-woven-cutout", "adaptive-positive-negative"],
+  "fixed": {"outputLongestSide": 1024, "analysisLongestSide": 1024, "minimumSignatureShortSide": 8, "maximumCellAreaFactor": 6, "varianceThreshold": 0.035, "splitFractionRange": [0.42, 0.58], "seed": 42, "maximumCells": 16000},
+  "developmentSources": ["generated-porcelain-study-v1", "generated-portrait-reference"],
+  "developmentTemplates": ["beethoven-historical-vector-reproduction", "mashanzheng-李云舟-8", "longcang-Alexander Montgomery-8"],
+  "backgrounds": ["paper", "night"],
+  "developmentCases": 36,
+  "metrics": {"structureCorrelationMinimum": 0.82, "rangeRatioMinimum": 0.3, "toneMAEMaximum": 0.45, "candidateNativeShortSideP10Minimum": 8},
+  "geometry": "Uniform positive-determinant scale; zero rotation; complete templates fit disjoint partition cells; opaque paper/night substrate; no crop, fill ellipse, photograph underlay or target remap.",
+  "budgets": {"integralArraysMiB": 24, "templatePixelsMiB": 16, "maximumOutputPixels": 1048576},
+  "notCertification": ["Commercial aesthetic", "personal handwriting authenticity", "private signature authorization", "Safari", "real mobile", "4K/8K", "whole-browser memory", "arbitrary names"],
+  "unconsumedFinalSourcesRemain": ["Darwin", "Curie"],
+  "priorStoppedExperiments": ["signature-native-v2", "signature-ink-pack-v1"],
+  "promotion": false
+}

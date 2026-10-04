@@ -45,6 +45,8 @@
     "test:signature-viewport": "node scripts/signature-viewport-contract.mjs",
     "test:signature-project": "node scripts/signature-project-contract.mjs",
     "test:signature-project-assets": "node scripts/signature-project-assets-contract.mjs",
+    "research:signature-capacity": "node scripts/signature-capacity-research.mjs",
+    "test:signature-capacity-ui": "node scripts/signature-capacity-ui.mjs",
     "test:signature-cutout": "node scripts/signature-cutout-contract.mjs",
     "test:signature-raster": "node scripts/signature-raster-cache-contract.mjs",
     "brand:render": "node scripts/render-astra-brand.mjs",
