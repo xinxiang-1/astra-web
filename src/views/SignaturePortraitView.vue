@@ -40,12 +40,14 @@ import {
 } from '@/lib/signature-portrait'
 import { useThemeStore } from '@/stores/theme'
 import { fitSignatureRaster, measureSignatureViewport, SIGNATURE_OVERVIEW_LONG, SIGNATURE_VIEWPORT_LONG } from '@/lib/signature-portrait/preview-viewport'
+import { createSignatureProject, readSignatureProject, signatureProjectFilename, SIGNATURE_PROJECT_ACCEPT, type SignatureProject } from '@/lib/signature-portrait/project'
 
 const theme = useThemeStore()
 const BANK_ID_KEY = 'astra-sig-bank-id'
 
 const signatureInput = ref<HTMLInputElement | null>(null)
 const portraitInput = ref<HTMLInputElement | null>(null)
+const projectInput = ref<HTMLInputElement | null>(null)
 const drawCanvas = ref<HTMLCanvasElement | null>(null)
 const resultHost = ref<HTMLElement | null>(null)
 const resultCanvas = ref<HTMLCanvasElement | null>(null)
@@ -56,15 +58,15 @@ const stamps = ref<SignatureStamp[]>([])
 const portrait = ref<HTMLImageElement | null>(null)
 const portraitName = ref('')
 const portraitObjectUrl = ref('')
+const portraitFile = shallowRef<File | null>(null)
+const projectBusy = ref(false)
+const projectNotice = ref('')
+let projectController: AbortController | null = null
+let viewDisposed = false
+const importedScenes = new Set<Awaited<ReturnType<typeof readSignatureProject>>>()
+const restoredLayoutOptions = shallowRef<SignatureLayoutOptions>({})
 const hasResult = ref(false)
-const generatedResult = shallowRef<{
-  options: SignatureLayoutOptions
-  stamps: SignatureStamp[]
-  portrait: HTMLImageElement
-  placements: Placement[]
-  width: number
-  height: number
-} | null>(null)
+const generatedResult = shallowRef<SignatureProject | null>(null)
 const placementCount = ref(0)
 /** Canvas2D 回退用的概览栅格 */
 let lastOverview: HTMLCanvasElement | null = null
@@ -144,6 +146,7 @@ const previewBg = ref('#f5f3ef')
 /** Capture once: controls may change while the worker/preview/export is running. */
 function currentLayoutOptions(): SignatureLayoutOptions {
   return {
+    ...restoredLayoutOptions.value,
     inkStyle: signatureInkStyle.value,
     maxSide: Math.round(maxSide.value),
     density: density.value,
@@ -156,8 +159,8 @@ function currentLayoutOptions(): SignatureLayoutOptions {
     colorize: colorize.value,
     coverFill: coverFill.value,
     ink: signatureSurface.value === 'night' ? { r: 238, g: 234, b: 226 } : undefined,
-    overlap: 0.22,
-    gamma: 1.15,
+    overlap: restoredLayoutOptions.value.overlap ?? 0.22,
+    gamma: restoredLayoutOptions.value.gamma ?? 1.15,
     background: previewBg.value,
     underlay: 0,
     seed: seed.value,
@@ -406,6 +409,15 @@ function revokePortraitUrl() {
   if (portraitObjectUrl.value) {
     URL.revokeObjectURL(portraitObjectUrl.value)
     portraitObjectUrl.value = ''
+  }
+}
+
+function releaseUnusedImportedScenes() {
+  const liveCanvases = new Set([...stamps.value, ...(generatedResult.value?.stamps ?? [])].map(stamp => stamp.canvas))
+  for (const scene of importedScenes) {
+    if (portrait.value === scene.project.portrait || generatedResult.value?.portrait === scene.project.portrait || scene.project.stamps.some(stamp => liveCanvases.has(stamp.canvas))) continue
+    scene.dispose()
+    importedScenes.delete(scene)
   }
 }
 
@@ -881,6 +893,8 @@ function onWindowResize() {
 }
 
 onBeforeUnmount(() => {
+  viewDisposed = true
+  projectController?.abort()
   generationController?.abort()
   paintSignal.cancelled = true
   disposeGlPreview()
@@ -889,6 +903,8 @@ onBeforeUnmount(() => {
   if (lastOverview) { lastOverview.width = 1; lastOverview.height = 1 }
   if (resultCanvas.value) { resultCanvas.value.width = 1; resultCanvas.value.height = 1 }
   revokePortraitUrl()
+  for (const scene of importedScenes) scene.dispose()
+  importedScenes.clear()
   revokeEntryUrls(bankEntries.value)
   window.removeEventListener('resize', onWindowResize)
   previewHost.value?.removeEventListener('scroll', onPreviewScroll)
@@ -995,15 +1011,15 @@ async function loadDemo() {
       stamps.value = await loadBankAsStamps(activeBank.value.id)
     }
 
-    revokePortraitUrl()
     const demoPath = `${import.meta.env.BASE_URL}demos/ascii-live/aristotle-bust.webp`
-    const image = new Image()
-    image.decoding = 'async'
-    await new Promise<void>((resolve, reject) => {
-      image.onload = () => resolve()
-      image.onerror = () => reject(new Error('示例画像加载失败'))
-      image.src = demoPath
-    })
+    const response = await fetch(demoPath, { signal: controller.signal })
+    if (!response.ok) throw new Error('示例画像加载失败')
+    const file = new File([await response.blob()], 'aristotle-bust.webp', { type: 'image/webp', lastModified: 0 })
+    const { image, objectUrl } = await loadImageElement(file)
+    if (controller.signal.aborted || viewDisposed) { URL.revokeObjectURL(objectUrl); return }
+    revokePortraitUrl()
+    portraitObjectUrl.value = objectUrl
+    portraitFile.value = file
     invertDensity.value = signatureSurface.value === 'night'
     portrait.value = image
     portraitName.value = '示例 · 亚里士多德胸像'
@@ -1025,15 +1041,23 @@ async function onPortraitChange(event: Event) {
   if (!file) return
   error.value = ''
   pending.value = true
+  let candidateUrl = ''
   try {
-    revokePortraitUrl()
     const { image, objectUrl } = await loadImageElement(file)
+    candidateUrl = objectUrl
+    if (viewDisposed) return
+    if (image.naturalWidth * image.naturalHeight > 32_000_000) throw new Error('画像最多支持3200万像素，请缩小后重试')
+    // Prepare the bank too; failed input/decode/storage must preserve the current result.
+    const loaded = activeBank.value && activeBank.value.count > 0 ? await loadBankAsStamps(activeBank.value.id) : null
+    if (viewDisposed) return
+    revokePortraitUrl()
     portrait.value = image
     portraitObjectUrl.value = objectUrl
+    candidateUrl = ''
+    portraitFile.value = file
     portraitName.value = file.name
     // 已有名字库则自动载入并作画
-    if (activeBank.value && activeBank.value.count > 0) {
-      const loaded = await loadBankAsStamps(activeBank.value.id)
+    if (loaded) {
       stamps.value = loaded
       await renderNow()
     } else {
@@ -1041,10 +1065,9 @@ async function onPortraitChange(event: Event) {
     }
   } catch (e) {
     error.value = e instanceof Error ? e.message : '画像读取失败'
-    portrait.value = null
-    portraitName.value = ''
-    clearResultStage()
   } finally {
+    if (candidateUrl) URL.revokeObjectURL(candidateUrl)
+    releaseUnusedImportedScenes()
     pending.value = false
     if (portraitInput.value) portraitInput.value.value = ''
   }
@@ -1057,7 +1080,7 @@ async function maybeAutoRender() {
 
 async function renderNow() {
   error.value = ''
-  if (!portrait.value) {
+  if (!portrait.value || !portraitFile.value) {
     error.value = '请先上传画像照片'
     return
   }
@@ -1071,6 +1094,8 @@ async function renderNow() {
   const signal = paintSignal
   const result = {
     portrait: portrait.value,
+    portraitFile: portraitFile.value,
+    portraitName: portraitName.value,
     stamps: stamps.value.map(stamp => ({ ...stamp })),
     options: currentLayoutOptions(),
   }
@@ -1175,6 +1200,7 @@ async function renderNow() {
     error.value = e instanceof Error ? e.message : '渲染失败'
     clearResultStage()
   } finally {
+    releaseUnusedImportedScenes()
     if (seq === renderSeq) {
       pending.value = false
       if (!error.value) {
@@ -1182,6 +1208,138 @@ async function renderNow() {
         progressRatio.value = 0
       }
     }
+  }
+}
+
+async function downloadProject() {
+  const result = generatedResult.value
+  if (!result || bankBusy.value) return
+  error.value = ''
+  projectNotice.value = ''
+  pending.value = true
+  projectBusy.value = true
+  const controller = new AbortController()
+  projectController = controller
+  try {
+    progressStage.value = '保存作品文件'
+    const blob = await createSignatureProject(result, { signal: controller.signal, onProgress: value => { progressRatio.value = value } })
+    if (viewDisposed || controller.signal.aborted) return
+    triggerDownload(blob, signatureProjectFilename(result.portraitName))
+    projectNotice.value = '作品文件已下载，含画像、签名、布局和参数；可在另一台设备打开。'
+  } catch (e) {
+    if (!controller.signal.aborted) error.value = e instanceof Error ? e.message : '作品保存失败'
+  } finally {
+    if (projectController === controller) projectController = null
+    projectBusy.value = false
+    pending.value = false
+    progressStage.value = ''
+    progressRatio.value = 0
+  }
+}
+
+function cancelProjectFile() { projectController?.abort() }
+
+function restoreProjectControls(options: SignatureLayoutOptions) {
+  restoredLayoutOptions.value = { ...options }
+  signatureSurface.value = options.ink ? 'night' : 'paper'
+  signatureInkStyle.value = options.inkStyle ?? 'ink'
+  previewBg.value = options.background ?? '#f5f3ef'
+  maxSide.value = options.maxSide ?? 4096
+  density.value = options.density ?? 30
+  angleRange.value = options.angleRange ?? 12
+  allowVertical.value = options.allowVertical ?? false
+  minSizePct.value = (options.minSizeRatio ?? 0.022) * 100
+  maxSizePct.value = (options.maxSizeRatio ?? 0.065) * 100
+  fillHighlights.value = options.fillHighlights ?? false
+  invertDensity.value = options.invertDensity ?? null
+  colorize.value = options.colorize ?? true
+  coverFill.value = options.coverFill ?? false
+  seed.value = options.seed ?? 42
+  edgeOutline.value = options.edgeOutline ?? false
+  edgeBoost.value = options.edgeBoost ?? 0.95
+  edgeThreshold.value = options.edgeThreshold ?? 0.32
+  edgeColorMode.value = options.edgeColorMode ?? 'auto'
+  const rgb = options.edgeColor ?? { r: 28, g: 72, b: 96 }
+  edgeColorHex.value = `#${[rgb.r, rgb.g, rgb.b].map(value => Math.round(value).toString(16).padStart(2, '0')).join('')}`
+}
+
+async function onProjectChange(event: Event) {
+  const input = event.target as HTMLInputElement, file = input.files?.item(0)
+  if (!file || bankBusy.value) { input.value = ''; return }
+  error.value = ''
+  projectNotice.value = ''
+  pending.value = true
+  projectBusy.value = true
+  const controller = new AbortController()
+  projectController = controller
+  let candidate: Awaited<ReturnType<typeof readSignatureProject>> | null = null
+  let overview: HTMLCanvasElement | null = null
+  try {
+    progressStage.value = '检查作品文件'
+    candidate = await readSignatureProject(file, { signal: controller.signal, onProgress: value => { progressRatio.value = value * 0.5 } })
+    const scene = candidate.project
+    progressStage.value = '恢复预览'
+    const size = fitSignatureRaster(scene.width, scene.height, OVERVIEW_LONG)
+    const signal = { get cancelled() { return controller.signal.aborted } }
+    overview = await paintPlacementsTiled(scene.placements, scene.stamps, scene.width, scene.height, size.width, size.height, {
+      background: scene.options.background, inkStyle: scene.options.inkStyle, colorize: scene.options.colorize, coverFill: scene.options.coverFill, portrait: scene.portrait, underlay: 0, tileSize: 320, signal,
+      onTile: ({ done, total }) => { progressRatio.value = 0.5 + done / Math.max(1, total) * 0.5 },
+    })
+    if (controller.signal.aborted || viewDisposed) return
+    // Prepare a usable display before replacing any inputs or generated artwork.
+    const display = document.createElement('canvas')
+    display.width = overview.width; display.height = overview.height
+    const context = display.getContext('2d')
+    if (!context) throw new Error('无法恢复作品预览，请重试')
+    context.drawImage(overview, 0, 0)
+    ++renderSeq
+    paintSignal.cancelled = true
+    if (zoomPaintTimer) clearTimeout(zoomPaintTimer)
+    zoomPaintTimer = null
+    disposeGlPreview()
+    previewBackend = 'canvas2d'
+    revokePortraitUrl()
+    portrait.value = scene.portrait
+    portraitFile.value = scene.portraitFile
+    portraitName.value = scene.portraitName
+    stamps.value = scene.stamps
+    const recipe = scene.stamps.find(stamp => stamp.source)?.source
+    if (recipe) { signatureFont.value = recipe.font; demoName.value = recipe.text }
+    // Imported templates stay in this creative session; existing name banks are preserved.
+    activeBank.value = null
+    revokeEntryUrls(bankEntries.value)
+    bankEntries.value = []
+    restoreProjectControls(scene.options)
+    generatedResult.value = scene
+    lastPlacements = scene.placements
+    layoutW = scene.width; layoutH = scene.height
+    placementCount.value = scene.placements.length
+    hasResult.value = true
+    viewScale.value = 1
+    showComparison.value = false
+    previewPan.value = true
+    if (lastOverview) { lastOverview.width = 1; lastOverview.height = 1 }
+    lastOverview = overview
+    overview = null
+    mountDisplayCanvas(display)
+    importedScenes.add(candidate)
+    candidate = null
+    applyStageDisplaySize()
+    await nextTick()
+    if (previewHost.value) { previewHost.value.scrollLeft = 0; previewHost.value.scrollTop = 0 }
+    releaseUnusedImportedScenes()
+    projectNotice.value = '作品已恢复，可继续调整并保存。原设备的名字库保持原样。'
+  } catch (e) {
+    if (!controller.signal.aborted) error.value = e instanceof Error ? e.message : '作品打开失败'
+  } finally {
+    candidate?.dispose()
+    if (overview) { overview.width = 1; overview.height = 1 }
+    if (projectController === controller) projectController = null
+    projectBusy.value = false
+    pending.value = false
+    input.value = ''
+    progressStage.value = ''
+    progressRatio.value = 0
   }
 }
 
@@ -1351,10 +1509,12 @@ function reshuffle() {
 }
 
 watch(previewBg, () => {
+  if (projectBusy.value) return
   if (canRender.value && hasResult.value) void renderNow()
   else if (!hasResult.value) clearResultStage()
 })
 watch(signatureSurface, value => {
+  if (projectBusy.value) return
   invertDensity.value = value === 'night'
   previewBg.value = value === 'night' ? '#111615' : '#f5f3ef'
 })
@@ -1784,6 +1944,16 @@ watch([coverFill, colorize, signatureInkStyle], () => {
             >
               {{ pending ? '生成中…' : '生成预览' }}
             </FxButton>
+            <FxButton type="button" :disabled="bankBusy" @click="projectInput?.click()">
+              打开作品文件
+            </FxButton>
+            <input ref="projectInput" class="sr-only" type="file" :accept="SIGNATURE_PROJECT_ACCEPT" @change="onProjectChange" />
+            <FxButton type="button" :disabled="!hasResult || bankBusy" @click="downloadProject">
+              保存作品文件
+            </FxButton>
+            <FxButton v-if="projectBusy" type="button" @click="cancelProjectFile">
+              取消文件操作
+            </FxButton>
             <FxButton
               type="button"
               :disabled="!hasResult || pending"
@@ -1812,8 +1982,9 @@ watch([coverFill, colorize, signatureInkStyle], () => {
             </FxButton>
           </div>
           <p v-if="hasResult || stamps.length" class="hint">
-            JSON = 坐标源。Path SVG = 写法 trace 成真正 path 再按 placements 摆放（第三档）。PNG = 栅格导出。
+            作品文件保存画像、签名、布局和参数，可换设备继续创作。JSON仅含坐标；PNG用于图片，Path SVG用于矢量作品。
           </p>
+          <p v-if="projectNotice" class="hint" role="status">{{ projectNotice }}</p>
           <p v-if="resultSettingsChanged && !pending" class="hint result-settings-changed" role="status">
             参数已调整，点击「生成预览」应用。下载文件对应当前预览的作品。
           </p>

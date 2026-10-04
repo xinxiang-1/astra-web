@@ -1,0 +1,53 @@
+{
+  "browser": "154.0.4258.53",
+  "original": {
+    "width": 2048,
+    "height": 1876,
+    "density": 30,
+    "stampCount": 100
+  },
+  "pngSha256": "51c351f4c1acd03e8d0de155c5b210808644294997b87d2be4cae8f914ce53a3",
+  "svgSha256": "62208de21b22d5739f25023f329c91885e1939981b57b27774a02ca8c35550ff",
+  "editedControlsRetainJson": true,
+  "editedControlsRetainPng": true,
+  "editedControlsRetainSvg": true,
+  "editedControlsRetainViewport": true,
+  "native": {
+    "dimensions": [
+      1280,
+      1173
+    ],
+    "hash": "965edac2efd876f9a68a8132267d321cda77f670a64d91b45b54cdf6bd92f199",
+    "sharp": {
+      "dimensions": [
+        610,
+        662
+      ],
+      "hash": "f10de97de11b1c0b46be00d9ac498033c38f05f3080e52f9261bddd598c526b8",
+      "region": {
+        "x": 0,
+        "y": 0,
+        "w": 610,
+        "h": 662
+      }
+    }
+  },
+  "regenerated": {
+    "width": 4096,
+    "height": 3751,
+    "density": 12,
+    "minSizeRatio": 0.021
+  },
+  "errors": [],
+  "waitsMs": [
+    13249,
+    10,
+    12,
+    11,
+    14,
+    17,
+    18,
+    2736,
+    15
+  ]
+}
