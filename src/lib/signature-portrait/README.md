@@ -2,7 +2,7 @@
 
 完整签名画像。默认 `woven` 错行排列，旧 WVS 通过 `layoutMethod: 'stipple'` 保留作对照。
 
-`Placement[]` 为布局源；生产预览是 Canvas 概览/局部重画，PNG 分块输出，Path SVG 引用模板路径。默认无照片 underlay、无填色椭圆。纸白/夜光的墨色和可选填色在栅格/路径中使用同样语义。
+`Placement[]` 为布局源；生产预览是最长边1280的Canvas概览＋最长边2400的独立可见高清裁片，CSS表示缩放几何，避免分配整幅放大画布。PNG分块输出，Path SVG引用模板路径。默认无照片underlay、无填色椭圆；原图对比需显式启用。纸白/夜光的墨色和可选填色在栅格/路径中使用同样语义。
 
 GPU 尚未通过小笔迹一致性，`SIGNATURE_GPU_PREVIEW_VERIFIED=false`。`createGlStampPreview()` 默认返回 null；实验通过第二参数 `{ allowUnverified: true }` 调用。暗背景平均误差小不代表局部笔迹通过。
 
@@ -30,7 +30,7 @@ Trace 二值调色板固定，避免细笔迹采样只选白底导致合法模�
 
 启动开发服务，设置 `ASTRA_PREVIEW_URL` 后运行相关合同。`test:signature-pipeline`读取历史 `sandbox/signature-optimizer/fixtures/luxun-signature.svg`，当前该文件缺失；本轮没有重跑其4K/8K证明。`test:signature-raster`比较固定commit的旧渲染器与当前整图RGBA，含Edge/Chrome、边缘/旋转、缓存及取消异常释放。`test:signature-gpu`历史小笔迹门槛失败，生产关闭。
 
-[产品与限制](../../../docs/plans/signature-portrait.md) · [精确绘制阶段](../../../docs/plans/signature-raster-iteration-2026-10-04.md) · [字体与安全保存](../../../docs/plans/signature-font-bank-iteration-2026-10-04.md)。100写法的真实首次页面等待仍约30秒，画面偏淡与网格感尚未达到商业签名画验收标准。
+[产品与限制](../../../docs/plans/signature-portrait.md) · [精确绘制阶段](../../../docs/plans/signature-raster-iteration-2026-10-04.md) · [字体与安全保存](../../../docs/plans/signature-font-bank-iteration-2026-10-04.md) · [可控预览](../../../docs/plans/signature-viewport-iteration-2026-10-04.md)。`test:signature-viewport`覆盖最大8倍CSS几何、分配前审计、移动/键盘、严格裁片像素、故障恢复及卸载释放；`--motion`与`--mobile --cutout`为额外实际UI配置。100写法的首次页面性能基线仍约30秒，画面偏淡与网格感尚未达到商业签名画验收标准。
 
 隔离研究见 [native-v2记录](../../../docs/plans/signature-native-v2-iteration-2026-10-01.md)：真实alpha/面积提取与墨量映射仍仅在沙箱。其16组预览输出、8组实际4K/8K与39项API合同完成，柔边路径SVG明确拒绝并使用PNG；鲜明墨版保留路径SVG，既有输出hash保持。重复网格与局部采样仍未满足自然笔迹观感，新最终集未消费，生产代码没有接入此候选。该研究不认证旧原笔迹严格SVG、GPU或商用品质。
 

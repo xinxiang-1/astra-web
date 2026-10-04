@@ -39,6 +39,7 @@ import {
   type SignatureFontId,
 } from '@/lib/signature-portrait'
 import { useThemeStore } from '@/stores/theme'
+import { fitSignatureRaster, measureSignatureViewport, SIGNATURE_OVERVIEW_LONG, SIGNATURE_VIEWPORT_LONG } from '@/lib/signature-portrait/preview-viewport'
 
 const theme = useThemeStore()
 const BANK_ID_KEY = 'astra-sig-bank-id'
@@ -78,7 +79,12 @@ let zoomPaintSeq = 0
 let glPreview: GlStampPreview | null = null
 let previewBackend: 'webgl' | 'canvas2d' = 'canvas2d'
 /** 概览图最长边：仅 Canvas2D 回退路径 */
-const OVERVIEW_LONG = 1280
+const OVERVIEW_LONG = SIGNATURE_OVERVIEW_LONG
+let sharpViewportCanvas: HTMLCanvasElement | null = null
+const previewError = ref('')
+const previewPan = ref(true)
+const showComparison = ref(false)
+let panPointer: { id: number; x: number; y: number; left: number; top: number } | null = null
 
 /** 对比条位置：左侧效果 / 右侧原图，0–100 */
 const comparePct = ref(52)
@@ -87,6 +93,7 @@ const stageH = ref(0)
 /** 相对适应宽度；最大到高清成图 1:1 */
 const viewScale = ref(1)
 let compareDragging = false
+let comparePointerId: number | null = null
 
 const error = ref('')
 const pending = ref(false)
@@ -179,6 +186,7 @@ const portraitSrc = computed(
 const canCompare = computed(
   () => hasResult.value && Boolean(portraitSrc.value),
 )
+const comparisonActive = computed(() => canCompare.value && showComparison.value)
 
 const viewScaleLabel = computed(() => {
   if (viewScale.value <= 1.02) return '适应'
@@ -409,6 +417,11 @@ function disposeGlPreview() {
 function mountDisplayCanvas(canvas: HTMLCanvasElement) {
   const host = resultHost.value
   if (!host) return
+  releaseSharpPreview()
+  if (resultCanvas.value && resultCanvas.value !== canvas) {
+    resultCanvas.value.width = 1
+    resultCanvas.value.height = 1
+  }
   host.replaceChildren(canvas)
   resultCanvas.value = canvas
   canvas.classList.add('result-canvas')
@@ -443,6 +456,9 @@ function clearResultStage() {
     zoomPaintTimer = null
   }
   disposeGlPreview()
+  releaseSharpPreview()
+  previewError.value = ''
+  if (lastOverview) { lastOverview.width = 1; lastOverview.height = 1 }
   hasResult.value = false
   generatedResult.value = null
   placementCount.value = 0
@@ -493,23 +509,7 @@ function visibleLayoutRect(): { x: number; y: number; w: number; h: number } {
   if (!host || !root || layoutW <= 0) {
     return { x: 0, y: 0, w: layoutW || 1, h: layoutH || 1 }
   }
-  const hostRect = host.getBoundingClientRect()
-  const rootRect = root.getBoundingClientRect()
-  if (rootRect.width <= 0 || rootRect.height <= 0) {
-    return { x: 0, y: 0, w: layoutW, h: layoutH }
-  }
-  const visLeft = Math.max(0, hostRect.left - rootRect.left)
-  const visTop = Math.max(0, hostRect.top - rootRect.top)
-  const visRight = Math.min(rootRect.width, hostRect.right - rootRect.left)
-  const visBottom = Math.min(rootRect.height, hostRect.bottom - rootRect.top)
-  const visW = Math.max(1, visRight - visLeft)
-  const visH = Math.max(1, visBottom - visTop)
-  return {
-    x: (visLeft / rootRect.width) * layoutW,
-    y: (visTop / rootRect.height) * layoutH,
-    w: (visW / rootRect.width) * layoutW,
-    h: (visH / rootRect.height) * layoutH,
-  }
+  return measureSignatureViewport(host, root, layoutW, layoutH)?.region ?? { x: 0, y: 0, w: layoutW, h: layoutH }
 }
 
 function applyStageDisplaySize() {
@@ -541,11 +541,9 @@ function applyStageDisplaySize() {
   canvas.style.height = `${cssH}px`
   canvas.style.imageRendering = 'auto'
 
-  if (viewScale.value <= 1.05) {
-    blitOverviewToStage()
-  } else {
-    scheduleSharpViewportPaint()
-  }
+  blitOverviewToStage()
+  if (viewScale.value <= 1.05) releaseSharpPreview()
+  else scheduleSharpViewportPaint()
 }
 
 function blitOverviewToStage() {
@@ -554,8 +552,7 @@ function blitOverviewToStage() {
   const cssW = stageW.value
   const cssH = stageH.value
   const dpr = Math.min(2, window.devicePixelRatio || 1)
-  const pw = Math.max(1, Math.round(cssW * dpr))
-  const ph = Math.max(1, Math.round(cssH * dpr))
+  const { width: pw, height: ph } = fitSignatureRaster(cssW * dpr, cssH * dpr, OVERVIEW_LONG)
   if (canvas.width !== pw || canvas.height !== ph) {
     canvas.width = pw
     canvas.height = ph
@@ -574,49 +571,39 @@ function scheduleSharpViewportPaint() {
     return
   }
   if (!lastPlacements.length || layoutW <= 0) return
+  releaseSharpPreview()
   if (zoomPaintTimer) clearTimeout(zoomPaintTimer)
   zoomPaintTimer = setTimeout(() => {
     zoomPaintTimer = null
-    void paintSharpViewport()
+    try { paintSharpViewport() }
+    catch { previewError.value = '高清预览暂时无法绘制，请缩小后重试' }
   }, 70)
 }
 
-async function paintSharpViewport() {
+function releaseSharpPreview() {
+  zoomPaintSeq++
+  sharpViewportCanvas?.remove()
+  if (sharpViewportCanvas) { sharpViewportCanvas.width = 1; sharpViewportCanvas.height = 1 }
+  sharpViewportCanvas = null
+}
+
+function paintSharpViewport() {
   if (previewBackend === 'webgl') {
     applyStageDisplaySize()
     return
   }
-  const canvas = resultCanvas.value
   const host = previewHost.value
   const root = compareRoot.value
   const result = generatedResult.value
-  if (!canvas || !host || !root || !lastPlacements.length || !result) return
-  if (layoutW <= 0) return
+  if (!resultCanvas.value || !host || !root || !resultHost.value || !lastPlacements.length || !result) return
+  if (layoutW <= 0 || viewScale.value <= 1.05) return
 
   const seq = ++zoomPaintSeq
-  const cssW = stageW.value
-  const cssH = stageH.value
   const dpr = Math.min(2.5, window.devicePixelRatio || 1)
-  const region = visibleLayoutRect()
-
-  const hostRect = host.getBoundingClientRect()
-  const rootRect = root.getBoundingClientRect()
-  const visLeft = Math.max(0, hostRect.left - rootRect.left)
-  const visTop = Math.max(0, hostRect.top - rootRect.top)
-  const visRight = Math.min(rootRect.width, hostRect.right - rootRect.left)
-  const visBottom = Math.min(rootRect.height, hostRect.bottom - rootRect.top)
-  const visW = Math.max(1, visRight - visLeft)
-  const visH = Math.max(1, visBottom - visTop)
-
-  let outW = Math.max(1, Math.round(visW * dpr))
-  let outH = Math.max(1, Math.round(visH * dpr))
-  const maxPx = 2400
-  const long = Math.max(outW, outH)
-  if (long > maxPx) {
-    const k = maxPx / long
-    outW = Math.max(1, Math.round(outW * k))
-    outH = Math.max(1, Math.round(outH * k))
-  }
+  const view = measureSignatureViewport(host, root, layoutW, layoutH)
+  if (!view) return
+  const { region, display } = view
+  const { width: outW, height: outH } = fitSignatureRaster(display.width * dpr, display.height * dpr, SIGNATURE_VIEWPORT_LONG)
 
   const tile = paintPlacementsRegion(
     lastPlacements,
@@ -636,31 +623,14 @@ async function paintSharpViewport() {
       stampMaxLong: Math.min(1600, Math.max(800, Math.round(Math.max(outW, outH) * 0.65))),
     },
   )
-  if (seq !== zoomPaintSeq) return
-
-  const fw = Math.max(1, Math.round(cssW * dpr))
-  const fh = Math.max(1, Math.round(cssH * dpr))
-  if (canvas.width !== fw || canvas.height !== fh) {
-    canvas.width = fw
-    canvas.height = fh
-  }
-  const ctx = canvas.getContext('2d')
-  if (!ctx) return
-  if (lastOverview) {
-    ctx.imageSmoothingEnabled = true
-    ctx.imageSmoothingQuality = 'high'
-    ctx.drawImage(lastOverview, 0, 0, fw, fh)
-  } else {
-    ctx.fillStyle = result.options.background ?? '#f5f3ef'
-    ctx.fillRect(0, 0, fw, fh)
-  }
-  const dx = (visLeft / Math.max(1, rootRect.width)) * fw
-  const dy = (visTop / Math.max(1, rootRect.height)) * fh
-  const dw = (visW / Math.max(1, rootRect.width)) * fw
-  const dh = (visH / Math.max(1, rootRect.height)) * fh
-  ctx.imageSmoothingEnabled = true
-  ctx.imageSmoothingQuality = 'high'
-  ctx.drawImage(tile, dx, dy, dw, dh)
+  if (seq !== zoomPaintSeq) { tile.width = 1; tile.height = 1; return }
+  tile.classList.add('sharp-viewport-canvas')
+  // This canvas is only the visible crop; the artwork's large size is CSS geometry.
+  Object.assign(tile.style, { position: 'absolute', left: `${display.x}px`, top: `${display.y}px`, width: `${display.width}px`, height: `${display.height}px`, pointerEvents: 'none' })
+  tile.dataset.region = JSON.stringify(region)
+  sharpViewportCanvas = tile
+  resultHost.value.append(tile)
+  previewError.value = ''
 }
 
 function setViewScale(scale: number) {
@@ -686,31 +656,30 @@ function zoomToMax() {
   setViewScale(maxViewScale(layoutW))
 }
 
-function onStageWheel(event: WheelEvent) {
+async function onStageWheel(event: WheelEvent) {
   if (!hasResult.value || layoutW <= 0) return
   event.preventDefault()
   const host = previewHost.value
   const root = compareRoot.value
   if (!host || !root) return
 
-  const hostRect = host.getBoundingClientRect()
   const before = root.getBoundingClientRect()
-  const relX = (event.clientX - before.left) / Math.max(1, before.width)
-  const relY = (event.clientY - before.top) / Math.max(1, before.height)
+  const clientX = event.clientX, clientY = event.clientY
+  const relX = (clientX - before.left) / Math.max(1, before.width)
+  const relY = (clientY - before.top) / Math.max(1, before.height)
 
   bumpViewScale(event.deltaY > 0 ? 0.86 : 1.16)
 
-  requestAnimationFrame(() => {
-    host.scrollLeft = Math.max(
-      0,
-      root.offsetLeft + relX * root.offsetWidth - (event.clientX - hostRect.left),
-    )
-    host.scrollTop = Math.max(
-      0,
-      root.offsetTop + relY * root.offsetHeight - (event.clientY - hostRect.top),
-    )
-    if (viewScale.value > 1.05) scheduleSharpViewportPaint()
-  })
+  // Root dimensions are Vue styles; wait for their patch before measuring the new origin.
+  await nextTick()
+  if (previewHost.value !== host || compareRoot.value !== root || !root.isConnected) return
+  const after = root.getBoundingClientRect()
+  const afterHost = host.getBoundingClientRect()
+  const originX = after.left - afterHost.left + host.scrollLeft
+  const originY = after.top - afterHost.top + host.scrollTop
+  host.scrollLeft = Math.max(0, originX + relX * after.width - (clientX - afterHost.left))
+  host.scrollTop = Math.max(0, originY + relY * after.height - (clientY - afterHost.top))
+  if (viewScale.value > 1.05) scheduleSharpViewportPaint()
 }
 
 function setCompareFromClientX(clientX: number) {
@@ -722,19 +691,39 @@ function setCompareFromClientX(clientX: number) {
 }
 
 function onComparePointerDown(event: PointerEvent) {
-  if (!canCompare.value) return
+  if (event.button !== 0) return
+  if (hasResult.value && (previewPan.value || !comparisonActive.value)) {
+    const host = previewHost.value
+    if (!host || event.button !== 0 || panPointer) return
+    event.preventDefault()
+    host.focus({ preventScroll: true })
+    panPointer = { id: event.pointerId, x: event.clientX, y: event.clientY, left: host.scrollLeft, top: host.scrollTop }
+    ;(event.currentTarget as HTMLElement).setPointerCapture?.(event.pointerId)
+    return
+  }
+  if (!comparisonActive.value) return
+  if (compareDragging) return
   compareDragging = true
+  comparePointerId = event.pointerId
   ;(event.currentTarget as HTMLElement).setPointerCapture?.(event.pointerId)
   setCompareFromClientX(event.clientX)
 }
 
 function onComparePointerMove(event: PointerEvent) {
-  if (!compareDragging) return
+  if (panPointer?.id === event.pointerId && previewHost.value) {
+    event.preventDefault()
+    previewHost.value.scrollLeft = panPointer.left - (event.clientX - panPointer.x)
+    previewHost.value.scrollTop = panPointer.top - (event.clientY - panPointer.y)
+    return
+  }
+  if (!compareDragging || comparePointerId !== event.pointerId) return
   setCompareFromClientX(event.clientX)
 }
 
 function onComparePointerUp(event: PointerEvent) {
-  if (!compareDragging) return
+  if (comparePointerId !== event.pointerId && panPointer?.id !== event.pointerId) return
+  panPointer = null
+  comparePointerId = null
   compareDragging = false
   try {
     ;(event.currentTarget as HTMLElement).releasePointerCapture?.(event.pointerId)
@@ -896,6 +885,9 @@ onBeforeUnmount(() => {
   paintSignal.cancelled = true
   disposeGlPreview()
   if (zoomPaintTimer) clearTimeout(zoomPaintTimer)
+  releaseSharpPreview()
+  if (lastOverview) { lastOverview.width = 1; lastOverview.height = 1 }
+  if (resultCanvas.value) { resultCanvas.value.width = 1; resultCanvas.value.height = 1 }
   revokePortraitUrl()
   revokeEntryUrls(bankEntries.value)
   window.removeEventListener('resize', onWindowResize)
@@ -1143,9 +1135,7 @@ async function renderNow() {
     } else {
       previewBackend = 'canvas2d'
       ensureCanvas2d()
-      const overviewLong = Math.min(layoutW, OVERVIEW_LONG)
-      const outW = overviewLong
-      const outH = Math.max(1, Math.round(layoutH * (outW / layoutW)))
+      const { width: outW, height: outH } = fitSignatureRaster(layoutW, layoutH, OVERVIEW_LONG)
       const overview = await paintPlacementsTiled(
         placements,
         result.stamps,
@@ -1163,6 +1153,7 @@ async function renderNow() {
           tileSize: 320,
           onTile: ({ canvas: partial, done, total }) => {
             if (seq !== renderSeq || signal.cancelled) return
+            if (lastOverview && lastOverview !== partial) { lastOverview.width = 1; lastOverview.height = 1 }
             lastOverview = partial
             progressStage.value = `预览 ${done}/${total}`
             progressRatio.value = 0.55 + (done / Math.max(1, total)) * 0.45
@@ -1851,7 +1842,7 @@ watch([coverFill, colorize, signatureInkStyle], () => {
             · 后台计算中，页面可滚动
           </span>
           <span v-else-if="canCompare" class="meta">
-            滚轮放大 · {{ viewScaleLabel }}
+            滚轮放大 · {{ previewPan || !comparisonActive ? '拖动移动' : '拖动对比' }} · {{ viewScaleLabel }}
             <template v-if="lastOutputMeta"> · {{ lastOutputMeta }}</template>
           </span>
         </div>
@@ -1864,10 +1855,10 @@ watch([coverFill, colorize, signatureInkStyle], () => {
           >
             适应
           </button>
-          <button type="button" class="zoom-btn" @click="bumpViewScale(1 / 1.25)">
+          <button type="button" class="zoom-btn" aria-label="缩小" @click="bumpViewScale(1 / 1.25)">
             −
           </button>
-          <button type="button" class="zoom-btn" @click="bumpViewScale(1.25)">
+          <button type="button" class="zoom-btn" aria-label="放大" @click="bumpViewScale(1.25)">
             +
           </button>
           <button type="button" class="zoom-btn" @click="zoomToNative">
@@ -1876,17 +1867,31 @@ watch([coverFill, colorize, signatureInkStyle], () => {
           <button type="button" class="zoom-btn" @click="zoomToMax">
             最大
           </button>
+          <button v-if="comparisonActive" type="button" class="zoom-btn" :class="{ on: previewPan }" :aria-pressed="previewPan" @click="previewPan = !previewPan">
+            移动画布
+          </button>
+          <button type="button" class="zoom-btn" :class="{ on: showComparison }" :aria-pressed="showComparison" @click="showComparison = !showComparison; previewPan = !showComparison">
+            对比原图
+          </button>
+          <label v-if="comparisonActive" class="preview-compare-control">
+            对比
+            <input v-model.number="comparePct" aria-label="作品与原图对比比例" type="range" min="0" max="100" />
+          </label>
         </div>
+        <p v-if="previewError" class="error" role="status">{{ previewError }}</p>
         <div
           ref="previewHost"
           class="stage"
+          tabindex="0"
+          role="region"
+          aria-label="名字画预览，方向键移动，滚轮缩放"
           :style="{ background: resultBackground }"
           @wheel.prevent="onStageWheel"
         >
           <div
             ref="compareRoot"
             class="compare"
-            :class="{ interactive: canCompare }"
+            :class="{ interactive: comparisonActive, panning: previewPan || !comparisonActive }"
             :style="
               stageW && stageH
                 ? { width: `${stageW}px`, height: `${stageH}px` }
@@ -1896,9 +1901,10 @@ watch([coverFill, colorize, signatureInkStyle], () => {
             @pointermove="onComparePointerMove"
             @pointerup="onComparePointerUp"
             @pointercancel="onComparePointerUp"
+            @lostpointercapture="onComparePointerUp"
           >
             <img
-              v-if="canCompare"
+              v-if="comparisonActive"
               class="compare-base"
               :src="portraitSrc"
               alt="原图"
@@ -1906,11 +1912,11 @@ watch([coverFill, colorize, signatureInkStyle], () => {
             />
             <div
               class="compare-clip"
-              :style="{ width: canCompare ? `${comparePct}%` : '100%' }"
+              :style="{ width: comparisonActive ? `${comparePct}%` : '100%' }"
             >
               <div ref="resultHost" class="result-host" />
             </div>
-            <template v-if="canCompare">
+            <template v-if="comparisonActive">
               <div
                 class="compare-handle"
                 :style="{ left: `${comparePct}%` }"
@@ -2254,11 +2260,12 @@ h2 {
   max-height: min(70vh, 820px);
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  place-items: start center;
+  place-items: start safe center;
   border-radius: 12px;
   overflow: auto;
   border: 1px solid var(--border);
   padding: 0.5rem;
+  overflow-anchor: none;
 }
 
 .zoom-bar {
@@ -2269,6 +2276,8 @@ h2 {
 }
 
 .zoom-btn {
+  min-width: 44px;
+  min-height: 44px;
   appearance: none;
   border: 1px solid var(--border);
   border-radius: 999px;
@@ -2287,6 +2296,21 @@ h2 {
   font-weight: 600;
 }
 
+.preview-compare-control {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 44px;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+.preview-compare-control input {
+  width: 120px;
+  min-height: 44px;
+  accent-color: var(--accent);
+}
+
 .compare {
   position: relative;
   max-width: none;
@@ -2299,6 +2323,14 @@ h2 {
 
 .compare.interactive {
   cursor: ew-resize;
+}
+
+.compare.panning {
+  cursor: grab;
+}
+
+.compare.panning:active {
+  cursor: grabbing;
 }
 
 .compare-base {
@@ -2319,6 +2351,7 @@ h2 {
 }
 
 .result-host {
+  position: relative;
   display: block;
   width: 100%;
   height: 100%;

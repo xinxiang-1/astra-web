@@ -83,6 +83,7 @@ try {
     })
     // Wait for the debounced viewport redraw, then sample the mounted canvas.
     await page.waitForTimeout(400)
+    await page.locator('.sharp-viewport-canvas').waitFor({ state: 'attached', timeout: 90000 })
     const native = await page.locator('.result-canvas').evaluate(async (canvas) => {
       const data = canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height).data
       const hash = await crypto.subtle.digest('SHA-256', data)
@@ -110,6 +111,15 @@ try {
     })
     await writeFile(path.join(directory, `${label}-native.png`), Buffer.from(native.png, 'base64'))
     delete native.png
+    native.sharp = await page.locator('.sharp-viewport-canvas').evaluate(async (canvas) => {
+      const pixels = canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height).data
+      const hash = new Uint8Array(await crypto.subtle.digest('SHA-256', pixels))
+      return {
+        dimensions: [canvas.width, canvas.height],
+        hash: Array.from(hash, (v) => v.toString(16).padStart(2, '0')).join(''),
+        region: JSON.parse(canvas.dataset.region),
+      }
+    })
     await writeFile(
       path.join(directory, `${label}-native.json`),
       JSON.stringify({ ...native, geometry }, null, 2),
