@@ -1,0 +1,93 @@
+{
+  "provenance": "actual frozen PNGs; overviews scaled; 280x180 crops at native 1:1; no new rendering or image generation",
+  "cases": [
+    {
+      "label": "beethoven-porcelain-paper",
+      "panels": [
+        {
+          "size": 1024,
+          "width": 819,
+          "height": 1024,
+          "rgbaSha256": "7dae3be0d2aefc599daad27cbfbbc29519f5ff9ee200c1509df78abef14d4706",
+          "cropChangedChannels": 0,
+          "cropChannels": 201600
+        },
+        {
+          "size": 2048,
+          "width": 1639,
+          "height": 2048,
+          "rgbaSha256": "1451c414818105a574fc2662d77a75491705f64427e07c5a6c9a861a0de71497",
+          "cropChangedChannels": 0,
+          "cropChannels": 201600
+        },
+        {
+          "size": 4096,
+          "width": 3278,
+          "height": 4096,
+          "rgbaSha256": "68780bb7ab1d253fe0cd85c72f9c9379742a22c80888bfe1576fc100234bf870",
+          "cropChangedChannels": 0,
+          "cropChannels": 201600
+        }
+      ]
+    },
+    {
+      "label": "chinese-portrait-night",
+      "panels": [
+        {
+          "size": 1024,
+          "width": 819,
+          "height": 1024,
+          "rgbaSha256": "672fabec1f2dd863dbae0b0e3d8f3038fb1d5667fe15533f53c07006ddf0e68f",
+          "cropChangedChannels": 0,
+          "cropChannels": 201600
+        },
+        {
+          "size": 2048,
+          "width": 1639,
+          "height": 2048,
+          "rgbaSha256": "5524803b3066e0c8e523ba92336a21c7e40daf0e24a387903291bdccdb8acacb",
+          "cropChangedChannels": 0,
+          "cropChannels": 201600
+        },
+        {
+          "size": 4096,
+          "width": 3278,
+          "height": 4096,
+          "rgbaSha256": "2ab5f7a0e3ff2460ac9a6d8b21863980757eae2474a126185e9117638d7b7978",
+          "cropChangedChannels": 0,
+          "cropChannels": 201600
+        }
+      ]
+    },
+    {
+      "label": "english-portrait-paper",
+      "panels": [
+        {
+          "size": 1024,
+          "width": 819,
+          "height": 1024,
+          "rgbaSha256": "969a51fdbfab2d6ab87f00f6e342cb36bdb6f650c0339712e9909e1384b165cd",
+          "cropChangedChannels": 0,
+          "cropChannels": 201600
+        },
+        {
+          "size": 2048,
+          "width": 1639,
+          "height": 2048,
+          "rgbaSha256": "fb33426b32e4b7a1ea03c2a42d9b89c4aa230335d3ad4c45a9a3b8f5fcc71939",
+          "cropChangedChannels": 0,
+          "cropChannels": 201600
+        },
+        {
+          "size": 4096,
+          "width": 3278,
+          "height": 4096,
+          "rgbaSha256": "38799e1d8668f9da34c58fed197d357b6dcbeed22934052b3cfec9398b355428",
+          "cropChangedChannels": 0,
+          "cropChannels": 201600
+        }
+      ]
+    }
+  ],
+  "passed": true
+}

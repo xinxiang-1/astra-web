@@ -1,0 +1,2432 @@
+{
+  "browser": "154.0.4258.53",
+  "declaration": "signature-capacity-partition-v1-r2-print",
+  "errors": [],
+  "cases": [
+    {
+      "label": "beethoven-porcelain-paper-2048",
+      "size": 2048,
+      "profile": "ink",
+      "width": 1639,
+      "height": 2048,
+      "count": 16926,
+      "elapsedWithAuditMs": 1066.2999999523163,
+      "metric": {
+        "structure": 0.9923472782424758,
+        "rangeRatio": 0.06242623634645733,
+        "toneMAE": 0.6407716088445635,
+        "passed": false
+      },
+      "rgbaSha256": "9f1646490fec58c13e88efa7b7c623f82cc101e6ec1694b8d67e7410e79a504a",
+      "pngRoundTrip": {
+        "width": 1639,
+        "height": 2048,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "beethoven-porcelain-paper-2048",
+      "size": 2048,
+      "profile": "cutout",
+      "width": 1639,
+      "height": 2048,
+      "count": 16926,
+      "elapsedWithAuditMs": 9897.200000047684,
+      "metric": {
+        "structure": 0.9935893226769126,
+        "rangeRatio": 0.33895146136641735,
+        "toneMAE": 0.48432039558212775,
+        "passed": false
+      },
+      "rgbaSha256": "0e2bc3e2f545c0c9240cf20ffe8c0a6d2293147b9e206a84351e8a2e3ed32efa",
+      "pngRoundTrip": {
+        "width": 1639,
+        "height": 2048,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "beethoven-porcelain-paper-2048",
+      "size": 2048,
+      "profile": "candidate",
+      "width": 1639,
+      "height": 2048,
+      "count": 860,
+      "elapsedWithAuditMs": 1990.3999999761581,
+      "metric": {
+        "structure": 0.9684455108652856,
+        "rangeRatio": 0.8995941927610475,
+        "toneMAE": 0.06724644807240683,
+        "passed": true
+      },
+      "geometry": {
+        "overlaps": 0,
+        "escaped": 0,
+        "missingPixels": 0,
+        "shortSideMin": 16,
+        "shortSideP10": 16,
+        "sameScene": true,
+        "sourceFreeReplaySame": true
+      },
+      "negativeCells": 860,
+      "clippedToneCells": 245,
+      "integralBytes": 13448000,
+      "analysisWidth": 819,
+      "analysisHeight": 1024,
+      "rgbaSha256": "1451c414818105a574fc2662d77a75491705f64427e07c5a6c9a861a0de71497",
+      "pngRoundTrip": {
+        "width": 1639,
+        "height": 2048,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "beethoven-porcelain-night-2048",
+      "size": 2048,
+      "profile": "ink",
+      "width": 1639,
+      "height": 2048,
+      "count": 16926,
+      "elapsedWithAuditMs": 1301.2000000476837,
+      "metric": {
+        "structure": 0.9980377317502647,
+        "rangeRatio": 0.0570764831136229,
+        "toneMAE": 0.30706945524183726,
+        "passed": false
+      },
+      "rgbaSha256": "1c0ac447ec588818ae12eef36131bf0c5276124921cc918b1b3e418acfaba718",
+      "pngRoundTrip": {
+        "width": 1639,
+        "height": 2048,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "beethoven-porcelain-night-2048",
+      "size": 2048,
+      "profile": "cutout",
+      "width": 1639,
+      "height": 2048,
+      "count": 16926,
+      "elapsedWithAuditMs": 9312,
+      "metric": {
+        "structure": 0.9986065130810436,
+        "rangeRatio": 0.31293273759879725,
+        "toneMAE": 0.23033812904801534,
+        "passed": true
+      },
+      "rgbaSha256": "0beb08676c0dd3dc08ad29fa465afd5e46c8d776cafec012c593e229e547e352",
+      "pngRoundTrip": {
+        "width": 1639,
+        "height": 2048,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "beethoven-porcelain-night-2048",
+      "size": 2048,
+      "profile": "candidate",
+      "width": 1639,
+      "height": 2048,
+      "count": 860,
+      "elapsedWithAuditMs": 1931,
+      "metric": {
+        "structure": 0.9762118968585247,
+        "rangeRatio": 0.9813777143848255,
+        "toneMAE": 0.04094030482694824,
+        "passed": true
+      },
+      "geometry": {
+        "overlaps": 0,
+        "escaped": 0,
+        "missingPixels": 0,
+        "shortSideMin": 16,
+        "shortSideP10": 16,
+        "sameScene": true,
+        "sourceFreeReplaySame": true
+      },
+      "negativeCells": 615,
+      "clippedToneCells": 0,
+      "integralBytes": 13448000,
+      "analysisWidth": 819,
+      "analysisHeight": 1024,
+      "rgbaSha256": "1b71250d3fa5e2901653dd22bf5e3c231624dd67085dfe347765f0c660788209",
+      "pngRoundTrip": {
+        "width": 1639,
+        "height": 2048,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "beethoven-portrait-paper-2048",
+      "size": 2048,
+      "profile": "ink",
+      "width": 1639,
+      "height": 2048,
+      "count": 16926,
+      "elapsedWithAuditMs": 1480.3000000715256,
+      "metric": {
+        "structure": 0.9803668510885539,
+        "rangeRatio": 0.06776972845272007,
+        "toneMAE": 0.8240137896097169,
+        "passed": false
+      },
+      "rgbaSha256": "7b2a53b5ffcf82683c757bc5cfcdbd98b4177c4bf34786a32386c7284b2f0e9e",
+      "pngRoundTrip": {
+        "width": 1639,
+        "height": 2048,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "beethoven-portrait-paper-2048",
+      "size": 2048,
+      "profile": "cutout",
+      "width": 1639,
+      "height": 2048,
+      "count": 16926,
+      "elapsedWithAuditMs": 10400.200000047684,
+      "metric": {
+        "structure": 0.9850793621117617,
+        "rangeRatio": 0.3653647725859026,
+        "toneMAE": 0.6110297178150382,
+        "passed": false
+      },
+      "rgbaSha256": "dcda4caa605816b1c81949b6bc43394c21153d65f0a20d8e3719a8930b44fe66",
+      "pngRoundTrip": {
+        "width": 1639,
+        "height": 2048,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "beethoven-portrait-paper-2048",
+      "size": 2048,
+      "profile": "candidate",
+      "width": 1639,
+      "height": 2048,
+      "count": 655,
+      "elapsedWithAuditMs": 1634.1000000238419,
+      "metric": {
+        "structure": 0.9434905868244507,
+        "rangeRatio": 0.8917145793653379,
+        "toneMAE": 0.05888123728657432,
+        "passed": true
+      },
+      "geometry": {
+        "overlaps": 0,
+        "escaped": 0,
+        "missingPixels": 0,
+        "shortSideMin": 16,
+        "shortSideP10": 16,
+        "sameScene": true,
+        "sourceFreeReplaySame": true
+      },
+      "negativeCells": 655,
+      "clippedToneCells": 439,
+      "integralBytes": 13448000,
+      "analysisWidth": 819,
+      "analysisHeight": 1024,
+      "rgbaSha256": "05de2e07b3f95425e7e593355b07b69bd46a115d47a93667113530740dc2354f",
+      "pngRoundTrip": {
+        "width": 1639,
+        "height": 2048,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "beethoven-portrait-night-2048",
+      "size": 2048,
+      "profile": "ink",
+      "width": 1639,
+      "height": 2048,
+      "count": 16926,
+      "elapsedWithAuditMs": 831.2999999523163,
+      "metric": {
+        "structure": 0.9986741751107416,
+        "rangeRatio": 0.055535739613789235,
+        "toneMAE": 0.12222981412980949,
+        "passed": false
+      },
+      "rgbaSha256": "375797daddcdef512f514b97be508767aaf282ad19a0b35ae94c9f5c1e27cbb8",
+      "pngRoundTrip": {
+        "width": 1639,
+        "height": 2048,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "beethoven-portrait-night-2048",
+      "size": 2048,
+      "profile": "cutout",
+      "width": 1639,
+      "height": 2048,
+      "count": 16926,
+      "elapsedWithAuditMs": 8535.700000047684,
+      "metric": {
+        "structure": 0.9991778111242197,
+        "rangeRatio": 0.3040311265565554,
+        "toneMAE": 0.09522308280862461,
+        "passed": true
+      },
+      "rgbaSha256": "c9c4575f08ccdf0739c481452b3837e34292c0ede9f7b390ca9c126d2e33ed57",
+      "pngRoundTrip": {
+        "width": 1639,
+        "height": 2048,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "beethoven-portrait-night-2048",
+      "size": 2048,
+      "profile": "candidate",
+      "width": 1639,
+      "height": 2048,
+      "count": 655,
+      "elapsedWithAuditMs": 1525.8000000715256,
+      "metric": {
+        "structure": 0.9657641723305025,
+        "rangeRatio": 0.9689981500695707,
+        "toneMAE": 0.025488879603351236,
+        "passed": true
+      },
+      "geometry": {
+        "overlaps": 0,
+        "escaped": 0,
+        "missingPixels": 0,
+        "shortSideMin": 16,
+        "shortSideP10": 16,
+        "sameScene": true,
+        "sourceFreeReplaySame": true
+      },
+      "negativeCells": 216,
+      "clippedToneCells": 0,
+      "integralBytes": 13448000,
+      "analysisWidth": 819,
+      "analysisHeight": 1024,
+      "rgbaSha256": "f13e1634c87d38c5de0910b4a9edd378bc1011b22b8637cff244d5be1c242cb9",
+      "pngRoundTrip": {
+        "width": 1639,
+        "height": 2048,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "chinese-porcelain-paper-2048",
+      "size": 2048,
+      "profile": "ink",
+      "width": 1639,
+      "height": 2048,
+      "count": 13868,
+      "elapsedWithAuditMs": 3341.3000000715256,
+      "metric": {
+        "structure": 0.991614411559456,
+        "rangeRatio": 0.11531222608540696,
+        "toneMAE": 0.6117279498058571,
+        "passed": false
+      },
+      "rgbaSha256": "57f6dce3725210f47904aebc9fea8fe20bf7dd30d6307c441be757ae73956a9e",
+      "pngRoundTrip": {
+        "width": 1639,
+        "height": 2048,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "chinese-porcelain-paper-2048",
+      "size": 2048,
+      "profile": "cutout",
+      "width": 1639,
+      "height": 2048,
+      "count": 13868,
+      "elapsedWithAuditMs": 7803.800000071526,
+      "metric": {
+        "structure": 0.9944633282665134,
+        "rangeRatio": 0.47744305477526333,
+        "toneMAE": 0.40573604983312217,
+        "passed": true
+      },
+      "rgbaSha256": "464054cf0dfa8ee0fd64be6de47efb6b9649f5194faa644e4df20481d8255a43",
+      "pngRoundTrip": {
+        "width": 1639,
+        "height": 2048,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "chinese-porcelain-paper-2048",
+      "size": 2048,
+      "profile": "candidate",
+      "width": 1639,
+      "height": 2048,
+      "count": 1282,
+      "elapsedWithAuditMs": 1940,
+      "metric": {
+        "structure": 0.9840818545365615,
+        "rangeRatio": 0.8883664241397045,
+        "toneMAE": 0.05978230828087311,
+        "passed": true
+      },
+      "geometry": {
+        "overlaps": 0,
+        "escaped": 0,
+        "missingPixels": 0,
+        "shortSideMin": 16.173708920187796,
+        "shortSideP10": 17.099999999999998,
+        "sameScene": true,
+        "sourceFreeReplaySame": true
+      },
+      "negativeCells": 1262,
+      "clippedToneCells": 406,
+      "integralBytes": 13448000,
+      "analysisWidth": 819,
+      "analysisHeight": 1024,
+      "rgbaSha256": "e12b533afbbf52c431e1142e7ddaa63775226ab9a2934888c892983c4ac67f86",
+      "pngRoundTrip": {
+        "width": 1639,
+        "height": 2048,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "chinese-porcelain-night-2048",
+      "size": 2048,
+      "profile": "ink",
+      "width": 1639,
+      "height": 2048,
+      "count": 13868,
+      "elapsedWithAuditMs": 759.6999999284744,
+      "metric": {
+        "structure": 0.997602503591856,
+        "rangeRatio": 0.10414449174769697,
+        "toneMAE": 0.29290852331172806,
+        "passed": false
+      },
+      "rgbaSha256": "72f45452b8d660e5bf779394bc64b717e67cda11d4d9c027eaaa9cb6375fba49",
+      "pngRoundTrip": {
+        "width": 1639,
+        "height": 2048,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "chinese-porcelain-night-2048",
+      "size": 2048,
+      "profile": "cutout",
+      "width": 1639,
+      "height": 2048,
+      "count": 13868,
+      "elapsedWithAuditMs": 6801.900000095367,
+      "metric": {
+        "structure": 0.9986701244707917,
+        "rangeRatio": 0.44113962352208475,
+        "toneMAE": 0.1923710914703186,
+        "passed": true
+      },
+      "rgbaSha256": "134d1379066eab4987c01148abf7582de0739e875d107bae02303cd7db15cf2b",
+      "pngRoundTrip": {
+        "width": 1639,
+        "height": 2048,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "chinese-porcelain-night-2048",
+      "size": 2048,
+      "profile": "candidate",
+      "width": 1639,
+      "height": 2048,
+      "count": 1282,
+      "elapsedWithAuditMs": 1718.5,
+      "metric": {
+        "structure": 0.9925534929070037,
+        "rangeRatio": 0.9919131784904337,
+        "toneMAE": 0.02388940906854832,
+        "passed": true
+      },
+      "geometry": {
+        "overlaps": 0,
+        "escaped": 0,
+        "missingPixels": 0,
+        "shortSideMin": 16.173708920187796,
+        "shortSideP10": 17.099999999999998,
+        "sameScene": true,
+        "sourceFreeReplaySame": true
+      },
+      "negativeCells": 876,
+      "clippedToneCells": 20,
+      "integralBytes": 13448000,
+      "analysisWidth": 819,
+      "analysisHeight": 1024,
+      "rgbaSha256": "7a3e9dd8813a032ee77a6eba44493485d2352fb575de7ea6827378411eaa990f",
+      "pngRoundTrip": {
+        "width": 1639,
+        "height": 2048,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "chinese-portrait-paper-2048",
+      "size": 2048,
+      "profile": "ink",
+      "width": 1639,
+      "height": 2048,
+      "count": 13868,
+      "elapsedWithAuditMs": 1144,
+      "metric": {
+        "structure": 0.9762648021417547,
+        "rangeRatio": 0.12734210572769586,
+        "toneMAE": 0.7845522717494183,
+        "passed": false
+      },
+      "rgbaSha256": "d7631a2fd60f3814ad23f35d2fe48231192cad199ae8e974bdde6047b09cc7cb",
+      "pngRoundTrip": {
+        "width": 1639,
+        "height": 2048,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "chinese-portrait-paper-2048",
+      "size": 2048,
+      "profile": "cutout",
+      "width": 1639,
+      "height": 2048,
+      "count": 13868,
+      "elapsedWithAuditMs": 7838.100000023842,
+      "metric": {
+        "structure": 0.9877681962650671,
+        "rangeRatio": 0.5155343069835266,
+        "toneMAE": 0.5045829924881279,
+        "passed": false
+      },
+      "rgbaSha256": "fdbd61f8a05f4c2155a3d8d25387be3af763fb6016ee074eef61690a7d74cee8",
+      "pngRoundTrip": {
+        "width": 1639,
+        "height": 2048,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "chinese-portrait-paper-2048",
+      "size": 2048,
+      "profile": "candidate",
+      "width": 1639,
+      "height": 2048,
+      "count": 1038,
+      "elapsedWithAuditMs": 1785.1000000238419,
+      "metric": {
+        "structure": 0.9669182450061236,
+        "rangeRatio": 0.9239191404709751,
+        "toneMAE": 0.06992906118021759,
+        "passed": true
+      },
+      "geometry": {
+        "overlaps": 0,
+        "escaped": 0,
+        "missingPixels": 0,
+        "shortSideMin": 16.173708920187796,
+        "shortSideP10": 17.966101694915256,
+        "sameScene": true,
+        "sourceFreeReplaySame": true
+      },
+      "negativeCells": 1038,
+      "clippedToneCells": 790,
+      "integralBytes": 13448000,
+      "analysisWidth": 819,
+      "analysisHeight": 1024,
+      "rgbaSha256": "3360d57201c3f9fbe31c5b43a9914b364b1c1034f34e803a027d1841b9547af4",
+      "pngRoundTrip": {
+        "width": 1639,
+        "height": 2048,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "chinese-portrait-night-2048",
+      "size": 2048,
+      "profile": "ink",
+      "width": 1639,
+      "height": 2048,
+      "count": 13868,
+      "elapsedWithAuditMs": 703.7999999523163,
+      "metric": {
+        "structure": 0.9986697689827119,
+        "rangeRatio": 0.1025420928286864,
+        "toneMAE": 0.11720696254972247,
+        "passed": false
+      },
+      "rgbaSha256": "1d351c625d9f719a3e925a828f7b769a0b774a94864c58a827827f0ca6869805",
+      "pngRoundTrip": {
+        "width": 1639,
+        "height": 2048,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "chinese-portrait-night-2048",
+      "size": 2048,
+      "profile": "cutout",
+      "width": 1639,
+      "height": 2048,
+      "count": 13868,
+      "elapsedWithAuditMs": 6963.100000023842,
+      "metric": {
+        "structure": 0.9993393796495701,
+        "rangeRatio": 0.43018776481333326,
+        "toneMAE": 0.08215109555853156,
+        "passed": true
+      },
+      "rgbaSha256": "8f82809fd72d604e7ef65f9249e6e655cacc9e951e066e4a8ee2afbf59487c0a",
+      "pngRoundTrip": {
+        "width": 1639,
+        "height": 2048,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "chinese-portrait-night-2048",
+      "size": 2048,
+      "profile": "candidate",
+      "width": 1639,
+      "height": 2048,
+      "count": 1038,
+      "elapsedWithAuditMs": 1728.7000000476837,
+      "metric": {
+        "structure": 0.9925890685600209,
+        "rangeRatio": 1.0068057011912699,
+        "toneMAE": 0.013915517516896387,
+        "passed": true
+      },
+      "geometry": {
+        "overlaps": 0,
+        "escaped": 0,
+        "missingPixels": 0,
+        "shortSideMin": 16.173708920187796,
+        "shortSideP10": 17.966101694915256,
+        "sameScene": true,
+        "sourceFreeReplaySame": true
+      },
+      "negativeCells": 248,
+      "clippedToneCells": 0,
+      "integralBytes": 13448000,
+      "analysisWidth": 819,
+      "analysisHeight": 1024,
+      "rgbaSha256": "5524803b3066e0c8e523ba92336a21c7e40daf0e24a387903291bdccdb8acacb",
+      "pngRoundTrip": {
+        "width": 1639,
+        "height": 2048,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "english-porcelain-paper-2048",
+      "size": 2048,
+      "profile": "ink",
+      "width": 1639,
+      "height": 2048,
+      "count": 12834,
+      "elapsedWithAuditMs": 2910.0999999046326,
+      "metric": {
+        "structure": 0.9888949295905854,
+        "rangeRatio": 0.03592128632335573,
+        "toneMAE": 0.6558682382556529,
+        "passed": false
+      },
+      "rgbaSha256": "1931b260f7a35c638e7920ef8500890dfbd2d0dd0b720f67d85f7c6a009e27b7",
+      "pngRoundTrip": {
+        "width": 1639,
+        "height": 2048,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "english-porcelain-paper-2048",
+      "size": 2048,
+      "profile": "cutout",
+      "width": 1639,
+      "height": 2048,
+      "count": 12834,
+      "elapsedWithAuditMs": 7241.700000047684,
+      "metric": {
+        "structure": 0.9900754161943234,
+        "rangeRatio": 0.26581500721161,
+        "toneMAE": 0.5268730362222928,
+        "passed": false
+      },
+      "rgbaSha256": "1ed13ed0fedfcb55f259695fa1a081e54296d04e9b4b6702d6a51b2e72d8cd88",
+      "pngRoundTrip": {
+        "width": 1639,
+        "height": 2048,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "english-porcelain-paper-2048",
+      "size": 2048,
+      "profile": "candidate",
+      "width": 1639,
+      "height": 2048,
+      "count": 364,
+      "elapsedWithAuditMs": 484.2000000476837,
+      "metric": {
+        "structure": 0.9002775865433341,
+        "rangeRatio": 0.9149394969585679,
+        "toneMAE": 0.09425428610849555,
+        "passed": true
+      },
+      "geometry": {
+        "overlaps": 0,
+        "escaped": 0,
+        "missingPixels": 0,
+        "shortSideMin": 16.02857142857143,
+        "shortSideP10": 17,
+        "sameScene": true,
+        "sourceFreeReplaySame": true
+      },
+      "negativeCells": 364,
+      "clippedToneCells": 77,
+      "integralBytes": 13448000,
+      "analysisWidth": 819,
+      "analysisHeight": 1024,
+      "rgbaSha256": "6742c1d025ffed4f3c139195eb4ac22a336cba8d49e8f64f6be02da3ecaa6541",
+      "pngRoundTrip": {
+        "width": 1639,
+        "height": 2048,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "english-porcelain-night-2048",
+      "size": 2048,
+      "profile": "ink",
+      "width": 1639,
+      "height": 2048,
+      "count": 12834,
+      "elapsedWithAuditMs": 170.10000002384186,
+      "metric": {
+        "structure": 0.9975965119969075,
+        "rangeRatio": 0.032456521535826614,
+        "toneMAE": 0.31441254678824465,
+        "passed": false
+      },
+      "rgbaSha256": "80760802fab7f3ffe0731821d84af8d32d4f0fcfeb4876537b0ad201f81450b5",
+      "pngRoundTrip": {
+        "width": 1639,
+        "height": 2048,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "english-porcelain-night-2048",
+      "size": 2048,
+      "profile": "cutout",
+      "width": 1639,
+      "height": 2048,
+      "count": 12834,
+      "elapsedWithAuditMs": 3342.1999999284744,
+      "metric": {
+        "structure": 0.9981991079822479,
+        "rangeRatio": 0.24399346292996138,
+        "toneMAE": 0.2509122049128795,
+        "passed": false
+      },
+      "rgbaSha256": "4f3ab36f79d342efb6d6a6083e6f9fed88dcd2a19fb19554f3663963e1ac16e5",
+      "pngRoundTrip": {
+        "width": 1639,
+        "height": 2048,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "english-porcelain-night-2048",
+      "size": 2048,
+      "profile": "candidate",
+      "width": 1639,
+      "height": 2048,
+      "count": 364,
+      "elapsedWithAuditMs": 443.7999999523163,
+      "metric": {
+        "structure": 0.9042257919340145,
+        "rangeRatio": 0.955696241473861,
+        "toneMAE": 0.08183083417262423,
+        "passed": true
+      },
+      "geometry": {
+        "overlaps": 0,
+        "escaped": 0,
+        "missingPixels": 0,
+        "shortSideMin": 16.02857142857143,
+        "shortSideP10": 17,
+        "sameScene": true,
+        "sourceFreeReplaySame": true
+      },
+      "negativeCells": 287,
+      "clippedToneCells": 0,
+      "integralBytes": 13448000,
+      "analysisWidth": 819,
+      "analysisHeight": 1024,
+      "rgbaSha256": "0e77855f46c0ba7cd9af4b4ca8d740028d0d073ede09ef78ed9f8379ed2e68c9",
+      "pngRoundTrip": {
+        "width": 1639,
+        "height": 2048,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "english-portrait-paper-2048",
+      "size": 2048,
+      "profile": "ink",
+      "width": 1639,
+      "height": 2048,
+      "count": 12834,
+      "elapsedWithAuditMs": 310.2999999523163,
+      "metric": {
+        "structure": 0.9704214442991962,
+        "rangeRatio": 0.03943047013924166,
+        "toneMAE": 0.8444903590932632,
+        "passed": false
+      },
+      "rgbaSha256": "ac5fbc252abeb76f1414cd0fad16fa37e385777f962473d610acee8a1d01d420",
+      "pngRoundTrip": {
+        "width": 1639,
+        "height": 2048,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "english-portrait-paper-2048",
+      "size": 2048,
+      "profile": "cutout",
+      "width": 1639,
+      "height": 2048,
+      "count": 12834,
+      "elapsedWithAuditMs": 4003.2999999523163,
+      "metric": {
+        "structure": 0.9762471644022958,
+        "rangeRatio": 0.28810774598782857,
+        "toneMAE": 0.6686480888875513,
+        "passed": false
+      },
+      "rgbaSha256": "4f278c48a8c016e364c8e24bc8c9b23f992a50971f809ce450fc6973bf248c2f",
+      "pngRoundTrip": {
+        "width": 1639,
+        "height": 2048,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "english-portrait-paper-2048",
+      "size": 2048,
+      "profile": "candidate",
+      "width": 1639,
+      "height": 2048,
+      "count": 280,
+      "elapsedWithAuditMs": 390,
+      "metric": {
+        "structure": 0.8906920795356755,
+        "rangeRatio": 0.8009062934261171,
+        "toneMAE": 0.05856906926392138,
+        "passed": true
+      },
+      "geometry": {
+        "overlaps": 0,
+        "escaped": 0,
+        "missingPixels": 0,
+        "shortSideMin": 16.02857142857143,
+        "shortSideP10": 17.46031746031746,
+        "sameScene": true,
+        "sourceFreeReplaySame": true
+      },
+      "negativeCells": 280,
+      "clippedToneCells": 149,
+      "integralBytes": 13448000,
+      "analysisWidth": 819,
+      "analysisHeight": 1024,
+      "rgbaSha256": "fb33426b32e4b7a1ea03c2a42d9b89c4aa230335d3ad4c45a9a3b8f5fcc71939",
+      "pngRoundTrip": {
+        "width": 1639,
+        "height": 2048,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "english-portrait-night-2048",
+      "size": 2048,
+      "profile": "ink",
+      "width": 1639,
+      "height": 2048,
+      "count": 12834,
+      "elapsedWithAuditMs": 221.39999997615814,
+      "metric": {
+        "structure": 0.9984969344815173,
+        "rangeRatio": 0.0320738517155246,
+        "toneMAE": 0.12487725271696017,
+        "passed": false
+      },
+      "rgbaSha256": "1ef76111aab97fbbc9e5654317507af6a050173005ea514bbc0b53fb1c4c4ce4",
+      "pngRoundTrip": {
+        "width": 1639,
+        "height": 2048,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "english-portrait-night-2048",
+      "size": 2048,
+      "profile": "cutout",
+      "width": 1639,
+      "height": 2048,
+      "count": 12834,
+      "elapsedWithAuditMs": 3110.7000000476837,
+      "metric": {
+        "structure": 0.9988692540857012,
+        "rangeRatio": 0.23636640062750347,
+        "toneMAE": 0.10240126623952606,
+        "passed": false
+      },
+      "rgbaSha256": "a23e1a68e3fdac6b1e71c1ea25c80e9615422d366b0fbe5999063b1f6f1d6c72",
+      "pngRoundTrip": {
+        "width": 1639,
+        "height": 2048,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "english-portrait-night-2048",
+      "size": 2048,
+      "profile": "candidate",
+      "width": 1639,
+      "height": 2048,
+      "count": 280,
+      "elapsedWithAuditMs": 459.6999999284744,
+      "metric": {
+        "structure": 0.9138465429997893,
+        "rangeRatio": 0.8060112677578504,
+        "toneMAE": 0.03997711744627895,
+        "passed": true
+      },
+      "geometry": {
+        "overlaps": 0,
+        "escaped": 0,
+        "missingPixels": 0,
+        "shortSideMin": 16.02857142857143,
+        "shortSideP10": 17.46031746031746,
+        "sameScene": true,
+        "sourceFreeReplaySame": true
+      },
+      "negativeCells": 131,
+      "clippedToneCells": 0,
+      "integralBytes": 13448000,
+      "analysisWidth": 819,
+      "analysisHeight": 1024,
+      "rgbaSha256": "3a80a855ac6112eb8ff6ce333781cf0d3d27a7f9dea03f8098017c15f0e48f37",
+      "pngRoundTrip": {
+        "width": 1639,
+        "height": 2048,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "beethoven-porcelain-paper-4096",
+      "size": 4096,
+      "profile": "ink",
+      "width": 3278,
+      "height": 4096,
+      "count": 65790,
+      "elapsedWithAuditMs": 33142.89999997616,
+      "metric": {
+        "structure": 0.9962720688345107,
+        "rangeRatio": 0.06154250561266398,
+        "toneMAE": 0.6404527977142189,
+        "passed": false
+      },
+      "rgbaSha256": "90d1748f936ce0f3dfd71e50ca808a88caebcc66bad4099bb36fd208a9d19e89",
+      "pngRoundTrip": {
+        "width": 3278,
+        "height": 4096,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "beethoven-porcelain-paper-4096",
+      "size": 4096,
+      "profile": "cutout",
+      "width": 3278,
+      "height": 4096,
+      "count": 65790,
+      "elapsedWithAuditMs": 15844.299999952316,
+      "metric": {
+        "structure": 0.996846365898532,
+        "rangeRatio": 0.3453107732492554,
+        "toneMAE": 0.47798553625166745,
+        "passed": false
+      },
+      "rgbaSha256": "cf5a60f4745a785acb963555e04b04b791d7fa82116a12374b53d31cd54d0314",
+      "pngRoundTrip": {
+        "width": 3278,
+        "height": 4096,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "beethoven-porcelain-paper-4096",
+      "size": 4096,
+      "profile": "candidate",
+      "width": 3278,
+      "height": 4096,
+      "count": 3106,
+      "elapsedWithAuditMs": 3832.7999999523163,
+      "metric": {
+        "structure": 0.99149142132274,
+        "rangeRatio": 0.9112332039051962,
+        "toneMAE": 0.04515564706283568,
+        "passed": true
+      },
+      "geometry": {
+        "overlaps": 0,
+        "escaped": 0,
+        "missingPixels": 0,
+        "shortSideMin": 16,
+        "shortSideP10": 16,
+        "sameScene": true,
+        "sourceFreeReplaySame": true
+      },
+      "negativeCells": 3092,
+      "clippedToneCells": 889,
+      "integralBytes": 13448000,
+      "analysisWidth": 819,
+      "analysisHeight": 1024,
+      "rgbaSha256": "68780bb7ab1d253fe0cd85c72f9c9379742a22c80888bfe1576fc100234bf870",
+      "pngRoundTrip": {
+        "width": 3278,
+        "height": 4096,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "beethoven-porcelain-night-4096",
+      "size": 4096,
+      "profile": "ink",
+      "width": 3278,
+      "height": 4096,
+      "count": 65790,
+      "elapsedWithAuditMs": 508.39999997615814,
+      "metric": {
+        "structure": 0.9987434083167017,
+        "rangeRatio": 0.05689313903867353,
+        "toneMAE": 0.3070851349701672,
+        "passed": false
+      },
+      "rgbaSha256": "a0b7489af475bfd4a4391eb56cacd04d5081b8b9ac04ec8782fc2cb9a840b6b6",
+      "pngRoundTrip": {
+        "width": 3278,
+        "height": 4096,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "beethoven-porcelain-night-4096",
+      "size": 4096,
+      "profile": "cutout",
+      "width": 3278,
+      "height": 4096,
+      "count": 65790,
+      "elapsedWithAuditMs": 29041.899999976158,
+      "metric": {
+        "structure": 0.9989355891310847,
+        "rangeRatio": 0.3192072990154276,
+        "toneMAE": 0.2282070117670619,
+        "passed": true
+      },
+      "rgbaSha256": "2ee61fc87662f84ccc658e956a07f916918df673c744b7a8912ad1e1c1c096a0",
+      "pngRoundTrip": {
+        "width": 3278,
+        "height": 4096,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "beethoven-porcelain-night-4096",
+      "size": 4096,
+      "profile": "candidate",
+      "width": 3278,
+      "height": 4096,
+      "count": 3106,
+      "elapsedWithAuditMs": 2342.7999999523163,
+      "metric": {
+        "structure": 0.9946456576812581,
+        "rangeRatio": 0.9871778624100993,
+        "toneMAE": 0.018956043672852797,
+        "passed": true
+      },
+      "geometry": {
+        "overlaps": 0,
+        "escaped": 0,
+        "missingPixels": 0,
+        "shortSideMin": 16,
+        "shortSideP10": 16,
+        "sameScene": true,
+        "sourceFreeReplaySame": true
+      },
+      "negativeCells": 2217,
+      "clippedToneCells": 14,
+      "integralBytes": 13448000,
+      "analysisWidth": 819,
+      "analysisHeight": 1024,
+      "rgbaSha256": "5fdc3908c87b561adba03e5b0c45161b3968f588dcace29989dc234b9183d9f7",
+      "pngRoundTrip": {
+        "width": 3278,
+        "height": 4096,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "beethoven-portrait-paper-4096",
+      "size": 4096,
+      "profile": "ink",
+      "width": 3278,
+      "height": 4096,
+      "count": 65790,
+      "elapsedWithAuditMs": 6118,
+      "metric": {
+        "structure": 0.9935090485697066,
+        "rangeRatio": 0.06639012396392317,
+        "toneMAE": 0.8237513510602485,
+        "passed": false
+      },
+      "rgbaSha256": "608b5154f7c8693a4dd2e364ff55fa39bd3f6c1cea32722ed1c71f670fb2a310",
+      "pngRoundTrip": {
+        "width": 3278,
+        "height": 4096,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "beethoven-portrait-paper-4096",
+      "size": 4096,
+      "profile": "cutout",
+      "width": 3278,
+      "height": 4096,
+      "count": 65790,
+      "elapsedWithAuditMs": 18573,
+      "metric": {
+        "structure": 0.9955159718325396,
+        "rangeRatio": 0.3675092168498438,
+        "toneMAE": 0.6033644006381489,
+        "passed": false
+      },
+      "rgbaSha256": "03c941381799811e7d259d66a2fb73a465fe970cb76246a2bdfe946c995b9fbe",
+      "pngRoundTrip": {
+        "width": 3278,
+        "height": 4096,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "beethoven-portrait-paper-4096",
+      "size": 4096,
+      "profile": "candidate",
+      "width": 3278,
+      "height": 4096,
+      "count": 2465,
+      "elapsedWithAuditMs": 1601.8999999761581,
+      "metric": {
+        "structure": 0.9866617570029396,
+        "rangeRatio": 0.9358069789826235,
+        "toneMAE": 0.045140020201557086,
+        "passed": true
+      },
+      "geometry": {
+        "overlaps": 0,
+        "escaped": 0,
+        "missingPixels": 0,
+        "shortSideMin": 16,
+        "shortSideP10": 16,
+        "sameScene": true,
+        "sourceFreeReplaySame": true
+      },
+      "negativeCells": 2465,
+      "clippedToneCells": 1746,
+      "integralBytes": 13448000,
+      "analysisWidth": 819,
+      "analysisHeight": 1024,
+      "rgbaSha256": "a46e0d75e5d4b63a3618e055d8253e90cc5a853ac592eaaf295e78a1f16ea0c2",
+      "pngRoundTrip": {
+        "width": 3278,
+        "height": 4096,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "beethoven-portrait-night-4096",
+      "size": 4096,
+      "profile": "ink",
+      "width": 3278,
+      "height": 4096,
+      "count": 65790,
+      "elapsedWithAuditMs": 595.2999999523163,
+      "metric": {
+        "structure": 0.9993150951910278,
+        "rangeRatio": 0.05599526129523747,
+        "toneMAE": 0.12220295387603793,
+        "passed": false
+      },
+      "rgbaSha256": "49a4ba53d9e75c5570f63446baf953a23a3cd2473bfdf188005cd96e87b9ad75",
+      "pngRoundTrip": {
+        "width": 3278,
+        "height": 4096,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "beethoven-portrait-night-4096",
+      "size": 4096,
+      "profile": "cutout",
+      "width": 3278,
+      "height": 4096,
+      "count": 65790,
+      "elapsedWithAuditMs": 16170.299999952316,
+      "metric": {
+        "structure": 0.9993738294149058,
+        "rangeRatio": 0.31332198623039176,
+        "toneMAE": 0.09440362664797512,
+        "passed": true
+      },
+      "rgbaSha256": "f7f97e773266860d241f14bdc53f4a5c635b6015ca5040d5311351c2982e8432",
+      "pngRoundTrip": {
+        "width": 3278,
+        "height": 4096,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "beethoven-portrait-night-4096",
+      "size": 4096,
+      "profile": "candidate",
+      "width": 3278,
+      "height": 4096,
+      "count": 2465,
+      "elapsedWithAuditMs": 1622,
+      "metric": {
+        "structure": 0.9953730743554879,
+        "rangeRatio": 1.0175570658192261,
+        "toneMAE": 0.010514629962316557,
+        "passed": true
+      },
+      "geometry": {
+        "overlaps": 0,
+        "escaped": 0,
+        "missingPixels": 0,
+        "shortSideMin": 16,
+        "shortSideP10": 16,
+        "sameScene": true,
+        "sourceFreeReplaySame": true
+      },
+      "negativeCells": 719,
+      "clippedToneCells": 0,
+      "integralBytes": 13448000,
+      "analysisWidth": 819,
+      "analysisHeight": 1024,
+      "rgbaSha256": "fc549ec8b19a88d854399c44294568a0aedc4c8edfd4a3a82139820a4f8b93ec",
+      "pngRoundTrip": {
+        "width": 3278,
+        "height": 4096,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "chinese-porcelain-paper-4096",
+      "size": 4096,
+      "profile": "ink",
+      "width": 3278,
+      "height": 4096,
+      "count": 26910,
+      "elapsedWithAuditMs": 5880.300000071526,
+      "metric": {
+        "structure": 0.9949280530254868,
+        "rangeRatio": 0.11631395891928273,
+        "toneMAE": 0.6107860165118046,
+        "passed": false
+      },
+      "rgbaSha256": "9ec9e5169dedb3a6826aa8285f55e0ebdad77ce579738740649205d9d57fa307",
+      "pngRoundTrip": {
+        "width": 3278,
+        "height": 4096,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "chinese-porcelain-paper-4096",
+      "size": 4096,
+      "profile": "cutout",
+      "width": 3278,
+      "height": 4096,
+      "count": 26910,
+      "elapsedWithAuditMs": 14588.100000023842,
+      "metric": {
+        "structure": 0.9965150604963767,
+        "rangeRatio": 0.47477175739040967,
+        "toneMAE": 0.4041654061732456,
+        "passed": true
+      },
+      "rgbaSha256": "7743101fdbb0da00bef3a0db0d3d8af31b1619d1cd8fb349a8c0c1095190d46a",
+      "pngRoundTrip": {
+        "width": 3278,
+        "height": 4096,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "chinese-porcelain-paper-4096",
+      "size": 4096,
+      "profile": "candidate",
+      "width": 3278,
+      "height": 4096,
+      "count": 4718,
+      "elapsedWithAuditMs": 1530,
+      "metric": {
+        "structure": 0.9932791772478224,
+        "rangeRatio": 0.8791763462512552,
+        "toneMAE": 0.04857655947266817,
+        "passed": true
+      },
+      "geometry": {
+        "overlaps": 0,
+        "escaped": 0,
+        "missingPixels": 0,
+        "shortSideMin": 16.173708920187796,
+        "shortSideP10": 17.406862745098042,
+        "sameScene": true,
+        "sourceFreeReplaySame": true
+      },
+      "negativeCells": 4599,
+      "clippedToneCells": 1575,
+      "integralBytes": 13448000,
+      "analysisWidth": 819,
+      "analysisHeight": 1024,
+      "rgbaSha256": "e4494370343142d48bfd015fac7df5fc9e652403f91b429e2555899f1b3449a9",
+      "pngRoundTrip": {
+        "width": 3278,
+        "height": 4096,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "chinese-porcelain-night-4096",
+      "size": 4096,
+      "profile": "ink",
+      "width": 3278,
+      "height": 4096,
+      "count": 26910,
+      "elapsedWithAuditMs": 279.5,
+      "metric": {
+        "structure": 0.9980906850238397,
+        "rangeRatio": 0.10583859059680936,
+        "toneMAE": 0.29262644843334185,
+        "passed": false
+      },
+      "rgbaSha256": "e8653f8c4a57ad45aba10babdd15b71ed7a199ee987f0dd3870b4741bb2d84b4",
+      "pngRoundTrip": {
+        "width": 3278,
+        "height": 4096,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "chinese-porcelain-night-4096",
+      "size": 4096,
+      "profile": "cutout",
+      "width": 3278,
+      "height": 4096,
+      "count": 26910,
+      "elapsedWithAuditMs": 6366.699999928474,
+      "metric": {
+        "structure": 0.9989703933300488,
+        "rangeRatio": 0.4388796988899405,
+        "toneMAE": 0.19239949045071977,
+        "passed": true
+      },
+      "rgbaSha256": "c1c28467fef4542727d3bf9d243fd4e10310a848b382fac35f9ec6c3831d86d1",
+      "pngRoundTrip": {
+        "width": 3278,
+        "height": 4096,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "chinese-porcelain-night-4096",
+      "size": 4096,
+      "profile": "candidate",
+      "width": 3278,
+      "height": 4096,
+      "count": 4718,
+      "elapsedWithAuditMs": 1498.8999999761581,
+      "metric": {
+        "structure": 0.9991596535850377,
+        "rangeRatio": 0.9970399017893035,
+        "toneMAE": 0.008266548144608445,
+        "passed": true
+      },
+      "geometry": {
+        "overlaps": 0,
+        "escaped": 0,
+        "missingPixels": 0,
+        "shortSideMin": 16.173708920187796,
+        "shortSideP10": 17.406862745098042,
+        "sameScene": true,
+        "sourceFreeReplaySame": true
+      },
+      "negativeCells": 3143,
+      "clippedToneCells": 119,
+      "integralBytes": 13448000,
+      "analysisWidth": 819,
+      "analysisHeight": 1024,
+      "rgbaSha256": "9d9b02f22e3c0d0436ad3c5a72c9c53b275a3fcfe75eccff41f6d99c0f94dfab",
+      "pngRoundTrip": {
+        "width": 3278,
+        "height": 4096,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "chinese-portrait-paper-4096",
+      "size": 4096,
+      "profile": "ink",
+      "width": 3278,
+      "height": 4096,
+      "count": 26910,
+      "elapsedWithAuditMs": 431.89999997615814,
+      "metric": {
+        "structure": 0.9876784361561716,
+        "rangeRatio": 0.12471388587363338,
+        "toneMAE": 0.7834307974592338,
+        "passed": false
+      },
+      "rgbaSha256": "201515be67665b427d5782f531e8800adafe01b84189e540efdffa5c3cd1b783",
+      "pngRoundTrip": {
+        "width": 3278,
+        "height": 4096,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "chinese-portrait-paper-4096",
+      "size": 4096,
+      "profile": "cutout",
+      "width": 3278,
+      "height": 4096,
+      "count": 26910,
+      "elapsedWithAuditMs": 6959.899999976158,
+      "metric": {
+        "structure": 0.9948210728841341,
+        "rangeRatio": 0.5063981284029663,
+        "toneMAE": 0.5031271368324396,
+        "passed": false
+      },
+      "rgbaSha256": "1ff6ca32177c2b0ed7f2ad899711f714d1bb6cbe995d6e5e259e44068369f34a",
+      "pngRoundTrip": {
+        "width": 3278,
+        "height": 4096,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "chinese-portrait-paper-4096",
+      "size": 4096,
+      "profile": "candidate",
+      "width": 3278,
+      "height": 4096,
+      "count": 3855,
+      "elapsedWithAuditMs": 1829.3999999761581,
+      "metric": {
+        "structure": 0.9882166258925174,
+        "rangeRatio": 0.887108764902856,
+        "toneMAE": 0.06724384680058694,
+        "passed": true
+      },
+      "geometry": {
+        "overlaps": 0,
+        "escaped": 0,
+        "missingPixels": 0,
+        "shortSideMin": 16.173708920187796,
+        "shortSideP10": 18.529411764705884,
+        "sameScene": true,
+        "sourceFreeReplaySame": true
+      },
+      "negativeCells": 3854,
+      "clippedToneCells": 2991,
+      "integralBytes": 13448000,
+      "analysisWidth": 819,
+      "analysisHeight": 1024,
+      "rgbaSha256": "a081938e306715bffc7bf3d47d51b067384e6ad8a38b087c357a76b57e6ba87c",
+      "pngRoundTrip": {
+        "width": 3278,
+        "height": 4096,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "chinese-portrait-night-4096",
+      "size": 4096,
+      "profile": "ink",
+      "width": 3278,
+      "height": 4096,
+      "count": 26910,
+      "elapsedWithAuditMs": 264.7000000476837,
+      "metric": {
+        "structure": 0.9988040352179772,
+        "rangeRatio": 0.10227941963388565,
+        "toneMAE": 0.11718430623818904,
+        "passed": false
+      },
+      "rgbaSha256": "c98878730286ffbbb0579fd0c55ec3d58dd36392548d3a447809aed2cb8789ea",
+      "pngRoundTrip": {
+        "width": 3278,
+        "height": 4096,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "chinese-portrait-night-4096",
+      "size": 4096,
+      "profile": "cutout",
+      "width": 3278,
+      "height": 4096,
+      "count": 26910,
+      "elapsedWithAuditMs": 9822.399999976158,
+      "metric": {
+        "structure": 0.9995378790118767,
+        "rangeRatio": 0.4365144524447207,
+        "toneMAE": 0.08225604343818381,
+        "passed": true
+      },
+      "rgbaSha256": "cfbfeb43fda74b8054311f3d1d033b7ea53931bded0dc2b2d26298b72976740f",
+      "pngRoundTrip": {
+        "width": 3278,
+        "height": 4096,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "chinese-portrait-night-4096",
+      "size": 4096,
+      "profile": "candidate",
+      "width": 3278,
+      "height": 4096,
+      "count": 3855,
+      "elapsedWithAuditMs": 1465.5,
+      "metric": {
+        "structure": 0.9988841848746814,
+        "rangeRatio": 1.0018834268422647,
+        "toneMAE": 0.0053885643926137984,
+        "passed": true
+      },
+      "geometry": {
+        "overlaps": 0,
+        "escaped": 0,
+        "missingPixels": 0,
+        "shortSideMin": 16.173708920187796,
+        "shortSideP10": 18.529411764705884,
+        "sameScene": true,
+        "sourceFreeReplaySame": true
+      },
+      "negativeCells": 864,
+      "clippedToneCells": 1,
+      "integralBytes": 13448000,
+      "analysisWidth": 819,
+      "analysisHeight": 1024,
+      "rgbaSha256": "2ab5f7a0e3ff2460ac9a6d8b21863980757eae2474a126185e9117638d7b7978",
+      "pngRoundTrip": {
+        "width": 3278,
+        "height": 4096,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "english-porcelain-paper-4096",
+      "size": 4096,
+      "profile": "ink",
+      "width": 3278,
+      "height": 4096,
+      "count": 51778,
+      "elapsedWithAuditMs": 12575.5,
+      "metric": {
+        "structure": 0.9964930428208244,
+        "rangeRatio": 0.035106796102453736,
+        "toneMAE": 0.6555926792357097,
+        "passed": false
+      },
+      "rgbaSha256": "b37954c6e4e0a59199ffa6e76efa4ab512880c630ac0d28e96267ea81848415e",
+      "pngRoundTrip": {
+        "width": 3278,
+        "height": 4096,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "english-porcelain-paper-4096",
+      "size": 4096,
+      "profile": "cutout",
+      "width": 3278,
+      "height": 4096,
+      "count": 51778,
+      "elapsedWithAuditMs": 11191.799999952316,
+      "metric": {
+        "structure": 0.9966882061316992,
+        "rangeRatio": 0.26312527799074653,
+        "toneMAE": 0.5248312217830784,
+        "passed": false
+      },
+      "rgbaSha256": "ae68847d2684ea370abe0a29efbcdfce1ba8aa45d72b6375da4c2b22b1b9f27e",
+      "pngRoundTrip": {
+        "width": 3278,
+        "height": 4096,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "english-porcelain-paper-4096",
+      "size": 4096,
+      "profile": "candidate",
+      "width": 3278,
+      "height": 4096,
+      "count": 1354,
+      "elapsedWithAuditMs": 1366.3999999761581,
+      "metric": {
+        "structure": 0.9725367946205439,
+        "rangeRatio": 0.9421213641942655,
+        "toneMAE": 0.05615905526512056,
+        "passed": true
+      },
+      "geometry": {
+        "overlaps": 0,
+        "escaped": 0,
+        "missingPixels": 0,
+        "shortSideMin": 16.02857142857143,
+        "shortSideP10": 16.923076923076923,
+        "sameScene": true,
+        "sourceFreeReplaySame": true
+      },
+      "negativeCells": 1354,
+      "clippedToneCells": 332,
+      "integralBytes": 13448000,
+      "analysisWidth": 819,
+      "analysisHeight": 1024,
+      "rgbaSha256": "881a7ce168db76a5503e013af9c66fe829864be56d1f2593a2a3e5fa61dfc069",
+      "pngRoundTrip": {
+        "width": 3278,
+        "height": 4096,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "english-porcelain-night-4096",
+      "size": 4096,
+      "profile": "ink",
+      "width": 3278,
+      "height": 4096,
+      "count": 51778,
+      "elapsedWithAuditMs": 533.3999999761581,
+      "metric": {
+        "structure": 0.9990067584130558,
+        "rangeRatio": 0.032622042526046585,
+        "toneMAE": 0.31440072362151394,
+        "passed": false
+      },
+      "rgbaSha256": "93e30dfd23e41a1b337406f7438972edeeb4034cb2af9245bc7eb05054f75e9c",
+      "pngRoundTrip": {
+        "width": 3278,
+        "height": 4096,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "english-porcelain-night-4096",
+      "size": 4096,
+      "profile": "cutout",
+      "width": 3278,
+      "height": 4096,
+      "count": 51778,
+      "elapsedWithAuditMs": 14819,
+      "metric": {
+        "structure": 0.9989957663006223,
+        "rangeRatio": 0.24416042068947372,
+        "toneMAE": 0.25082661904037834,
+        "passed": false
+      },
+      "rgbaSha256": "785a08e5878376e27ff4485eeac49fc1ae3baa47e21bb3565855ae635e616140",
+      "pngRoundTrip": {
+        "width": 3278,
+        "height": 4096,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "english-porcelain-night-4096",
+      "size": 4096,
+      "profile": "candidate",
+      "width": 3278,
+      "height": 4096,
+      "count": 1354,
+      "elapsedWithAuditMs": 1579.3999999761581,
+      "metric": {
+        "structure": 0.9741139795609467,
+        "rangeRatio": 0.9857482977085316,
+        "toneMAE": 0.042231928233081854,
+        "passed": true
+      },
+      "geometry": {
+        "overlaps": 0,
+        "escaped": 0,
+        "missingPixels": 0,
+        "shortSideMin": 16.02857142857143,
+        "shortSideP10": 16.923076923076923,
+        "sameScene": true,
+        "sourceFreeReplaySame": true
+      },
+      "negativeCells": 1022,
+      "clippedToneCells": 0,
+      "integralBytes": 13448000,
+      "analysisWidth": 819,
+      "analysisHeight": 1024,
+      "rgbaSha256": "76ffa3f39e059ead32d570cc01042f96f3c1f1e8970e08f27f1cf50d4f75f052",
+      "pngRoundTrip": {
+        "width": 3278,
+        "height": 4096,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "english-portrait-paper-4096",
+      "size": 4096,
+      "profile": "ink",
+      "width": 3278,
+      "height": 4096,
+      "count": 51778,
+      "elapsedWithAuditMs": 6739,
+      "metric": {
+        "structure": 0.9937507021166027,
+        "rangeRatio": 0.03854455750084898,
+        "toneMAE": 0.8442376698248051,
+        "passed": false
+      },
+      "rgbaSha256": "06ecbb1ca55421b0a97913c26d41e95b23fa7eaf5b2a8e9aadd53d6a82ce287c",
+      "pngRoundTrip": {
+        "width": 3278,
+        "height": 4096,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "english-portrait-paper-4096",
+      "size": 4096,
+      "profile": "cutout",
+      "width": 3278,
+      "height": 4096,
+      "count": 51778,
+      "elapsedWithAuditMs": 34199.799999952316,
+      "metric": {
+        "structure": 0.9947601896279387,
+        "rangeRatio": 0.28479935215621976,
+        "toneMAE": 0.6667630336378253,
+        "passed": false
+      },
+      "rgbaSha256": "19ec6a982eb33ad3239fd725ce7dbb5802eeb2ef4734ec2859ea888a0f4214fe",
+      "pngRoundTrip": {
+        "width": 3278,
+        "height": 4096,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "english-portrait-paper-4096",
+      "size": 4096,
+      "profile": "candidate",
+      "width": 3278,
+      "height": 4096,
+      "count": 1055,
+      "elapsedWithAuditMs": 4878.300000071526,
+      "metric": {
+        "structure": 0.9705244623893758,
+        "rangeRatio": 0.9283920259263911,
+        "toneMAE": 0.03565500583324724,
+        "passed": true
+      },
+      "geometry": {
+        "overlaps": 0,
+        "escaped": 0,
+        "missingPixels": 0,
+        "shortSideMin": 16.02857142857143,
+        "shortSideP10": 17.46031746031746,
+        "sameScene": true,
+        "sourceFreeReplaySame": true
+      },
+      "negativeCells": 1055,
+      "clippedToneCells": 576,
+      "integralBytes": 13448000,
+      "analysisWidth": 819,
+      "analysisHeight": 1024,
+      "rgbaSha256": "38799e1d8668f9da34c58fed197d357b6dcbeed22934052b3cfec9398b355428",
+      "pngRoundTrip": {
+        "width": 3278,
+        "height": 4096,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "english-portrait-night-4096",
+      "size": 4096,
+      "profile": "ink",
+      "width": 3278,
+      "height": 4096,
+      "count": 51778,
+      "elapsedWithAuditMs": 2073.899999976158,
+      "metric": {
+        "structure": 0.9994927593113214,
+        "rangeRatio": 0.03166285251059046,
+        "toneMAE": 0.12486177435189866,
+        "passed": false
+      },
+      "rgbaSha256": "4c6c689d10cc4c2c9e2c8976e83e0712873d733b70d507aecb5c9987698b1428",
+      "pngRoundTrip": {
+        "width": 3278,
+        "height": 4096,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "english-portrait-night-4096",
+      "size": 4096,
+      "profile": "cutout",
+      "width": 3278,
+      "height": 4096,
+      "count": 51778,
+      "elapsedWithAuditMs": 42608.300000071526,
+      "metric": {
+        "structure": 0.9994211141236224,
+        "rangeRatio": 0.23560940223170773,
+        "toneMAE": 0.10229071101344485,
+        "passed": false
+      },
+      "rgbaSha256": "38b5d5f216c44286dde7e2aec56df88dba448461ad06a15bd919a787a02945b4",
+      "pngRoundTrip": {
+        "width": 3278,
+        "height": 4096,
+        "sameRGBA": true
+      }
+    },
+    {
+      "label": "english-portrait-night-4096",
+      "size": 4096,
+      "profile": "candidate",
+      "width": 3278,
+      "height": 4096,
+      "count": 1055,
+      "elapsedWithAuditMs": 4414.699999928474,
+      "metric": {
+        "structure": 0.9804670848668189,
+        "rangeRatio": 0.9555305541158854,
+        "toneMAE": 0.019314478868218094,
+        "passed": true
+      },
+      "geometry": {
+        "overlaps": 0,
+        "escaped": 0,
+        "missingPixels": 0,
+        "shortSideMin": 16.02857142857143,
+        "shortSideP10": 17.46031746031746,
+        "sameScene": true,
+        "sourceFreeReplaySame": true
+      },
+      "negativeCells": 479,
+      "clippedToneCells": 0,
+      "integralBytes": 13448000,
+      "analysisWidth": 819,
+      "analysisHeight": 1024,
+      "rgbaSha256": "0146dafbc1374d7ed1e2cf08aed7fcd2a1a2956953265520d1f63916514596a6",
+      "pngRoundTrip": {
+        "width": 3278,
+        "height": 4096,
+        "sameRGBA": true
+      }
+    }
+  ],
+  "templates": {
+    "beethoven": {
+      "count": 1,
+      "pixels": 374400,
+      "traits": [
+        {
+          "alpha": 56903.83529411766,
+          "coverage": 0.15198673956762196,
+          "inkWidth": 1560,
+          "inkHeight": 240
+        }
+      ]
+    },
+    "chinese": {
+      "count": 8,
+      "pixels": 118604,
+      "traits": [
+        {
+          "alpha": 2947.0156862745043,
+          "coverage": 0.18853660586491616,
+          "inkWidth": 195,
+          "inkHeight": 69
+        },
+        {
+          "alpha": 2350.8392156862765,
+          "coverage": 0.19531731602577904,
+          "inkWidth": 169,
+          "inkHeight": 60
+        },
+        {
+          "alpha": 2619.964705882352,
+          "coverage": 0.18536611758046923,
+          "inkWidth": 183,
+          "inkHeight": 66
+        },
+        {
+          "alpha": 3184.3058823529354,
+          "coverage": 0.20479168321775904,
+          "inkWidth": 205,
+          "inkHeight": 65
+        },
+        {
+          "alpha": 3154.1098039215694,
+          "coverage": 0.20615096757657317,
+          "inkWidth": 196,
+          "inkHeight": 67
+        },
+        {
+          "alpha": 2589.862745098043,
+          "coverage": 0.18323636232475188,
+          "inkWidth": 183,
+          "inkHeight": 66
+        },
+        {
+          "alpha": 3608.47843137256,
+          "coverage": 0.20318009185656305,
+          "inkWidth": 214,
+          "inkHeight": 72
+        },
+        {
+          "alpha": 2439.0196078431354,
+          "coverage": 0.17347223384375074,
+          "inkWidth": 177,
+          "inkHeight": 68
+        }
+      ]
+    },
+    "english": {
+      "count": 8,
+      "pixels": 168420,
+      "traits": [
+        {
+          "alpha": 2471.5098039215677,
+          "coverage": 0.14352554029741973,
+          "inkWidth": 412,
+          "inkHeight": 33
+        },
+        {
+          "alpha": 2644.3921568627466,
+          "coverage": 0.12108022696257997,
+          "inkWidth": 412,
+          "inkHeight": 44
+        },
+        {
+          "alpha": 2519.0862745097998,
+          "coverage": 0.14280534435996597,
+          "inkWidth": 412,
+          "inkHeight": 34
+        },
+        {
+          "alpha": 2479.8784313725478,
+          "coverage": 0.13731331292206797,
+          "inkWidth": 412,
+          "inkHeight": 35
+        },
+        {
+          "alpha": 2683.113725490198,
+          "coverage": 0.1252620786876843,
+          "inkWidth": 412,
+          "inkHeight": 43
+        },
+        {
+          "alpha": 2589.799999999998,
+          "coverage": 0.09787603930461065,
+          "inkWidth": 412,
+          "inkHeight": 55
+        },
+        {
+          "alpha": 2527.949019607836,
+          "coverage": 0.11574858148387528,
+          "inkWidth": 412,
+          "inkHeight": 44
+        },
+        {
+          "alpha": 2555.1411764705826,
+          "coverage": 0.10673104329451055,
+          "inkWidth": 412,
+          "inkHeight": 49
+        }
+      ]
+    }
+  },
+  "sourceHashes": {
+    "docs/prototypes/v11-signature-print/engine.ts": "7ed7060a8bf96f49108c6d5ed10cf516ab7002760a96e02b2b44d85e15f8d952",
+    "docs/prototypes/v11-signature-print/main.ts": "d5263c6146a5b7735aeec7cf08f2c5317d4faa835a6de9a9bbcff4a0c8b73793",
+    "docs/prototypes/v10-signature-capacity/metrics.ts": "b4dd1bd99a0a6c4b026696006dea1c1003ed817de924fc6339ccd2f04b6c7fe5",
+    "docs/prototypes/v10-signature-capacity/engine.ts": "09a3c2867e0f8a4a561bcbc37b3f91dba64ef47183a72271811516f2bbb0f1e0",
+    "docs/research/2026-10-04-signature-capacity/experiment-r2.json": "7471fc5d40a8609b0f13d03e3421656997f58913113df1877f867899a7e549b0",
+    "docs/research/2026-10-04-signature-capacity/beethoven-signature.svg": "4c19519c3ea10a6a976f73430fbe42341f09faff7d63d352345b4a9c91b146f1",
+    "public/artwork/porcelain-study-v1.png": "0ce4707016f8fd4c7348fd7a6bead069789e1aaa2b1b0b12551b5227bddb36d5",
+    "public/artwork/portrait-reference.png": "dcedb28b650aa9b644847026c41bf21159d1ba704e440e12d6ec2e741f1266e1"
+  },
+  "candidateTiming": [
+    {
+      "label": "beethoven-porcelain-paper-2048",
+      "coldMs": 783.5,
+      "warmupMs": 864.2999999523163,
+      "repeatsMs": [
+        667.9000000953674,
+        622.6000000238419,
+        630.1000000238419,
+        592.2000000476837,
+        643.6000000238419,
+        659.8999999761581,
+        675.2999999523163
+      ],
+      "budgetPassed": true,
+      "p50Ms": 643.6000000238419,
+      "p95Ms": 675.2999999523163,
+      "scope": "partition + prepare masks + paint + full synchronous RGBA readback; excludes font/template generation, UI, PNG encoding and audit"
+    },
+    {
+      "label": "beethoven-porcelain-night-2048",
+      "coldMs": 883.5,
+      "warmupMs": 699.6000000238419,
+      "repeatsMs": [
+        783.7000000476837,
+        875,
+        690.7999999523163,
+        874.3999999761581,
+        828.1000000238419,
+        842.4000000953674,
+        794.7000000476837
+      ],
+      "budgetPassed": true,
+      "p50Ms": 828.1000000238419,
+      "p95Ms": 875,
+      "scope": "partition + prepare masks + paint + full synchronous RGBA readback; excludes font/template generation, UI, PNG encoding and audit"
+    },
+    {
+      "label": "beethoven-portrait-paper-2048",
+      "coldMs": 737.5,
+      "warmupMs": 761.5,
+      "repeatsMs": [
+        634.8000000715256,
+        742.3999999761581,
+        711.7000000476837,
+        918.1000000238419,
+        700.5,
+        774.2999999523163,
+        720.6000000238419
+      ],
+      "budgetPassed": true,
+      "p50Ms": 720.6000000238419,
+      "p95Ms": 918.1000000238419,
+      "scope": "partition + prepare masks + paint + full synchronous RGBA readback; excludes font/template generation, UI, PNG encoding and audit"
+    },
+    {
+      "label": "beethoven-portrait-night-2048",
+      "coldMs": 627.3000000715256,
+      "warmupMs": 631.1000000238419,
+      "repeatsMs": [
+        641.3999999761581,
+        712.8000000715256,
+        683.3999999761581,
+        665.3000000715256,
+        664,
+        681.5999999046326,
+        598.6000000238419
+      ],
+      "budgetPassed": true,
+      "p50Ms": 665.3000000715256,
+      "p95Ms": 712.8000000715256,
+      "scope": "partition + prepare masks + paint + full synchronous RGBA readback; excludes font/template generation, UI, PNG encoding and audit"
+    },
+    {
+      "label": "chinese-porcelain-paper-2048",
+      "coldMs": 891.8999999761581,
+      "warmupMs": 902.6000000238419,
+      "repeatsMs": [
+        842.6999999284744,
+        836.3999999761581,
+        851.8999999761581,
+        819.1999999284744,
+        866,
+        867.3999999761581,
+        880.3999999761581
+      ],
+      "budgetPassed": true,
+      "p50Ms": 851.8999999761581,
+      "p95Ms": 880.3999999761581,
+      "scope": "partition + prepare masks + paint + full synchronous RGBA readback; excludes font/template generation, UI, PNG encoding and audit"
+    },
+    {
+      "label": "chinese-porcelain-night-2048",
+      "coldMs": 808.1999999284744,
+      "warmupMs": 784,
+      "repeatsMs": [
+        841.5999999046326,
+        805.7999999523163,
+        847.7999999523163,
+        806.3999999761581,
+        853.9000000953674,
+        803.3999999761581,
+        795.3000000715256
+      ],
+      "budgetPassed": true,
+      "p50Ms": 806.3999999761581,
+      "p95Ms": 853.9000000953674,
+      "scope": "partition + prepare masks + paint + full synchronous RGBA readback; excludes font/template generation, UI, PNG encoding and audit"
+    },
+    {
+      "label": "chinese-portrait-paper-2048",
+      "coldMs": 794.1000000238419,
+      "warmupMs": 821.7000000476837,
+      "repeatsMs": [
+        770.3000000715256,
+        794.8000000715256,
+        762.8999999761581,
+        794.3000000715256,
+        681.3999999761581,
+        774.2000000476837,
+        757.1000000238419
+      ],
+      "budgetPassed": true,
+      "p50Ms": 770.3000000715256,
+      "p95Ms": 794.8000000715256,
+      "scope": "partition + prepare masks + paint + full synchronous RGBA readback; excludes font/template generation, UI, PNG encoding and audit"
+    },
+    {
+      "label": "chinese-portrait-night-2048",
+      "coldMs": 766.6000000238419,
+      "warmupMs": 716.1999999284744,
+      "repeatsMs": [
+        753.2000000476837,
+        713.5999999046326,
+        733,
+        691.7000000476837,
+        695.6000000238419,
+        710.1000000238419,
+        690.6000000238419
+      ],
+      "budgetPassed": true,
+      "p50Ms": 710.1000000238419,
+      "p95Ms": 753.2000000476837,
+      "scope": "partition + prepare masks + paint + full synchronous RGBA readback; excludes font/template generation, UI, PNG encoding and audit"
+    },
+    {
+      "label": "english-porcelain-paper-2048",
+      "coldMs": 173.80000007152557,
+      "warmupMs": 141.89999997615814,
+      "repeatsMs": [
+        153.90000009536743,
+        164.79999995231628,
+        165.69999992847443,
+        142.10000002384186,
+        142.60000002384186,
+        147,
+        142.60000002384186
+      ],
+      "budgetPassed": true,
+      "p50Ms": 147,
+      "p95Ms": 165.69999992847443,
+      "scope": "partition + prepare masks + paint + full synchronous RGBA readback; excludes font/template generation, UI, PNG encoding and audit"
+    },
+    {
+      "label": "english-porcelain-night-2048",
+      "coldMs": 192.89999997615814,
+      "warmupMs": 159.79999995231628,
+      "repeatsMs": [
+        162.5,
+        184.70000004768372,
+        163.60000002384186,
+        161.20000004768372,
+        161.39999997615814,
+        156.5,
+        179
+      ],
+      "budgetPassed": true,
+      "p50Ms": 162.5,
+      "p95Ms": 184.70000004768372,
+      "scope": "partition + prepare masks + paint + full synchronous RGBA readback; excludes font/template generation, UI, PNG encoding and audit"
+    },
+    {
+      "label": "english-portrait-paper-2048",
+      "coldMs": 127.5,
+      "warmupMs": 162.70000004768372,
+      "repeatsMs": [
+        118.5,
+        179.69999992847443,
+        145.20000004768372,
+        153.20000004768372,
+        137.80000007152557,
+        147.30000007152557,
+        154.5
+      ],
+      "budgetPassed": true,
+      "p50Ms": 147.30000007152557,
+      "p95Ms": 179.69999992847443,
+      "scope": "partition + prepare masks + paint + full synchronous RGBA readback; excludes font/template generation, UI, PNG encoding and audit"
+    },
+    {
+      "label": "english-portrait-night-2048",
+      "coldMs": 181,
+      "warmupMs": 194.10000002384186,
+      "repeatsMs": [
+        161.10000002384186,
+        149.5,
+        169.20000004768372,
+        158.10000002384186,
+        140.89999997615814,
+        160.20000004768372,
+        157.89999997615814
+      ],
+      "budgetPassed": true,
+      "p50Ms": 158.10000002384186,
+      "p95Ms": 169.20000004768372,
+      "scope": "partition + prepare masks + paint + full synchronous RGBA readback; excludes font/template generation, UI, PNG encoding and audit"
+    },
+    {
+      "label": "beethoven-porcelain-paper-4096",
+      "coldMs": 551.2000000476837,
+      "warmupMs": 573.2999999523163,
+      "repeatsMs": [
+        547,
+        549.5,
+        535.7999999523163,
+        543.3000000715256,
+        526.6000000238419,
+        563.8999999761581,
+        559.7000000476837
+      ],
+      "budgetPassed": true,
+      "p50Ms": 547,
+      "p95Ms": 563.8999999761581,
+      "scope": "partition + prepare masks + paint + full synchronous RGBA readback; excludes font/template generation, UI, PNG encoding and audit"
+    },
+    {
+      "label": "beethoven-porcelain-night-4096",
+      "coldMs": 579.7000000476837,
+      "warmupMs": 618.2000000476837,
+      "repeatsMs": [
+        605.5,
+        565.1999999284744,
+        571.8000000715256,
+        580.8999999761581,
+        564.7000000476837,
+        573.7000000476837,
+        549.3999999761581
+      ],
+      "budgetPassed": true,
+      "p50Ms": 571.8000000715256,
+      "p95Ms": 605.5,
+      "scope": "partition + prepare masks + paint + full synchronous RGBA readback; excludes font/template generation, UI, PNG encoding and audit"
+    },
+    {
+      "label": "beethoven-portrait-paper-4096",
+      "coldMs": 603.7999999523163,
+      "warmupMs": 648.2000000476837,
+      "repeatsMs": [
+        621.8999999761581,
+        621.1000000238419,
+        631.5,
+        591.5,
+        612.0999999046326,
+        616.7000000476837,
+        599.8000000715256
+      ],
+      "budgetPassed": true,
+      "p50Ms": 616.7000000476837,
+      "p95Ms": 631.5,
+      "scope": "partition + prepare masks + paint + full synchronous RGBA readback; excludes font/template generation, UI, PNG encoding and audit"
+    },
+    {
+      "label": "beethoven-portrait-night-4096",
+      "coldMs": 650.7999999523163,
+      "warmupMs": 601.6000000238419,
+      "repeatsMs": [
+        612.3000000715256,
+        576.2000000476837,
+        587.6000000238419,
+        535.8999999761581,
+        563.1000000238419,
+        592.1000000238419,
+        587.9000000953674
+      ],
+      "budgetPassed": true,
+      "p50Ms": 587.6000000238419,
+      "p95Ms": 612.3000000715256,
+      "scope": "partition + prepare masks + paint + full synchronous RGBA readback; excludes font/template generation, UI, PNG encoding and audit"
+    },
+    {
+      "label": "chinese-porcelain-paper-4096",
+      "coldMs": 648.8999999761581,
+      "warmupMs": 679,
+      "repeatsMs": [
+        644.2000000476837,
+        643.8000000715256,
+        664.5,
+        671.8000000715256,
+        652.1000000238419,
+        671.3999999761581,
+        656
+      ],
+      "budgetPassed": true,
+      "p50Ms": 656,
+      "p95Ms": 671.8000000715256,
+      "scope": "partition + prepare masks + paint + full synchronous RGBA readback; excludes font/template generation, UI, PNG encoding and audit"
+    },
+    {
+      "label": "chinese-porcelain-night-4096",
+      "coldMs": 591.2000000476837,
+      "warmupMs": 631.7000000476837,
+      "repeatsMs": [
+        586.2000000476837,
+        621.6000000238419,
+        598.4000000953674,
+        594.6999999284744,
+        597.2999999523163,
+        598.3999999761581,
+        571.5
+      ],
+      "budgetPassed": true,
+      "p50Ms": 597.2999999523163,
+      "p95Ms": 621.6000000238419,
+      "scope": "partition + prepare masks + paint + full synchronous RGBA readback; excludes font/template generation, UI, PNG encoding and audit"
+    },
+    {
+      "label": "chinese-portrait-paper-4096",
+      "coldMs": 2399.2999999523163,
+      "warmupMs": 749.7999999523163,
+      "repeatsMs": [
+        602.5,
+        572.5,
+        605.3999999761581,
+        576,
+        586.5999999046326,
+        578.2999999523163,
+        578.5
+      ],
+      "budgetPassed": true,
+      "p50Ms": 578.5,
+      "p95Ms": 605.3999999761581,
+      "scope": "partition + prepare masks + paint + full synchronous RGBA readback; excludes font/template generation, UI, PNG encoding and audit"
+    },
+    {
+      "label": "chinese-portrait-night-4096",
+      "coldMs": 565.6000000238419,
+      "warmupMs": 524,
+      "repeatsMs": [
+        548.7999999523163,
+        521.3999999761581,
+        537.7999999523163,
+        539.0999999046326,
+        539,
+        522.2999999523163,
+        532.3999999761581
+      ],
+      "budgetPassed": true,
+      "p50Ms": 537.7999999523163,
+      "p95Ms": 548.7999999523163,
+      "scope": "partition + prepare masks + paint + full synchronous RGBA readback; excludes font/template generation, UI, PNG encoding and audit"
+    },
+    {
+      "label": "english-porcelain-paper-4096",
+      "coldMs": 530.7000000476837,
+      "warmupMs": 537.5,
+      "repeatsMs": [
+        540.2000000476837,
+        473.1999999284744,
+        500.60000002384186,
+        505.3000000715256,
+        482.5,
+        482.7999999523163,
+        512.1000000238419
+      ],
+      "budgetPassed": true,
+      "p50Ms": 500.60000002384186,
+      "p95Ms": 540.2000000476837,
+      "scope": "partition + prepare masks + paint + full synchronous RGBA readback; excludes font/template generation, UI, PNG encoding and audit"
+    },
+    {
+      "label": "english-porcelain-night-4096",
+      "coldMs": 2220.100000023842,
+      "warmupMs": 2214.3000000715256,
+      "repeatsMs": [
+        2133.7999999523163,
+        2130.5,
+        2162.600000023842,
+        2192.899999976158,
+        2140.100000023842,
+        2160.7999999523163,
+        2154.7000000476837
+      ],
+      "budgetPassed": false,
+      "p50Ms": 2154.7000000476837,
+      "p95Ms": 2192.899999976158,
+      "scope": "partition + prepare masks + paint + full synchronous RGBA readback; excludes font/template generation, UI, PNG encoding and audit"
+    },
+    {
+      "label": "english-portrait-paper-4096",
+      "coldMs": 1996.5,
+      "warmupMs": 2083.2999999523163,
+      "repeatsMs": [
+        2000.3000000715256,
+        1993.2999999523163,
+        2055.100000023842,
+        2023.2999999523163,
+        2037.2999999523163,
+        2052.100000023842,
+        2009.8999999761581
+      ],
+      "budgetPassed": false,
+      "p50Ms": 2023.2999999523163,
+      "p95Ms": 2055.100000023842,
+      "scope": "partition + prepare masks + paint + full synchronous RGBA readback; excludes font/template generation, UI, PNG encoding and audit"
+    },
+    {
+      "label": "english-portrait-night-4096",
+      "coldMs": 1431.6000000238419,
+      "warmupMs": 1798.5,
+      "repeatsMs": [
+        1744.8999999761581,
+        1877.6999999284744,
+        1829.3999999761581,
+        1799.2999999523163,
+        1836.4000000953674,
+        1825.7999999523163,
+        1791.2000000476837
+      ],
+      "budgetPassed": true,
+      "p50Ms": 1825.7999999523163,
+      "p95Ms": 1877.6999999284744,
+      "scope": "partition + prepare masks + paint + full synchronous RGBA readback; excludes font/template generation, UI, PNG encoding and audit"
+    }
+  ],
+  "integralAudit": {
+    "rectangles": 200,
+    "maxError": 4.6629367034256575e-15,
+    "passed": true
+  },
+  "engineeringPassed": true,
+  "candidateQualityPasses": 24,
+  "candidateQualityCases": 24,
+  "timingBudgetPassed": false,
+  "commercialVisualPassed": false,
+  "promotion": false
+}

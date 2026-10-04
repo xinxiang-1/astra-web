@@ -62,7 +62,9 @@
     "lint:eslint": "eslint . --fix --cache",
     "format": "prettier --write --experimental-cli src/",
     "test:material-surface": "node scripts/material-motion-surface-contract.mjs",
-    "demo:material-motion": "node scripts/material-motion-prototype.mjs"
+    "demo:material-motion": "node scripts/material-motion-prototype.mjs",
+    "research:signature-print": "node scripts/signature-print-research.mjs",
+    "test:signature-print-ui": "node scripts/signature-print-ui.mjs"
   },
   "dependencies": {
     "@file-viewer/preset-office": "^3.1.1",
