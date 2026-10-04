@@ -1,0 +1,23 @@
+{
+  "id": "signature-capacity-partition-v1-r2-print",
+  "baselineCommit": "519a95706760420f5ea9f5f8ec06d776fa6603ac",
+  "round": 2,
+  "implementationRoundsMaximum": 2,
+  "hypothesis": "Separating <=1024px tone analysis from 2048/4096px integer partition geometry, while retaining complete native ink height >=16px, improves long-word spatial detail without a photograph underlay. Negative plates may still prevent commercial aesthetic promotion.",
+  "fixed": {"outputLongestSides": [2048, 4096], "analysisLongestSideMaximum": 1024, "minimumNativeInkHeight": 16, "maximumCells": 64000, "maximumCellAreaFactor": 6, "varianceThreshold": 0.035, "splitFractionRange": [0.42, 0.58], "seed": 42},
+  "analysis": "Fractional rectangles evaluated by bilinear extension of summed-area arrays: exact area integration of the piecewise-constant analysis pixels, not a per-pixel source rendering.",
+  "profiles": ["production-woven-ink", "production-woven-cutout", "adaptive-positive-negative-r2"],
+  "developmentSources": ["generated-porcelain-study-v1", "generated-portrait-reference"],
+  "developmentTemplates": ["beethoven-historical-vector-reproduction", "mashanzheng-李云舟-8", "longcang-Alexander Montgomery-8"],
+  "backgrounds": ["paper", "night"],
+  "developmentCases": 72,
+  "quality": {"structureCorrelationMinimum": 0.82, "rangeRatioMinimum": 0.3, "toneMAEMaximum": 0.45, "sameResolutionBaselines": true, "sourceRemap": false},
+  "geometry": "Uniform positive scale, zero rotation/mirroring, complete templates inside disjoint integer cells, all output pixels partitioned, native ink height >=16px. Native glyph size does not certify physical print readability.",
+  "budgets": {"integralArraysMiB": 24, "templatePixelsMiB": 16, "maximumOutputPixels": 16777216, "singleOutputRGBAMiBMaximum": 64, "maximumOccupancyArrayMiB": 16},
+  "timing": {"coldRuns": 1, "warmupRuns": 1, "warmRepeats": 7, "scope": "partition + stencil preparation + complete paint + synchronous full RGBA readback; excludes template generation, PNG encoding, UI and audit", "p95BudgetMs": 2000},
+  "frozenR1Untouched": true,
+  "finalSourcesUnconsumed": ["Darwin", "Curie"],
+  "stoppingRule": "After R2 archive actual images and failures; no third tuning of this hypothesis. Promote only after commercial aesthetic, native readability and delivery contracts, never from numeric pass alone.",
+  "promotion": false,
+  "notCertification": ["native 4K photographs", "physical print readability", "personal handwriting", "human preferences", "Safari", "real mobile", "whole-browser memory"]
+}

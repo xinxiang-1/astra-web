@@ -6,6 +6,7 @@
 
 - 贝多芬：[Commons 文件页](https://commons.wikimedia.org/wiki/File:Signature_Van_Beethoven.svg)、[原始 SVG](https://upload.wikimedia.org/wikipedia/commons/9/95/Signature_Van_Beethoven.svg)。官方 [imageinfo/extmetadata](./beethoven-metadata.json) 标为 Public domain / PD Old，矢量重绘者 Peeperman。保留署名；这属于历史签名重绘，不是新采集的真人湿墨笔迹，也不能证明私人签名授权或真实性。
 - 未改动 SVG 为 5,992 字节，SHA256 `4c19519c3ea10a6a976f73430fbe42341f09faff7d63d352345b4a9c91b146f1`。独立 DOM [几何审计](./source-geometry.json)：9 个路径，边界 390×60 完整落在原始视口内；无图像、文字、脚本或外部引用。以 1560×240 栅格化，所有透明像素保留。
+- 提交后核对发现仓库默认 LF 规范化将此下载文件由 5,992 字节变为 5,931 字节。随后为这一个来源添加 `-text` 属性并重新加入原始字节；源图未重绘，冻结报告 hash 不变，跨机器检出也保留下载原字节。
 - **排除 Hugo 候选**：[官方返回](./hugo-metadata.json) 的描述为 “Signature of soulaim”、日期 1201、作者 “Connormah, soulaim”，与标题不一致。未作为模板使用，不以公有领域标签掩盖身份不确定性。小写标题查询无结果曾触发空数组读取错误，改为保存原始返回后人工核对。
 - 李云舟 / Alexander Montgomery 使用已有 OFL MaShanZheng / LongCang，各 8 个固定种子字体辅助写法。许可与字体校验见 [字体研究](../2026-10-04-signature-fonts/README.md)。这些不是 8 次真人手写。
 - 两张肖像复用本地生成素材，来源见 [SOURCES](../../../public/artwork/SOURCES.md)。瓷像实际为 1122×1402；两图均不宣称原生 4K。
