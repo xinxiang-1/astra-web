@@ -5,6 +5,7 @@ import { onBeforeRouteLeave, onBeforeRouteUpdate, useRoute } from 'vue-router'
 import CharacterArtwork from '@/components/CharacterArtwork.vue'
 import ArtIcon from '@/components/ui/ArtIcon.vue'
 import AstraLogo from '@/components/ui/AstraLogo.vue'
+import ThemeToggle from '@/components/ui/ThemeToggle.vue'
 import ExportSheet from '@/components/ExportSheet.vue'
 import UnsavedChangesDialog from '@/components/UnsavedChangesDialog.vue'
 import { prepareArtSource, type PreparedArtSource } from '@/lib/art-media-source'
@@ -2857,6 +2858,7 @@ onBeforeUnmount(() => {
       </div>
       <input v-model="projectTitle" class="project-title" aria-label="作品名称" maxlength="60" />
       <div class="editor-header-actions">
+        <ThemeToggle compact />
         <span class="save-status" role="status">{{ projectStatus }}</span
         ><button
           class="editor-save"

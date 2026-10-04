@@ -153,7 +153,7 @@ const formats = [
   margin: 20px 0;
 }
 .help-heading > p {
-  color: #62685f;
+  color: var(--text-muted);
   font-size: 14px;
   line-height: 1.8;
 }
@@ -184,12 +184,12 @@ const formats = [
 }
 .creation-steps li {
   padding: 26px;
-  background: #efeee8;
+  background: var(--bg-elevated);
   border-radius: 12px;
 }
 .creation-steps li > span {
   font: 32px var(--art-serif);
-  color: #276357;
+  color: var(--accent);
 }
 .creation-steps h3 {
   font-size: 20px;
@@ -199,7 +199,7 @@ const formats = [
 .backup-section p {
   font-size: 13px;
   line-height: 1.9;
-  color: #545e52;
+  color: var(--text-muted);
 }
 .backup-section {
   display: grid;
@@ -246,7 +246,7 @@ const formats = [
 .formats-section dd {
   font-size: 13px;
   line-height: 1.8;
-  color: #545e52;
+  color: var(--text-muted);
   margin: 0;
 }
 .faq-section details {
@@ -263,7 +263,7 @@ const formats = [
   margin: 0;
   font-size: 13px;
   line-height: 1.9;
-  color: #545e52;
+  color: var(--text-muted);
 }
 .help-bottom {
   margin-top: 55px;

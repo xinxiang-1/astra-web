@@ -110,7 +110,7 @@ const filtered = computed(() =>
   font:
     14px Consolas,
     monospace;
-  color: #94978e;
+  color: var(--text-muted);
   vertical-align: middle;
   margin-left: 20px;
 }
@@ -119,9 +119,9 @@ const filtered = computed(() =>
   font-size: 14px;
 }
 .gallery-heading > .art-eyebrow {
-  color: #858b7e;
+  color: var(--text-muted);
 }
-.gallery-template-link { margin-top: 12px; min-height: 44px; color: #276357; }
+.gallery-template-link { margin-top: 12px; min-height: 44px; color: var(--accent); }
 .gallery-tools {
   display: flex;
   align-items: center;
@@ -138,14 +138,14 @@ const filtered = computed(() =>
   display: flex;
   align-items: center;
   gap: 12px;
-  border-bottom: 1px solid #c8ccc1;
+  border-bottom: 1px solid var(--border);
   padding: 9px 4px;
 }
 .gallery-search input {
   background: none;
   border: 0;
   outline: none;
-  color: #242922;
+  color: var(--text);
   width: 160px;
   font: 12px var(--font-body);
 }
@@ -176,7 +176,7 @@ const filtered = computed(() =>
   display: flex;
   align-items: center;
   gap: 8px;
-  border: 1px solid #dddcd5;
+  border: 1px solid var(--border);
   padding: 9px 10px;
   border-radius: 30px;
   font-size: 10px;

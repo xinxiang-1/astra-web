@@ -2,6 +2,10 @@
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, shallowRef, watch } from 'vue'
 
 import FxButton from '@/components/ui/FxButton.vue'
+import UiInput from '@/components/ui/UiInput.vue'
+import UiSelect from '@/components/ui/UiSelect.vue'
+import DisclosurePanel from '@/components/ui/DisclosurePanel.vue'
+import RenderFeedback from '@/components/ui/RenderFeedback.vue'
 import {
   addStampToBank,
   addStampsToBank,
@@ -39,9 +43,23 @@ import {
   type SignatureFontId,
 } from '@/lib/signature-portrait'
 import { useThemeStore } from '@/stores/theme'
-import { fitSignatureRaster, measureSignatureViewport, SIGNATURE_OVERVIEW_LONG, SIGNATURE_VIEWPORT_LONG } from '@/lib/signature-portrait/preview-viewport'
-import { createSignatureProject, readSignatureProject, signatureProjectFilename, SIGNATURE_PROJECT_ACCEPT, type SignatureProject } from '@/lib/signature-portrait/project'
-import { createSignatureRasterWorker, type SignatureRasterWorker } from '@/lib/signature-portrait/raster-worker-client'
+import {
+  fitSignatureRaster,
+  measureSignatureViewport,
+  SIGNATURE_OVERVIEW_LONG,
+  SIGNATURE_VIEWPORT_LONG,
+} from '@/lib/signature-portrait/preview-viewport'
+import {
+  createSignatureProject,
+  readSignatureProject,
+  signatureProjectFilename,
+  SIGNATURE_PROJECT_ACCEPT,
+  type SignatureProject,
+} from '@/lib/signature-portrait/project'
+import {
+  createSignatureRasterWorker,
+  type SignatureRasterWorker,
+} from '@/lib/signature-portrait/raster-worker-client'
 
 const theme = useThemeStore()
 const BANK_ID_KEY = 'astra-sig-bank-id'
@@ -80,7 +98,11 @@ let layoutH = 0
 let paintSignal: { cancelled?: boolean } = { cancelled: false }
 let rasterWorker: SignatureRasterWorker | null = null
 let rasterWorkerScene: SignatureProject | null = null
-function disposeRasterWorker() { rasterWorker?.dispose(); rasterWorker = null; rasterWorkerScene = null }
+function disposeRasterWorker() {
+  rasterWorker?.dispose()
+  rasterWorker = null
+  rasterWorkerScene = null
+}
 let zoomPaintTimer: ReturnType<typeof setTimeout> | null = null
 let zoomPaintSeq = 0
 /** 第二档：WebGL 图集实例化预览 */
@@ -94,8 +116,10 @@ const sharpPainting = ref(false)
 const previewQuality = ref<'fast' | 'clear' | 'detail'>('clear')
 const previewQualityProfile = computed(() => {
   const dpr = window.devicePixelRatio || 1
-  if (previewQuality.value === 'fast') return { dpr: Math.min(1, dpr), maxLong: 1280, stampLong: 1000 }
-  if (previewQuality.value === 'detail') return { dpr: Math.min(3, Math.max(2, dpr)), maxLong: 3200, stampLong: 2000 }
+  if (previewQuality.value === 'fast')
+    return { dpr: Math.min(1, dpr), maxLong: 1280, stampLong: 1000 }
+  if (previewQuality.value === 'detail')
+    return { dpr: Math.min(3, Math.max(2, dpr)), maxLong: 3200, stampLong: 2000 }
   return { dpr: Math.min(2.5, dpr), maxLong: SIGNATURE_VIEWPORT_LONG, stampLong: 1600 }
 })
 const previewPan = ref(true)
@@ -142,6 +166,8 @@ const invertDensity = ref<boolean | null>(false)
 const signatureSurface = ref<'paper' | 'night'>('paper')
 const signatureInkStyle = ref<SignatureInkStyle>('ink')
 const allowVertical = ref(false)
+const orientationMode = ref<'classic' | 'flow'>('classic')
+const orientationStrength = ref(0.8)
 /** 边缘勾勒 */
 const edgeOutline = ref(true)
 const edgeBoost = ref(0.95)
@@ -165,6 +191,10 @@ function currentLayoutOptions(): SignatureLayoutOptions {
     maxSide: Math.round(maxSide.value),
     density: density.value,
     angleRange: angleRange.value,
+    layoutMethod:
+      orientationMode.value === 'flow' ? 'woven' : restoredLayoutOptions.value.layoutMethod,
+    orientationMode: orientationMode.value === 'flow' ? 'flow' : undefined,
+    orientationStrength: orientationMode.value === 'flow' ? orientationStrength.value : undefined,
     allowVertical: allowVertical.value,
     minSizeRatio: minSizePct.value / 100,
     maxSizeRatio: maxSizePct.value / 100,
@@ -188,28 +218,33 @@ function currentLayoutOptions(): SignatureLayoutOptions {
 
 const resultSettingsChanged = computed(() => {
   const result = generatedResult.value
-  return Boolean(result && (
-    JSON.stringify(currentLayoutOptions()) !== JSON.stringify(result.options) ||
-    portrait.value !== result.portrait ||
-    stamps.value.map(s => s.id).join(',') !== result.stamps.map(s => s.id).join(',')
-  ))
+  return Boolean(
+    result &&
+    (JSON.stringify(currentLayoutOptions()) !== JSON.stringify(result.options) ||
+      portrait.value !== result.portrait ||
+      stamps.value.map((s) => s.id).join(',') !== result.stamps.map((s) => s.id).join(',')),
+  )
 })
-const resultBackground = computed(() => generatedResult.value?.options.background ?? previewBg.value)
-
-const portraitSrc = computed(
-  () => portraitObjectUrl.value || portrait.value?.src || '',
+const resultBackground = computed(
+  () => generatedResult.value?.options.background ?? previewBg.value,
 )
 
-const canCompare = computed(
-  () => hasResult.value && Boolean(portraitSrc.value),
-)
+const portraitSrc = computed(() => portraitObjectUrl.value || portrait.value?.src || '')
+
+const canCompare = computed(() => hasResult.value && Boolean(portraitSrc.value))
 const comparisonActive = computed(() => canCompare.value && showComparison.value)
+
+function toggleComparison() {
+  showComparison.value = !showComparison.value
+  previewPan.value = !showComparison.value
+}
 
 const viewScaleLabel = computed(() => {
   if (viewScale.value <= 1.02) return '适应'
   if (layoutW > 0) {
     const one = layoutW / Math.max(1, getFitWidth(layoutW))
-    if (Math.abs(viewScale.value - one) / one < 0.04) return `原大 ${Math.round(viewScale.value * 100)}%`
+    if (Math.abs(viewScale.value - one) / one < 0.04)
+      return `原大 ${Math.round(viewScale.value * 100)}%`
   }
   return `${Math.round(viewScale.value * 100)}%`
 })
@@ -226,13 +261,9 @@ const maxSideLabel = computed(() => {
   return `${n}px`
 })
 
-const canRender = computed(
-  () => Boolean(portrait.value) && stamps.value.length > 0,
-)
+const canRender = computed(() => Boolean(portrait.value) && stamps.value.length > 0)
 
-const tracedStampCount = computed(
-  () => stamps.value.filter((s) => stampHasVector(s)).length,
-)
+const tracedStampCount = computed(() => stamps.value.filter((s) => stampHasVector(s)).length)
 
 const bankProgress = computed(() => {
   const c = activeBank.value?.count ?? 0
@@ -339,9 +370,16 @@ async function generate100Styles() {
   progressStage.value = '加载书写字体'
   progressRatio.value = 0
   try {
-    const target = (await listBanks()).find(bank => bank.label === name) ?? null
+    const target = (await listBanks()).find((bank) => bank.label === name) ?? null
     controller.signal.throwIfAborted()
-    if (target && target.count > 0 && !confirm(`将替换「${name}」现有 ${target.count} 遍为字体写法。建议保留手写库，改用另一个名字新建库。继续替换？`)) return
+    if (
+      target &&
+      target.count > 0 &&
+      !confirm(
+        `将替换「${name}」现有 ${target.count} 遍为字体写法。建议保留手写库，改用另一个名字新建库。继续替换？`,
+      )
+    )
+      return
     const variants = await generateHandwritingVariants(name, {
       count,
       font,
@@ -357,7 +395,9 @@ async function generate100Styles() {
       expected: target,
       goal: count,
       signal: controller.signal,
-      onProgress: r => { progressRatio.value = 0.55 + r * 0.45 },
+      onProgress: (r) => {
+        progressRatio.value = 0.55 + r * 0.45
+      },
     })
     revokeEntryUrls(bankEntries.value)
     bankEntries.value = result.entries
@@ -369,7 +409,8 @@ async function generate100Styles() {
     progressRatio.value = 1
     if (portrait.value) await renderNow()
   } catch (e) {
-    if (!controller.signal.aborted) error.value = e instanceof Error ? e.message : '生成写法失败，原名字库已保留'
+    if (!controller.signal.aborted)
+      error.value = e instanceof Error ? e.message : '生成写法失败，原名字库已保留'
   } finally {
     if (generationController === controller) generationController = null
     generatingVariants.value = false
@@ -427,9 +468,16 @@ function revokePortraitUrl() {
 }
 
 function releaseUnusedImportedScenes() {
-  const liveCanvases = new Set([...stamps.value, ...(generatedResult.value?.stamps ?? [])].map(stamp => stamp.canvas))
+  const liveCanvases = new Set(
+    [...stamps.value, ...(generatedResult.value?.stamps ?? [])].map((stamp) => stamp.canvas),
+  )
   for (const scene of importedScenes) {
-    if (portrait.value === scene.project.portrait || generatedResult.value?.portrait === scene.project.portrait || scene.project.stamps.some(stamp => liveCanvases.has(stamp.canvas))) continue
+    if (
+      portrait.value === scene.project.portrait ||
+      generatedResult.value?.portrait === scene.project.portrait ||
+      scene.project.stamps.some((stamp) => liveCanvases.has(stamp.canvas))
+    )
+      continue
     scene.dispose()
     importedScenes.delete(scene)
   }
@@ -486,7 +534,10 @@ function clearResultStage() {
   disposeGlPreview()
   releaseSharpPreview()
   previewError.value = ''
-  if (lastOverview) { lastOverview.width = 1; lastOverview.height = 1 }
+  if (lastOverview) {
+    lastOverview.width = 1
+    lastOverview.height = 1
+  }
   hasResult.value = false
   generatedResult.value = null
   placementCount.value = 0
@@ -537,7 +588,14 @@ function visibleLayoutRect(): { x: number; y: number; w: number; h: number } {
   if (!host || !root || layoutW <= 0) {
     return { x: 0, y: 0, w: layoutW || 1, h: layoutH || 1 }
   }
-  return measureSignatureViewport(host, root, layoutW, layoutH)?.region ?? { x: 0, y: 0, w: layoutW, h: layoutH }
+  return (
+    measureSignatureViewport(host, root, layoutW, layoutH)?.region ?? {
+      x: 0,
+      y: 0,
+      w: layoutW,
+      h: layoutH,
+    }
+  )
 }
 
 function applyStageDisplaySize() {
@@ -576,10 +634,11 @@ function createOverviewDisplay(overview: HTMLCanvasElement, cssW: number, cssH: 
   const dpr = Math.min(2, window.devicePixelRatio || 1)
   const { width: pw, height: ph } = fitSignatureRaster(cssW * dpr, cssH * dpr, OVERVIEW_LONG)
   const canvas = document.createElement('canvas')
+  canvas.dataset.signatureSurface = 'overview-display'
   try {
     canvas.width = pw
     canvas.height = ph
-    const ctx = canvas.getContext('2d')
+    const ctx = canvas.getContext('2d', { willReadFrequently: true })
     if (!ctx) throw new Error('无法恢复作品预览，请重试')
     ctx.imageSmoothingEnabled = true
     ctx.imageSmoothingQuality = 'high'
@@ -603,7 +662,11 @@ function blitOverviewToStage(cssW: number, cssH: number) {
   if (!canvas || !lastOverview) return false
   const dpr = Math.min(2, window.devicePixelRatio || 1)
   const { width, height } = fitSignatureRaster(cssW * dpr, cssH * dpr, OVERVIEW_LONG)
-  if (displayedOverviewRevision === overviewRevision && canvas.width === width && canvas.height === height) {
+  if (
+    displayedOverviewRevision === overviewRevision &&
+    canvas.width === width &&
+    canvas.height === height
+  ) {
     canvas.style.width = `${cssW}px`
     canvas.style.height = `${cssH}px`
     return true
@@ -630,8 +693,9 @@ function scheduleSharpViewportPaint() {
   if (zoomPaintTimer) clearTimeout(zoomPaintTimer)
   zoomPaintTimer = setTimeout(() => {
     zoomPaintTimer = null
-    void paintSharpViewport().catch(error => {
-      if (!(error instanceof Error && error.message === '已取消')) previewError.value = '高清预览暂时无法绘制，请缩小后重试'
+    void paintSharpViewport().catch((error) => {
+      if (!(error instanceof Error && error.message === '已取消'))
+        previewError.value = '高清预览暂时无法绘制，请缩小后重试'
     })
   }, 70)
 }
@@ -640,7 +704,10 @@ function releaseSharpPreview() {
   zoomPaintSeq++
   sharpPainting.value = false
   sharpViewportCanvas?.remove()
-  if (sharpViewportCanvas) { sharpViewportCanvas.width = 1; sharpViewportCanvas.height = 1 }
+  if (sharpViewportCanvas) {
+    sharpViewportCanvas.width = 1
+    sharpViewportCanvas.height = 1
+  }
   sharpViewportCanvas = null
 }
 
@@ -652,7 +719,15 @@ async function paintSharpViewport() {
   const host = previewHost.value
   const root = compareRoot.value
   const result = generatedResult.value
-  if (!resultCanvas.value || !host || !root || !resultHost.value || !lastPlacements.length || !result) return
+  if (
+    !resultCanvas.value ||
+    !host ||
+    !root ||
+    !resultHost.value ||
+    !lastPlacements.length ||
+    !result
+  )
+    return
   if (layoutW <= 0 || viewScale.value <= 1.05) return
 
   const seq = ++zoomPaintSeq
@@ -661,37 +736,93 @@ async function paintSharpViewport() {
   const view = measureSignatureViewport(host, root, layoutW, layoutH)
   if (!view) return
   const { region, display } = view
-  const { width: outW, height: outH } = fitSignatureRaster(display.width * dpr, display.height * dpr, profile.maxLong)
+  const { width: outW, height: outH } = fitSignatureRaster(
+    display.width * dpr,
+    display.height * dpr,
+    profile.maxLong,
+  )
 
   sharpPainting.value = true
   let tile: HTMLCanvasElement
-  const signal = { get cancelled() { return seq !== zoomPaintSeq || viewDisposed } }
+  const signal = {
+    get cancelled() {
+      return seq !== zoomPaintSeq || viewDisposed
+    },
+  }
   const paintOptions = {
-    background: result.options.background, inkStyle: result.options.inkStyle, colorize: result.options.colorize,
-    coverFill: result.options.coverFill, portrait: result.portrait, layoutW, layoutH, underlay: 0,
-    stampMaxLong: Math.min(profile.stampLong, Math.max(800, Math.round(Math.max(outW, outH) * 0.65))), signal,
+    background: result.options.background,
+    inkStyle: result.options.inkStyle,
+    colorize: result.options.colorize,
+    coverFill: result.options.coverFill,
+    portrait: result.portrait,
+    layoutW,
+    layoutH,
+    underlay: 0,
+    stampMaxLong: Math.min(
+      profile.stampLong,
+      Math.max(800, Math.round(Math.max(outW, outH) * 0.65)),
+    ),
+    signal,
   }
   try {
     try {
       if (rasterWorkerScene !== result) {
         disposeRasterWorker()
-        const candidate = await createSignatureRasterWorker(lastPlacements, result.stamps, layoutW, layoutH, result.options, signal)
-        if (signal.cancelled) { candidate?.dispose(); throw new Error('已取消') }
-        rasterWorker = candidate; rasterWorkerScene = result
+        const candidate = await createSignatureRasterWorker(
+          lastPlacements,
+          result.stamps,
+          layoutW,
+          layoutH,
+          result.options,
+          signal,
+        )
+        if (signal.cancelled) {
+          candidate?.dispose()
+          throw new Error('已取消')
+        }
+        rasterWorker = candidate
+        rasterWorkerScene = result
       }
       tile = rasterWorker
         ? await rasterWorker.paint(outW, outH, paintOptions.stampMaxLong, { region, signal })
-        : await paintPlacementsRegionResponsive(lastPlacements, result.stamps, region, outW, outH, paintOptions)
+        : await paintPlacementsRegionResponsive(
+            lastPlacements,
+            result.stamps,
+            region,
+            outW,
+            outH,
+            paintOptions,
+          )
     } catch (error) {
       if (signal.cancelled || (error instanceof Error && error.message === '已取消')) throw error
       disposeRasterWorker()
-      tile = await paintPlacementsRegionResponsive(lastPlacements, result.stamps, region, outW, outH, paintOptions)
+      tile = await paintPlacementsRegionResponsive(
+        lastPlacements,
+        result.stamps,
+        region,
+        outW,
+        outH,
+        paintOptions,
+      )
     }
-  } finally { if (seq === zoomPaintSeq) sharpPainting.value = false }
-  if (seq !== zoomPaintSeq) { tile.width = 1; tile.height = 1; return }
+  } finally {
+    if (seq === zoomPaintSeq) sharpPainting.value = false
+  }
+  if (seq !== zoomPaintSeq) {
+    tile.width = 1
+    tile.height = 1
+    return
+  }
   tile.classList.add('sharp-viewport-canvas')
   // This canvas is only the visible crop; the artwork's large size is CSS geometry.
-  Object.assign(tile.style, { position: 'absolute', left: `${display.x}px`, top: `${display.y}px`, width: `${display.width}px`, height: `${display.height}px`, pointerEvents: 'none' })
+  Object.assign(tile.style, {
+    position: 'absolute',
+    left: `${display.x}px`,
+    top: `${display.y}px`,
+    width: `${display.width}px`,
+    height: `${display.height}px`,
+    pointerEvents: 'none',
+  })
   tile.dataset.region = JSON.stringify(region)
   sharpViewportCanvas = tile
   resultHost.value.append(tile)
@@ -733,7 +864,8 @@ async function onStageWheel(event: WheelEvent) {
   if (!host || !root) return
 
   const before = root.getBoundingClientRect()
-  const clientX = event.clientX, clientY = event.clientY
+  const clientX = event.clientX,
+    clientY = event.clientY
   const relX = (clientX - before.left) / Math.max(1, before.width)
   const relY = (clientY - before.top) / Math.max(1, before.height)
 
@@ -766,7 +898,13 @@ function onComparePointerDown(event: PointerEvent) {
     if (!host || event.button !== 0 || panPointer) return
     event.preventDefault()
     host.focus({ preventScroll: true })
-    panPointer = { id: event.pointerId, x: event.clientX, y: event.clientY, left: host.scrollLeft, top: host.scrollTop }
+    panPointer = {
+      id: event.pointerId,
+      x: event.clientX,
+      y: event.clientY,
+      left: host.scrollLeft,
+      top: host.scrollTop,
+    }
     ;(event.currentTarget as HTMLElement).setPointerCapture?.(event.pointerId)
     return
   }
@@ -921,8 +1059,7 @@ onMounted(async () => {
   clearResultStage()
   window.addEventListener('resize', onWindowResize)
   previewHost.value?.addEventListener('scroll', onPreviewScroll, { passive: true })
-  ;(window as unknown as { __runSignatureDemo?: () => Promise<void> }).__runSignatureDemo =
-    loadDemo
+  ;(window as unknown as { __runSignatureDemo?: () => Promise<void> }).__runSignatureDemo = loadDemo
   try {
     await refreshBanks()
     const savedId = localStorage.getItem(BANK_ID_KEY)
@@ -958,16 +1095,21 @@ onBeforeUnmount(() => {
   disposeGlPreview()
   if (zoomPaintTimer) clearTimeout(zoomPaintTimer)
   releaseSharpPreview()
-  if (lastOverview) { lastOverview.width = 1; lastOverview.height = 1 }
-  if (resultCanvas.value) { resultCanvas.value.width = 1; resultCanvas.value.height = 1 }
+  if (lastOverview) {
+    lastOverview.width = 1
+    lastOverview.height = 1
+  }
+  if (resultCanvas.value) {
+    resultCanvas.value.width = 1
+    resultCanvas.value.height = 1
+  }
   revokePortraitUrl()
   for (const scene of importedScenes) scene.dispose()
   importedScenes.clear()
   revokeEntryUrls(bankEntries.value)
   window.removeEventListener('resize', onWindowResize)
   previewHost.value?.removeEventListener('scroll', onPreviewScroll)
-  delete (window as unknown as { __runSignatureDemo?: () => Promise<void> })
-    .__runSignatureDemo
+  delete (window as unknown as { __runSignatureDemo?: () => Promise<void> }).__runSignatureDemo
 })
 
 async function addSignatureFiles(files: FileList | File[] | null) {
@@ -1052,10 +1194,7 @@ async function loadDemo() {
       })
       if (activeBank.value && activeBank.value.count > 0) {
         // 已有手写则追加到临时池作画，不强制覆盖库
-        stamps.value = [
-          ...(await loadBankAsStamps(activeBank.value.id)),
-          ...variants,
-        ]
+        stamps.value = [...(await loadBankAsStamps(activeBank.value.id)), ...variants]
       } else {
         const views = await addStampsToBank(activeBank.value!.id, variants, (r) => {
           progressStage.value = '写入名字库'
@@ -1072,9 +1211,15 @@ async function loadDemo() {
     const demoPath = `${import.meta.env.BASE_URL}demos/ascii-live/aristotle-bust.webp`
     const response = await fetch(demoPath, { signal: controller.signal })
     if (!response.ok) throw new Error('示例画像加载失败')
-    const file = new File([await response.blob()], 'aristotle-bust.webp', { type: 'image/webp', lastModified: 0 })
+    const file = new File([await response.blob()], 'aristotle-bust.webp', {
+      type: 'image/webp',
+      lastModified: 0,
+    })
     const { image, objectUrl } = await loadImageElement(file)
-    if (controller.signal.aborted || viewDisposed) { URL.revokeObjectURL(objectUrl); return }
+    if (controller.signal.aborted || viewDisposed) {
+      URL.revokeObjectURL(objectUrl)
+      return
+    }
     revokePortraitUrl()
     portraitObjectUrl.value = objectUrl
     portraitFile.value = file
@@ -1104,9 +1249,13 @@ async function onPortraitChange(event: Event) {
     const { image, objectUrl } = await loadImageElement(file)
     candidateUrl = objectUrl
     if (viewDisposed) return
-    if (image.naturalWidth * image.naturalHeight > 32_000_000) throw new Error('画像最多支持3200万像素，请缩小后重试')
+    if (image.naturalWidth * image.naturalHeight > 32_000_000)
+      throw new Error('画像最多支持3200万像素，请缩小后重试')
     // Prepare the bank too; failed input/decode/storage must preserve the current result.
-    const loaded = activeBank.value && activeBank.value.count > 0 ? await loadBankAsStamps(activeBank.value.id) : null
+    const loaded =
+      activeBank.value && activeBank.value.count > 0
+        ? await loadBankAsStamps(activeBank.value.id)
+        : null
     if (viewDisposed) return
     revokePortraitUrl()
     portrait.value = image
@@ -1154,7 +1303,7 @@ async function renderNow() {
     portrait: portrait.value,
     portraitFile: portraitFile.value,
     portraitName: portraitName.value,
-    stamps: stamps.value.map(stamp => ({ ...stamp })),
+    stamps: stamps.value.map((stamp) => ({ ...stamp })),
     options: currentLayoutOptions(),
   }
   pending.value = true
@@ -1222,57 +1371,88 @@ async function renderNow() {
       let overview: HTMLCanvasElement
       let candidateRaster: SignatureRasterWorker | null = null
       try {
-        try { candidateRaster = await createSignatureRasterWorker(placements, result.stamps, layoutW, layoutH, result.options, signal) }
-        catch (error) { if (signal.cancelled || (error instanceof Error && error.message === '已取消')) throw error }
+        try {
+          candidateRaster = await createSignatureRasterWorker(
+            placements,
+            result.stamps,
+            layoutW,
+            layoutH,
+            result.options,
+            signal,
+          )
+        } catch (error) {
+          if (signal.cancelled || (error instanceof Error && error.message === '已取消'))
+            throw error
+        }
         if (candidateRaster) {
           try {
             progressStage.value = '精绘笔迹与色彩'
-            overview = await candidateRaster.paint(outW, outH, Math.min(1000, Math.max(480, Math.round(Math.max(outW, outH) * .4))), {
-              tileSize: 320, signal, onProgress: (done, total) => {
-                if (seq !== renderSeq || signal.cancelled) return
-                progressStage.value = '精绘笔迹与色彩'
-                progressRatio.value = .55 + done / Math.max(1, total) * .45
+            overview = await candidateRaster.paint(
+              outW,
+              outH,
+              Math.min(1000, Math.max(480, Math.round(Math.max(outW, outH) * 0.4))),
+              {
+                tileSize: 320,
+                signal,
+                onProgress: (done, total) => {
+                  if (seq !== renderSeq || signal.cancelled) return
+                  progressStage.value = '精绘笔迹与色彩'
+                  progressRatio.value = 0.55 + (done / Math.max(1, total)) * 0.45
+                },
               },
-            })
+            )
           } catch (error) {
-            candidateRaster.dispose(); candidateRaster = null
-            if (signal.cancelled || (error instanceof Error && error.message === '已取消')) throw error
+            candidateRaster.dispose()
+            candidateRaster = null
+            if (signal.cancelled || (error instanceof Error && error.message === '已取消'))
+              throw error
           }
         }
         if (!candidateRaster) {
-        overview = await paintPlacementsTiled(
-        placements,
-        result.stamps,
-        layoutW,
-        layoutH,
-        outW,
-        outH,
-        {
-          background: result.options.background,
-          inkStyle: result.options.inkStyle,
-          colorize: result.options.colorize,
-          coverFill: result.options.coverFill,
-          portrait: result.portrait,
-          underlay: 0,
-          tileSize: 320,
-          onTile: ({ canvas: partial, done, total }) => {
-            if (seq !== renderSeq || signal.cancelled) return
-            if (lastOverview && lastOverview !== partial) { lastOverview.width = 1; lastOverview.height = 1 }
-            lastOverview = partial
-            overviewRevision++
-            progressStage.value = `预览 ${done}/${total}`
-            progressRatio.value = 0.55 + (done / Math.max(1, total)) * 0.45
-            applyStageDisplaySize()
-          },
-          signal,
-        },
-      )
+          overview = await paintPlacementsTiled(
+            placements,
+            result.stamps,
+            layoutW,
+            layoutH,
+            outW,
+            outH,
+            {
+              background: result.options.background,
+              inkStyle: result.options.inkStyle,
+              colorize: result.options.colorize,
+              coverFill: result.options.coverFill,
+              portrait: result.portrait,
+              underlay: 0,
+              tileSize: 320,
+              onTile: ({ canvas: partial, done, total }) => {
+                if (seq !== renderSeq || signal.cancelled) return
+                if (lastOverview && lastOverview !== partial) {
+                  lastOverview.width = 1
+                  lastOverview.height = 1
+                }
+                lastOverview = partial
+                overviewRevision++
+                progressStage.value = `预览 ${done}/${total}`
+                progressRatio.value = 0.55 + (done / Math.max(1, total)) * 0.45
+                applyStageDisplaySize()
+              },
+              signal,
+            },
+          )
         }
         if (seq !== renderSeq || signal.cancelled) {
-          candidateRaster?.dispose(); overview!.width = 1; overview!.height = 1; return
+          candidateRaster?.dispose()
+          overview!.width = 1
+          overview!.height = 1
+          return
         }
-        disposeRasterWorker(); rasterWorker = candidateRaster; rasterWorkerScene = generatedResult.value
-      } catch (error) { candidateRaster?.dispose(); throw error }
+        disposeRasterWorker()
+        rasterWorker = candidateRaster
+        rasterWorkerScene = generatedResult.value
+      } catch (error) {
+        candidateRaster?.dispose()
+        throw error
+      }
       if (seq !== renderSeq || signal.cancelled) return
       lastOverview = overview!
       overviewRevision++
@@ -1309,7 +1489,12 @@ async function downloadProject() {
   projectController = controller
   try {
     progressStage.value = '保存作品文件'
-    const blob = await createSignatureProject(result, { signal: controller.signal, onProgress: value => { progressRatio.value = value } })
+    const blob = await createSignatureProject(result, {
+      signal: controller.signal,
+      onProgress: (value) => {
+        progressRatio.value = value
+      },
+    })
     if (viewDisposed || controller.signal.aborted) return
     triggerDownload(blob, signatureProjectFilename(result.portraitName))
     projectNotice.value = '作品文件已下载，含画像、签名、布局和参数；可在另一台设备打开。'
@@ -1324,7 +1509,9 @@ async function downloadProject() {
   }
 }
 
-function cancelProjectFile() { projectController?.abort() }
+function cancelProjectFile() {
+  projectController?.abort()
+}
 
 function restoreProjectControls(options: SignatureLayoutOptions) {
   restoredLayoutOptions.value = { ...options }
@@ -1334,6 +1521,8 @@ function restoreProjectControls(options: SignatureLayoutOptions) {
   maxSide.value = options.maxSide ?? 4096
   density.value = options.density ?? 30
   angleRange.value = options.angleRange ?? 12
+  orientationMode.value = options.orientationMode ?? 'classic'
+  orientationStrength.value = options.orientationStrength ?? 0.8
   allowVertical.value = options.allowVertical ?? false
   minSizePct.value = (options.minSizeRatio ?? 0.022) * 100
   maxSizePct.value = (options.maxSizeRatio ?? 0.065) * 100
@@ -1347,12 +1536,16 @@ function restoreProjectControls(options: SignatureLayoutOptions) {
   edgeThreshold.value = options.edgeThreshold ?? 0.32
   edgeColorMode.value = options.edgeColorMode ?? 'auto'
   const rgb = options.edgeColor ?? { r: 28, g: 72, b: 96 }
-  edgeColorHex.value = `#${[rgb.r, rgb.g, rgb.b].map(value => Math.round(value).toString(16).padStart(2, '0')).join('')}`
+  edgeColorHex.value = `#${[rgb.r, rgb.g, rgb.b].map((value) => Math.round(value).toString(16).padStart(2, '0')).join('')}`
 }
 
 async function onProjectChange(event: Event) {
-  const input = event.target as HTMLInputElement, file = input.files?.item(0)
-  if (!file || bankBusy.value) { input.value = ''; return }
+  const input = event.target as HTMLInputElement,
+    file = input.files?.item(0)
+  if (!file || bankBusy.value) {
+    input.value = ''
+    return
+  }
   error.value = ''
   projectNotice.value = ''
   pending.value = true
@@ -1364,19 +1557,46 @@ async function onProjectChange(event: Event) {
   let display: HTMLCanvasElement | null = null
   try {
     progressStage.value = '检查作品文件'
-    candidate = await readSignatureProject(file, { signal: controller.signal, onProgress: value => { progressRatio.value = value * 0.5 } })
+    candidate = await readSignatureProject(file, {
+      signal: controller.signal,
+      onProgress: (value) => {
+        progressRatio.value = value * 0.5
+      },
+    })
     const scene = candidate.project
     progressStage.value = '恢复预览'
     const size = fitSignatureRaster(scene.width, scene.height, OVERVIEW_LONG)
-    const signal = { get cancelled() { return controller.signal.aborted } }
-    overview = await paintPlacementsTiled(scene.placements, scene.stamps, scene.width, scene.height, size.width, size.height, {
-      background: scene.options.background, inkStyle: scene.options.inkStyle, colorize: scene.options.colorize, coverFill: scene.options.coverFill, portrait: scene.portrait, underlay: 0, tileSize: 320, signal,
-      onTile: ({ done, total }) => { progressRatio.value = 0.5 + done / Math.max(1, total) * 0.5 },
-    })
+    const signal = {
+      get cancelled() {
+        return controller.signal.aborted
+      },
+    }
+    overview = await paintPlacementsTiled(
+      scene.placements,
+      scene.stamps,
+      scene.width,
+      scene.height,
+      size.width,
+      size.height,
+      {
+        background: scene.options.background,
+        inkStyle: scene.options.inkStyle,
+        colorize: scene.options.colorize,
+        coverFill: scene.options.coverFill,
+        portrait: scene.portrait,
+        underlay: 0,
+        tileSize: 320,
+        stableRaster: true,
+        signal,
+        onTile: ({ done, total }) => {
+          progressRatio.value = 0.5 + (done / Math.max(1, total)) * 0.5
+        },
+      },
+    )
     if (controller.signal.aborted || viewDisposed) return
     // Prepare a usable display before replacing any inputs or generated artwork.
     const cssW = getFitWidth(scene.width)
-    const cssH = Math.max(1, Math.round(scene.height * cssW / scene.width))
+    const cssH = Math.max(1, Math.round((scene.height * cssW) / scene.width))
     display = createOverviewDisplay(overview, cssW, cssH)
     ++renderSeq
     paintSignal.cancelled = true
@@ -1389,8 +1609,11 @@ async function onProjectChange(event: Event) {
     portraitFile.value = scene.portraitFile
     portraitName.value = scene.portraitName
     stamps.value = scene.stamps
-    const recipe = scene.stamps.find(stamp => stamp.source)?.source
-    if (recipe) { signatureFont.value = recipe.font; demoName.value = recipe.text }
+    const recipe = scene.stamps.find((stamp) => stamp.source)?.source
+    if (recipe) {
+      signatureFont.value = recipe.font
+      demoName.value = recipe.text
+    }
     // Imported templates stay in this creative session; existing name banks are preserved.
     activeBank.value = null
     revokeEntryUrls(bankEntries.value)
@@ -1398,13 +1621,17 @@ async function onProjectChange(event: Event) {
     restoreProjectControls(scene.options)
     generatedResult.value = scene
     lastPlacements = scene.placements
-    layoutW = scene.width; layoutH = scene.height
+    layoutW = scene.width
+    layoutH = scene.height
     placementCount.value = scene.placements.length
     hasResult.value = true
     viewScale.value = 1
     showComparison.value = false
     previewPan.value = true
-    if (lastOverview) { lastOverview.width = 1; lastOverview.height = 1 }
+    if (lastOverview) {
+      lastOverview.width = 1
+      lastOverview.height = 1
+    }
     lastOverview = overview
     overviewRevision++
     overview = null
@@ -1417,15 +1644,24 @@ async function onProjectChange(event: Event) {
     importedScenes.add(candidate)
     candidate = null
     await nextTick()
-    if (previewHost.value) { previewHost.value.scrollLeft = 0; previewHost.value.scrollTop = 0 }
+    if (previewHost.value) {
+      previewHost.value.scrollLeft = 0
+      previewHost.value.scrollTop = 0
+    }
     releaseUnusedImportedScenes()
     projectNotice.value = '作品已恢复，可继续调整并保存。原设备的名字库保持原样。'
   } catch (e) {
     if (!controller.signal.aborted) error.value = e instanceof Error ? e.message : '作品打开失败'
   } finally {
     candidate?.dispose()
-    if (overview) { overview.width = 1; overview.height = 1 }
-    if (display) { display.width = 1; display.height = 1 }
+    if (overview) {
+      overview.width = 1
+      overview.height = 1
+    }
+    if (display) {
+      display.width = 1
+      display.height = 1
+    }
     if (projectController === controller) projectController = null
     projectBusy.value = false
     pending.value = false
@@ -1449,7 +1685,7 @@ function downloadVectorJson() {
     maxSide: result.options.maxSide,
     colorize: result.options.colorize,
     renderOptions: result.options,
-    stampIds: result.stamps.map(s => s.id),
+    stampIds: result.stamps.map((s) => s.id),
     stampCount: result.stamps.length,
     placementCount: result.placements.length,
     placements: result.placements,
@@ -1500,13 +1736,13 @@ async function downloadPathSvg() {
   pending.value = true
   try {
     let exportStamps = result.stamps
-    if (exportStamps.some(stamp => !stampHasVector(stamp))) {
+    if (exportStamps.some((stamp) => !stampHasVector(stamp))) {
       progressStage.value = '矢量化写法'
       progressRatio.value = 0
       const traced = await traceStamps(exportStamps, {
         onProgress: (done, total) => {
           progressStage.value = `矢量化 ${done}/${total}`
-          progressRatio.value = done / Math.max(1, total) * 0.55
+          progressRatio.value = (done / Math.max(1, total)) * 0.55
         },
       })
       exportStamps = traced
@@ -1514,19 +1750,13 @@ async function downloadPathSvg() {
     progressStage.value = '拼 Path SVG'
     progressRatio.value = 0.7
     await new Promise((r) => setTimeout(r, 0))
-    const svg = buildPathSvgDocument(
-      result.placements,
-      exportStamps,
-      result.width,
-      result.height,
-      {
-        background: result.options.background,
-        inkStyle: result.options.inkStyle,
-        colorize: result.options.colorize,
-        underlay: 0,
-        coverFill: result.options.coverFill,
-      },
-    )
+    const svg = buildPathSvgDocument(result.placements, exportStamps, result.width, result.height, {
+      background: result.options.background,
+      inkStyle: result.options.inkStyle,
+      colorize: result.options.colorize,
+      underlay: 0,
+      coverFill: result.options.coverFill,
+    })
     triggerDownload(
       pathSvgToBlob(svg),
       `signature-portrait-paths-${result.width}x${result.height}.svg`,
@@ -1605,7 +1835,7 @@ watch(previewBg, () => {
   if (canRender.value && hasResult.value) void renderNow()
   else if (!hasResult.value) clearResultStage()
 })
-watch(signatureSurface, value => {
+watch(signatureSurface, (value) => {
   if (projectBusy.value) return
   invertDensity.value = value === 'night'
   previewBg.value = value === 'night' ? '#111615' : '#f5f3ef'
@@ -1625,32 +1855,101 @@ watch([coverFill, colorize, signatureInkStyle], () => {
       </p>
     </header>
 
+    <section class="creation-bar panel" aria-label="常用创作操作">
+      <div class="creation-bar-head">
+        <span class="step-label">创作工作台</span
+        ><span class="meta">{{
+          portraitName ? '画像：' + portraitName : '先准备名字，再选择画像'
+        }}</span>
+      </div>
+      <div class="creation-actions">
+        <FxButton
+          type="button"
+          variant="primary"
+          :disabled="bankBusy"
+          @click="uploadPortraitThenPaint"
+        >
+          上传画像照片
+        </FxButton>
+        <input
+          ref="portraitInput"
+          class="sr-only"
+          type="file"
+          accept="image/*"
+          @change="onPortraitChange"
+        />
+        <FxButton type="button" :disabled="bankBusy" @click="loadDemo"> 一键试用示例 </FxButton>
+        <FxButton
+          type="button"
+          variant="primary"
+          :disabled="pending || !canRender"
+          @click="renderNow"
+        >
+          {{ pending ? '生成中…' : '生成预览' }} </FxButton
+        ><FxButton type="button" :disabled="!hasResult || pending" @click="downloadPng">
+          下载 PNG
+        </FxButton>
+      </div>
+      <div class="project-actions">
+        <FxButton type="button" :disabled="bankBusy" @click="projectInput?.click()">
+          打开作品文件 </FxButton
+        ><FxButton type="button" :disabled="!hasResult || bankBusy" @click="downloadProject">
+          保存作品文件 </FxButton
+        ><input
+          ref="projectInput"
+          class="sr-only"
+          type="file"
+          :accept="SIGNATURE_PROJECT_ACCEPT"
+          @change="onProjectChange"
+        /><FxButton v-if="projectBusy" type="button" @click="cancelProjectFile"
+          >取消文件操作</FxButton
+        >
+      </div>
+      <p v-if="error" class="error" role="alert">{{ error }}</p>
+      <p v-if="projectNotice" class="hint" role="status">{{ projectNotice }}</p>
+      <p
+        v-if="resultSettingsChanged && !pending"
+        class="hint result-settings-changed"
+        role="status"
+      >
+        参数已调整，点击「生成预览」应用。下载文件对应当前预览的作品。
+      </p>
+    </section>
     <div class="layout">
       <div class="controls">
-        <section class="panel">
-          <h2>1. 名字库（同名写很多遍）</h2>
+        <section class="panel source-panel">
+          <h2><span class="step-number">01</span> 准备名字</h2>
           <p class="hint">
-            填名字 → 选择书写字体 → 生成写法 → 上传画像。字体变化是创作辅助；也可在下方亲手签名，保留自己的笔迹。
+            填写名字，生成不同写法；也可以亲手签名或上传笔迹。每一枚名字都完整保留。
           </p>
 
-          <div class="row">
-            <label class="inline">
+          <div class="name-fields">
+            <label class="field-stack">
               名字
-              <input v-model="demoName" type="text" maxlength="32" :disabled="bankBusy" />
+              <UiInput v-model="demoName" aria-label="名字" maxlength="32" :disabled="bankBusy" />
             </label>
-            <label class="inline">
+            <label class="field-stack">
               书写字体
-              <select v-model="signatureFont" aria-label="书写字体" :disabled="bankBusy">
-                <option v-for="font in SIGNATURE_FONTS" :key="font.id" :value="font.id">{{ font.name }}</option>
-              </select>
+              <UiSelect v-model="signatureFont" aria-label="书写字体" :disabled="bankBusy">
+                <option v-for="font in SIGNATURE_FONTS" :key="font.id" :value="font.id">
+                  {{ font.name }}
+                </option>
+              </UiSelect>
             </label>
-            <label class="inline">
+            <label class="field-stack">
               目标遍数
-              <input v-model.number="bankGoal" type="number" min="10" max="200" step="10" :disabled="bankBusy" />
+              <UiInput
+                v-model.number="bankGoal"
+                aria-label="目标遍数"
+                type="number"
+                min="10"
+                max="200"
+                step="10"
+                :disabled="bankBusy"
+              />
             </label>
-            <FxButton type="button" :disabled="bankBusy" @click="openOrCreateBank(demoName)">
-              打开 / 新建库
-            </FxButton>
+          </div>
+          <div class="row name-generate">
             <FxButton
               type="button"
               variant="primary"
@@ -1670,100 +1969,110 @@ watch([coverFill, colorize, signatureInkStyle], () => {
             <span class="bar"><i :style="{ width: `${bankProgress.pct}%` }" /></span>
           </p>
 
-          <div v-if="banks.length > 1" class="row">
-            <label class="inline">
-              切换库
-              <select
-                :value="activeBank?.id ?? ''"
-                :disabled="bankBusy"
-                @change="switchBank(($event.target as HTMLSelectElement).value)"
-              >
-                <option disabled value="">选择…</option>
-                <option v-for="b in banks" :key="b.id" :value="b.id">
-                  {{ b.label }}（{{ b.count }}）
-                </option>
-              </select>
-            </label>
-          </div>
-
-          <div class="pad-wrap">
-            <canvas
-              ref="drawCanvas"
-              class="pad"
-              @pointerdown="onPadPointerDown"
-              @pointermove="onPadPointerMove"
-              @pointerup="onPadPointerUp"
-              @pointercancel="onPadPointerUp"
-            />
-            <p class="pad-tip">写一遍 → 存入名字库 → 再写一遍（鼓励大小/斜度略有变化）</p>
-          </div>
-
-          <div class="row">
-            <label class="inline brush">
-              笔粗 {{ brushSize.toFixed(1) }}
-              <input v-model.number="brushSize" type="range" min="1.2" max="8" step="0.1" />
-            </label>
-            <FxButton
-              type="button"
-              variant="primary"
-              :disabled="!hasInk || bankBusy"
-              @click="saveWritingToBank"
-            >
-              {{ bankSaving ? '保存中…' : '存入名字库' }}
-            </FxButton>
-            <FxButton type="button" :disabled="!hasInk" @click="clearPad">
-              清空板
-            </FxButton>
-          </div>
-
-          <div class="paint-strip">
-            <p class="paint-strip-title">下一步：选画像作画</p>
-            <div class="row">
-              <FxButton type="button" variant="primary" :disabled="bankBusy" @click="uploadPortraitThenPaint">
-                上传画像照片
-              </FxButton>
-              <input
-                ref="portraitInput"
-                class="sr-only"
-                type="file"
-                accept="image/*"
-                @change="onPortraitChange"
+          <DisclosurePanel
+            title="亲手签名"
+            description="保留自己的笔迹，手写一遍也可以作画"
+            @toggle="($event.target as HTMLDetailsElement).open && nextTick(syncDrawSurface)"
+          >
+            <div class="pad-wrap">
+              <canvas
+                ref="drawCanvas"
+                class="pad"
+                @pointerdown="onPadPointerDown"
+                @pointermove="onPadPointerMove"
+                @pointerup="onPadPointerUp"
+                @pointercancel="onPadPointerUp"
               />
-              <FxButton type="button" :disabled="bankBusy" @click="loadDemo">
-                一键试用示例
+              <p class="pad-tip">写一遍 → 存入名字库 → 再写一遍（鼓励大小/斜度略有变化）</p>
+            </div>
+
+            <div class="row">
+              <label class="inline brush">
+                笔粗 {{ brushSize.toFixed(1) }}
+                <input v-model.number="brushSize" type="range" min="1.2" max="8" step="0.1" />
+              </label>
+              <FxButton
+                type="button"
+                variant="primary"
+                :disabled="!hasInk || bankBusy"
+                @click="saveWritingToBank"
+              >
+                {{ bankSaving ? '保存中…' : '存入名字库' }}
               </FxButton>
+              <FxButton type="button" :disabled="!hasInk" @click="clearPad"> 清空板 </FxButton>
+            </div>
+          </DisclosurePanel>
+          <DisclosurePanel
+            title="名字库管理"
+            :description="
+              activeBank
+                ? `${activeBank.label} · ${bankProgress.count} 种写法`
+                : '打开已有名字库，或新建一个'
+            "
+          >
+            <FxButton type="button" :disabled="bankBusy" @click="openOrCreateBank(demoName)">
+              打开 / 新建库
+            </FxButton>
+            <div v-if="banks.length > 1" class="row">
+              <label class="inline">
+                切换库
+                <select
+                  class="astra-control"
+                  :value="activeBank?.id ?? ''"
+                  :disabled="bankBusy"
+                  @change="switchBank(($event.target as HTMLSelectElement).value)"
+                >
+                  <option disabled value="">选择…</option>
+                  <option v-for="b in banks" :key="b.id" :value="b.id">
+                    {{ b.label }}（{{ b.count }}）
+                  </option>
+                </select>
+              </label>
+            </div>
+
+            <div class="paint-strip">
+              <p class="paint-strip-title">使用当前名字库</p>
+              <div class="row">
+                <FxButton
+                  type="button"
+                  :disabled="!activeBank || bankProgress.count < 1 || bankBusy"
+                  @click="useBankForPainting"
+                >
+                  {{
+                    portrait
+                      ? `用名字库重画（${bankProgress.count} 遍）`
+                      : `已写 ${bankProgress.count} 遍 · 先上传画像`
+                  }}
+                </FxButton>
+              </div>
+              <p v-if="portraitName" class="meta">当前画像：{{ portraitName }}</p>
+              <p v-else class="hint">还没选画像 — 点上面「上传画像照片」，或用示例胸像试效果。</p>
               <FxButton
                 type="button"
                 :disabled="!activeBank || bankProgress.count < 1 || bankBusy"
-                @click="useBankForPainting"
+                @click="clearActiveBank"
               >
-                {{ portrait ? `用名字库重画（${bankProgress.count} 遍）` : `已写 ${bankProgress.count} 遍 · 先上传画像` }}
+                清空本库
               </FxButton>
             </div>
-            <p v-if="portraitName" class="meta">当前画像：{{ portraitName }}</p>
-            <p v-else class="hint">还没选画像 — 点上面「上传画像照片」，或用示例胸像试效果。</p>
-            <FxButton
-              type="button"
-              :disabled="!activeBank || bankProgress.count < 1 || bankBusy"
-              @click="clearActiveBank"
-            >
-              清空本库
-            </FxButton>
-          </div>
 
-          <ul v-if="bankEntries.length" class="stamps bank-grid">
-            <li v-for="e in bankEntries" :key="e.id">
-              <img :src="e.previewUrl" :alt="`#${e.index}`" />
-              <span class="stamp-label">#{{ e.index }}</span>
-              <button type="button" class="linkish" :disabled="bankBusy" @click="removeBankEntry(e.id)">
-                删
-              </button>
-            </li>
-          </ul>
-          <p v-else class="empty">名字库还是空的 — 开始写第 1 遍吧</p>
-
-          <details class="more">
-            <summary>其它：临时印章 / 上传 / 示意</summary>
+            <ul v-if="bankEntries.length" class="stamps bank-grid">
+              <li v-for="e in bankEntries" :key="e.id">
+                <img :src="e.previewUrl" :alt="`#${e.index}`" />
+                <span class="stamp-label">#{{ e.index }}</span>
+                <button
+                  type="button"
+                  class="linkish"
+                  :disabled="bankBusy"
+                  @click="removeBankEntry(e.id)"
+                >
+                  删
+                </button>
+              </li>
+            </ul>
+            <p v-else class="empty">名字库还是空的 — 开始写第 1 遍吧</p>
+          </DisclosurePanel>
+          <DisclosurePanel title="上传签名与临时写法" description="导入图片笔迹，调整提取阈值">
             <div class="row">
               <FxButton type="button" :disabled="!hasInk" @click="commitDrawnStamp">
                 仅加入临时池
@@ -1798,40 +2107,20 @@ watch([coverFill, colorize, signatureInkStyle], () => {
               <li v-for="s in stamps" :key="s.id">
                 <img :src="s.previewUrl" :alt="s.label" />
                 <span class="stamp-label">{{ s.label }}</span>
-                <button type="button" class="linkish" @click="removeStamp(s.id)">
-                  移除
-                </button>
+                <button type="button" class="linkish" @click="removeStamp(s.id)">移除</button>
               </li>
             </ul>
-          </details>
+          </DisclosurePanel>
         </section>
 
-        <section class="panel">
-          <h2>2. 布局微调</h2>
-          <p class="hint">
-            8K 会用更小更密的字（不是同一套布局放大）。请分别生成 2K / 8K，点「原大」对比同一局部。
-          </p>
-          <div class="row">
-            <span v-if="portraitName" class="meta">画像：{{ portraitName }}</span>
-            <span v-else class="meta">尚未上传画像</span>
-            <FxButton type="button" :disabled="bankBusy" @click="uploadPortraitThenPaint">
-              更换画像
-            </FxButton>
-            <FxButton type="button" :disabled="bankBusy" @click="loadDemo">试用示例</FxButton>
-          </div>
-
+        <section class="panel settings-panel">
+          <h2><span class="step-number">02</span> 画面设置</h2>
           <label class="ink-control">
             <span class="ink-control-head">
               <span>墨量</span>
               <strong>{{ density.toFixed(1) }}</strong>
             </span>
-            <input
-              v-model.number="density"
-              type="range"
-              min="1"
-              max="50"
-              step="0.5"
-            />
+            <input v-model.number="density" type="range" min="1" max="50" step="0.5" />
             <span class="ink-control-meta">
               <span>疏</span>
               <span>密</span>
@@ -1840,75 +2129,31 @@ watch([coverFill, colorize, signatureInkStyle], () => {
 
           <label class="ink-control">
             <span class="ink-control-head"><span>签名风格</span></span>
-            <select v-model="signatureInkStyle" aria-label="签名风格" :disabled="pending">
+            <UiSelect v-model="signatureInkStyle" aria-label="签名风格" :disabled="pending">
               <option value="ink">笔迹织排</option>
               <option value="cutout">镂空排印</option>
-            </select>
-            <p class="hint">笔迹织排保留手写墨迹；镂空排印将签名刻入墨版，呈现更鲜明的块面与光影。</p>
+            </UiSelect>
+            <p class="hint">
+              笔迹织排保留手写墨迹；镂空排印将签名刻入墨版，呈现更鲜明的块面与光影。
+            </p>
+          </label>
+
+          <label class="ink-control">
+            <span class="ink-control-head"><span>签名走向</span></span>
+            <UiSelect v-model="orientationMode" aria-label="签名走向" :disabled="pending">
+              <option value="classic">自然织排</option>
+              <option value="flow">沿画像轮廓</option>
+            </UiSelect>
+            <p class="hint">沿轮廓调整名字方向，保持完整字样和接近的疏密。调整后点击生成预览。</p>
           </label>
 
           <label class="ink-control">
             <span class="ink-control-head"><span>作品底色</span></span>
-            <select v-model="signatureSurface" aria-label="作品底色"><option value="paper">纸上书写</option><option value="night">夜光签名</option></select>
+            <UiSelect v-model="signatureSurface" aria-label="作品底色"
+              ><option value="paper">纸上书写</option>
+              <option value="night">夜光签名</option></UiSelect
+            >
             <p class="hint">纸白墨迹或深色发光笔迹，底色切换后自动生成。</p>
-          </label>
-
-          <label class="ink-control">
-            <span class="ink-control-head">
-              <span>填色垫底</span>
-              <strong>{{ coverFill ? '开' : '关' }}</strong>
-            </span>
-            <label class="check edge-toggle">
-              <input v-model="coverFill" type="checkbox" />
-              加入软色网点，增强肖像层次；纯签名时关闭
-            </label>
-          </label>
-
-          <label class="ink-control">
-            <span class="ink-control-head">
-              <span>密度方向</span>
-              <strong>
-                {{
-                  invertDensity === true
-                    ? '亮处密'
-                    : invertDensity === false
-                      ? '暗处密'
-                      : '自动'
-                }}
-              </strong>
-            </span>
-            <div class="edge-color-row">
-              <label class="check">
-                <input
-                  type="radio"
-                  name="densify"
-                  :checked="invertDensity === null"
-                  @change="setDensityPolarity('auto')"
-                />
-                自动
-              </label>
-              <label class="check">
-                <input
-                  type="radio"
-                  name="densify"
-                  :checked="invertDensity === true"
-                  @change="setDensityPolarity('bright')"
-                />
-                亮处密（反向）
-              </label>
-              <label class="check">
-                <input
-                  type="radio"
-                  name="densify"
-                  :checked="invertDensity === false"
-                  @change="setDensityPolarity('dark')"
-                />
-                暗处密
-              </label>
-            </div>
-            <p class="hint res-hint">
-              纸上书写使用「暗处密」；深色底的夜光签名使用「亮处密」。
-            </p>
           </label>
 
           <label class="ink-control">
@@ -1916,13 +2161,7 @@ watch([coverFill, colorize, signatureInkStyle], () => {
               <span>成图清晰度</span>
               <strong>{{ maxSide }}px · {{ maxSideLabel }}</strong>
             </span>
-            <input
-              v-model.number="maxSide"
-              type="range"
-              min="2048"
-              max="8192"
-              step="256"
-            />
+            <input v-model.number="maxSide" type="range" min="2048" max="8192" step="256" />
             <span class="ink-control-meta">
               <span>更快 2K</span>
               <span>导出更清 8K</span>
@@ -1931,75 +2170,165 @@ watch([coverFill, colorize, signatureInkStyle], () => {
               2K更快，4K细节更丰富，6K/8K适合需要大尺寸的作品。提高此项后点击「生成预览」；放大不增加原图本身缺少的细节。
             </p>
             <div class="res-presets">
-              <button type="button" class="zoom-btn" @click="maxSide = 2048">2K</button>
-              <button type="button" class="zoom-btn" :class="{ on: maxSide === 4096 }" @click="maxSide = 4096">4K</button>
-              <button type="button" class="zoom-btn" @click="maxSide = 6144">6K</button>
-              <button type="button" class="zoom-btn" @click="maxSide = 8192">8K</button>
+              <button
+                type="button"
+                class="zoom-btn"
+                :class="{ on: maxSide === 2048 }"
+                :aria-pressed="maxSide === 2048"
+                @click="maxSide = 2048"
+              >
+                2K
+              </button>
+              <button
+                type="button"
+                class="zoom-btn"
+                :class="{ on: maxSide === 4096 }"
+                :aria-pressed="maxSide === 4096"
+                @click="maxSide = 4096"
+              >
+                4K
+              </button>
+              <button
+                type="button"
+                class="zoom-btn"
+                :class="{ on: maxSide === 6144 }"
+                :aria-pressed="maxSide === 6144"
+                @click="maxSide = 6144"
+              >
+                6K
+              </button>
+              <button
+                type="button"
+                class="zoom-btn"
+                :class="{ on: maxSide === 8192 }"
+                :aria-pressed="maxSide === 8192"
+                @click="maxSide = 8192"
+              >
+                8K
+              </button>
             </div>
           </label>
 
-          <label class="ink-control">
-            <span class="ink-control-head">
-              <span>边缘勾勒</span>
-              <strong>{{ edgeOutline ? '开' : '关' }}</strong>
-            </span>
-            <label class="check edge-toggle">
-              <input v-model="edgeOutline" type="checkbox" />
-              沿轮廓加细密章，勾出画像边缘
-            </label>
-            <template v-if="edgeOutline">
+          <DisclosurePanel title="色彩与光影" description="填色、明暗方向与局部染色">
+            <div class="ink-control">
               <span class="ink-control-head">
-                <span>勾勒强度</span>
-                <strong>{{ edgeBoost.toFixed(2) }}</strong>
+                <span>填色垫底</span>
+                <strong>{{ coverFill ? '开' : '关' }}</strong>
               </span>
-              <input
-                v-model.number="edgeBoost"
-                type="range"
-                min="0.2"
-                max="2"
-                step="0.05"
-              />
+              <label class="check edge-toggle">
+                <input v-model="coverFill" type="checkbox" />
+                加入软色网点，增强肖像层次；纯签名时关闭
+              </label>
+            </div>
+
+            <div class="ink-control">
               <span class="ink-control-head">
-                <span>边缘阈值</span>
-                <strong>{{ edgeThreshold.toFixed(2) }}</strong>
-              </span>
-              <input
-                v-model.number="edgeThreshold"
-                type="range"
-                min="0.12"
-                max="0.7"
-                step="0.02"
-              />
-              <span class="ink-control-head">
-                <span>边缘颜色</span>
+                <span>密度方向</span>
+                <strong>
+                  {{
+                    invertDensity === true ? '亮处密' : invertDensity === false ? '暗处密' : '自动'
+                  }}
+                </strong>
               </span>
               <div class="edge-color-row">
                 <label class="check">
-                  <input v-model="edgeColorMode" type="radio" value="auto" />
-                  随画像加深
+                  <input
+                    type="radio"
+                    name="densify"
+                    :checked="invertDensity === null"
+                    @change="setDensityPolarity('auto')"
+                  />
+                  自动
                 </label>
                 <label class="check">
-                  <input v-model="edgeColorMode" type="radio" value="ink" />
-                  纯墨色
+                  <input
+                    type="radio"
+                    name="densify"
+                    :checked="invertDensity === true"
+                    @change="setDensityPolarity('bright')"
+                  />
+                  亮处密（反向）
                 </label>
                 <label class="check">
-                  <input v-model="edgeColorMode" type="radio" value="custom" />
-                  自定义
+                  <input
+                    type="radio"
+                    name="densify"
+                    :checked="invertDensity === false"
+                    @change="setDensityPolarity('dark')"
+                  />
+                  暗处密
                 </label>
-                <input
-                  v-model="edgeColorHex"
-                  type="color"
-                  class="edge-color-picker"
-                  :disabled="edgeColorMode !== 'custom'"
-                  title="自定义边缘色"
-                />
               </div>
-            </template>
-          </label>
-
-          <details class="more">
-            <summary>高级参数</summary>
+              <p class="hint res-hint">纸上书写使用「暗处密」；深色底的夜光签名使用「亮处密」。</p>
+            </div>
+          </DisclosurePanel>
+          <DisclosurePanel title="轮廓细节" description="勾勒强度、阈值与边缘颜色">
+            <div class="ink-control">
+              <span class="ink-control-head">
+                <span>边缘勾勒</span>
+                <strong>{{ edgeOutline ? '开' : '关' }}</strong>
+              </span>
+              <label class="check edge-toggle">
+                <input v-model="edgeOutline" type="checkbox" />
+                沿轮廓加细密章，勾出画像边缘
+              </label>
+              <template v-if="edgeOutline">
+                <span class="ink-control-head">
+                  <span>勾勒强度</span>
+                  <strong>{{ edgeBoost.toFixed(2) }}</strong>
+                </span>
+                <input v-model.number="edgeBoost" type="range" min="0.2" max="2" step="0.05" />
+                <span class="ink-control-head">
+                  <span>边缘阈值</span>
+                  <strong>{{ edgeThreshold.toFixed(2) }}</strong>
+                </span>
+                <input
+                  v-model.number="edgeThreshold"
+                  type="range"
+                  min="0.12"
+                  max="0.7"
+                  step="0.02"
+                />
+                <span class="ink-control-head">
+                  <span>边缘颜色</span>
+                </span>
+                <div class="edge-color-row">
+                  <label class="check">
+                    <input v-model="edgeColorMode" type="radio" value="auto" />
+                    随画像加深
+                  </label>
+                  <label class="check">
+                    <input v-model="edgeColorMode" type="radio" value="ink" />
+                    纯墨色
+                  </label>
+                  <label class="check">
+                    <input v-model="edgeColorMode" type="radio" value="custom" />
+                    自定义
+                  </label>
+                  <input
+                    v-model="edgeColorHex"
+                    type="color"
+                    class="edge-color-picker"
+                    :disabled="edgeColorMode !== 'custom'"
+                    title="自定义边缘色"
+                  />
+                </div>
+              </template>
+            </div>
+          </DisclosurePanel>
+          <DisclosurePanel title="排布与尺寸" description="角度、字样大小与竖向排列">
             <div class="sliders">
+              <label v-if="orientationMode === 'flow'">
+                方向引导 {{ Math.round(orientationStrength * 100) }}%
+                <input
+                  v-model.number="orientationStrength"
+                  aria-label="方向引导"
+                  type="range"
+                  min="0"
+                  max="1"
+                  step="0.05"
+                />
+              </label>
               <label>
                 角度范围 ±{{ angleRange }}°
                 <input v-model.number="angleRange" type="range" min="10" max="80" />
@@ -2017,7 +2346,11 @@ watch([coverFill, colorize, signatureInkStyle], () => {
                 使用竖向排列
               </label>
               <label class="check">
-                <input v-model="colorize" type="checkbox" :disabled="signatureSurface === 'night'" />
+                <input
+                  v-model="colorize"
+                  type="checkbox"
+                  :disabled="signatureSurface === 'night'"
+                />
                 局部染色（纸上书写）
               </label>
               <label class="check">
@@ -2025,70 +2358,53 @@ watch([coverFill, colorize, signatureInkStyle], () => {
                 亮部也铺字（对比会变弱）
               </label>
             </div>
-          </details>
-
+          </DisclosurePanel>
           <div class="row">
-            <FxButton
-              type="button"
-              variant="primary"
-              :disabled="pending || !canRender"
-              @click="renderNow"
-            >
-              {{ pending ? '生成中…' : '生成预览' }}
-            </FxButton>
-            <FxButton type="button" :disabled="bankBusy" @click="projectInput?.click()">
-              打开作品文件
-            </FxButton>
-            <input ref="projectInput" class="sr-only" type="file" :accept="SIGNATURE_PROJECT_ACCEPT" @change="onProjectChange" />
-            <FxButton type="button" :disabled="!hasResult || bankBusy" @click="downloadProject">
-              保存作品文件
-            </FxButton>
-            <FxButton v-if="projectBusy" type="button" @click="cancelProjectFile">
-              取消文件操作
-            </FxButton>
-            <FxButton
-              type="button"
-              :disabled="!hasResult || pending"
-              @click="reshuffle"
-            >
+            <FxButton type="button" :disabled="!hasResult || pending" @click="reshuffle">
               换一版
             </FxButton>
-            <FxButton type="button" :disabled="!hasResult || pending" @click="downloadVectorJson">
-              下载矢量 JSON
-            </FxButton>
-            <FxButton
-              type="button"
-              :disabled="stamps.length === 0 || pending"
-              @click="traceStampTemplates"
-            >
-              矢量化写法
-              <template v-if="tracedStampCount">
-                （{{ tracedStampCount }}/{{ stamps.length }}）
-              </template>
-            </FxButton>
-            <FxButton type="button" :disabled="!hasResult || pending" @click="downloadPathSvg">
-              下载 Path SVG
-            </FxButton>
-            <FxButton type="button" :disabled="!hasResult || pending" @click="downloadPng">
-              下载 PNG
-            </FxButton>
           </div>
+          <DisclosurePanel title="矢量导出" description="转换笔迹路径，下载 SVG 或布局 JSON"
+            ><div class="row">
+              <FxButton type="button" :disabled="!hasResult || pending" @click="downloadVectorJson">
+                下载矢量 JSON
+              </FxButton>
+              <FxButton
+                type="button"
+                :disabled="stamps.length === 0 || pending"
+                @click="traceStampTemplates"
+              >
+                矢量化写法
+                <template v-if="tracedStampCount">
+                  （{{ tracedStampCount }}/{{ stamps.length }}）
+                </template>
+              </FxButton>
+              <FxButton type="button" :disabled="!hasResult || pending" @click="downloadPathSvg">
+                下载 Path SVG
+              </FxButton>
+            </div></DisclosurePanel
+          >
+
           <p v-if="hasResult || stamps.length" class="hint">
-            作品文件保存画像、签名、布局和参数，可换设备继续创作。JSON仅含坐标；PNG用于图片，Path SVG用于矢量作品。
+            作品文件保存画像、签名、布局和参数，可换设备继续创作。JSON仅含坐标；PNG用于图片，Path
+            SVG用于矢量作品。
           </p>
-          <p v-if="projectNotice" class="hint" role="status">{{ projectNotice }}</p>
-          <p v-if="resultSettingsChanged && !pending" class="hint result-settings-changed" role="status">
-            参数已调整，点击「生成预览」应用。下载文件对应当前预览的作品。
-          </p>
-          <p v-if="error" class="error">{{ error }}</p>
-          <p v-else-if="pending && progressStage" class="meta">
+
+          <p v-if="pending && progressStage" class="meta">
             {{ progressStage }} · {{ Math.round(progressRatio * 100) }}%
           </p>
           <p v-else-if="placementCount" class="meta">
-            用 {{ generatedResult?.stamps.length ?? stamps.length }} 种写法铺了 {{ placementCount }} 枚
+            用 {{ generatedResult?.stamps.length ?? stamps.length }} 种写法铺了
+            {{ placementCount }} 枚
             <template v-if="generatedResult?.options.edgeOutline">
               · 边缘勾勒
-              {{ generatedResult.options.edgeColorMode === 'custom' ? '自定义' : generatedResult.options.edgeColorMode === 'ink' ? '纯墨' : '随画像' }}
+              {{
+                generatedResult.options.edgeColorMode === 'custom'
+                  ? '自定义'
+                  : generatedResult.options.edgeColorMode === 'ink'
+                    ? '纯墨'
+                    : '随画像'
+              }}
             </template>
           </p>
         </section>
@@ -2099,31 +2415,32 @@ watch([coverFill, colorize, signatureInkStyle], () => {
           <h2>预览</h2>
           <span v-if="pending" class="meta">
             {{ progressStage || '生成中' }}
-            <template v-if="progressRatio">
-              · {{ Math.round(progressRatio * 100) }}%
-            </template>
+            <template v-if="progressRatio"> · {{ Math.round(progressRatio * 100) }}% </template>
             · 正在准备作品
           </span>
           <span v-else-if="canCompare" class="meta">
-            滚轮放大 · {{ previewPan || !comparisonActive ? '拖动移动' : '拖动对比' }} · {{ viewScaleLabel }}
+            滚轮放大 · {{ previewPan || !comparisonActive ? '拖动移动' : '拖动对比' }} ·
+            {{ viewScaleLabel }}
             <template v-if="lastOutputMeta"> · {{ lastOutputMeta }}</template>
           </span>
         </div>
-        <div v-if="pending || generatingVariants || sharpPainting" class="render-feedback" role="status" aria-live="polite">
-          <span class="render-spinner" aria-hidden="true"></span>
-          <div class="render-feedback-copy">
-            <strong>{{ sharpPainting && !pending ? '正在精绘局部笔迹' : progressStage || '正在准备作品' }}</strong>
-            <p>{{ sharpPainting && !pending ? '视图已更新，清晰笔迹随后呈现。可以继续缩放或拖动。' : '可以继续浏览页面，完成后会呈现完整笔迹与色彩。' }}</p>
-            <progress v-if="pending && progressRatio > 0" :value="progressRatio" max="1" aria-label="作品生成进度"></progress>
-          </div>
-        </div>
+        <RenderFeedback
+          v-if="pending || generatingVariants || sharpPainting"
+          :title="sharpPainting && !pending ? '正在精绘局部笔迹' : progressStage || '正在准备作品'"
+          :detail="
+            sharpPainting && !pending
+              ? '视图已更新，清晰笔迹随后呈现。可以继续缩放或拖动。'
+              : '可以继续浏览页面，完成后会呈现完整笔迹与色彩。'
+          "
+          :progress="pending ? progressRatio : undefined"
+        />
         <label v-if="hasResult" class="preview-quality">
           <span>缩放清晰度</span>
-          <select v-model="previewQuality" aria-label="缩放清晰度">
+          <UiSelect v-model="previewQuality" aria-label="缩放清晰度">
             <option value="fast">轻快 · 优先响应</option>
             <option value="clear">清晰 · 均衡预览</option>
             <option value="detail">精细 · 更清晰笔迹</option>
-          </select>
+          </UiSelect>
           <span class="hint">仅改变屏上预览；下载使用成图清晰度。</span>
         </label>
         <div v-if="hasResult" class="zoom-bar">
@@ -2141,21 +2458,36 @@ watch([coverFill, colorize, signatureInkStyle], () => {
           <button type="button" class="zoom-btn" aria-label="放大" @click="bumpViewScale(1.25)">
             +
           </button>
-          <button type="button" class="zoom-btn" @click="zoomToNative">
-            原大
-          </button>
-          <button type="button" class="zoom-btn" @click="zoomToMax">
-            最大
-          </button>
-          <button v-if="comparisonActive" type="button" class="zoom-btn" :class="{ on: previewPan }" :aria-pressed="previewPan" @click="previewPan = !previewPan">
+          <button type="button" class="zoom-btn" @click="zoomToNative">原大</button>
+          <button type="button" class="zoom-btn" @click="zoomToMax">最大</button>
+          <button
+            v-if="comparisonActive"
+            type="button"
+            class="zoom-btn"
+            :class="{ on: previewPan }"
+            :aria-pressed="previewPan"
+            @click="previewPan = !previewPan"
+          >
             移动画布
           </button>
-          <button type="button" class="zoom-btn" :class="{ on: showComparison }" :aria-pressed="showComparison" @click="showComparison = !showComparison; previewPan = !showComparison">
+          <button
+            type="button"
+            class="zoom-btn"
+            :class="{ on: showComparison }"
+            :aria-pressed="showComparison"
+            @click="toggleComparison"
+          >
             对比原图
           </button>
           <label v-if="comparisonActive" class="preview-compare-control">
             对比
-            <input v-model.number="comparePct" aria-label="作品与原图对比比例" type="range" min="0" max="100" />
+            <input
+              v-model.number="comparePct"
+              aria-label="作品与原图对比比例"
+              type="range"
+              min="0"
+              max="100"
+            />
           </label>
         </div>
         <p v-if="previewError" class="error" role="status">{{ previewError }}</p>
@@ -2165,18 +2497,19 @@ watch([coverFill, colorize, signatureInkStyle], () => {
           tabindex="0"
           role="region"
           aria-label="名字画预览，方向键移动，滚轮缩放"
-          :style="{ background: resultBackground }"
+          :style="{ background: hasResult ? resultBackground : 'var(--bg-elevated)' }"
           @wheel.prevent="onStageWheel"
         >
+          <div v-if="!hasResult" class="empty-preview">
+            <span class="empty-preview-mark" aria-hidden="true">Aa</span>
+            <strong>{{ pending ? '正在织出你的画像' : '让名字成为一幅画' }}</strong>
+            <p>准备名字，上传画像，完整的笔迹会在这里呈现。</p>
+          </div>
           <div
             ref="compareRoot"
             class="compare"
             :class="{ interactive: comparisonActive, panning: previewPan || !comparisonActive }"
-            :style="
-              stageW && stageH
-                ? { width: `${stageW}px`, height: `${stageH}px` }
-                : undefined
-            "
+            :style="stageW && stageH ? { width: `${stageW}px`, height: `${stageH}px` } : undefined"
             @pointerdown="onComparePointerDown"
             @pointermove="onComparePointerMove"
             @pointerup="onComparePointerUp"
@@ -2197,11 +2530,7 @@ watch([coverFill, colorize, signatureInkStyle], () => {
               <div ref="resultHost" class="result-host" />
             </div>
             <template v-if="comparisonActive">
-              <div
-                class="compare-handle"
-                :style="{ left: `${comparePct}%` }"
-                aria-hidden="true"
-              >
+              <div class="compare-handle" :style="{ left: `${comparePct}%` }" aria-hidden="true">
                 <span class="compare-knob" />
               </div>
               <span class="compare-tag left">效果</span>
@@ -2222,13 +2551,6 @@ watch([coverFill, colorize, signatureInkStyle], () => {
   margin: 0 auto;
   padding: 1.25rem 0 2.5rem;
   font-family: var(--body);
-  /* 顶栏下整页可滚，不用缩浏览器 */
-  height: 100%;
-  max-height: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  scrollbar-gutter: stable;
 }
 
 .head {
@@ -2262,21 +2584,88 @@ h1 {
 
 .layout {
   display: grid;
-  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  grid-template-columns: minmax(300px, 0.7fr) minmax(0, 1.3fr);
+  grid-template-areas: 'names preview' 'settings preview';
   gap: 1rem;
   align-items: start;
 }
 
 .controls {
+  display: contents;
+}
+.source-panel {
+  grid-area: names;
+}
+.settings-panel {
+  grid-area: settings;
+}
+.creation-bar {
+  margin-bottom: 1rem;
+}
+.creation-bar-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.9rem;
+}
+.step-label {
+  font:
+    0.7rem Consolas,
+    monospace;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+}
+.creation-actions,
+.project-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+.project-actions {
+  margin-top: 0.7rem;
+  padding-top: 0.7rem;
+  border-top: 1px solid var(--border);
+}
+.creation-bar .hint {
+  margin: 0.6rem 0 0;
+}
+.name-fields {
   display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr) minmax(0, 0.8fr);
+  gap: 0.6rem;
+  margin: 1rem 0 0.75rem;
+}
+.field-stack {
+  display: grid;
+  gap: 0.45rem;
   min-width: 0;
-  gap: 1rem;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+.name-generate .fx-btn {
+  width: 100%;
+}
+.step-number {
+  display: inline-block;
+  margin-right: 0.5rem;
+  color: var(--accent);
+  font:
+    0.72rem Consolas,
+    monospace;
+  letter-spacing: 0.04em;
+}
+.source-panel :deep(.disclosure-body) .row {
+  margin-top: 0.5rem;
 }
 
 .preview {
+  grid-area: preview;
   position: sticky;
   top: 0.5rem;
-  max-height: calc(100dvh - 4.2rem);
+  max-height: calc(100dvh - 1rem);
   overflow: auto;
 }
 
@@ -2289,26 +2678,21 @@ h1 {
   margin-bottom: 0.55rem;
 }
 
-.render-feedback {
+.preview-quality {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 0.85rem;
-  margin: 0.75rem 0;
-  padding: 0.9rem;
-  border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--border));
-  border-radius: var(--radius-md);
-  background: color-mix(in srgb, var(--accent) 6%, var(--bg-elevated, var(--bg)));
+  gap: 0.6rem;
+  margin: 0.7rem 0;
+  font-size: 0.8rem;
 }
-.render-feedback-copy { flex: 1; min-width: 0; }
-.render-feedback strong { font-size: 0.87rem; color: var(--text); }
-.render-feedback p { margin: 0.3rem 0 0; font-size: 0.79rem; line-height: 1.6; color: var(--text-muted); }
-.render-feedback progress { display: block; width: 100%; height: 5px; margin-top: 0.65rem; accent-color: var(--accent); }
-.render-spinner { flex: 0 0 24px; height: 24px; border: 2px solid color-mix(in srgb, var(--accent) 20%, transparent); border-top-color: var(--accent); border-radius: 50%; animation: signature-render-spin 1.2s linear infinite; }
-.preview-quality { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; margin: 0.7rem 0; font-size: 0.8rem; }
-.preview-quality select { min-height: 44px; max-width: 100%; padding: 0.5rem 0.7rem; color: var(--text); background: var(--bg-elevated, var(--bg)); border: 1px solid var(--border); border-radius: 9px; font: inherit; }
-.preview-quality .hint { margin: 0; font-size: 0.75rem; }
-@keyframes signature-render-spin { to { transform: rotate(360deg); } }
-@media (prefers-reduced-motion: reduce) { .render-spinner { animation: none; } }
+.preview-quality select {
+  width: auto;
+}
+.preview-quality .hint {
+  margin: 0;
+  font-size: 0.75rem;
+}
 
 .panel {
   min-width: 0;
@@ -2339,6 +2723,7 @@ h2 {
 .pad {
   display: block;
   width: 100%;
+  max-width: 100%;
   height: 160px;
   border: 1px dashed color-mix(in srgb, var(--accent) 45%, var(--border));
   border-radius: 12px;
@@ -2502,7 +2887,7 @@ h2 {
 
 .error {
   margin: 0.3rem 0 0;
-  color: #c44;
+  color: var(--danger);
   font-size: 0.86rem;
 }
 
@@ -2529,7 +2914,11 @@ h2 {
     linear-gradient(45deg, transparent 75%, #ddd 75%),
     linear-gradient(-45deg, transparent 75%, #ddd 75%);
   background-size: 10px 10px;
-  background-position: 0 0, 0 5px, 5px -5px, -5px 0;
+  background-position:
+    0 0,
+    0 5px,
+    5px -5px,
+    -5px 0;
 }
 
 .stamps img {
@@ -2550,7 +2939,7 @@ h2 {
 .linkish {
   border: 0;
   background: none;
-  color: var(--accent);
+  color: #087b82;
   font-size: 0.72rem;
   cursor: pointer;
   padding: 0;
@@ -2567,6 +2956,31 @@ h2 {
   border: 1px solid var(--border);
   padding: 0.5rem;
   overflow-anchor: none;
+}
+.empty-preview {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 0.8rem;
+  width: 100%;
+  min-height: 340px;
+  padding: 2rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+.empty-preview-mark {
+  font: italic 4rem var(--display);
+  color: color-mix(in srgb, var(--accent) 35%, transparent);
+}
+.empty-preview strong {
+  font: 1.2rem var(--display);
+  color: var(--text);
+}
+.empty-preview p {
+  margin: 0;
+  max-width: 18rem;
+  font-size: 0.8rem;
+  line-height: 1.8;
 }
 
 .zoom-bar {
@@ -2819,17 +3233,32 @@ h2 {
 @media (max-width: 960px) {
   .layout {
     grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: 'names' 'preview' 'settings';
   }
 
   .preview {
     position: static;
-    order: -1;
     max-height: none;
     overflow: visible;
   }
 
   .stage {
     min-height: 260px;
+  }
+}
+@media (max-width: 460px) {
+  .name-fields {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+  .name-fields .field-stack:first-child {
+    grid-column: 1 / -1;
+  }
+  .creation-actions :deep(.fx-btn) {
+    flex: 1 1 calc(50% - 0.5rem);
+    padding-inline: 0.8rem;
+  }
+  .project-actions :deep(.fx-btn) {
+    flex: 1 1 0;
   }
 }
 </style>

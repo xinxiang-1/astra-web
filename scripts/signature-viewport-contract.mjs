@@ -1,3 +1,4 @@
+import { openSignatureSection } from './signature-ui-helpers.mjs'
 import assert from 'node:assert/strict'
 import { chromium } from 'playwright'
 import { mkdir, writeFile, readFile } from 'node:fs/promises'
@@ -120,7 +121,7 @@ try {
     page.locator('label.ink-control').filter({ hasText: '墨量' }).locator('input[type=range]'),
     12,
   )
-  await page.locator('details.more').filter({ hasText: '高级参数' }).locator('summary').click()
+  await openSignatureSection(page, '排布与尺寸')
   await range(page.locator('.sliders label').filter({ hasText: '最小印章' }).locator('input'), 3)
   await range(page.locator('.sliders label').filter({ hasText: '最大印章' }).locator('input'), 6)
   await page.getByRole('button', { name: '一键试用示例', exact: true }).click()
@@ -142,6 +143,7 @@ try {
   )
   assert.equal(await page.locator('.compare-base').count(), 0, 'Artwork alone is the default')
   const downloading = page.waitForEvent('download')
+  await openSignatureSection(page, '矢量导出')
   await page.getByRole('button', { name: '下载矢量 JSON', exact: true }).click()
   await (await downloading).saveAs(path.join(out, 'layout.json'))
   const layout = JSON.parse(await readFile(path.join(out, 'layout.json'), 'utf8'))

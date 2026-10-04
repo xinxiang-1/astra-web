@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, nextTick, onMounted, ref, watch } from 'vue'
 import { RouterView, useRoute } from 'vue-router'
+import { ElConfigProvider } from 'element-plus'
 import ArtHeader from '@/components/ArtHeader.vue'
 import ArtFooter from '@/components/ArtFooter.vue'
 import { authRouteNames, studioRouteNames, toolRouteNames } from '@/content/catalog'
@@ -51,25 +52,22 @@ onMounted(() => {
 </script>
 
 <template>
-  <div
-    class="app-shell"
-    :class="{
-      immersive: isImmersive,
-      auth: isAuthPage,
-      scrollable: isScrollable,
-      editor: isEditor,
-    }"
-  >
-    <a class="skip-link" href="#main-content" @click="focusMain">跳到主要内容</a>
-    <ArtHeader
-      v-if="!isEditor"
-      :immersive="isImmersive"
-      :account="isAuthPage"
-      :show-theme="isToolPage || isImmersive || isStudioHub || isAuthPage"
-    />
-    <main id="main-content" ref="main" tabindex="-1"><RouterView /></main>
-    <ArtFooter v-if="hasSharedFooter" />
-  </div>
+  <ElConfigProvider :message="{ offset: 92, showClose: true }">
+    <div
+      class="app-shell"
+      :class="{
+        immersive: isImmersive,
+        auth: isAuthPage,
+        scrollable: isScrollable,
+        editor: isEditor,
+      }"
+    >
+      <a class="skip-link" href="#main-content" @click="focusMain">跳到主要内容</a>
+      <ArtHeader v-if="!isEditor" :immersive="isImmersive" :account="isAuthPage" show-theme />
+      <main id="main-content" ref="main" tabindex="-1"><RouterView /></main>
+      <ArtFooter v-if="hasSharedFooter" />
+    </div>
+  </ElConfigProvider>
 </template>
 
 <style>

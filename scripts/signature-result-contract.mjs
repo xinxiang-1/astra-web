@@ -1,3 +1,4 @@
+import { openSignatureSection } from './signature-ui-helpers.mjs'
 import assert from 'node:assert/strict'
 import { chromium } from 'playwright'
 import { readFile, writeFile, mkdir } from 'node:fs/promises'
@@ -54,6 +55,8 @@ try {
     }
   }
   async function download(label, name) {
+    if (label === '下载矢量 JSON' || label === '下载 Path SVG')
+      await openSignatureSection(page, '矢量导出')
     const waiting = page.waitForEvent('download', { timeout: 90000 }).catch(async (error) => {
       await page.screenshot({ path: path.join(directory, 'download-failure.png') })
       console.log({ label, uiError: await page.locator('.error').allTextContents() })
@@ -144,7 +147,7 @@ try {
     12,
   )
   await page.getByRole('button', { name: '4K', exact: true }).click()
-  await page.locator('details.more').filter({ hasText: '高级参数' }).locator('summary').click()
+  await openSignatureSection(page, '排布与尺寸')
   await range(
     page.locator('.sliders label').filter({ hasText: '最小印章' }).locator('input[type=range]'),
     2.1,

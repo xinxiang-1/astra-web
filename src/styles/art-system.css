@@ -7,11 +7,15 @@
   --art-serif: Georgia, 'Noto Serif SC', 'Songti SC', 'STSong', 'SimSun', serif;
 }
 .art-page {
+  --art-ink: var(--text);
+  --art-paper: var(--bg);
+  --art-muted: var(--text-muted);
+  --art-line: var(--border);
   background: var(--art-paper);
   color: var(--art-ink);
   min-height: calc(100dvh - 76px);
   font-family: var(--font-body);
-  color-scheme: light;
+  color-scheme: inherit;
 }
 .art-page h1,
 .art-page h2,
@@ -19,6 +23,8 @@
   font-family: var(--art-serif);
   font-weight: 500;
 }
+/* The homepage hero keeps its established artwork; surrounding UI uses the palette. */
+[data-theme='dark'] .home-art .step-icon { background: var(--bg-soft); }
 .art-wrap {
   max-width: 1440px;
   margin: auto;
@@ -58,7 +64,7 @@
 }
 .art-button.dark {
   background: var(--art-ink);
-  color: white;
+  color: var(--bg);
   border-color: var(--art-ink);
 }
 .art-button:disabled {
@@ -129,7 +135,7 @@
   font-size: 12px;
 }
 .art-link:hover {
-  color: #047781;
+  color: var(--accent);
 }
 .art-card {
   display: block;
@@ -170,7 +176,7 @@
   height: 34px;
   flex-shrink: 0;
   border-radius: 50%;
-  background: #e8e6df;
+  background: var(--bg-soft);
   display: grid;
   place-items: center;
 }
@@ -178,22 +184,22 @@
   border: 1px solid transparent;
   border-radius: 24px;
   padding: 10px 22px;
-  background: #eae8e2;
-  color: #454944;
+  background: var(--bg-soft);
+  color: var(--text-muted);
   cursor: pointer;
   font: 12px var(--font-body);
 }
 .art-chip.active {
   background: var(--art-ink);
-  color: white;
+  color: var(--bg);
 }
 .art-page button:focus-visible,
 .art-page a:focus-visible {
-  outline: 2px solid #00848c;
+  outline: 2px solid var(--accent);
   outline-offset: 4px;
 }
 .art-error {
-  color: #a93428;
+  color: var(--danger);
   font-size: 13px;
 }
 .art-loading-state {

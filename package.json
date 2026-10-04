@@ -65,7 +65,9 @@
     "test:material-surface": "node scripts/material-motion-surface-contract.mjs",
     "demo:material-motion": "node scripts/material-motion-prototype.mjs",
     "research:signature-print": "node scripts/signature-print-research.mjs",
-    "test:signature-print-ui": "node scripts/signature-print-ui.mjs"
+    "test:signature-print-ui": "node scripts/signature-print-ui.mjs",
+    "test:signature-theme-ui": "node scripts/signature-theme-ui-contract.mjs",
+    "test:signature-direction": "node scripts/signature-direction-contract.mjs"
   },
   "dependencies": {
     "@file-viewer/preset-office": "^3.1.1",

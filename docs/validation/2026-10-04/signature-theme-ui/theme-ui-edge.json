@@ -1,0 +1,380 @@
+{
+  "browser": "154.0.4258.53",
+  "cases": [
+    {
+      "kind": "controls",
+      "theme": "light",
+      "width": 1440,
+      "controls": [
+        {
+          "color": "rgb(21, 25, 24)",
+          "background": "rgb(255, 254, 250)",
+          "height": 44,
+          "radius": "8px",
+          "border": "rgb(216, 221, 212)",
+          "scheme": "light"
+        },
+        {
+          "color": "rgb(21, 25, 24)",
+          "background": "rgb(255, 254, 250)",
+          "height": 44,
+          "radius": "8px",
+          "border": "rgb(216, 221, 212)",
+          "scheme": "light"
+        },
+        {
+          "color": "rgb(21, 25, 24)",
+          "background": "rgb(255, 254, 250)",
+          "height": 44,
+          "radius": "8px",
+          "border": "rgb(216, 221, 212)",
+          "scheme": "light"
+        },
+        {
+          "color": "rgb(21, 25, 24)",
+          "background": "rgb(255, 254, 250)",
+          "height": 44,
+          "radius": "8px",
+          "border": "rgb(216, 221, 212)",
+          "scheme": "light"
+        },
+        {
+          "color": "rgb(21, 25, 24)",
+          "background": "rgb(255, 254, 250)",
+          "height": 44,
+          "radius": "8px",
+          "border": "rgb(216, 221, 212)",
+          "scheme": "light"
+        },
+        {
+          "color": "rgb(21, 25, 24)",
+          "background": "rgb(255, 254, 250)",
+          "height": 44,
+          "radius": "8px",
+          "border": "rgb(216, 221, 212)",
+          "scheme": "light"
+        }
+      ],
+      "screenshot": "signature-light-1440.png"
+    },
+    {
+      "kind": "controls",
+      "theme": "dark",
+      "width": 1440,
+      "controls": [
+        {
+          "color": "rgb(244, 240, 232)",
+          "background": "rgba(255, 255, 255, 0.03)",
+          "height": 44,
+          "radius": "8px",
+          "border": "rgba(255, 255, 255, 0.14)",
+          "scheme": "dark"
+        },
+        {
+          "color": "rgb(244, 240, 232)",
+          "background": "rgba(255, 255, 255, 0.03)",
+          "height": 44,
+          "radius": "8px",
+          "border": "rgba(255, 255, 255, 0.14)",
+          "scheme": "dark"
+        },
+        {
+          "color": "rgb(244, 240, 232)",
+          "background": "rgba(255, 255, 255, 0.03)",
+          "height": 44,
+          "radius": "8px",
+          "border": "rgba(255, 255, 255, 0.14)",
+          "scheme": "dark"
+        },
+        {
+          "color": "rgb(244, 240, 232)",
+          "background": "rgba(255, 255, 255, 0.03)",
+          "height": 44,
+          "radius": "8px",
+          "border": "rgba(255, 255, 255, 0.14)",
+          "scheme": "dark"
+        },
+        {
+          "color": "rgb(244, 240, 232)",
+          "background": "rgba(255, 255, 255, 0.03)",
+          "height": 44,
+          "radius": "8px",
+          "border": "rgba(255, 255, 255, 0.14)",
+          "scheme": "dark"
+        },
+        {
+          "color": "rgb(244, 240, 232)",
+          "background": "rgba(255, 255, 255, 0.03)",
+          "height": 44,
+          "radius": "8px",
+          "border": "rgba(255, 255, 255, 0.14)",
+          "scheme": "dark"
+        }
+      ],
+      "screenshot": "signature-dark-1440.png"
+    },
+    {
+      "kind": "controls",
+      "theme": "light",
+      "width": 390,
+      "controls": [
+        {
+          "color": "rgb(21, 25, 24)",
+          "background": "rgb(255, 254, 250)",
+          "height": 44,
+          "radius": "8px",
+          "border": "rgb(216, 221, 212)",
+          "scheme": "light"
+        },
+        {
+          "color": "rgb(21, 25, 24)",
+          "background": "rgb(255, 254, 250)",
+          "height": 44,
+          "radius": "8px",
+          "border": "rgb(216, 221, 212)",
+          "scheme": "light"
+        },
+        {
+          "color": "rgb(21, 25, 24)",
+          "background": "rgb(255, 254, 250)",
+          "height": 44,
+          "radius": "8px",
+          "border": "rgb(216, 221, 212)",
+          "scheme": "light"
+        },
+        {
+          "color": "rgb(21, 25, 24)",
+          "background": "rgb(255, 254, 250)",
+          "height": 44,
+          "radius": "8px",
+          "border": "rgb(216, 221, 212)",
+          "scheme": "light"
+        },
+        {
+          "color": "rgb(21, 25, 24)",
+          "background": "rgb(255, 254, 250)",
+          "height": 44,
+          "radius": "8px",
+          "border": "rgb(216, 221, 212)",
+          "scheme": "light"
+        },
+        {
+          "color": "rgb(21, 25, 24)",
+          "background": "rgb(255, 254, 250)",
+          "height": 44,
+          "radius": "8px",
+          "border": "rgb(216, 221, 212)",
+          "scheme": "light"
+        }
+      ],
+      "screenshot": "signature-light-390.png"
+    },
+    {
+      "kind": "controls",
+      "theme": "dark",
+      "width": 390,
+      "controls": [
+        {
+          "color": "rgb(244, 240, 232)",
+          "background": "rgba(255, 255, 255, 0.03)",
+          "height": 44,
+          "radius": "8px",
+          "border": "rgba(255, 255, 255, 0.14)",
+          "scheme": "dark"
+        },
+        {
+          "color": "rgb(244, 240, 232)",
+          "background": "rgba(255, 255, 255, 0.03)",
+          "height": 44,
+          "radius": "8px",
+          "border": "rgba(255, 255, 255, 0.14)",
+          "scheme": "dark"
+        },
+        {
+          "color": "rgb(244, 240, 232)",
+          "background": "rgba(255, 255, 255, 0.03)",
+          "height": 44,
+          "radius": "8px",
+          "border": "rgba(255, 255, 255, 0.14)",
+          "scheme": "dark"
+        },
+        {
+          "color": "rgb(244, 240, 232)",
+          "background": "rgba(255, 255, 255, 0.03)",
+          "height": 44,
+          "radius": "8px",
+          "border": "rgba(255, 255, 255, 0.14)",
+          "scheme": "dark"
+        },
+        {
+          "color": "rgb(244, 240, 232)",
+          "background": "rgba(255, 255, 255, 0.03)",
+          "height": 44,
+          "radius": "8px",
+          "border": "rgba(255, 255, 255, 0.14)",
+          "scheme": "dark"
+        },
+        {
+          "color": "rgb(244, 240, 232)",
+          "background": "rgba(255, 255, 255, 0.03)",
+          "height": 44,
+          "radius": "8px",
+          "border": "rgba(255, 255, 255, 0.14)",
+          "scheme": "dark"
+        }
+      ],
+      "screenshot": "signature-dark-390.png"
+    },
+    {
+      "kind": "captcha",
+      "theme": "light",
+      "style": {
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(255, 254, 250)",
+        "border": "rgb(216, 221, 212)",
+        "width": 189.921875,
+        "height": 48
+      }
+    },
+    {
+      "kind": "captcha",
+      "theme": "dark",
+      "style": {
+        "color": "rgb(244, 240, 232)",
+        "background": "rgba(255, 255, 255, 0.03)",
+        "border": "rgba(255, 255, 255, 0.14)",
+        "width": 189.921875,
+        "height": 48
+      }
+    },
+    {
+      "kind": "theme-route",
+      "route": "/",
+      "before": {
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)",
+        "border": "rgb(244, 240, 232)",
+        "width": 390,
+        "height": 4720.484375
+      },
+      "after": {
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(245, 243, 239)",
+        "border": "rgb(21, 25, 24)",
+        "width": 390,
+        "height": 4720.484375
+      }
+    },
+    {
+      "kind": "theme-route",
+      "route": "/gallery",
+      "before": {
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(245, 243, 239)",
+        "border": "rgb(21, 25, 24)",
+        "width": 390,
+        "height": 3795
+      },
+      "after": {
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)",
+        "border": "rgb(244, 240, 232)",
+        "width": 390,
+        "height": 3795
+      }
+    },
+    {
+      "kind": "theme-route",
+      "route": "/templates",
+      "before": {
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)",
+        "border": "rgb(244, 240, 232)",
+        "width": 390,
+        "height": 3458.671875
+      },
+      "after": {
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(245, 243, 239)",
+        "border": "rgb(21, 25, 24)",
+        "width": 390,
+        "height": 3458.671875
+      }
+    },
+    {
+      "kind": "theme-route",
+      "route": "/help",
+      "before": {
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(245, 243, 239)",
+        "border": "rgb(21, 25, 24)",
+        "width": 390,
+        "height": 3598.703125
+      },
+      "after": {
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)",
+        "border": "rgb(244, 240, 232)",
+        "width": 390,
+        "height": 3598.703125
+      }
+    },
+    {
+      "kind": "theme-route",
+      "route": "/projects",
+      "before": {
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)",
+        "border": "rgb(244, 240, 232)",
+        "width": 390,
+        "height": 1383.09375
+      },
+      "after": {
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(245, 243, 239)",
+        "border": "rgb(21, 25, 24)",
+        "width": 390,
+        "height": 1383.09375
+      }
+    },
+    {
+      "kind": "theme-route",
+      "route": "/ascii-art",
+      "before": {
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(253, 252, 249)",
+        "border": "rgb(21, 25, 24)",
+        "width": 390,
+        "height": 1458.375
+      },
+      "after": {
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(26, 33, 28)",
+        "border": "rgb(244, 240, 232)",
+        "width": 390,
+        "height": 1458.375
+      }
+    },
+    {
+      "kind": "theme-route",
+      "route": "/art-lab",
+      "before": {
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)",
+        "border": "rgb(244, 240, 232)",
+        "width": 390,
+        "height": 1653.359375
+      },
+      "after": {
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(245, 243, 239)",
+        "border": "rgb(21, 25, 24)",
+        "width": 390,
+        "height": 1653.359375
+      }
+    }
+  ],
+  "errors": [],
+  "passed": true,
+  "fxButtonSha256": "eeac05cd3ac2f5d287761cb3482d110f3a3346f7e80e45bcad534911e0cc79d1"
+}

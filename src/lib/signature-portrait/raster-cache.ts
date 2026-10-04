@@ -14,6 +14,7 @@ export function createTintedStampCache(
   maxBytes = 16 * 1024 * 1024,
   maxEntries = 64,
   createSurface: () => RasterCanvas = () => document.createElement('canvas'),
+  stableRaster = false,
 ) {
   if (
     !Number.isSafeInteger(maxBytes) ||
@@ -67,7 +68,7 @@ export function createTintedStampCache(
       const canvas = createSurface()
       canvas.width = source.width
       canvas.height = source.height
-      const context = canvas.getContext('2d')
+      const context = canvas.getContext('2d', { willReadFrequently: stableRaster })
       if (!context) throw new Error('无法创建签名着色画布')
       entry = { canvas, context, bytes: cost }
       created++

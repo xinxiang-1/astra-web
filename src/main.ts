@@ -8,6 +8,7 @@ import App from './App.vue'
 import router from './router'
 import './styles/tokens.css'
 import './styles/art-system.css'
+import './styles/controls.css'
 
 const app = createApp(App)
 

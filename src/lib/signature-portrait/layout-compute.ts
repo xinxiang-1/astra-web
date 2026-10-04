@@ -30,6 +30,8 @@ export type LayoutComputeOptions = {
   inkColor?: { r: number; g: number; b: number }
   density?: number
   angleRange?: number
+  orientationMode?: 'classic' | 'flow'
+  orientationStrength?: number
   allowVertical?: boolean
   minSizeRatio?: number
   maxSizeRatio?: number

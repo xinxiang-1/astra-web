@@ -1,0 +1,83 @@
+{
+  "browser": "154.0.4258.53",
+  "controls": {
+    "pointer": {
+      "stableTarget": true,
+      "followsPointer": true,
+      "clearsOnLeave": true
+    },
+    "disabledNavigation": {
+      "prevented": true,
+      "reenabled": true
+    }
+  },
+  "touch": {
+    "opens": true,
+    "outsideCloses": true,
+    "navigationCloses": true
+  },
+  "files": {
+    "utf8Text": true,
+    "replacementImage": true,
+    "cleared": true
+  },
+  "shortScreens": [
+    {
+      "route": "/prism",
+      "width": 744,
+      "height": 390,
+      "controlsReachable": true
+    },
+    {
+      "route": "/webgl-fluid",
+      "width": 744,
+      "height": 390,
+      "controlsReachable": true
+    },
+    {
+      "route": "/register",
+      "width": 744,
+      "height": 390,
+      "submissionReachable": true
+    },
+    {
+      "route": "/prism",
+      "width": 320,
+      "height": 568,
+      "controlsReachable": true
+    },
+    {
+      "route": "/webgl-fluid",
+      "width": 320,
+      "height": 568,
+      "controlsReachable": true
+    },
+    {
+      "route": "/register",
+      "width": 320,
+      "height": 568,
+      "submissionReachable": true
+    }
+  ],
+  "errors": [],
+  "gpuUnavailable": [
+    {
+      "route": "/prism",
+      "errorY": 82,
+      "headerHeight": 66,
+      "message": "当前浏览器不支持 WebGPU，请使用较新的 Chrome / Edge。"
+    },
+    {
+      "route": "/black-hole",
+      "errorY": 82,
+      "headerHeight": 66,
+      "message": "当前浏览器不支持 WebGPU，请使用较新的 Chrome / Edge。"
+    },
+    {
+      "route": "/fluid",
+      "errorY": 82,
+      "headerHeight": 66,
+      "message": "当前浏览器不支持 WebGPU，请使用较新的 Chrome / Edge。"
+    }
+  ]
+}

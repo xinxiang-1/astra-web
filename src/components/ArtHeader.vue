@@ -11,7 +11,7 @@ import { useAuthStore } from '@/stores/auth'
 withDefaults(defineProps<{ immersive?: boolean; account?: boolean; showTheme?: boolean }>(), {
   immersive: false,
   account: false,
-  showTheme: false,
+  showTheme: true,
 })
 const menu = ref(false)
 const root = ref<HTMLElement>()

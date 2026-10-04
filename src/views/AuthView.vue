@@ -5,6 +5,7 @@ import { ElMessage } from 'element-plus'
 
 import { AtmosphereStage } from '@/components/styles'
 import FxButton from '@/components/ui/FxButton.vue'
+import CaptchaField from '@/components/ui/CaptchaField.vue'
 import { fetchCaptcha } from '@/api/auth'
 import { useAuthStore, type AuthMode } from '@/stores/auth'
 
@@ -666,43 +667,14 @@ async function onSubmit() {
                 </button>
               </div>
             </label>
-            <label v-if="showCaptcha" class="field captcha-field">
-              <span class="label-row">
-                <span>图形验证码</span>
-                <button
-                  type="button"
-                  class="link tiny"
-                  :disabled="captchaLoading"
-                  @click="refreshCaptcha"
-                >
-                  换一张
-                </button>
-              </span>
-              <div class="captcha-shell">
-                <input
-                  v-model="form.captchaCode"
-                  class="captcha-input"
-                  type="text"
-                  name="captcha"
-                  maxlength="6"
-                  autocomplete="off"
-                  placeholder="输入右侧字符"
-                  @keyup.enter.prevent="onSendEmailCode"
-                />
-                <button
-                  type="button"
-                  class="captcha-shot"
-                  :disabled="captchaLoading"
-                  title="点击刷新"
-                  @click="refreshCaptcha"
-                >
-                  <img v-if="captchaImage" :src="captchaImage" alt="验证码" draggable="false" />
-                  <span v-else class="captcha-placeholder">
-                    {{ captchaLoading ? '…' : '加载' }}
-                  </span>
-                </button>
-              </div>
-            </label>
+            <CaptchaField
+              v-if="showCaptcha"
+              v-model="form.captchaCode"
+              :image="captchaImage"
+              :loading="captchaLoading"
+              @refresh="refreshCaptcha"
+              @enter="onSendEmailCode"
+            />
           </template>
 
           <template v-else-if="mode === 'login' && phoneLoginEnabled && loginTab === 'phone'">
@@ -744,43 +716,14 @@ async function onSubmit() {
                 </button>
               </div>
             </label>
-            <label v-if="showCaptcha" class="field captcha-field">
-              <span class="label-row">
-                <span>图形验证码</span>
-                <button
-                  type="button"
-                  class="link tiny"
-                  :disabled="captchaLoading"
-                  @click="refreshCaptcha"
-                >
-                  换一张
-                </button>
-              </span>
-              <div class="captcha-shell">
-                <input
-                  v-model="form.captchaCode"
-                  class="captcha-input"
-                  type="text"
-                  name="captcha"
-                  maxlength="6"
-                  autocomplete="off"
-                  placeholder="输入右侧字符"
-                  @keyup.enter.prevent="onSendSms"
-                />
-                <button
-                  type="button"
-                  class="captcha-shot"
-                  :disabled="captchaLoading"
-                  title="点击刷新"
-                  @click="refreshCaptcha"
-                >
-                  <img v-if="captchaImage" :src="captchaImage" alt="验证码" draggable="false" />
-                  <span v-else class="captcha-placeholder">
-                    {{ captchaLoading ? '…' : '加载' }}
-                  </span>
-                </button>
-              </div>
-            </label>
+            <CaptchaField
+              v-if="showCaptcha"
+              v-model="form.captchaCode"
+              :image="captchaImage"
+              :loading="captchaLoading"
+              @refresh="refreshCaptcha"
+              @enter="onSendSms"
+            />
           </template>
 
           <template v-else>
@@ -866,45 +809,13 @@ async function onSubmit() {
               <span>我已阅读并同意服务条款</span>
             </label>
 
-            <label
+            <CaptchaField
               v-if="showCaptcha && !(mode === 'forgot' && resetSent)"
-              class="field captcha-field"
-            >
-              <span class="label-row">
-                <span>图形验证码</span>
-                <button
-                  type="button"
-                  class="link tiny"
-                  :disabled="captchaLoading"
-                  @click="refreshCaptcha"
-                >
-                  换一张
-                </button>
-              </span>
-              <div class="captcha-shell">
-                <input
-                  v-model="form.captchaCode"
-                  class="captcha-input"
-                  type="text"
-                  name="captcha"
-                  maxlength="6"
-                  autocomplete="off"
-                  placeholder="输入右侧字符"
-                />
-                <button
-                  type="button"
-                  class="captcha-shot"
-                  :disabled="captchaLoading"
-                  title="点击刷新"
-                  @click="refreshCaptcha"
-                >
-                  <img v-if="captchaImage" :src="captchaImage" alt="验证码" draggable="false" />
-                  <span v-else class="captcha-placeholder">
-                    {{ captchaLoading ? '…' : '加载' }}
-                  </span>
-                </button>
-              </div>
-            </label>
+              v-model="form.captchaCode"
+              :image="captchaImage"
+              :loading="captchaLoading"
+              @refresh="refreshCaptcha"
+            />
           </template>
 
           <p v-if="error" class="error">{{ error }}</p>
@@ -1205,94 +1116,6 @@ input[type='tel'] {
   opacity: 0.55;
   cursor: default;
   color: var(--text-muted);
-}
-
-.captcha-shell {
-  display: grid;
-  grid-template-columns: 1fr 148px;
-  align-items: stretch;
-  min-height: 2.75rem;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  background: var(--input-bg);
-  overflow: hidden;
-  transition:
-    border-color 0.15s ease,
-    box-shadow 0.15s ease;
-}
-
-.captcha-shell:hover {
-  border-color: var(--border-strong);
-}
-
-.captcha-shell:focus-within {
-  border-color: color-mix(in srgb, var(--accent) 55%, var(--border));
-  box-shadow: 0 0 0 3px var(--focus-ring);
-}
-
-.captcha-input {
-  border: 0 !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
-  background: transparent !important;
-  min-height: 2.7rem;
-  letter-spacing: 0.12em;
-  font-variant-numeric: tabular-nums;
-  text-transform: uppercase;
-}
-
-.captcha-input:hover,
-.captcha-input:focus {
-  border-color: transparent !important;
-  box-shadow: none !important;
-}
-
-.captcha-shot {
-  position: relative;
-  width: 148px;
-  min-height: 2.7rem;
-  padding: 0;
-  border: 0;
-  border-left: 1px solid var(--border);
-  border-radius: 0;
-  overflow: hidden;
-  background: #eef1f5;
-  cursor: pointer;
-  transition:
-    opacity 0.15s ease,
-    filter 0.15s ease;
-}
-
-.captcha-shot:hover:not(:disabled) {
-  filter: brightness(0.97);
-}
-
-.captcha-shot:disabled {
-  opacity: 0.75;
-  cursor: wait;
-}
-
-.captcha-shot img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  user-select: none;
-  pointer-events: none;
-}
-
-.captcha-placeholder {
-  display: grid;
-  place-items: center;
-  height: 100%;
-  color: #64748b;
-  font-size: 0.75rem;
-  letter-spacing: 0.04em;
-}
-
-.captcha-field .link.tiny:disabled {
-  opacity: 0.45;
-  cursor: wait;
 }
 
 input:hover {

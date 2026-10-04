@@ -1,0 +1,2928 @@
+{
+  "browser": "154.0.4258.53",
+  "routes": [
+    {
+      "route": "/",
+      "theme": "light",
+      "width": 1440,
+      "title": "把照片变成由文字组成的作品 · Astra",
+      "scrollWidth": 1440,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(245, 243, 239)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(243, 240, 233)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 76
+      },
+      "effectPanelBox": null,
+      "rootTheme": "light",
+      "sharedFooter": 1,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/gallery",
+      "theme": "light",
+      "width": 1440,
+      "title": "作品案例 · Astra",
+      "scrollWidth": 1440,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(245, 243, 239)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 76
+      },
+      "effectPanelBox": null,
+      "rootTheme": "light",
+      "sharedFooter": 1,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/templates",
+      "theme": "light",
+      "width": 1440,
+      "title": "原创模板 · Astra",
+      "scrollWidth": 1440,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(245, 243, 239)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(245, 243, 239)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 76
+      },
+      "effectPanelBox": null,
+      "rootTheme": "light",
+      "sharedFooter": 1,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/help",
+      "theme": "light",
+      "width": 1440,
+      "title": "创作帮助 · Astra",
+      "scrollWidth": 1440,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(245, 243, 239)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 76
+      },
+      "effectPanelBox": null,
+      "rootTheme": "light",
+      "sharedFooter": 1,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/projects",
+      "theme": "light",
+      "width": 1440,
+      "title": "我的项目 · Astra",
+      "scrollWidth": 1440,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(245, 243, 239)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 76
+      },
+      "effectPanelBox": null,
+      "rootTheme": "light",
+      "sharedFooter": 1,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/tools",
+      "theme": "light",
+      "width": 1440,
+      "title": "创作工具 · Astra",
+      "scrollWidth": 1440,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(245, 243, 239)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 76
+      },
+      "effectPanelBox": null,
+      "rootTheme": "light",
+      "sharedFooter": 1,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/studio",
+      "theme": "light",
+      "width": 1440,
+      "title": "视觉实验室 · Astra",
+      "scrollWidth": 1440,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(245, 243, 239)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 76
+      },
+      "effectPanelBox": null,
+      "rootTheme": "light",
+      "sharedFooter": 1,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/signature-portrait",
+      "theme": "light",
+      "width": 1440,
+      "title": "签名画像 · Astra",
+      "scrollWidth": 1440,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(245, 243, 239)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 76
+      },
+      "effectPanelBox": null,
+      "rootTheme": "light",
+      "sharedFooter": 1,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/ascii-live",
+      "theme": "light",
+      "width": 1440,
+      "title": "动态字符 · Astra",
+      "scrollWidth": 1440,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(245, 243, 239)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 76
+      },
+      "effectPanelBox": null,
+      "rootTheme": "light",
+      "sharedFooter": 1,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/ascii-loop",
+      "theme": "light",
+      "width": 1440,
+      "title": "循环字符 · Astra",
+      "scrollWidth": 1440,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(245, 243, 239)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 76
+      },
+      "effectPanelBox": null,
+      "rootTheme": "light",
+      "sharedFooter": 1,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/file-upload",
+      "theme": "light",
+      "width": 1440,
+      "title": "上传文件 · Astra",
+      "scrollWidth": 1440,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(245, 243, 239)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 76
+      },
+      "effectPanelBox": null,
+      "rootTheme": "light",
+      "sharedFooter": 1,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/file-preview",
+      "theme": "light",
+      "width": 1440,
+      "title": "文件预览 · Astra",
+      "scrollWidth": 1440,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(245, 243, 239)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 76
+      },
+      "effectPanelBox": null,
+      "rootTheme": "light",
+      "sharedFooter": 0,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/login",
+      "theme": "light",
+      "width": 1440,
+      "title": "登录 · Astra",
+      "scrollWidth": 1440,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(245, 243, 239)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 76
+      },
+      "effectPanelBox": null,
+      "rootTheme": "light",
+      "sharedFooter": 0,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/register",
+      "theme": "light",
+      "width": 1440,
+      "title": "创建账户 · Astra",
+      "scrollWidth": 1440,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(245, 243, 239)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 76
+      },
+      "effectPanelBox": null,
+      "rootTheme": "light",
+      "sharedFooter": 0,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/forgot",
+      "theme": "light",
+      "width": 1440,
+      "title": "找回密码 · Astra",
+      "scrollWidth": 1440,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(245, 243, 239)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 76
+      },
+      "effectPanelBox": null,
+      "rootTheme": "light",
+      "sharedFooter": 0,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/login/wechat",
+      "theme": "light",
+      "width": 1440,
+      "title": "微信登录 · Astra",
+      "scrollWidth": 1440,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(245, 243, 239)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 76
+      },
+      "effectPanelBox": null,
+      "rootTheme": "light",
+      "sharedFooter": 0,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/prism",
+      "theme": "light",
+      "width": 1440,
+      "title": "Prism 棱镜 · Astra",
+      "scrollWidth": 1440,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(245, 243, 239)"
+      },
+      "heading": null,
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgba(17, 22, 21, 0.91)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 76
+      },
+      "effectPanelBox": {
+        "x": 1204,
+        "y": 92,
+        "width": 220,
+        "height": 409.296875
+      },
+      "rootTheme": "light",
+      "sharedFooter": 0,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/black-hole",
+      "theme": "light",
+      "width": 1440,
+      "title": "黑洞 · Astra",
+      "scrollWidth": 1440,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(245, 243, 239)"
+      },
+      "heading": null,
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgba(17, 22, 21, 0.91)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 76
+      },
+      "effectPanelBox": null,
+      "rootTheme": "light",
+      "sharedFooter": 0,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/fluid",
+      "theme": "light",
+      "width": 1440,
+      "title": "流体 · Astra",
+      "scrollWidth": 1440,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(245, 243, 239)"
+      },
+      "heading": null,
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgba(17, 22, 21, 0.91)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 76
+      },
+      "effectPanelBox": null,
+      "rootTheme": "light",
+      "sharedFooter": 0,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/webgl-fluid",
+      "theme": "light",
+      "width": 1440,
+      "title": "彩烟 · Astra",
+      "scrollWidth": 1440,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(245, 243, 239)"
+      },
+      "heading": null,
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgba(17, 22, 21, 0.91)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 76
+      },
+      "effectPanelBox": {
+        "x": 1194,
+        "y": 92,
+        "width": 230,
+        "height": 675.734375
+      },
+      "rootTheme": "light",
+      "sharedFooter": 0,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/ascii-art",
+      "theme": "light",
+      "width": 1440,
+      "title": "字符画工作台 · Astra",
+      "scrollWidth": 1440,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(245, 243, 239)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(253, 252, 249)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 72
+      },
+      "effectPanelBox": null,
+      "rootTheme": "light",
+      "sharedFooter": 0,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/art-lab",
+      "theme": "light",
+      "width": 1440,
+      "title": "字符引擎实验 · Astra",
+      "scrollWidth": 1440,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(245, 243, 239)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 76
+      },
+      "effectPanelBox": null,
+      "rootTheme": "light",
+      "sharedFooter": 0,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/",
+      "theme": "light",
+      "width": 390,
+      "title": "把照片变成由文字组成的作品 · Astra",
+      "scrollWidth": 390,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(245, 243, 239)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(243, 240, 233)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 66
+      },
+      "effectPanelBox": null,
+      "rootTheme": "light",
+      "sharedFooter": 1,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/gallery",
+      "theme": "light",
+      "width": 390,
+      "title": "作品案例 · Astra",
+      "scrollWidth": 390,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(245, 243, 239)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 66
+      },
+      "effectPanelBox": null,
+      "rootTheme": "light",
+      "sharedFooter": 1,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/templates",
+      "theme": "light",
+      "width": 390,
+      "title": "原创模板 · Astra",
+      "scrollWidth": 390,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(245, 243, 239)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(245, 243, 239)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 66
+      },
+      "effectPanelBox": null,
+      "rootTheme": "light",
+      "sharedFooter": 1,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/help",
+      "theme": "light",
+      "width": 390,
+      "title": "创作帮助 · Astra",
+      "scrollWidth": 390,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(245, 243, 239)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 66
+      },
+      "effectPanelBox": null,
+      "rootTheme": "light",
+      "sharedFooter": 1,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/projects",
+      "theme": "light",
+      "width": 390,
+      "title": "我的项目 · Astra",
+      "scrollWidth": 390,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(245, 243, 239)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 66
+      },
+      "effectPanelBox": null,
+      "rootTheme": "light",
+      "sharedFooter": 1,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/tools",
+      "theme": "light",
+      "width": 390,
+      "title": "创作工具 · Astra",
+      "scrollWidth": 390,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(245, 243, 239)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 66
+      },
+      "effectPanelBox": null,
+      "rootTheme": "light",
+      "sharedFooter": 1,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/studio",
+      "theme": "light",
+      "width": 390,
+      "title": "视觉实验室 · Astra",
+      "scrollWidth": 390,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(245, 243, 239)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 66
+      },
+      "effectPanelBox": null,
+      "rootTheme": "light",
+      "sharedFooter": 1,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/signature-portrait",
+      "theme": "light",
+      "width": 390,
+      "title": "签名画像 · Astra",
+      "scrollWidth": 390,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(245, 243, 239)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 66
+      },
+      "effectPanelBox": null,
+      "rootTheme": "light",
+      "sharedFooter": 1,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/ascii-live",
+      "theme": "light",
+      "width": 390,
+      "title": "动态字符 · Astra",
+      "scrollWidth": 390,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(245, 243, 239)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 66
+      },
+      "effectPanelBox": null,
+      "rootTheme": "light",
+      "sharedFooter": 1,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/ascii-loop",
+      "theme": "light",
+      "width": 390,
+      "title": "循环字符 · Astra",
+      "scrollWidth": 390,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(245, 243, 239)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 66
+      },
+      "effectPanelBox": null,
+      "rootTheme": "light",
+      "sharedFooter": 1,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/file-upload",
+      "theme": "light",
+      "width": 390,
+      "title": "上传文件 · Astra",
+      "scrollWidth": 390,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(245, 243, 239)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 66
+      },
+      "effectPanelBox": null,
+      "rootTheme": "light",
+      "sharedFooter": 1,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/file-preview",
+      "theme": "light",
+      "width": 390,
+      "title": "文件预览 · Astra",
+      "scrollWidth": 390,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(245, 243, 239)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 66
+      },
+      "effectPanelBox": null,
+      "rootTheme": "light",
+      "sharedFooter": 0,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/login",
+      "theme": "light",
+      "width": 390,
+      "title": "登录 · Astra",
+      "scrollWidth": 390,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(245, 243, 239)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 66
+      },
+      "effectPanelBox": null,
+      "rootTheme": "light",
+      "sharedFooter": 0,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/register",
+      "theme": "light",
+      "width": 390,
+      "title": "创建账户 · Astra",
+      "scrollWidth": 390,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(245, 243, 239)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 66
+      },
+      "effectPanelBox": null,
+      "rootTheme": "light",
+      "sharedFooter": 0,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/forgot",
+      "theme": "light",
+      "width": 390,
+      "title": "找回密码 · Astra",
+      "scrollWidth": 390,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(245, 243, 239)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 66
+      },
+      "effectPanelBox": null,
+      "rootTheme": "light",
+      "sharedFooter": 0,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/login/wechat",
+      "theme": "light",
+      "width": 390,
+      "title": "微信登录 · Astra",
+      "scrollWidth": 390,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(245, 243, 239)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 66
+      },
+      "effectPanelBox": null,
+      "rootTheme": "light",
+      "sharedFooter": 0,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/prism",
+      "theme": "light",
+      "width": 390,
+      "title": "Prism 棱镜 · Astra",
+      "scrollWidth": 390,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(245, 243, 239)"
+      },
+      "heading": null,
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgba(17, 22, 21, 0.91)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 66
+      },
+      "effectPanelBox": {
+        "x": 154,
+        "y": 82,
+        "width": 220,
+        "height": 409.296875
+      },
+      "rootTheme": "light",
+      "sharedFooter": 0,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/black-hole",
+      "theme": "light",
+      "width": 390,
+      "title": "黑洞 · Astra",
+      "scrollWidth": 390,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(245, 243, 239)"
+      },
+      "heading": null,
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgba(17, 22, 21, 0.91)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 66
+      },
+      "effectPanelBox": null,
+      "rootTheme": "light",
+      "sharedFooter": 0,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/fluid",
+      "theme": "light",
+      "width": 390,
+      "title": "流体 · Astra",
+      "scrollWidth": 390,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(245, 243, 239)"
+      },
+      "heading": null,
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgba(17, 22, 21, 0.91)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 66
+      },
+      "effectPanelBox": null,
+      "rootTheme": "light",
+      "sharedFooter": 0,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/webgl-fluid",
+      "theme": "light",
+      "width": 390,
+      "title": "彩烟 · Astra",
+      "scrollWidth": 390,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(245, 243, 239)"
+      },
+      "heading": null,
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgba(17, 22, 21, 0.91)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 66
+      },
+      "effectPanelBox": {
+        "x": 144,
+        "y": 82,
+        "width": 230,
+        "height": 675.734375
+      },
+      "rootTheme": "light",
+      "sharedFooter": 0,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/ascii-art",
+      "theme": "light",
+      "width": 390,
+      "title": "字符画工作台 · Astra",
+      "scrollWidth": 390,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(245, 243, 239)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(253, 252, 249)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 64
+      },
+      "effectPanelBox": null,
+      "rootTheme": "light",
+      "sharedFooter": 0,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/art-lab",
+      "theme": "light",
+      "width": 390,
+      "title": "字符引擎实验 · Astra",
+      "scrollWidth": 390,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(245, 243, 239)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 66
+      },
+      "effectPanelBox": null,
+      "rootTheme": "light",
+      "sharedFooter": 0,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/",
+      "theme": "dark",
+      "width": 1440,
+      "title": "把照片变成由文字组成的作品 · Astra",
+      "scrollWidth": 1440,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(243, 240, 233)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 76
+      },
+      "effectPanelBox": null,
+      "rootTheme": "dark",
+      "sharedFooter": 1,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/gallery",
+      "theme": "dark",
+      "width": 1440,
+      "title": "作品案例 · Astra",
+      "scrollWidth": 1440,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 76
+      },
+      "effectPanelBox": null,
+      "rootTheme": "dark",
+      "sharedFooter": 1,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/templates",
+      "theme": "dark",
+      "width": 1440,
+      "title": "原创模板 · Astra",
+      "scrollWidth": 1440,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(245, 243, 239)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 76
+      },
+      "effectPanelBox": null,
+      "rootTheme": "dark",
+      "sharedFooter": 1,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/help",
+      "theme": "dark",
+      "width": 1440,
+      "title": "创作帮助 · Astra",
+      "scrollWidth": 1440,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 76
+      },
+      "effectPanelBox": null,
+      "rootTheme": "dark",
+      "sharedFooter": 1,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/projects",
+      "theme": "dark",
+      "width": 1440,
+      "title": "我的项目 · Astra",
+      "scrollWidth": 1440,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 76
+      },
+      "effectPanelBox": null,
+      "rootTheme": "dark",
+      "sharedFooter": 1,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/tools",
+      "theme": "dark",
+      "width": 1440,
+      "title": "创作工具 · Astra",
+      "scrollWidth": 1440,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 76
+      },
+      "effectPanelBox": null,
+      "rootTheme": "dark",
+      "sharedFooter": 1,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/studio",
+      "theme": "dark",
+      "width": 1440,
+      "title": "视觉实验室 · Astra",
+      "scrollWidth": 1440,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 76
+      },
+      "effectPanelBox": null,
+      "rootTheme": "dark",
+      "sharedFooter": 1,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/signature-portrait",
+      "theme": "dark",
+      "width": 1440,
+      "title": "签名画像 · Astra",
+      "scrollWidth": 1440,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 76
+      },
+      "effectPanelBox": null,
+      "rootTheme": "dark",
+      "sharedFooter": 1,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/ascii-live",
+      "theme": "dark",
+      "width": 1440,
+      "title": "动态字符 · Astra",
+      "scrollWidth": 1440,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 76
+      },
+      "effectPanelBox": null,
+      "rootTheme": "dark",
+      "sharedFooter": 1,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/ascii-loop",
+      "theme": "dark",
+      "width": 1440,
+      "title": "循环字符 · Astra",
+      "scrollWidth": 1440,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 76
+      },
+      "effectPanelBox": null,
+      "rootTheme": "dark",
+      "sharedFooter": 1,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/file-upload",
+      "theme": "dark",
+      "width": 1440,
+      "title": "上传文件 · Astra",
+      "scrollWidth": 1440,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 76
+      },
+      "effectPanelBox": null,
+      "rootTheme": "dark",
+      "sharedFooter": 1,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/file-preview",
+      "theme": "dark",
+      "width": 1440,
+      "title": "文件预览 · Astra",
+      "scrollWidth": 1440,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 76
+      },
+      "effectPanelBox": null,
+      "rootTheme": "dark",
+      "sharedFooter": 0,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/login",
+      "theme": "dark",
+      "width": 1440,
+      "title": "登录 · Astra",
+      "scrollWidth": 1440,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 76
+      },
+      "effectPanelBox": null,
+      "rootTheme": "dark",
+      "sharedFooter": 0,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/register",
+      "theme": "dark",
+      "width": 1440,
+      "title": "创建账户 · Astra",
+      "scrollWidth": 1440,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 76
+      },
+      "effectPanelBox": null,
+      "rootTheme": "dark",
+      "sharedFooter": 0,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/forgot",
+      "theme": "dark",
+      "width": 1440,
+      "title": "找回密码 · Astra",
+      "scrollWidth": 1440,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 76
+      },
+      "effectPanelBox": null,
+      "rootTheme": "dark",
+      "sharedFooter": 0,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/login/wechat",
+      "theme": "dark",
+      "width": 1440,
+      "title": "微信登录 · Astra",
+      "scrollWidth": 1440,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 76
+      },
+      "effectPanelBox": null,
+      "rootTheme": "dark",
+      "sharedFooter": 0,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/prism",
+      "theme": "dark",
+      "width": 1440,
+      "title": "Prism 棱镜 · Astra",
+      "scrollWidth": 1440,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "heading": null,
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgba(17, 22, 21, 0.91)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 76
+      },
+      "effectPanelBox": {
+        "x": 1204,
+        "y": 92,
+        "width": 220,
+        "height": 409.296875
+      },
+      "rootTheme": "dark",
+      "sharedFooter": 0,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/black-hole",
+      "theme": "dark",
+      "width": 1440,
+      "title": "黑洞 · Astra",
+      "scrollWidth": 1440,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "heading": null,
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgba(17, 22, 21, 0.91)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 76
+      },
+      "effectPanelBox": null,
+      "rootTheme": "dark",
+      "sharedFooter": 0,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/fluid",
+      "theme": "dark",
+      "width": 1440,
+      "title": "流体 · Astra",
+      "scrollWidth": 1440,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "heading": null,
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgba(17, 22, 21, 0.91)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 76
+      },
+      "effectPanelBox": null,
+      "rootTheme": "dark",
+      "sharedFooter": 0,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/webgl-fluid",
+      "theme": "dark",
+      "width": 1440,
+      "title": "彩烟 · Astra",
+      "scrollWidth": 1440,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "heading": null,
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgba(17, 22, 21, 0.91)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 76
+      },
+      "effectPanelBox": {
+        "x": 1194,
+        "y": 92,
+        "width": 230,
+        "height": 675.734375
+      },
+      "rootTheme": "dark",
+      "sharedFooter": 0,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/ascii-art",
+      "theme": "dark",
+      "width": 1440,
+      "title": "字符画工作台 · Astra",
+      "scrollWidth": 1440,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(26, 33, 28)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 72
+      },
+      "effectPanelBox": null,
+      "rootTheme": "dark",
+      "sharedFooter": 0,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/art-lab",
+      "theme": "dark",
+      "width": 1440,
+      "title": "字符引擎实验 · Astra",
+      "scrollWidth": 1440,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 76
+      },
+      "effectPanelBox": null,
+      "rootTheme": "dark",
+      "sharedFooter": 0,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/",
+      "theme": "dark",
+      "width": 390,
+      "title": "把照片变成由文字组成的作品 · Astra",
+      "scrollWidth": 390,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(243, 240, 233)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 66
+      },
+      "effectPanelBox": null,
+      "rootTheme": "dark",
+      "sharedFooter": 1,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/gallery",
+      "theme": "dark",
+      "width": 390,
+      "title": "作品案例 · Astra",
+      "scrollWidth": 390,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 66
+      },
+      "effectPanelBox": null,
+      "rootTheme": "dark",
+      "sharedFooter": 1,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/templates",
+      "theme": "dark",
+      "width": 390,
+      "title": "原创模板 · Astra",
+      "scrollWidth": 390,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(245, 243, 239)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 66
+      },
+      "effectPanelBox": null,
+      "rootTheme": "dark",
+      "sharedFooter": 1,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/help",
+      "theme": "dark",
+      "width": 390,
+      "title": "创作帮助 · Astra",
+      "scrollWidth": 390,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 66
+      },
+      "effectPanelBox": null,
+      "rootTheme": "dark",
+      "sharedFooter": 1,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/projects",
+      "theme": "dark",
+      "width": 390,
+      "title": "我的项目 · Astra",
+      "scrollWidth": 390,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 66
+      },
+      "effectPanelBox": null,
+      "rootTheme": "dark",
+      "sharedFooter": 1,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/tools",
+      "theme": "dark",
+      "width": 390,
+      "title": "创作工具 · Astra",
+      "scrollWidth": 390,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 66
+      },
+      "effectPanelBox": null,
+      "rootTheme": "dark",
+      "sharedFooter": 1,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/studio",
+      "theme": "dark",
+      "width": 390,
+      "title": "视觉实验室 · Astra",
+      "scrollWidth": 390,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 66
+      },
+      "effectPanelBox": null,
+      "rootTheme": "dark",
+      "sharedFooter": 1,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/signature-portrait",
+      "theme": "dark",
+      "width": 390,
+      "title": "签名画像 · Astra",
+      "scrollWidth": 390,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 66
+      },
+      "effectPanelBox": null,
+      "rootTheme": "dark",
+      "sharedFooter": 1,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/ascii-live",
+      "theme": "dark",
+      "width": 390,
+      "title": "动态字符 · Astra",
+      "scrollWidth": 390,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 66
+      },
+      "effectPanelBox": null,
+      "rootTheme": "dark",
+      "sharedFooter": 1,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/ascii-loop",
+      "theme": "dark",
+      "width": 390,
+      "title": "循环字符 · Astra",
+      "scrollWidth": 390,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 66
+      },
+      "effectPanelBox": null,
+      "rootTheme": "dark",
+      "sharedFooter": 1,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/file-upload",
+      "theme": "dark",
+      "width": 390,
+      "title": "上传文件 · Astra",
+      "scrollWidth": 390,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 66
+      },
+      "effectPanelBox": null,
+      "rootTheme": "dark",
+      "sharedFooter": 1,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/file-preview",
+      "theme": "dark",
+      "width": 390,
+      "title": "文件预览 · Astra",
+      "scrollWidth": 390,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 66
+      },
+      "effectPanelBox": null,
+      "rootTheme": "dark",
+      "sharedFooter": 0,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/login",
+      "theme": "dark",
+      "width": 390,
+      "title": "登录 · Astra",
+      "scrollWidth": 390,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 66
+      },
+      "effectPanelBox": null,
+      "rootTheme": "dark",
+      "sharedFooter": 0,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/register",
+      "theme": "dark",
+      "width": 390,
+      "title": "创建账户 · Astra",
+      "scrollWidth": 390,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 66
+      },
+      "effectPanelBox": null,
+      "rootTheme": "dark",
+      "sharedFooter": 0,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/forgot",
+      "theme": "dark",
+      "width": 390,
+      "title": "找回密码 · Astra",
+      "scrollWidth": 390,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 66
+      },
+      "effectPanelBox": null,
+      "rootTheme": "dark",
+      "sharedFooter": 0,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/login/wechat",
+      "theme": "dark",
+      "width": 390,
+      "title": "微信登录 · Astra",
+      "scrollWidth": 390,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 66
+      },
+      "effectPanelBox": null,
+      "rootTheme": "dark",
+      "sharedFooter": 0,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/prism",
+      "theme": "dark",
+      "width": 390,
+      "title": "Prism 棱镜 · Astra",
+      "scrollWidth": 390,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "heading": null,
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgba(17, 22, 21, 0.91)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 66
+      },
+      "effectPanelBox": {
+        "x": 154,
+        "y": 82,
+        "width": 220,
+        "height": 409.296875
+      },
+      "rootTheme": "dark",
+      "sharedFooter": 0,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/black-hole",
+      "theme": "dark",
+      "width": 390,
+      "title": "黑洞 · Astra",
+      "scrollWidth": 390,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "heading": null,
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgba(17, 22, 21, 0.91)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 66
+      },
+      "effectPanelBox": null,
+      "rootTheme": "dark",
+      "sharedFooter": 0,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/fluid",
+      "theme": "dark",
+      "width": 390,
+      "title": "流体 · Astra",
+      "scrollWidth": 390,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "heading": null,
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgba(17, 22, 21, 0.91)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 66
+      },
+      "effectPanelBox": null,
+      "rootTheme": "dark",
+      "sharedFooter": 0,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/webgl-fluid",
+      "theme": "dark",
+      "width": 390,
+      "title": "彩烟 · Astra",
+      "scrollWidth": 390,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "heading": null,
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgba(17, 22, 21, 0.91)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 66
+      },
+      "effectPanelBox": {
+        "x": 144,
+        "y": 82,
+        "width": 230,
+        "height": 675.734375
+      },
+      "rootTheme": "dark",
+      "sharedFooter": 0,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/ascii-art",
+      "theme": "dark",
+      "width": 390,
+      "title": "字符画工作台 · Astra",
+      "scrollWidth": 390,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(26, 33, 28)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 64
+      },
+      "effectPanelBox": null,
+      "rootTheme": "dark",
+      "sharedFooter": 0,
+      "focusTarget": "-1"
+    },
+    {
+      "route": "/art-lab",
+      "theme": "dark",
+      "width": 390,
+      "title": "字符引擎实验 · Astra",
+      "scrollWidth": 390,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(244, 240, 232)",
+        "background": "rgb(17, 22, 21)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 66
+      },
+      "effectPanelBox": null,
+      "rootTheme": "dark",
+      "sharedFooter": 0,
+      "focusTarget": "-1"
+    }
+  ],
+  "navigation": {
+    "keyboardDisclosure": true,
+    "escapeFocus": true,
+    "outsideClose": true,
+    "routeFocus": true,
+    "currentLink": true,
+    "history": true,
+    "resizeReset": true,
+    "mobileCreate": true,
+    "skipLink": true,
+    "themeChanged": true,
+    "themePersisted": true,
+    "thresholds": [
+      320,
+      700,
+      701,
+      1180,
+      1181,
+      1280
+    ]
+  },
+  "controls": {
+    "reducedMotionNoDisplacement": true
+  },
+  "errors": [],
+  "scope": "routes-and-navigation",
+  "protectedHashes": {
+    "src/views/ArtHomeView.vue": {
+      "baseline": "db2b7e0ffa0d590be0e3e9d99caa8ecaba4716721b5d03b2d6269e46ad4458dd",
+      "current": "db2b7e0ffa0d590be0e3e9d99caa8ecaba4716721b5d03b2d6269e46ad4458dd",
+      "unchanged": true
+    },
+    "src/components/CharacterArtwork.vue": {
+      "baseline": "99da7635979b98f70aa622887bcf775047114529b4130de201cebf40d0ab2858",
+      "current": "99da7635979b98f70aa622887bcf775047114529b4130de201cebf40d0ab2858",
+      "unchanged": true
+    },
+    "src/lib/ascii/studio-preview.ts": {
+      "baseline": "87ef73fd4261872b1a6bc3d66fd2a05498bc73fa047294b4934174ede9af1a07",
+      "current": "87ef73fd4261872b1a6bc3d66fd2a05498bc73fa047294b4934174ede9af1a07",
+      "unchanged": true
+    }
+  }
+}

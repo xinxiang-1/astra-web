@@ -17,6 +17,8 @@ export type SignatureLayoutOptions = {
   maxSide?: number
   density?: number
   angleRange?: number
+  orientationMode?: 'classic' | 'flow'
+  orientationStrength?: number
   allowVertical?: boolean
   minSizeRatio?: number
   maxSizeRatio?: number
@@ -89,6 +91,7 @@ function prepareStamp(
   stamp: SignatureStamp,
   maxLong = 512,
   inkStyle: SignatureInkStyle = 'ink',
+  stableRaster = false,
 ): StampMetrics {
   const src = prepareSignatureInk(stamp.canvas, inkStyle)
   const long = Math.max(src.width, src.height)
@@ -98,7 +101,7 @@ function prepareStamp(
     const w = Math.max(1, Math.round(src.width * s))
     const h = Math.max(1, Math.round(src.height * s))
     canvas = makeCanvas(w, h)
-    const ctx = canvas.getContext('2d')
+    const ctx = canvas.getContext('2d', { willReadFrequently: stableRaster })
     if (ctx) {
       ctx.imageSmoothingEnabled = true
       ctx.imageSmoothingQuality = 'high'
@@ -259,6 +262,8 @@ export async function renderSignaturePortrait(
     inkColor: options.ink,
     density: densityMul,
     angleRange,
+    orientationMode: options.orientationMode,
+    orientationStrength: options.orientationStrength,
     allowVertical,
     minSizeRatio,
     maxSizeRatio,
@@ -543,6 +548,8 @@ export async function paintPlacementsTiled(
     portrait?: CanvasImageSource | null
     underlay?: number
     tileSize?: number
+    /** Deterministic software overview for transactional project recovery. */
+    stableRaster?: boolean
     stampMaxLong?: number
     onTile?: (info: { canvas: HTMLCanvasElement; done: number; total: number }) => void
     signal?: { cancelled?: boolean }
@@ -575,6 +582,7 @@ export async function paintPlacementsTiled(
         options.stampMaxLong ??
           Math.min(1000, Math.max(480, Math.round(Math.max(outW, outH) * 0.4))),
         options.inkStyle,
+        options.stableRaster,
       ),
     )
     if (performance.now() - sliceStart >= 8) {
@@ -584,7 +592,7 @@ export async function paintPlacementsTiled(
   }
 
   const canvas = makeCanvas(outW, outH)
-  const ctx = canvas.getContext('2d')
+  const ctx = canvas.getContext('2d', { willReadFrequently: options.stableRaster ?? false })
   if (!ctx) throw new Error('无法创建输出画布')
   ctx.fillStyle = background
   ctx.fillRect(0, 0, outW, outH)
@@ -602,6 +610,10 @@ export async function paintPlacementsTiled(
   const tintCache = createTintedStampCache(
     metrics.map((metric) => metric.canvas),
     colorize,
+    undefined,
+    undefined,
+    undefined,
+    options.stableRaster,
   )
 
   const tilesX = Math.ceil(outW / tileSize)
@@ -623,7 +635,7 @@ export async function paintPlacementsTiled(
         const th = Math.min(tileSize, outH - y0)
 
         const tile = makeCanvas(tw, th)
-        const tctx = tile.getContext('2d')
+        const tctx = tile.getContext('2d', { willReadFrequently: options.stableRaster ?? false })
         if (!tctx) continue
         // 透明底，叠到主画布
         tctx.clearRect(0, 0, tw, th)

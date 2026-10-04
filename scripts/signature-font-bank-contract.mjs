@@ -526,7 +526,7 @@ try {
   await ui.getByRole('button', { name: '一键生成 10 种写法', exact: true }).click()
   await ui.waitForFunction(() => document.querySelectorAll('.bank-grid li').length === 10)
   await ui
-    .locator('.controls')
+    .locator('.source-panel')
     .screenshot({ path: path.join(output, 'desktop-source-controls.png') })
   const old = await ui.evaluate(async () => {
     const m = await import('/src/lib/signature-portrait/bank.ts')

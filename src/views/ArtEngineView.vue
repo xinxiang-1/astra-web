@@ -141,35 +141,35 @@ onBeforeUnmount(() => {
 </template>
 
 <style scoped>
-.engine-page { min-height: 100dvh; background: #101615; color: #eeeae2; overflow: auto; }
+.engine-page { min-height: 100dvh; background: var(--bg); color: var(--text); overflow: auto; }
 .engine-intro { max-width: 1440px; margin: auto; padding: 42px 48px 30px; }
 .engine-intro > span { font: 10px monospace; letter-spacing: 3px; color: var(--art-cyan); }
 .engine-intro h1 { font: 400 clamp(25px, 3vw, 40px)/1.4 var(--art-serif); margin: 16px 0; }
-.engine-intro p { color: #99aaa4; font-size: 13px; line-height: 1.8; }
+.engine-intro p { color: var(--text-muted); font-size: 13px; line-height: 1.8; }
 .engine-layout { display: grid; grid-template-columns: 290px minmax(0, 1fr); max-width: 1440px; margin: auto; padding: 0 48px 48px; gap: 28px; }
-.engine-controls { padding: 24px; border: 1px solid #ffffff18; background: #151d1b; }
+.engine-controls { padding: 24px; border: 1px solid var(--border); background: var(--bg-elevated); }
 .engine-controls h2 { margin: 0 0 18px; font-size: 15px; }
 .engine-modes { display: grid; gap: 6px; }
-.engine-modes button { text-align: left; padding: 11px; border: 1px solid transparent; background: transparent; color: #d1dcd7; cursor: pointer; }
+.engine-modes button { text-align: left; padding: 11px; border: 1px solid transparent; background: transparent; color: var(--text-muted); cursor: pointer; }
 .engine-modes b { display: block; font-size: 12px; font-weight: 500; }
-.engine-modes span { display: block; font-size: 10px; margin-top: 6px; color: #91a49b; line-height: 1.5; }
+.engine-modes span { display: block; font-size: 10px; margin-top: 6px; color: var(--text-muted); line-height: 1.5; }
 .engine-modes .selected { border-color: #58e8ed70; background: #58e8ed0a; }
 .engine-field { display: grid; gap: 9px; margin-top: 24px; font-size: 12px; }
-.engine-field input:not([type=range]), .engine-field select { background: #101615; border: 1px solid #ffffff30; color: #eeeae2; padding: 9px; width: 100%; }
+.engine-field input:not([type=range]), .engine-field select { background: var(--bg); border: 1px solid var(--border); color: var(--text); padding: 9px; width: 100%; }
 .engine-field input[type=range], .engine-check input { accent-color: var(--art-cyan); }
 .engine-check { display: flex; gap: 6px; align-items: center; font-size: 11px; margin-top: 16px; }
 .engine-colors { display: flex; gap: 20px; margin-top: 16px; font-size: 11px; }
 .engine-colors label { display: flex; align-items: center; gap: 8px; }
 .engine-colors input { width: 30px; height: 26px; border: 0; padding: 0; background: transparent; }
-.engine-toolbar, .engine-meta { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; font-size: 11px; color: #99aaa4; }
-.engine-toolbar button { border: 1px solid #ffffff30; background: none; color: #eeeae2; padding: 9px 14px; cursor: pointer; }
-.engine-canvas { height: min(65dvh, 640px); background: #0b100f; border: 1px solid #ffffff18; display: flex; justify-content: center; align-items: center; overflow: hidden; }
+.engine-toolbar, .engine-meta { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; font-size: 11px; color: var(--text-muted); }
+.engine-toolbar button { border: 1px solid var(--border); background: none; color: var(--text); padding: 9px 14px; cursor: pointer; }
+.engine-canvas { height: min(65dvh, 640px); background: #0b100f; border: 1px solid var(--border); display: flex; justify-content: center; align-items: center; overflow: hidden; }
 .engine-canvas canvas { width: 100%; height: 100%; object-fit: contain; }
 .engine-actions { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-top: 12px; }
-.engine-actions .art-button { color: #eeeae2; font-size: 12px; }
+.engine-actions .art-button { color: var(--text); font-size: 12px; }
 .engine-actions .primary { color: #102020; }
 .engine-actions .engine-check { margin: 0; }
-.engine-note { color: #8d9f97; font-size: 11px; line-height: 1.8; margin-top: 18px; }
+.engine-note { color: var(--text-muted); font-size: 11px; line-height: 1.8; margin-top: 18px; }
 .engine-note a { color: var(--art-cyan); }
 button:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--art-cyan); outline-offset: 3px; }
 @media(max-width:800px) { .engine-intro { padding: 28px 22px; }.engine-layout { grid-template-columns: 1fr; padding: 0 22px 28px; }.engine-workspace { grid-row: 1; }.engine-canvas { height: 55dvh; }.engine-modes { grid-template-columns: 1fr 1fr; }.engine-controls { padding: 18px; }.engine-actions .art-button { padding: 10px 16px; min-height: 42px; } }

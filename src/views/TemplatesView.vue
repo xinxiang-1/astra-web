@@ -373,7 +373,7 @@ onBeforeUnmount(() => {
 }
 .collection-heading > p {
   font-size: 12px;
-  color: #62685f;
+  color: var(--text-muted);
   line-height: 1.8;
   text-align: right;
 }
@@ -396,7 +396,7 @@ onBeforeUnmount(() => {
   display: flex;
   gap: 12px;
   align-items: center;
-  border-bottom: 1px solid #a8b1a6;
+  border-bottom: 1px solid var(--border);
   padding: 8px 4px;
 }
 .template-search input {
@@ -413,7 +413,7 @@ onBeforeUnmount(() => {
 }
 .filter-count {
   font-size: 12px;
-  color: #62685f;
+  color: var(--text-muted);
   margin-bottom: 20px;
 }
 .template-grid {
@@ -423,7 +423,7 @@ onBeforeUnmount(() => {
 }
 .starter-card {
   border: 1px solid var(--art-line);
-  background: #faf9f5;
+  background: var(--bg-elevated);
   border-radius: 12px;
   overflow: hidden;
 }
@@ -490,12 +490,12 @@ onBeforeUnmount(() => {
 }
 .starter-card-title > span {
   font-size: 11px;
-  color: #276357;
+  color: var(--accent);
   white-space: nowrap;
 }
 .effect-label {
   font-size: 12px;
-  color: #62685f;
+  color: var(--text-muted);
   margin: 12px 0;
 }
 .effect-label span {
@@ -504,7 +504,7 @@ onBeforeUnmount(() => {
 .template-fit {
   font-size: 13px;
   line-height: 1.8;
-  color: #545e52;
+  color: var(--text-muted);
   min-height: 70px;
   margin-bottom: 18px;
 }
@@ -523,12 +523,12 @@ onBeforeUnmount(() => {
   cursor: pointer;
 }
 .template-empty {
-  border: 1px dashed #a8b1a6;
+  border: 1px dashed var(--border);
   padding: 40px 20px;
   text-align: center;
 }
 .template-empty p {
-  color: #62685f;
+  color: var(--text-muted);
   font-size: 13px;
 }
 .template-next {
@@ -548,7 +548,7 @@ onBeforeUnmount(() => {
   font-size: 13px;
   line-height: 1.8;
   max-width: 600px;
-  color: #62685f;
+  color: var(--text-muted);
 }
 .template-next .art-button {
   flex-shrink: 0;
@@ -609,7 +609,7 @@ onBeforeUnmount(() => {
   padding: 60px 34px 30px;
 }
 .dialog-copy .art-eyebrow {
-  color: #276357;
+  color: var(--accent);
   font-size: 10px;
   letter-spacing: 1px;
 }
@@ -618,7 +618,7 @@ onBeforeUnmount(() => {
   margin: 16px 0 10px;
 }
 .dialog-effects {
-  color: #62685f;
+  color: var(--text-muted);
   margin-bottom: 30px;
 }
 .dialog-copy h3 {
@@ -638,7 +638,7 @@ onBeforeUnmount(() => {
   font-size: 13px;
 }
 .template-includes p {
-  color: #62685f;
+  color: var(--text-muted);
 }
 .launch-template {
   width: 100%;
@@ -650,14 +650,14 @@ onBeforeUnmount(() => {
   padding: 14px 0 0;
   min-height: 44px;
   font-size: 12px;
-  color: #276357;
+  color: var(--accent);
   text-underline-offset: 4px;
 }
 .launch-error {
   color: #9a3030;
 }
 .launch-status {
-  color: #276357;
+  color: var(--accent);
 }
 .templates-page button:focus-visible,
 .templates-page a:focus-visible {

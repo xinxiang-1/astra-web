@@ -1,0 +1,65 @@
+{
+  "browser": "154.0.4258.53",
+  "errors": [],
+  "cases": [
+    {
+      "sign": -1,
+      "vertical": false,
+      "count": 2044,
+      "adjusted": 2044,
+      "minArea": 0.8500002801356185,
+      "meanAngleDelta": 0.1087579358846014,
+      "centres": true,
+      "upright": true,
+      "classicExact": true,
+      "zeroExact": true,
+      "deterministic": true
+    },
+    {
+      "sign": -1,
+      "vertical": true,
+      "count": 2035,
+      "adjusted": 2035,
+      "minArea": 0.8500002377611007,
+      "meanAngleDelta": -0.11149503344123936,
+      "centres": true,
+      "upright": true,
+      "classicExact": true,
+      "zeroExact": true,
+      "deterministic": true
+    },
+    {
+      "sign": 1,
+      "vertical": false,
+      "count": 2044,
+      "adjusted": 2044,
+      "minArea": 0.8500001396025386,
+      "meanAngleDelta": -0.11181387776734925,
+      "centres": true,
+      "upright": true,
+      "classicExact": true,
+      "zeroExact": true,
+      "deterministic": true
+    },
+    {
+      "sign": 1,
+      "vertical": true,
+      "count": 2035,
+      "adjusted": 2035,
+      "minArea": 0.850000244474986,
+      "meanAngleDelta": 0.10882981226595645,
+      "centres": true,
+      "upright": true,
+      "classicExact": true,
+      "zeroExact": true,
+      "deterministic": true
+    }
+  ],
+  "project": {
+    "samePng": true,
+    "optionsRestored": true,
+    "placements": 16074,
+    "bytes": 9276629
+  },
+  "passed": true
+}

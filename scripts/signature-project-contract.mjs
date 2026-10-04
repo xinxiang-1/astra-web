@@ -1,3 +1,4 @@
+import { openSignatureSection } from './signature-ui-helpers.mjs'
 import assert from 'node:assert/strict'
 import { chromium } from 'playwright'
 import { readFile, writeFile, mkdir } from 'node:fs/promises'
@@ -26,6 +27,8 @@ const report = {
 const sha = (bytes) => createHash('sha256').update(bytes).digest('hex')
 let restorePage = null
 async function download(page, button, filename) {
+  if (button === '下载矢量 JSON' || button === '下载 Path SVG')
+    await openSignatureSection(page, '矢量导出')
   const downloading = page.waitForEvent('download')
   await page.getByRole('button', { name: button, exact: true }).click()
   const file = await downloading
@@ -135,12 +138,12 @@ try {
   }
   // Bad portrait decoding must leave both the source label and the fixed generated result intact.
   await page
-    .locator('.paint-strip input[type=file]')
+    .locator('.creation-bar input[accept="image/*"]')
     .setInputFiles({ name: 'broken.png', mimeType: 'image/png', buffer: Buffer.from('not a PNG') })
   await page.locator('.error').filter({ hasText: '无法读取图片' }).waitFor()
   assert.deepEqual(await layout(page, 'after-bad-portrait'), original)
   assert.deepEqual(await native(page), originalNative)
-  assert((await page.locator('.paint-strip').textContent()).includes('示例 · 亚里士多德胸像'))
+  assert((await page.locator('.creation-bar').textContent()).includes('示例 · 亚里士多德胸像'))
   report.badPortraitPreservesWork = true
   // Valid decoding followed by a native name-bank read failure also preserves both inputs.
   await page.evaluate(() => {
@@ -150,7 +153,7 @@ try {
       return window.__idbOpen.call(this, name, ...args)
     }
   })
-  await page.locator('.paint-strip input[type=file]').setInputFiles({
+  await page.locator('.creation-bar input[accept="image/*"]').setInputFiles({
     name: 'decoded-but-bank-failed.webp',
     mimeType: 'image/webp',
     buffer: await readFile('public/demos/ascii-live/aristotle-bust.webp'),
@@ -161,7 +164,7 @@ try {
   })
   assert.deepEqual(await layout(page, 'after-bank-failure'), original)
   assert.deepEqual(await native(page), originalNative)
-  assert((await page.locator('.paint-strip').textContent()).includes('示例 · 亚里士多德胸像'))
+  assert((await page.locator('.creation-bar').textContent()).includes('示例 · 亚里士多德胸像'))
   report.bankReadFailurePreservesWork = true
 
   const fresh = await restoreBrowser.newContext({
@@ -317,11 +320,11 @@ try {
   report.displayFailuresPreserveWork = []
   for (const fault of ['context', 'empty-surface']) {
     await restored.evaluate(
-      ({ fault, width, height }) => {
+      ({ fault }) => {
         window.__displayContext = HTMLCanvasElement.prototype.getContext
         window.__displayDraw = CanvasRenderingContext2D.prototype.drawImage
         const matches = (canvas) =>
-          !canvas.isConnected && canvas.width === width && canvas.height === height
+          !canvas.isConnected && canvas.dataset.signatureSurface === 'overview-display'
         if (fault === 'context') {
           HTMLCanvasElement.prototype.getContext = function (...args) {
             if (matches(this)) throw new Error('Intentional fit display failure')
@@ -334,7 +337,7 @@ try {
           }
         }
       },
-      { fault, width: firstFit.width, height: firstFit.height },
+      { fault },
     )
     await input.setInputFiles(path.join(out, 'original.astra-signature'))
     await restored

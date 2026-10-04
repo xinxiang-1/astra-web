@@ -241,7 +241,7 @@ onMounted(refresh)
   display: none;
 }
 .package-status {
-  color: #05787d;
+  color: var(--accent);
   font-size: 12px;
   line-height: 1.8;
   padding: 12px 0;
@@ -254,7 +254,7 @@ onMounted(refresh)
   font:
     13px Consolas,
     monospace;
-  color: #91978b;
+  color: var(--text-muted);
   vertical-align: middle;
   margin-left: 15px;
 }
@@ -266,7 +266,7 @@ onMounted(refresh)
   display: flex;
   align-items: center;
   gap: 12px;
-  color: #676f60;
+  color: var(--text-muted);
   font-size: 12px;
   border-top: 1px solid var(--art-line);
   border-bottom: 1px solid var(--art-line);
@@ -276,7 +276,7 @@ onMounted(refresh)
 .local-notice small {
   margin-left: auto;
   font-size: 11px;
-  color: #7c8276;
+  color: var(--text-muted);
 }
 .projects-tools {
   display: flex;
@@ -312,13 +312,13 @@ onMounted(refresh)
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  border: 1px dashed #bdc2b6;
+  border: 1px dashed var(--border);
   text-align: center;
   text-decoration: none;
   transition: background 0.2s;
 }
 .new-project:hover {
-  background: #e9eee5;
+  background: var(--bg-elevated);
 }
 .new-project h2 {
   font-size: 23px;
@@ -331,7 +331,7 @@ onMounted(refresh)
 }
 .new-project .art-eyebrow {
   font-size: 8px;
-  color: #8d9683;
+  color: var(--text-muted);
   margin-top: 22px;
 }
 .project-open {
@@ -355,19 +355,19 @@ onMounted(refresh)
 }
 .project-actions > span {
   margin-right: auto;
-  color: #91968c;
+  color: var(--text-muted);
 }
 .project-actions button {
   min-height: 44px;
   background: none;
   border: 0;
-  color: #777e6d;
+  color: var(--text-muted);
   font: 11px var(--font-body);
   cursor: pointer;
   padding: 8px;
 }
 .project-actions button:hover {
-  color: #b13e29;
+  color: var(--danger);
 }
 .project-actions button:disabled {
   opacity: 0.5;
@@ -388,7 +388,7 @@ onMounted(refresh)
 }
 .projects-empty .art-link {
   margin-top: 12px;
-  color: #05787d;
+  color: var(--accent);
 }
 @media (max-width: 1100px) {
   .projects-grid {

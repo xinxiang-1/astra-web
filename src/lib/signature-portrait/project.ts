@@ -88,6 +88,7 @@ function optionsOf(value: unknown): SignatureLayoutOptions {
     maxSide: [128, 8192],
     density: [0.7, 50],
     angleRange: [0, 90],
+    orientationStrength: [0, 1],
     minSizeRatio: [0.001, 0.2],
     maxSizeRatio: [0.001, 0.3],
     underlay: [0, 0],
@@ -109,6 +110,7 @@ function optionsOf(value: unknown): SignatureLayoutOptions {
   const enums: Record<string, string[]> = {
     inkStyle: ['ink', 'cutout'],
     layoutMethod: ['woven', 'stipple'],
+    orientationMode: ['classic', 'flow'],
     edgeColorMode: ['auto', 'custom', 'ink'],
   }
   for (const [key, val] of Object.entries(raw)) {
@@ -445,7 +447,7 @@ export async function readSignatureProject(
       ownedCanvases.push(canvas)
       canvas.width = packed.width
       canvas.height = packed.height
-      const context = canvas.getContext('2d')
+      const context = canvas.getContext('2d', { willReadFrequently: true })
       if (!context) fail('无法恢复签名像素')
       context.putImageData(
         new ImageData(
