@@ -2,6 +2,8 @@
 
 实现/边界见[阶段记录](../../../plans/signature-project-iteration-2026-10-04.md)。原始导出和失败保留于test-results，仓库只收精简报告与实际恢复截图。
 
+最后重试原来遗漏适应像素，审查发现截图空白。修正和失败见[预览替换证据](../signature-preview-transaction/README.md)；此目录的delivery.json与恢复图更新为追加完整重试断言后的结果。
+
 | 证据 | 验证 |
 | --- | --- |
 | [delivery.json](./delivery.json) | Edge保存→空白Chrome恢复；阻止字体/源图请求，16074落点、100实际写法、2K PNG/SVG/高清裁片相同；未应用参数、坏画像/名字库读取失败、11类坏文件、原生预览失败、取消、重试及卸载 |

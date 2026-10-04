@@ -24,6 +24,7 @@ const report = {
   rejections: [],
 }
 const sha = (bytes) => createHash('sha256').update(bytes).digest('hex')
+let restorePage = null
 async function download(page, button, filename) {
   const downloading = page.waitForEvent('download')
   await page.getByRole('button', { name: button, exact: true }).click()
@@ -54,6 +55,30 @@ async function native(page) {
       width: canvas.width,
       height: canvas.height,
       region: JSON.parse(canvas.dataset.region),
+      hash: Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256', pixels)), (n) =>
+        n.toString(16).padStart(2, '0'),
+      ).join(''),
+    }
+  })
+}
+async function fit(page) {
+  await page.getByRole('button', { name: '适应', exact: true }).click()
+  await page.locator('.sharp-viewport-canvas').waitFor({ state: 'detached' })
+  return await page.locator('.result-canvas').evaluate(async (canvas) => {
+    const pixels = canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height).data
+    let darkPixels = 0,
+      opaquePixels = 0
+    for (let i = 0; i < pixels.length; i += 4) {
+      if (pixels[i + 3]) {
+        opaquePixels++
+        if (pixels[i] < 200) darkPixels++
+      }
+    }
+    return {
+      width: canvas.width,
+      height: canvas.height,
+      darkPixels,
+      opaquePixels,
       hash: Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256', pixels)), (n) =>
         n.toString(16).padStart(2, '0'),
       ).join(''),
@@ -145,6 +170,7 @@ try {
     acceptDownloads: true,
   })
   const restored = await fresh.newPage()
+  restorePage = restored
   restored.on('pageerror', (e) => report.errors.push(e.message))
   const blocked = []
   await restored.route(
@@ -178,6 +204,8 @@ try {
     0,
     'Restored controls match the fixed scene',
   )
+  const firstFit = await fit(restored)
+  assert(firstFit.darkPixels > 0, 'The restored fit overview must contain actual ink')
   assert.deepEqual(await layout(restored, 'restored'), original)
   assert.deepEqual(await native(restored), originalNative)
   const restoredPng = await download(restored, '下载 PNG', 'restored.png')
@@ -191,6 +219,7 @@ try {
     samePng: true,
     sameSvg: true,
     remoteSourceRequests: blocked.length,
+    fit: firstFit,
   }
 
   // Mutate the real saved artifact; malicious directories are rehashed to reach semantic checks.
@@ -255,6 +284,7 @@ try {
     await restored.locator('.error').waitFor({ state: 'visible' })
     assert.deepEqual(await layout(restored, label), original, label)
     assert.deepEqual(await native(restored), originalNative, label)
+    assert.deepEqual(await fit(restored), firstFit, `${label}: fit overview preserved`)
     assert.equal(
       await restored.evaluate(() => window.__liveUrls.size),
       urls,
@@ -281,8 +311,48 @@ try {
   })
   assert.deepEqual(await layout(restored, 'failed-preview'), original)
   assert.deepEqual(await native(restored), originalNative)
+  assert.deepEqual(await fit(restored), firstFit, 'Native preview failure preserves fit pixels')
   assert.equal(await restored.evaluate(() => window.__liveUrls.size), 1)
   report.previewFailurePreservesWork = true
+  report.displayFailuresPreserveWork = []
+  for (const fault of ['context', 'empty-surface']) {
+    await restored.evaluate(
+      ({ fault, width, height }) => {
+        window.__displayContext = HTMLCanvasElement.prototype.getContext
+        window.__displayDraw = CanvasRenderingContext2D.prototype.drawImage
+        const matches = (canvas) =>
+          !canvas.isConnected && canvas.width === width && canvas.height === height
+        if (fault === 'context') {
+          HTMLCanvasElement.prototype.getContext = function (...args) {
+            if (matches(this)) throw new Error('Intentional fit display failure')
+            return window.__displayContext.apply(this, args)
+          }
+        } else {
+          CanvasRenderingContext2D.prototype.drawImage = function (...args) {
+            if (matches(this.canvas)) return
+            return window.__displayDraw.apply(this, args)
+          }
+        }
+      },
+      { fault, width: firstFit.width, height: firstFit.height },
+    )
+    await input.setInputFiles(path.join(out, 'original.astra-signature'))
+    await restored
+      .locator('.error')
+      .filter({
+        hasText: fault === 'context' ? 'Intentional fit display failure' : '无法恢复作品预览',
+      })
+      .waitFor()
+    await restored.evaluate(() => {
+      HTMLCanvasElement.prototype.getContext = window.__displayContext
+      CanvasRenderingContext2D.prototype.drawImage = window.__displayDraw
+    })
+    assert.deepEqual(await layout(restored, `display-${fault}`), original)
+    assert.deepEqual(await native(restored), originalNative)
+    assert.deepEqual(await fit(restored), firstFit, `${fault}: live display must survive`)
+    assert.equal(await restored.evaluate(() => window.__liveUrls.size), 1)
+    report.displayFailuresPreserveWork.push(fault)
+  }
   // Cancel during actual byte validation; no inputs, banks or artwork are committed.
   await input.setInputFiles(path.join(out, 'original.astra-signature'))
   await restored.getByRole('button', { name: '取消文件操作', exact: true }).click()
@@ -293,11 +363,26 @@ try {
   )
   assert.deepEqual(await layout(restored, 'cancelled'), original)
   assert.deepEqual(await native(restored), originalNative)
+  assert.deepEqual(await fit(restored), firstFit, 'Cancelled import preserves fit pixels')
   assert.equal(await restored.evaluate(() => window.__liveUrls.size), 1)
   report.cancelPreservesWork = true
   // Retry the valid artifact, then navigate away: retained imported templates and source are released.
   await input.setInputFiles(path.join(out, 'original.astra-signature'))
   await restored.getByRole('status').filter({ hasText: '作品已恢复' }).waitFor({ timeout: 180000 })
+  const retryFit = await fit(restored)
+  report.retryFit = retryFit
+  await restored
+    .locator('.preview')
+    .screenshot({ path: path.join(out, 'retry-before-assertion.png') })
+  const retryNative = await native(restored)
+  const afterNativeFit = await fit(restored)
+  report.retryNative = retryNative
+  report.afterNativeFit = afterNativeFit
+  assert.deepEqual(retryFit, firstFit, 'Valid retry preserves the entire fit overview')
+  assert.deepEqual(retryNative, originalNative, 'Valid retry preserves native pixels')
+  assert.deepEqual(afterNativeFit, firstFit, 'Native-to-fit after valid retry preserves overview')
+  assert.equal(await restored.evaluate(() => window.__liveUrls.size), 1)
+  report.retryPreservesFitAndNative = true
   await restored.locator('.preview').screenshot({ path: path.join(out, 'restored-preview.png') })
   await restored
     .locator('footer a[href="/tools"]')
@@ -311,6 +396,31 @@ try {
 } catch (e) {
   report.passed = false
   report.failure = e.stack
+  if (restorePage)
+    report.visibleFailure = await restorePage
+      .evaluate(() => {
+        const view = document.querySelector('.page')?.__vueParentComponent?.setupState
+        const canvas = (value) =>
+          value
+            ? {
+                width: value.width,
+                height: value.height,
+                pixel: Array.from(value.getContext('2d').getImageData(0, 0, 1, 1).data),
+              }
+            : null
+        const stage = document.querySelector('.stage'),
+          root = document.querySelector('.compare')
+        return {
+          meta: document.querySelector('.preview .meta')?.textContent,
+          errors: Array.from(document.querySelectorAll('.error'), (e) => e.textContent),
+          overview: canvas(view?.lastOverview),
+          display: canvas(document.querySelector('.result-canvas')),
+          stage: stage?.getBoundingClientRect().toJSON(),
+          root: root?.getBoundingClientRect().toJSON(),
+          scroll: [stage?.scrollLeft, stage?.scrollTop],
+        }
+      })
+      .catch(() => null)
   throw e
 } finally {
   await writeFile(path.join(out, 'report.json'), JSON.stringify(report, null, 2))

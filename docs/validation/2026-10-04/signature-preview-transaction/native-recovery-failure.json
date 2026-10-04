@@ -57,36 +57,8 @@
   ],
   "previewFailurePreservesWork": true,
   "displayFailuresPreserveWork": [
-    "context",
-    "empty-surface"
+    "context"
   ],
-  "cancelPreservesWork": true,
-  "retryFit": {
-    "width": 602,
-    "height": 551,
-    "darkPixels": 11757,
-    "opaquePixels": 331702,
-    "hash": "b5c0f2f6648951b0726ee48e04041f3f14aabd4e78b4166b969fd59607e8957e"
-  },
-  "retryNative": {
-    "width": 610,
-    "height": 662,
-    "region": {
-      "x": 0,
-      "y": 0,
-      "w": 610,
-      "h": 662
-    },
-    "hash": "f10de97de11b1c0b46be00d9ac498033c38f05f3080e52f9261bddd598c526b8"
-  },
-  "afterNativeFit": {
-    "width": 602,
-    "height": 551,
-    "darkPixels": 11757,
-    "opaquePixels": 331702,
-    "hash": "b5c0f2f6648951b0726ee48e04041f3f14aabd4e78b4166b969fd59607e8957e"
-  },
-  "retryPreservesFitAndNative": true,
-  "unmountReleasedUrls": true,
-  "passed": true
+  "passed": false,
+  "failure": "locator.waitFor: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.sharp-viewport-canvas')\u001b[22m\n\n    at native (D:\\my\\project\\astra\\astra-web\\scripts\\signature-project-contract.mjs:50:48)\n    at async file:///D:/my/project/astra/astra-web/scripts/signature-project-contract.mjs:336:22"
 }

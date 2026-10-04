@@ -70,6 +70,8 @@ const generatedResult = shallowRef<SignatureProject | null>(null)
 const placementCount = ref(0)
 /** Canvas2D 回退用的概览栅格 */
 let lastOverview: HTMLCanvasElement | null = null
+let overviewRevision = 0
+let displayedOverviewRevision = -1
 /** 矢量排版源：坐标 / 印章编号 / 大小 / 角度 … */
 let lastPlacements: Placement[] = []
 let layoutW = 0
@@ -436,6 +438,7 @@ function mountDisplayCanvas(canvas: HTMLCanvasElement) {
   }
   host.replaceChildren(canvas)
   resultCanvas.value = canvas
+  displayedOverviewRevision = -1
   canvas.classList.add('result-canvas')
 }
 
@@ -531,10 +534,9 @@ function applyStageDisplaySize() {
   viewScale.value = Math.min(maxS, Math.max(1, viewScale.value))
   const cssW = Math.max(1, Math.round(fitW * viewScale.value))
   const cssH = Math.max(1, Math.round(layoutH * (cssW / layoutW)))
-  stageW.value = cssW
-  stageH.value = cssH
-
   if (glPreview && previewBackend === 'webgl') {
+    stageW.value = cssW
+    stageH.value = cssH
     const dpr = Math.min(2.5, window.devicePixelRatio || 1)
     glPreview.resize(cssW, cssH, dpr)
     // 适应视图看全图；放大后相机对准可视布局矩形
@@ -547,34 +549,62 @@ function applyStageDisplaySize() {
     return
   }
 
-  const canvas = resultCanvas.value
-  if (!canvas) return
-  canvas.style.width = `${cssW}px`
-  canvas.style.height = `${cssH}px`
-  canvas.style.imageRendering = 'auto'
-
-  blitOverviewToStage()
+  if (!blitOverviewToStage(cssW, cssH)) {
+    viewScale.value = Math.max(1, stageW.value / Math.max(1, fitW))
+    return
+  }
+  stageW.value = cssW
+  stageH.value = cssH
   if (viewScale.value <= 1.05) releaseSharpPreview()
   else scheduleSharpViewportPaint()
 }
 
-function blitOverviewToStage() {
-  const canvas = resultCanvas.value
-  if (!canvas || !lastOverview) return
-  const cssW = stageW.value
-  const cssH = stageH.value
+function createOverviewDisplay(overview: HTMLCanvasElement, cssW: number, cssH: number) {
   const dpr = Math.min(2, window.devicePixelRatio || 1)
   const { width: pw, height: ph } = fitSignatureRaster(cssW * dpr, cssH * dpr, OVERVIEW_LONG)
-  if (canvas.width !== pw || canvas.height !== ph) {
+  const canvas = document.createElement('canvas')
+  try {
     canvas.width = pw
     canvas.height = ph
+    const ctx = canvas.getContext('2d')
+    if (!ctx) throw new Error('无法恢复作品预览，请重试')
+    ctx.imageSmoothingEnabled = true
+    ctx.imageSmoothingQuality = 'high'
+    ctx.drawImage(overview, 0, 0, pw, ph)
+    // Every signature overview has an opaque paper/night substrate. Read back before
+    // committing a replacement so an unavailable/cleared surface cannot erase the live preview.
+    if (ctx.getImageData(0, 0, 1, 1).data[3] !== 255) throw new Error('无法恢复作品预览，请重试')
+    canvas.style.width = `${cssW}px`
+    canvas.style.height = `${cssH}px`
+    canvas.style.imageRendering = 'auto'
+    return canvas
+  } catch (error) {
+    canvas.width = 1
+    canvas.height = 1
+    throw error
   }
-  const ctx = canvas.getContext('2d')
-  if (!ctx) return
-  ctx.imageSmoothingEnabled = true
-  ctx.imageSmoothingQuality = 'high'
-  ctx.clearRect(0, 0, pw, ph)
-  ctx.drawImage(lastOverview, 0, 0, pw, ph)
+}
+
+function blitOverviewToStage(cssW: number, cssH: number) {
+  const canvas = resultCanvas.value
+  if (!canvas || !lastOverview) return false
+  const dpr = Math.min(2, window.devicePixelRatio || 1)
+  const { width, height } = fitSignatureRaster(cssW * dpr, cssH * dpr, OVERVIEW_LONG)
+  if (displayedOverviewRevision === overviewRevision && canvas.width === width && canvas.height === height) {
+    canvas.style.width = `${cssW}px`
+    canvas.style.height = `${cssH}px`
+    return true
+  }
+  try {
+    const next = createOverviewDisplay(lastOverview, cssW, cssH)
+    mountDisplayCanvas(next)
+    displayedOverviewRevision = overviewRevision
+    previewError.value = ''
+    return true
+  } catch {
+    previewError.value = '高清预览暂时无法绘制，请缩小后重试'
+    return false
+  }
 }
 
 function scheduleSharpViewportPaint() {
@@ -1180,6 +1210,7 @@ async function renderNow() {
             if (seq !== renderSeq || signal.cancelled) return
             if (lastOverview && lastOverview !== partial) { lastOverview.width = 1; lastOverview.height = 1 }
             lastOverview = partial
+            overviewRevision++
             progressStage.value = `预览 ${done}/${total}`
             progressRatio.value = 0.55 + (done / Math.max(1, total)) * 0.45
             applyStageDisplaySize()
@@ -1189,6 +1220,7 @@ async function renderNow() {
       )
       if (seq !== renderSeq || signal.cancelled) return
       lastOverview = overview
+      overviewRevision++
       progressStage.value = '完成'
       progressRatio.value = 1
       applyStageDisplaySize()
@@ -1274,6 +1306,7 @@ async function onProjectChange(event: Event) {
   projectController = controller
   let candidate: Awaited<ReturnType<typeof readSignatureProject>> | null = null
   let overview: HTMLCanvasElement | null = null
+  let display: HTMLCanvasElement | null = null
   try {
     progressStage.value = '检查作品文件'
     candidate = await readSignatureProject(file, { signal: controller.signal, onProgress: value => { progressRatio.value = value * 0.5 } })
@@ -1287,11 +1320,9 @@ async function onProjectChange(event: Event) {
     })
     if (controller.signal.aborted || viewDisposed) return
     // Prepare a usable display before replacing any inputs or generated artwork.
-    const display = document.createElement('canvas')
-    display.width = overview.width; display.height = overview.height
-    const context = display.getContext('2d')
-    if (!context) throw new Error('无法恢复作品预览，请重试')
-    context.drawImage(overview, 0, 0)
+    const cssW = getFitWidth(scene.width)
+    const cssH = Math.max(1, Math.round(scene.height * cssW / scene.width))
+    display = createOverviewDisplay(overview, cssW, cssH)
     ++renderSeq
     paintSignal.cancelled = true
     if (zoomPaintTimer) clearTimeout(zoomPaintTimer)
@@ -1320,11 +1351,16 @@ async function onProjectChange(event: Event) {
     previewPan.value = true
     if (lastOverview) { lastOverview.width = 1; lastOverview.height = 1 }
     lastOverview = overview
+    overviewRevision++
     overview = null
     mountDisplayCanvas(display)
+    displayedOverviewRevision = overviewRevision
+    display = null
+    stageW.value = cssW
+    stageH.value = cssH
+    previewError.value = ''
     importedScenes.add(candidate)
     candidate = null
-    applyStageDisplaySize()
     await nextTick()
     if (previewHost.value) { previewHost.value.scrollLeft = 0; previewHost.value.scrollTop = 0 }
     releaseUnusedImportedScenes()
@@ -1334,6 +1370,7 @@ async function onProjectChange(event: Event) {
   } finally {
     candidate?.dispose()
     if (overview) { overview.width = 1; overview.height = 1 }
+    if (display) { display.width = 1; display.height = 1 }
     if (projectController === controller) projectController = null
     projectBusy.value = false
     pending.value = false
