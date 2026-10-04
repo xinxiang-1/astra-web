@@ -45,6 +45,7 @@
     "test:signature-viewport": "node scripts/signature-viewport-contract.mjs",
     "test:signature-responsive": "node scripts/signature-responsive-contract.mjs",
     "test:video-responsive": "node scripts/video-responsive-contract.mjs",
+    "research:video-atlas": "node scripts/video-tile-atlas-research.mjs",
     "test:signature-project": "node scripts/signature-project-contract.mjs",
     "test:signature-project-assets": "node scripts/signature-project-assets-contract.mjs",
     "research:signature-capacity": "node scripts/signature-capacity-research.mjs",

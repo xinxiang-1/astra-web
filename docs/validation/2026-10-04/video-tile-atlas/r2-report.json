@@ -1,0 +1,662 @@
+{
+  "browser": "154.0.4258.53",
+  "channel": "msedge",
+  "parityOnly": true,
+  "edgeExtension": true,
+  "baselineCommit": "c795d97d7b03aedfef5ae24710c0f0910002e7a4",
+  "baselineSha256": "1734666a2d339d4433a0dc2ae44e5bbc9b384f1cda7f6c7723a56e24b8898748",
+  "candidateSha256": "bdf560cd082bcc7ca3b0c94ccbc426f577804ecfa0134449fab5c359ca1b94f6",
+  "errors": [],
+  "cases": [
+    {
+      "sourceName": "gradient",
+      "mode": "density",
+      "style": "static",
+      "transparent": false,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "density",
+      "style": "static",
+      "transparent": true,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "density",
+      "style": "breathe",
+      "transparent": false,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "density",
+      "style": "breathe",
+      "transparent": true,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "density",
+      "style": "rift",
+      "transparent": false,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "density",
+      "style": "rift",
+      "transparent": true,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "color",
+      "style": "static",
+      "transparent": false,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "color",
+      "style": "static",
+      "transparent": true,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "color",
+      "style": "breathe",
+      "transparent": false,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "color",
+      "style": "breathe",
+      "transparent": true,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "color",
+      "style": "rift",
+      "transparent": false,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "color",
+      "style": "rift",
+      "transparent": true,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "phrase",
+      "style": "static",
+      "transparent": false,
+      "changed": 255,
+      "maxDelta": 1,
+      "atlasBytes": 1572480
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "phrase",
+      "style": "static",
+      "transparent": true,
+      "changed": 818,
+      "maxDelta": 85,
+      "atlasBytes": 1572480
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "phrase",
+      "style": "breathe",
+      "transparent": false,
+      "changed": 274,
+      "maxDelta": 1,
+      "atlasBytes": 1572480
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "phrase",
+      "style": "breathe",
+      "transparent": true,
+      "changed": 894,
+      "maxDelta": 85,
+      "atlasBytes": 1572480
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "phrase",
+      "style": "rift",
+      "transparent": false,
+      "changed": 335,
+      "maxDelta": 1,
+      "atlasBytes": 1572480
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "phrase",
+      "style": "rift",
+      "transparent": true,
+      "changed": 1111,
+      "maxDelta": 85,
+      "atlasBytes": 1572480
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "contour",
+      "style": "static",
+      "transparent": false,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "contour",
+      "style": "static",
+      "transparent": true,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "contour",
+      "style": "breathe",
+      "transparent": false,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "contour",
+      "style": "breathe",
+      "transparent": true,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "contour",
+      "style": "rift",
+      "transparent": false,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "contour",
+      "style": "rift",
+      "transparent": true,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "braille",
+      "style": "static",
+      "transparent": false,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "braille",
+      "style": "static",
+      "transparent": true,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "braille",
+      "style": "breathe",
+      "transparent": false,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "braille",
+      "style": "breathe",
+      "transparent": true,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "braille",
+      "style": "rift",
+      "transparent": false,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "braille",
+      "style": "rift",
+      "transparent": true,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "halftone",
+      "style": "static",
+      "transparent": false,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "halftone",
+      "style": "static",
+      "transparent": true,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "halftone",
+      "style": "breathe",
+      "transparent": false,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "halftone",
+      "style": "breathe",
+      "transparent": true,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "halftone",
+      "style": "rift",
+      "transparent": false,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "halftone",
+      "style": "rift",
+      "transparent": true,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "density",
+      "style": "static",
+      "transparent": false,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "density",
+      "style": "static",
+      "transparent": true,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "density",
+      "style": "breathe",
+      "transparent": false,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "density",
+      "style": "breathe",
+      "transparent": true,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "density",
+      "style": "rift",
+      "transparent": false,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "density",
+      "style": "rift",
+      "transparent": true,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "color",
+      "style": "static",
+      "transparent": false,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "color",
+      "style": "static",
+      "transparent": true,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "color",
+      "style": "breathe",
+      "transparent": false,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "color",
+      "style": "breathe",
+      "transparent": true,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "color",
+      "style": "rift",
+      "transparent": false,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "color",
+      "style": "rift",
+      "transparent": true,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "phrase",
+      "style": "static",
+      "transparent": false,
+      "changed": 231,
+      "maxDelta": 1,
+      "atlasBytes": 1572480
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "phrase",
+      "style": "static",
+      "transparent": true,
+      "changed": 603,
+      "maxDelta": 51,
+      "atlasBytes": 1572480
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "phrase",
+      "style": "breathe",
+      "transparent": false,
+      "changed": 189,
+      "maxDelta": 1,
+      "atlasBytes": 1572480
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "phrase",
+      "style": "breathe",
+      "transparent": true,
+      "changed": 575,
+      "maxDelta": 51,
+      "atlasBytes": 1572480
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "phrase",
+      "style": "rift",
+      "transparent": false,
+      "changed": 306,
+      "maxDelta": 1,
+      "atlasBytes": 1572480
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "phrase",
+      "style": "rift",
+      "transparent": true,
+      "changed": 708,
+      "maxDelta": 36,
+      "atlasBytes": 1572480
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "contour",
+      "style": "static",
+      "transparent": false,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "contour",
+      "style": "static",
+      "transparent": true,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "contour",
+      "style": "breathe",
+      "transparent": false,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "contour",
+      "style": "breathe",
+      "transparent": true,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "contour",
+      "style": "rift",
+      "transparent": false,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "contour",
+      "style": "rift",
+      "transparent": true,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "braille",
+      "style": "static",
+      "transparent": false,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "braille",
+      "style": "static",
+      "transparent": true,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "braille",
+      "style": "breathe",
+      "transparent": false,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "braille",
+      "style": "breathe",
+      "transparent": true,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "braille",
+      "style": "rift",
+      "transparent": false,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "braille",
+      "style": "rift",
+      "transparent": true,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "halftone",
+      "style": "static",
+      "transparent": false,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "halftone",
+      "style": "static",
+      "transparent": true,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "halftone",
+      "style": "breathe",
+      "transparent": false,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "halftone",
+      "style": "breathe",
+      "transparent": true,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "halftone",
+      "style": "rift",
+      "transparent": false,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "halftone",
+      "style": "rift",
+      "transparent": true,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    }
+  ],
+  "performanceResults": [],
+  "parityPassed": false
+}

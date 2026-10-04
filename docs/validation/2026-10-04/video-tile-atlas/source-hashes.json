@@ -1,0 +1,41 @@
+{
+  "algorithm": "SHA-256",
+  "baselineCommit": "c795d97d7b03aedfef5ae24710c0f0910002e7a4",
+  "variants": {
+    "r1": {
+      "baselineSha256": "1734666a2d339d4433a0dc2ae44e5bbc9b384f1cda7f6c7723a56e24b8898748",
+      "candidateSha256": "8098f0d4dc6be7016ca4e797c0aa70c7bb61727c2ceae3782a242d60e0869a0d",
+      "reportSha256": "6f3486f0e872b5f1ae9b5bd0f9deb95f5d484917d6335c97804dc3c7d421e96b",
+      "patchSha256": "c8eb9e73a836e7fd3edda9868d8622fe5794bf8795cd1e53f1f142b05474564f",
+      "patchRebuilt": true,
+      "passedCases": 36,
+      "totalCases": 72,
+      "patchContainerSha256": "14d7c56328c795b01660d6c744dae7db7db05c0d570c025f485e2d6731706ea2"
+    },
+    "r2": {
+      "baselineSha256": "1734666a2d339d4433a0dc2ae44e5bbc9b384f1cda7f6c7723a56e24b8898748",
+      "candidateSha256": "bdf560cd082bcc7ca3b0c94ccbc426f577804ecfa0134449fab5c359ca1b94f6",
+      "reportSha256": "2866a056ecd9155cd917ed1d3c903e56bc5acc414eaa9d64ac50637007f938db",
+      "patchSha256": "73ecce405e614349de6125900a62781ba6e645d730caff2e4d0273415c680423",
+      "patchRebuilt": true,
+      "passedCases": 60,
+      "totalCases": 72,
+      "patchContainerSha256": "a79f32369bcd7b08670dcbfb8551964070931b7a1b8916a7d13e0e75fc7135e5"
+    },
+    "r3": {
+      "baselineSha256": "1734666a2d339d4433a0dc2ae44e5bbc9b384f1cda7f6c7723a56e24b8898748",
+      "candidateSha256": "e220400422b82041cb6c79defb3b3468bbe4cdabcda08472a4e61978ba014dfb",
+      "reportSha256": "7071d809244b805ba0ca1cb6d409dce4cdbbe53db78b5cbcd66e46100f58dabb",
+      "patchSha256": "0cd8b06fd2b1afc9905341d760ddffa24309238d0c4f1a4ade71a5fa785a1a4c",
+      "patchRebuilt": true,
+      "passedCases": 68,
+      "totalCases": 72,
+      "patchContainerSha256": "9032842eb9f5ad470c49080f63ba220ce0512e97948864334eb0ccfcde5977e4"
+    }
+  },
+  "finalRecipe": {
+    "path": "scripts/video-tile-atlas-research.mjs",
+    "sha256": "d83c68a36b4ce70ce52048cce43df36ddd8226651a0592c33c68e7263211da49",
+    "recreatedR3": true
+  }
+}

@@ -1,0 +1,907 @@
+{
+  "browser": "154.0.4258.53",
+  "channel": "msedge",
+  "baselineCommit": "c795d97d7b03aedfef5ae24710c0f0910002e7a4",
+  "baselineSha256": "1734666a2d339d4433a0dc2ae44e5bbc9b384f1cda7f6c7723a56e24b8898748",
+  "candidateSha256": "8098f0d4dc6be7016ca4e797c0aa70c7bb61727c2ceae3782a242d60e0869a0d",
+  "errors": [],
+  "cases": [
+    {
+      "sourceName": "gradient",
+      "mode": "density",
+      "style": "static",
+      "transparent": false,
+      "changed": 4267,
+      "maxDelta": 29,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "density",
+      "style": "static",
+      "transparent": true,
+      "changed": 5429,
+      "maxDelta": 73,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "density",
+      "style": "breathe",
+      "transparent": false,
+      "changed": 4612,
+      "maxDelta": 25,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "density",
+      "style": "breathe",
+      "transparent": true,
+      "changed": 5307,
+      "maxDelta": 73,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "density",
+      "style": "rift",
+      "transparent": false,
+      "changed": 4267,
+      "maxDelta": 29,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "density",
+      "style": "rift",
+      "transparent": true,
+      "changed": 5429,
+      "maxDelta": 73,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "color",
+      "style": "static",
+      "transparent": false,
+      "changed": 4267,
+      "maxDelta": 29,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "color",
+      "style": "static",
+      "transparent": true,
+      "changed": 5429,
+      "maxDelta": 73,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "color",
+      "style": "breathe",
+      "transparent": false,
+      "changed": 4612,
+      "maxDelta": 25,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "color",
+      "style": "breathe",
+      "transparent": true,
+      "changed": 5307,
+      "maxDelta": 73,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "color",
+      "style": "rift",
+      "transparent": false,
+      "changed": 4267,
+      "maxDelta": 29,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "color",
+      "style": "rift",
+      "transparent": true,
+      "changed": 5429,
+      "maxDelta": 73,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "phrase",
+      "style": "static",
+      "transparent": false,
+      "changed": 5557,
+      "maxDelta": 79,
+      "atlasBytes": 1572480
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "phrase",
+      "style": "static",
+      "transparent": true,
+      "changed": 6911,
+      "maxDelta": 255,
+      "atlasBytes": 1572480
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "phrase",
+      "style": "breathe",
+      "transparent": false,
+      "changed": 5587,
+      "maxDelta": 66,
+      "atlasBytes": 1572480
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "phrase",
+      "style": "breathe",
+      "transparent": true,
+      "changed": 6971,
+      "maxDelta": 255,
+      "atlasBytes": 1572480
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "phrase",
+      "style": "rift",
+      "transparent": false,
+      "changed": 5469,
+      "maxDelta": 79,
+      "atlasBytes": 1572480
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "phrase",
+      "style": "rift",
+      "transparent": true,
+      "changed": 7051,
+      "maxDelta": 255,
+      "atlasBytes": 1572480
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "contour",
+      "style": "static",
+      "transparent": false,
+      "changed": 3373,
+      "maxDelta": 2,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "contour",
+      "style": "static",
+      "transparent": true,
+      "changed": 3824,
+      "maxDelta": 255,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "contour",
+      "style": "breathe",
+      "transparent": false,
+      "changed": 2921,
+      "maxDelta": 2,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "contour",
+      "style": "breathe",
+      "transparent": true,
+      "changed": 3584,
+      "maxDelta": 255,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "contour",
+      "style": "rift",
+      "transparent": false,
+      "changed": 3442,
+      "maxDelta": 5,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "contour",
+      "style": "rift",
+      "transparent": true,
+      "changed": 4163,
+      "maxDelta": 255,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "braille",
+      "style": "static",
+      "transparent": false,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "braille",
+      "style": "static",
+      "transparent": true,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "braille",
+      "style": "breathe",
+      "transparent": false,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "braille",
+      "style": "breathe",
+      "transparent": true,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "braille",
+      "style": "rift",
+      "transparent": false,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "braille",
+      "style": "rift",
+      "transparent": true,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "halftone",
+      "style": "static",
+      "transparent": false,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "halftone",
+      "style": "static",
+      "transparent": true,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "halftone",
+      "style": "breathe",
+      "transparent": false,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "halftone",
+      "style": "breathe",
+      "transparent": true,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "halftone",
+      "style": "rift",
+      "transparent": false,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "gradient",
+      "mode": "halftone",
+      "style": "rift",
+      "transparent": true,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "density",
+      "style": "static",
+      "transparent": false,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "density",
+      "style": "static",
+      "transparent": true,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "density",
+      "style": "breathe",
+      "transparent": false,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "density",
+      "style": "breathe",
+      "transparent": true,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "density",
+      "style": "rift",
+      "transparent": false,
+      "changed": 151,
+      "maxDelta": 18,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "density",
+      "style": "rift",
+      "transparent": true,
+      "changed": 206,
+      "maxDelta": 23,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "color",
+      "style": "static",
+      "transparent": false,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "color",
+      "style": "static",
+      "transparent": true,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "color",
+      "style": "breathe",
+      "transparent": false,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "color",
+      "style": "breathe",
+      "transparent": true,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "color",
+      "style": "rift",
+      "transparent": false,
+      "changed": 151,
+      "maxDelta": 18,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "color",
+      "style": "rift",
+      "transparent": true,
+      "changed": 206,
+      "maxDelta": 23,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "phrase",
+      "style": "static",
+      "transparent": false,
+      "changed": 231,
+      "maxDelta": 1,
+      "atlasBytes": 1572480
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "phrase",
+      "style": "static",
+      "transparent": true,
+      "changed": 603,
+      "maxDelta": 51,
+      "atlasBytes": 1572480
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "phrase",
+      "style": "breathe",
+      "transparent": false,
+      "changed": 189,
+      "maxDelta": 1,
+      "atlasBytes": 1572480
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "phrase",
+      "style": "breathe",
+      "transparent": true,
+      "changed": 575,
+      "maxDelta": 51,
+      "atlasBytes": 1572480
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "phrase",
+      "style": "rift",
+      "transparent": false,
+      "changed": 460,
+      "maxDelta": 27,
+      "atlasBytes": 1572480
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "phrase",
+      "style": "rift",
+      "transparent": true,
+      "changed": 903,
+      "maxDelta": 50,
+      "atlasBytes": 1572480
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "contour",
+      "style": "static",
+      "transparent": false,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "contour",
+      "style": "static",
+      "transparent": true,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "contour",
+      "style": "breathe",
+      "transparent": false,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "contour",
+      "style": "breathe",
+      "transparent": true,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "contour",
+      "style": "rift",
+      "transparent": false,
+      "changed": 484,
+      "maxDelta": 33,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "contour",
+      "style": "rift",
+      "transparent": true,
+      "changed": 718,
+      "maxDelta": 85,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "braille",
+      "style": "static",
+      "transparent": false,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "braille",
+      "style": "static",
+      "transparent": true,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "braille",
+      "style": "breathe",
+      "transparent": false,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "braille",
+      "style": "breathe",
+      "transparent": true,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "braille",
+      "style": "rift",
+      "transparent": false,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "braille",
+      "style": "rift",
+      "transparent": true,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "halftone",
+      "style": "static",
+      "transparent": false,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "halftone",
+      "style": "static",
+      "transparent": true,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "halftone",
+      "style": "breathe",
+      "transparent": false,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "halftone",
+      "style": "breathe",
+      "transparent": true,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "halftone",
+      "style": "rift",
+      "transparent": false,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    },
+    {
+      "sourceName": "portrait",
+      "mode": "halftone",
+      "style": "rift",
+      "transparent": true,
+      "changed": 0,
+      "maxDelta": 0,
+      "atlasBytes": 983040
+    }
+  ],
+  "performanceResults": [
+    {
+      "columns": 180,
+      "mode": "color",
+      "timings": {
+        "original": [
+          404.2999999523163,
+          500.89999997615814,
+          426.5,
+          531,
+          470.60000002384186,
+          477,
+          423.89999997615814,
+          470.39999997615814,
+          459.89999997615814,
+          416.2999999523163
+        ],
+        "batched": [
+          251.39999997615814,
+          189.80000007152557,
+          253.30000007152557,
+          222.5,
+          196.79999995231628,
+          229.89999997615814,
+          243.39999997615814,
+          240.39999997615814,
+          228.80000007152557,
+          206.19999992847443
+        ]
+      },
+      "original": {
+        "p50": 470.39999997615814,
+        "p95": 531,
+        "max": 531
+      },
+      "batched": {
+        "p50": 229.89999997615814,
+        "p95": 253.30000007152557,
+        "max": 253.30000007152557
+      },
+      "atlasBytes": 983040
+    },
+    {
+      "columns": 180,
+      "mode": "phrase",
+      "timings": {
+        "original": [
+          689.6000000238419,
+          740.6999999284744,
+          653.5,
+          653.8000000715256,
+          704.8000000715256,
+          639.5999999046326,
+          764.6000000238419,
+          680.8000000715256,
+          739,
+          859.3999999761581
+        ],
+        "batched": [
+          317.6999999284744,
+          337.5,
+          340.2000000476837,
+          333.7999999523163,
+          315.89999997615814,
+          301.89999997615814,
+          296,
+          299.7000000476837,
+          277.3000000715256,
+          288.3000000715256
+        ]
+      },
+      "original": {
+        "p50": 704.8000000715256,
+        "p95": 859.3999999761581,
+        "max": 859.3999999761581
+      },
+      "batched": {
+        "p50": 315.89999997615814,
+        "p95": 340.2000000476837,
+        "max": 340.2000000476837
+      },
+      "atlasBytes": 1572480
+    },
+    {
+      "columns": 180,
+      "mode": "halftone",
+      "timings": {
+        "original": [
+          444,
+          447.60000002384186,
+          463.7000000476837,
+          477.8000000715256,
+          510,
+          521.8999999761581,
+          477.59999990463257,
+          459.7999999523163,
+          419.2000000476837,
+          488.5
+        ],
+        "batched": [
+          235.69999992847443,
+          241,
+          264.3000000715256,
+          233.19999992847443,
+          206.79999995231628,
+          196.60000002384186,
+          234.09999990463257,
+          230.19999992847443,
+          227.89999997615814,
+          222.39999997615814
+        ]
+      },
+      "original": {
+        "p50": 477.59999990463257,
+        "p95": 521.8999999761581,
+        "max": 521.8999999761581
+      },
+      "batched": {
+        "p50": 233.19999992847443,
+        "p95": 264.3000000715256,
+        "max": 264.3000000715256
+      },
+      "atlasBytes": 983040
+    },
+    {
+      "columns": 360,
+      "mode": "color",
+      "timings": {
+        "original": [
+          2013.6999999284744,
+          1823.6999999284744,
+          1855.2000000476837,
+          1901.7999999523163,
+          1691.2999999523163,
+          1723.1000000238419,
+          1989.2999999523163,
+          1863.2999999523163,
+          1907,
+          1815.1999999284744
+        ],
+        "batched": [
+          717.5,
+          804,
+          1114.2000000476837,
+          867.3999999761581,
+          802.1000000238419,
+          815.1000000238419,
+          752.5,
+          882.5,
+          751.8000000715256,
+          745.3999999761581
+        ]
+      },
+      "original": {
+        "p50": 1863.2999999523163,
+        "p95": 2013.6999999284744,
+        "max": 2013.6999999284744
+      },
+      "batched": {
+        "p50": 804,
+        "p95": 1114.2000000476837,
+        "max": 1114.2000000476837
+      },
+      "atlasBytes": 983040
+    },
+    {
+      "columns": 360,
+      "mode": "phrase",
+      "timings": {
+        "original": [
+          2599.4000000953674,
+          2743.5999999046326,
+          2711.600000023842,
+          3351.399999976158,
+          3182.0999999046326,
+          3178.399999976158,
+          2641.100000023842,
+          3048.7000000476837,
+          2961.399999976158,
+          2802.5
+        ],
+        "batched": [
+          1175.1000000238419,
+          1277.3999999761581,
+          1211.5,
+          1893,
+          1385.5,
+          1316.2999999523163,
+          1182.3999999761581,
+          1337.3999999761581,
+          1156.3999999761581,
+          1189.6000000238419
+        ]
+      },
+      "original": {
+        "p50": 2961.399999976158,
+        "p95": 3351.399999976158,
+        "max": 3351.399999976158
+      },
+      "batched": {
+        "p50": 1277.3999999761581,
+        "p95": 1893,
+        "max": 1893
+      },
+      "atlasBytes": 1572480
+    },
+    {
+      "columns": 360,
+      "mode": "halftone",
+      "timings": {
+        "original": [
+          1665.5,
+          2023.5999999046326,
+          1679.1999999284744,
+          1761.5,
+          1822.2999999523163,
+          1920.6999999284744,
+          1678.1000000238419,
+          1777.1999999284744,
+          1593.9000000953674,
+          1707.5
+        ],
+        "batched": [
+          771.8999999761581,
+          741.6999999284744,
+          729.8999999761581,
+          746.2999999523163,
+          894.5,
+          861.2000000476837,
+          689.7999999523163,
+          740.8999999761581,
+          758,
+          733.3999999761581
+        ]
+      },
+      "original": {
+        "p50": 1761.5,
+        "p95": 2023.5999999046326,
+        "max": 2023.5999999046326
+      },
+      "batched": {
+        "p50": 746.2999999523163,
+        "p95": 894.5,
+        "max": 894.5
+      },
+      "atlasBytes": 983040
+    }
+  ],
+  "parityPassed": false
+}
