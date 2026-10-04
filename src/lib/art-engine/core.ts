@@ -18,7 +18,11 @@ export function createArtCore(defaults: ArtSettings, version: string) {
     result.height = height
     return result
   }
-  function atlas(charset: string, fontFamily?: string, fontWeight = 400) {
+  function* atlas(
+    charset: string,
+    fontFamily?: string,
+    fontWeight = 400,
+  ): Generator<void, { glyphs: ArtGlyph[]; cellWidth: number; cellHeight: number }> {
     const chars = [...new Set([' ', ...glyphsOf(charset)])]
     if (chars.length > 512) throw new Error('字符库过长，请保留最多 511 个不同字符')
     const key = `${fontFamily || ''}${fontWeight === 400 ? '' : `:${fontWeight}`}\u0001${chars.join('\u0000')}`
@@ -37,7 +41,8 @@ export function createArtCore(defaults: ArtSettings, version: string) {
       Math.ceil(Math.max(...chars.map((char) => measure.measureText(char).width))),
     )
     const cellHeight = 28
-    const glyphs = chars.map((char) => {
+    const glyphs: ArtGlyph[] = []
+    for (const char of chars) {
       const tile = canvas(cellWidth, cellHeight)
       const ctx = tile.getContext('2d', { willReadFrequently: true })!
       ctx.font = font
@@ -48,8 +53,9 @@ export function createArtCore(defaults: ArtSettings, version: string) {
       const pixels = ctx.getImageData(0, 0, cellWidth, cellHeight).data
       let ink = 0
       for (let i = 3; i < pixels.length; i += 4) ink += pixels[i]!
-      return { char, tile, coverage: ink / (255 * cellWidth * cellHeight) }
-    })
+      glyphs.push({ char, tile, coverage: ink / (255 * cellWidth * cellHeight) })
+      yield
+    }
     const value = { glyphs, cellWidth, cellHeight }
     // Bound cached user phrases and their raster assets.
     if (atlasCache.size >= 12) atlasCache.delete(atlasCache.keys().next().value!)
@@ -72,10 +78,14 @@ export function createArtCore(defaults: ArtSettings, version: string) {
       settings.invert
     )
   }
-  function toneMapping(pixels: Uint8ClampedArray, settings: ArtSettings) {
+  function* toneMapping(
+    pixels: Uint8ClampedArray,
+    settings: ArtSettings,
+  ): Generator<void, (luminance: number) => number> {
     const histogram = new Uint32Array(256)
     let total = 0
     for (let i = 0; i < pixels.length; i += 4) {
+      if (i % 32768 === 0) yield
       if (pixels[i + 3]! < 16) continue
       histogram[
         Math.round(
@@ -103,12 +113,12 @@ export function createArtCore(defaults: ArtSettings, version: string) {
   }
 
   /** All modes share source sampling, geometry, frame data and output rendering. */
-  function prepareArtFrame(
+  function* prepareArtFrameSteps(
     source: CanvasImageSource,
     width: number,
     height: number,
     input: Partial<ArtSettings> = {},
-  ): ArtFrame {
+  ): Generator<void, ArtFrame> {
     if (!(Number.isFinite(width) && Number.isFinite(height) && width > 0 && height > 0))
       throw new Error('素材尺寸无效')
     const start = performance.now()
@@ -130,7 +140,7 @@ export function createArtCore(defaults: ArtSettings, version: string) {
       settings.fontWeight === 600
         ? 600
         : 400
-    const { glyphs, cellWidth, cellHeight } = atlas(charset, settings.fontFamily, weight)
+    const { glyphs, cellWidth, cellHeight } = yield* atlas(charset, settings.fontFamily, weight)
     const aspect = Number.isFinite(settings.charAspect)
       ? clamp(settings.charAspect!, 0.35, 1.2)
       : cellWidth / cellHeight
@@ -142,7 +152,8 @@ export function createArtCore(defaults: ArtSettings, version: string) {
     ctx.imageSmoothingQuality = 'high'
     ctx.drawImage(source, 0, 0, sampler.width, sampler.height)
     const pixels = ctx.getImageData(0, 0, sampler.width, sampler.height).data
-    const tone = toneMapping(pixels, settings)
+    yield
+    const tone = yield* toneMapping(pixels, settings)
     const count = columns * rows
     const indices = new Uint16Array(count),
       alpha = new Float32Array(count)
@@ -158,6 +169,7 @@ export function createArtCore(defaults: ArtSettings, version: string) {
     const lines: string[] = []
     let nonEmpty = 0
     for (let y = 0; y < rows; y++) {
+      yield
       for (let x = 0; x < columns; x++) {
         const cell = y * columns + x
         let r = 0,
@@ -202,6 +214,7 @@ export function createArtCore(defaults: ArtSettings, version: string) {
     }
     const bayer = [0, 8, 2, 10, 12, 4, 14, 6, 3, 11, 1, 9, 15, 7, 13, 5]
     for (let y = 0; y < rows; y++) {
+      yield
       let line = ''
       for (let x = 0; x < columns; x++) {
         const cell = y * columns + x
@@ -274,6 +287,43 @@ export function createArtCore(defaults: ArtSettings, version: string) {
     }
   }
 
+  function prepareArtFrame(
+    source: CanvasImageSource,
+    width: number,
+    height: number,
+    input: Partial<ArtSettings> = {},
+  ): ArtFrame {
+    const steps = prepareArtFrameSteps(source, width, height, input)
+    let next = steps.next()
+    while (!next.done) next = steps.next()
+    return next.value
+  }
+
+  /** Same sampling and font atlas; bounded compute slices keep controls responsive. */
+  async function prepareArtFrameResponsive(
+    source: CanvasImageSource,
+    width: number,
+    height: number,
+    input: Partial<ArtSettings> = {},
+    options: { shouldAbort?: () => boolean } = {},
+  ): Promise<ArtFrame> {
+    const steps = prepareArtFrameSteps(source, width, height, input)
+    let sliceStart = performance.now()
+    try {
+      while (true) {
+        if (options.shouldAbort?.()) throw new DOMException('已取消转换', 'AbortError')
+        const next = steps.next()
+        if (next.done) return next.value
+        if (performance.now() - sliceStart >= 8) {
+          await new Promise<void>((resolve) => setTimeout(resolve, 0))
+          sliceStart = performance.now()
+        }
+      }
+    } finally {
+      steps.return(undefined as never)
+    }
+  }
+
   /** Freeze the rendered font atlas in an HTML file; no font installation is required. */
   function primeAtlas(frame: ArtFrame) {
     const weight =
@@ -289,5 +339,5 @@ export function createArtCore(defaults: ArtSettings, version: string) {
       cellHeight: frame.cellHeight,
     })
   }
-  return { prepareArtFrame, primeAtlas }
+  return { prepareArtFrame, prepareArtFrameResponsive, primeAtlas }
 }

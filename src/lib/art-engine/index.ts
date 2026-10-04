@@ -33,6 +33,7 @@ export const ART_MODES: { id: ArtMode; name: string; description: string }[] = [
 
 const core = createArtCore(ART_DEFAULTS, ART_ENGINE_VERSION)
 export const prepareArtFrame = core.prepareArtFrame
+export const prepareArtFrameResponsive = core.prepareArtFrameResponsive
 export function createArtRenderer(
   target: HTMLCanvasElement,
   configuration: { forceCanvas?: boolean } = {},

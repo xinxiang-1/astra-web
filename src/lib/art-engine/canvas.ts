@@ -1,7 +1,11 @@
 import type { ArtFrame, ArtRenderOptions } from './types'
 
-/** Experimental presentation only; omitted in the editor and portable runtime. */
+/** Drawing-environment hooks; experimentalTrail is excluded from production and portable output. */
 export type CanvasArtPrototypeOptions = {
+  /** Supply compatible Canvas surfaces when drawing in an OffscreenCanvas worker. */
+  createSurface?: () => HTMLCanvasElement
+  /** Limit temporary color tiles for changing video frames; colors/geometry stay exact. */
+  maxTileEntries?: number
   experimentalTrail?: (
     sample: (x: number, y: number) => ArtFluidFieldSample,
     frame: ArtFrame,
@@ -224,7 +228,8 @@ export function createCanvasArtRenderer(
   const riftPresentation = createRiftPresentation()
   const tinted = new Map<string, HTMLCanvasElement | ImageBitmap>()
   const maxBackingBytes = 16 * 1024 * 1024
-  const maxEntries = typeof OffscreenCanvas === 'undefined' ? 4096 : 12000
+  const maxEntries =
+    prototype.maxTileEntries ?? (typeof OffscreenCanvas === 'undefined' ? 4096 : 12000)
   let backingBytes = 0,
     hits = 0,
     misses = 0
@@ -1502,7 +1507,7 @@ export function createCanvasArtRenderer(
   let coverageGlyphs: ArtFrame['glyphs'] | null = null
   const clamp = (n: number, min: number, max: number) => Math.min(max, Math.max(min, n))
   const canvas = (width: number, height: number) => {
-    const c = document.createElement('canvas')
+    const c = prototype.createSurface?.() ?? document.createElement('canvas')
     c.width = width
     c.height = height
     return c

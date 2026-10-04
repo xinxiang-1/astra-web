@@ -76,7 +76,7 @@ export type PrerenderVideoOptions = {
   /** Return true to abort mid-loop. */
   shouldAbort: () => boolean
   getFrameSource: () => AsciiFrameSource | null
-  convertFrame: (source: AsciiFrameSource) => AsciiConvertResult
+  convertFrame: (source: AsciiFrameSource) => AsciiConvertResult | Promise<AsciiConvertResult>
   renderRaster?: (source: AsciiFrameSource, time: number) => Promise<Blob>
   /** Called once limits pass and the frame count is known. */
   onPlan?: (info: { total: number; fps: number; duration: number }) => void
@@ -161,7 +161,8 @@ export async function prerenderVideoFrames(
       const source = getFrameSource()
       if (!source) continue
 
-      const result = convertFrame(source)
+      const result = await convertFrame(source)
+      if (shouldAbort()) return { ok: false, error: '已取消预渲染', aborted: true }
       if (result.art) {
         cacheBytes +=
           result.art.indices.byteLength +

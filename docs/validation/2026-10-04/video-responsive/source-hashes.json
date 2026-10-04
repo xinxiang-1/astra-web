@@ -1,0 +1,33 @@
+{
+  "algorithm": "SHA-256",
+  "parentCommit": "f2e3c599a20ff0d8ce43ef2edf4ed4b85dbac562",
+  "frozenCommit": "6d140c2eb00fefafcf1be663ed05d30989200dac",
+  "workingTree": {
+    "package.json": "6d53e1e65fd9eb81ba069f0bf08f40bf116690cfd87b960340e6194fa71a445a",
+    "src/lib/art-engine/core.ts": "9418df3ac5a796b4a0e11b664f78681801a14bda708d04d9d97801178f1b3ed3",
+    "src/lib/art-engine/index.ts": "4d7bed8a02606858acbc5a1ea39908ab523a96efa60b6ddb5f020ce8a6cdf421",
+    "src/lib/art-engine/canvas.ts": "1734666a2d339d4433a0dc2ae44e5bbc9b384f1cda7f6c7723a56e24b8898748",
+    "src/lib/art-engine/frame-render-protocol.ts": "4c76b54f82c913fb15875eeaceb46fd3e5fdaf57d1220c0c9ff420a98a7cbcdc",
+    "src/lib/art-engine/frame-render.worker.ts": "a45f5f0b5862772b3321d5898243aadbf7c3d937ea1070d27833ebd2be48db9e",
+    "src/lib/art-engine/frame-render-client.ts": "b4469bce78af77b2b65db1e1c1e04f2a5836e5bc7570e14c08ec4c45b03f6c2c",
+    "src/lib/ascii/playback.ts": "677aa2fb96529db8b8a5601e3af0699818bf645018704d7d066354acf62dc8ee",
+    "src/lib/ascii/prerender.ts": "ebd2a4a63fcb0a5c93f149d71d11e3a4f2c34486b43ac5d09d8acc7648b9ee4c",
+    "src/views/AsciiArtView.vue": "12d4e7e6ec2f2c69b0f8dcbadb734ccfeafe4af04386590f0dd84643a8ce4064",
+    "scripts/video-responsive-contract.mjs": "f2ff2772adffa270d1f3ea1d12c3168a19a1f46d47b1f93de45ca8ebd2e755f4"
+  },
+  "protectedFiles": {
+    "src/views/ArtHomeView.vue": "db2b7e0ffa0d590be0e3e9d99caa8ecaba4716721b5d03b2d6269e46ad4458dd",
+    "src/components/CharacterArtwork.vue": "99da7635979b98f70aa622887bcf775047114529b4130de201cebf40d0ab2858",
+    "src/lib/ascii/studio-preview.ts": "87ef73fd4261872b1a6bc3d66fd2a05498bc73fa047294b4934174ede9af1a07"
+  },
+  "frozenFiles": {
+    "test-results/video-responsive-final-fullscreen-edge-20261004/baseline-core.ts": "ce091baf6d11340ccdda8c21fabe8a7935134964aaf7d4c094fe4432fce414e4",
+    "test-results/video-responsive-final-fullscreen-edge-20261004/baseline-canvas.ts": "a9b2dee173a06f77dfe40c5822543314472d2ee641eae9d36f2153890824c69f"
+  },
+  "evidence": {
+    "edge-report.json": "c151d2c6ad6897f624e112e5f5fc5c156b3efaf5b0083b920fec6c69d79668b9",
+    "chrome-report.json": "f6c1a883745463ec3bc11d09c065110bf85d0bd9fbd5b145f04086ef78e1ff9b",
+    "video-dark.png": "cd38a5c29c53e70604c639970fb4541dc95ecaebfacce38f20c36e30ff5e9f51"
+  },
+  "scope": "Final Edge includes fullscreen teardown. Chrome full run predates final fullscreen teardown and text feedback additions; current working-tree hashes do not reconstruct Chrome per-file hashes."
+}

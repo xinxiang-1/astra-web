@@ -6,6 +6,7 @@ import CharacterArtwork from '@/components/CharacterArtwork.vue'
 import ArtIcon from '@/components/ui/ArtIcon.vue'
 import AstraLogo from '@/components/ui/AstraLogo.vue'
 import ThemeToggle from '@/components/ui/ThemeToggle.vue'
+import RenderFeedback from '@/components/ui/RenderFeedback.vue'
 import ExportSheet from '@/components/ExportSheet.vue'
 import UnsavedChangesDialog from '@/components/UnsavedChangesDialog.vue'
 import { prepareArtSource, type PreparedArtSource } from '@/lib/art-media-source'
@@ -21,6 +22,7 @@ import {
   ART_ENGINE_VERSION,
   createCanvasArtRenderer,
   prepareArtFrame,
+  prepareArtFrameResponsive,
   type ArtFrame,
   type ArtMode,
   type ArtMotion,
@@ -29,6 +31,11 @@ import {
   type ArtPointerSample,
 } from '@/lib/art-engine'
 import { artworkEmbedPage } from '@/lib/art-engine/embed'
+import {
+  createFrameRenderWorker,
+  type FrameRenderWorker,
+} from '@/lib/art-engine/frame-render-client'
+import type { ArtRenderOptions } from '@/lib/art-engine/types'
 import '@/styles/art-editor.css'
 
 import {
@@ -134,6 +141,10 @@ const columnsOut = ref(0)
 const imageAspect = ref(0)
 const converting = ref(false)
 const loadingSource = ref(false)
+const videoBuffering = ref(false)
+const videoRendering = ref(false)
+const videoRenderFallback = ref(false)
+let videoFeedbackTimer: ReturnType<typeof setTimeout> | undefined
 const pending = computed(() => converting.value || loadingSource.value)
 const sourceRevision = ref(0)
 let sourceLoadController: AbortController | null = null
@@ -187,6 +198,10 @@ const artQualityOptions = computed(() => [
 const artFrame = shallowRef<ArtFrame | null>(null)
 const reducedArtMotion = ref(matchMedia('(prefers-reduced-motion: reduce)').matches)
 const artRenderers = new Map<HTMLCanvasElement, ReturnType<typeof createCanvasArtRenderer>>()
+const videoRenderers = new Map<HTMLCanvasElement, FrameRenderWorker>()
+const failedVideoRenderers = new Set<HTMLCanvasElement>()
+const videoRenderBudget = () =>
+  Math.max(0, ...[...videoRenderers.values()].map((r) => r.renderMs * 1.25))
 let artAnimationRaf = 0,
   artLastTick = 0,
   artElapsed = 0,
@@ -314,6 +329,7 @@ const exportAspect = ref<number>(EXPORT_CHAR_ASPECT)
 let bitmap: ImageBitmap | null = null
 let copyTimer = 0
 let paintRaf = 0
+let lastPaintMs = 0
 let videoLoop: FrameLoopHandle | null = null
 let frameBusy = false
 let convertQueued: { fitZoom?: boolean } | false = false
@@ -671,6 +687,13 @@ function destroyCalibratedRenderers() {
   artAnimationRaf = 0
   for (const renderer of artRenderers.values()) renderer.destroy()
   artRenderers.clear()
+  for (const renderer of videoRenderers.values()) renderer.dispose()
+  videoRenderers.clear()
+  failedVideoRenderers.clear()
+  clearTimeout(videoFeedbackTimer)
+  videoFeedbackTimer = undefined
+  videoRendering.value = false
+  videoRenderFallback.value = false
 }
 
 function onArtVisibilityChange() {
@@ -678,7 +701,10 @@ function onArtVisibilityChange() {
   if (document.hidden && artAnimationRaf) {
     cancelAnimationFrame(artAnimationRaf)
     artAnimationRaf = 0
-  } else queueCalibratedAnimation()
+  } else {
+    schedulePaint()
+    queueCalibratedAnimation()
+  }
 }
 
 function queueCalibratedAnimation() {
@@ -697,14 +723,19 @@ function queueCalibratedAnimation() {
     (artMotion.value === 'none' || artPaused.value || artMotionStrength.value === 0) &&
     artPointer.strength < 0.002 &&
     artPointer.target === 0 &&
-    ![...artRenderers.values()].some(renderer => renderer.interactionActive)
+    ![...artRenderers.values(), ...videoRenderers.values()].some(
+      (renderer) => renderer.interactionActive,
+    )
   ) {
     artLastTick = 0
     return
   }
   artAnimationRaf = requestAnimationFrame((now) => {
     artAnimationRaf = 0
-    if (artLastTick && now - artLastTick < 1000 / 30) {
+    if (
+      artLastTick &&
+      now - artLastTick < Math.max(1000 / 30, lastPaintMs * 2, videoRenderBudget())
+    ) {
       queueCalibratedAnimation()
       return
     }
@@ -715,7 +746,7 @@ function queueCalibratedAnimation() {
     artPointer.strength +=
       (artPointer.target - artPointer.strength) * (1 - Math.exp(-Math.max(delta, 1 / 60) / 0.14))
     if (!artPointer.target && artPointer.strength < 0.002) artPointer.strength = 0
-    paintPreview()
+    schedulePaint()
   })
 }
 
@@ -743,7 +774,8 @@ function onCalibratedPointer(event: PointerEvent) {
   for (const sample of samples.length ? samples : [event]) {
     const sx = (sample.clientX - rect.left) / Math.max(1, rect.width)
     const sy = (sample.clientY - rect.top) / Math.max(1, rect.height)
-    if (sx >= 0 && sx <= 1 && sy >= 0 && sy <= 1) artPointerSamples.push({ x: sx, y: sy, time: sample.timeStamp, active: true })
+    if (sx >= 0 && sx <= 1 && sy >= 0 && sy <= 1)
+      artPointerSamples.push({ x: sx, y: sy, time: sample.timeStamp, active: true })
   }
   if (artPointerSamples.length > 128) artPointerSamples.splice(0, artPointerSamples.length - 128)
   queueCalibratedAnimation()
@@ -751,7 +783,12 @@ function onCalibratedPointer(event: PointerEvent) {
 
 function onCalibratedPointerLeave() {
   artPointer.target = 0
-  artPointerSamples.push({ x: artPointer.x, y: artPointer.y, time: performance.now(), active: false })
+  artPointerSamples.push({
+    x: artPointer.x,
+    y: artPointer.y,
+    time: performance.now(),
+    active: false,
+  })
   if (artPointerSamples.length > 128) artPointerSamples.shift()
   queueCalibratedAnimation()
 }
@@ -807,6 +844,7 @@ function clearVideoElement() {
     video.load()
   }
   videoDuration.value = 0
+  videoBuffering.value = false
   videoCurrentTime.value = 0
   clipStart.value = 0
   clipEnd.value = 0
@@ -1180,7 +1218,25 @@ async function runConvert(options?: { fitZoom?: boolean }) {
     }
     imageAspect.value = latest.width / Math.max(1, latest.height)
 
-    const result = convertFrame(latest, options)
+    const result =
+      editorEngine.value === 'calibrated'
+        ? await prepareArtFrameResponsive(
+            latest.source,
+            latest.width,
+            latest.height,
+            calibratedSettings(targetCols),
+            {
+              shouldAbort: () => viewDisposed || capturedRevision !== sourceRevision.value,
+            },
+          ).then((art) => ({
+            art,
+            text: art.text,
+            colors: art.colors,
+            columns: art.columns,
+            rows: art.rows,
+          }))
+        : convertFrame(latest, options)
+    if (viewDisposed || capturedRevision !== sourceRevision.value) return
     artFrame.value = result.art ?? null
     ascii.value = result.text
     asciiColors.value = result.colors ?? null
@@ -1194,13 +1250,14 @@ async function runConvert(options?: { fitZoom?: boolean }) {
     if (options?.fitZoom || autoZoom.value) await nextTick()
     schedulePaint()
   } catch (e) {
+    if (e instanceof DOMException && e.name === 'AbortError') return
     if (capturedRevision !== sourceRevision.value) return
     error.value = e instanceof Error ? e.message : '转换失败'
     clearResult()
   } finally {
     frameBusy = false
     converting.value = false
-    if (convertQueued) {
+    if (convertQueued && !viewDisposed) {
       const queued = convertQueued
       convertQueued = false
       void runConvert(queued)
@@ -1236,12 +1293,23 @@ function onSourceVideoPlay() {
   videoPlaying.value = true
 }
 
+function onVideoBuffering() {
+  if (!downloading.value && !videoPrerendering.value) videoBuffering.value = true
+}
+
+function onVideoReady() {
+  videoBuffering.value = false
+}
+
 function onSourceVideoPause() {
   if (videoPlaybackMode.value === 'prerender' || videoPrerendering.value) return
   videoPlaying.value = false
+  videoBuffering.value = false
+  stopVideoLoop()
 }
 
 function onVideoSeeked() {
+  onVideoReady()
   if (!hasVideo.value) return
   if (downloading.value || videoPrerendering.value) return
   if (videoPlaybackMode.value === 'prerender' && videoPlaying.value) return
@@ -1289,9 +1357,18 @@ async function runPrerenderVideoFrames(): Promise<boolean> {
       endTime: clipEnd.value,
       shouldAbort: () => prerenderAbort || capturedCacheKey !== currentPrerenderCacheKey(),
       getFrameSource,
-      convertFrame: (source) => {
+      convertFrame: async (source) => {
         if (!calibrated) return convertFrame(source)
-        const art = prepareArtFrame(source.source, source.width, source.height, capturedSettings)
+        const art = await prepareArtFrameResponsive(
+          source.source,
+          source.width,
+          source.height,
+          capturedSettings,
+          {
+            shouldAbort: () =>
+              prerenderAbort || viewDisposed || capturedCacheKey !== currentPrerenderCacheKey(),
+          },
+        )
         return { art, text: art.text, colors: art.colors, columns: art.columns, rows: art.rows }
       },
       onPlan: ({ total }) => {
@@ -1360,6 +1437,16 @@ function startVideoLoop() {
     fps: videoFps.value,
     getVideo: () => sourceVideo.value,
     isActive: () => mediaKind.value === 'video',
+    canProcess: () =>
+      !frameBusy &&
+      !downloading.value &&
+      !videoPrerendering.value &&
+      ![...videoRenderers.values()].some((r) => r.pending) &&
+      (artStageVisible || fullscreen.value),
+    getMinIntervalMs: () => Math.max(lastPaintMs * 2, videoRenderBudget()),
+    onError: () => {
+      error.value = '视频预览暂时无法转换，请暂停后重试'
+    },
     getRange: () =>
       usePrerenderPath.value && clipEnd.value > clipStart.value
         ? { start: clipStart.value, end: clipEnd.value }
@@ -1371,7 +1458,7 @@ function startVideoLoop() {
     onFrame: (currentTime) => {
       videoPlaying.value = true
       videoCurrentTime.value = currentTime
-      void runConvert()
+      return runConvert()
     },
   })
 }
@@ -1386,7 +1473,10 @@ function startPrerenderLoop() {
   videoLoop = createPrerenderFrameLoop({
     fps: videoFps.value,
     frameCount: prerenderFrames.length,
-    shouldTick: () => videoPlaying.value && videoPlaybackMode.value === 'prerender',
+    shouldTick: () =>
+      videoPlaying.value &&
+      videoPlaybackMode.value === 'prerender' &&
+      (artStageVisible || fullscreen.value),
     getIndex: () => prerenderPlayIndex,
     setIndex: (index) => {
       prerenderPlayIndex = index
@@ -1577,8 +1667,29 @@ async function loadFile(file: File | undefined) {
     controller.signal.throwIfAborted()
     if (generation !== sourceLoadGeneration) return false
     // The first frame must be usable before releasing any part of the previous work.
-    const result = convertFrame(candidate.frame, { forExport: true, sourceKind: candidate.kind })
+    const result =
+      editorEngine.value === 'calibrated'
+        ? await prepareArtFrameResponsive(
+            candidate.frame.source,
+            candidate.frame.width,
+            candidate.frame.height,
+            calibratedSettings(columns.value, candidate.kind),
+            {
+              shouldAbort: () =>
+                controller.signal.aborted || viewDisposed || generation !== sourceLoadGeneration,
+            },
+          ).then((art) => ({
+            art,
+            text: art.text,
+            colors: art.colors,
+            columns: art.columns,
+            rows: art.rows,
+          }))
+        : convertFrame(candidate.frame, { forExport: true, sourceKind: candidate.kind })
+    controller.signal.throwIfAborted()
+    if (viewDisposed || generation !== sourceLoadGeneration) return false
     destroyArtStudio()
+    destroyCalibratedRenderers()
     clearVideoElement()
     clearImageBitmap()
     revokePreview()
@@ -1795,7 +1906,7 @@ async function downloadVideo() {
   const capturedMotion = artMotion.value
   const capturedEffects = {
     effectProfile: artEffectProfile.value,
-    hover: artHover.value === 'none' ? 'light' as const : artHover.value,
+    hover: artHover.value === 'none' ? ('light' as const) : artHover.value,
     hoverStrength: hoverStrength.value,
     hoverRadius: hoverRadius.value,
     motionSpeed: artMotionSpeed.value,
@@ -2176,15 +2287,13 @@ async function syncArtStudio() {
   }
 }
 
-function paintTo(canvas: HTMLCanvasElement | null, pointerSamples: readonly ArtPointerSample[] = []) {
+function paintTo(
+  canvas: HTMLCanvasElement | null,
+  pointerSamples: readonly ArtPointerSample[] = [],
+) {
   if (!canvas || !ascii.value) return
   if (editorEngine.value === 'calibrated' && artFrame.value) {
     const frame = artFrame.value
-    let renderer = artRenderers.get(canvas)
-    if (!renderer) {
-      renderer = createCanvasArtRenderer(canvas)
-      artRenderers.set(canvas, renderer)
-    }
     let stage = refreshPreviewStageBox()
     if (canvas === fullscreenCanvas.value && fullscreenScroll.value) {
       const maxWidth = Math.max(64, fullscreenScroll.value.clientWidth - 32)
@@ -2202,7 +2311,7 @@ function paintTo(canvas: HTMLCanvasElement | null, pointerSamples: readonly ArtP
       strength:
         reducedArtMotion.value || downloading.value ? 0 : artPointer.strength * hoverStrength.value,
     }
-    renderer.render(frame, {
+    const renderOptions: ArtRenderOptions = {
       longEdge: Math.max(cssWidth, cssHeight) * Math.min(2, devicePixelRatio || 1),
       motion: reducedArtMotion.value ? 'none' : artMotion.value,
       time: artElapsed,
@@ -2216,30 +2325,70 @@ function paintTo(canvas: HTMLCanvasElement | null, pointerSamples: readonly ArtP
       pointerSamples,
       hover: artHover.value === 'none' ? 'light' : artHover.value,
       pointer: artHover.value === 'none' ? undefined : pointer,
-    })
+    }
     canvas.style.width = `${cssWidth}px`
     canvas.style.height = `${cssHeight}px`
-    canvas.dataset.engine = 'calibrated'
-    canvas.dataset.columns = String(frame.columns)
-    canvas.dataset.mode = frame.settings.mode
-    canvas.dataset.quality = frame.settings.softwareRaster
-      ? 'faithful'
-      : frame.settings.rasterQuality === 'high'
-        ? 'detailed'
-        : frame.settings.rasterQuality === 'supersampled'
-          ? 'smooth'
-          : 'classic'
-    canvas.dataset.time = String(artElapsed)
-    canvas.dataset.motionStyle = artEffectProfile.value === 'expressive' ? artMotionStyle.value : 'studio'
-    canvas.dataset.interactionTime = String(artInteractionElapsed)
-    canvas.dataset.pointerStrength = String(artPointer.strength)
-    canvas.dataset.interactionActive = String(renderer.interactionActive)
-    canvas.dataset.hover = artHover.value
-    canvas.dataset.paused = String(artPaused.value)
-    canvas.dataset.motion = reducedArtMotion.value ? 'none' : artMotion.value
-    canvas.dataset.hoverStrength = String(
-      reducedArtMotion.value || downloading.value ? 0 : hoverStrength.value,
-    )
+    if (hasVideo.value && !failedVideoRenderers.has(canvas)) {
+      let worker = videoRenderers.get(canvas)
+      if (!worker) {
+        const revision = sourceRevision.value
+        worker =
+          createFrameRenderWorker(
+            (result, renderedFrame) => {
+              clearTimeout(videoFeedbackTimer)
+              videoFeedbackTimer = undefined
+              videoRendering.value = false
+              if (
+                viewDisposed ||
+                document.hidden ||
+                revision !== sourceRevision.value ||
+                JSON.stringify(renderedFrame.settings) !== JSON.stringify(artFrame.value?.settings)
+              )
+                return
+              const ctx = canvas.getContext('2d', { willReadFrequently: false })
+              if (!ctx) return
+              if (canvas.width !== result.bitmap.width) canvas.width = result.bitmap.width
+              if (canvas.height !== result.bitmap.height) canvas.height = result.bitmap.height
+              ctx.globalAlpha = 1
+              ctx.globalCompositeOperation = 'copy'
+              ctx.drawImage(result.bitmap, 0, 0)
+              ctx.globalCompositeOperation = 'source-over'
+              markArtCanvas(canvas, renderedFrame, result.interactionActive)
+              canvas.dataset.renderBackend = 'worker'
+              queueCalibratedAnimation()
+            },
+            () => {
+              videoRenderers.delete(canvas)
+              failedVideoRenderers.add(canvas)
+              videoRendering.value = false
+              videoRenderFallback.value = true
+              schedulePaint()
+            },
+          ) ?? undefined
+        if (worker) videoRenderers.set(canvas, worker)
+        else {
+          failedVideoRenderers.add(canvas)
+          videoRenderFallback.value = true
+        }
+      }
+      if (worker) {
+        worker.render(frame, renderOptions)
+        if (!videoFeedbackTimer)
+          videoFeedbackTimer = setTimeout(() => {
+            videoFeedbackTimer = undefined
+            videoRendering.value = [...videoRenderers.values()].some((r) => r.pending)
+          }, 150)
+        return
+      }
+    }
+    let renderer = artRenderers.get(canvas)
+    if (!renderer) {
+      renderer = createCanvasArtRenderer(canvas)
+      artRenderers.set(canvas, renderer)
+    }
+    renderer.render(frame, renderOptions)
+    markArtCanvas(canvas, frame, renderer.interactionActive)
+    canvas.dataset.renderBackend = 'canvas'
     queueCalibratedAnimation()
     return
   }
@@ -2264,14 +2413,41 @@ function paintTo(canvas: HTMLCanvasElement | null, pointerSamples: readonly ArtP
   }
 }
 
+function markArtCanvas(canvas: HTMLCanvasElement, frame: ArtFrame, interactionActive: boolean) {
+  canvas.dataset.engine = 'calibrated'
+  canvas.dataset.columns = String(frame.columns)
+  canvas.dataset.mode = frame.settings.mode
+  canvas.dataset.quality = frame.settings.softwareRaster
+    ? 'faithful'
+    : frame.settings.rasterQuality === 'high'
+      ? 'detailed'
+      : frame.settings.rasterQuality === 'supersampled'
+        ? 'smooth'
+        : 'classic'
+  canvas.dataset.time = String(artElapsed)
+  canvas.dataset.motionStyle =
+    artEffectProfile.value === 'expressive' ? artMotionStyle.value : 'studio'
+  canvas.dataset.interactionTime = String(artInteractionElapsed)
+  canvas.dataset.pointerStrength = String(artPointer.strength)
+  canvas.dataset.interactionActive = String(interactionActive)
+  canvas.dataset.hover = artHover.value
+  canvas.dataset.paused = String(artPaused.value)
+  canvas.dataset.motion = reducedArtMotion.value ? 'none' : artMotion.value
+  canvas.dataset.hoverStrength = String(
+    reducedArtMotion.value || downloading.value ? 0 : hoverStrength.value,
+  )
+}
+
 function paintPreview() {
+  const start = performance.now()
   const samples = artPointerSamples.splice(0)
   paintTo(previewCanvas.value, samples)
   if (fullscreen.value) paintTo(fullscreenCanvas.value, samples)
+  lastPaintMs = performance.now() - start
 }
 
 function schedulePaint() {
-  if (paintRaf) cancelAnimationFrame(paintRaf)
+  if (paintRaf || viewDisposed || document.hidden) return
   paintRaf = requestAnimationFrame(() => {
     paintRaf = 0
     paintPreview()
@@ -2291,6 +2467,14 @@ async function openFullscreen() {
 }
 
 function closeFullscreen() {
+  const canvas = fullscreenCanvas.value
+  if (canvas) {
+    videoRenderers.get(canvas)?.dispose()
+    videoRenderers.delete(canvas)
+    artRenderers.get(canvas)?.destroy()
+    artRenderers.delete(canvas)
+    failedVideoRenderers.delete(canvas)
+  }
   fullscreen.value = false
 }
 
@@ -2942,6 +3126,11 @@ onBeforeUnmount(() => {
               @seeked="activeVideoSlot === slot && onVideoSeeked()"
               @play="activeVideoSlot === slot && onSourceVideoPlay()"
               @pause="activeVideoSlot === slot && onSourceVideoPause()"
+              @waiting="activeVideoSlot === slot && onVideoBuffering()"
+              @stalled="activeVideoSlot === slot && onVideoBuffering()"
+              @seeking="activeVideoSlot === slot && onVideoBuffering()"
+              @playing="activeVideoSlot === slot && onVideoReady()"
+              @canplay="activeVideoSlot === slot && onVideoReady()"
             />
             <img v-if="previewUrl && !hasVideo" class="thumb" :src="previewUrl" alt="上传预览" />
             <div class="drop-copy">
@@ -3450,7 +3639,9 @@ onBeforeUnmount(() => {
                 {{ item.label }}
               </button>
             </div>
-            <p v-if="artHover === 'rift'" class="hint">快速划过，字符随流体拉开再回弹。撕裂效果正在打磨，复杂原色作品可能响应较慢。</p>
+            <p v-if="artHover === 'rift'" class="hint">
+              快速划过，字符随流体拉开再回弹。撕裂效果正在打磨，复杂原色作品可能响应较慢。
+            </p>
           </div>
           <template v-if="artHover !== 'none'">
             <div class="field">
@@ -3497,13 +3688,31 @@ onBeforeUnmount(() => {
                 {{ item.label }}
               </button>
             </div>
-            <p v-if="artEffectProfile === 'expressive' && artMotionStyle === 'studio'" class="hint">{{ artMotionDescriptions[artMotion] }}</p>
+            <p v-if="artEffectProfile === 'expressive' && artMotionStyle === 'studio'" class="hint">
+              {{ artMotionDescriptions[artMotion] }}
+            </p>
             <template v-if="artEffectProfile === 'expressive'">
               <div class="seg" role="group" aria-label="动效风格">
-                <button type="button" :class="['seg-item', { on: artMotionStyle === 'cinematic' }]" :aria-pressed="artMotionStyle === 'cinematic'" @click="selectArtMotionStyle('cinematic')">电影感</button>
-                <button type="button" :class="['seg-item', { on: artMotionStyle === 'studio' }]" :aria-pressed="artMotionStyle === 'studio'" @click="selectArtMotionStyle('studio')">Studio</button>
+                <button
+                  type="button"
+                  :class="['seg-item', { on: artMotionStyle === 'cinematic' }]"
+                  :aria-pressed="artMotionStyle === 'cinematic'"
+                  @click="selectArtMotionStyle('cinematic')"
+                >
+                  电影感
+                </button>
+                <button
+                  type="button"
+                  :class="['seg-item', { on: artMotionStyle === 'studio' }]"
+                  :aria-pressed="artMotionStyle === 'studio'"
+                  @click="selectArtMotionStyle('studio')"
+                >
+                  Studio
+                </button>
               </div>
-              <p v-if="artMotionStyle === 'cinematic'" class="hint">{{ cinematicMotionDescriptions[artMotion] }}</p>
+              <p v-if="artMotionStyle === 'cinematic'" class="hint">
+                {{ cinematicMotionDescriptions[artMotion] }}
+              </p>
             </template>
           </div>
           <template v-if="artMotion !== 'none' && artEffectProfile === 'expressive'">
@@ -3820,6 +4029,40 @@ onBeforeUnmount(() => {
           </div>
         </header>
 
+        <RenderFeedback
+          v-if="
+            loadingSource ||
+            converting ||
+            videoPrerendering ||
+            videoRendering ||
+            (hasVideo && videoBuffering)
+          "
+          :title="
+            loadingSource
+              ? '正在读取素材'
+              : videoPrerendering
+                ? '正在解析高清片段'
+                : videoRendering
+                  ? '正在准备视频画面'
+                  : videoBuffering
+                    ? '正在等待视频画面'
+                    : '正在更新字符画'
+          "
+          :detail="
+            videoBuffering
+              ? '画面准备好后继续播放，可以随时暂停或更换素材。'
+              : '当前画面会保留，可以继续操作。'
+          "
+          :progress="
+            videoPrerendering && videoPrerenderTotal
+              ? videoPrerenderDone / videoPrerenderTotal
+              : undefined
+          "
+        />
+        <p v-if="hasVideo && videoRenderFallback" class="status" role="status">
+          已切换到兼容预览；如播放较慢，可以降低清晰度或先解析短片段。
+        </p>
+
         <div
           v-if="hasMedia || hasResult"
           ref="previewScroll"
@@ -3912,6 +4155,9 @@ onBeforeUnmount(() => {
       >
         <div class="fs-bar">
           <p class="fs-title">全屏预览 · {{ zoom }}% · Ctrl+滚轮</p>
+          <span v-if="videoRendering || converting" class="status" role="status"
+            >正在更新画面…</span
+          >
           <div class="fs-tools">
             <button type="button" class="btn ghost" @click="zoomOut">缩小</button>
             <button type="button" class="btn ghost" @click="zoomIn">放大</button>

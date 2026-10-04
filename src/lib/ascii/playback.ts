@@ -17,7 +17,12 @@ export function createLiveFrameLoop(options: {
   getVideo: () => HTMLVideoElement | null
   /** Extra gate (e.g. mediaKind === 'video'). */
   isActive?: () => boolean
-  onFrame: (currentTime: number) => void
+  onFrame: (currentTime: number) => void | Promise<void>
+  /** Skip obsolete decoded frames while conversion/export or the stage is unavailable. */
+  canProcess?: () => boolean
+  /** Additional measured render budget; never reduces sampling or output quality. */
+  getMinIntervalMs?: () => number
+  onError?: (error: unknown) => void
   /** Fired when the video reports paused mid-loop. */
   onPaused?: () => void
   /**
@@ -27,21 +32,48 @@ export function createLiveFrameLoop(options: {
   getRange?: () => { start: number; end: number } | null
 }): FrameLoopHandle {
   let rafId = 0
-  let lastFrameMs = 0
+  let videoFrameId = 0
+  let callbackVideo: HTMLVideoElement | null = null
+  let lastFrameMs = -Infinity
+  let lastMediaTime = -Infinity
+  let busy = false
+  let stopped = false
+  let conversionMs = 0
+  let seekVideo: HTMLVideoElement | null = null
   let wrapping = false
   const frameMs = 1000 / clampFps(options.fps)
+  const onSeeked = () => {
+    wrapping = false
+    seekVideo = null
+  }
 
-  const tick = (now: number) => {
-    rafId = requestAnimationFrame(tick)
+  const schedule = () => {
+    if (stopped) return
     const video = options.getVideo()
-    if (!video || (options.isActive && !options.isActive())) return
+    if (video && typeof video.requestVideoFrameCallback === 'function') {
+      callbackVideo = video
+      videoFrameId = video.requestVideoFrameCallback((now, metadata) => {
+        videoFrameId = 0
+        tick(now, metadata.mediaTime)
+        schedule()
+      })
+    } else {
+      rafId = requestAnimationFrame((now) => {
+        rafId = 0
+        tick(now)
+        schedule()
+      })
+    }
+  }
+
+  const tick = (now: number, decodedTime?: number) => {
+    const video = options.getVideo()
+    if (stopped || document.hidden || !video || (options.isActive && !options.isActive())) return
+    if (video.seeking || video.readyState < 2) return
 
     const range = options.getRange?.() ?? null
-    const pastEnd =
-      range != null &&
-      (video.ended || video.currentTime >= range.end - 0.04)
-    const beforeStart =
-      range != null && !video.ended && video.currentTime < range.start - 0.02
+    const pastEnd = range != null && (video.ended || video.currentTime >= range.end - 0.04)
+    const beforeStart = range != null && !video.ended && video.currentTime < range.start - 0.02
 
     if (range && video.currentTime >= range.start && !pastEnd && !beforeStart) {
       wrapping = false
@@ -50,15 +82,12 @@ export function createLiveFrameLoop(options: {
     if (range && (pastEnd || beforeStart)) {
       if (!wrapping) {
         wrapping = true
-        video.addEventListener(
-          'seeked',
-          () => {
-            wrapping = false
-          },
-          { once: true },
-        )
+        seekVideo?.removeEventListener('seeked', onSeeked)
+        seekVideo = video
+        video.addEventListener('seeked', onSeeked, { once: true })
+        lastMediaTime = -Infinity
         video.currentTime = range.start
-        if (video.paused || video.ended) void video.play()
+        if (video.paused || video.ended) void video.play().catch(options.onError ?? (() => {}))
       }
       return
     }
@@ -67,20 +96,42 @@ export function createLiveFrameLoop(options: {
       options.onPaused?.()
       return
     }
-    if (now - lastFrameMs < frameMs) return
+    if (busy || (options.canProcess && !options.canProcess())) return
+    const mediaTime = decodedTime ?? video.currentTime
+    if (Math.abs(mediaTime - lastMediaTime) < 0.0001) return
+    const budget = Math.max(frameMs, conversionMs * 1.25, options.getMinIntervalMs?.() ?? 0)
+    if (now - lastFrameMs < budget) return
     lastFrameMs = now
-    options.onFrame(video.currentTime)
+    lastMediaTime = mediaTime
+    const start = performance.now()
+    busy = true
+    void Promise.resolve()
+      .then(() => {
+        if (!stopped) return options.onFrame(mediaTime)
+      })
+      .catch((error) => {
+        if (!stopped) options.onError?.(error)
+      })
+      .finally(() => {
+        conversionMs = performance.now() - start
+        busy = false
+      })
   }
 
-  rafId = requestAnimationFrame(tick)
+  schedule()
 
   return {
     stop() {
+      stopped = true
+      if (videoFrameId) callbackVideo?.cancelVideoFrameCallback(videoFrameId)
+      videoFrameId = 0
+      seekVideo?.removeEventListener('seeked', onSeeked)
+      seekVideo = null
       if (rafId) {
         cancelAnimationFrame(rafId)
         rafId = 0
       }
-      lastFrameMs = 0
+      lastFrameMs = -Infinity
     },
   }
 }
@@ -113,7 +164,7 @@ export function createPrerenderFrameLoop(options: {
 
   const tick = (now: number) => {
     rafId = requestAnimationFrame(tick)
-    if (!options.shouldTick()) return
+    if (document.hidden || !options.shouldTick()) return
     if (now - lastFrameMs < frameMs) return
     lastFrameMs = now
     const index = options.getIndex()
