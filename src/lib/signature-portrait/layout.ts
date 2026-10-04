@@ -8,7 +8,7 @@ import { measureStampTraits } from './extract'
 import { autoInvertDensity } from './layout-compute'
 import { createTintedStampCache } from './raster-cache'
 import { prepareSignatureInk, type SignatureInkStyle } from './ink-style'
-import { createVectorInkPainter } from './vector-ink'
+import { createVectorInkPainterSteps } from './vector-ink'
 
 export type SignatureLayoutOptions = {
   inkStyle?: SignatureInkStyle
@@ -85,7 +85,11 @@ function yieldFrame(): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, 0))
 }
 
-function prepareStamp(stamp: SignatureStamp, maxLong = 512, inkStyle: SignatureInkStyle = 'ink'): StampMetrics {
+function prepareStamp(
+  stamp: SignatureStamp,
+  maxLong = 512,
+  inkStyle: SignatureInkStyle = 'ink',
+): StampMetrics {
   const src = prepareSignatureInk(stamp.canvas, inkStyle)
   const long = Math.max(src.width, src.height)
   let canvas = src
@@ -157,7 +161,12 @@ export async function renderSignaturePortrait(
     options.onProgress?.(stage, clamp01(ratio))
   }
 
-  if (![portraitWidth, portraitHeight, options.maxSide ?? 4096].every(value => Number.isFinite(value) && value > 0)) throw new Error('布局尺寸无效')
+  if (
+    ![portraitWidth, portraitHeight, options.maxSide ?? 4096].every(
+      (value) => Number.isFinite(value) && value > 0,
+    )
+  )
+    throw new Error('布局尺寸无效')
   const maxSide = Math.min(8192, Math.max(128, options.maxSide ?? 4096))
   const layoutMethod = options.layoutMethod ?? 'woven'
   const densityMul = Math.min(50, Math.max(0.7, options.density ?? 30))
@@ -170,13 +179,8 @@ export async function renderSignaturePortrait(
   const background = options.background ?? '#f5f0e8'
   const gamma = options.gamma ?? 1.15
   const edgeOutline = options.edgeOutline ?? false
-  const edgeBoost = edgeOutline
-    ? Math.min(2.2, Math.max(0, options.edgeBoost ?? 0.95))
-    : 0
-  const edgeThreshold = Math.min(
-    0.95,
-    Math.max(0.08, options.edgeThreshold ?? 0.32),
-  )
+  const edgeBoost = edgeOutline ? Math.min(2.2, Math.max(0, options.edgeBoost ?? 0.95)) : 0
+  const edgeThreshold = Math.min(0.95, Math.max(0.08, options.edgeThreshold ?? 0.32))
   const edgeColorMode = options.edgeColorMode ?? 'auto'
   const edgeColor = options.edgeColor ?? { r: 28, g: 72, b: 96 }
 
@@ -186,8 +190,7 @@ export async function renderSignaturePortrait(
   const outH = Math.max(1, Math.round(portraitHeight * scaleFit))
   const shortSide = Math.min(outW, outH)
   const longSide = Math.max(outW, outH)
-  const lloydIters =
-    options.lloydIters ?? (longSide >= 6000 ? 9 : longSide >= 3500 ? 11 : 14)
+  const lloydIters = options.lloydIters ?? (longSide >= 6000 ? 9 : longSide >= 3500 ? 11 : 14)
 
   /**
    * 关键：若字号只按 shortSide 百分比，2K/8K 在相同窗口里纹理会几乎一样。
@@ -196,10 +199,7 @@ export async function renderSignaturePortrait(
    */
   const refSide = 2048
   const fineScale = Math.pow(refSide / Math.max(refSide, shortSide), 0.7)
-  const sizeMin = Math.max(
-    12,
-    shortSide * Math.min(minSizeRatio, maxSizeRatio) * fineScale,
-  )
+  const sizeMin = Math.max(12, shortSide * Math.min(minSizeRatio, maxSizeRatio) * fineScale)
   const sizeMax = Math.max(
     sizeMin + 6,
     shortSide * Math.max(minSizeRatio, maxSizeRatio) * fineScale,
@@ -215,13 +215,15 @@ export async function renderSignaturePortrait(
   fctx.drawImage(portrait, 0, 0, full.width, full.height)
   const fullPixels = fctx.getImageData(0, 0, full.width, full.height).data
 
-  const invertDensity = options.invertDensity ?? (layoutMethod === 'woven' ? false : autoInvertDensity(fullPixels, full.width, full.height))
+  const invertDensity =
+    options.invertDensity ??
+    (layoutMethod === 'woven' ? false : autoInvertDensity(fullPixels, full.width, full.height))
 
   // 分析分辨率随成图走
-  const analysisMax = layoutMethod === 'woven' ? Math.min(1024, longSide) : Math.min(
-    2800,
-    Math.max(800, Math.round(longSide * 0.36)),
-  )
+  const analysisMax =
+    layoutMethod === 'woven'
+      ? Math.min(1024, longSide)
+      : Math.min(2800, Math.max(800, Math.round(longSide * 0.36)))
   const aScale = Math.min(1, analysisMax / longSide)
   const aW = Math.max(1, Math.round(outW * aScale))
   const aH = Math.max(1, Math.round(outH * aScale))
@@ -235,7 +237,16 @@ export async function renderSignaturePortrait(
   await yieldFrame()
 
   const stampSrcLong = Math.min(1200, Math.max(480, Math.round(sizeMax * 4)))
-  const metrics = stamps.map((s) => prepareStamp(s, stampSrcLong, options.inkStyle))
+  const metrics: StampMetrics[] = []
+  let prepareSliceStart = performance.now()
+  for (const stamp of stamps) {
+    if (signal?.cancelled) throw new Error('已取消')
+    metrics.push(prepareStamp(stamp, stampSrcLong, options.inkStyle))
+    if (performance.now() - prepareSliceStart >= 8) {
+      await yieldFrame()
+      prepareSliceStart = performance.now()
+    }
+  }
   const stampMetrics = metrics.map((m) => ({
     inkRatio: m.inkRatio,
     width: m.width,
@@ -343,7 +354,7 @@ export async function renderSignaturePortrait(
  * 按排版用印章「源图」重绘到指定分辨率。
  * 放大预览时调用，避免把已栅格化的小字再拉伸变糊。
  */
-export function paintPlacements(
+function* paintPlacementSteps(
   placements: Placement[],
   stamps: SignatureStamp[],
   outW: number,
@@ -361,19 +372,25 @@ export function paintPlacements(
     onProgress?: (ratio: number) => void
     signal?: { cancelled?: boolean }
   } = {},
-): HTMLCanvasElement {
+): Generator<void, HTMLCanvasElement> {
   const background = options.background ?? '#f5f0e8'
   const colorize = options.colorize ?? true
   const coverFill = options.coverFill ?? false
   const underlay = options.underlay ?? 0
-  const vectorPainter = options.inkStyle === 'cutout' ? createVectorInkPainter(stamps) : null
-  const metrics = stamps.map((s) =>
-    prepareStamp(
-      s,
-      options.stampMaxLong ?? Math.max(640, Math.round(Math.max(outW, outH) * 0.35)),
-      options.inkStyle,
-    ),
-  )
+  const vectorPainter =
+    options.inkStyle === 'cutout' ? yield* createVectorInkPainterSteps(stamps) : null
+  const metrics: StampMetrics[] = []
+  for (const stamp of stamps) {
+    if (options.signal?.cancelled) throw new Error('已取消')
+    metrics.push(
+      prepareStamp(
+        stamp,
+        options.stampMaxLong ?? Math.max(640, Math.round(Math.max(outW, outH) * 0.35)),
+        options.inkStyle,
+      ),
+    )
+    yield
+  }
 
   const canvas = makeCanvas(outW, outH)
   const ctx = canvas.getContext('2d')
@@ -410,6 +427,7 @@ export function paintPlacements(
             p.targetSize / Math.max(metric.width, metric.height),
           )
         vectorPainter(ctx, p, colorize)
+        yield
         continue
       }
       const glyph = tintCache.get(
@@ -436,6 +454,7 @@ export function paintPlacements(
       ctx.globalCompositeOperation = p.blend === 'soft' ? 'source-over' : 'multiply'
       ctx.drawImage(glyph, -glyph.width / 2, -glyph.height / 2)
       ctx.restore()
+      yield
     }
     ctx.globalCompositeOperation = 'source-over'
     ctx.globalAlpha = 1
@@ -443,6 +462,65 @@ export function paintPlacements(
     return canvas
   } finally {
     tintCache.clear()
+  }
+}
+
+export function paintPlacements(
+  placements: Placement[],
+  stamps: SignatureStamp[],
+  outW: number,
+  outH: number,
+  options: {
+    inkStyle?: SignatureInkStyle
+    background?: string
+    colorize?: boolean
+    /** 印章下垫软色块，补稀疏笔迹空洞 */
+    coverFill?: boolean
+    portrait?: CanvasImageSource | null
+    underlay?: number
+    /** 印章源最长边，放大预览用更大以保证清晰 */
+    stampMaxLong?: number
+    onProgress?: (ratio: number) => void
+    signal?: { cancelled?: boolean }
+  } = {},
+): HTMLCanvasElement {
+  const steps = paintPlacementSteps(placements, stamps, outW, outH, options)
+  let next = steps.next()
+  while (!next.done) next = steps.next()
+  return next.value
+}
+
+/** Same drawing order and pixels as the synchronous painter; yields during preparation and ink drawing. */
+export function paintPlacementsResponsive(
+  placements: Placement[],
+  stamps: SignatureStamp[],
+  outW: number,
+  outH: number,
+  options: NonNullable<Parameters<typeof paintPlacements>[4]> = {},
+) {
+  return runResponsiveSteps(
+    paintPlacementSteps(placements, stamps, outW, outH, options),
+    options.signal,
+  )
+}
+
+async function runResponsiveSteps<T>(
+  steps: Generator<void, T>,
+  signal?: { cancelled?: boolean },
+): Promise<T> {
+  let sliceStart = performance.now()
+  try {
+    while (true) {
+      if (signal?.cancelled) throw new Error('已取消')
+      const next = steps.next()
+      if (next.done) return next.value
+      if (performance.now() - sliceStart >= 8) {
+        await yieldFrame()
+        sliceStart = performance.now()
+      }
+    }
+  } finally {
+    steps.return(undefined as never)
   }
 }
 
@@ -487,13 +565,23 @@ export async function paintPlacementsTiled(
   const coverFill = options.coverFill ?? false
   const underlay = options.underlay ?? 0
   const tileSize = Math.max(128, options.tileSize ?? 384)
-  const metrics = stamps.map((s) =>
-    prepareStamp(
-      s,
-      options.stampMaxLong ?? Math.min(1000, Math.max(480, Math.round(Math.max(outW, outH) * 0.4))),
-      options.inkStyle,
-    ),
-  )
+  const metrics: StampMetrics[] = []
+  let sliceStart = performance.now()
+  for (const stamp of stamps) {
+    if (options.signal?.cancelled) throw new Error('已取消')
+    metrics.push(
+      prepareStamp(
+        stamp,
+        options.stampMaxLong ??
+          Math.min(1000, Math.max(480, Math.round(Math.max(outW, outH) * 0.4))),
+        options.inkStyle,
+      ),
+    )
+    if (performance.now() - sliceStart >= 8) {
+      await yieldFrame()
+      sliceStart = performance.now()
+    }
+  }
 
   const canvas = makeCanvas(outW, outH)
   const ctx = canvas.getContext('2d')
@@ -520,7 +608,10 @@ export async function paintPlacementsTiled(
   const tilesY = Math.ceil(outH / tileSize)
   const total = tilesX * tilesY
   let done = 0
-  const vectorPainter = options.inkStyle === 'cutout' ? createVectorInkPainter(stamps) : null
+  const vectorPainter =
+    options.inkStyle === 'cutout'
+      ? await runResponsiveSteps(createVectorInkPainterSteps(stamps), options.signal)
+      : null
 
   try {
     for (let ty = 0; ty < tilesY; ty++) {
@@ -537,7 +628,15 @@ export async function paintPlacementsTiled(
         // 透明底，叠到主画布
         tctx.clearRect(0, 0, tw, th)
 
-        for (const p of mapped) {
+        for (let i = 0; i < mapped.length; i++) {
+          if (i % 32 === 0) {
+            if (options.signal?.cancelled) throw new Error('已取消')
+            if (performance.now() - sliceStart >= 8) {
+              await yieldFrame()
+              sliceStart = performance.now()
+            }
+          }
+          const p = mapped[i]!
           // A rotated rectangle fits within sqrt(2)/2 of its longest side.
           // Three pixels also cover the optional minimum-radius ellipse and antialiasing.
           const rad = p.targetSize * 0.75 + 3
@@ -633,8 +732,7 @@ export function paintPlacementsScaled(
   return paintPlacements(mapped, stamps, outW, outH, {
     ...options,
     stampMaxLong:
-      options.stampMaxLong ??
-      Math.min(1200, Math.max(640, Math.round(Math.max(outW, outH) * 0.4))),
+      options.stampMaxLong ?? Math.min(1200, Math.max(640, Math.round(Math.max(outW, outH) * 0.4))),
   })
 }
 
@@ -642,7 +740,7 @@ export function paintPlacementsScaled(
  * 只绘制布局坐标系中某一矩形区域 → 输出像素画布。
  * 用于超大预览：只重绘可视窗口，不扛整张超大图。
  */
-export function paintPlacementsRegion(
+function preparePlacementRegion(
   placements: Placement[],
   stamps: SignatureStamp[],
   region: { x: number; y: number; w: number; h: number },
@@ -659,7 +757,7 @@ export function paintPlacementsRegion(
     underlay?: number
     stampMaxLong?: number
   } = {},
-): HTMLCanvasElement {
+) {
   const rw = Math.max(1e-3, region.w)
   const rh = Math.max(1e-3, region.h)
   const sx = outW / rw
@@ -718,16 +816,61 @@ export function paintPlacementsRegion(
     }
   }
 
-  return paintPlacements(mapped, stamps, outW, outH, {
-    inkStyle: options.inkStyle,
-    background: options.background,
-    colorize: options.colorize,
-    coverFill: options.coverFill,
-    portrait: portraitCrop,
-    underlay: options.underlay,
-    stampMaxLong:
-      options.stampMaxLong ??
-      Math.min(1400, Math.max(720, Math.round(Math.max(outW, outH) * 0.55))),
+  return {
+    mapped,
+    options: {
+      ...options,
+      inkStyle: options.inkStyle,
+      background: options.background,
+      colorize: options.colorize,
+      coverFill: options.coverFill,
+      portrait: portraitCrop,
+      underlay: options.underlay,
+      stampMaxLong:
+        options.stampMaxLong ??
+        Math.min(1400, Math.max(720, Math.round(Math.max(outW, outH) * 0.55))),
+    },
+  }
+}
+
+export function paintPlacementsRegion(
+  placements: Placement[],
+  stamps: SignatureStamp[],
+  region: { x: number; y: number; w: number; h: number },
+  outW: number,
+  outH: number,
+  options: {
+    inkStyle?: SignatureInkStyle
+    background?: string
+    colorize?: boolean
+    coverFill?: boolean
+    portrait?: CanvasImageSource | null
+    layoutW?: number
+    layoutH?: number
+    underlay?: number
+    stampMaxLong?: number
+  } = {},
+): HTMLCanvasElement {
+  const prepared = preparePlacementRegion(placements, stamps, region, outW, outH, options)
+  return paintPlacements(prepared.mapped, stamps, outW, outH, prepared.options)
+}
+
+export function paintPlacementsRegionResponsive(
+  placements: Placement[],
+  stamps: SignatureStamp[],
+  region: { x: number; y: number; w: number; h: number },
+  outW: number,
+  outH: number,
+  options: NonNullable<Parameters<typeof paintPlacementsRegion>[5]> & {
+    signal?: { cancelled?: boolean }
+    onProgress?: (ratio: number) => void
+  } = {},
+) {
+  const prepared = preparePlacementRegion(placements, stamps, region, outW, outH, options)
+  return paintPlacementsResponsive(prepared.mapped, stamps, outW, outH, {
+    ...prepared.options,
+    signal: options.signal,
+    onProgress: options.onProgress,
   })
 }
 

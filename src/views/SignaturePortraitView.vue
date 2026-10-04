@@ -17,7 +17,7 @@ import {
   listBanks,
   loadBankAsStamps,
   loadImageElement,
-  paintPlacementsRegion,
+  paintPlacementsRegionResponsive,
   paintPlacementsTiled,
   pathSvgToBlob,
   renderSignaturePortrait,
@@ -41,6 +41,7 @@ import {
 import { useThemeStore } from '@/stores/theme'
 import { fitSignatureRaster, measureSignatureViewport, SIGNATURE_OVERVIEW_LONG, SIGNATURE_VIEWPORT_LONG } from '@/lib/signature-portrait/preview-viewport'
 import { createSignatureProject, readSignatureProject, signatureProjectFilename, SIGNATURE_PROJECT_ACCEPT, type SignatureProject } from '@/lib/signature-portrait/project'
+import { createSignatureRasterWorker, type SignatureRasterWorker } from '@/lib/signature-portrait/raster-worker-client'
 
 const theme = useThemeStore()
 const BANK_ID_KEY = 'astra-sig-bank-id'
@@ -77,6 +78,9 @@ let lastPlacements: Placement[] = []
 let layoutW = 0
 let layoutH = 0
 let paintSignal: { cancelled?: boolean } = { cancelled: false }
+let rasterWorker: SignatureRasterWorker | null = null
+let rasterWorkerScene: SignatureProject | null = null
+function disposeRasterWorker() { rasterWorker?.dispose(); rasterWorker = null; rasterWorkerScene = null }
 let zoomPaintTimer: ReturnType<typeof setTimeout> | null = null
 let zoomPaintSeq = 0
 /** 第二档：WebGL 图集实例化预览 */
@@ -86,6 +90,14 @@ let previewBackend: 'webgl' | 'canvas2d' = 'canvas2d'
 const OVERVIEW_LONG = SIGNATURE_OVERVIEW_LONG
 let sharpViewportCanvas: HTMLCanvasElement | null = null
 const previewError = ref('')
+const sharpPainting = ref(false)
+const previewQuality = ref<'fast' | 'clear' | 'detail'>('clear')
+const previewQualityProfile = computed(() => {
+  const dpr = window.devicePixelRatio || 1
+  if (previewQuality.value === 'fast') return { dpr: Math.min(1, dpr), maxLong: 1280, stampLong: 1000 }
+  if (previewQuality.value === 'detail') return { dpr: Math.min(3, Math.max(2, dpr)), maxLong: 3200, stampLong: 2000 }
+  return { dpr: Math.min(2.5, dpr), maxLong: SIGNATURE_VIEWPORT_LONG, stampLong: 1600 }
+})
 const previewPan = ref(true)
 const showComparison = ref(false)
 let panPointer: { id: number; x: number; y: number; left: number; top: number } | null = null
@@ -466,6 +478,7 @@ function ensureGlPreview(): GlStampPreview | null {
 
 function clearResultStage() {
   paintSignal.cancelled = true
+  disposeRasterWorker()
   if (zoomPaintTimer) {
     clearTimeout(zoomPaintTimer)
     zoomPaintTimer = null
@@ -617,19 +630,21 @@ function scheduleSharpViewportPaint() {
   if (zoomPaintTimer) clearTimeout(zoomPaintTimer)
   zoomPaintTimer = setTimeout(() => {
     zoomPaintTimer = null
-    try { paintSharpViewport() }
-    catch { previewError.value = '高清预览暂时无法绘制，请缩小后重试' }
+    void paintSharpViewport().catch(error => {
+      if (!(error instanceof Error && error.message === '已取消')) previewError.value = '高清预览暂时无法绘制，请缩小后重试'
+    })
   }, 70)
 }
 
 function releaseSharpPreview() {
   zoomPaintSeq++
+  sharpPainting.value = false
   sharpViewportCanvas?.remove()
   if (sharpViewportCanvas) { sharpViewportCanvas.width = 1; sharpViewportCanvas.height = 1 }
   sharpViewportCanvas = null
 }
 
-function paintSharpViewport() {
+async function paintSharpViewport() {
   if (previewBackend === 'webgl') {
     applyStageDisplaySize()
     return
@@ -641,30 +656,38 @@ function paintSharpViewport() {
   if (layoutW <= 0 || viewScale.value <= 1.05) return
 
   const seq = ++zoomPaintSeq
-  const dpr = Math.min(2.5, window.devicePixelRatio || 1)
+  const profile = previewQualityProfile.value
+  const dpr = profile.dpr
   const view = measureSignatureViewport(host, root, layoutW, layoutH)
   if (!view) return
   const { region, display } = view
-  const { width: outW, height: outH } = fitSignatureRaster(display.width * dpr, display.height * dpr, SIGNATURE_VIEWPORT_LONG)
+  const { width: outW, height: outH } = fitSignatureRaster(display.width * dpr, display.height * dpr, profile.maxLong)
 
-  const tile = paintPlacementsRegion(
-    lastPlacements,
-    result.stamps,
-    region,
-    outW,
-    outH,
-    {
-      background: result.options.background,
-      inkStyle: result.options.inkStyle,
-      colorize: result.options.colorize,
-      coverFill: result.options.coverFill,
-      portrait: result.portrait,
-      layoutW,
-      layoutH,
-      underlay: 0,
-      stampMaxLong: Math.min(1600, Math.max(800, Math.round(Math.max(outW, outH) * 0.65))),
-    },
-  )
+  sharpPainting.value = true
+  let tile: HTMLCanvasElement
+  const signal = { get cancelled() { return seq !== zoomPaintSeq || viewDisposed } }
+  const paintOptions = {
+    background: result.options.background, inkStyle: result.options.inkStyle, colorize: result.options.colorize,
+    coverFill: result.options.coverFill, portrait: result.portrait, layoutW, layoutH, underlay: 0,
+    stampMaxLong: Math.min(profile.stampLong, Math.max(800, Math.round(Math.max(outW, outH) * 0.65))), signal,
+  }
+  try {
+    try {
+      if (rasterWorkerScene !== result) {
+        disposeRasterWorker()
+        const candidate = await createSignatureRasterWorker(lastPlacements, result.stamps, layoutW, layoutH, result.options, signal)
+        if (signal.cancelled) { candidate?.dispose(); throw new Error('已取消') }
+        rasterWorker = candidate; rasterWorkerScene = result
+      }
+      tile = rasterWorker
+        ? await rasterWorker.paint(outW, outH, paintOptions.stampMaxLong, { region, signal })
+        : await paintPlacementsRegionResponsive(lastPlacements, result.stamps, region, outW, outH, paintOptions)
+    } catch (error) {
+      if (signal.cancelled || (error instanceof Error && error.message === '已取消')) throw error
+      disposeRasterWorker()
+      tile = await paintPlacementsRegionResponsive(lastPlacements, result.stamps, region, outW, outH, paintOptions)
+    }
+  } finally { if (seq === zoomPaintSeq) sharpPainting.value = false }
   if (seq !== zoomPaintSeq) { tile.width = 1; tile.height = 1; return }
   tile.classList.add('sharp-viewport-canvas')
   // This canvas is only the visible crop; the artwork's large size is CSS geometry.
@@ -674,6 +697,10 @@ function paintSharpViewport() {
   resultHost.value.append(tile)
   previewError.value = ''
 }
+
+watch(previewQuality, () => {
+  if (hasResult.value && viewScale.value > 1.05) scheduleSharpViewportPaint()
+})
 
 function setViewScale(scale: number) {
   if (layoutW <= 0) return
@@ -927,6 +954,7 @@ onBeforeUnmount(() => {
   projectController?.abort()
   generationController?.abort()
   paintSignal.cancelled = true
+  disposeRasterWorker()
   disposeGlPreview()
   if (zoomPaintTimer) clearTimeout(zoomPaintTimer)
   releaseSharpPreview()
@@ -1191,7 +1219,28 @@ async function renderNow() {
       previewBackend = 'canvas2d'
       ensureCanvas2d()
       const { width: outW, height: outH } = fitSignatureRaster(layoutW, layoutH, OVERVIEW_LONG)
-      const overview = await paintPlacementsTiled(
+      let overview: HTMLCanvasElement
+      let candidateRaster: SignatureRasterWorker | null = null
+      try {
+        try { candidateRaster = await createSignatureRasterWorker(placements, result.stamps, layoutW, layoutH, result.options, signal) }
+        catch (error) { if (signal.cancelled || (error instanceof Error && error.message === '已取消')) throw error }
+        if (candidateRaster) {
+          try {
+            progressStage.value = '精绘笔迹与色彩'
+            overview = await candidateRaster.paint(outW, outH, Math.min(1000, Math.max(480, Math.round(Math.max(outW, outH) * .4))), {
+              tileSize: 320, signal, onProgress: (done, total) => {
+                if (seq !== renderSeq || signal.cancelled) return
+                progressStage.value = '精绘笔迹与色彩'
+                progressRatio.value = .55 + done / Math.max(1, total) * .45
+              },
+            })
+          } catch (error) {
+            candidateRaster.dispose(); candidateRaster = null
+            if (signal.cancelled || (error instanceof Error && error.message === '已取消')) throw error
+          }
+        }
+        if (!candidateRaster) {
+        overview = await paintPlacementsTiled(
         placements,
         result.stamps,
         layoutW,
@@ -1218,8 +1267,14 @@ async function renderNow() {
           signal,
         },
       )
+        }
+        if (seq !== renderSeq || signal.cancelled) {
+          candidateRaster?.dispose(); overview!.width = 1; overview!.height = 1; return
+        }
+        disposeRasterWorker(); rasterWorker = candidateRaster; rasterWorkerScene = generatedResult.value
+      } catch (error) { candidateRaster?.dispose(); throw error }
       if (seq !== renderSeq || signal.cancelled) return
-      lastOverview = overview
+      lastOverview = overview!
       overviewRevision++
       progressStage.value = '完成'
       progressRatio.value = 1
@@ -1858,7 +1913,7 @@ watch([coverFill, colorize, signatureInkStyle], () => {
 
           <label class="ink-control">
             <span class="ink-control-head">
-              <span>布局 / 导出分辨率</span>
+              <span>成图清晰度</span>
               <strong>{{ maxSide }}px · {{ maxSideLabel }}</strong>
             </span>
             <input
@@ -1873,7 +1928,7 @@ watch([coverFill, colorize, signatureInkStyle], () => {
               <span>导出更清 8K</span>
             </span>
             <p class="hint res-hint">
-              影响排版点数与下载 PNG/JSON 的坐标空间。屏上预览始终用轻量概览，放大时从矢量源按视口重画，不会把整张 8K 塞进页面。
+              2K更快，4K细节更丰富，6K/8K适合需要大尺寸的作品。提高此项后点击「生成预览」；放大不增加原图本身缺少的细节。
             </p>
             <div class="res-presets">
               <button type="button" class="zoom-btn" @click="maxSide = 2048">2K</button>
@@ -2047,13 +2102,30 @@ watch([coverFill, colorize, signatureInkStyle], () => {
             <template v-if="progressRatio">
               · {{ Math.round(progressRatio * 100) }}%
             </template>
-            · 后台计算中，页面可滚动
+            · 正在准备作品
           </span>
           <span v-else-if="canCompare" class="meta">
             滚轮放大 · {{ previewPan || !comparisonActive ? '拖动移动' : '拖动对比' }} · {{ viewScaleLabel }}
             <template v-if="lastOutputMeta"> · {{ lastOutputMeta }}</template>
           </span>
         </div>
+        <div v-if="pending || generatingVariants || sharpPainting" class="render-feedback" role="status" aria-live="polite">
+          <span class="render-spinner" aria-hidden="true"></span>
+          <div class="render-feedback-copy">
+            <strong>{{ sharpPainting && !pending ? '正在精绘局部笔迹' : progressStage || '正在准备作品' }}</strong>
+            <p>{{ sharpPainting && !pending ? '视图已更新，清晰笔迹随后呈现。可以继续缩放或拖动。' : '可以继续浏览页面，完成后会呈现完整笔迹与色彩。' }}</p>
+            <progress v-if="pending && progressRatio > 0" :value="progressRatio" max="1" aria-label="作品生成进度"></progress>
+          </div>
+        </div>
+        <label v-if="hasResult" class="preview-quality">
+          <span>缩放清晰度</span>
+          <select v-model="previewQuality" aria-label="缩放清晰度">
+            <option value="fast">轻快 · 优先响应</option>
+            <option value="clear">清晰 · 均衡预览</option>
+            <option value="detail">精细 · 更清晰笔迹</option>
+          </select>
+          <span class="hint">仅改变屏上预览；下载使用成图清晰度。</span>
+        </label>
         <div v-if="hasResult" class="zoom-bar">
           <button
             type="button"
@@ -2216,6 +2288,27 @@ h1 {
   gap: 0.75rem;
   margin-bottom: 0.55rem;
 }
+
+.render-feedback {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin: 0.75rem 0;
+  padding: 0.9rem;
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--border));
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--accent) 6%, var(--bg-elevated, var(--bg)));
+}
+.render-feedback-copy { flex: 1; min-width: 0; }
+.render-feedback strong { font-size: 0.87rem; color: var(--text); }
+.render-feedback p { margin: 0.3rem 0 0; font-size: 0.79rem; line-height: 1.6; color: var(--text-muted); }
+.render-feedback progress { display: block; width: 100%; height: 5px; margin-top: 0.65rem; accent-color: var(--accent); }
+.render-spinner { flex: 0 0 24px; height: 24px; border: 2px solid color-mix(in srgb, var(--accent) 20%, transparent); border-top-color: var(--accent); border-radius: 50%; animation: signature-render-spin 1.2s linear infinite; }
+.preview-quality { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; margin: 0.7rem 0; font-size: 0.8rem; }
+.preview-quality select { min-height: 44px; max-width: 100%; padding: 0.5rem 0.7rem; color: var(--text); background: var(--bg-elevated, var(--bg)); border: 1px solid var(--border); border-radius: 9px; font: inherit; }
+.preview-quality .hint { margin: 0; font-size: 0.75rem; }
+@keyframes signature-render-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .render-spinner { animation: none; } }
 
 .panel {
   min-width: 0;

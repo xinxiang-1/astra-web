@@ -1,13 +1,19 @@
 import { signatureTint } from './render-style'
 
-type Entry = { canvas: HTMLCanvasElement; context: CanvasRenderingContext2D; bytes: number }
+type RasterCanvas = HTMLCanvasElement | OffscreenCanvas
+type Entry = {
+  canvas: RasterCanvas
+  context: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D
+  bytes: number
+}
 
 /** Per-paint exact-color LRU. Recycle backing surfaces instead of creating a canvas per miss. */
 export function createTintedStampCache(
-  sources: readonly HTMLCanvasElement[],
+  sources: readonly RasterCanvas[],
   colorize: boolean,
   maxBytes = 16 * 1024 * 1024,
   maxEntries = 64,
+  createSurface: () => RasterCanvas = () => document.createElement('canvas'),
 ) {
   if (
     !Number.isSafeInteger(maxBytes) ||
@@ -58,7 +64,7 @@ export function createTintedStampCache(
       temporary = undefined
     }
     if (!entry) {
-      const canvas = document.createElement('canvas')
+      const canvas = createSurface()
       canvas.width = source.width
       canvas.height = source.height
       const context = canvas.getContext('2d')

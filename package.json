@@ -43,6 +43,7 @@
     "test:signature-strokes": "node scripts/signature-stroke-parity.mjs",
     "test:signature-result": "node scripts/signature-result-contract.mjs",
     "test:signature-viewport": "node scripts/signature-viewport-contract.mjs",
+    "test:signature-responsive": "node scripts/signature-responsive-contract.mjs",
     "test:signature-project": "node scripts/signature-project-contract.mjs",
     "test:signature-project-assets": "node scripts/signature-project-assets-contract.mjs",
     "research:signature-capacity": "node scripts/signature-capacity-research.mjs",

@@ -336,7 +336,6 @@ try {
     window.__previewFailed = false
     HTMLCanvasElement.prototype.getContext = function (...args) {
       if (
-        !window.__previewFailed &&
         !document.contains(this) &&
         this.width === width &&
         this.height === height &&

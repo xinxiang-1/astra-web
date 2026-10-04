@@ -1,0 +1,10 @@
+{
+  "src/lib/signature-portrait/layout.ts": "d33504f9e53897e6425fa0d7ddbc78114a357b3ec4cfdc11cfeb14a9c9338536",
+  "src/lib/signature-portrait/vector-ink.ts": "ab433686481343aa8d9a2d8f6483bf28acdd6e2a9b99ec7b8716a9eafd5fe8f7",
+  "src/lib/signature-portrait/raster-cache.ts": "1a6574678f4902ac5020514b6ac2d97ac5dd3d16c57b6fb56c54db902f53f04e",
+  "src/lib/signature-portrait/variants.ts": "65996b59db6170f33a00f8adb261e323633d264999b2b20844bbe22aa9a1d401",
+  "src/lib/signature-portrait/raster-worker-client.ts": "77ad39a982e848c99be9b5041187e0373a2ebbbac6d801794158a00d85963907",
+  "src/lib/signature-portrait/raster-worker-protocol.ts": "c32ea08d4ac87039e5844986e6d9a4dbca236ccd64d1aedbfdd6c805c219d7cf",
+  "src/lib/signature-portrait/raster.worker.ts": "ba89e92f2cf3f71d94e53f29ca968c7df93e94186f36bbad028e5255fda88242",
+  "src/views/SignaturePortraitView.vue": "86a7d2608f34edc5a09418be5c336969dbdbd78fd6811183b1dacd3f9e4d1846"
+}

@@ -161,6 +161,7 @@ export async function generateHandwritingVariants(
   const family = await loadSignatureFont(font, raw, options.signal)
   const rand = mulberry32(seed)
   const out: SignatureStamp[] = []
+  let sliceStart = performance.now()
   for (let i = 0; i < count; i++) {
     options.signal?.throwIfAborted()
     const canvas = renderSignatureVariant(raw, family, buildStyle(rand), maxSide)
@@ -173,9 +174,10 @@ export async function generateHandwritingVariants(
       previewUrl: canvas.toDataURL('image/png'),
       source: { kind: 'font', version: 2, font, text: raw, seed, variant: i },
     })
-    if (i % 8 === 7) {
+    if (performance.now() - sliceStart >= 8 || i % 8 === 7) {
       options.onProgress?.((i + 1) / count)
       await new Promise((resolve) => setTimeout(resolve, 0))
+      sliceStart = performance.now()
     }
   }
   options.signal?.throwIfAborted()
