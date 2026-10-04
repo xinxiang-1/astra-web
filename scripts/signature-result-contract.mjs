@@ -73,11 +73,17 @@ try {
       element.dispatchEvent(new Event('change', { bubbles: true }))
     }, value)
   }
-  async function nativeHash() {
+  async function nativeHash(label) {
     await page.getByRole('button', { name: '原大', exact: true }).click()
+    // Compare the same visible region; fit/native switching may retain scroll anchoring.
+    await page.locator('.stage').evaluate((stage) => {
+      stage.scrollLeft = 0
+      stage.scrollTop = 0
+      stage.dispatchEvent(new Event('scroll'))
+    })
     // Wait for the debounced viewport redraw, then sample the mounted canvas.
     await page.waitForTimeout(400)
-    return page.locator('.result-canvas').evaluate(async (canvas) => {
+    const native = await page.locator('.result-canvas').evaluate(async (canvas) => {
       const data = canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height).data
       const hash = await crypto.subtle.digest('SHA-256', data)
       return {
@@ -85,8 +91,30 @@ try {
         hash: Array.from(new Uint8Array(hash), (value) => value.toString(16).padStart(2, '0')).join(
           '',
         ),
+        png: canvas.toDataURL().split(',')[1],
       }
     })
+    const geometry = await page.evaluate(() => {
+      const stage = document.querySelector('.stage'),
+        root = document.querySelector('.compare')
+      const rect = (el) => {
+        const r = el.getBoundingClientRect()
+        return { x: r.x, y: r.y, width: r.width, height: r.height }
+      }
+      return {
+        stage: rect(stage),
+        root: rect(root),
+        stageScroll: [stage.scrollLeft, stage.scrollTop],
+        documentScroll: [scrollX, scrollY],
+      }
+    })
+    await writeFile(path.join(directory, `${label}-native.png`), Buffer.from(native.png, 'base64'))
+    delete native.png
+    await writeFile(
+      path.join(directory, `${label}-native.json`),
+      JSON.stringify({ ...native, geometry }, null, 2),
+    )
+    return native
   }
   await page.getByRole('button', { name: '2K', exact: true }).click()
   await page.getByRole('button', { name: '一键试用示例', exact: true }).click()
@@ -99,7 +127,7 @@ try {
   assert.equal(originalDoc.stampIds.length, originalDoc.stampCount)
   const originalPng = await download('下载 PNG', 'before.png')
   const originalSvg = await download('下载 Path SVG', 'before.svg')
-  const originalNative = await nativeHash()
+  const originalNative = await nativeHash('original')
 
   await range(
     page.locator('label.ink-control').filter({ hasText: '墨量' }).locator('input[type=range]'),
@@ -131,7 +159,7 @@ try {
     'SVG must use the generated result settings',
   )
   await page.getByRole('button', { name: '适应', exact: true }).click()
-  const editedNative = await nativeHash()
+  const editedNative = await nativeHash('edited')
   assert.deepEqual(
     editedNative,
     originalNative,

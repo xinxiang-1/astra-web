@@ -1,0 +1,654 @@
+{
+  "baselineCommit": "00c41a628557c7971f13893adacb0851f50b31bb",
+  "baselineSha256": "66a53f4d4be2155420368a040c54fefbcadf3dfee9c8d64575f2a796e5a2539b",
+  "browser": "154.0.8037.57",
+  "sourceHashes": {
+    "layout.ts": "d730a237cabad278e0561c4192239a2aa59c54faaf419e142a2575a947570400",
+    "raster-cache.ts": "6bf2e9eb2ccf1fc3a00fe7ab192a52e62e7a7c7ba7671d29b56f354d009b685a",
+    "extract.ts": "68dc140d65f8fb0fb84bdb5e89204a85babea31329c57e71406dfe7da85bddbd",
+    "ink-style.ts": "f8108d50c29bd7774dc66a0d817fc88380597cf99745e4e6f5e1a4f5b96cbd8f",
+    "vector-ink.ts": "3d882918cf5083a092ab55c0dcb725e10f74c86528278223c25d9c28a1c704ec",
+    "render-style.ts": "53d60867485278f7514e0915d5074a92dbaee401789489795f24a2d81cbe6265",
+    "variants.ts": "f751fe3a517f7fabc40c12377ae30823cd351b768eaaae3a6058a69cebda36be",
+    "fonts.ts": "0f6e1e0bbce5aa1a284f2dcaabe99cd46f7e7591c28be0d5e2c77074b9e26eb1",
+    "trace.ts": "d27de11e6cd52741b95678e4a8f2ab753ac6365caf114398d3aa29afa92b4e4c"
+  },
+  "errors": [],
+  "matrix": [
+    {
+      "inkStyle": "ink",
+      "background": "#f5f3ef",
+      "colorize": false,
+      "coverFill": false,
+      "tileSize": 128,
+      "stampMaxLong": 480,
+      "direct": {
+        "changedChannels": 0,
+        "maxDelta": 0,
+        "channels": 1255332
+      },
+      "tiled": {
+        "changedChannels": 0,
+        "maxDelta": 0,
+        "channels": 1255332
+      }
+    },
+    {
+      "inkStyle": "ink",
+      "background": "#f5f3ef",
+      "colorize": false,
+      "coverFill": true,
+      "tileSize": 128,
+      "stampMaxLong": 480,
+      "direct": {
+        "changedChannels": 0,
+        "maxDelta": 0,
+        "channels": 1255332
+      },
+      "tiled": {
+        "changedChannels": 0,
+        "maxDelta": 0,
+        "channels": 1255332
+      }
+    },
+    {
+      "inkStyle": "ink",
+      "background": "#f5f3ef",
+      "colorize": true,
+      "coverFill": false,
+      "tileSize": 128,
+      "stampMaxLong": 480,
+      "direct": {
+        "changedChannels": 0,
+        "maxDelta": 0,
+        "channels": 1255332
+      },
+      "tiled": {
+        "changedChannels": 0,
+        "maxDelta": 0,
+        "channels": 1255332
+      }
+    },
+    {
+      "inkStyle": "ink",
+      "background": "#f5f3ef",
+      "colorize": true,
+      "coverFill": true,
+      "tileSize": 128,
+      "stampMaxLong": 480,
+      "direct": {
+        "changedChannels": 0,
+        "maxDelta": 0,
+        "channels": 1255332
+      },
+      "tiled": {
+        "changedChannels": 0,
+        "maxDelta": 0,
+        "channels": 1255332
+      }
+    },
+    {
+      "inkStyle": "ink",
+      "background": "#111615",
+      "colorize": false,
+      "coverFill": false,
+      "tileSize": 128,
+      "stampMaxLong": 480,
+      "direct": {
+        "changedChannels": 0,
+        "maxDelta": 0,
+        "channels": 1255332
+      },
+      "tiled": {
+        "changedChannels": 0,
+        "maxDelta": 0,
+        "channels": 1255332
+      }
+    },
+    {
+      "inkStyle": "ink",
+      "background": "#111615",
+      "colorize": false,
+      "coverFill": true,
+      "tileSize": 128,
+      "stampMaxLong": 480,
+      "direct": {
+        "changedChannels": 0,
+        "maxDelta": 0,
+        "channels": 1255332
+      },
+      "tiled": {
+        "changedChannels": 0,
+        "maxDelta": 0,
+        "channels": 1255332
+      }
+    },
+    {
+      "inkStyle": "ink",
+      "background": "#111615",
+      "colorize": true,
+      "coverFill": false,
+      "tileSize": 128,
+      "stampMaxLong": 480,
+      "direct": {
+        "changedChannels": 0,
+        "maxDelta": 0,
+        "channels": 1255332
+      },
+      "tiled": {
+        "changedChannels": 0,
+        "maxDelta": 0,
+        "channels": 1255332
+      }
+    },
+    {
+      "inkStyle": "ink",
+      "background": "#111615",
+      "colorize": true,
+      "coverFill": true,
+      "tileSize": 128,
+      "stampMaxLong": 480,
+      "direct": {
+        "changedChannels": 0,
+        "maxDelta": 0,
+        "channels": 1255332
+      },
+      "tiled": {
+        "changedChannels": 0,
+        "maxDelta": 0,
+        "channels": 1255332
+      }
+    },
+    {
+      "inkStyle": "cutout",
+      "background": "#f5f3ef",
+      "colorize": false,
+      "coverFill": false,
+      "tileSize": 128,
+      "stampMaxLong": 480,
+      "direct": {
+        "changedChannels": 0,
+        "maxDelta": 0,
+        "channels": 1255332
+      },
+      "tiled": {
+        "changedChannels": 0,
+        "maxDelta": 0,
+        "channels": 1255332
+      }
+    },
+    {
+      "inkStyle": "cutout",
+      "background": "#f5f3ef",
+      "colorize": false,
+      "coverFill": true,
+      "tileSize": 128,
+      "stampMaxLong": 480,
+      "direct": {
+        "changedChannels": 0,
+        "maxDelta": 0,
+        "channels": 1255332
+      },
+      "tiled": {
+        "changedChannels": 0,
+        "maxDelta": 0,
+        "channels": 1255332
+      }
+    },
+    {
+      "inkStyle": "cutout",
+      "background": "#f5f3ef",
+      "colorize": true,
+      "coverFill": false,
+      "tileSize": 128,
+      "stampMaxLong": 480,
+      "direct": {
+        "changedChannels": 0,
+        "maxDelta": 0,
+        "channels": 1255332
+      },
+      "tiled": {
+        "changedChannels": 0,
+        "maxDelta": 0,
+        "channels": 1255332
+      }
+    },
+    {
+      "inkStyle": "cutout",
+      "background": "#f5f3ef",
+      "colorize": true,
+      "coverFill": true,
+      "tileSize": 128,
+      "stampMaxLong": 480,
+      "direct": {
+        "changedChannels": 0,
+        "maxDelta": 0,
+        "channels": 1255332
+      },
+      "tiled": {
+        "changedChannels": 0,
+        "maxDelta": 0,
+        "channels": 1255332
+      }
+    },
+    {
+      "inkStyle": "cutout",
+      "background": "#111615",
+      "colorize": false,
+      "coverFill": false,
+      "tileSize": 128,
+      "stampMaxLong": 480,
+      "direct": {
+        "changedChannels": 0,
+        "maxDelta": 0,
+        "channels": 1255332
+      },
+      "tiled": {
+        "changedChannels": 0,
+        "maxDelta": 0,
+        "channels": 1255332
+      }
+    },
+    {
+      "inkStyle": "cutout",
+      "background": "#111615",
+      "colorize": false,
+      "coverFill": true,
+      "tileSize": 128,
+      "stampMaxLong": 480,
+      "direct": {
+        "changedChannels": 0,
+        "maxDelta": 0,
+        "channels": 1255332
+      },
+      "tiled": {
+        "changedChannels": 0,
+        "maxDelta": 0,
+        "channels": 1255332
+      }
+    },
+    {
+      "inkStyle": "cutout",
+      "background": "#111615",
+      "colorize": true,
+      "coverFill": false,
+      "tileSize": 128,
+      "stampMaxLong": 480,
+      "direct": {
+        "changedChannels": 0,
+        "maxDelta": 0,
+        "channels": 1255332
+      },
+      "tiled": {
+        "changedChannels": 0,
+        "maxDelta": 0,
+        "channels": 1255332
+      }
+    },
+    {
+      "inkStyle": "cutout",
+      "background": "#111615",
+      "colorize": true,
+      "coverFill": true,
+      "tileSize": 128,
+      "stampMaxLong": 480,
+      "direct": {
+        "changedChannels": 0,
+        "maxDelta": 0,
+        "channels": 1255332
+      },
+      "tiled": {
+        "changedChannels": 0,
+        "maxDelta": 0,
+        "channels": 1255332
+      }
+    }
+  ],
+  "recolor": [
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 401920
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 31228
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 262144
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 112
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 401920
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 31228
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 262144
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 112
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 401920
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 31228
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 262144
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 112
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 401920
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 31228
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 262144
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 112
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 401920
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 31228
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 262144
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 112
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 401920
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 31228
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 262144
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 112
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 401920
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 31228
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 262144
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 112
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 401920
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 31228
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 262144
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 112
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 401920
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 31228
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 262144
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 112
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 401920
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 31228
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 262144
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 112
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 401920
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 31228
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 262144
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 112
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 401920
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 31228
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 262144
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 112
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 401920
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 31228
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 262144
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 112
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 401920
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 31228
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 262144
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 112
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 401920
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 31228
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 262144
+    },
+    {
+      "changedChannels": 0,
+      "maxDelta": 0,
+      "channels": 112
+    }
+  ],
+  "cacheStats": {
+    "bytes": 262256,
+    "peakBytes": 262256,
+    "created": 16,
+    "reused": 44,
+    "hits": 0,
+    "misses": 60,
+    "entries": 2,
+    "maxBytes": 270000,
+    "maxEntries": 2,
+    "temporaryBytes": 0
+  },
+  "invalid": [
+    true,
+    true,
+    true,
+    true
+  ],
+  "release": [
+    {
+      "kind": "success",
+      "threw": false,
+      "canvases": 64,
+      "released": true
+    },
+    {
+      "kind": "callback-error",
+      "threw": true,
+      "canvases": 17,
+      "released": true
+    },
+    {
+      "kind": "cancelled",
+      "threw": true,
+      "canvases": 17,
+      "released": true
+    },
+    {
+      "kind": "invalid-stamp",
+      "threw": true,
+      "canvases": 64,
+      "released": true
+    }
+  ],
+  "scope": "Whole RGBA-buffer equality against frozen production renderer. Synthetic boundary/support cases plus real Chinese font glyphs. Desktop contract, not commercial visual acceptance."
+}

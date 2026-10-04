@@ -1,0 +1,558 @@
+[
+  {
+    "label": "baseline",
+    "source": "test-results/signature-startup-1791064753788",
+    "browser": "154.0.4258.53",
+    "profilerIntervalUs": 2000,
+    "operationMs": 58482,
+    "reportElapsedMs": 64875,
+    "settled": true,
+    "errors": [],
+    "uiError": "",
+    "stages": [
+      {
+        "ms": 70,
+        "stage": "working"
+      },
+      {
+        "ms": 58482,
+        "stage": "settled"
+      }
+    ],
+    "groups": [
+      {
+        "name": "drawImage",
+        "parent": "paintPlacementsTiled",
+        "selfSamples": 8046,
+        "url": ""
+      },
+      {
+        "name": "drawImage",
+        "parent": "tintStamp",
+        "selfSamples": 6625,
+        "url": ""
+      },
+      {
+        "name": "(idle)",
+        "parent": "(root)",
+        "selfSamples": 1550,
+        "url": ""
+      },
+      {
+        "name": "(garbage collector)",
+        "parent": "(root)",
+        "selfSamples": 1369,
+        "url": ""
+      },
+      {
+        "name": "getContext",
+        "parent": "tintStamp",
+        "selfSamples": 1211,
+        "url": ""
+      },
+      {
+        "name": "(program)",
+        "parent": "(root)",
+        "selfSamples": 293,
+        "url": ""
+      },
+      {
+        "name": "tintStamp",
+        "parent": "getTinted",
+        "selfSamples": 275,
+        "url": "http://127.0.0.1:5180/src/lib/signature-portrait/layout.ts?t=1791060549450"
+      },
+      {
+        "name": "toDataURL",
+        "parent": "generateHandwritingVariants",
+        "selfSamples": 195,
+        "url": ""
+      },
+      {
+        "name": "fillRect",
+        "parent": "tintStamp",
+        "selfSamples": 159,
+        "url": ""
+      },
+      {
+        "name": "paintPlacementsTiled",
+        "parent": "(root)",
+        "selfSamples": 144,
+        "url": "http://127.0.0.1:5180/src/lib/signature-portrait/layout.ts?t=1791060549450"
+      },
+      {
+        "name": "makeCanvas",
+        "parent": "tintStamp",
+        "selfSamples": 131,
+        "url": "http://127.0.0.1:5180/src/lib/signature-portrait/layout.ts?t=1791060549450"
+      },
+      {
+        "name": "createElement",
+        "parent": "makeCanvas",
+        "selfSamples": 127,
+        "url": ""
+      },
+      {
+        "name": "getImageData",
+        "parent": "renderSignatureVariant",
+        "selfSamples": 107,
+        "url": ""
+      },
+      {
+        "name": "renderSignatureVariant",
+        "parent": "generateHandwritingVariants",
+        "selfSamples": 80,
+        "url": "http://127.0.0.1:5180/src/lib/signature-portrait/variants.ts?t=1791060683691"
+      },
+      {
+        "name": "getImageData",
+        "parent": "measureStampTraits",
+        "selfSamples": 80,
+        "url": ""
+      },
+      {
+        "name": "getTinted",
+        "parent": "paintPlacementsTiled",
+        "selfSamples": 79,
+        "url": "http://127.0.0.1:5180/src/lib/signature-portrait/layout.ts?t=1791060549450"
+      },
+      {
+        "name": "getImageData",
+        "parent": "measureStampTraits",
+        "selfSamples": 71,
+        "url": ""
+      },
+      {
+        "name": "restore",
+        "parent": "paintPlacementsTiled",
+        "selfSamples": 58,
+        "url": ""
+      },
+      {
+        "name": "measureStampTraits",
+        "parent": "prepareStamps",
+        "selfSamples": 53,
+        "url": "http://127.0.0.1:5180/src/lib/signature-portrait/extract.ts?t=1791059137775"
+      },
+      {
+        "name": "measureStampTraits",
+        "parent": "prepareStamp",
+        "selfSamples": 53,
+        "url": "http://127.0.0.1:5180/src/lib/signature-portrait/extract.ts?t=1791059137775"
+      }
+    ],
+    "limitations": "Single desktop observations. Sampling includes native synchronization; Worker CPU is excluded. Baseline progress selector was wrong; no stage timing claim."
+  },
+  {
+    "label": "interim-clear",
+    "source": "test-results/signature-startup-1791066243103",
+    "browser": "154.0.4258.53",
+    "profilerIntervalUs": 2000,
+    "operationMs": 30232,
+    "reportElapsedMs": 36859,
+    "settled": true,
+    "errors": [],
+    "uiError": "",
+    "stages": [
+      {
+        "ms": 68,
+        "stage": "准备示例  · 后台计算中，页面可滚动"
+      },
+      {
+        "ms": 581,
+        "stage": "生成写法  · 后台计算中，页面可滚动"
+      },
+      {
+        "ms": 3763,
+        "stage": "生成写法  · 8%  · 后台计算中，页面可滚动"
+      },
+      {
+        "ms": 4320,
+        "stage": "生成写法  · 36%  · 后台计算中，页面可滚动"
+      },
+      {
+        "ms": 4831,
+        "stage": "写入名字库  · 56%  · 后台计算中，页面可滚动"
+      },
+      {
+        "ms": 5357,
+        "stage": "写入名字库  · 70%  · 后台计算中，页面可滚动"
+      },
+      {
+        "ms": 5993,
+        "stage": "写入名字库  · 75%  · 后台计算中，页面可滚动"
+      },
+      {
+        "ms": 6510,
+        "stage": "后台排版  · 6%  · 后台计算中，页面可滚动"
+      },
+      {
+        "ms": 7050,
+        "stage": "预览 0/1  · 55%  · 后台计算中，页面可滚动"
+      },
+      {
+        "ms": 7916,
+        "stage": "预览 2/16  · 61%  · 后台计算中，页面可滚动"
+      },
+      {
+        "ms": 8571,
+        "stage": "预览 4/16  · 66%  · 后台计算中，页面可滚动"
+      },
+      {
+        "ms": 11133,
+        "stage": "预览 6/16  · 72%  · 后台计算中，页面可滚动"
+      },
+      {
+        "ms": 14970,
+        "stage": "预览 8/16  · 78%  · 后台计算中，页面可滚动"
+      },
+      {
+        "ms": 19765,
+        "stage": "预览 10/16  · 83%  · 后台计算中，页面可滚动"
+      },
+      {
+        "ms": 24291,
+        "stage": "预览 12/16  · 89%  · 后台计算中，页面可滚动"
+      },
+      {
+        "ms": 27063,
+        "stage": "预览 14/16  · 94%  · 后台计算中，页面可滚动"
+      },
+      {
+        "ms": 29714,
+        "stage": "预览 16/16  · 100%  · 后台计算中，页面可滚动"
+      },
+      {
+        "ms": 30232,
+        "stage": "滚轮放大 · 适应  · 2048×1876 · 16074 枚签名"
+      }
+    ],
+    "groups": [
+      {
+        "name": "drawImage",
+        "parent": "paintPlacementsTiled",
+        "selfSamples": 4099,
+        "url": ""
+      },
+      {
+        "name": "clearRect",
+        "parent": "get",
+        "selfSamples": 2857,
+        "url": ""
+      },
+      {
+        "name": "(idle)",
+        "parent": "(root)",
+        "selfSamples": 1758,
+        "url": ""
+      },
+      {
+        "name": "get",
+        "parent": "paintPlacementsTiled",
+        "selfSamples": 876,
+        "url": "http://127.0.0.1:5180/src/lib/signature-portrait/raster-cache.ts?t=1791065898833"
+      },
+      {
+        "name": "(program)",
+        "parent": "(root)",
+        "selfSamples": 284,
+        "url": ""
+      },
+      {
+        "name": "toDataURL",
+        "parent": "generateHandwritingVariants",
+        "selfSamples": 180,
+        "url": ""
+      },
+      {
+        "name": "getImageData",
+        "parent": "renderSignatureVariant",
+        "selfSamples": 114,
+        "url": ""
+      },
+      {
+        "name": "drawImage",
+        "parent": "get",
+        "selfSamples": 107,
+        "url": ""
+      },
+      {
+        "name": "paintPlacementsTiled",
+        "parent": "(root)",
+        "selfSamples": 80,
+        "url": "http://127.0.0.1:5180/src/lib/signature-portrait/layout.ts?t=1791065899346"
+      },
+      {
+        "name": "getImageData",
+        "parent": "measureStampTraits",
+        "selfSamples": 75,
+        "url": ""
+      },
+      {
+        "name": "getImageData",
+        "parent": "measureStampTraits",
+        "selfSamples": 75,
+        "url": ""
+      },
+      {
+        "name": "renderSignatureVariant",
+        "parent": "generateHandwritingVariants",
+        "selfSamples": 67,
+        "url": "http://127.0.0.1:5180/src/lib/signature-portrait/variants.ts?t=1791060683691"
+      },
+      {
+        "name": "fillRect",
+        "parent": "get",
+        "selfSamples": 61,
+        "url": ""
+      },
+      {
+        "name": "toBlob",
+        "parent": "",
+        "selfSamples": 54,
+        "url": ""
+      },
+      {
+        "name": "(garbage collector)",
+        "parent": "(root)",
+        "selfSamples": 26,
+        "url": ""
+      },
+      {
+        "name": "save",
+        "parent": "paintPlacementsTiled",
+        "selfSamples": 23,
+        "url": ""
+      },
+      {
+        "name": "createObjectURL",
+        "parent": "",
+        "selfSamples": 22,
+        "url": ""
+      },
+      {
+        "name": "getImageData",
+        "parent": "renderSignaturePortrait",
+        "selfSamples": 19,
+        "url": ""
+      },
+      {
+        "name": "rotate",
+        "parent": "paintPlacementsTiled",
+        "selfSamples": 17,
+        "url": ""
+      },
+      {
+        "name": "",
+        "parent": "(root)",
+        "selfSamples": 16,
+        "url": "http://127.0.0.1:5180/src/lib/signature-portrait/fonts.ts?t=1791060683691"
+      }
+    ],
+    "limitations": "Single desktop observations. Sampling includes native synchronization; Worker CPU is excluded. Baseline progress selector was wrong; no stage timing claim."
+  },
+  {
+    "label": "final-copy",
+    "source": "test-results/signature-startup-1791066652702",
+    "browser": "154.0.4258.53",
+    "profilerIntervalUs": 2000,
+    "operationMs": 31773,
+    "reportElapsedMs": 39277,
+    "settled": true,
+    "errors": [],
+    "uiError": "",
+    "stages": [
+      {
+        "ms": 80,
+        "stage": "生成写法  · 后台计算中，页面可滚动"
+      },
+      {
+        "ms": 3779,
+        "stage": "生成写法  · 8%  · 后台计算中，页面可滚动"
+      },
+      {
+        "ms": 4317,
+        "stage": "生成写法  · 32%  · 后台计算中，页面可滚动"
+      },
+      {
+        "ms": 4828,
+        "stage": "写入名字库  · 54%  · 后台计算中，页面可滚动"
+      },
+      {
+        "ms": 5342,
+        "stage": "写入名字库  · 68%  · 后台计算中，页面可滚动"
+      },
+      {
+        "ms": 5881,
+        "stage": "写入名字库  · 75%  · 后台计算中，页面可滚动"
+      },
+      {
+        "ms": 6681,
+        "stage": "后台排版  · 6%  · 后台计算中，页面可滚动"
+      },
+      {
+        "ms": 7194,
+        "stage": "织排完整签名  · 35%  · 后台计算中，页面可滚动"
+      },
+      {
+        "ms": 8110,
+        "stage": "预览 2/16  · 61%  · 后台计算中，页面可滚动"
+      },
+      {
+        "ms": 8704,
+        "stage": "预览 4/16  · 66%  · 后台计算中，页面可滚动"
+      },
+      {
+        "ms": 12960,
+        "stage": "预览 6/16  · 72%  · 后台计算中，页面可滚动"
+      },
+      {
+        "ms": 16668,
+        "stage": "预览 8/16  · 78%  · 后台计算中，页面可滚动"
+      },
+      {
+        "ms": 20624,
+        "stage": "预览 10/16  · 83%  · 后台计算中，页面可滚动"
+      },
+      {
+        "ms": 25503,
+        "stage": "预览 12/16  · 89%  · 后台计算中，页面可滚动"
+      },
+      {
+        "ms": 28217,
+        "stage": "预览 14/16  · 94%  · 后台计算中，页面可滚动"
+      },
+      {
+        "ms": 31252,
+        "stage": "预览 16/16  · 100%  · 后台计算中，页面可滚动"
+      },
+      {
+        "ms": 31772,
+        "stage": "滚轮放大 · 适应  · 2048×1876 · 16074 枚签名"
+      }
+    ],
+    "groups": [
+      {
+        "name": "drawImage",
+        "parent": "paintPlacementsTiled",
+        "selfSamples": 3996,
+        "url": ""
+      },
+      {
+        "name": "drawImage",
+        "parent": "get",
+        "selfSamples": 2898,
+        "url": ""
+      },
+      {
+        "name": "(idle)",
+        "parent": "(root)",
+        "selfSamples": 1722,
+        "url": ""
+      },
+      {
+        "name": "get",
+        "parent": "paintPlacementsTiled",
+        "selfSamples": 882,
+        "url": "http://127.0.0.1:5180/src/lib/signature-portrait/raster-cache.ts?t=1791066319072"
+      },
+      {
+        "name": "toDataURL",
+        "parent": "generateHandwritingVariants",
+        "selfSamples": 286,
+        "url": ""
+      },
+      {
+        "name": "(program)",
+        "parent": "(root)",
+        "selfSamples": 268,
+        "url": ""
+      },
+      {
+        "name": "getImageData",
+        "parent": "measureStampTraits",
+        "selfSamples": 239,
+        "url": ""
+      },
+      {
+        "name": "getImageData",
+        "parent": "renderSignatureVariant",
+        "selfSamples": 114,
+        "url": ""
+      },
+      {
+        "name": "getImageData",
+        "parent": "measureStampTraits",
+        "selfSamples": 69,
+        "url": ""
+      },
+      {
+        "name": "paintPlacementsTiled",
+        "parent": "(root)",
+        "selfSamples": 69,
+        "url": "http://127.0.0.1:5180/src/lib/signature-portrait/layout.ts?t=1791066319072"
+      },
+      {
+        "name": "renderSignatureVariant",
+        "parent": "generateHandwritingVariants",
+        "selfSamples": 67,
+        "url": "http://127.0.0.1:5180/src/lib/signature-portrait/variants.ts?t=1791060683691"
+      },
+      {
+        "name": "fillRect",
+        "parent": "get",
+        "selfSamples": 65,
+        "url": ""
+      },
+      {
+        "name": "toBlob",
+        "parent": "",
+        "selfSamples": 60,
+        "url": ""
+      },
+      {
+        "name": "(garbage collector)",
+        "parent": "(root)",
+        "selfSamples": 26,
+        "url": ""
+      },
+      {
+        "name": "save",
+        "parent": "paintPlacementsTiled",
+        "selfSamples": 23,
+        "url": ""
+      },
+      {
+        "name": "createObjectURL",
+        "parent": "",
+        "selfSamples": 21,
+        "url": ""
+      },
+      {
+        "name": "",
+        "parent": "(root)",
+        "selfSamples": 20,
+        "url": "http://127.0.0.1:5180/src/lib/signature-portrait/fonts.ts?t=1791060683691"
+      },
+      {
+        "name": "getImageData",
+        "parent": "renderSignaturePortrait",
+        "selfSamples": 17,
+        "url": ""
+      },
+      {
+        "name": "onMessage",
+        "parent": "(root)",
+        "selfSamples": 15,
+        "url": "http://127.0.0.1:5180/src/lib/signature-portrait/layout-worker-client.ts"
+      },
+      {
+        "name": "rotate",
+        "parent": "paintPlacementsTiled",
+        "selfSamples": 15,
+        "url": ""
+      }
+    ],
+    "limitations": "Single desktop observations. Sampling includes native synchronization; Worker CPU is excluded. Baseline progress selector was wrong; no stage timing claim."
+  }
+]

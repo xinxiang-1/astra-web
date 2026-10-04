@@ -1,0 +1,60 @@
+{
+  "original": {
+    "dimensions": [
+      2048,
+      1876
+    ],
+    "hash": "6ec478df63db9303a5bf80f178fbb4946f16de1f19125524a1034cbbb6f9c253",
+    "geometry": {
+      "stage": {
+        "x": 707.0625,
+        "y": 316.984375,
+        "width": 620.125,
+        "height": 672
+      },
+      "root": {
+        "x": -6.875,
+        "y": 325.984375,
+        "width": 2048,
+        "height": 1876
+      },
+      "stageScroll": [
+        0,
+        0
+      ],
+      "documentScroll": [
+        0,
+        0
+      ]
+    }
+  },
+  "edited": {
+    "dimensions": [
+      2048,
+      1876
+    ],
+    "hash": "6ec478df63db9303a5bf80f178fbb4946f16de1f19125524a1034cbbb6f9c253",
+    "geometry": {
+      "stage": {
+        "x": 707.0625,
+        "y": 316.984375,
+        "width": 620.125,
+        "height": 672
+      },
+      "root": {
+        "x": -6.875,
+        "y": 325.984375,
+        "width": 2048,
+        "height": 1876
+      },
+      "stageScroll": [
+        0,
+        0
+      ],
+      "documentScroll": [
+        0,
+        0
+      ]
+    }
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "schema": 1,
+  "reports": {
+    "edge-pixel-contract.json": {
+      "source": "test-results/signature-raster-1791066348897/report.json",
+      "sha256": "bcddba807da364b595b173bbea907cd698edc0303c6466ec932b3099fcc6bbd9"
+    },
+    "chrome-pixel-contract.json": {
+      "source": "test-results/signature-raster-chrome-20261004/report.json",
+      "sha256": "f7635318afa502bf3cd87d4032d8b8a71974b6be3eb08a85d2496046bd6d9bc7"
+    },
+    "real-raster-contract.json": {
+      "source": "test-results/signature-raster-1791066493267/report.json",
+      "sha256": "9e33e82bfa1e76640a516a757ed8cac1733668e8e854942cd410884d9a96ba78"
+    },
+    "pure-ink.json": {
+      "source": "test-results/signature-quality-raster-20261004/metrics.json",
+      "sha256": "9c9ff75dd8c4deac8b03d0df0e79744e540579735e0121eabf2453acc33b8ad3"
+    },
+    "result-invalidated.json": {
+      "source": "test-results/signature-result-raster-20261004/generation-failure.json",
+      "sha256": "d42c5f59057698ae48f89b2583dbfade5eea8bc524f8cf19f219b1e9590b11b1"
+    },
+    "result-snapshot.json": {
+      "source": "test-results/signature-result-raster-fixed-viewport-20261004/results.json",
+      "sha256": "1f7a3a53187c7cc9c4a0b58154f72af2652eeda994be4584d55650e5298546dc"
+    }
+  },
+  "protectedSources": {
+    "src/views/ArtHomeView.vue": {
+      "baseline": "db2b7e0ffa0d590be0e3e9d99caa8ecaba4716721b5d03b2d6269e46ad4458dd",
+      "current": "db2b7e0ffa0d590be0e3e9d99caa8ecaba4716721b5d03b2d6269e46ad4458dd",
+      "unchanged": true
+    },
+    "src/components/CharacterArtwork.vue": {
+      "baseline": "99da7635979b98f70aa622887bcf775047114529b4130de201cebf40d0ab2858",
+      "current": "99da7635979b98f70aa622887bcf775047114529b4130de201cebf40d0ab2858",
+      "unchanged": true
+    },
+    "src/lib/ascii/studio-preview.ts": {
+      "baseline": "87ef73fd4261872b1a6bc3d66fd2a05498bc73fa047294b4934174ede9af1a07",
+      "current": "87ef73fd4261872b1a6bc3d66fd2a05498bc73fa047294b4934174ede9af1a07",
+      "unchanged": true
+    }
+  },
+  "inputHashes": {
+    "public/fonts/signature/MaShanZheng-Regular.ttf": "6d2546bb189c732a8ca29af9e22457b152387d158aa459e4ac2ce1e51788b7fb",
+    "public/demos/ascii-live/aristotle-bust.webp": "a8bd8f61e90e48a8a9e18cf86f49d2c98ae076b4dff206ad14da38a12c8100ed"
+  },
+  "checks": {
+    "typeCheck": "passed",
+    "eslint": "passed for relevant production sources and scripts",
+    "build": "passed with pre-existing warnings",
+    "diffCheck": "passed",
+    "gpuPromotion": false,
+    "commercialVisualAcceptance": false,
+    "maxZoomAcceptance": false
+  }
+}

@@ -6,7 +6,7 @@
 import type { SignatureStamp } from './extract'
 import { measureStampTraits } from './extract'
 import { autoInvertDensity } from './layout-compute'
-import { signatureTint, tintCacheKey } from './render-style'
+import { createTintedStampCache } from './raster-cache'
 import { prepareSignatureInk, type SignatureInkStyle } from './ink-style'
 import { createVectorInkPainter } from './vector-ink'
 
@@ -109,26 +109,6 @@ function prepareStamp(stamp: SignatureStamp, maxLong = 512, inkStyle: SignatureI
     inkRatio: Math.max(0.04, Math.min(0.4, traits.inkRatio)),
     aspect: traits.aspect,
   }
-}
-
-function tintStamp(
-  source: HTMLCanvasElement,
-  colorize: boolean,
-  r: number,
-  g: number,
-  b: number,
-  depth: number,
-  literal = false,
-): HTMLCanvasElement {
-  const out = makeCanvas(source.width, source.height)
-  const ctx = out.getContext('2d')
-  if (!ctx) return source
-  ctx.drawImage(source, 0, 0)
-  ctx.globalCompositeOperation = 'source-in'
-  ctx.fillStyle = `rgb(${signatureTint(colorize, r, g, b, depth, literal).join(',')})`
-  ctx.fillRect(0, 0, out.width, out.height)
-  ctx.globalCompositeOperation = 'source-over'
-  return out
 }
 
 /** 印章下垫软色椭圆，补笔画空隙（填色） */
@@ -388,7 +368,11 @@ export function paintPlacements(
   const underlay = options.underlay ?? 0
   const vectorPainter = options.inkStyle === 'cutout' ? createVectorInkPainter(stamps) : null
   const metrics = stamps.map((s) =>
-    prepareStamp(s, options.stampMaxLong ?? Math.max(640, Math.round(Math.max(outW, outH) * 0.35)), options.inkStyle),
+    prepareStamp(
+      s,
+      options.stampMaxLong ?? Math.max(640, Math.round(Math.max(outW, outH) * 0.35)),
+      options.inkStyle,
+    ),
   )
 
   const canvas = makeCanvas(outW, outH)
@@ -403,69 +387,63 @@ export function paintPlacements(
     ctx.globalAlpha = 1
   }
 
-  const tintCache = new Map<string, HTMLCanvasElement>()
-  const getTinted = (
-    index: number,
-    r: number,
-    g: number,
-    b: number,
-    depth: number,
-    literal = false,
-  ) => {
-    const key = tintCacheKey(index, colorize, r, g, b, depth, literal)
-    let cached = tintCache.get(key)
-    if (!cached) {
-      cached = tintStamp(metrics[index]!.canvas, colorize, r, g, b, depth, literal)
-      if (tintCache.size >= 64) tintCache.delete(tintCache.keys().next().value!)
-      tintCache.set(key, cached)
-    }
-    return cached
-  }
-
-  const drawOrder = [...placements].sort(
-    (a, b) => b.targetSize - a.targetSize || a.depth - b.depth,
+  const tintCache = createTintedStampCache(
+    metrics.map((metric) => metric.canvas),
+    colorize,
   )
 
-  for (let i = 0; i < drawOrder.length; i++) {
-    if (options.signal?.cancelled) throw new Error('已取消')
-    if (i > 0 && i % 400 === 0) options.onProgress?.(i / Math.max(1, drawOrder.length))
-    const p = drawOrder[i]!
-    if (vectorPainter) {
-      const metric = metrics[p.stampIndex]!
-      if (coverFill) paintCoverBlob(ctx, p, metric.width, metric.height, p.targetSize / Math.max(metric.width, metric.height))
-      vectorPainter(ctx, p, colorize)
-      continue
+  const drawOrder = [...placements].sort((a, b) => b.targetSize - a.targetSize || a.depth - b.depth)
+
+  try {
+    for (let i = 0; i < drawOrder.length; i++) {
+      if (options.signal?.cancelled) throw new Error('已取消')
+      if (i > 0 && i % 400 === 0) options.onProgress?.(i / Math.max(1, drawOrder.length))
+      const p = drawOrder[i]!
+      if (vectorPainter) {
+        const metric = metrics[p.stampIndex]!
+        if (coverFill)
+          paintCoverBlob(
+            ctx,
+            p,
+            metric.width,
+            metric.height,
+            p.targetSize / Math.max(metric.width, metric.height),
+          )
+        vectorPainter(ctx, p, colorize)
+        continue
+      }
+      const glyph = tintCache.get(
+        p.stampIndex,
+        p.tint.r,
+        p.tint.g,
+        p.tint.b,
+        p.depth,
+        Boolean(p.tintLiteral),
+      )
+      const stampLong = Math.max(glyph.width, glyph.height)
+      const scale = p.targetSize / stampLong
+
+      if (coverFill) paintCoverBlob(ctx, p, glyph.width, glyph.height, scale)
+
+      ctx.save()
+      ctx.translate(p.x, p.y)
+      ctx.rotate(p.angle)
+      ctx.scale(scale, scale)
+      // 高质量平滑，保持小笔迹与放大预览。
+      ctx.imageSmoothingEnabled = true
+      ctx.imageSmoothingQuality = 'high'
+      ctx.globalAlpha = clamp01(p.strength)
+      ctx.globalCompositeOperation = p.blend === 'soft' ? 'source-over' : 'multiply'
+      ctx.drawImage(glyph, -glyph.width / 2, -glyph.height / 2)
+      ctx.restore()
     }
-    const glyph = getTinted(
-      p.stampIndex,
-      p.tint.r,
-      p.tint.g,
-      p.tint.b,
-      p.depth,
-      Boolean(p.tintLiteral),
-    )
-    const stampLong = Math.max(glyph.width, glyph.height)
-    const scale = p.targetSize / stampLong
-
-    if (coverFill) paintCoverBlob(ctx, p, glyph.width, glyph.height, scale)
-
-    ctx.save()
-    ctx.translate(p.x, p.y)
-    ctx.rotate(p.angle)
-    ctx.scale(scale, scale)
-    // 高质量平滑，保持小笔迹与放大预览。
-    ctx.imageSmoothingEnabled = true
-    ctx.imageSmoothingQuality = 'high'
-    ctx.globalAlpha = clamp01(p.strength)
-    ctx.globalCompositeOperation =
-      p.blend === 'soft' ? 'source-over' : 'multiply'
-    ctx.drawImage(glyph, -glyph.width / 2, -glyph.height / 2)
-    ctx.restore()
+    ctx.globalCompositeOperation = 'source-over'
+    ctx.globalAlpha = 1
+    options.onProgress?.(1)
+    return canvas
+  } finally {
+    tintCache.clear()
   }
-  ctx.globalCompositeOperation = 'source-over'
-  ctx.globalAlpha = 1
-  options.onProgress?.(1)
-  return canvas
 }
 
 /**
@@ -488,23 +466,21 @@ export async function paintPlacementsTiled(
     underlay?: number
     tileSize?: number
     stampMaxLong?: number
-    onTile?: (info: {
-      canvas: HTMLCanvasElement
-      done: number
-      total: number
-    }) => void
+    onTile?: (info: { canvas: HTMLCanvasElement; done: number; total: number }) => void
     signal?: { cancelled?: boolean }
   } = {},
 ): Promise<HTMLCanvasElement> {
   const sx = outW / Math.max(1, layoutW)
   const sy = outH / Math.max(1, layoutH)
   const sAvg = (sx + sy) * 0.5
-  const mapped = placements.map((p) => ({
-    ...p,
-    x: p.x * sx,
-    y: p.y * sy,
-    targetSize: p.targetSize * sAvg,
-  })).sort((a, b) => b.targetSize - a.targetSize || a.depth - b.depth)
+  const mapped = placements
+    .map((p) => ({
+      ...p,
+      x: p.x * sx,
+      y: p.y * sy,
+      targetSize: p.targetSize * sAvg,
+    }))
+    .sort((a, b) => b.targetSize - a.targetSize || a.depth - b.depth)
 
   const background = options.background ?? '#f5f0e8'
   const colorize = options.colorize ?? true
@@ -514,8 +490,7 @@ export async function paintPlacementsTiled(
   const metrics = stamps.map((s) =>
     prepareStamp(
       s,
-      options.stampMaxLong ??
-        Math.min(1000, Math.max(480, Math.round(Math.max(outW, outH) * 0.4))),
+      options.stampMaxLong ?? Math.min(1000, Math.max(480, Math.round(Math.max(outW, outH) * 0.4))),
       options.inkStyle,
     ),
   )
@@ -536,24 +511,10 @@ export async function paintPlacementsTiled(
   options.onTile?.({ canvas, done: 0, total: 1 })
   await yieldFrame()
 
-  const tintCache = new Map<string, HTMLCanvasElement>()
-  const getTinted = (
-    index: number,
-    r: number,
-    g: number,
-    b: number,
-    depth: number,
-    literal = false,
-  ) => {
-    const key = tintCacheKey(index, colorize, r, g, b, depth, literal)
-    let cached = tintCache.get(key)
-    if (!cached) {
-      cached = tintStamp(metrics[index]!.canvas, colorize, r, g, b, depth, literal)
-      if (tintCache.size >= 64) tintCache.delete(tintCache.keys().next().value!)
-      tintCache.set(key, cached)
-    }
-    return cached
-  }
+  const tintCache = createTintedStampCache(
+    metrics.map((metric) => metric.canvas),
+    colorize,
+  )
 
   const tilesX = Math.ceil(outW / tileSize)
   const tilesY = Math.ceil(outH / tileSize)
@@ -561,79 +522,85 @@ export async function paintPlacementsTiled(
   let done = 0
   const vectorPainter = options.inkStyle === 'cutout' ? createVectorInkPainter(stamps) : null
 
-  for (let ty = 0; ty < tilesY; ty++) {
-    for (let tx = 0; tx < tilesX; tx++) {
-      if (options.signal?.cancelled) throw new Error('已取消')
-      const x0 = tx * tileSize
-      const y0 = ty * tileSize
-      const tw = Math.min(tileSize, outW - x0)
-      const th = Math.min(tileSize, outH - y0)
-      const pad = 120
+  try {
+    for (let ty = 0; ty < tilesY; ty++) {
+      for (let tx = 0; tx < tilesX; tx++) {
+        if (options.signal?.cancelled) throw new Error('已取消')
+        const x0 = tx * tileSize
+        const y0 = ty * tileSize
+        const tw = Math.min(tileSize, outW - x0)
+        const th = Math.min(tileSize, outH - y0)
 
-      const tile = makeCanvas(tw, th)
-      const tctx = tile.getContext('2d')
-      if (!tctx) continue
-      // 透明底，叠到主画布
-      tctx.clearRect(0, 0, tw, th)
+        const tile = makeCanvas(tw, th)
+        const tctx = tile.getContext('2d')
+        if (!tctx) continue
+        // 透明底，叠到主画布
+        tctx.clearRect(0, 0, tw, th)
 
-      for (const p of mapped) {
-        const rad = p.targetSize * 0.75
-        if (
-          p.x + rad < x0 - pad ||
-          p.x - rad > x0 + tw + pad ||
-          p.y + rad < y0 - pad ||
-          p.y - rad > y0 + th + pad
-        ) {
-          continue
+        for (const p of mapped) {
+          // A rotated rectangle fits within sqrt(2)/2 of its longest side.
+          // Three pixels also cover the optional minimum-radius ellipse and antialiasing.
+          const rad = p.targetSize * 0.75 + 3
+          if (p.x + rad < x0 || p.x - rad > x0 + tw || p.y + rad < y0 || p.y - rad > y0 + th) {
+            continue
+          }
+          if (vectorPainter) {
+            const metric = metrics[p.stampIndex]!
+            const local = { ...p, x: p.x - x0, y: p.y - y0 }
+            if (coverFill)
+              paintCoverBlob(
+                tctx,
+                local,
+                metric.width,
+                metric.height,
+                p.targetSize / Math.max(metric.width, metric.height),
+              )
+            vectorPainter(tctx, local, colorize)
+            continue
+          }
+          const glyph = tintCache.get(
+            p.stampIndex,
+            p.tint.r,
+            p.tint.g,
+            p.tint.b,
+            p.depth,
+            Boolean(p.tintLiteral),
+          )
+          const stampLong = Math.max(glyph.width, glyph.height)
+          const scale = p.targetSize / stampLong
+          const local = {
+            ...p,
+            x: p.x - x0,
+            y: p.y - y0,
+          }
+          if (coverFill) paintCoverBlob(tctx, local, glyph.width, glyph.height, scale)
+          tctx.save()
+          tctx.translate(p.x - x0, p.y - y0)
+          tctx.rotate(p.angle)
+          tctx.scale(scale, scale)
+          tctx.imageSmoothingEnabled = true
+          tctx.imageSmoothingQuality = 'high'
+          tctx.globalAlpha = clamp01(p.strength)
+          tctx.globalCompositeOperation = p.blend === 'soft' ? 'source-over' : 'multiply'
+          tctx.drawImage(glyph, -glyph.width / 2, -glyph.height / 2)
+          tctx.restore()
         }
-        if (vectorPainter) {
-          const metric = metrics[p.stampIndex]!
-          const local = { ...p, x: p.x - x0, y: p.y - y0 }
-          if (coverFill) paintCoverBlob(tctx, local, metric.width, metric.height, p.targetSize / Math.max(metric.width, metric.height))
-          vectorPainter(tctx, local, colorize)
-          continue
-        }
-        const glyph = getTinted(
-          p.stampIndex,
-          p.tint.r,
-          p.tint.g,
-          p.tint.b,
-          p.depth,
-          Boolean(p.tintLiteral),
-        )
-        const stampLong = Math.max(glyph.width, glyph.height)
-        const scale = p.targetSize / stampLong
-        const local = {
-          ...p,
-          x: p.x - x0,
-          y: p.y - y0,
-        }
-        if (coverFill) paintCoverBlob(tctx, local, glyph.width, glyph.height, scale)
-        tctx.save()
-        tctx.translate(p.x - x0, p.y - y0)
-        tctx.rotate(p.angle)
-        tctx.scale(scale, scale)
-        tctx.imageSmoothingEnabled = true
-        tctx.imageSmoothingQuality = 'high'
-        tctx.globalAlpha = clamp01(p.strength)
-        tctx.globalCompositeOperation =
-          p.blend === 'soft' ? 'source-over' : 'multiply'
-        tctx.drawImage(glyph, -glyph.width / 2, -glyph.height / 2)
-        tctx.restore()
+
+        ctx.save()
+        ctx.globalCompositeOperation = 'source-over'
+        ctx.drawImage(tile, x0, y0)
+        ctx.restore()
+
+        done++
+        options.onTile?.({ canvas, done, total })
+        if (done % 2 === 0) await yieldFrame()
       }
-
-      ctx.save()
-      ctx.globalCompositeOperation = 'source-over'
-      ctx.drawImage(tile, x0, y0)
-      ctx.restore()
-
-      done++
-      options.onTile?.({ canvas, done, total })
-      if (done % 2 === 0) await yieldFrame()
     }
-  }
 
-  return canvas
+    return canvas
+  } finally {
+    tintCache.clear()
+  }
 }
 
 /** 把布局坐标映射到新画布尺寸后重绘（高清导出用） */

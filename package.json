@@ -43,6 +43,7 @@
     "test:signature-strokes": "node scripts/signature-stroke-parity.mjs",
     "test:signature-result": "node scripts/signature-result-contract.mjs",
     "test:signature-cutout": "node scripts/signature-cutout-contract.mjs",
+    "test:signature-raster": "node scripts/signature-raster-cache-contract.mjs",
     "brand:render": "node scripts/render-astra-brand.mjs",
     "promo:render": "node scripts/render-astra-promo.mjs",
     "sandbox:ascii:dev": "vite --config sandbox/ascii-optimizer/vite.config.ts",
