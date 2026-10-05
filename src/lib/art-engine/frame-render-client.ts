@@ -86,7 +86,7 @@ export function createFrameRenderWorker(
       interactionSteps = interactionSeconds = 0
       const clock = next.options.hoverTime ?? next.options.time ?? 0
       expectedInteractionSeconds =
-        next.options.hover === 'particles' &&
+        (next.options.hover === 'particles' || next.options.hover === 'light') &&
         hasInteractionClock(next.frame, next.options) &&
         previousClock !== null &&
         previousClock >= 0 &&

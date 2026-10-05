@@ -1,0 +1,100 @@
+{
+  "browser": "154.0.8037.57",
+  "base": "http://127.0.0.1:5184",
+  "errors": [],
+  "cases": [
+    {
+      "name": "initial-image",
+      "slowFeedbackVisible": true,
+      "clearsOnComplete": true
+    },
+    {
+      "name": "stationary-color-180",
+      "requests": 0,
+      "loadingSamples": 0,
+      "completedFrames": 0,
+      "elapsedMs": 3014.6999999284744,
+      "exactPixels": true
+    },
+    {
+      "name": "hover-still-works",
+      "requests": 4,
+      "loadingSamples": 0,
+      "completedFrames": 1,
+      "elapsedMs": 8019.600000023842,
+      "visibleScatter": true,
+      "exactRecovery": true
+    },
+    {
+      "name": "stationary-default-light",
+      "requests": 0,
+      "loadingSamples": 0,
+      "completedFrames": 0,
+      "elapsedMs": 2013.8000000715256,
+      "exactPixels": true,
+      "exactRecovery": true
+    },
+    {
+      "name": "explicit-zoom-dark",
+      "loadingVisible": true,
+      "pointerEvents": "none",
+      "width": 825,
+      "oldWidth": 571
+    },
+    {
+      "name": "explicit-zoom-light",
+      "loadingVisible": true,
+      "pointerEvents": "none",
+      "width": 1083,
+      "oldWidth": 825
+    },
+    {
+      "name": "fullscreen-first-frame",
+      "firstFeedbackVisible": true,
+      "clearsOnComplete": true,
+      "released": true
+    },
+    {
+      "name": "ambient-updates",
+      "requests": 4,
+      "loadingSamples": 0,
+      "completedFrames": 2,
+      "elapsedMs": 6753
+    },
+    {
+      "name": "source-replacement",
+      "slowFeedbackVisible": true,
+      "clearsOnComplete": true
+    }
+  ],
+  "passed": true,
+  "scope": "Real production upload/controls/Worker pixels; completed Worker delivery is delayed 600ms to verify slow-operation feedback independently of device speed",
+  "sourceHashes": {
+    "src/views/AsciiArtView.vue": "eb6353985c192337f2527caa70c8ad320a388464fe99d45bb4d05d74cfc47c99",
+    "scripts/preview-feedback-contract.mjs": "da7a078ab9ba7e7ecc17c3b38defaf75a94bd8f77be0e039a63683cfc2f7806d"
+  },
+  "lightBaseline": {
+    "width": 571,
+    "height": 713,
+    "data": {
+      "vB329eef5": "",
+      "renderPending": "false",
+      "engine": "calibrated",
+      "columns": "180",
+      "mode": "color",
+      "quality": "classic",
+      "time": "1.0666520000000002",
+      "motionStyle": "cinematic",
+      "interactionTime": "26.504600000023842",
+      "pointerStrength": "0",
+      "interactionActive": "false",
+      "particlePeak": "0",
+      "particleBytes": "0",
+      "hover": "light",
+      "paused": "false",
+      "motion": "none",
+      "hoverStrength": "0.65",
+      "renderBackend": "worker"
+    }
+  }
+}

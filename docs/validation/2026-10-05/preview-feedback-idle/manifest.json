@@ -1,0 +1,112 @@
+{
+  "parent": "59790af504310dcabf3ebbf7cf8b8af873713969",
+  "sourceHashes": {
+    "src/views/AsciiArtView.vue": "eb6353985c192337f2527caa70c8ad320a388464fe99d45bb4d05d74cfc47c99",
+    "src/lib/art-engine/canvas.ts": "ef913a0e8a82da6e0562c325ea8ad57f935c2696e818e3822809a1d238a17087",
+    "src/lib/art-engine/embed.ts": "db867f8f7ac749021f935b5115fbcc6124bac7f91fa47a9f633e1ad089b6d1f8",
+    "src/lib/art-engine/types.ts": "7242372a165b77fb65ec6334f389d8b55c36147c675735dfc619e98188a19735",
+    "src/lib/art-engine/frame-render-client.ts": "b53b68d46758c9b3ad8a74a29e963955bcd7caa6482282cc024b228e128591df",
+    "scripts/light-clock-contract.mjs": "55d1c0ee4f47741bacb90a44dd08aaea90dfc63625fe7c085b9dae4f81a6e718",
+    "scripts/preview-feedback-contract.mjs": "da7a078ab9ba7e7ecc17c3b38defaf75a94bd8f77be0e039a63683cfc2f7806d",
+    "scripts/video-render-feedback-contract.mjs": "19933a331d00f8edc5efc32575d73f3c1bab3f20164dc9c5bc69799e440728e0",
+    "scripts/art-render-watchdog-contract.mjs": "731336098525ee7d5ae76ab65b586d9c6bc8443c2ef548058fb363094e59359b"
+  },
+  "reports": {
+    "image-chrome.json": {
+      "passed": true,
+      "sha256": "8adc7b870e5ee45126cf427f23dc30d60a0188b277319c40a1947858c64ffc2d"
+    },
+    "light-clock-chrome.json": {
+      "passed": true,
+      "sha256": "c546ae3a7a3a99ba505c37b4dfd381d4a369eacec3042bfb290ebfd03602958b"
+    },
+    "light-clock-edge.json": {
+      "passed": true,
+      "sha256": "492f6d840cec061513f58e9e88fdb6b00c1068bf094e37cca4e57cc1a6db11e8"
+    },
+    "light-dense-before.json": {
+      "sha256": "d8e74bfb0bc20328ba7c8057b1435d696fb5fde1c89317faf8bac51b21cc9e1f"
+    },
+    "particle-clock-chrome.json": {
+      "passed": true,
+      "sha256": "4786bcedf3772afe89eb8a2c30b56525dfa81e0567f37185c1792f9d3996a1be"
+    },
+    "particle-clock-edge.json": {
+      "passed": true,
+      "sha256": "5eca1b15f4da009c422ed14698105d9665c162bb655af80dec51527b537eb91d"
+    },
+    "reproduction-after.json": {
+      "passed": true,
+      "sha256": "905db84cf4473ad8cf6497f10aa1b3e74ae8e109c518948c7e2cd48d893e4d64"
+    },
+    "reproduction-before.json": {
+      "passed": true,
+      "sha256": "a3145f1448c879243ce7fb1e8add3ee7671ada36b294c6091ebeee5ff20d6476"
+    },
+    "ui-chrome.json": {
+      "passed": true,
+      "sha256": "70a677a64f683e7be5c82db4b5cf3c1aae0371daee05b7ac861cca8d9382f864"
+    },
+    "ui-edge.json": {
+      "passed": true,
+      "sha256": "9eb62e165b76f86c3e909f31ffba93a648b89473c7f3aecf43ad6e82dd5f8ef9"
+    },
+    "ui-r1-enum-failure.json": {
+      "passed": false,
+      "sha256": "01f89ee1e5447eafd86ff33bae08e21dc31ed86bdbae4ed8b50161955fafae2b"
+    },
+    "ui-r2-light-recovery-failure.json": {
+      "passed": false,
+      "sha256": "1da8ba48578c6605c179aad69f806a13601aa72bb13bcef1c5a6fa6bde660670"
+    },
+    "ui-r3-observation-failure.json": {
+      "passed": false,
+      "sha256": "27ab404979651e77434baf160f156189d3452fc8ca46c6b61f21976eb480be3d"
+    },
+    "video-chrome.json": {
+      "passed": true,
+      "sha256": "83b040574b6fe0dd26b23949f1246e22ca3786313bbf5cc83959947065da777e"
+    },
+    "video-edge.json": {
+      "passed": true,
+      "sha256": "9cd3a06e996c532b2c671b42e3b99e00e624ff6312e714b5c32810e6231f8ae5"
+    },
+    "video-feedback-buffering-diagnosis.json": {
+      "passed": false,
+      "sha256": "f849d6e5dbe8ec534f083b57ecba6622ec3f1266b715d736900c37bf2717c4ef"
+    },
+    "video-feedback-chrome.json": {
+      "passed": true,
+      "sha256": "7a60c85f407d08faa6ce0c04f362f52d27f21fd52c143f526a0c54e7b11de838"
+    },
+    "video-feedback-edge.json": {
+      "passed": true,
+      "sha256": "528b19370f782ac3c2055452ceadcff1c34d286af881454cf5fc818d20e575ef"
+    },
+    "video-feedback-initial-failure.json": {
+      "passed": false,
+      "sha256": "2f96a111e4d475f100ea3d9013d5782b12b8a0fb6d17e91f50b06269633c7146"
+    },
+    "watchdog-chrome.json": {
+      "passed": true,
+      "sha256": "91be29a49c78db15b4cf1343a7113eccc7d541d707ccce3b1b07586b17640f5b"
+    },
+    "watchdog-edge.json": {
+      "passed": true,
+      "sha256": "010aeea5b7e25cf1bc33e046af440757fffb0e1fa03240193b4318bf138e8088"
+    }
+  },
+  "staticChecks": {
+    "typeCheck": true,
+    "eslintRelevant": true,
+    "productionBuild": true,
+    "nativeBodyUnchanged": true,
+    "documentLinksExist": true
+  },
+  "limitations": [
+    "UI bitmap delay is test-only",
+    "Algorithm-zero fixtures are not image quality or FPS evidence",
+    "Actual buffering stays visible",
+    "High-density complete frames remain slow"
+  ]
+}

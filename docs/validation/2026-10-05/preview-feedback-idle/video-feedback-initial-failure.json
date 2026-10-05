@@ -1,0 +1,94 @@
+{
+  "browser": "154.0.4258.53",
+  "cases": [
+    {
+      "width": 1440,
+      "theme": "light",
+      "geometry": [
+        860,
+        729
+      ],
+      "visibleAndHiddenStable": true,
+      "inputAvailable": true,
+      "reducedMotion": true
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "geometry": [
+        860,
+        729
+      ],
+      "visibleAndHiddenStable": true,
+      "inputAvailable": true,
+      "reducedMotion": true
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "geometry": [
+        362,
+        374
+      ],
+      "visibleAndHiddenStable": true,
+      "inputAvailable": true,
+      "reducedMotion": true
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "geometry": [
+        362,
+        374
+      ],
+      "visibleAndHiddenStable": true,
+      "inputAvailable": true,
+      "reducedMotion": true
+    }
+  ],
+  "passed": false,
+  "scope": "Real local video, synthetic buffering events; no real network-stall claim",
+  "source": {
+    "file": "source.webm",
+    "generated": true,
+    "sha256": "80707ceb92e7e72d9da5c7f7bff83c1d2ccba1bf9c41716338f37c1bd5106ae7"
+  },
+  "failure": "AssertionError [ERR_ASSERTION]: Continuous video frames must not repeat generation feedback\n\n1 !== 0\n\n    at file:///D:/my/project/astra/astra-web/scripts/video-render-feedback-contract.mjs:103:10",
+  "failureState": {
+    "messages": [
+      "80 × 21 字符 · 已暂停 · 原画 1.78:1 · 自适应 76%"
+    ],
+    "canvas": {
+      "vB329eef5": "",
+      "renderPending": "true",
+      "engine": "calibrated",
+      "columns": "80",
+      "mode": "density",
+      "quality": "classic",
+      "time": "0",
+      "motionStyle": "cinematic",
+      "interactionTime": "25.441299999952317",
+      "pointerStrength": "0",
+      "interactionActive": "false",
+      "particlePeak": "0",
+      "particleBytes": "0",
+      "hover": "light",
+      "paused": "false",
+      "motion": "none",
+      "hoverStrength": "0.65",
+      "renderBackend": "worker"
+    },
+    "video": [
+      {
+        "duration": null,
+        "readyState": 0,
+        "width": 0
+      },
+      {
+        "duration": 4.592783,
+        "readyState": 4,
+        "width": 640
+      }
+    ]
+  }
+}

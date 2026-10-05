@@ -94,7 +94,10 @@ async function runArtworkPage(
       longEdge: size,
       transparent: data.transparent,
       time: animationTime,
-      hoverTime: data.hover === 'particles' ? performance.now() / 1000 : interactionTime,
+      hoverTime:
+        data.hover === 'particles' || data.hover === 'light'
+          ? performance.now() / 1000
+          : interactionTime,
       effectProfile: data.effectProfile,
       motionSpeed: data.motionSpeed,
       motionStrength: data.motionStrength,
@@ -133,7 +136,7 @@ async function runArtworkPage(
     }
     const elapsed = previousTime ? Math.max(0, (now - previousTime) / 1000) : 0
     const delta = Math.min(0.15, elapsed)
-    const pointerDelta = data.hover === 'particles' ? elapsed : delta
+    const pointerDelta = data.hover === 'particles' || data.hover === 'light' ? elapsed : delta
     previousTime = now
     last = now
     if (running && !reduced.matches) animationTime += delta

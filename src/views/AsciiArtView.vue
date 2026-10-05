@@ -209,6 +209,7 @@ const reducedArtMotion = ref(matchMedia('(prefers-reduced-motion: reduce)').matc
 const artRenderers = new Map<HTMLCanvasElement, PreviewRenderClient>()
 const videoRenderers = new Map<HTMLCanvasElement, FrameRenderWorker>()
 const previewRenderKeys = new Map<HTMLCanvasElement, string>()
+const presentedPreviewKeys = new Map<HTMLCanvasElement, string>()
 const previewProgress = new Map<HTMLCanvasElement, number>()
 const previewRenderPhases = new Map<HTMLCanvasElement, 'drawing' | 'interaction'>()
 const failedVideoRenderers = new Set<HTMLCanvasElement>()
@@ -716,6 +717,7 @@ function destroyCalibratedRenderers() {
   for (const renderer of videoRenderers.values()) renderer.dispose()
   videoRenderers.clear()
   previewRenderKeys.clear()
+  presentedPreviewKeys.clear()
   previewProgress.clear()
   previewRenderPhases.clear()
   failedVideoRenderers.clear()
@@ -727,10 +729,19 @@ function destroyCalibratedRenderers() {
   frameRenderFallback.value = false
 }
 
+function pendingFeedbackTargets() {
+  // Live hover/video frames update an already complete preview. A loading overlay
+  // belongs to an initial frame or a new source/configuration/size instead.
+  return [...artRenderers, ...videoRenderers].filter(
+    ([canvas, renderer]) =>
+      renderer.pending && presentedPreviewKeys.get(canvas) !== previewRenderKeys.get(canvas),
+  )
+}
+
 function updateRenderFeedback() {
   for (const [canvas, renderer] of [...artRenderers, ...videoRenderers])
     canvas.dataset.renderPending = String(renderer.pending)
-  const targets = [...artRenderers, ...videoRenderers].filter(([, renderer]) => renderer.pending)
+  const targets = pendingFeedbackTargets()
   if (!targets.length) {
     clearTimeout(frameFeedbackTimer)
     frameFeedbackTimer = undefined
@@ -751,9 +762,7 @@ function updateRenderFeedback() {
   if (!frameRendering.value && !frameFeedbackTimer)
     frameFeedbackTimer = setTimeout(() => {
       frameFeedbackTimer = undefined
-      frameRendering.value = [...artRenderers.values(), ...videoRenderers.values()].some(
-        (r) => r.pending,
-      )
+      frameRendering.value = pendingFeedbackTargets().length > 0
     }, 150)
 }
 
@@ -764,6 +773,7 @@ function releasePreviewRenderer(canvas: HTMLCanvasElement) {
   artRenderers.delete(canvas)
   failedVideoRenderers.delete(canvas)
   previewRenderKeys.delete(canvas)
+  presentedPreviewKeys.delete(canvas)
   previewProgress.delete(canvas)
   previewRenderPhases.delete(canvas)
   updateRenderFeedback()
@@ -794,22 +804,25 @@ function queueCalibratedAnimation() {
     return
   if (
     (artMotion.value === 'none' || artPaused.value || artMotionStrength.value === 0) &&
-    (particleCapacityExceeded.value || (artPointer.strength < 0.002 && artPointer.target === 0)) &&
-    (artHover.value !== 'particles' || artPointerSamples.length === 0) &&
+    (particleCapacityExceeded.value ||
+      (Math.abs(artPointer.strength - artPointer.target) < 0.002 &&
+        artPointerSamples.length === 0)) &&
     ![...artRenderers.values(), ...videoRenderers.values()].some(
       (renderer) => renderer.interactionActive,
     )
   ) {
+    if (particleCapacityExceeded.value) artPointerSamples.length = 0
     artLastTick = 0
     return
   }
   artAnimationRaf = requestAnimationFrame((now) => {
     artAnimationRaf = 0
-    const particleImage = artHover.value === 'particles' && !hasVideo.value
-    const freshInput = particleImage && artPointerSamples.length > 0
+    const responsiveHover = artHover.value === 'particles' || artHover.value === 'light'
+    const interactionImage = responsiveHover && !hasVideo.value
+    const freshInput = interactionImage && artPointerSamples.length > 0
     // Preserve the queued gesture's timestamp while a complete image is in flight.
     // Idle ticks must not age unseen input until its frame has been presented.
-    if (particleImage && !freshInput && [...artRenderers.values()].some((r) => r.pending)) {
+    if (interactionImage && !freshInput && [...artRenderers.values()].some((r) => r.pending)) {
       queueCalibratedAnimation()
       return
     }
@@ -822,14 +835,15 @@ function queueCalibratedAnimation() {
     }
     const elapsed = artLastTick ? Math.max(0, (now - artLastTick) / 1000) : 0
     const delta = Math.min(0.15, elapsed)
-    const pointerDelta = artHover.value === 'particles' ? elapsed : delta
+    const pointerDelta = responsiveHover ? elapsed : delta
     artLastTick = now
     if (!artPaused.value) artElapsed += delta
     artInteractionElapsed += delta
     artPointer.strength +=
       (artPointer.target - artPointer.strength) *
       (1 - Math.exp(-Math.max(pointerDelta, 1 / 60) / 0.14))
-    if (!artPointer.target && artPointer.strength < 0.002) artPointer.strength = 0
+    if (Math.abs(artPointer.strength - artPointer.target) < 0.002)
+      artPointer.strength = artPointer.target
     schedulePaint()
   })
 }
@@ -2401,8 +2415,11 @@ function paintTo(
       longEdge: Math.max(cssWidth, cssHeight) * Math.min(2, devicePixelRatio || 1),
       motion: reducedArtMotion.value ? 'none' : artMotion.value,
       time: artElapsed,
-      // Pointer event timestamps and this particle clock share the performance time origin.
-      hoverTime: artHover.value === 'particles' ? performance.now() / 1000 : artInteractionElapsed,
+      // Pointer event timestamps and these interaction clocks share the performance time origin.
+      hoverTime:
+        artHover.value === 'particles' || artHover.value === 'light'
+          ? performance.now() / 1000
+          : artInteractionElapsed,
       effectProfile: artEffectProfile.value,
       motionSpeed: artMotionSpeed.value,
       motionStrength: artMotionStrength.value,
@@ -2452,6 +2469,7 @@ function paintTo(
                 result.cacheStats,
               )
               canvas.dataset.renderBackend = 'worker'
+              updateRenderFeedback()
               queueCalibratedAnimation()
             },
             () => {
@@ -2559,6 +2577,7 @@ function markArtCanvas(
   interactionActive: boolean,
   stats: ArtRendererCacheStats,
 ) {
+  presentedPreviewKeys.set(canvas, artPreviewConfigKey(frame, options))
   canvas.dataset.engine = 'calibrated'
   canvas.dataset.columns = String(frame.columns)
   canvas.dataset.mode = frame.settings.mode

@@ -1,0 +1,111 @@
+{
+  "browser": "154.0.4258.53",
+  "cases": [
+    {
+      "width": 1440,
+      "theme": "light",
+      "geometry": [
+        860,
+        729
+      ],
+      "visibleAndHiddenStable": true,
+      "inputAvailable": true,
+      "reducedMotion": true
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "geometry": [
+        860,
+        729
+      ],
+      "visibleAndHiddenStable": true,
+      "inputAvailable": true,
+      "reducedMotion": true
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "geometry": [
+        362,
+        374
+      ],
+      "visibleAndHiddenStable": true,
+      "inputAvailable": true,
+      "reducedMotion": true
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "geometry": [
+        362,
+        374
+      ],
+      "visibleAndHiddenStable": true,
+      "inputAvailable": true,
+      "reducedMotion": true
+    }
+  ],
+  "passed": false,
+  "scope": "Real local video and pixels with completed Worker delivery delayed 600ms; synthetic buffering events, not real network-stall evidence",
+  "source": {
+    "file": "source.webm",
+    "generated": true,
+    "sha256": "7801c2f28b0a6f6e37cf6cf614727a6ea7138f3cc867c5875fda043b621939eb"
+  },
+  "playback": {
+    "start": 0.164437,
+    "duration": 7.804529,
+    "ended": false,
+    "paused": false,
+    "completedFrames": 6,
+    "loadingSamples": 1,
+    "mediaSamples": 200,
+    "loading": [
+      {
+        "message": "正在等待视频画面画面准备好后继续播放，可以随时暂停或更换素材。",
+        "time": 1.762783,
+        "paused": false,
+        "ended": false
+      }
+    ]
+  },
+  "failure": "AssertionError [ERR_ASSERTION]: Continuous video frames must not repeat generation feedback\n\n1 !== 0\n\n    at file:///D:/my/project/astra/astra-web/scripts/video-render-feedback-contract.mjs:115:10",
+  "failureState": {
+    "messages": [
+      "80 × 21 字符 · 实时播放 15 fps · 原画 1.78:1 · 自适应 76%"
+    ],
+    "canvas": {
+      "vB329eef5": "",
+      "renderPending": "true",
+      "engine": "calibrated",
+      "columns": "80",
+      "mode": "density",
+      "quality": "classic",
+      "time": "0",
+      "motionStyle": "cinematic",
+      "interactionTime": "19.953200000047683",
+      "pointerStrength": "0",
+      "interactionActive": "false",
+      "particlePeak": "0",
+      "particleBytes": "0",
+      "hover": "light",
+      "paused": "false",
+      "motion": "none",
+      "hoverStrength": "0.65",
+      "renderBackend": "worker"
+    },
+    "video": [
+      {
+        "duration": null,
+        "readyState": 0,
+        "width": 0
+      },
+      {
+        "duration": 7.804529,
+        "readyState": 4,
+        "width": 640
+      }
+    ]
+  }
+}

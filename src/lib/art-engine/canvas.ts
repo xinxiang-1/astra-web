@@ -1775,7 +1775,7 @@ export function createCanvasArtRenderer(
       interaction.configure(fieldMode, strength, options.hoverRadius ?? 0.38, false)
       const gap = interactionTime - interactionClock
       if (
-        hover === 'particles' &&
+        (hover === 'particles' || hover === 'light') &&
         interactionClock >= 0 &&
         gap > 0.25 &&
         Number.isFinite(interactionTime) &&
@@ -1791,7 +1791,8 @@ export function createCanvasArtRenderer(
             const step = Math.min(0.05, end - clock)
             field.step(step)
             clock += step
-            particlePresentation.prepare(sampleFluidField, frame, strength, w, h, clock)
+            if (hover === 'particles')
+              particlePresentation.prepare(sampleFluidField, frame, strength, w, h, clock)
             steps++
             if (performance.now() - sliceStart >= 8) {
               yield {
@@ -1804,7 +1805,8 @@ export function createCanvasArtRenderer(
           }
           // A quiet interval needs no PDE steps, but the spring clock still advances.
           clock = end
-          particlePresentation.prepare(sampleFluidField, frame, strength, w, h, clock)
+          if (hover === 'particles')
+            particlePresentation.prepare(sampleFluidField, frame, strength, w, h, clock)
         }
         for (const sample of options.pointerSamples?.slice(-128) ?? []) {
           if (!Number.isFinite(sample.x + sample.y + sample.time)) continue

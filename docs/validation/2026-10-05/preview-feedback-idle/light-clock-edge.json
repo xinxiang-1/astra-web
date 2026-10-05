@@ -1,0 +1,60 @@
+{
+  "browser": "154.0.4258.53",
+  "passed": true,
+  "scope": "Algorithm-only alpha-zero/coverage-zero fixture; exact native lens state and real Worker activity, not image quality or FPS",
+  "result": {
+    "shortDelta": 0,
+    "workerActiveFrames": 30,
+    "workerActivityMatches": true,
+    "workerActiveOnRelease": true,
+    "cases": [
+      {
+        "gap": 1,
+        "maxStateDelta": 0,
+        "responsiveDelta": 0,
+        "active": false,
+        "workerActive": false,
+        "oldStrength": 0.04966365856377724,
+        "newStrength": 0
+      },
+      {
+        "gap": 2,
+        "maxStateDelta": 0,
+        "responsiveDelta": 0,
+        "active": false,
+        "workerActive": false,
+        "oldStrength": 0.0024726079643130274,
+        "newStrength": 0
+      },
+      {
+        "gap": 5,
+        "maxStateDelta": 0,
+        "responsiveDelta": 0,
+        "active": false,
+        "workerActive": false,
+        "oldStrength": 0,
+        "newStrength": 0
+      }
+    ],
+    "replay": {
+      "maxStateDelta": 0,
+      "strength": 0.08248820624039517,
+      "active": true,
+      "workerActive": true
+    }
+  },
+  "offline": {
+    "columns": 48,
+    "realGlyphPixels": true,
+    "visibleLight": true,
+    "exactRecovery": true,
+    "networkRequests": 0,
+    "delayedSchedulingMs": 600
+  },
+  "sourceHashes": {
+    "src/lib/art-engine/canvas.ts": "ef913a0e8a82da6e0562c325ea8ad57f935c2696e818e3822809a1d238a17087",
+    "src/lib/art-engine/frame-render-client.ts": "b53b68d46758c9b3ad8a74a29e963955bcd7caa6482282cc024b228e128591df",
+    "src/views/AsciiArtView.vue": "eb6353985c192337f2527caa70c8ad320a388464fe99d45bb4d05d74cfc47c99",
+    "src/lib/art-engine/embed.ts": "db867f8f7ac749021f935b5115fbcc6124bac7f91fa47a9f633e1ad089b6d1f8"
+  }
+}

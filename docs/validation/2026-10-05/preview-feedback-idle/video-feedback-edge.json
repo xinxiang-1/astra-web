@@ -1,0 +1,82 @@
+{
+  "browser": "154.0.4258.53",
+  "cases": [
+    {
+      "width": 1440,
+      "theme": "light",
+      "geometry": [
+        860,
+        729
+      ],
+      "visibleAndHiddenStable": true,
+      "inputAvailable": true,
+      "reducedMotion": true
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "geometry": [
+        860,
+        729
+      ],
+      "visibleAndHiddenStable": true,
+      "inputAvailable": true,
+      "reducedMotion": true
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "geometry": [
+        362,
+        374
+      ],
+      "visibleAndHiddenStable": true,
+      "inputAvailable": true,
+      "reducedMotion": true
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "geometry": [
+        362,
+        374
+      ],
+      "visibleAndHiddenStable": true,
+      "inputAvailable": true,
+      "reducedMotion": true
+    },
+    {
+      "name": "continuous-video-no-repeated-generation",
+      "start": 0.163775,
+      "duration": 7.804529,
+      "ended": false,
+      "paused": false,
+      "completedFrames": 6,
+      "loadingSamples": 0,
+      "generationSamples": 0,
+      "bufferingSamples": 0,
+      "mediaSamples": 200,
+      "loading": [],
+      "completedDeliveryDelayMs": 600
+    }
+  ],
+  "passed": true,
+  "scope": "Real local video and pixels with completed Worker delivery delayed 600ms; synthetic buffering events, not real network-stall evidence",
+  "source": {
+    "file": "source.webm",
+    "generated": false,
+    "sha256": "7801c2f28b0a6f6e37cf6cf614727a6ea7138f3cc867c5875fda043b621939eb"
+  },
+  "playback": {
+    "start": 0.163775,
+    "duration": 7.804529,
+    "ended": false,
+    "paused": false,
+    "completedFrames": 6,
+    "loadingSamples": 0,
+    "generationSamples": 0,
+    "bufferingSamples": 0,
+    "mediaSamples": 200,
+    "loading": []
+  }
+}

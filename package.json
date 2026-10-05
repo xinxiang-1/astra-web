@@ -48,6 +48,8 @@
     "test:image-responsive": "node scripts/image-preview-responsive-contract.mjs",
     "test:particle-clock": "node scripts/particle-clock-contract.mjs",
     "test:video-render-feedback": "node scripts/video-render-feedback-contract.mjs",
+    "test:preview-feedback": "node scripts/preview-feedback-contract.mjs",
+    "test:light-clock": "node scripts/light-clock-contract.mjs",
     "test:art-render-watchdog": "node scripts/art-render-watchdog-contract.mjs",
     "research:video-atlas": "node scripts/video-tile-atlas-research.mjs",
     "test:glyph-particles-integration": "node scripts/glyph-particles-integration-contract.mjs",

@@ -1,0 +1,52 @@
+{
+  "browser": "154.0.8037.57",
+  "base": "http://127.0.0.1:5184",
+  "errors": [],
+  "cases": [
+    {
+      "name": "initial-image",
+      "slowFeedbackVisible": true,
+      "clearsOnComplete": true
+    },
+    {
+      "name": "stationary-color-180",
+      "requests": 0,
+      "loadingSamples": 0,
+      "exactPixels": true
+    },
+    {
+      "name": "hover-still-works",
+      "requests": 4,
+      "loadingSamples": 0,
+      "visibleScatter": true,
+      "exactRecovery": true
+    },
+    {
+      "name": "explicit-zoom-dark",
+      "loadingVisible": true,
+      "pointerEvents": "none",
+      "width": 825,
+      "oldWidth": 571
+    },
+    {
+      "name": "explicit-zoom-light",
+      "loadingVisible": true,
+      "pointerEvents": "none",
+      "width": 1083,
+      "oldWidth": 825
+    },
+    {
+      "name": "fullscreen-first-frame",
+      "firstFeedbackVisible": true,
+      "clearsOnComplete": true,
+      "released": true
+    }
+  ],
+  "passed": false,
+  "scope": "Real production upload/controls/Worker pixels; completed Worker delivery is delayed 600ms to verify slow-operation feedback independently of device speed",
+  "sourceHashes": {
+    "src/views/AsciiArtView.vue": "afcde27231cb30403d63189b0b9dd2a0054e8997370d68e1cb88db462432e744",
+    "scripts/preview-feedback-contract.mjs": "131a2e2a4948e0d526580704ad0120d808c2e1703bb131ceac31489d3b42e6c9"
+  },
+  "failure": "page.waitForFunction: Timeout 120000ms exceeded.\n    at D:\\my\\project\\astra\\astra-web\\scripts\\preview-feedback-contract.mjs:124:14"
+}

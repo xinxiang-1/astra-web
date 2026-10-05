@@ -1,0 +1,59 @@
+{
+  "passed": true,
+  "samples": [
+    {
+      "label": "stationary pointer",
+      "requests": 2,
+      "results": 2,
+      "banners": 0,
+      "visibleMs": 0,
+      "data": {
+        "v-895e20f9": "",
+        "renderPending": "false",
+        "engine": "calibrated",
+        "columns": "180",
+        "mode": "color",
+        "quality": "classic",
+        "time": "0.15",
+        "motionStyle": "cinematic",
+        "interactionTime": "6.4054000000953675",
+        "pointerStrength": "0.65",
+        "interactionActive": "false",
+        "particlePeak": "0",
+        "particleBytes": "0",
+        "hover": "particles",
+        "paused": "false",
+        "motion": "none",
+        "hoverStrength": "0.65",
+        "renderBackend": "worker"
+      }
+    },
+    {
+      "label": "pointer outside",
+      "requests": 1,
+      "results": 2,
+      "banners": 0,
+      "visibleMs": 0,
+      "data": {
+        "v-895e20f9": "",
+        "renderPending": "false",
+        "engine": "calibrated",
+        "columns": "180",
+        "mode": "color",
+        "quality": "classic",
+        "time": "0.3",
+        "motionStyle": "cinematic",
+        "interactionTime": "18.438300000071525",
+        "pointerStrength": "0",
+        "interactionActive": "false",
+        "particlePeak": "0",
+        "particleBytes": "0",
+        "hover": "particles",
+        "paused": "false",
+        "motion": "none",
+        "hoverStrength": "0.65",
+        "renderBackend": "worker"
+      }
+    }
+  ]
+}

@@ -7,9 +7,24 @@ import path from 'node:path'
 const out = path.resolve(process.env.ASTRA_FEEDBACK_OUTPUT || `test-results/video-feedback-${Date.now()}`)
 await mkdir(out, { recursive: true })
 const browser = await chromium.launch({ channel: process.env.ASTRA_BROWSER_CHANNEL || 'chrome', headless: true })
-const report = { browser: browser.version(), cases: [], passed: false, scope: 'Real local video, synthetic buffering events; no real network-stall claim' }
+const report = { browser: browser.version(), cases: [], passed: false, scope: 'Real local video and pixels with completed Worker delivery delayed 600ms; synthetic buffering events, not real network-stall evidence' }
 try {
   const page = await browser.newPage({ viewport: { width: 1440, height: 960 } })
+  await page.addInitScript(() => {
+    const Native = window.Worker
+    window.__videoCompleted = 0
+    window.Worker = class extends Native {
+      constructor(url, options) {
+        super(url, options)
+        if (!String(url).includes('frame-render.worker')) return
+        this.addEventListener('message', event => {
+          if (!event.data?.bitmap) return
+          event.stopImmediatePropagation()
+          setTimeout(() => { this.onmessage?.(event); window.__videoCompleted++ }, 600)
+        })
+      }
+    }
+  })
   await page.goto((process.env.ASTRA_PREVIEW_URL || 'http://127.0.0.1:5180') + '/ascii-art')
   await page.getByRole('button', { name: /^低清/ }).click()
   let fixture = path.resolve(process.env.ASTRA_VIDEO_FIXTURE || 'test-results/editor-contract-source.mp4'), generated = false
@@ -30,9 +45,9 @@ try {
       recorder.ondataavailable = event => chunks.push(event.data)
       const started = new Promise(resolve => recorder.onstart = resolve)
       recorder.start(); await started
-      for (let i = 0; i < 75; i++) {
+      for (let i = 0; i < 150; i++) {
         ctx.fillStyle = '#193947'; ctx.fillRect(0, 0, 640, 360)
-        ctx.fillStyle = '#efbd87'; ctx.fillRect(80 + i * 8, 70, 180, 180)
+        ctx.fillStyle = '#efbd87'; ctx.fillRect(80 + (i % 60) * 8, 70, 180, 180)
         track.requestFrame()
         await new Promise(resolve => setTimeout(resolve, 40))
       }
@@ -50,8 +65,8 @@ try {
     await page.setViewportSize({ width, height: width === 390 ? 844 : 960 })
     for (let i = 0; i < 2; i++) {
       await page.waitForFunction(() => {
-        const s = document.querySelector('.art-editor').__vueParentComponent.setupState
-        return !s.converting && [...s.videoRenderers.values()].every(r => !r.pending)
+        const c = document.querySelector('.ascii-scroll .ascii-canvas')
+        return c?.dataset.renderPending === 'false' && c.dataset.renderBackend === 'worker'
       })
       const before = await geometry(), theme = await page.locator('html').getAttribute('data-theme')
       await page.locator('.video-thumb.show').evaluate(v => v.dispatchEvent(new Event('waiting')))
@@ -72,6 +87,38 @@ try {
     }
   }
   assert.equal(report.cases.length, 4)
+  await page.locator('input.video-seek').evaluate(input => { input.value = '0'; input.dispatchEvent(new Event('input', { bubbles: true })) })
+  await page.waitForFunction(() => {
+    const video = document.querySelector('.video-thumb.show'), c = document.querySelector('.ascii-scroll .ascii-canvas')
+    return video?.currentTime < .01 && !video.seeking && c?.dataset.renderPending === 'false' && !document.querySelector('.stage-feedback')
+  })
+  await page.getByRole('button', { name: '播放', exact: true }).click()
+  await page.waitForFunction(() => {
+    const video = document.querySelector('.video-thumb.show')
+    return !document.querySelector('.stage-feedback') && !video?.paused && video.currentTime > .15
+  })
+  const playback = await page.evaluate(async () => {
+    const video = document.querySelector('.video-thumb.show'), start = video.currentTime, before = window.__videoCompleted
+    let loadingSamples = 0, generationSamples = 0, bufferingSamples = 0, mediaSamples = 0
+    const loading = []
+    const timer = setInterval(() => {
+      const feedback = document.querySelector('.stage-feedback')
+      if (feedback) {
+        loadingSamples++
+        if (feedback.textContent.includes('正在等待视频画面')) bufferingSamples++
+        else generationSamples++
+        loading.push({ message: feedback.textContent, time: video.currentTime, paused: video.paused, ended: video.ended })
+      }
+      if (video.currentTime !== start && !video.paused) mediaSamples++
+    }, 20)
+    await new Promise(resolve => setTimeout(resolve, 4000)); clearInterval(timer)
+    return { start, duration: video.duration, ended: video.ended, paused: video.paused, completedFrames: window.__videoCompleted - before, loadingSamples, generationSamples, bufferingSamples, mediaSamples, loading }
+  })
+  report.playback = playback
+  assert(!playback.ended && !playback.paused, 'Continuous-frame monitoring must stay inside playback, before the end of the fixture')
+  assert(playback.completedFrames > 0 && playback.mediaSamples > 0, 'Real local video and background frames continue')
+  assert.equal(playback.generationSamples, 0, 'Continuous video frames must not repeat generation feedback; real media buffering remains visible')
+  report.cases.push({ name: 'continuous-video-no-repeated-generation', ...playback, completedDeliveryDelayMs: 600 })
   report.passed = true
 } catch (error) {
   report.failure = error.stack; process.exitCode = 1

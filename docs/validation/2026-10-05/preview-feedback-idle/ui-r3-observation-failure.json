@@ -1,0 +1,305 @@
+{
+  "browser": "154.0.8037.57",
+  "base": "http://127.0.0.1:5184",
+  "errors": [],
+  "cases": [
+    {
+      "name": "initial-image",
+      "slowFeedbackVisible": true,
+      "clearsOnComplete": true
+    },
+    {
+      "name": "stationary-color-180",
+      "requests": 0,
+      "loadingSamples": 0,
+      "exactPixels": true
+    },
+    {
+      "name": "hover-still-works",
+      "requests": 1,
+      "loadingSamples": 0,
+      "visibleScatter": true,
+      "exactRecovery": true
+    },
+    {
+      "name": "stationary-default-light",
+      "requests": 0,
+      "loadingSamples": 0,
+      "exactPixels": true,
+      "exactRecovery": true
+    },
+    {
+      "name": "explicit-zoom-dark",
+      "loadingVisible": true,
+      "pointerEvents": "none",
+      "width": 825,
+      "oldWidth": 571
+    },
+    {
+      "name": "explicit-zoom-light",
+      "loadingVisible": true,
+      "pointerEvents": "none",
+      "width": 1083,
+      "oldWidth": 825
+    },
+    {
+      "name": "fullscreen-first-frame",
+      "firstFeedbackVisible": true,
+      "clearsOnComplete": true,
+      "released": true
+    }
+  ],
+  "passed": false,
+  "scope": "Real production upload/controls/Worker pixels; completed Worker delivery is delayed 600ms to verify slow-operation feedback independently of device speed",
+  "sourceHashes": {
+    "src/views/AsciiArtView.vue": "c66aea7097d7e0b17cf12e2d5971943fe40820f34a50018753d1f4aa65475465",
+    "scripts/preview-feedback-contract.mjs": "a8a6d6edc34e92b36abfb7da63c211f87d0e12d9f2f2db5231a600136950e149"
+  },
+  "lightBaseline": {
+    "width": 571,
+    "height": 713,
+    "data": {
+      "v-457b0803": "",
+      "renderPending": "false",
+      "engine": "calibrated",
+      "columns": "180",
+      "mode": "color",
+      "quality": "classic",
+      "time": "1.2499320000000007",
+      "motionStyle": "cinematic",
+      "interactionTime": "96.56330000007152",
+      "pointerStrength": "0",
+      "interactionActive": "false",
+      "particlePeak": "0",
+      "particleBytes": "0",
+      "hover": "light",
+      "paused": "false",
+      "motion": "none",
+      "hoverStrength": "0.65",
+      "renderBackend": "worker"
+    }
+  },
+  "failure": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert(animated.requests > 0)\n\n    at file:///D:/my/project/astra/astra-web/scripts/preview-feedback-contract.mjs:157:3",
+  "failureState": {
+    "requests": 23,
+    "feedback": [],
+    "canvases": [
+      {
+        "width": 1083,
+        "height": 1353,
+        "data": {
+          "v-457b0803": "",
+          "renderPending": "true",
+          "engine": "calibrated",
+          "columns": "180",
+          "mode": "color",
+          "quality": "classic",
+          "time": "0",
+          "motionStyle": "cinematic",
+          "interactionTime": "194.568",
+          "pointerStrength": "0",
+          "interactionActive": "false",
+          "particlePeak": "0",
+          "particleBytes": "0",
+          "hover": "light",
+          "paused": "false",
+          "motion": "wave",
+          "hoverStrength": "0.65",
+          "renderBackend": "worker"
+        }
+      }
+    ]
+  },
+  "lightTrace": [
+    {
+      "at": 117778.70000004768,
+      "data": {
+        "v-457b0803": "",
+        "renderPending": "false",
+        "engine": "calibrated",
+        "columns": "180",
+        "mode": "color",
+        "quality": "classic",
+        "time": "1.2499320000000007",
+        "motionStyle": "cinematic",
+        "interactionTime": "105.762",
+        "pointerStrength": "0.07295240861572443",
+        "interactionActive": "true",
+        "particlePeak": "0",
+        "particleBytes": "0",
+        "hover": "light",
+        "paused": "false",
+        "motion": "none",
+        "hoverStrength": "0.65",
+        "renderBackend": "worker"
+      }
+    },
+    {
+      "at": 133527.89999997616,
+      "data": {
+        "v-457b0803": "",
+        "renderPending": "false",
+        "engine": "calibrated",
+        "columns": "180",
+        "mode": "color",
+        "quality": "classic",
+        "time": "1.3999320000000006",
+        "motionStyle": "cinematic",
+        "interactionTime": "120.01139999997616",
+        "pointerStrength": "0.65",
+        "interactionActive": "false",
+        "particlePeak": "0",
+        "particleBytes": "0",
+        "hover": "light",
+        "paused": "false",
+        "motion": "none",
+        "hoverStrength": "0.65",
+        "renderBackend": "worker"
+      }
+    },
+    {
+      "at": 147088.80000007153,
+      "data": {
+        "v-457b0803": "",
+        "renderPending": "false",
+        "engine": "calibrated",
+        "columns": "180",
+        "mode": "color",
+        "quality": "classic",
+        "time": "1.3999320000000006",
+        "motionStyle": "cinematic",
+        "interactionTime": "135.777",
+        "pointerStrength": "0.5770475913842756",
+        "interactionActive": "true",
+        "particlePeak": "0",
+        "particleBytes": "0",
+        "hover": "light",
+        "paused": "false",
+        "motion": "none",
+        "hoverStrength": "0.65",
+        "renderBackend": "worker"
+      }
+    },
+    {
+      "at": 157810.70000004768,
+      "data": {
+        "v-457b0803": "",
+        "renderPending": "false",
+        "engine": "calibrated",
+        "columns": "180",
+        "mode": "color",
+        "quality": "classic",
+        "time": "1.5499320000000005",
+        "motionStyle": "cinematic",
+        "interactionTime": "149.15960000002383",
+        "pointerStrength": "0",
+        "interactionActive": "false",
+        "particlePeak": "0",
+        "particleBytes": "0",
+        "hover": "light",
+        "paused": "false",
+        "motion": "none",
+        "hoverStrength": "0.65",
+        "renderBackend": "worker"
+      }
+    },
+    {
+      "at": 168645.10000002384,
+      "data": {
+        "v-457b0803": "",
+        "renderPending": "false",
+        "engine": "calibrated",
+        "columns": "180",
+        "mode": "color",
+        "quality": "classic",
+        "time": "1.5499320000000005",
+        "motionStyle": "cinematic",
+        "interactionTime": "158.15539999997617",
+        "pointerStrength": "0",
+        "interactionActive": "false",
+        "particlePeak": "0",
+        "particleBytes": "0",
+        "hover": "light",
+        "paused": "false",
+        "motion": "none",
+        "hoverStrength": "0.65",
+        "renderBackend": "worker"
+      }
+    },
+    {
+      "at": 179410.80000007153,
+      "data": {
+        "v-457b0803": "",
+        "renderPending": "false",
+        "engine": "calibrated",
+        "columns": "180",
+        "mode": "color",
+        "quality": "classic",
+        "time": "1.5499320000000005",
+        "motionStyle": "cinematic",
+        "interactionTime": "169.06330000007154",
+        "pointerStrength": "0",
+        "interactionActive": "false",
+        "particlePeak": "0",
+        "particleBytes": "0",
+        "hover": "light",
+        "paused": "false",
+        "motion": "none",
+        "hoverStrength": "0.65",
+        "renderBackend": "worker"
+      }
+    },
+    {
+      "at": 193513.10000002384,
+      "data": {
+        "v-457b0803": "",
+        "renderPending": "false",
+        "engine": "calibrated",
+        "columns": "180",
+        "mode": "color",
+        "quality": "classic",
+        "time": "1.5499320000000005",
+        "motionStyle": "cinematic",
+        "interactionTime": "179.53689999997616",
+        "pointerStrength": "0",
+        "interactionActive": "false",
+        "particlePeak": "0",
+        "particleBytes": "0",
+        "hover": "light",
+        "paused": "false",
+        "motion": "none",
+        "hoverStrength": "0.65",
+        "renderBackend": "worker"
+      }
+    },
+    {
+      "at": 205759.89999997616,
+      "data": {
+        "v-457b0803": "",
+        "renderPending": "false",
+        "engine": "calibrated",
+        "columns": "180",
+        "mode": "color",
+        "quality": "classic",
+        "time": "0",
+        "motionStyle": "cinematic",
+        "interactionTime": "194.568",
+        "pointerStrength": "0",
+        "interactionActive": "false",
+        "particlePeak": "0",
+        "particleBytes": "0",
+        "hover": "light",
+        "paused": "false",
+        "motion": "wave",
+        "hoverStrength": "0.65",
+        "renderBackend": "worker"
+      }
+    }
+  ],
+  "lightDifference": {
+    "changes": 633302,
+    "max": 231,
+    "baseLength": 1628492,
+    "resultLength": 5861196
+  }
+}

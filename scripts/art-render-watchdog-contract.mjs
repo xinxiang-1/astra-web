@@ -77,10 +77,10 @@ try {
       cases.push({ name: 'disposed-task', ignoredLateProgress: true })
 
       const particleOptions = { hover: 'particles', hoverTime: 0, hoverStrength: .65, pointer: { x: .5, y: .5, strength: 0, active: false } }
-      const makeParticle = onProgress => {
-        const state = make(onProgress, particleOptions)
+      const makeParticle = (onProgress, options = particleOptions) => {
+        const state = make(onProgress, options)
         state.worker.emit({ id: 1, bitmap: { close() {} }, renderMs: 1, interactionActive: false })
-        state.client.render(frame, { ...particleOptions, hoverTime: 3 })
+        state.client.render(frame, { ...options, hoverTime: 3 })
         return state
       }
       const phaseProgress = (state, completedSeconds, completedSteps, overrides = {}) => state.worker.emit({
@@ -90,6 +90,14 @@ try {
       tick(10000); phaseProgress(particle, .5, 10); tick(10000); phaseProgress(particle, 1.5, 30); tick(10000)
       require(particle.errors() === 0 && particle.client.pending && phases.length === 2 && phases.every(p => p.phase === 'interaction'), 'Bounded advancing simulation survives a long frame and reports its own phase')
       particle.client.dispose(); cases.push({ name: 'advancing-interaction', virtualElapsedMs: 30000, phases })
+      const lightPhases = [], light = makeParticle((value, _frame, _options, phase) => lightPhases.push({ value, phase }), { ...particleOptions, hover: 'light', effectProfile: 'expressive' })
+      tick(10000); phaseProgress(light, .5, 10); tick(10000); phaseProgress(light, 1.5, 30); tick(10000)
+      require(light.errors() === 0 && light.client.pending && lightPhases.length === 2 && lightPhases.every(p => p.phase === 'interaction'), 'Expressive light accepts advancing real-clock progress')
+      light.client.dispose(); cases.push({ name: 'advancing-light-interaction', virtualElapsedMs: 30000, phases: lightPhases })
+      const classicLight = makeParticle(undefined, { ...particleOptions, hover: 'light', effectProfile: 'classic', motionStyle: 'studio', motion: 'none' })
+      tick(10000); phaseProgress(classicLight, .5, 10); tick(2000)
+      require(classicLight.errors() === 1, 'Classic light has no native interaction clock and cannot claim simulation progress')
+      cases.push({ name: 'classic-light-fake-interaction', rejected: true })
       for (const [name, overrides] of [
         ['interaction-stale-task', { id: 1 }], ['interaction-wrong-duration', { totalSeconds: 4 }],
         ['interaction-fractional-step', { completedSteps: 1.5 }], ['interaction-invalid-seconds', { completedSeconds: NaN }],
@@ -120,7 +128,7 @@ try {
       window.Worker = originals.Worker; window.setTimeout = originals.setTimeout; window.clearTimeout = originals.clearTimeout
     }
   })
-  assert.equal(report.cases.length, 21)
+  assert.equal(report.cases.length, 23)
   report.passed = true
 } catch (error) { report.failure = error.stack; process.exitCode = 1 }
 finally { await writeFile(path.join(out, 'report.json'), JSON.stringify(report, null, 2)); await browser.close() }

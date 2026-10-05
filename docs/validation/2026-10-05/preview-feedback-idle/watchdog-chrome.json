@@ -1,0 +1,125 @@
+{
+  "browser": "154.0.8037.57",
+  "passed": true,
+  "cases": [
+    {
+      "name": "advancing-frame",
+      "virtualElapsedMs": 30000,
+      "progress": [
+        0.3,
+        0.7
+      ],
+      "completedBitmaps": 1,
+      "closedBitmaps": 1
+    },
+    {
+      "name": "silent-worker",
+      "failsAfterVirtualMs": 12000,
+      "terminated": true
+    },
+    {
+      "name": "repeated-progress",
+      "rejected": true
+    },
+    {
+      "name": "stale-task",
+      "rejected": true
+    },
+    {
+      "name": "wrong-capacity",
+      "rejected": true
+    },
+    {
+      "name": "invalid-number",
+      "rejected": true
+    },
+    {
+      "name": "beyond-frame",
+      "rejected": true
+    },
+    {
+      "name": "progress-consumer-error",
+      "terminated": true
+    },
+    {
+      "name": "disposed-task",
+      "ignoredLateProgress": true
+    },
+    {
+      "name": "advancing-interaction",
+      "virtualElapsedMs": 30000,
+      "phases": [
+        {
+          "value": 0.16666666666666666,
+          "phase": "interaction"
+        },
+        {
+          "value": 0.5,
+          "phase": "interaction"
+        }
+      ]
+    },
+    {
+      "name": "advancing-light-interaction",
+      "virtualElapsedMs": 30000,
+      "phases": [
+        {
+          "value": 0.16666666666666666,
+          "phase": "interaction"
+        },
+        {
+          "value": 0.5,
+          "phase": "interaction"
+        }
+      ]
+    },
+    {
+      "name": "classic-light-fake-interaction",
+      "rejected": true
+    },
+    {
+      "name": "interaction-stale-task",
+      "rejected": true
+    },
+    {
+      "name": "interaction-wrong-duration",
+      "rejected": true
+    },
+    {
+      "name": "interaction-fractional-step",
+      "rejected": true
+    },
+    {
+      "name": "interaction-invalid-seconds",
+      "rejected": true
+    },
+    {
+      "name": "interaction-excess-steps",
+      "rejected": true
+    },
+    {
+      "name": "interaction-beyond-duration",
+      "rejected": true
+    },
+    {
+      "name": "interaction-first-request",
+      "rejected": true
+    },
+    {
+      "name": "interaction-repeated-seconds",
+      "rejected": true
+    },
+    {
+      "name": "interaction-repeated-steps",
+      "rejected": true
+    },
+    {
+      "name": "interaction-after-drawing",
+      "rejected": true
+    },
+    {
+      "name": "interaction-consumer-error",
+      "terminated": true
+    }
+  ]
+}
