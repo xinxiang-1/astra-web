@@ -1,0 +1,3121 @@
+{
+  "browser": "154.0.4258.53",
+  "base": "http://127.0.0.1:5184",
+  "productionSource": "ff08c97ea66162ace37da5b1c5c22974dc7e9371",
+  "scope": "Production editor, real uploads/buttons/mouse. Isolated replacement Worker only. Original .65/.38, density 180 and full RGB/alpha. No delivery delays, synthetic request clocks or reduced columns. Capturing requests and selected bitmap readbacks adds QA overhead; wall timings are observational, not an isolated speedup or FPS benchmark.",
+  "hashes": {
+    "candidate.ts": "a384d53a8e94b443c113f3d8d88386922548a53e1ccaa07297b04ce3d1eefffb",
+    "bundle/region-preview.worker.js": "1aaf16860cf37a86a9ac240a218cc303c4054e5b8ac020c21f507d760e886ae3",
+    "src/views/AsciiArtView.vue": "eb6353985c192337f2527caa70c8ad320a388464fe99d45bb4d05d74cfc47c99",
+    "src/lib/art-engine/canvas.ts": "ef913a0e8a82da6e0562c325ea8ad57f935c2696e818e3822809a1d238a17087",
+    "scripts/preview-region-page-research.mjs": "aa5a50f9200e08876ce1dbe05d7ae85f4ec1658d3980b59479dde917d43a49a6",
+    "public/artwork/porcelain-study-v1.png": "0ce4707016f8fd4c7348fd7a6bead069789e1aaa2b1b0b12551b5227bddb36d5"
+  },
+  "cases": [
+    {
+      "side": "baseline",
+      "mode": "phrase",
+      "hover": "particles",
+      "passed": true,
+      "initial": {
+        "width": 571,
+        "height": 713,
+        "vB329eef5": "",
+        "renderPending": "false",
+        "engine": "calibrated",
+        "columns": "180",
+        "mode": "phrase",
+        "quality": "classic",
+        "time": "0",
+        "motionStyle": "cinematic",
+        "interactionTime": "2.822",
+        "pointerStrength": "0",
+        "interactionActive": "false",
+        "particlePeak": "0",
+        "particleBytes": "0",
+        "hover": "particles",
+        "paused": "false",
+        "motion": "none",
+        "hoverStrength": "0.65",
+        "renderBackend": "worker",
+        "settings": {
+          "mode": "phrase",
+          "columns": 180,
+          "phrase": "我爱你中国",
+          "charset": "@80GCLft1i;:,. ",
+          "background": "#111615",
+          "ink": "#eeeae2",
+          "colored": true,
+          "normalize": true,
+          "contrast": 0.2,
+          "exposure": 0,
+          "invert": true,
+          "fillAll": false,
+          "threshold": 0.44999999999999996,
+          "fontFamily": "\"Microsoft YaHei\", \"微软雅黑\", Cascadia Mono, Consolas, \"Courier New\", monospace",
+          "charAspect": 0.85,
+          "ditherStrength": 0.25
+        }
+      },
+      "firstVisibleMs": 2883.0999999046326,
+      "peak": 0.10740070787037025,
+      "recoveryMs": 4697.600000023842,
+      "exactRecovery": true,
+      "idleRequests": 0,
+      "feedbackSamples": 220,
+      "loadingSamples": 0,
+      "peakCaptureBytes": 8142460,
+      "activeWorkers": 1,
+      "workers": [
+        {
+          "id": 0,
+          "url": "http://127.0.0.1:5184/assets/frame-render.worker-aEUkIqaz.js",
+          "terminated": true,
+          "results": [
+            {
+              "id": 1,
+              "at": 1430.1000000238419,
+              "renderMs": 77.90000009536743,
+              "requestAt": 1331.6999999284744,
+              "interactionActive": false,
+              "cacheStats": {
+                "particles": {
+                  "bytes": 0,
+                  "limit": 10485760,
+                  "maxCells": 131072,
+                  "peak": 0,
+                  "moving": 0,
+                  "unavailable": false
+                },
+                "rift": {
+                  "columns": 0,
+                  "rows": 0,
+                  "bytes": 0,
+                  "peakOffset": 0,
+                  "rawPeakOffset": 0,
+                  "maxStrain": 0,
+                  "minJacobian": 1,
+                  "limit": 262144
+                },
+                "motionCells": 0,
+                "motionBytes": 0,
+                "choreographyBytes": 0,
+                "choreographyLimit": 4194304,
+                "effectCellBytes": 1392840,
+                "effectCellLimit": 4194304,
+                "entries": 14,
+                "backingBytes": 21952,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 1568,
+                "supersampleBytes": 0,
+                "glowBytes": 0,
+                "interactionCells": 13184,
+                "interactionActive": false,
+                "interactionBytes": 1687552,
+                "softwareMaskBytes": 0,
+                "softwareMaskEntries": 0,
+                "softwareWorkingBytes": 0,
+                "hits": 11234,
+                "misses": 14
+              },
+              "width": 571,
+              "height": 713
+            },
+            {
+              "id": 2,
+              "at": 1498,
+              "renderMs": 66.60000002384186,
+              "requestAt": 1430.6999999284744,
+              "interactionActive": false,
+              "cacheStats": {
+                "particles": {
+                  "bytes": 0,
+                  "limit": 10485760,
+                  "maxCells": 131072,
+                  "peak": 0,
+                  "moving": 0,
+                  "unavailable": false
+                },
+                "rift": {
+                  "columns": 0,
+                  "rows": 0,
+                  "bytes": 0,
+                  "peakOffset": 0,
+                  "rawPeakOffset": 0,
+                  "maxStrain": 0,
+                  "minJacobian": 1,
+                  "limit": 262144
+                },
+                "motionCells": 0,
+                "motionBytes": 0,
+                "choreographyBytes": 0,
+                "choreographyLimit": 4194304,
+                "effectCellBytes": 1392840,
+                "effectCellLimit": 4194304,
+                "entries": 14,
+                "backingBytes": 21952,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 1568,
+                "supersampleBytes": 0,
+                "glowBytes": 0,
+                "interactionCells": 13184,
+                "interactionActive": false,
+                "interactionBytes": 1687552,
+                "softwareMaskBytes": 0,
+                "softwareMaskEntries": 0,
+                "softwareWorkingBytes": 0,
+                "hits": 22468,
+                "misses": 28
+              },
+              "width": 571,
+              "height": 713
+            }
+          ],
+          "capturedFrames": 0,
+          "requests": [
+            {
+              "id": 1,
+              "at": 1331.6999999284744,
+              "mode": "density",
+              "colored": false,
+              "longEdge": 713.4955436720143,
+              "hoverTime": 1.3257999999523162,
+              "hover": "light",
+              "pointer": {
+                "x": 0.5,
+                "y": 0.5,
+                "strength": 0,
+                "target": 0,
+                "active": false
+              },
+              "inputSamples": 0
+            },
+            {
+              "id": 2,
+              "at": 1430.6999999284744,
+              "mode": "density",
+              "colored": false,
+              "longEdge": 713.4955436720143,
+              "hoverTime": 1.3415,
+              "hover": "light",
+              "pointer": {
+                "x": 0.5,
+                "y": 0.5,
+                "strength": 0,
+                "target": 0,
+                "active": false
+              },
+              "inputSamples": 0
+            },
+            {
+              "id": 3,
+              "at": 1564.5,
+              "mode": "density",
+              "colored": false,
+              "longEdge": 713.4955436720143,
+              "hoverTime": 1.5641999999284744,
+              "hover": "light",
+              "pointer": {
+                "x": 0.5,
+                "y": 0.5,
+                "strength": 0,
+                "target": 0,
+                "active": false
+              },
+              "inputSamples": 0
+            }
+          ]
+        },
+        {
+          "id": 1,
+          "url": "http://127.0.0.1:5184/assets/frame-render.worker-aEUkIqaz.js",
+          "terminated": true,
+          "results": [
+            {
+              "id": 1,
+              "at": 1690.2999999523163,
+              "renderMs": 69.10000002384186,
+              "requestAt": 1607.1000000238419,
+              "interactionActive": false,
+              "cacheStats": {
+                "particles": {
+                  "bytes": 0,
+                  "limit": 10485760,
+                  "maxCells": 131072,
+                  "peak": 0,
+                  "moving": 0,
+                  "unavailable": false
+                },
+                "rift": {
+                  "columns": 0,
+                  "rows": 0,
+                  "bytes": 0,
+                  "peakOffset": 0,
+                  "rawPeakOffset": 0,
+                  "maxStrain": 0,
+                  "minJacobian": 1,
+                  "limit": 262144
+                },
+                "motionCells": 0,
+                "motionBytes": 0,
+                "choreographyBytes": 0,
+                "choreographyLimit": 4194304,
+                "effectCellBytes": 2509740,
+                "effectCellLimit": 4194304,
+                "entries": 5,
+                "backingBytes": 12320,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 2464,
+                "supersampleBytes": 0,
+                "glowBytes": 0,
+                "interactionCells": 13184,
+                "interactionActive": false,
+                "interactionBytes": 1687552,
+                "softwareMaskBytes": 0,
+                "softwareMaskEntries": 0,
+                "softwareWorkingBytes": 0,
+                "hits": 13057,
+                "misses": 5
+              },
+              "width": 571,
+              "height": 713
+            }
+          ],
+          "capturedFrames": 0,
+          "requests": [
+            {
+              "id": 1,
+              "at": 1607.1000000238419,
+              "mode": "phrase",
+              "colored": false,
+              "longEdge": 713.4955436720143,
+              "hoverTime": 1.6056999999284745,
+              "hover": "light",
+              "pointer": {
+                "x": 0.5,
+                "y": 0.5,
+                "strength": 0,
+                "target": 0,
+                "active": false
+              },
+              "inputSamples": 0
+            },
+            {
+              "id": 2,
+              "at": 1765.5,
+              "mode": "phrase",
+              "colored": false,
+              "longEdge": 713.4955436720143,
+              "hoverTime": 1.764899999976158,
+              "hover": "light",
+              "pointer": {
+                "x": 0.5,
+                "y": 0.5,
+                "strength": 0,
+                "target": 0,
+                "active": false
+              },
+              "inputSamples": 0
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "url": "http://127.0.0.1:5184/assets/frame-render.worker-aEUkIqaz.js",
+          "terminated": true,
+          "results": [
+            {
+              "id": 1,
+              "at": 2738.600000023842,
+              "renderMs": 925.6999999284744,
+              "requestAt": 1801.6999999284744,
+              "interactionActive": false,
+              "cacheStats": {
+                "particles": {
+                  "bytes": 0,
+                  "limit": 10485760,
+                  "maxCells": 131072,
+                  "peak": 0,
+                  "moving": 0,
+                  "unavailable": false
+                },
+                "rift": {
+                  "columns": 0,
+                  "rows": 0,
+                  "bytes": 0,
+                  "peakOffset": 0,
+                  "rawPeakOffset": 0,
+                  "maxStrain": 0,
+                  "minJacobian": 1,
+                  "limit": 262144
+                },
+                "motionCells": 0,
+                "motionBytes": 0,
+                "choreographyBytes": 0,
+                "choreographyLimit": 4194304,
+                "effectCellBytes": 2509740,
+                "effectCellLimit": 4194304,
+                "entries": 64,
+                "backingBytes": 157696,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 2464,
+                "supersampleBytes": 0,
+                "glowBytes": 0,
+                "interactionCells": 13184,
+                "interactionActive": false,
+                "interactionBytes": 1687552,
+                "softwareMaskBytes": 0,
+                "softwareMaskEntries": 0,
+                "softwareWorkingBytes": 0,
+                "hits": 13,
+                "misses": 13049
+              },
+              "width": 571,
+              "height": 713
+            }
+          ],
+          "capturedFrames": 0,
+          "requests": [
+            {
+              "id": 1,
+              "at": 1801.6999999284744,
+              "mode": "phrase",
+              "colored": true,
+              "longEdge": 713.4955436720143,
+              "hoverTime": 1.801100000023842,
+              "hover": "light",
+              "pointer": {
+                "x": 0.5,
+                "y": 0.5,
+                "strength": 0,
+                "target": 0,
+                "active": false
+              },
+              "inputSamples": 0
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "url": "http://127.0.0.1:5184/assets/frame-render.worker-aEUkIqaz.js",
+          "terminated": false,
+          "results": [
+            {
+              "id": 1,
+              "at": 3801.6999999284744,
+              "renderMs": 965.5,
+              "requestAt": 2822.7999999523163,
+              "interactionActive": false,
+              "cacheStats": {
+                "particles": {
+                  "bytes": 0,
+                  "limit": 10485760,
+                  "maxCells": 131072,
+                  "peak": 0,
+                  "moving": 0,
+                  "unavailable": false
+                },
+                "rift": {
+                  "columns": 0,
+                  "rows": 0,
+                  "bytes": 0,
+                  "peakOffset": 0,
+                  "rawPeakOffset": 0,
+                  "maxStrain": 0,
+                  "minJacobian": 1,
+                  "limit": 262144
+                },
+                "motionCells": 0,
+                "motionBytes": 0,
+                "choreographyBytes": 0,
+                "choreographyLimit": 4194304,
+                "effectCellBytes": 2509740,
+                "effectCellLimit": 4194304,
+                "entries": 64,
+                "backingBytes": 157696,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 2464,
+                "supersampleBytes": 0,
+                "glowBytes": 0,
+                "interactionCells": 13184,
+                "interactionActive": false,
+                "interactionBytes": 1687552,
+                "softwareMaskBytes": 0,
+                "softwareMaskEntries": 0,
+                "softwareWorkingBytes": 0,
+                "hits": 13,
+                "misses": 13049
+              },
+              "width": 571,
+              "height": 713
+            },
+            {
+              "id": 2,
+              "at": 5094,
+              "renderMs": 1169.2000000476837,
+              "requestAt": 3924.1999999284744,
+              "interactionActive": false,
+              "cacheStats": {
+                "particles": {
+                  "bytes": 0,
+                  "limit": 10485760,
+                  "maxCells": 131072,
+                  "peak": 0,
+                  "moving": 0,
+                  "unavailable": false
+                },
+                "rift": {
+                  "columns": 0,
+                  "rows": 0,
+                  "bytes": 0,
+                  "peakOffset": 0,
+                  "rawPeakOffset": 0,
+                  "maxStrain": 0,
+                  "minJacobian": 1,
+                  "limit": 262144
+                },
+                "motionCells": 0,
+                "motionBytes": 0,
+                "choreographyBytes": 0,
+                "choreographyLimit": 4194304,
+                "effectCellBytes": 2509740,
+                "effectCellLimit": 4194304,
+                "entries": 64,
+                "backingBytes": 157696,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 2464,
+                "supersampleBytes": 0,
+                "glowBytes": 0,
+                "interactionCells": 13184,
+                "interactionActive": false,
+                "interactionBytes": 1687552,
+                "softwareMaskBytes": 0,
+                "softwareMaskEntries": 0,
+                "softwareWorkingBytes": 0,
+                "hits": 26,
+                "misses": 26098
+              },
+              "width": 571,
+              "height": 713
+            },
+            {
+              "id": 3,
+              "at": 6763,
+              "renderMs": 1662.7000000476837,
+              "requestAt": 5099.399999976158,
+              "interactionActive": true,
+              "cacheStats": {
+                "particles": {
+                  "bytes": 2750400,
+                  "limit": 10485760,
+                  "maxCells": 131072,
+                  "peak": 0.10740070787037025,
+                  "moving": 15485,
+                  "unavailable": false
+                },
+                "rift": {
+                  "columns": 0,
+                  "rows": 0,
+                  "bytes": 0,
+                  "peakOffset": 0,
+                  "rawPeakOffset": 0,
+                  "maxStrain": 0,
+                  "minJacobian": 1,
+                  "limit": 262144
+                },
+                "motionCells": 0,
+                "motionBytes": 0,
+                "choreographyBytes": 0,
+                "choreographyLimit": 4194304,
+                "effectCellBytes": 2509740,
+                "effectCellLimit": 4194304,
+                "entries": 64,
+                "backingBytes": 157696,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 2464,
+                "supersampleBytes": 0,
+                "glowBytes": 0,
+                "interactionCells": 13184,
+                "interactionActive": true,
+                "interactionBytes": 1687552,
+                "softwareMaskBytes": 0,
+                "softwareMaskEntries": 0,
+                "softwareWorkingBytes": 0,
+                "hits": 39,
+                "misses": 39147
+              },
+              "width": 571,
+              "height": 713
+            },
+            {
+              "id": 4,
+              "at": 8813.799999952316,
+              "renderMs": 2020.4000000953674,
+              "requestAt": 6792.699999928474,
+              "interactionActive": true,
+              "cacheStats": {
+                "particles": {
+                  "bytes": 2750400,
+                  "limit": 10485760,
+                  "maxCells": 131072,
+                  "peak": 0.0021123415851871815,
+                  "moving": 6837,
+                  "unavailable": false
+                },
+                "rift": {
+                  "columns": 0,
+                  "rows": 0,
+                  "bytes": 0,
+                  "peakOffset": 0,
+                  "rawPeakOffset": 0,
+                  "maxStrain": 0,
+                  "minJacobian": 1,
+                  "limit": 262144
+                },
+                "motionCells": 0,
+                "motionBytes": 0,
+                "choreographyBytes": 0,
+                "choreographyLimit": 4194304,
+                "effectCellBytes": 2509740,
+                "effectCellLimit": 4194304,
+                "entries": 64,
+                "backingBytes": 157696,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 2464,
+                "supersampleBytes": 0,
+                "glowBytes": 0,
+                "interactionCells": 13184,
+                "interactionActive": true,
+                "interactionBytes": 1687552,
+                "softwareMaskBytes": 0,
+                "softwareMaskEntries": 0,
+                "softwareWorkingBytes": 0,
+                "hits": 52,
+                "misses": 52196
+              },
+              "width": 571,
+              "height": 713
+            },
+            {
+              "id": 5,
+              "at": 9713,
+              "renderMs": 894,
+              "requestAt": 8818.399999976158,
+              "interactionActive": true,
+              "cacheStats": {
+                "particles": {
+                  "bytes": 2750400,
+                  "limit": 10485760,
+                  "maxCells": 131072,
+                  "peak": 0.0013803420222594552,
+                  "moving": 4280,
+                  "unavailable": false
+                },
+                "rift": {
+                  "columns": 0,
+                  "rows": 0,
+                  "bytes": 0,
+                  "peakOffset": 0,
+                  "rawPeakOffset": 0,
+                  "maxStrain": 0,
+                  "minJacobian": 1,
+                  "limit": 262144
+                },
+                "motionCells": 0,
+                "motionBytes": 0,
+                "choreographyBytes": 0,
+                "choreographyLimit": 4194304,
+                "effectCellBytes": 2509740,
+                "effectCellLimit": 4194304,
+                "entries": 64,
+                "backingBytes": 157696,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 2464,
+                "supersampleBytes": 0,
+                "glowBytes": 0,
+                "interactionCells": 13184,
+                "interactionActive": true,
+                "interactionBytes": 1687552,
+                "softwareMaskBytes": 0,
+                "softwareMaskEntries": 0,
+                "softwareWorkingBytes": 0,
+                "hits": 65,
+                "misses": 65245
+              },
+              "width": 571,
+              "height": 713
+            },
+            {
+              "id": 6,
+              "at": 11572.5,
+              "renderMs": 1826.7999999523163,
+              "requestAt": 9745.100000023842,
+              "interactionActive": false,
+              "cacheStats": {
+                "particles": {
+                  "bytes": 2750400,
+                  "limit": 10485760,
+                  "maxCells": 131072,
+                  "peak": 0.000011298458437049804,
+                  "moving": 0,
+                  "unavailable": false
+                },
+                "rift": {
+                  "columns": 0,
+                  "rows": 0,
+                  "bytes": 0,
+                  "peakOffset": 0,
+                  "rawPeakOffset": 0,
+                  "maxStrain": 0,
+                  "minJacobian": 1,
+                  "limit": 262144
+                },
+                "motionCells": 0,
+                "motionBytes": 0,
+                "choreographyBytes": 0,
+                "choreographyLimit": 4194304,
+                "effectCellBytes": 2509740,
+                "effectCellLimit": 4194304,
+                "entries": 64,
+                "backingBytes": 157696,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 2464,
+                "supersampleBytes": 0,
+                "glowBytes": 0,
+                "interactionCells": 13184,
+                "interactionActive": false,
+                "interactionBytes": 1687552,
+                "softwareMaskBytes": 0,
+                "softwareMaskEntries": 0,
+                "softwareWorkingBytes": 0,
+                "hits": 78,
+                "misses": 78294
+              },
+              "width": 571,
+              "height": 713
+            }
+          ],
+          "capturedFrames": 5,
+          "requests": [
+            {
+              "id": 1,
+              "at": 2822.7999999523163,
+              "mode": "phrase",
+              "colored": true,
+              "longEdge": 713.4955436720143,
+              "hoverTime": 2.822,
+              "hover": "particles",
+              "pointer": {
+                "x": 0.5,
+                "y": 0.5,
+                "strength": 0,
+                "target": 0,
+                "active": false
+              },
+              "inputSamples": 0
+            },
+            {
+              "id": 2,
+              "at": 3924.1999999284744,
+              "mode": "phrase",
+              "colored": true,
+              "longEdge": 713.4955436720143,
+              "hoverTime": 3.9237999999523163,
+              "hover": "particles",
+              "pointer": {
+                "x": 0.14999998931083078,
+                "y": 0.5,
+                "strength": 0.07295240861572443,
+                "target": 1,
+                "active": true
+              },
+              "inputSamples": 1
+            },
+            {
+              "id": 3,
+              "at": 5099.399999976158,
+              "mode": "phrase",
+              "colored": true,
+              "longEdge": 713.4955436720143,
+              "hoverTime": 4.5245,
+              "hover": "particles",
+              "pointer": {
+                "x": 0.8499999572433231,
+                "y": 0.5,
+                "strength": 0.642147893131315,
+                "target": 1,
+                "active": true
+              },
+              "inputSamples": 17
+            },
+            {
+              "id": 4,
+              "at": 6792.699999928474,
+              "mode": "phrase",
+              "colored": true,
+              "longEdge": 713.4955436720143,
+              "hoverTime": 6.792100000023842,
+              "hover": "particles",
+              "pointer": {
+                "x": 0.8499999572433231,
+                "y": 0.5,
+                "strength": 0.65,
+                "target": 1,
+                "active": true
+              },
+              "inputSamples": 0
+            },
+            {
+              "id": 5,
+              "at": 8818.399999976158,
+              "mode": "phrase",
+              "colored": true,
+              "longEdge": 713.4955436720143,
+              "hoverTime": 6.932899999976158,
+              "hover": "particles",
+              "pointer": {
+                "x": 0.8499999572433231,
+                "y": 0.5,
+                "strength": 0.23572989776866232,
+                "target": 0,
+                "active": false
+              },
+              "inputSamples": 1
+            },
+            {
+              "id": 6,
+              "at": 9745.100000023842,
+              "mode": "phrase",
+              "colored": true,
+              "longEdge": 713.4955436720143,
+              "hoverTime": 9.7445,
+              "hover": "particles",
+              "pointer": {
+                "x": 0.8499999572433231,
+                "y": 0.5,
+                "strength": 0,
+                "target": 0,
+                "active": false
+              },
+              "inputSamples": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "side": "candidate",
+      "mode": "phrase",
+      "hover": "particles",
+      "passed": false,
+      "initial": {
+        "width": 571,
+        "height": 713,
+        "vB329eef5": "",
+        "renderPending": "false",
+        "engine": "calibrated",
+        "columns": "180",
+        "mode": "phrase",
+        "quality": "classic",
+        "time": "0",
+        "motionStyle": "cinematic",
+        "interactionTime": "2.4838000000715255",
+        "pointerStrength": "0",
+        "interactionActive": "false",
+        "particlePeak": "0",
+        "particleBytes": "0",
+        "hover": "particles",
+        "paused": "false",
+        "motion": "none",
+        "hoverStrength": "0.65",
+        "renderBackend": "worker",
+        "settings": {
+          "mode": "phrase",
+          "columns": 180,
+          "phrase": "我爱你中国",
+          "charset": "@80GCLft1i;:,. ",
+          "background": "#111615",
+          "ink": "#eeeae2",
+          "colored": true,
+          "normalize": true,
+          "contrast": 0.2,
+          "exposure": 0,
+          "invert": true,
+          "fillAll": false,
+          "threshold": 0.44999999999999996,
+          "fontFamily": "\"Microsoft YaHei\", \"微软雅黑\", Cascadia Mono, Consolas, \"Courier New\", monospace",
+          "charAspect": 0.85,
+          "ditherStrength": 0.25
+        }
+      },
+      "firstVisibleMs": 2043.8999999761581,
+      "peak": 0.1092948229223088,
+      "recoveryMs": 5166.100000023842,
+      "exactRecovery": true,
+      "idleRequests": 0,
+      "feedbackSamples": 222,
+      "loadingSamples": 0,
+      "peakCaptureBytes": 9770952,
+      "activeWorkers": 1,
+      "workers": [
+        {
+          "id": 0,
+          "url": "http://127.0.0.1:5184/assets/frame-render.worker-aEUkIqaz.js",
+          "terminated": true,
+          "results": [
+            {
+              "id": 1,
+              "at": 1144.4000000953674,
+              "renderMs": 89.5,
+              "requestAt": 1030.2000000476837,
+              "interactionActive": false,
+              "cacheStats": {
+                "particles": {
+                  "bytes": 0,
+                  "limit": 10485760,
+                  "maxCells": 131072,
+                  "peak": 0,
+                  "moving": 0,
+                  "unavailable": false
+                },
+                "rift": {
+                  "columns": 0,
+                  "rows": 0,
+                  "bytes": 0,
+                  "peakOffset": 0,
+                  "rawPeakOffset": 0,
+                  "maxStrain": 0,
+                  "minJacobian": 1,
+                  "limit": 262144
+                },
+                "motionCells": 0,
+                "motionBytes": 0,
+                "choreographyBytes": 0,
+                "choreographyLimit": 4194304,
+                "effectCellBytes": 1392840,
+                "effectCellLimit": 4194304,
+                "entries": 14,
+                "backingBytes": 21952,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 1568,
+                "supersampleBytes": 0,
+                "glowBytes": 0,
+                "interactionCells": 13184,
+                "interactionActive": false,
+                "interactionBytes": 1687552,
+                "softwareMaskBytes": 0,
+                "softwareMaskEntries": 0,
+                "softwareWorkingBytes": 0,
+                "hits": 11234,
+                "misses": 14
+              },
+              "regionStats": {
+                "hits": 0,
+                "patches": 0,
+                "full": 1,
+                "bytes": 1800212,
+                "area": 0
+              },
+              "width": 571,
+              "height": 713
+            },
+            {
+              "id": 2,
+              "at": 1157.1000000238419,
+              "renderMs": 9.800000071525574,
+              "requestAt": 1145.2000000476837,
+              "interactionActive": false,
+              "cacheStats": {
+                "particles": {
+                  "bytes": 0,
+                  "limit": 10485760,
+                  "maxCells": 131072,
+                  "peak": 0,
+                  "moving": 0,
+                  "unavailable": false
+                },
+                "rift": {
+                  "columns": 0,
+                  "rows": 0,
+                  "bytes": 0,
+                  "peakOffset": 0,
+                  "rawPeakOffset": 0,
+                  "maxStrain": 0,
+                  "minJacobian": 1,
+                  "limit": 262144
+                },
+                "motionCells": 0,
+                "motionBytes": 0,
+                "choreographyBytes": 0,
+                "choreographyLimit": 4194304,
+                "effectCellBytes": 1392840,
+                "effectCellLimit": 4194304,
+                "entries": 0,
+                "backingBytes": 0,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 1568,
+                "supersampleBytes": 0,
+                "glowBytes": 0,
+                "interactionCells": 13184,
+                "interactionActive": false,
+                "interactionBytes": 1687552,
+                "softwareMaskBytes": 0,
+                "softwareMaskEntries": 0,
+                "softwareWorkingBytes": 0,
+                "hits": 11234,
+                "misses": 14
+              },
+              "regionStats": {
+                "hits": 1,
+                "patches": 0,
+                "full": 1,
+                "bytes": 1800212,
+                "area": 0
+              },
+              "width": 571,
+              "height": 713
+            },
+            {
+              "id": 3,
+              "at": 1237.7000000476837,
+              "renderMs": 8,
+              "requestAt": 1227.7000000476837,
+              "interactionActive": false,
+              "cacheStats": {
+                "particles": {
+                  "bytes": 0,
+                  "limit": 10485760,
+                  "maxCells": 131072,
+                  "peak": 0,
+                  "moving": 0,
+                  "unavailable": false
+                },
+                "rift": {
+                  "columns": 0,
+                  "rows": 0,
+                  "bytes": 0,
+                  "peakOffset": 0,
+                  "rawPeakOffset": 0,
+                  "maxStrain": 0,
+                  "minJacobian": 1,
+                  "limit": 262144
+                },
+                "motionCells": 0,
+                "motionBytes": 0,
+                "choreographyBytes": 0,
+                "choreographyLimit": 4194304,
+                "effectCellBytes": 1392840,
+                "effectCellLimit": 4194304,
+                "entries": 0,
+                "backingBytes": 0,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 1568,
+                "supersampleBytes": 0,
+                "glowBytes": 0,
+                "interactionCells": 13184,
+                "interactionActive": false,
+                "interactionBytes": 1687552,
+                "softwareMaskBytes": 0,
+                "softwareMaskEntries": 0,
+                "softwareWorkingBytes": 0,
+                "hits": 11234,
+                "misses": 14
+              },
+              "regionStats": {
+                "hits": 2,
+                "patches": 0,
+                "full": 1,
+                "bytes": 1800212,
+                "area": 0
+              },
+              "width": 571,
+              "height": 713
+            }
+          ],
+          "capturedFrames": 0,
+          "requests": [
+            {
+              "id": 1,
+              "at": 1030.2000000476837,
+              "mode": "density",
+              "colored": false,
+              "longEdge": 713.4955436720143,
+              "hoverTime": 1.0285,
+              "hover": "light",
+              "pointer": {
+                "x": 0.5,
+                "y": 0.5,
+                "strength": 0,
+                "target": 0,
+                "active": false
+              },
+              "inputSamples": 0
+            },
+            {
+              "id": 2,
+              "at": 1145.2000000476837,
+              "mode": "density",
+              "colored": false,
+              "longEdge": 713.4955436720143,
+              "hoverTime": 1.0364000000953675,
+              "hover": "light",
+              "pointer": {
+                "x": 0.5,
+                "y": 0.5,
+                "strength": 0,
+                "target": 0,
+                "active": false
+              },
+              "inputSamples": 0
+            },
+            {
+              "id": 3,
+              "at": 1227.7000000476837,
+              "mode": "density",
+              "colored": false,
+              "longEdge": 713.4955436720143,
+              "hoverTime": 1.2274000000953675,
+              "hover": "light",
+              "pointer": {
+                "x": 0.5,
+                "y": 0.5,
+                "strength": 0,
+                "target": 0,
+                "active": false
+              },
+              "inputSamples": 0
+            }
+          ]
+        },
+        {
+          "id": 1,
+          "url": "http://127.0.0.1:5184/assets/frame-render.worker-aEUkIqaz.js",
+          "terminated": true,
+          "results": [
+            {
+              "id": 1,
+              "at": 1368.7000000476837,
+              "renderMs": 89.70000004768372,
+              "requestAt": 1265.5,
+              "interactionActive": false,
+              "cacheStats": {
+                "particles": {
+                  "bytes": 0,
+                  "limit": 10485760,
+                  "maxCells": 131072,
+                  "peak": 0,
+                  "moving": 0,
+                  "unavailable": false
+                },
+                "rift": {
+                  "columns": 0,
+                  "rows": 0,
+                  "bytes": 0,
+                  "peakOffset": 0,
+                  "rawPeakOffset": 0,
+                  "maxStrain": 0,
+                  "minJacobian": 1,
+                  "limit": 262144
+                },
+                "motionCells": 0,
+                "motionBytes": 0,
+                "choreographyBytes": 0,
+                "choreographyLimit": 4194304,
+                "effectCellBytes": 2509740,
+                "effectCellLimit": 4194304,
+                "entries": 5,
+                "backingBytes": 12320,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 2464,
+                "supersampleBytes": 0,
+                "glowBytes": 0,
+                "interactionCells": 13184,
+                "interactionActive": false,
+                "interactionBytes": 1687552,
+                "softwareMaskBytes": 0,
+                "softwareMaskEntries": 0,
+                "softwareWorkingBytes": 0,
+                "hits": 13057,
+                "misses": 5
+              },
+              "regionStats": {
+                "hits": 0,
+                "patches": 0,
+                "full": 1,
+                "bytes": 1937912,
+                "area": 0
+              },
+              "width": 571,
+              "height": 713
+            },
+            {
+              "id": 2,
+              "at": 1440,
+              "renderMs": 11.400000095367432,
+              "requestAt": 1422.2000000476837,
+              "interactionActive": false,
+              "cacheStats": {
+                "particles": {
+                  "bytes": 0,
+                  "limit": 10485760,
+                  "maxCells": 131072,
+                  "peak": 0,
+                  "moving": 0,
+                  "unavailable": false
+                },
+                "rift": {
+                  "columns": 0,
+                  "rows": 0,
+                  "bytes": 0,
+                  "peakOffset": 0,
+                  "rawPeakOffset": 0,
+                  "maxStrain": 0,
+                  "minJacobian": 1,
+                  "limit": 262144
+                },
+                "motionCells": 0,
+                "motionBytes": 0,
+                "choreographyBytes": 0,
+                "choreographyLimit": 4194304,
+                "effectCellBytes": 2509740,
+                "effectCellLimit": 4194304,
+                "entries": 0,
+                "backingBytes": 0,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 2464,
+                "supersampleBytes": 0,
+                "glowBytes": 0,
+                "interactionCells": 13184,
+                "interactionActive": false,
+                "interactionBytes": 1687552,
+                "softwareMaskBytes": 0,
+                "softwareMaskEntries": 0,
+                "softwareWorkingBytes": 0,
+                "hits": 13057,
+                "misses": 5
+              },
+              "regionStats": {
+                "hits": 1,
+                "patches": 0,
+                "full": 1,
+                "bytes": 1937912,
+                "area": 0
+              },
+              "width": 571,
+              "height": 713
+            }
+          ],
+          "capturedFrames": 0,
+          "requests": [
+            {
+              "id": 1,
+              "at": 1265.5,
+              "mode": "phrase",
+              "colored": false,
+              "longEdge": 713.4955436720143,
+              "hoverTime": 1.2643000000715257,
+              "hover": "light",
+              "pointer": {
+                "x": 0.5,
+                "y": 0.5,
+                "strength": 0,
+                "target": 0,
+                "active": false
+              },
+              "inputSamples": 0
+            },
+            {
+              "id": 2,
+              "at": 1422.2000000476837,
+              "mode": "phrase",
+              "colored": false,
+              "longEdge": 713.4955436720143,
+              "hoverTime": 1.4217000000476838,
+              "hover": "light",
+              "pointer": {
+                "x": 0.5,
+                "y": 0.5,
+                "strength": 0,
+                "target": 0,
+                "active": false
+              },
+              "inputSamples": 0
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "url": "http://127.0.0.1:5184/assets/frame-render.worker-aEUkIqaz.js",
+          "terminated": true,
+          "results": [
+            {
+              "id": 1,
+              "at": 2424.4000000953674,
+              "renderMs": 954,
+              "requestAt": 1458.1000000238419,
+              "interactionActive": false,
+              "cacheStats": {
+                "particles": {
+                  "bytes": 0,
+                  "limit": 10485760,
+                  "maxCells": 131072,
+                  "peak": 0,
+                  "moving": 0,
+                  "unavailable": false
+                },
+                "rift": {
+                  "columns": 0,
+                  "rows": 0,
+                  "bytes": 0,
+                  "peakOffset": 0,
+                  "rawPeakOffset": 0,
+                  "maxStrain": 0,
+                  "minJacobian": 1,
+                  "limit": 262144
+                },
+                "motionCells": 0,
+                "motionBytes": 0,
+                "choreographyBytes": 0,
+                "choreographyLimit": 4194304,
+                "effectCellBytes": 2509740,
+                "effectCellLimit": 4194304,
+                "entries": 64,
+                "backingBytes": 157696,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 2464,
+                "supersampleBytes": 0,
+                "glowBytes": 0,
+                "interactionCells": 13184,
+                "interactionActive": false,
+                "interactionBytes": 1687552,
+                "softwareMaskBytes": 0,
+                "softwareMaskEntries": 0,
+                "softwareWorkingBytes": 0,
+                "hits": 13,
+                "misses": 13049
+              },
+              "regionStats": {
+                "hits": 0,
+                "patches": 0,
+                "full": 1,
+                "bytes": 1937912,
+                "area": 0
+              },
+              "width": 571,
+              "height": 713
+            }
+          ],
+          "capturedFrames": 0,
+          "requests": [
+            {
+              "id": 1,
+              "at": 1458.1000000238419,
+              "mode": "phrase",
+              "colored": true,
+              "longEdge": 713.4955436720143,
+              "hoverTime": 1.4571000000238419,
+              "hover": "light",
+              "pointer": {
+                "x": 0.5,
+                "y": 0.5,
+                "strength": 0,
+                "target": 0,
+                "active": false
+              },
+              "inputSamples": 0
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "url": "http://127.0.0.1:5184/assets/frame-render.worker-aEUkIqaz.js",
+          "terminated": false,
+          "results": [
+            {
+              "id": 1,
+              "at": 3439.5,
+              "renderMs": 942.3999999761581,
+              "requestAt": 2484.4000000953674,
+              "interactionActive": false,
+              "cacheStats": {
+                "particles": {
+                  "bytes": 0,
+                  "limit": 10485760,
+                  "maxCells": 131072,
+                  "peak": 0,
+                  "moving": 0,
+                  "unavailable": false
+                },
+                "rift": {
+                  "columns": 0,
+                  "rows": 0,
+                  "bytes": 0,
+                  "peakOffset": 0,
+                  "rawPeakOffset": 0,
+                  "maxStrain": 0,
+                  "minJacobian": 1,
+                  "limit": 262144
+                },
+                "motionCells": 0,
+                "motionBytes": 0,
+                "choreographyBytes": 0,
+                "choreographyLimit": 4194304,
+                "effectCellBytes": 2509740,
+                "effectCellLimit": 4194304,
+                "entries": 64,
+                "backingBytes": 157696,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 2464,
+                "supersampleBytes": 0,
+                "glowBytes": 0,
+                "interactionCells": 13184,
+                "interactionActive": false,
+                "interactionBytes": 1687552,
+                "softwareMaskBytes": 0,
+                "softwareMaskEntries": 0,
+                "softwareWorkingBytes": 0,
+                "hits": 13,
+                "misses": 13049
+              },
+              "regionStats": {
+                "hits": 0,
+                "patches": 0,
+                "full": 1,
+                "bytes": 1937912,
+                "area": 0
+              },
+              "width": 571,
+              "height": 713
+            },
+            {
+              "id": 2,
+              "at": 4027,
+              "renderMs": 456,
+              "requestAt": 3570,
+              "interactionActive": false,
+              "cacheStats": {
+                "particles": {
+                  "bytes": 0,
+                  "limit": 10485760,
+                  "maxCells": 131072,
+                  "peak": 0,
+                  "moving": 0,
+                  "unavailable": false
+                },
+                "rift": {
+                  "columns": 0,
+                  "rows": 0,
+                  "bytes": 0,
+                  "peakOffset": 0,
+                  "rawPeakOffset": 0,
+                  "maxStrain": 0,
+                  "minJacobian": 1,
+                  "limit": 262144
+                },
+                "motionCells": 0,
+                "motionBytes": 0,
+                "choreographyBytes": 0,
+                "choreographyLimit": 4194304,
+                "effectCellBytes": 2509740,
+                "effectCellLimit": 4194304,
+                "entries": 0,
+                "backingBytes": 0,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 2464,
+                "supersampleBytes": 0,
+                "glowBytes": 0,
+                "interactionCells": 13184,
+                "interactionActive": false,
+                "interactionBytes": 1687552,
+                "softwareMaskBytes": 0,
+                "softwareMaskEntries": 0,
+                "softwareWorkingBytes": 0,
+                "hits": 13,
+                "misses": 13049
+              },
+              "regionStats": {
+                "hits": 1,
+                "patches": 0,
+                "full": 1,
+                "bytes": 1937912,
+                "area": 0
+              },
+              "width": 571,
+              "height": 713
+            },
+            {
+              "id": 3,
+              "at": 5483,
+              "renderMs": 1448,
+              "requestAt": 4034.3000000715256,
+              "interactionActive": true,
+              "cacheStats": {
+                "particles": {
+                  "bytes": 2750400,
+                  "limit": 10485760,
+                  "maxCells": 131072,
+                  "peak": 0.1092948229223088,
+                  "moving": 11064,
+                  "unavailable": false
+                },
+                "rift": {
+                  "columns": 0,
+                  "rows": 0,
+                  "bytes": 0,
+                  "peakOffset": 0,
+                  "rawPeakOffset": 0,
+                  "maxStrain": 0,
+                  "minJacobian": 1,
+                  "limit": 262144
+                },
+                "motionCells": 0,
+                "motionBytes": 0,
+                "choreographyBytes": 0,
+                "choreographyLimit": 4194304,
+                "effectCellBytes": 2509740,
+                "effectCellLimit": 4194304,
+                "entries": 64,
+                "backingBytes": 157696,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 2464,
+                "supersampleBytes": 0,
+                "glowBytes": 0,
+                "interactionCells": 13184,
+                "interactionActive": true,
+                "interactionBytes": 1687552,
+                "softwareMaskBytes": 0,
+                "softwareMaskEntries": 0,
+                "softwareWorkingBytes": 0,
+                "hits": 26,
+                "misses": 26098
+              },
+              "regionStats": {
+                "hits": 1,
+                "patches": 0,
+                "full": 2,
+                "bytes": 1937912,
+                "area": 0.9077748002446435
+              },
+              "width": 571,
+              "height": 713
+            },
+            {
+              "id": 4,
+              "at": 6599.900000095367,
+              "renderMs": 1111,
+              "requestAt": 5488.200000047684,
+              "interactionActive": true,
+              "cacheStats": {
+                "particles": {
+                  "bytes": 2750400,
+                  "limit": 10485760,
+                  "maxCells": 131072,
+                  "peak": 0.10641643400713068,
+                  "moving": 16495,
+                  "unavailable": false
+                },
+                "rift": {
+                  "columns": 0,
+                  "rows": 0,
+                  "bytes": 0,
+                  "peakOffset": 0,
+                  "rawPeakOffset": 0,
+                  "maxStrain": 0,
+                  "minJacobian": 1,
+                  "limit": 262144
+                },
+                "motionCells": 0,
+                "motionBytes": 0,
+                "choreographyBytes": 0,
+                "choreographyLimit": 4194304,
+                "effectCellBytes": 2509740,
+                "effectCellLimit": 4194304,
+                "entries": 64,
+                "backingBytes": 157696,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 2464,
+                "supersampleBytes": 0,
+                "glowBytes": 0,
+                "interactionCells": 13184,
+                "interactionActive": true,
+                "interactionBytes": 1687552,
+                "softwareMaskBytes": 0,
+                "softwareMaskEntries": 0,
+                "softwareWorkingBytes": 0,
+                "hits": 39,
+                "misses": 39147
+              },
+              "regionStats": {
+                "hits": 1,
+                "patches": 0,
+                "full": 3,
+                "bytes": 1937912,
+                "area": 0.9077748002446435
+              },
+              "width": 571,
+              "height": 713
+            },
+            {
+              "id": 5,
+              "at": 8266.300000071526,
+              "renderMs": 1661,
+              "requestAt": 6604.600000023842,
+              "interactionActive": true,
+              "cacheStats": {
+                "particles": {
+                  "bytes": 2750400,
+                  "limit": 10485760,
+                  "maxCells": 131072,
+                  "peak": 0.011491353869386609,
+                  "moving": 17388,
+                  "unavailable": false
+                },
+                "rift": {
+                  "columns": 0,
+                  "rows": 0,
+                  "bytes": 0,
+                  "peakOffset": 0,
+                  "rawPeakOffset": 0,
+                  "maxStrain": 0,
+                  "minJacobian": 1,
+                  "limit": 262144
+                },
+                "motionCells": 0,
+                "motionBytes": 0,
+                "choreographyBytes": 0,
+                "choreographyLimit": 4194304,
+                "effectCellBytes": 2509740,
+                "effectCellLimit": 4194304,
+                "entries": 64,
+                "backingBytes": 157696,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 2464,
+                "supersampleBytes": 0,
+                "glowBytes": 0,
+                "interactionCells": 13184,
+                "interactionActive": true,
+                "interactionBytes": 1687552,
+                "softwareMaskBytes": 0,
+                "softwareMaskEntries": 0,
+                "softwareWorkingBytes": 0,
+                "hits": 52,
+                "misses": 52196
+              },
+              "regionStats": {
+                "hits": 1,
+                "patches": 0,
+                "full": 4,
+                "bytes": 1937912,
+                "area": 0.9112528646133969
+              },
+              "width": 571,
+              "height": 713
+            },
+            {
+              "id": 6,
+              "at": 10126.400000095367,
+              "renderMs": 1828.7999999523163,
+              "requestAt": 8296.900000095367,
+              "interactionActive": true,
+              "cacheStats": {
+                "particles": {
+                  "bytes": 2750400,
+                  "limit": 10485760,
+                  "maxCells": 131072,
+                  "peak": 0.000023096999645528122,
+                  "moving": 0,
+                  "unavailable": false
+                },
+                "rift": {
+                  "columns": 0,
+                  "rows": 0,
+                  "bytes": 0,
+                  "peakOffset": 0,
+                  "rawPeakOffset": 0,
+                  "maxStrain": 0,
+                  "minJacobian": 1,
+                  "limit": 262144
+                },
+                "motionCells": 0,
+                "motionBytes": 0,
+                "choreographyBytes": 0,
+                "choreographyLimit": 4194304,
+                "effectCellBytes": 2509740,
+                "effectCellLimit": 4194304,
+                "entries": 64,
+                "backingBytes": 157696,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 2464,
+                "supersampleBytes": 0,
+                "glowBytes": 0,
+                "interactionCells": 13184,
+                "interactionActive": true,
+                "interactionBytes": 1687552,
+                "softwareMaskBytes": 0,
+                "softwareMaskEntries": 0,
+                "softwareWorkingBytes": 0,
+                "hits": 65,
+                "misses": 65245
+              },
+              "regionStats": {
+                "hits": 1,
+                "patches": 0,
+                "full": 5,
+                "bytes": 1937912,
+                "area": 0.9077748002446435
+              },
+              "width": 571,
+              "height": 713
+            },
+            {
+              "id": 7,
+              "at": 10853.5,
+              "renderMs": 259.2000000476837,
+              "requestAt": 10593.600000023842,
+              "interactionActive": false,
+              "cacheStats": {
+                "particles": {
+                  "bytes": 2750400,
+                  "limit": 10485760,
+                  "maxCells": 131072,
+                  "peak": 0.000011266636214108148,
+                  "moving": 0,
+                  "unavailable": false
+                },
+                "rift": {
+                  "columns": 0,
+                  "rows": 0,
+                  "bytes": 0,
+                  "peakOffset": 0,
+                  "rawPeakOffset": 0,
+                  "maxStrain": 0,
+                  "minJacobian": 1,
+                  "limit": 262144
+                },
+                "motionCells": 0,
+                "motionBytes": 0,
+                "choreographyBytes": 0,
+                "choreographyLimit": 4194304,
+                "effectCellBytes": 2509740,
+                "effectCellLimit": 4194304,
+                "entries": 0,
+                "backingBytes": 0,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 2464,
+                "supersampleBytes": 0,
+                "glowBytes": 0,
+                "interactionCells": 13184,
+                "interactionActive": false,
+                "interactionBytes": 1687552,
+                "softwareMaskBytes": 0,
+                "softwareMaskEntries": 0,
+                "softwareWorkingBytes": 0,
+                "hits": 65,
+                "misses": 65245
+              },
+              "regionStats": {
+                "hits": 2,
+                "patches": 0,
+                "full": 5,
+                "bytes": 1937912,
+                "area": 0
+              },
+              "width": 571,
+              "height": 713
+            }
+          ],
+          "capturedFrames": 6,
+          "requests": [
+            {
+              "id": 1,
+              "at": 2484.4000000953674,
+              "mode": "phrase",
+              "colored": true,
+              "longEdge": 713.4955436720143,
+              "hoverTime": 2.4838000000715255,
+              "hover": "particles",
+              "pointer": {
+                "x": 0.5,
+                "y": 0.5,
+                "strength": 0,
+                "target": 0,
+                "active": false
+              },
+              "inputSamples": 0
+            },
+            {
+              "id": 2,
+              "at": 3570,
+              "mode": "phrase",
+              "colored": true,
+              "longEdge": 713.4955436720143,
+              "hoverTime": 3.5696000000238417,
+              "hover": "particles",
+              "pointer": {
+                "x": 0.14999998931083078,
+                "y": 0.5,
+                "strength": 0.07295240861572443,
+                "target": 1,
+                "active": true
+              },
+              "inputSamples": 1
+            },
+            {
+              "id": 3,
+              "at": 4034.3000000715256,
+              "mode": "phrase",
+              "colored": true,
+              "longEdge": 713.4955436720143,
+              "hoverTime": 3.9953000000715257,
+              "hover": "particles",
+              "pointer": {
+                "x": 0.6441176860428525,
+                "y": 0.36534441804818985,
+                "strength": 0.6223772687558603,
+                "target": 1,
+                "active": true
+              },
+              "inputSamples": 12
+            },
+            {
+              "id": 4,
+              "at": 5488.200000047684,
+              "mode": "phrase",
+              "colored": true,
+              "longEdge": 713.4955436720143,
+              "hoverTime": 4.188100000023842,
+              "hover": "particles",
+              "pointer": {
+                "x": 0.8499999572433231,
+                "y": 0.5,
+                "strength": 0.6430705400096223,
+                "target": 1,
+                "active": true
+              },
+              "inputSamples": 5
+            },
+            {
+              "id": 5,
+              "at": 6604.600000023842,
+              "mode": "phrase",
+              "colored": true,
+              "longEdge": 713.4955436720143,
+              "hoverTime": 5.736400000095367,
+              "hover": "particles",
+              "pointer": {
+                "x": 0.8499999572433231,
+                "y": 0.5,
+                "strength": 0,
+                "target": 0,
+                "active": false
+              },
+              "inputSamples": 1
+            },
+            {
+              "id": 6,
+              "at": 8296.900000095367,
+              "mode": "phrase",
+              "colored": true,
+              "longEdge": 713.4955436720143,
+              "hoverTime": 8.296200000047683,
+              "hover": "particles",
+              "pointer": {
+                "x": 0.8499999572433231,
+                "y": 0.5,
+                "strength": 0,
+                "target": 0,
+                "active": false
+              },
+              "inputSamples": 0
+            },
+            {
+              "id": 7,
+              "at": 10593.600000023842,
+              "mode": "phrase",
+              "colored": true,
+              "longEdge": 713.4955436720143,
+              "hoverTime": 10.593200000047684,
+              "hover": "particles",
+              "pointer": {
+                "x": 0.8499999572433231,
+                "y": 0.5,
+                "strength": 0,
+                "target": 0,
+                "active": false
+              },
+              "inputSamples": 0
+            }
+          ]
+        }
+      ],
+      "parity": [
+        {
+          "worker": 3,
+          "request": 2,
+          "width": 571,
+          "height": 713,
+          "changed": 0,
+          "maxDelta": 0
+        },
+        {
+          "worker": 3,
+          "request": 3,
+          "width": 571,
+          "height": 713,
+          "changed": 0,
+          "maxDelta": 0
+        },
+        {
+          "worker": 3,
+          "request": 4,
+          "width": 571,
+          "height": 713,
+          "changed": 0,
+          "maxDelta": 0
+        },
+        {
+          "worker": 3,
+          "request": 5,
+          "width": 571,
+          "height": 713,
+          "changed": 0,
+          "maxDelta": 0
+        },
+        {
+          "worker": 3,
+          "request": 6,
+          "width": 571,
+          "height": 713,
+          "changed": 0,
+          "maxDelta": 0
+        },
+        {
+          "worker": 3,
+          "request": 7,
+          "width": 571,
+          "height": 713,
+          "changed": 0,
+          "maxDelta": 0
+        }
+      ],
+      "failure": "AssertionError [ERR_ASSERTION]: Actual region patches\n    at mouseCase (file:///D:/my/project/astra/astra-web/scripts/preview-region-page-research.mjs:253:34)\n    at async file:///D:/my/project/astra/astra-web/scripts/preview-region-page-research.mjs:426:91",
+      "failureState": {
+        "data": {
+          "vB329eef5": "",
+          "renderPending": "false",
+          "engine": "calibrated",
+          "columns": "180",
+          "mode": "phrase",
+          "quality": "classic",
+          "time": "1.0690999999999993",
+          "motionStyle": "cinematic",
+          "interactionTime": "10.593200000047684",
+          "pointerStrength": "0",
+          "interactionActive": "false",
+          "particlePeak": "0.000011266636214108148",
+          "particleBytes": "2750400",
+          "hover": "particles",
+          "paused": "false",
+          "motion": "none",
+          "hoverStrength": "0.65",
+          "renderBackend": "worker"
+        },
+        "records": [
+          {
+            "id": 0,
+            "terminated": true,
+            "results": [
+              {
+                "id": 1,
+                "at": 1144.4000000953674,
+                "renderMs": 89.5,
+                "requestAt": 1030.2000000476837,
+                "interactionActive": false,
+                "cacheStats": {
+                  "particles": {
+                    "bytes": 0,
+                    "limit": 10485760,
+                    "maxCells": 131072,
+                    "peak": 0,
+                    "moving": 0,
+                    "unavailable": false
+                  },
+                  "rift": {
+                    "columns": 0,
+                    "rows": 0,
+                    "bytes": 0,
+                    "peakOffset": 0,
+                    "rawPeakOffset": 0,
+                    "maxStrain": 0,
+                    "minJacobian": 1,
+                    "limit": 262144
+                  },
+                  "motionCells": 0,
+                  "motionBytes": 0,
+                  "choreographyBytes": 0,
+                  "choreographyLimit": 4194304,
+                  "effectCellBytes": 1392840,
+                  "effectCellLimit": 4194304,
+                  "entries": 14,
+                  "backingBytes": 21952,
+                  "maxBackingBytes": 16777216,
+                  "scratchBytes": 1568,
+                  "supersampleBytes": 0,
+                  "glowBytes": 0,
+                  "interactionCells": 13184,
+                  "interactionActive": false,
+                  "interactionBytes": 1687552,
+                  "softwareMaskBytes": 0,
+                  "softwareMaskEntries": 0,
+                  "softwareWorkingBytes": 0,
+                  "hits": 11234,
+                  "misses": 14
+                },
+                "regionStats": {
+                  "hits": 0,
+                  "patches": 0,
+                  "full": 1,
+                  "bytes": 1800212,
+                  "area": 0
+                },
+                "width": 571,
+                "height": 713
+              },
+              {
+                "id": 2,
+                "at": 1157.1000000238419,
+                "renderMs": 9.800000071525574,
+                "requestAt": 1145.2000000476837,
+                "interactionActive": false,
+                "cacheStats": {
+                  "particles": {
+                    "bytes": 0,
+                    "limit": 10485760,
+                    "maxCells": 131072,
+                    "peak": 0,
+                    "moving": 0,
+                    "unavailable": false
+                  },
+                  "rift": {
+                    "columns": 0,
+                    "rows": 0,
+                    "bytes": 0,
+                    "peakOffset": 0,
+                    "rawPeakOffset": 0,
+                    "maxStrain": 0,
+                    "minJacobian": 1,
+                    "limit": 262144
+                  },
+                  "motionCells": 0,
+                  "motionBytes": 0,
+                  "choreographyBytes": 0,
+                  "choreographyLimit": 4194304,
+                  "effectCellBytes": 1392840,
+                  "effectCellLimit": 4194304,
+                  "entries": 0,
+                  "backingBytes": 0,
+                  "maxBackingBytes": 16777216,
+                  "scratchBytes": 1568,
+                  "supersampleBytes": 0,
+                  "glowBytes": 0,
+                  "interactionCells": 13184,
+                  "interactionActive": false,
+                  "interactionBytes": 1687552,
+                  "softwareMaskBytes": 0,
+                  "softwareMaskEntries": 0,
+                  "softwareWorkingBytes": 0,
+                  "hits": 11234,
+                  "misses": 14
+                },
+                "regionStats": {
+                  "hits": 1,
+                  "patches": 0,
+                  "full": 1,
+                  "bytes": 1800212,
+                  "area": 0
+                },
+                "width": 571,
+                "height": 713
+              },
+              {
+                "id": 3,
+                "at": 1237.7000000476837,
+                "renderMs": 8,
+                "requestAt": 1227.7000000476837,
+                "interactionActive": false,
+                "cacheStats": {
+                  "particles": {
+                    "bytes": 0,
+                    "limit": 10485760,
+                    "maxCells": 131072,
+                    "peak": 0,
+                    "moving": 0,
+                    "unavailable": false
+                  },
+                  "rift": {
+                    "columns": 0,
+                    "rows": 0,
+                    "bytes": 0,
+                    "peakOffset": 0,
+                    "rawPeakOffset": 0,
+                    "maxStrain": 0,
+                    "minJacobian": 1,
+                    "limit": 262144
+                  },
+                  "motionCells": 0,
+                  "motionBytes": 0,
+                  "choreographyBytes": 0,
+                  "choreographyLimit": 4194304,
+                  "effectCellBytes": 1392840,
+                  "effectCellLimit": 4194304,
+                  "entries": 0,
+                  "backingBytes": 0,
+                  "maxBackingBytes": 16777216,
+                  "scratchBytes": 1568,
+                  "supersampleBytes": 0,
+                  "glowBytes": 0,
+                  "interactionCells": 13184,
+                  "interactionActive": false,
+                  "interactionBytes": 1687552,
+                  "softwareMaskBytes": 0,
+                  "softwareMaskEntries": 0,
+                  "softwareWorkingBytes": 0,
+                  "hits": 11234,
+                  "misses": 14
+                },
+                "regionStats": {
+                  "hits": 2,
+                  "patches": 0,
+                  "full": 1,
+                  "bytes": 1800212,
+                  "area": 0
+                },
+                "width": 571,
+                "height": 713
+              }
+            ],
+            "requests": [
+              {
+                "id": 1,
+                "options": {
+                  "longEdge": 713.4955436720143,
+                  "motion": "none",
+                  "time": 0,
+                  "hoverTime": 1.0285,
+                  "effectProfile": "expressive",
+                  "motionSpeed": 1,
+                  "motionStrength": 0.65,
+                  "motionStyle": "cinematic",
+                  "hoverRadius": 0.38,
+                  "hoverStrength": 0.65,
+                  "pointerSamples": [],
+                  "hover": "light",
+                  "pointer": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "strength": 0,
+                    "target": 0,
+                    "active": false
+                  }
+                }
+              },
+              {
+                "id": 2,
+                "options": {
+                  "longEdge": 713.4955436720143,
+                  "motion": "none",
+                  "time": 0,
+                  "hoverTime": 1.0364000000953675,
+                  "effectProfile": "expressive",
+                  "motionSpeed": 1,
+                  "motionStrength": 0.65,
+                  "motionStyle": "cinematic",
+                  "hoverRadius": 0.38,
+                  "hoverStrength": 0.65,
+                  "pointerSamples": [],
+                  "hover": "light",
+                  "pointer": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "strength": 0,
+                    "target": 0,
+                    "active": false
+                  }
+                }
+              },
+              {
+                "id": 3,
+                "options": {
+                  "longEdge": 713.4955436720143,
+                  "motion": "none",
+                  "time": 0,
+                  "hoverTime": 1.2274000000953675,
+                  "effectProfile": "expressive",
+                  "motionSpeed": 1,
+                  "motionStrength": 0.65,
+                  "motionStyle": "cinematic",
+                  "hoverRadius": 0.38,
+                  "hoverStrength": 0.65,
+                  "pointerSamples": [],
+                  "hover": "light",
+                  "pointer": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "strength": 0,
+                    "target": 0,
+                    "active": false
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "id": 1,
+            "terminated": true,
+            "results": [
+              {
+                "id": 1,
+                "at": 1368.7000000476837,
+                "renderMs": 89.70000004768372,
+                "requestAt": 1265.5,
+                "interactionActive": false,
+                "cacheStats": {
+                  "particles": {
+                    "bytes": 0,
+                    "limit": 10485760,
+                    "maxCells": 131072,
+                    "peak": 0,
+                    "moving": 0,
+                    "unavailable": false
+                  },
+                  "rift": {
+                    "columns": 0,
+                    "rows": 0,
+                    "bytes": 0,
+                    "peakOffset": 0,
+                    "rawPeakOffset": 0,
+                    "maxStrain": 0,
+                    "minJacobian": 1,
+                    "limit": 262144
+                  },
+                  "motionCells": 0,
+                  "motionBytes": 0,
+                  "choreographyBytes": 0,
+                  "choreographyLimit": 4194304,
+                  "effectCellBytes": 2509740,
+                  "effectCellLimit": 4194304,
+                  "entries": 5,
+                  "backingBytes": 12320,
+                  "maxBackingBytes": 16777216,
+                  "scratchBytes": 2464,
+                  "supersampleBytes": 0,
+                  "glowBytes": 0,
+                  "interactionCells": 13184,
+                  "interactionActive": false,
+                  "interactionBytes": 1687552,
+                  "softwareMaskBytes": 0,
+                  "softwareMaskEntries": 0,
+                  "softwareWorkingBytes": 0,
+                  "hits": 13057,
+                  "misses": 5
+                },
+                "regionStats": {
+                  "hits": 0,
+                  "patches": 0,
+                  "full": 1,
+                  "bytes": 1937912,
+                  "area": 0
+                },
+                "width": 571,
+                "height": 713
+              },
+              {
+                "id": 2,
+                "at": 1440,
+                "renderMs": 11.400000095367432,
+                "requestAt": 1422.2000000476837,
+                "interactionActive": false,
+                "cacheStats": {
+                  "particles": {
+                    "bytes": 0,
+                    "limit": 10485760,
+                    "maxCells": 131072,
+                    "peak": 0,
+                    "moving": 0,
+                    "unavailable": false
+                  },
+                  "rift": {
+                    "columns": 0,
+                    "rows": 0,
+                    "bytes": 0,
+                    "peakOffset": 0,
+                    "rawPeakOffset": 0,
+                    "maxStrain": 0,
+                    "minJacobian": 1,
+                    "limit": 262144
+                  },
+                  "motionCells": 0,
+                  "motionBytes": 0,
+                  "choreographyBytes": 0,
+                  "choreographyLimit": 4194304,
+                  "effectCellBytes": 2509740,
+                  "effectCellLimit": 4194304,
+                  "entries": 0,
+                  "backingBytes": 0,
+                  "maxBackingBytes": 16777216,
+                  "scratchBytes": 2464,
+                  "supersampleBytes": 0,
+                  "glowBytes": 0,
+                  "interactionCells": 13184,
+                  "interactionActive": false,
+                  "interactionBytes": 1687552,
+                  "softwareMaskBytes": 0,
+                  "softwareMaskEntries": 0,
+                  "softwareWorkingBytes": 0,
+                  "hits": 13057,
+                  "misses": 5
+                },
+                "regionStats": {
+                  "hits": 1,
+                  "patches": 0,
+                  "full": 1,
+                  "bytes": 1937912,
+                  "area": 0
+                },
+                "width": 571,
+                "height": 713
+              }
+            ],
+            "requests": [
+              {
+                "id": 1,
+                "options": {
+                  "longEdge": 713.4955436720143,
+                  "motion": "none",
+                  "time": 0,
+                  "hoverTime": 1.2643000000715257,
+                  "effectProfile": "expressive",
+                  "motionSpeed": 1,
+                  "motionStrength": 0.65,
+                  "motionStyle": "cinematic",
+                  "hoverRadius": 0.38,
+                  "hoverStrength": 0.65,
+                  "pointerSamples": [],
+                  "hover": "light",
+                  "pointer": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "strength": 0,
+                    "target": 0,
+                    "active": false
+                  }
+                }
+              },
+              {
+                "id": 2,
+                "options": {
+                  "longEdge": 713.4955436720143,
+                  "motion": "none",
+                  "time": 0,
+                  "hoverTime": 1.4217000000476838,
+                  "effectProfile": "expressive",
+                  "motionSpeed": 1,
+                  "motionStrength": 0.65,
+                  "motionStyle": "cinematic",
+                  "hoverRadius": 0.38,
+                  "hoverStrength": 0.65,
+                  "pointerSamples": [],
+                  "hover": "light",
+                  "pointer": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "strength": 0,
+                    "target": 0,
+                    "active": false
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "terminated": true,
+            "results": [
+              {
+                "id": 1,
+                "at": 2424.4000000953674,
+                "renderMs": 954,
+                "requestAt": 1458.1000000238419,
+                "interactionActive": false,
+                "cacheStats": {
+                  "particles": {
+                    "bytes": 0,
+                    "limit": 10485760,
+                    "maxCells": 131072,
+                    "peak": 0,
+                    "moving": 0,
+                    "unavailable": false
+                  },
+                  "rift": {
+                    "columns": 0,
+                    "rows": 0,
+                    "bytes": 0,
+                    "peakOffset": 0,
+                    "rawPeakOffset": 0,
+                    "maxStrain": 0,
+                    "minJacobian": 1,
+                    "limit": 262144
+                  },
+                  "motionCells": 0,
+                  "motionBytes": 0,
+                  "choreographyBytes": 0,
+                  "choreographyLimit": 4194304,
+                  "effectCellBytes": 2509740,
+                  "effectCellLimit": 4194304,
+                  "entries": 64,
+                  "backingBytes": 157696,
+                  "maxBackingBytes": 16777216,
+                  "scratchBytes": 2464,
+                  "supersampleBytes": 0,
+                  "glowBytes": 0,
+                  "interactionCells": 13184,
+                  "interactionActive": false,
+                  "interactionBytes": 1687552,
+                  "softwareMaskBytes": 0,
+                  "softwareMaskEntries": 0,
+                  "softwareWorkingBytes": 0,
+                  "hits": 13,
+                  "misses": 13049
+                },
+                "regionStats": {
+                  "hits": 0,
+                  "patches": 0,
+                  "full": 1,
+                  "bytes": 1937912,
+                  "area": 0
+                },
+                "width": 571,
+                "height": 713
+              }
+            ],
+            "requests": [
+              {
+                "id": 1,
+                "options": {
+                  "longEdge": 713.4955436720143,
+                  "motion": "none",
+                  "time": 0,
+                  "hoverTime": 1.4571000000238419,
+                  "effectProfile": "expressive",
+                  "motionSpeed": 1,
+                  "motionStrength": 0.65,
+                  "motionStyle": "cinematic",
+                  "hoverRadius": 0.38,
+                  "hoverStrength": 0.65,
+                  "pointerSamples": [],
+                  "hover": "light",
+                  "pointer": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "strength": 0,
+                    "target": 0,
+                    "active": false
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "id": 3,
+            "terminated": false,
+            "results": [
+              {
+                "id": 1,
+                "at": 3439.5,
+                "renderMs": 942.3999999761581,
+                "requestAt": 2484.4000000953674,
+                "interactionActive": false,
+                "cacheStats": {
+                  "particles": {
+                    "bytes": 0,
+                    "limit": 10485760,
+                    "maxCells": 131072,
+                    "peak": 0,
+                    "moving": 0,
+                    "unavailable": false
+                  },
+                  "rift": {
+                    "columns": 0,
+                    "rows": 0,
+                    "bytes": 0,
+                    "peakOffset": 0,
+                    "rawPeakOffset": 0,
+                    "maxStrain": 0,
+                    "minJacobian": 1,
+                    "limit": 262144
+                  },
+                  "motionCells": 0,
+                  "motionBytes": 0,
+                  "choreographyBytes": 0,
+                  "choreographyLimit": 4194304,
+                  "effectCellBytes": 2509740,
+                  "effectCellLimit": 4194304,
+                  "entries": 64,
+                  "backingBytes": 157696,
+                  "maxBackingBytes": 16777216,
+                  "scratchBytes": 2464,
+                  "supersampleBytes": 0,
+                  "glowBytes": 0,
+                  "interactionCells": 13184,
+                  "interactionActive": false,
+                  "interactionBytes": 1687552,
+                  "softwareMaskBytes": 0,
+                  "softwareMaskEntries": 0,
+                  "softwareWorkingBytes": 0,
+                  "hits": 13,
+                  "misses": 13049
+                },
+                "regionStats": {
+                  "hits": 0,
+                  "patches": 0,
+                  "full": 1,
+                  "bytes": 1937912,
+                  "area": 0
+                },
+                "width": 571,
+                "height": 713
+              },
+              {
+                "id": 2,
+                "at": 4027,
+                "renderMs": 456,
+                "requestAt": 3570,
+                "interactionActive": false,
+                "cacheStats": {
+                  "particles": {
+                    "bytes": 0,
+                    "limit": 10485760,
+                    "maxCells": 131072,
+                    "peak": 0,
+                    "moving": 0,
+                    "unavailable": false
+                  },
+                  "rift": {
+                    "columns": 0,
+                    "rows": 0,
+                    "bytes": 0,
+                    "peakOffset": 0,
+                    "rawPeakOffset": 0,
+                    "maxStrain": 0,
+                    "minJacobian": 1,
+                    "limit": 262144
+                  },
+                  "motionCells": 0,
+                  "motionBytes": 0,
+                  "choreographyBytes": 0,
+                  "choreographyLimit": 4194304,
+                  "effectCellBytes": 2509740,
+                  "effectCellLimit": 4194304,
+                  "entries": 0,
+                  "backingBytes": 0,
+                  "maxBackingBytes": 16777216,
+                  "scratchBytes": 2464,
+                  "supersampleBytes": 0,
+                  "glowBytes": 0,
+                  "interactionCells": 13184,
+                  "interactionActive": false,
+                  "interactionBytes": 1687552,
+                  "softwareMaskBytes": 0,
+                  "softwareMaskEntries": 0,
+                  "softwareWorkingBytes": 0,
+                  "hits": 13,
+                  "misses": 13049
+                },
+                "regionStats": {
+                  "hits": 1,
+                  "patches": 0,
+                  "full": 1,
+                  "bytes": 1937912,
+                  "area": 0
+                },
+                "width": 571,
+                "height": 713
+              },
+              {
+                "id": 3,
+                "at": 5483,
+                "renderMs": 1448,
+                "requestAt": 4034.3000000715256,
+                "interactionActive": true,
+                "cacheStats": {
+                  "particles": {
+                    "bytes": 2750400,
+                    "limit": 10485760,
+                    "maxCells": 131072,
+                    "peak": 0.1092948229223088,
+                    "moving": 11064,
+                    "unavailable": false
+                  },
+                  "rift": {
+                    "columns": 0,
+                    "rows": 0,
+                    "bytes": 0,
+                    "peakOffset": 0,
+                    "rawPeakOffset": 0,
+                    "maxStrain": 0,
+                    "minJacobian": 1,
+                    "limit": 262144
+                  },
+                  "motionCells": 0,
+                  "motionBytes": 0,
+                  "choreographyBytes": 0,
+                  "choreographyLimit": 4194304,
+                  "effectCellBytes": 2509740,
+                  "effectCellLimit": 4194304,
+                  "entries": 64,
+                  "backingBytes": 157696,
+                  "maxBackingBytes": 16777216,
+                  "scratchBytes": 2464,
+                  "supersampleBytes": 0,
+                  "glowBytes": 0,
+                  "interactionCells": 13184,
+                  "interactionActive": true,
+                  "interactionBytes": 1687552,
+                  "softwareMaskBytes": 0,
+                  "softwareMaskEntries": 0,
+                  "softwareWorkingBytes": 0,
+                  "hits": 26,
+                  "misses": 26098
+                },
+                "regionStats": {
+                  "hits": 1,
+                  "patches": 0,
+                  "full": 2,
+                  "bytes": 1937912,
+                  "area": 0.9077748002446435
+                },
+                "width": 571,
+                "height": 713
+              },
+              {
+                "id": 4,
+                "at": 6599.900000095367,
+                "renderMs": 1111,
+                "requestAt": 5488.200000047684,
+                "interactionActive": true,
+                "cacheStats": {
+                  "particles": {
+                    "bytes": 2750400,
+                    "limit": 10485760,
+                    "maxCells": 131072,
+                    "peak": 0.10641643400713068,
+                    "moving": 16495,
+                    "unavailable": false
+                  },
+                  "rift": {
+                    "columns": 0,
+                    "rows": 0,
+                    "bytes": 0,
+                    "peakOffset": 0,
+                    "rawPeakOffset": 0,
+                    "maxStrain": 0,
+                    "minJacobian": 1,
+                    "limit": 262144
+                  },
+                  "motionCells": 0,
+                  "motionBytes": 0,
+                  "choreographyBytes": 0,
+                  "choreographyLimit": 4194304,
+                  "effectCellBytes": 2509740,
+                  "effectCellLimit": 4194304,
+                  "entries": 64,
+                  "backingBytes": 157696,
+                  "maxBackingBytes": 16777216,
+                  "scratchBytes": 2464,
+                  "supersampleBytes": 0,
+                  "glowBytes": 0,
+                  "interactionCells": 13184,
+                  "interactionActive": true,
+                  "interactionBytes": 1687552,
+                  "softwareMaskBytes": 0,
+                  "softwareMaskEntries": 0,
+                  "softwareWorkingBytes": 0,
+                  "hits": 39,
+                  "misses": 39147
+                },
+                "regionStats": {
+                  "hits": 1,
+                  "patches": 0,
+                  "full": 3,
+                  "bytes": 1937912,
+                  "area": 0.9077748002446435
+                },
+                "width": 571,
+                "height": 713
+              },
+              {
+                "id": 5,
+                "at": 8266.300000071526,
+                "renderMs": 1661,
+                "requestAt": 6604.600000023842,
+                "interactionActive": true,
+                "cacheStats": {
+                  "particles": {
+                    "bytes": 2750400,
+                    "limit": 10485760,
+                    "maxCells": 131072,
+                    "peak": 0.011491353869386609,
+                    "moving": 17388,
+                    "unavailable": false
+                  },
+                  "rift": {
+                    "columns": 0,
+                    "rows": 0,
+                    "bytes": 0,
+                    "peakOffset": 0,
+                    "rawPeakOffset": 0,
+                    "maxStrain": 0,
+                    "minJacobian": 1,
+                    "limit": 262144
+                  },
+                  "motionCells": 0,
+                  "motionBytes": 0,
+                  "choreographyBytes": 0,
+                  "choreographyLimit": 4194304,
+                  "effectCellBytes": 2509740,
+                  "effectCellLimit": 4194304,
+                  "entries": 64,
+                  "backingBytes": 157696,
+                  "maxBackingBytes": 16777216,
+                  "scratchBytes": 2464,
+                  "supersampleBytes": 0,
+                  "glowBytes": 0,
+                  "interactionCells": 13184,
+                  "interactionActive": true,
+                  "interactionBytes": 1687552,
+                  "softwareMaskBytes": 0,
+                  "softwareMaskEntries": 0,
+                  "softwareWorkingBytes": 0,
+                  "hits": 52,
+                  "misses": 52196
+                },
+                "regionStats": {
+                  "hits": 1,
+                  "patches": 0,
+                  "full": 4,
+                  "bytes": 1937912,
+                  "area": 0.9112528646133969
+                },
+                "width": 571,
+                "height": 713
+              },
+              {
+                "id": 6,
+                "at": 10126.400000095367,
+                "renderMs": 1828.7999999523163,
+                "requestAt": 8296.900000095367,
+                "interactionActive": true,
+                "cacheStats": {
+                  "particles": {
+                    "bytes": 2750400,
+                    "limit": 10485760,
+                    "maxCells": 131072,
+                    "peak": 0.000023096999645528122,
+                    "moving": 0,
+                    "unavailable": false
+                  },
+                  "rift": {
+                    "columns": 0,
+                    "rows": 0,
+                    "bytes": 0,
+                    "peakOffset": 0,
+                    "rawPeakOffset": 0,
+                    "maxStrain": 0,
+                    "minJacobian": 1,
+                    "limit": 262144
+                  },
+                  "motionCells": 0,
+                  "motionBytes": 0,
+                  "choreographyBytes": 0,
+                  "choreographyLimit": 4194304,
+                  "effectCellBytes": 2509740,
+                  "effectCellLimit": 4194304,
+                  "entries": 64,
+                  "backingBytes": 157696,
+                  "maxBackingBytes": 16777216,
+                  "scratchBytes": 2464,
+                  "supersampleBytes": 0,
+                  "glowBytes": 0,
+                  "interactionCells": 13184,
+                  "interactionActive": true,
+                  "interactionBytes": 1687552,
+                  "softwareMaskBytes": 0,
+                  "softwareMaskEntries": 0,
+                  "softwareWorkingBytes": 0,
+                  "hits": 65,
+                  "misses": 65245
+                },
+                "regionStats": {
+                  "hits": 1,
+                  "patches": 0,
+                  "full": 5,
+                  "bytes": 1937912,
+                  "area": 0.9077748002446435
+                },
+                "width": 571,
+                "height": 713
+              },
+              {
+                "id": 7,
+                "at": 10853.5,
+                "renderMs": 259.2000000476837,
+                "requestAt": 10593.600000023842,
+                "interactionActive": false,
+                "cacheStats": {
+                  "particles": {
+                    "bytes": 2750400,
+                    "limit": 10485760,
+                    "maxCells": 131072,
+                    "peak": 0.000011266636214108148,
+                    "moving": 0,
+                    "unavailable": false
+                  },
+                  "rift": {
+                    "columns": 0,
+                    "rows": 0,
+                    "bytes": 0,
+                    "peakOffset": 0,
+                    "rawPeakOffset": 0,
+                    "maxStrain": 0,
+                    "minJacobian": 1,
+                    "limit": 262144
+                  },
+                  "motionCells": 0,
+                  "motionBytes": 0,
+                  "choreographyBytes": 0,
+                  "choreographyLimit": 4194304,
+                  "effectCellBytes": 2509740,
+                  "effectCellLimit": 4194304,
+                  "entries": 0,
+                  "backingBytes": 0,
+                  "maxBackingBytes": 16777216,
+                  "scratchBytes": 2464,
+                  "supersampleBytes": 0,
+                  "glowBytes": 0,
+                  "interactionCells": 13184,
+                  "interactionActive": false,
+                  "interactionBytes": 1687552,
+                  "softwareMaskBytes": 0,
+                  "softwareMaskEntries": 0,
+                  "softwareWorkingBytes": 0,
+                  "hits": 65,
+                  "misses": 65245
+                },
+                "regionStats": {
+                  "hits": 2,
+                  "patches": 0,
+                  "full": 5,
+                  "bytes": 1937912,
+                  "area": 0
+                },
+                "width": 571,
+                "height": 713
+              }
+            ],
+            "requests": [
+              {
+                "id": 1,
+                "options": {
+                  "longEdge": 713.4955436720143,
+                  "motion": "none",
+                  "time": 0,
+                  "hoverTime": 2.4838000000715255,
+                  "effectProfile": "expressive",
+                  "motionSpeed": 1,
+                  "motionStrength": 0.65,
+                  "motionStyle": "cinematic",
+                  "hoverRadius": 0.38,
+                  "hoverStrength": 0.65,
+                  "pointerSamples": [],
+                  "hover": "particles",
+                  "pointer": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "strength": 0,
+                    "target": 0,
+                    "active": false
+                  }
+                }
+              },
+              {
+                "id": 2,
+                "options": {
+                  "longEdge": 713.4955436720143,
+                  "motion": "none",
+                  "time": 0,
+                  "hoverTime": 3.5696000000238417,
+                  "effectProfile": "expressive",
+                  "motionSpeed": 1,
+                  "motionStrength": 0.65,
+                  "motionStyle": "cinematic",
+                  "hoverRadius": 0.38,
+                  "hoverStrength": 0.65,
+                  "pointerSamples": [
+                    {
+                      "x": 0.14999998931083078,
+                      "y": 0.5,
+                      "time": 3542.600000023842,
+                      "active": true
+                    }
+                  ],
+                  "hover": "particles",
+                  "pointer": {
+                    "x": 0.14999998931083078,
+                    "y": 0.5,
+                    "strength": 0.07295240861572443,
+                    "target": 1,
+                    "active": true
+                  }
+                }
+              },
+              {
+                "id": 3,
+                "options": {
+                  "longEdge": 713.4955436720143,
+                  "motion": "none",
+                  "time": 0.42549999999999993,
+                  "hoverTime": 3.9953000000715257,
+                  "effectProfile": "expressive",
+                  "motionSpeed": 1,
+                  "motionStrength": 0.65,
+                  "motionStyle": "cinematic",
+                  "hoverRadius": 0.38,
+                  "hoverStrength": 0.65,
+                  "pointerSamples": [
+                    {
+                      "x": 0.1911764328617557,
+                      "y": 0.5505738331927157,
+                      "time": 3587.4000000953674,
+                      "active": true
+                    },
+                    {
+                      "x": 0.2323529298585267,
+                      "y": 0.5943173787035414,
+                      "time": 3618.8000000715256,
+                      "active": true
+                    },
+                    {
+                      "x": 0.27352942685529774,
+                      "y": 0.6253228956653226,
+                      "time": 3665.7000000476837,
+                      "active": true
+                    },
+                    {
+                      "x": 0.31470592385206875,
+                      "y": 0.6394027560155154,
+                      "time": 3696.100000023842,
+                      "active": true
+                    },
+                    {
+                      "x": 0.35588231395714753,
+                      "y": 0.6346556247534625,
+                      "time": 3727.5,
+                      "active": true
+                    },
+                    {
+                      "x": 0.39705881095391854,
+                      "y": 0.6117224138214411,
+                      "time": 3758.600000023842,
+                      "active": true
+                    },
+                    {
+                      "x": 0.4382353079506896,
+                      "y": 0.5737005075933556,
+                      "time": 3806.3000000715256,
+                      "active": true
+                    },
+                    {
+                      "x": 0.4794118049474606,
+                      "y": 0.5257249059048474,
+                      "time": 3837.8000000715256,
+                      "active": true
+                    },
+                    {
+                      "x": 0.5205881950525394,
+                      "y": 0.47427505129350017,
+                      "time": 3868.600000023842,
+                      "active": true
+                    },
+                    {
+                      "x": 0.5617646920493105,
+                      "y": 0.42629949240664444,
+                      "time": 3899,
+                      "active": true
+                    },
+                    {
+                      "x": 0.6029411890460814,
+                      "y": 0.3882775861785589,
+                      "time": 3945.8000000715256,
+                      "active": true
+                    },
+                    {
+                      "x": 0.6441176860428525,
+                      "y": 0.36534441804818985,
+                      "time": 3976.9000000953674,
+                      "active": true
+                    }
+                  ],
+                  "hover": "particles",
+                  "pointer": {
+                    "x": 0.6441176860428525,
+                    "y": 0.36534441804818985,
+                    "strength": 0.6223772687558603,
+                    "target": 1,
+                    "active": true
+                  }
+                }
+              },
+              {
+                "id": 4,
+                "options": {
+                  "longEdge": 713.4955436720143,
+                  "motion": "none",
+                  "time": 0.6190999999999993,
+                  "hoverTime": 4.188100000023842,
+                  "effectProfile": "expressive",
+                  "motionSpeed": 1,
+                  "motionStrength": 0.65,
+                  "motionStyle": "cinematic",
+                  "hoverRadius": 0.38,
+                  "hoverStrength": 0.65,
+                  "pointerSamples": [
+                    {
+                      "x": 0.6852940761479313,
+                      "y": 0.3605972011828322,
+                      "time": 4007.9000000953674,
+                      "active": true
+                    },
+                    {
+                      "x": 0.7264705731447023,
+                      "y": 0.37467714713632977,
+                      "time": 4055.5,
+                      "active": true
+                    },
+                    {
+                      "x": 0.7676470701414733,
+                      "y": 0.4056826212964586,
+                      "time": 4101.800000071526,
+                      "active": true
+                    },
+                    {
+                      "x": 0.8088235671382443,
+                      "y": 0.44942616680728437,
+                      "time": 4134.400000095367,
+                      "active": true
+                    },
+                    {
+                      "x": 0.8499999572433231,
+                      "y": 0.5,
+                      "time": 4165.300000071526,
+                      "active": true
+                    }
+                  ],
+                  "hover": "particles",
+                  "pointer": {
+                    "x": 0.8499999572433231,
+                    "y": 0.5,
+                    "strength": 0.6430705400096223,
+                    "target": 1,
+                    "active": true
+                  }
+                }
+              },
+              {
+                "id": 5,
+                "options": {
+                  "longEdge": 713.4955436720143,
+                  "motion": "none",
+                  "time": 0.7690999999999993,
+                  "hoverTime": 5.736400000095367,
+                  "effectProfile": "expressive",
+                  "motionSpeed": 1,
+                  "motionStrength": 0.65,
+                  "motionStyle": "cinematic",
+                  "hoverRadius": 0.38,
+                  "hoverStrength": 0.65,
+                  "pointerSamples": [
+                    {
+                      "x": 0.8499999572433231,
+                      "y": 0.5,
+                      "time": 5718.300000071526,
+                      "active": false
+                    }
+                  ],
+                  "hover": "particles",
+                  "pointer": {
+                    "x": 0.8499999572433231,
+                    "y": 0.5,
+                    "strength": 0,
+                    "target": 0,
+                    "active": false
+                  }
+                }
+              },
+              {
+                "id": 6,
+                "options": {
+                  "longEdge": 713.4955436720143,
+                  "motion": "none",
+                  "time": 0.9190999999999994,
+                  "hoverTime": 8.296200000047683,
+                  "effectProfile": "expressive",
+                  "motionSpeed": 1,
+                  "motionStrength": 0.65,
+                  "motionStyle": "cinematic",
+                  "hoverRadius": 0.38,
+                  "hoverStrength": 0.65,
+                  "pointerSamples": [],
+                  "hover": "particles",
+                  "pointer": {
+                    "x": 0.8499999572433231,
+                    "y": 0.5,
+                    "strength": 0,
+                    "target": 0,
+                    "active": false
+                  }
+                }
+              },
+              {
+                "id": 7,
+                "options": {
+                  "longEdge": 713.4955436720143,
+                  "motion": "none",
+                  "time": 1.0690999999999993,
+                  "hoverTime": 10.593200000047684,
+                  "effectProfile": "expressive",
+                  "motionSpeed": 1,
+                  "motionStrength": 0.65,
+                  "motionStyle": "cinematic",
+                  "hoverRadius": 0.38,
+                  "hoverStrength": 0.65,
+                  "pointerSamples": [],
+                  "hover": "particles",
+                  "pointer": {
+                    "x": 0.8499999572433231,
+                    "y": 0.5,
+                    "strength": 0,
+                    "target": 0,
+                    "active": false
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [],
+  "passed": false,
+  "failure": "AssertionError [ERR_ASSERTION]: Actual region patches\n    at mouseCase (file:///D:/my/project/astra/astra-web/scripts/preview-region-page-research.mjs:253:34)\n    at async file:///D:/my/project/astra/astra-web/scripts/preview-region-page-research.mjs:426:91"
+}

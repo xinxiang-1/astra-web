@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "width": 571,
+  "height": 713,
+  "decodedCallbacks": 12,
+  "changedFrames": 11,
+  "currentTime": 5.356,
+  "scope": "Decode of actual Canvas recording through playback end; callbacks are encoded capture frames, not completed character FPS."
+}

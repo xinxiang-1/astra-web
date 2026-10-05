@@ -52,6 +52,7 @@
     "test:light-clock": "node scripts/light-clock-contract.mjs",
     "research:preview-profile": "node scripts/preview-frame-profile.mjs",
     "research:preview-region": "node scripts/preview-region-cache-research.mjs",
+    "research:preview-region-page": "node scripts/preview-region-page-research.mjs",
     "test:art-render-watchdog": "node scripts/art-render-watchdog-contract.mjs",
     "research:video-atlas": "node scripts/video-tile-atlas-research.mjs",
     "test:glyph-particles-integration": "node scripts/glyph-particles-integration-contract.mjs",
