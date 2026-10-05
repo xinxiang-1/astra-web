@@ -1,5 +1,6 @@
 import type { LayoutComputeInput, Placement } from './layout-compute'
 import { createSignatureDirectionField } from './orientation'
+import { signatureInkStrength } from './render-style'
 
 /** Measured signature footprints in staggered rows; opacity carries the image. */
 export function computeWovenPlacements(
@@ -156,20 +157,22 @@ export function computeWovenPlacements(
       }
       const tintLiteral = Boolean(
         options.inkColor ||
+        options.sourceColor ||
         (onEdge && (options.edgeColorMode === 'custom' || options.edgeColorMode === 'ink')),
       )
       if (onEdge && options.edgeColorMode === 'custom')
         tint = options.edgeColor ?? { r: 28, g: 72, b: 96 }
       else if (options.inkColor) tint = options.inkColor
-      else if (tintLiteral) tint = { r: 22, g: 20, b: 26 }
+      else if (onEdge && options.edgeColorMode === 'ink') tint = { r: 22, g: 20, b: 26 }
       placements.push({
         x: (x + w / 2) / aScale,
         y: (y + h / 2) / aScale,
         angle,
         targetSize: (Math.max(metric.width, metric.height) * fit.scale) / aScale,
         stampIndex,
-        strength: clamp(
+        strength: signatureInkStrength(
           ((tone + (onEdge ? variance * 0.08 : 0)) * reference) / Math.max(0.001, fit.coverage),
+          options.toneGain,
         ),
         tint,
         depth: clamp(tone),

@@ -159,6 +159,8 @@ const angleRange = ref(12)
 const minSizePct = ref(1.4)
 const maxSizePct = ref(4)
 const colorize = ref(true)
+const colorMode = ref<'ink' | 'source'>('ink')
+const toneGain = ref(1)
 const coverFill = ref(false)
 const fillHighlights = ref(false)
 /** true = 亮处密铺（密度反向）；null = 自动 */
@@ -201,6 +203,12 @@ function currentLayoutOptions(): SignatureLayoutOptions {
     fillHighlights: fillHighlights.value,
     invertDensity: invertDensity.value ?? undefined,
     colorize: colorize.value,
+    colorMode:
+      colorMode.value === 'source' || restoredLayoutOptions.value.colorMode === 'ink'
+        ? colorMode.value
+        : undefined,
+    toneGain:
+      toneGain.value !== 1 || restoredLayoutOptions.value.toneGain === 1 ? toneGain.value : undefined,
     coverFill: coverFill.value,
     ink: signatureSurface.value === 'night' ? { r: 238, g: 234, b: 226 } : undefined,
     overlap: restoredLayoutOptions.value.overlap ?? 0.22,
@@ -1529,6 +1537,8 @@ function restoreProjectControls(options: SignatureLayoutOptions) {
   fillHighlights.value = options.fillHighlights ?? false
   invertDensity.value = options.invertDensity ?? null
   colorize.value = options.colorize ?? true
+  colorMode.value = options.colorMode ?? 'ink'
+  toneGain.value = options.toneGain ?? 1
   coverFill.value = options.coverFill ?? false
   seed.value = options.seed ?? 42
   edgeOutline.value = options.edgeOutline ?? false
@@ -1827,6 +1837,12 @@ function setDensityPolarity(mode: 'auto' | 'bright' | 'dark') {
 
 function reshuffle() {
   seed.value = (seed.value + 17) % 100000
+  void renderNow()
+}
+
+function enhanceInk() {
+  if (pending.value || bankBusy.value || !canRender.value) return
+  toneGain.value = Math.max(toneGain.value, 1.8)
   void renderNow()
 }
 
@@ -2209,7 +2225,47 @@ watch([coverFill, colorize, signatureInkStyle], () => {
             </div>
           </label>
 
-          <DisclosurePanel title="色彩与光影" description="填色、明暗方向与局部染色">
+          <label class="ink-control">
+            <span class="ink-control-head">
+              <span>笔迹浓度</span>
+              <strong>{{ toneGain.toFixed(1) }}×</strong>
+            </span>
+            <input
+              v-model.number="toneGain"
+              aria-label="笔迹浓度"
+              type="range"
+              min="1"
+              max="3"
+              step="0.1"
+            />
+            <span class="hint">1×保留原效果；提高浓度可减少白底冲淡，生成预览后生效。</span>
+          </label>
+
+          <DisclosurePanel title="色彩与光影" description="彩墨风格、填色与明暗方向">
+            <div class="ink-control">
+              <label class="check">
+                <input
+                  v-model="colorize"
+                  type="checkbox"
+                  :disabled="signatureSurface === 'night'"
+                />
+                局部染色（纸上书写）
+              </label>
+              <label class="ink-control">
+                <span>彩墨风格</span>
+                <UiSelect
+                  v-model="colorMode"
+                  aria-label="彩墨风格"
+                  :disabled="!colorize || signatureSurface === 'night'"
+                >
+                  <option value="ink">墨色层次 · 原效果</option>
+                  <option value="source">原图彩墨 · 保留照片颜色</option>
+                </UiSelect>
+              </label>
+              <p class="hint res-hint">
+                原图彩墨适合彩色照片；颜色仍由完整签名笔迹构成。夜光使用浅色墨。
+              </p>
+            </div>
             <div class="ink-control">
               <span class="ink-control-head">
                 <span>填色垫底</span>
@@ -2346,14 +2402,6 @@ watch([coverFill, colorize, signatureInkStyle], () => {
                 使用竖向排列
               </label>
               <label class="check">
-                <input
-                  v-model="colorize"
-                  type="checkbox"
-                  :disabled="signatureSurface === 'night'"
-                />
-                局部染色（纸上书写）
-              </label>
-              <label class="check">
                 <input v-model="fillHighlights" type="checkbox" />
                 亮部也铺字（对比会变弱）
               </label>
@@ -2423,6 +2471,12 @@ watch([coverFill, colorize, signatureInkStyle], () => {
             {{ viewScaleLabel }}
             <template v-if="lastOutputMeta"> · {{ lastOutputMeta }}</template>
           </span>
+        </div>
+        <div v-if="hasResult" class="creation-actions ink-enhancement">
+          <FxButton type="button" :disabled="pending || bankBusy" @click="enhanceInk"
+            >增强笔迹</FxButton
+          >
+          <span class="hint">觉得偏淡时可一键增强；会应用当前创作参数。</span>
         </div>
         <RenderFeedback
           v-if="pending || generatingVariants || sharpPainting"

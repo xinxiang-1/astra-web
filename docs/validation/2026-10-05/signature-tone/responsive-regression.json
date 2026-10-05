@@ -1,0 +1,648 @@
+{
+  "browser": "154.0.4258.53",
+  "baselineCommit": "a7f219000beb884e8cd5d682f1ba0bf4ac97028c",
+  "errors": [],
+  "cases": [
+    {
+      "inkStyle": "ink",
+      "background": "#f5f3ef",
+      "colorize": false,
+      "coverFill": false,
+      "checks": {
+        "sync": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "responsive": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "tiled": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "region": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 180480
+        },
+        "workerTiled": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "workerRegion": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 180480
+        }
+      }
+    },
+    {
+      "inkStyle": "ink",
+      "background": "#f5f3ef",
+      "colorize": false,
+      "coverFill": true,
+      "checks": {
+        "sync": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "responsive": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "tiled": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "region": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 180480
+        },
+        "workerTiled": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "workerRegion": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 180480
+        }
+      }
+    },
+    {
+      "inkStyle": "ink",
+      "background": "#f5f3ef",
+      "colorize": true,
+      "coverFill": false,
+      "checks": {
+        "sync": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "responsive": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "tiled": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "region": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 180480
+        },
+        "workerTiled": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "workerRegion": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 180480
+        }
+      }
+    },
+    {
+      "inkStyle": "ink",
+      "background": "#f5f3ef",
+      "colorize": true,
+      "coverFill": true,
+      "checks": {
+        "sync": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "responsive": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "tiled": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "region": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 180480
+        },
+        "workerTiled": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "workerRegion": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 180480
+        }
+      }
+    },
+    {
+      "inkStyle": "ink",
+      "background": "#111615",
+      "colorize": false,
+      "coverFill": false,
+      "checks": {
+        "sync": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "responsive": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "tiled": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "region": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 180480
+        },
+        "workerTiled": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "workerRegion": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 180480
+        }
+      }
+    },
+    {
+      "inkStyle": "ink",
+      "background": "#111615",
+      "colorize": false,
+      "coverFill": true,
+      "checks": {
+        "sync": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "responsive": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "tiled": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "region": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 180480
+        },
+        "workerTiled": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "workerRegion": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 180480
+        }
+      }
+    },
+    {
+      "inkStyle": "ink",
+      "background": "#111615",
+      "colorize": true,
+      "coverFill": false,
+      "checks": {
+        "sync": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "responsive": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "tiled": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "region": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 180480
+        },
+        "workerTiled": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "workerRegion": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 180480
+        }
+      }
+    },
+    {
+      "inkStyle": "ink",
+      "background": "#111615",
+      "colorize": true,
+      "coverFill": true,
+      "checks": {
+        "sync": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "responsive": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "tiled": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "region": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 180480
+        },
+        "workerTiled": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "workerRegion": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 180480
+        }
+      }
+    },
+    {
+      "inkStyle": "cutout",
+      "background": "#f5f3ef",
+      "colorize": false,
+      "coverFill": false,
+      "checks": {
+        "sync": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "responsive": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "tiled": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "region": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 180480
+        }
+      }
+    },
+    {
+      "inkStyle": "cutout",
+      "background": "#f5f3ef",
+      "colorize": false,
+      "coverFill": true,
+      "checks": {
+        "sync": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "responsive": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "tiled": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "region": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 180480
+        }
+      }
+    },
+    {
+      "inkStyle": "cutout",
+      "background": "#f5f3ef",
+      "colorize": true,
+      "coverFill": false,
+      "checks": {
+        "sync": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "responsive": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "tiled": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "region": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 180480
+        }
+      }
+    },
+    {
+      "inkStyle": "cutout",
+      "background": "#f5f3ef",
+      "colorize": true,
+      "coverFill": true,
+      "checks": {
+        "sync": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "responsive": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "tiled": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "region": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 180480
+        }
+      }
+    },
+    {
+      "inkStyle": "cutout",
+      "background": "#111615",
+      "colorize": false,
+      "coverFill": false,
+      "checks": {
+        "sync": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "responsive": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "tiled": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "region": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 180480
+        }
+      }
+    },
+    {
+      "inkStyle": "cutout",
+      "background": "#111615",
+      "colorize": false,
+      "coverFill": true,
+      "checks": {
+        "sync": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "responsive": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "tiled": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "region": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 180480
+        }
+      }
+    },
+    {
+      "inkStyle": "cutout",
+      "background": "#111615",
+      "colorize": true,
+      "coverFill": false,
+      "checks": {
+        "sync": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "responsive": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "tiled": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "region": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 180480
+        }
+      }
+    },
+    {
+      "inkStyle": "cutout",
+      "background": "#111615",
+      "colorize": true,
+      "coverFill": true,
+      "checks": {
+        "sync": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "responsive": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "tiled": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "region": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 180480
+        }
+      }
+    },
+    {
+      "cancellation": true,
+      "ms": 33.200000047683716
+    },
+    {
+      "quality": "clear",
+      "width": 776,
+      "height": 662,
+      "region": {
+        "x": 0,
+        "y": 0,
+        "w": 776,
+        "h": 662
+      },
+      "overflow": 0
+    },
+    {
+      "quality": "fast",
+      "width": 776,
+      "height": 662,
+      "region": {
+        "x": 0,
+        "y": 0,
+        "w": 776,
+        "h": 662
+      },
+      "overflow": 0
+    },
+    {
+      "quality": "detail",
+      "width": 1552,
+      "height": 1324,
+      "region": {
+        "x": 0,
+        "y": 0,
+        "w": 776,
+        "h": 662
+      },
+      "overflow": 0
+    }
+  ],
+  "baselineSha256": "d730a237cabad278e0561c4192239a2aa59c54faaf419e142a2575a947570400",
+  "realGeneration": {
+    "frames": 2929,
+    "p95GapMs": 17.300000071525574,
+    "maxGapMs": 135.40000009536743,
+    "timerMaxGapMs": 129.10000002384186,
+    "longGaps": [
+      {
+        "kind": "frame",
+        "gapMs": 106.10000002384186,
+        "stage": "准备示例  · 正在准备作品"
+      },
+      {
+        "kind": "timer",
+        "gapMs": 112.79999995231628,
+        "stage": "准备示例  · 正在准备作品"
+      },
+      {
+        "kind": "frame",
+        "gapMs": 132.10000002384186,
+        "stage": "生成写法  · 正在准备作品"
+      },
+      {
+        "kind": "timer",
+        "gapMs": 113.39999997615814,
+        "stage": "生成写法  · 1%  · 正在准备作品"
+      },
+      {
+        "kind": "frame",
+        "gapMs": 135.40000009536743,
+        "stage": "写入名字库  · 75%  · 正在准备作品"
+      },
+      {
+        "kind": "timer",
+        "gapMs": 129.10000002384186,
+        "stage": "写入名字库  · 75%  · 正在准备作品"
+      },
+      {
+        "kind": "timer",
+        "gapMs": 102.20000004768372,
+        "stage": "构建密度场  · 4%  · 正在准备作品"
+      },
+      {
+        "kind": "timer",
+        "gapMs": 100.5,
+        "stage": "准备预览  · 55%  · 正在准备作品"
+      },
+      {
+        "kind": "frame",
+        "gapMs": 110.20000004768372,
+        "stage": "滚轮放大 · 拖动移动 · 适应  · 2048×1876 · 16074 枚签名"
+      },
+      {
+        "kind": "timer",
+        "gapMs": 106.29999995231628,
+        "stage": "滚轮放大 · 拖动移动 · 适应  · 2048×1876 · 16074 枚签名"
+      }
+    ],
+    "sawFeedback": true,
+    "metadata": "滚轮放大 · 拖动移动 · 适应  · 2048×1876 · 16074 枚签名"
+  },
+  "passed": true,
+  "sourceHashes": {
+    "src/lib/signature-portrait/layout.ts": "1c0d5d1005e49a4cec18f4dbea08fa2f904a916725f3fa76c921c9eb4a2d5dbc",
+    "src/lib/signature-portrait/vector-ink.ts": "ab433686481343aa8d9a2d8f6483bf28acdd6e2a9b99ec7b8716a9eafd5fe8f7",
+    "src/lib/signature-portrait/variants.ts": "65996b59db6170f33a00f8adb261e323633d264999b2b20844bbe22aa9a1d401",
+    "src/lib/signature-portrait/raster-cache.ts": "aedd4c280597a5fca8861a22f76998b7f3d90cba6531c73eab8fcf56f608e829",
+    "src/lib/signature-portrait/raster-worker-client.ts": "77ad39a982e848c99be9b5041187e0373a2ebbbac6d801794158a00d85963907",
+    "src/lib/signature-portrait/raster-worker-protocol.ts": "c32ea08d4ac87039e5844986e6d9a4dbca236ccd64d1aedbfdd6c805c219d7cf",
+    "src/lib/signature-portrait/raster.worker.ts": "ba89e92f2cf3f71d94e53f29ca968c7df93e94186f36bbad028e5255fda88242",
+    "src/views/SignaturePortraitView.vue": "11effa011fd0de7c418ba394bcde453230b2e308efb24296d0d32217a7259e05"
+  },
+  "timingScope": "Partly overlapped other browser QA. Functional checks retained; use serial production-page report for enhancement timing."
+}

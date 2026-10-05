@@ -25,6 +25,10 @@ export type SignatureLayoutOptions = {
   fillHighlights?: boolean
   invertDensity?: boolean
   colorize?: boolean
+  /** 原墨色保持兼容；source 把采样RGB直接用作彩墨，不再额外压暗。 */
+  colorMode?: 'ink' | 'source'
+  /** 1保持旧作品；1–3平滑增强笔迹墨量，不改变几何。 */
+  toneGain?: number
   /** 印章下垫软色椭圆（Canvas / Path SVG；GPU 候选另行验证） */
   coverFill?: boolean
   background?: string
@@ -260,6 +264,8 @@ export async function renderSignaturePortrait(
   const computeOpts = {
     layoutMethod,
     inkColor: options.ink,
+    sourceColor: colorize && options.colorMode === 'source',
+    toneGain: options.toneGain,
     density: densityMul,
     angleRange,
     orientationMode: options.orientationMode,

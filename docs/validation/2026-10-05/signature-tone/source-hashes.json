@@ -1,0 +1,9 @@
+{
+  "src/lib/signature-portrait/render-style.ts": "4a0c9d746e9fc7cca7cd3a08f45daa99c0d236f829815654e1cdb0677bf0322e",
+  "src/lib/signature-portrait/layout.ts": "54f89273b69327a5ef653cf545e2aee6fc19861940780a7e286153173ac5bd44",
+  "src/lib/signature-portrait/layout-compute.ts": "103185e01669b23607e2699e180bfc8f9a628098241d5f669ce3111281e37af5",
+  "src/lib/signature-portrait/woven.ts": "86f2221c15518e89016e7cb48cbc0e504851d7947614d9c515ef860a4310c695",
+  "src/lib/signature-portrait/project.ts": "f37ce9d8491154a053e3fa874a28329cedd62a12b68cba7d69a2702124c77a10",
+  "src/views/SignaturePortraitView.vue": "11effa011fd0de7c418ba394bcde453230b2e308efb24296d0d32217a7259e05",
+  "scripts/signature-tone-contract.mjs": "a2eff89894e465e3689cd46cb6870d5c66637b60e676388c904f5b1dce089e00"
+}

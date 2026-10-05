@@ -17,6 +17,7 @@ GPU 尚未通过小笔迹一致性，`SIGNATURE_GPU_PREVIEW_VERIFIED=false`。`c
 - `layout-compute.ts`：woven 分发及旧 WVS/Lloyd 显式入口。
 - `layout-worker-client.ts` / `layout.worker.ts`：请求生命周期和终止计算。
 - `render-style.ts`：共享颜色与有界缓存键。
+- `toneGain` / `colorMode`：默认保持旧墨色，1–3×平滑笔迹浓度与可选原图彩墨固化到Placement；预览、PNG、Path SVG和作品恢复共用。见[浓度阶段](../../../docs/plans/signature-tone-2026-10-05.md)。
 - `raster-cache.ts`：每次绘制使用精确RGB的LRU缓存，保留像素预算16MiB/64项，复用及结束释放。
 - `ink-style.ts` / `vector-ink.ts`：默认 ink，cutout 可选；镂空 Canvas 与 SVG 共用真实路径，不擦除其他签名。
 - `gl-preview.ts`：未晋升的分层 mipmap GPU 候选。

@@ -1,0 +1,15 @@
+{
+  "browser": "154.0.4258.53",
+  "base": "http://127.0.0.1:5184",
+  "errors": [],
+  "enhancement": {
+    "frames": 924,
+    "p95GapMs": 17.5,
+    "maxGapMs": 79.29999995231628,
+    "timerMaxGapMs": 76.5,
+    "feedbackVisible": true,
+    "toneGain": "1.8"
+  },
+  "idlePosts": 0,
+  "passed": true
+}

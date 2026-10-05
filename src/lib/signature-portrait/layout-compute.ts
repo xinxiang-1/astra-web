@@ -3,6 +3,7 @@
  */
 
 import { computeWovenPlacements } from './woven'
+import { signatureInkStrength } from './render-style'
 
 export type Placement = {
   x: number
@@ -28,6 +29,8 @@ export type StampMetricInput = {
 export type LayoutComputeOptions = {
   layoutMethod?: 'woven' | 'stipple'
   inkColor?: { r: number; g: number; b: number }
+  sourceColor?: boolean
+  toneGain?: number
   density?: number
   angleRange?: number
   orientationMode?: 'classic' | 'flow'
@@ -83,31 +86,18 @@ function percentile(sorted: number[], p: number) {
   return sorted[i]!
 }
 
-function lumAt(
-  pixels: Uint8ClampedArray,
-  w: number,
-  h: number,
-  x: number,
-  y: number,
-) {
+function lumAt(pixels: Uint8ClampedArray, w: number, h: number, x: number, y: number) {
   const xi = Math.max(0, Math.min(w - 1, x | 0))
   const yi = Math.max(0, Math.min(h - 1, y | 0))
   const i = (yi * w + xi) * 4
   const a = pixels[i + 3] ?? 0
   if (a < 8) return -1
   return (
-    (0.299 * (pixels[i] ?? 0) +
-      0.587 * (pixels[i + 1] ?? 0) +
-      0.114 * (pixels[i + 2] ?? 0)) /
-    255
+    (0.299 * (pixels[i] ?? 0) + 0.587 * (pixels[i + 1] ?? 0) + 0.114 * (pixels[i + 2] ?? 0)) / 255
   )
 }
 
-export function autoInvertDensity(
-  pixels: Uint8ClampedArray,
-  outW: number,
-  outH: number,
-): boolean {
+export function autoInvertDensity(pixels: Uint8ClampedArray, outW: number, outH: number): boolean {
   const cx0 = Math.floor(outW * 0.28)
   const cx1 = Math.floor(outW * 0.72)
   const cy0 = Math.floor(outH * 0.18)
@@ -122,9 +112,7 @@ export function autoInvertDensity(
       const i = (y * outW + x) * 4
       if ((pixels[i + 3] ?? 0) < 10) continue
       const lum =
-        (0.299 * (pixels[i] ?? 0) +
-          0.587 * (pixels[i + 1] ?? 0) +
-          0.114 * (pixels[i + 2] ?? 0)) /
+        (0.299 * (pixels[i] ?? 0) + 0.587 * (pixels[i + 1] ?? 0) + 0.114 * (pixels[i + 2] ?? 0)) /
         255
       if (x >= cx0 && x < cx1 && y >= cy0 && y < cy1) {
         center += lum
@@ -216,13 +204,7 @@ function buildDensityField(
   return { density, tone, edge, angle, cdf, total }
 }
 
-function sampleFromCdf(
-  cdf: Float32Array,
-  total: number,
-  w: number,
-  h: number,
-  rand: () => number,
-) {
+function sampleFromCdf(cdf: Float32Array, total: number, w: number, h: number, rand: () => number) {
   if (total <= 0) return null
   const target = rand() * total
   let lo = 0
@@ -335,10 +317,7 @@ function lloydRelax(
   }
 }
 
-function nearestDistances(
-  points: { x: number; y: number }[],
-  cellHint: number,
-): Float32Array {
+function nearestDistances(points: { x: number; y: number }[], cellHint: number): Float32Array {
   const n = points.length
   const dist = new Float32Array(n)
   dist.fill(1e9)
@@ -469,21 +448,14 @@ export function computePlacementsFromPixels(
   const gamma = options.gamma ?? 1.15
   const rand = mulberry32(options.seed ?? 42)
   const edgeOutline = options.edgeOutline ?? false
-  const edgeBoost = edgeOutline
-    ? Math.min(2.2, Math.max(0, options.edgeBoost ?? 0.95))
-    : 0
-  const edgeThreshold = Math.min(
-    0.95,
-    Math.max(0.08, options.edgeThreshold ?? 0.32),
-  )
+  const edgeBoost = edgeOutline ? Math.min(2.2, Math.max(0, options.edgeBoost ?? 0.95)) : 0
+  const edgeThreshold = Math.min(0.95, Math.max(0.08, options.edgeThreshold ?? 0.32))
   const edgeColorMode = options.edgeColorMode ?? 'auto'
   const edgeColor = options.edgeColor ?? { r: 28, g: 72, b: 96 }
   const refSide = 2048
-  const lloydIters =
-    options.lloydIters ?? (longSide >= 6000 ? 9 : longSide >= 3500 ? 11 : 14)
+  const lloydIters = options.lloydIters ?? (longSide >= 6000 ? 9 : longSide >= 3500 ? 11 : 14)
 
-  const invertDensity =
-    options.invertDensity ?? autoInvertDensity(fullPixels, outW, outH)
+  const invertDensity = options.invertDensity ?? autoInvertDensity(fullPixels, outW, outH)
 
   report('构建密度场', 0.08)
   const { density, tone, edge, angle, cdf, total } = buildDensityField(
@@ -580,10 +552,7 @@ export function computePlacementsFromPixels(
     const nnOut = (nn[i] ?? spacing) * scaleBack
     let targetSize = nnOut * (1.05 + t * 0.25)
     if (onEdge) targetSize *= 0.62 + (1 - Math.min(1, e)) * 0.12
-    targetSize = Math.max(
-      sizeMin * (onEdge ? 0.85 : 1),
-      Math.min(sizeMax, targetSize),
-    )
+    targetSize = Math.max(sizeMin * (onEdge ? 0.85 : 1), Math.min(sizeMax, targetSize))
 
     let ang = angle[ay * aW + ax] ?? 0
     if (onEdge) {
@@ -600,7 +569,7 @@ export function computePlacementsFromPixels(
     if (onEdge) {
       if (edgeColorMode === 'custom') tint = { ...edgeColor }
       else if (edgeColorMode === 'ink') tint = { r: 22, g: 20, b: 26 }
-      else {
+      else if (!options.sourceColor) {
         tint = {
           r: Math.round(tint.r * 0.28 + 12),
           g: Math.round(tint.g * 0.28 + 14),
@@ -615,13 +584,14 @@ export function computePlacementsFromPixels(
       angle: ang,
       targetSize,
       stampIndex: pickStamp(stampMetrics, rand),
-      strength: clamp01(onEdge ? 0.72 + e * 0.28 : 0.38 + t * 0.45),
+      strength: signatureInkStrength(onEdge ? 0.72 + e * 0.28 : 0.38 + t * 0.45, options.toneGain),
       tint,
       blend: onEdge || t > 0.35 ? 'ink' : 'soft',
       depth: clamp01(onEdge ? 0.75 + e * 0.2 : 0.3 + t * 0.5),
       onEdge,
       tintLiteral:
-        onEdge && (edgeColorMode === 'custom' || edgeColorMode === 'ink'),
+        Boolean(options.sourceColor) ||
+        (onEdge && (edgeColorMode === 'custom' || edgeColorMode === 'ink')),
     })
   }
 

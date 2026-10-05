@@ -1,0 +1,56 @@
+[
+  {
+    "source": "portrait-reference.png",
+    "label": "original",
+    "placements": 18447,
+    "meanStrength": 0.6347482549961366,
+    "contrast": 16.473525925925927,
+    "occupied": 0.5895279012345679,
+    "meanChroma": 5.533958518518519
+  },
+  {
+    "source": "portrait-reference.png",
+    "label": "strong",
+    "placements": 18447,
+    "meanStrength": 0.8137454879994499,
+    "contrast": 21.235128888888887,
+    "occupied": 0.6180671604938272,
+    "meanChroma": 5.4085748148148145
+  },
+  {
+    "source": "portrait-reference.png",
+    "label": "source-strong",
+    "placements": 18447,
+    "meanStrength": 0.8137454879994499,
+    "contrast": 19.774642962962965,
+    "occupied": 0.599042962962963,
+    "meanChroma": 5.513496296296296
+  },
+  {
+    "source": "portrait.jpg",
+    "label": "original",
+    "placements": 18512,
+    "meanStrength": 0.3887954143806113,
+    "contrast": 9.455106172839507,
+    "occupied": 0.5036671604938272,
+    "meanChroma": 5.1944720987654325
+  },
+  {
+    "source": "portrait.jpg",
+    "label": "strong",
+    "placements": 18512,
+    "meanStrength": 0.5591900395446846,
+    "contrast": 13.523951604938272,
+    "occupied": 0.5624276543209876,
+    "meanChroma": 4.9206706172839505
+  },
+  {
+    "source": "portrait.jpg",
+    "label": "source-strong",
+    "placements": 18512,
+    "meanStrength": 0.5591900395446846,
+    "contrast": 10.213724444444445,
+    "occupied": 0.4940108641975309,
+    "meanChroma": 5.383629629629629
+  }
+]
