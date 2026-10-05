@@ -1,0 +1,1235 @@
+{
+  "browser": "154.0.4258.53",
+  "parent": "92bc304",
+  "sourceHash": "ef913a0e8a82da6e0562c325ea8ad57f935c2696e818e3822809a1d238a17087",
+  "candidateHash": "31fa326ef02e7761f23158c07b208943789bd326fe1d538bb8d9a02d0d4a6c1a",
+  "scope": "Independent immutable fixed-color glow glyph reuse. Native source-in and primitive geometry unchanged, original main 64 entries unchanged, combined native backing <=16MiB and constant light <=2MiB. Neither atlas, software tint nor a temporary pool-size sweep. Full alpha/RGB parity required before cost. No production change or stable FPS claim.",
+  "cases": [
+    {
+      "mode": "density",
+      "transparent": false,
+      "time": 0,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 0,
+        "bytes": 0,
+        "limit": 2097152,
+        "hits": 0,
+        "misses": 0,
+        "totalBackingBytes": 21952
+      }
+    },
+    {
+      "mode": "density",
+      "transparent": false,
+      "time": 33,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 14,
+        "bytes": 21952,
+        "limit": 2097152,
+        "hits": 689,
+        "misses": 14,
+        "totalBackingBytes": 43904
+      }
+    },
+    {
+      "mode": "density",
+      "transparent": false,
+      "time": 66,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 14,
+        "bytes": 21952,
+        "limit": 2097152,
+        "hits": 1868,
+        "misses": 14,
+        "totalBackingBytes": 43904
+      }
+    },
+    {
+      "mode": "density",
+      "transparent": false,
+      "time": 200,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 14,
+        "bytes": 21952,
+        "limit": 2097152,
+        "hits": 2987,
+        "misses": 14,
+        "totalBackingBytes": 43904
+      }
+    },
+    {
+      "mode": "density",
+      "transparent": false,
+      "time": 233,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 14,
+        "bytes": 21952,
+        "limit": 2097152,
+        "hits": 4029,
+        "misses": 14,
+        "totalBackingBytes": 43904
+      }
+    },
+    {
+      "mode": "density",
+      "transparent": false,
+      "time": 3000,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 14,
+        "bytes": 21952,
+        "limit": 2097152,
+        "hits": 4029,
+        "misses": 14,
+        "totalBackingBytes": 43904
+      }
+    },
+    {
+      "mode": "density",
+      "transparent": false,
+      "release": {
+        "entries": 0,
+        "bytes": 0,
+        "limit": 2097152,
+        "hits": 4029,
+        "misses": 14,
+        "totalBackingBytes": 0
+      }
+    },
+    {
+      "mode": "density",
+      "transparent": true,
+      "time": 0,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 0,
+        "bytes": 0,
+        "limit": 2097152,
+        "hits": 0,
+        "misses": 0,
+        "totalBackingBytes": 21952
+      }
+    },
+    {
+      "mode": "density",
+      "transparent": true,
+      "time": 33,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 14,
+        "bytes": 21952,
+        "limit": 2097152,
+        "hits": 689,
+        "misses": 14,
+        "totalBackingBytes": 43904
+      }
+    },
+    {
+      "mode": "density",
+      "transparent": true,
+      "time": 66,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 14,
+        "bytes": 21952,
+        "limit": 2097152,
+        "hits": 1868,
+        "misses": 14,
+        "totalBackingBytes": 43904
+      }
+    },
+    {
+      "mode": "density",
+      "transparent": true,
+      "time": 200,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 14,
+        "bytes": 21952,
+        "limit": 2097152,
+        "hits": 2987,
+        "misses": 14,
+        "totalBackingBytes": 43904
+      }
+    },
+    {
+      "mode": "density",
+      "transparent": true,
+      "time": 233,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 14,
+        "bytes": 21952,
+        "limit": 2097152,
+        "hits": 4029,
+        "misses": 14,
+        "totalBackingBytes": 43904
+      }
+    },
+    {
+      "mode": "density",
+      "transparent": true,
+      "time": 3000,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 14,
+        "bytes": 21952,
+        "limit": 2097152,
+        "hits": 4029,
+        "misses": 14,
+        "totalBackingBytes": 43904
+      }
+    },
+    {
+      "mode": "density",
+      "transparent": true,
+      "release": {
+        "entries": 0,
+        "bytes": 0,
+        "limit": 2097152,
+        "hits": 4029,
+        "misses": 14,
+        "totalBackingBytes": 0
+      }
+    },
+    {
+      "mode": "color",
+      "transparent": false,
+      "time": 0,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 0,
+        "bytes": 0,
+        "limit": 2097152,
+        "hits": 0,
+        "misses": 0,
+        "totalBackingBytes": 100352
+      }
+    },
+    {
+      "mode": "color",
+      "transparent": false,
+      "time": 33,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 14,
+        "bytes": 21952,
+        "limit": 2097152,
+        "hits": 689,
+        "misses": 14,
+        "totalBackingBytes": 122304
+      }
+    },
+    {
+      "mode": "color",
+      "transparent": false,
+      "time": 66,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 14,
+        "bytes": 21952,
+        "limit": 2097152,
+        "hits": 1868,
+        "misses": 14,
+        "totalBackingBytes": 122304
+      }
+    },
+    {
+      "mode": "color",
+      "transparent": false,
+      "time": 200,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 14,
+        "bytes": 21952,
+        "limit": 2097152,
+        "hits": 2987,
+        "misses": 14,
+        "totalBackingBytes": 122304
+      }
+    },
+    {
+      "mode": "color",
+      "transparent": false,
+      "time": 233,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 14,
+        "bytes": 21952,
+        "limit": 2097152,
+        "hits": 4029,
+        "misses": 14,
+        "totalBackingBytes": 122304
+      }
+    },
+    {
+      "mode": "color",
+      "transparent": false,
+      "time": 3000,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 14,
+        "bytes": 21952,
+        "limit": 2097152,
+        "hits": 4029,
+        "misses": 14,
+        "totalBackingBytes": 122304
+      }
+    },
+    {
+      "mode": "color",
+      "transparent": false,
+      "release": {
+        "entries": 0,
+        "bytes": 0,
+        "limit": 2097152,
+        "hits": 4029,
+        "misses": 14,
+        "totalBackingBytes": 0
+      }
+    },
+    {
+      "mode": "color",
+      "transparent": true,
+      "time": 0,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 0,
+        "bytes": 0,
+        "limit": 2097152,
+        "hits": 0,
+        "misses": 0,
+        "totalBackingBytes": 100352
+      }
+    },
+    {
+      "mode": "color",
+      "transparent": true,
+      "time": 33,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 14,
+        "bytes": 21952,
+        "limit": 2097152,
+        "hits": 689,
+        "misses": 14,
+        "totalBackingBytes": 122304
+      }
+    },
+    {
+      "mode": "color",
+      "transparent": true,
+      "time": 66,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 14,
+        "bytes": 21952,
+        "limit": 2097152,
+        "hits": 1868,
+        "misses": 14,
+        "totalBackingBytes": 122304
+      }
+    },
+    {
+      "mode": "color",
+      "transparent": true,
+      "time": 200,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 14,
+        "bytes": 21952,
+        "limit": 2097152,
+        "hits": 2987,
+        "misses": 14,
+        "totalBackingBytes": 122304
+      }
+    },
+    {
+      "mode": "color",
+      "transparent": true,
+      "time": 233,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 14,
+        "bytes": 21952,
+        "limit": 2097152,
+        "hits": 4029,
+        "misses": 14,
+        "totalBackingBytes": 122304
+      }
+    },
+    {
+      "mode": "color",
+      "transparent": true,
+      "time": 3000,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 14,
+        "bytes": 21952,
+        "limit": 2097152,
+        "hits": 4029,
+        "misses": 14,
+        "totalBackingBytes": 122304
+      }
+    },
+    {
+      "mode": "color",
+      "transparent": true,
+      "release": {
+        "entries": 0,
+        "bytes": 0,
+        "limit": 2097152,
+        "hits": 4029,
+        "misses": 14,
+        "totalBackingBytes": 0
+      }
+    },
+    {
+      "mode": "phrase",
+      "transparent": false,
+      "time": 0,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 0,
+        "bytes": 0,
+        "limit": 2097152,
+        "hits": 0,
+        "misses": 0,
+        "totalBackingBytes": 157696
+      }
+    },
+    {
+      "mode": "phrase",
+      "transparent": false,
+      "time": 33,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 12,
+        "bytes": 29568,
+        "limit": 2097152,
+        "hits": 1651,
+        "misses": 12,
+        "totalBackingBytes": 187264
+      }
+    },
+    {
+      "mode": "phrase",
+      "transparent": false,
+      "time": 66,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 12,
+        "bytes": 29568,
+        "limit": 2097152,
+        "hits": 3921,
+        "misses": 12,
+        "totalBackingBytes": 187264
+      }
+    },
+    {
+      "mode": "phrase",
+      "transparent": false,
+      "time": 200,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 12,
+        "bytes": 29568,
+        "limit": 2097152,
+        "hits": 6273,
+        "misses": 12,
+        "totalBackingBytes": 187264
+      }
+    },
+    {
+      "mode": "phrase",
+      "transparent": false,
+      "time": 233,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 12,
+        "bytes": 29568,
+        "limit": 2097152,
+        "hits": 8454,
+        "misses": 12,
+        "totalBackingBytes": 187264
+      }
+    },
+    {
+      "mode": "phrase",
+      "transparent": false,
+      "time": 3000,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 12,
+        "bytes": 29568,
+        "limit": 2097152,
+        "hits": 8454,
+        "misses": 12,
+        "totalBackingBytes": 187264
+      }
+    },
+    {
+      "mode": "phrase",
+      "transparent": false,
+      "release": {
+        "entries": 0,
+        "bytes": 0,
+        "limit": 2097152,
+        "hits": 8454,
+        "misses": 12,
+        "totalBackingBytes": 0
+      }
+    },
+    {
+      "mode": "phrase",
+      "transparent": true,
+      "time": 0,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 0,
+        "bytes": 0,
+        "limit": 2097152,
+        "hits": 0,
+        "misses": 0,
+        "totalBackingBytes": 157696
+      }
+    },
+    {
+      "mode": "phrase",
+      "transparent": true,
+      "time": 33,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 12,
+        "bytes": 29568,
+        "limit": 2097152,
+        "hits": 1651,
+        "misses": 12,
+        "totalBackingBytes": 187264
+      }
+    },
+    {
+      "mode": "phrase",
+      "transparent": true,
+      "time": 66,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 12,
+        "bytes": 29568,
+        "limit": 2097152,
+        "hits": 3921,
+        "misses": 12,
+        "totalBackingBytes": 187264
+      }
+    },
+    {
+      "mode": "phrase",
+      "transparent": true,
+      "time": 200,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 12,
+        "bytes": 29568,
+        "limit": 2097152,
+        "hits": 6273,
+        "misses": 12,
+        "totalBackingBytes": 187264
+      }
+    },
+    {
+      "mode": "phrase",
+      "transparent": true,
+      "time": 233,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 12,
+        "bytes": 29568,
+        "limit": 2097152,
+        "hits": 8454,
+        "misses": 12,
+        "totalBackingBytes": 187264
+      }
+    },
+    {
+      "mode": "phrase",
+      "transparent": true,
+      "time": 3000,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 12,
+        "bytes": 29568,
+        "limit": 2097152,
+        "hits": 8454,
+        "misses": 12,
+        "totalBackingBytes": 187264
+      }
+    },
+    {
+      "mode": "phrase",
+      "transparent": true,
+      "release": {
+        "entries": 0,
+        "bytes": 0,
+        "limit": 2097152,
+        "hits": 8454,
+        "misses": 12,
+        "totalBackingBytes": 0
+      }
+    },
+    {
+      "mode": "contour",
+      "transparent": false,
+      "time": 0,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 0,
+        "bytes": 0,
+        "limit": 2097152,
+        "hits": 0,
+        "misses": 0,
+        "totalBackingBytes": 6272
+      }
+    },
+    {
+      "mode": "contour",
+      "transparent": false,
+      "time": 33,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 4,
+        "bytes": 6272,
+        "limit": 2097152,
+        "hits": 1062,
+        "misses": 4,
+        "totalBackingBytes": 12544
+      }
+    },
+    {
+      "mode": "contour",
+      "transparent": false,
+      "time": 66,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 4,
+        "bytes": 6272,
+        "limit": 2097152,
+        "hits": 2528,
+        "misses": 4,
+        "totalBackingBytes": 12544
+      }
+    },
+    {
+      "mode": "contour",
+      "transparent": false,
+      "time": 200,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 4,
+        "bytes": 6272,
+        "limit": 2097152,
+        "hits": 4034,
+        "misses": 4,
+        "totalBackingBytes": 12544
+      }
+    },
+    {
+      "mode": "contour",
+      "transparent": false,
+      "time": 233,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 4,
+        "bytes": 6272,
+        "limit": 2097152,
+        "hits": 5427,
+        "misses": 4,
+        "totalBackingBytes": 12544
+      }
+    },
+    {
+      "mode": "contour",
+      "transparent": false,
+      "time": 3000,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 4,
+        "bytes": 6272,
+        "limit": 2097152,
+        "hits": 5427,
+        "misses": 4,
+        "totalBackingBytes": 12544
+      }
+    },
+    {
+      "mode": "contour",
+      "transparent": false,
+      "release": {
+        "entries": 0,
+        "bytes": 0,
+        "limit": 2097152,
+        "hits": 5427,
+        "misses": 4,
+        "totalBackingBytes": 0
+      }
+    },
+    {
+      "mode": "contour",
+      "transparent": true,
+      "time": 0,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 0,
+        "bytes": 0,
+        "limit": 2097152,
+        "hits": 0,
+        "misses": 0,
+        "totalBackingBytes": 6272
+      }
+    },
+    {
+      "mode": "contour",
+      "transparent": true,
+      "time": 33,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 4,
+        "bytes": 6272,
+        "limit": 2097152,
+        "hits": 1062,
+        "misses": 4,
+        "totalBackingBytes": 12544
+      }
+    },
+    {
+      "mode": "contour",
+      "transparent": true,
+      "time": 66,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 4,
+        "bytes": 6272,
+        "limit": 2097152,
+        "hits": 2528,
+        "misses": 4,
+        "totalBackingBytes": 12544
+      }
+    },
+    {
+      "mode": "contour",
+      "transparent": true,
+      "time": 200,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 4,
+        "bytes": 6272,
+        "limit": 2097152,
+        "hits": 4034,
+        "misses": 4,
+        "totalBackingBytes": 12544
+      }
+    },
+    {
+      "mode": "contour",
+      "transparent": true,
+      "time": 233,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 4,
+        "bytes": 6272,
+        "limit": 2097152,
+        "hits": 5427,
+        "misses": 4,
+        "totalBackingBytes": 12544
+      }
+    },
+    {
+      "mode": "contour",
+      "transparent": true,
+      "time": 3000,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 4,
+        "bytes": 6272,
+        "limit": 2097152,
+        "hits": 5427,
+        "misses": 4,
+        "totalBackingBytes": 12544
+      }
+    },
+    {
+      "mode": "contour",
+      "transparent": true,
+      "release": {
+        "entries": 0,
+        "bytes": 0,
+        "limit": 2097152,
+        "hits": 5427,
+        "misses": 4,
+        "totalBackingBytes": 0
+      }
+    },
+    {
+      "mode": "braille",
+      "transparent": false,
+      "time": 0,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 0,
+        "bytes": 0,
+        "limit": 2097152,
+        "hits": 0,
+        "misses": 0,
+        "totalBackingBytes": 121856
+      }
+    },
+    {
+      "mode": "braille",
+      "transparent": false,
+      "time": 33,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 67,
+        "bytes": 127568,
+        "limit": 2097152,
+        "hits": 687,
+        "misses": 67,
+        "totalBackingBytes": 249424
+      }
+    },
+    {
+      "mode": "braille",
+      "transparent": false,
+      "time": 66,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 92,
+        "bytes": 175168,
+        "limit": 2097152,
+        "hits": 1908,
+        "misses": 92,
+        "totalBackingBytes": 297024
+      }
+    },
+    {
+      "mode": "braille",
+      "transparent": false,
+      "time": 200,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 96,
+        "bytes": 182784,
+        "limit": 2097152,
+        "hits": 2975,
+        "misses": 96,
+        "totalBackingBytes": 304640
+      }
+    },
+    {
+      "mode": "braille",
+      "transparent": false,
+      "time": 233,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 96,
+        "bytes": 182784,
+        "limit": 2097152,
+        "hits": 3981,
+        "misses": 96,
+        "totalBackingBytes": 304640
+      }
+    },
+    {
+      "mode": "braille",
+      "transparent": false,
+      "time": 3000,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 96,
+        "bytes": 182784,
+        "limit": 2097152,
+        "hits": 3981,
+        "misses": 96,
+        "totalBackingBytes": 304640
+      }
+    },
+    {
+      "mode": "braille",
+      "transparent": false,
+      "release": {
+        "entries": 0,
+        "bytes": 0,
+        "limit": 2097152,
+        "hits": 3981,
+        "misses": 96,
+        "totalBackingBytes": 0
+      }
+    },
+    {
+      "mode": "braille",
+      "transparent": true,
+      "time": 0,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 0,
+        "bytes": 0,
+        "limit": 2097152,
+        "hits": 0,
+        "misses": 0,
+        "totalBackingBytes": 121856
+      }
+    },
+    {
+      "mode": "braille",
+      "transparent": true,
+      "time": 33,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 67,
+        "bytes": 127568,
+        "limit": 2097152,
+        "hits": 687,
+        "misses": 67,
+        "totalBackingBytes": 249424
+      }
+    },
+    {
+      "mode": "braille",
+      "transparent": true,
+      "time": 66,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 92,
+        "bytes": 175168,
+        "limit": 2097152,
+        "hits": 1908,
+        "misses": 92,
+        "totalBackingBytes": 297024
+      }
+    },
+    {
+      "mode": "braille",
+      "transparent": true,
+      "time": 200,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 96,
+        "bytes": 182784,
+        "limit": 2097152,
+        "hits": 2975,
+        "misses": 96,
+        "totalBackingBytes": 304640
+      }
+    },
+    {
+      "mode": "braille",
+      "transparent": true,
+      "time": 233,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 96,
+        "bytes": 182784,
+        "limit": 2097152,
+        "hits": 3981,
+        "misses": 96,
+        "totalBackingBytes": 304640
+      }
+    },
+    {
+      "mode": "braille",
+      "transparent": true,
+      "time": 3000,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 96,
+        "bytes": 182784,
+        "limit": 2097152,
+        "hits": 3981,
+        "misses": 96,
+        "totalBackingBytes": 304640
+      }
+    },
+    {
+      "mode": "braille",
+      "transparent": true,
+      "release": {
+        "entries": 0,
+        "bytes": 0,
+        "limit": 2097152,
+        "hits": 3981,
+        "misses": 96,
+        "totalBackingBytes": 0
+      }
+    },
+    {
+      "mode": "halftone",
+      "transparent": false,
+      "time": 0,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 0,
+        "bytes": 0,
+        "limit": 2097152,
+        "hits": 0,
+        "misses": 0,
+        "totalBackingBytes": 4704
+      }
+    },
+    {
+      "mode": "halftone",
+      "transparent": false,
+      "time": 33,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 3,
+        "bytes": 4704,
+        "limit": 2097152,
+        "hits": 700,
+        "misses": 3,
+        "totalBackingBytes": 9408
+      }
+    },
+    {
+      "mode": "halftone",
+      "transparent": false,
+      "time": 66,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 3,
+        "bytes": 4704,
+        "limit": 2097152,
+        "hits": 1879,
+        "misses": 3,
+        "totalBackingBytes": 9408
+      }
+    },
+    {
+      "mode": "halftone",
+      "transparent": false,
+      "time": 200,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 3,
+        "bytes": 4704,
+        "limit": 2097152,
+        "hits": 2998,
+        "misses": 3,
+        "totalBackingBytes": 9408
+      }
+    },
+    {
+      "mode": "halftone",
+      "transparent": false,
+      "time": 233,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 3,
+        "bytes": 4704,
+        "limit": 2097152,
+        "hits": 4040,
+        "misses": 3,
+        "totalBackingBytes": 9408
+      }
+    },
+    {
+      "mode": "halftone",
+      "transparent": false,
+      "time": 3000,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 3,
+        "bytes": 4704,
+        "limit": 2097152,
+        "hits": 4040,
+        "misses": 3,
+        "totalBackingBytes": 9408
+      }
+    },
+    {
+      "mode": "halftone",
+      "transparent": false,
+      "release": {
+        "entries": 0,
+        "bytes": 0,
+        "limit": 2097152,
+        "hits": 4040,
+        "misses": 3,
+        "totalBackingBytes": 0
+      }
+    },
+    {
+      "mode": "halftone",
+      "transparent": true,
+      "time": 0,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 0,
+        "bytes": 0,
+        "limit": 2097152,
+        "hits": 0,
+        "misses": 0,
+        "totalBackingBytes": 4704
+      }
+    },
+    {
+      "mode": "halftone",
+      "transparent": true,
+      "time": 33,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 3,
+        "bytes": 4704,
+        "limit": 2097152,
+        "hits": 700,
+        "misses": 3,
+        "totalBackingBytes": 9408
+      }
+    },
+    {
+      "mode": "halftone",
+      "transparent": true,
+      "time": 66,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 3,
+        "bytes": 4704,
+        "limit": 2097152,
+        "hits": 1879,
+        "misses": 3,
+        "totalBackingBytes": 9408
+      }
+    },
+    {
+      "mode": "halftone",
+      "transparent": true,
+      "time": 200,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 3,
+        "bytes": 4704,
+        "limit": 2097152,
+        "hits": 2998,
+        "misses": 3,
+        "totalBackingBytes": 9408
+      }
+    },
+    {
+      "mode": "halftone",
+      "transparent": true,
+      "time": 233,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 3,
+        "bytes": 4704,
+        "limit": 2097152,
+        "hits": 4040,
+        "misses": 3,
+        "totalBackingBytes": 9408
+      }
+    },
+    {
+      "mode": "halftone",
+      "transparent": true,
+      "time": 3000,
+      "changed": 0,
+      "maxDelta": 0,
+      "stats": {
+        "entries": 3,
+        "bytes": 4704,
+        "limit": 2097152,
+        "hits": 4040,
+        "misses": 3,
+        "totalBackingBytes": 9408
+      }
+    },
+    {
+      "mode": "halftone",
+      "transparent": true,
+      "release": {
+        "entries": 0,
+        "bytes": 0,
+        "limit": 2097152,
+        "hits": 4040,
+        "misses": 3,
+        "totalBackingBytes": 0
+      }
+    }
+  ],
+  "passed": true,
+  "storage": "surface"
+}

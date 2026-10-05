@@ -1,0 +1,10 @@
+{
+  "scripts/preview-light-material-research.mjs": "bc7918c000b8e0c1e1b668377c20ffdcf7de180c0b03fb13bb3c1a8bf026b9f0",
+  "scripts/preview-light-storage-contract.mjs": "7422870aef8cc7e64d050d9fe83599764685dadaa1ce0e0c4191c1bf5a45975b",
+  "src/lib/art-engine/canvas.ts": "ef913a0e8a82da6e0562c325ea8ad57f935c2696e818e3822809a1d238a17087",
+  "src/lib/art-engine/frame-render.worker.ts": "8563ced8b3844b78f1b9d3535faf8db484d59c85217440e01bc9a8f0162a09dc",
+  "src/views/ArtHomeView.vue": "db2b7e0ffa0d590be0e3e9d99caa8ecaba4716721b5d03b2d6269e46ad4458dd",
+  "src/components/CharacterArtwork.vue": "99da7635979b98f70aa622887bcf775047114529b4130de201cebf40d0ab2858",
+  "src/lib/ascii/studio-preview.ts": "87ef73fd4261872b1a6bc3d66fd2a05498bc73fa047294b4934174ede9af1a07",
+  "src/components/ui/FxButton.vue": "eeac05cd3ac2f5d287761cb3482d110f3a3346f7e80e45bcad534911e0cc79d1"
+}

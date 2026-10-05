@@ -1,0 +1,2246 @@
+{
+  "browser": "154.0.8037.57",
+  "parent": "92bc304",
+  "scope": "Three real renderResponsive Workers, same fresh structured-cloned typed arrays and original event clocks. 180 columns and full RGB/alpha; fixed material representation is the only candidate difference. Three rotated orders across independent worker lifetimes; no between-pass readback, pool tuning, synthetic delivery delays or stable FPS claim.",
+  "hashes": {
+    "workerProtocol": "8563ced8b3844b78f1b9d3535faf8db484d59c85217440e01bc9a8f0162a09dc",
+    "fixture": "0ce4707016f8fd4c7348fd7a6bead069789e1aaa2b1b0b12551b5227bddb36d5",
+    "frozen": "8b95c0d13f60c7c5c2050db579f5be406e9ba9139a7e90052b3ecefae5075353",
+    "bitmap": "49cac3e8deb7d770e639c7b55778c2dbd5bafbcd8013d2040fe717b85c32055c",
+    "surface": "9f188118a90f619fb1886e59eab9276b62c29b65b282efbdf46788edd67dbbab"
+  },
+  "cases": [
+    {
+      "mode": "color",
+      "round": 0,
+      "columns": 180,
+      "rows": 112,
+      "records": [
+        {
+          "inputFrame": 0,
+          "event": {
+            "x": 0.15,
+            "y": 0.5,
+            "active": false,
+            "time": 0
+          },
+          "order": [
+            "frozen",
+            "bitmap",
+            "surface"
+          ],
+          "timings": {
+            "frozen": {
+              "workerMs": 8613.100000023842,
+              "completeMs": 9070.600000023842
+            },
+            "bitmap": {
+              "workerMs": 8406.699999928474,
+              "completeMs": 8419.100000023842
+            },
+            "surface": {
+              "workerMs": 8527.899999976158,
+              "completeMs": 8535.799999952316
+            }
+          },
+          "parity": {
+            "bitmap": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 1628492
+            },
+            "surface": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 1628492
+            }
+          },
+          "stats": {
+            "frozen": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 100352,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 1568,
+                "glowBytes": 0,
+                "effectCellBytes": 1471680,
+                "hits": 21,
+                "misses": 11428
+              },
+              "light": null
+            },
+            "bitmap": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 100352,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 1568,
+                "glowBytes": 0,
+                "effectCellBytes": 1471680,
+                "hits": 21,
+                "misses": 11428
+              },
+              "light": {
+                "entries": 0,
+                "bytes": 0,
+                "limit": 2097152,
+                "hits": 0,
+                "misses": 0,
+                "totalBackingBytes": 100352
+              }
+            },
+            "surface": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 100352,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 1568,
+                "glowBytes": 0,
+                "effectCellBytes": 1471680,
+                "hits": 21,
+                "misses": 11428
+              },
+              "light": {
+                "entries": 0,
+                "bytes": 0,
+                "limit": 2097152,
+                "hits": 0,
+                "misses": 0,
+                "totalBackingBytes": 100352
+              }
+            }
+          },
+          "progress": {
+            "frozen": {
+              "drawing": 189,
+              "interaction": 0
+            },
+            "bitmap": {
+              "drawing": 179,
+              "interaction": 0
+            },
+            "surface": {
+              "drawing": 179,
+              "interaction": 0
+            }
+          }
+        },
+        {
+          "inputFrame": 1,
+          "event": {
+            "x": 0.15,
+            "y": 0.5,
+            "active": true,
+            "time": 33
+          },
+          "order": [
+            "bitmap",
+            "surface",
+            "frozen"
+          ],
+          "timings": {
+            "bitmap": {
+              "workerMs": 8728.799999952316,
+              "completeMs": 8730.600000023842
+            },
+            "surface": {
+              "workerMs": 8691.100000023842,
+              "completeMs": 8692.700000047684
+            },
+            "frozen": {
+              "workerMs": 11667.100000023842,
+              "completeMs": 11669.5
+            }
+          },
+          "parity": {
+            "bitmap": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 1628492
+            },
+            "surface": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 1628492
+            }
+          },
+          "stats": {
+            "bitmap": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 122304,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 1568,
+                "glowBytes": 1628492,
+                "effectCellBytes": 1471680,
+                "hits": 4013,
+                "misses": 22870
+              },
+              "light": {
+                "entries": 14,
+                "bytes": 21952,
+                "limit": 2097152,
+                "hits": 3971,
+                "misses": 14,
+                "totalBackingBytes": 122304
+              }
+            },
+            "surface": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 122304,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 1568,
+                "glowBytes": 1628492,
+                "effectCellBytes": 1471680,
+                "hits": 4013,
+                "misses": 22870
+              },
+              "light": {
+                "entries": 14,
+                "bytes": 21952,
+                "limit": 2097152,
+                "hits": 3971,
+                "misses": 14,
+                "totalBackingBytes": 122304
+              }
+            },
+            "frozen": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 100352,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 1568,
+                "glowBytes": 1628492,
+                "effectCellBytes": 1471680,
+                "hits": 42,
+                "misses": 26841
+              },
+              "light": null
+            }
+          },
+          "progress": {
+            "bitmap": {
+              "drawing": 181,
+              "interaction": 0
+            },
+            "surface": {
+              "drawing": 176,
+              "interaction": 0
+            },
+            "frozen": {
+              "drawing": 188,
+              "interaction": 0
+            }
+          }
+        },
+        {
+          "inputFrame": 2,
+          "event": {
+            "x": 0.25,
+            "y": 0.6094564075455242,
+            "active": true,
+            "time": 66
+          },
+          "order": [
+            "surface",
+            "frozen",
+            "bitmap"
+          ],
+          "timings": {
+            "surface": {
+              "workerMs": 9068.900000095367,
+              "completeMs": 9070.699999928474
+            },
+            "frozen": {
+              "workerMs": 12940.899999976158,
+              "completeMs": 12942.700000047684
+            },
+            "bitmap": {
+              "workerMs": 9809,
+              "completeMs": 9811.300000071526
+            }
+          },
+          "parity": {
+            "bitmap": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 1628492
+            },
+            "surface": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 1628492
+            }
+          },
+          "stats": {
+            "surface": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 122304,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 1568,
+                "glowBytes": 1628492,
+                "effectCellBytes": 1471680,
+                "hits": 9607,
+                "misses": 34298
+              },
+              "light": {
+                "entries": 14,
+                "bytes": 21952,
+                "limit": 2097152,
+                "hits": 9544,
+                "misses": 14,
+                "totalBackingBytes": 122304
+              }
+            },
+            "frozen": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 100352,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 1568,
+                "glowBytes": 1628492,
+                "effectCellBytes": 1471680,
+                "hits": 63,
+                "misses": 43842
+              },
+              "light": null
+            },
+            "bitmap": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 122304,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 1568,
+                "glowBytes": 1628492,
+                "effectCellBytes": 1471680,
+                "hits": 9607,
+                "misses": 34298
+              },
+              "light": {
+                "entries": 14,
+                "bytes": 21952,
+                "limit": 2097152,
+                "hits": 9544,
+                "misses": 14,
+                "totalBackingBytes": 122304
+              }
+            }
+          },
+          "progress": {
+            "surface": {
+              "drawing": 206,
+              "interaction": 0
+            },
+            "frozen": {
+              "drawing": 211,
+              "interaction": 0
+            },
+            "bitmap": {
+              "drawing": 191,
+              "interaction": 0
+            }
+          }
+        },
+        {
+          "inputFrame": 3,
+          "event": {
+            "x": 0.35,
+            "y": 0.6364899077054553,
+            "active": true,
+            "time": 99
+          },
+          "order": [
+            "frozen",
+            "bitmap",
+            "surface"
+          ],
+          "timings": {
+            "frozen": {
+              "workerMs": 16836.299999952316,
+              "completeMs": 16837.899999976158
+            },
+            "bitmap": {
+              "workerMs": 10853.899999976158,
+              "completeMs": 10855.200000047684
+            },
+            "surface": {
+              "workerMs": 9338.899999976158,
+              "completeMs": 9340.899999976158
+            }
+          },
+          "parity": {
+            "bitmap": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 1628492
+            },
+            "surface": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 1628492
+            }
+          },
+          "stats": {
+            "frozen": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 100352,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 1568,
+                "glowBytes": 1628492,
+                "effectCellBytes": 1471680,
+                "hits": 84,
+                "misses": 62266
+              },
+              "light": null
+            },
+            "bitmap": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 122304,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 1568,
+                "glowBytes": 1628492,
+                "effectCellBytes": 1471680,
+                "hits": 16624,
+                "misses": 45726
+              },
+              "light": {
+                "entries": 14,
+                "bytes": 21952,
+                "limit": 2097152,
+                "hits": 16540,
+                "misses": 14,
+                "totalBackingBytes": 122304
+              }
+            },
+            "surface": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 122304,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 1568,
+                "glowBytes": 1628492,
+                "effectCellBytes": 1471680,
+                "hits": 16624,
+                "misses": 45726
+              },
+              "light": {
+                "entries": 14,
+                "bytes": 21952,
+                "limit": 2097152,
+                "hits": 16540,
+                "misses": 14,
+                "totalBackingBytes": 122304
+              }
+            }
+          },
+          "progress": {
+            "frozen": {
+              "drawing": 280,
+              "interaction": 0
+            },
+            "bitmap": {
+              "drawing": 182,
+              "interaction": 0
+            },
+            "surface": {
+              "drawing": 194,
+              "interaction": 0
+            }
+          }
+        },
+        {
+          "inputFrame": 4,
+          "event": {
+            "x": 0.44999999999999996,
+            "y": 0.5607437234764582,
+            "active": true,
+            "time": 132
+          },
+          "order": [
+            "bitmap",
+            "surface",
+            "frozen"
+          ],
+          "timings": {
+            "bitmap": {
+              "workerMs": 8506.700000047684,
+              "completeMs": 8508.799999952316
+            },
+            "surface": {
+              "workerMs": 8927.100000023842,
+              "completeMs": 8928.799999952316
+            },
+            "frozen": {
+              "workerMs": 12724.100000023842,
+              "completeMs": 12725.100000023842
+            }
+          },
+          "parity": {
+            "bitmap": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 1628492
+            },
+            "surface": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 1628492
+            }
+          },
+          "stats": {
+            "bitmap": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 122304,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 1568,
+                "glowBytes": 1628492,
+                "effectCellBytes": 1471680,
+                "hits": 24595,
+                "misses": 57154
+              },
+              "light": {
+                "entries": 14,
+                "bytes": 21952,
+                "limit": 2097152,
+                "hits": 24490,
+                "misses": 14,
+                "totalBackingBytes": 122304
+              }
+            },
+            "surface": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 122304,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 1568,
+                "glowBytes": 1628492,
+                "effectCellBytes": 1471680,
+                "hits": 24595,
+                "misses": 57154
+              },
+              "light": {
+                "entries": 14,
+                "bytes": 21952,
+                "limit": 2097152,
+                "hits": 24490,
+                "misses": 14,
+                "totalBackingBytes": 122304
+              }
+            },
+            "frozen": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 100352,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 1568,
+                "glowBytes": 1628492,
+                "effectCellBytes": 1471680,
+                "hits": 105,
+                "misses": 81644
+              },
+              "light": null
+            }
+          },
+          "progress": {
+            "bitmap": {
+              "drawing": 163,
+              "interaction": 0
+            },
+            "surface": {
+              "drawing": 162,
+              "interaction": 0
+            },
+            "frozen": {
+              "drawing": 187,
+              "interaction": 0
+            }
+          }
+        },
+        {
+          "inputFrame": 5,
+          "event": {
+            "x": 0.5499999999999999,
+            "y": 0.4392562765235419,
+            "active": true,
+            "time": 165
+          },
+          "order": [
+            "surface",
+            "frozen",
+            "bitmap"
+          ],
+          "timings": {
+            "surface": {
+              "workerMs": 10441.199999928474,
+              "completeMs": 10442.700000047684
+            },
+            "frozen": {
+              "workerMs": 12876,
+              "completeMs": 12878.100000023842
+            },
+            "bitmap": {
+              "workerMs": 10409.600000023842,
+              "completeMs": 10410.799999952316
+            }
+          },
+          "parity": {
+            "bitmap": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 1628492
+            },
+            "surface": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 1628492
+            }
+          },
+          "stats": {
+            "surface": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 122304,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 1568,
+                "glowBytes": 1628492,
+                "effectCellBytes": 1471680,
+                "hits": 32434,
+                "misses": 68582
+              },
+              "light": {
+                "entries": 14,
+                "bytes": 21952,
+                "limit": 2097152,
+                "hits": 32308,
+                "misses": 14,
+                "totalBackingBytes": 122304
+              }
+            },
+            "frozen": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 100352,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 1568,
+                "glowBytes": 1628492,
+                "effectCellBytes": 1471680,
+                "hits": 126,
+                "misses": 100890
+              },
+              "light": null
+            },
+            "bitmap": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 122304,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 1568,
+                "glowBytes": 1628492,
+                "effectCellBytes": 1471680,
+                "hits": 32434,
+                "misses": 68582
+              },
+              "light": {
+                "entries": 14,
+                "bytes": 21952,
+                "limit": 2097152,
+                "hits": 32308,
+                "misses": 14,
+                "totalBackingBytes": 122304
+              }
+            }
+          },
+          "progress": {
+            "surface": {
+              "drawing": 186,
+              "interaction": 0
+            },
+            "frozen": {
+              "drawing": 196,
+              "interaction": 0
+            },
+            "bitmap": {
+              "drawing": 178,
+              "interaction": 0
+            }
+          }
+        },
+        {
+          "inputFrame": 6,
+          "event": {
+            "x": 0.65,
+            "y": 0.3635100922945447,
+            "active": true,
+            "time": 198
+          },
+          "order": [
+            "frozen",
+            "bitmap",
+            "surface"
+          ],
+          "timings": {
+            "frozen": {
+              "workerMs": 12308.700000047684,
+              "completeMs": 12310.600000023842
+            },
+            "bitmap": {
+              "workerMs": 11660.300000071526,
+              "completeMs": 11661.799999952316
+            },
+            "surface": {
+              "workerMs": 6573.900000095367,
+              "completeMs": 6575
+            }
+          },
+          "parity": {
+            "bitmap": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 1628492
+            },
+            "surface": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 1628492
+            }
+          },
+          "stats": {
+            "frozen": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 100352,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 1568,
+                "glowBytes": 1628492,
+                "effectCellBytes": 1471680,
+                "hits": 147,
+                "misses": 119382
+              },
+              "light": null
+            },
+            "bitmap": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 122304,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 1568,
+                "glowBytes": 1628492,
+                "effectCellBytes": 1471680,
+                "hits": 39519,
+                "misses": 80010
+              },
+              "light": {
+                "entries": 14,
+                "bytes": 21952,
+                "limit": 2097152,
+                "hits": 39372,
+                "misses": 14,
+                "totalBackingBytes": 122304
+              }
+            },
+            "surface": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 122304,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 1568,
+                "glowBytes": 1628492,
+                "effectCellBytes": 1471680,
+                "hits": 39519,
+                "misses": 80010
+              },
+              "light": {
+                "entries": 14,
+                "bytes": 21952,
+                "limit": 2097152,
+                "hits": 39372,
+                "misses": 14,
+                "totalBackingBytes": 122304
+              }
+            }
+          },
+          "progress": {
+            "frozen": {
+              "drawing": 187,
+              "interaction": 0
+            },
+            "bitmap": {
+              "drawing": 169,
+              "interaction": 0
+            },
+            "surface": {
+              "drawing": 138,
+              "interaction": 0
+            }
+          }
+        },
+        {
+          "inputFrame": 7,
+          "event": {
+            "x": 0.7499999999999999,
+            "y": 0.3905435924544758,
+            "active": true,
+            "time": 231
+          },
+          "order": [
+            "bitmap",
+            "surface",
+            "frozen"
+          ],
+          "timings": {
+            "bitmap": {
+              "workerMs": 2216.5,
+              "completeMs": 2217.2999999523163
+            },
+            "surface": {
+              "workerMs": 1663.1000000238419,
+              "completeMs": 1664
+            },
+            "frozen": {
+              "workerMs": 2492,
+              "completeMs": 2493
+            }
+          },
+          "parity": {
+            "bitmap": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 1628492
+            },
+            "surface": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 1628492
+            }
+          },
+          "stats": {
+            "bitmap": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 122304,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 1568,
+                "glowBytes": 1628492,
+                "effectCellBytes": 1471680,
+                "hits": 45823,
+                "misses": 91438
+              },
+              "light": {
+                "entries": 14,
+                "bytes": 21952,
+                "limit": 2097152,
+                "hits": 45655,
+                "misses": 14,
+                "totalBackingBytes": 122304
+              }
+            },
+            "surface": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 122304,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 1568,
+                "glowBytes": 1628492,
+                "effectCellBytes": 1471680,
+                "hits": 45823,
+                "misses": 91438
+              },
+              "light": {
+                "entries": 14,
+                "bytes": 21952,
+                "limit": 2097152,
+                "hits": 45655,
+                "misses": 14,
+                "totalBackingBytes": 122304
+              }
+            },
+            "frozen": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 100352,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 1568,
+                "glowBytes": 1628492,
+                "effectCellBytes": 1471680,
+                "hits": 168,
+                "misses": 137093
+              },
+              "light": null
+            }
+          },
+          "progress": {
+            "bitmap": {
+              "drawing": 46,
+              "interaction": 0
+            },
+            "surface": {
+              "drawing": 31,
+              "interaction": 0
+            },
+            "frozen": {
+              "drawing": 37,
+              "interaction": 0
+            }
+          }
+        },
+        {
+          "inputFrame": 8,
+          "event": {
+            "x": 0.85,
+            "y": 0.49999999999999994,
+            "active": true,
+            "time": 264
+          },
+          "order": [
+            "surface",
+            "frozen",
+            "bitmap"
+          ],
+          "timings": {
+            "surface": {
+              "workerMs": 1379.5,
+              "completeMs": 1380.3000000715256
+            },
+            "frozen": {
+              "workerMs": 1817.1000000238419,
+              "completeMs": 1817.8999999761581
+            },
+            "bitmap": {
+              "workerMs": 1178.6000000238419,
+              "completeMs": 1179.1000000238419
+            }
+          },
+          "parity": {
+            "bitmap": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 1628492
+            },
+            "surface": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 1628492
+            }
+          },
+          "stats": {
+            "surface": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 122304,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 1568,
+                "glowBytes": 1628492,
+                "effectCellBytes": 1471680,
+                "hits": 51248,
+                "misses": 102866
+              },
+              "light": {
+                "entries": 14,
+                "bytes": 21952,
+                "limit": 2097152,
+                "hits": 51059,
+                "misses": 14,
+                "totalBackingBytes": 122304
+              }
+            },
+            "frozen": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 100352,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 1568,
+                "glowBytes": 1628492,
+                "effectCellBytes": 1471680,
+                "hits": 189,
+                "misses": 153925
+              },
+              "light": null
+            },
+            "bitmap": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 122304,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 1568,
+                "glowBytes": 1628492,
+                "effectCellBytes": 1471680,
+                "hits": 51248,
+                "misses": 102866
+              },
+              "light": {
+                "entries": 14,
+                "bytes": 21952,
+                "limit": 2097152,
+                "hits": 51059,
+                "misses": 14,
+                "totalBackingBytes": 122304
+              }
+            }
+          },
+          "progress": {
+            "surface": {
+              "drawing": 23,
+              "interaction": 0
+            },
+            "frozen": {
+              "drawing": 21,
+              "interaction": 0
+            },
+            "bitmap": {
+              "drawing": 20,
+              "interaction": 0
+            }
+          }
+        },
+        {
+          "inputFrame": 9,
+          "event": {
+            "x": 0.85,
+            "y": 0.5,
+            "active": false,
+            "time": 5000
+          },
+          "order": [
+            "frozen",
+            "bitmap",
+            "surface"
+          ],
+          "timings": {
+            "frozen": {
+              "workerMs": 1797.5999999046326,
+              "completeMs": 1798.2999999523163
+            },
+            "bitmap": {
+              "workerMs": 1262.3999999761581,
+              "completeMs": 1263.1000000238419
+            },
+            "surface": {
+              "workerMs": 1233.2000000476837,
+              "completeMs": 1233.7999999523163
+            }
+          },
+          "parity": {
+            "bitmap": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 1628492
+            },
+            "surface": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 1628492
+            }
+          },
+          "stats": {
+            "frozen": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 100352,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 1568,
+                "glowBytes": 1628492,
+                "effectCellBytes": 1471680,
+                "hits": 210,
+                "misses": 170088
+              },
+              "light": null
+            },
+            "bitmap": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 122304,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 1568,
+                "glowBytes": 1628492,
+                "effectCellBytes": 1471680,
+                "hits": 56004,
+                "misses": 114294
+              },
+              "light": {
+                "entries": 14,
+                "bytes": 21952,
+                "limit": 2097152,
+                "hits": 55794,
+                "misses": 14,
+                "totalBackingBytes": 122304
+              }
+            },
+            "surface": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 122304,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 1568,
+                "glowBytes": 1628492,
+                "effectCellBytes": 1471680,
+                "hits": 56004,
+                "misses": 114294
+              },
+              "light": {
+                "entries": 14,
+                "bytes": 21952,
+                "limit": 2097152,
+                "hits": 55794,
+                "misses": 14,
+                "totalBackingBytes": 122304
+              }
+            }
+          },
+          "progress": {
+            "frozen": {
+              "drawing": 23,
+              "interaction": 0
+            },
+            "bitmap": {
+              "drawing": 20,
+              "interaction": 0
+            },
+            "surface": {
+              "drawing": 22,
+              "interaction": 0
+            }
+          }
+        }
+      ],
+      "summary": {
+        "frozen": {
+          "p50": 12516.400000035763,
+          "p95": 15846.224999964237,
+          "samples": 6
+        },
+        "bitmap": {
+          "p50": 9458.150000035763,
+          "p95": 11458.700000047684,
+          "samples": 6
+        },
+        "surface": {
+          "p50": 7750.500000059605,
+          "p95": 10165.624999940395,
+          "samples": 6
+        }
+      }
+    },
+    {
+      "mode": "phrase",
+      "round": 0,
+      "columns": 180,
+      "rows": 177,
+      "records": [
+        {
+          "inputFrame": 0,
+          "event": {
+            "x": 0.15,
+            "y": 0.5,
+            "active": false,
+            "time": 0
+          },
+          "order": [
+            "frozen",
+            "bitmap",
+            "surface"
+          ],
+          "timings": {
+            "frozen": {
+              "workerMs": 2017.7999999523163,
+              "completeMs": 2064.7999999523163
+            },
+            "bitmap": {
+              "workerMs": 1920,
+              "completeMs": 1922.2999999523163
+            },
+            "surface": {
+              "workerMs": 1818.9000000953674,
+              "completeMs": 1821
+            }
+          },
+          "parity": {
+            "bitmap": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 1628492
+            },
+            "surface": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 1628492
+            }
+          },
+          "stats": {
+            "frozen": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 157696,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 2464,
+                "glowBytes": 0,
+                "effectCellBytes": 2325780,
+                "hits": 3,
+                "misses": 18056
+              },
+              "light": null
+            },
+            "bitmap": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 157696,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 2464,
+                "glowBytes": 0,
+                "effectCellBytes": 2325780,
+                "hits": 3,
+                "misses": 18056
+              },
+              "light": {
+                "entries": 0,
+                "bytes": 0,
+                "limit": 2097152,
+                "hits": 0,
+                "misses": 0,
+                "totalBackingBytes": 157696
+              }
+            },
+            "surface": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 157696,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 2464,
+                "glowBytes": 0,
+                "effectCellBytes": 2325780,
+                "hits": 3,
+                "misses": 18056
+              },
+              "light": {
+                "entries": 0,
+                "bytes": 0,
+                "limit": 2097152,
+                "hits": 0,
+                "misses": 0,
+                "totalBackingBytes": 157696
+              }
+            }
+          },
+          "progress": {
+            "frozen": {
+              "drawing": 33,
+              "interaction": 0
+            },
+            "bitmap": {
+              "drawing": 32,
+              "interaction": 0
+            },
+            "surface": {
+              "drawing": 28,
+              "interaction": 0
+            }
+          }
+        },
+        {
+          "inputFrame": 1,
+          "event": {
+            "x": 0.15,
+            "y": 0.5,
+            "active": true,
+            "time": 33
+          },
+          "order": [
+            "bitmap",
+            "surface",
+            "frozen"
+          ],
+          "timings": {
+            "bitmap": {
+              "workerMs": 2626.899999976158,
+              "completeMs": 2628.0999999046326
+            },
+            "surface": {
+              "workerMs": 2602.7000000476837,
+              "completeMs": 2603.8000000715256
+            },
+            "frozen": {
+              "workerMs": 3559.100000023842,
+              "completeMs": 3559.5999999046326
+            }
+          },
+          "parity": {
+            "bitmap": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 1628492
+            },
+            "surface": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 1628492
+            }
+          },
+          "stats": {
+            "bitmap": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 187264,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 2464,
+                "glowBytes": 1628492,
+                "effectCellBytes": 2325780,
+                "hits": 9645,
+                "misses": 39484
+              },
+              "light": {
+                "entries": 12,
+                "bytes": 29568,
+                "limit": 2097152,
+                "hits": 9639,
+                "misses": 12,
+                "totalBackingBytes": 187264
+              }
+            },
+            "surface": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 187264,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 2464,
+                "glowBytes": 1628492,
+                "effectCellBytes": 2325780,
+                "hits": 9645,
+                "misses": 39484
+              },
+              "light": {
+                "entries": 12,
+                "bytes": 29568,
+                "limit": 2097152,
+                "hits": 9639,
+                "misses": 12,
+                "totalBackingBytes": 187264
+              }
+            },
+            "frozen": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 157696,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 2464,
+                "glowBytes": 1628492,
+                "effectCellBytes": 2325780,
+                "hits": 6,
+                "misses": 49123
+              },
+              "light": null
+            }
+          },
+          "progress": {
+            "bitmap": {
+              "drawing": 36,
+              "interaction": 0
+            },
+            "surface": {
+              "drawing": 35,
+              "interaction": 0
+            },
+            "frozen": {
+              "drawing": 34,
+              "interaction": 0
+            }
+          }
+        },
+        {
+          "inputFrame": 2,
+          "event": {
+            "x": 0.25,
+            "y": 0.6094564075455242,
+            "active": true,
+            "time": 66
+          },
+          "order": [
+            "surface",
+            "frozen",
+            "bitmap"
+          ],
+          "timings": {
+            "surface": {
+              "workerMs": 3003,
+              "completeMs": 3004.1999999284744
+            },
+            "frozen": {
+              "workerMs": 3579.399999976158,
+              "completeMs": 3580.399999976158
+            },
+            "bitmap": {
+              "workerMs": 2648.2000000476837,
+              "completeMs": 2649.1999999284744
+            }
+          },
+          "parity": {
+            "bitmap": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 1628492
+            },
+            "surface": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 1628492
+            }
+          },
+          "stats": {
+            "surface": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 187264,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 2464,
+                "glowBytes": 1628492,
+                "effectCellBytes": 2325780,
+                "hits": 21684,
+                "misses": 60786
+              },
+              "light": {
+                "entries": 12,
+                "bytes": 29568,
+                "limit": 2097152,
+                "hits": 21675,
+                "misses": 12,
+                "totalBackingBytes": 187264
+              }
+            },
+            "frozen": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 157696,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 2464,
+                "glowBytes": 1628492,
+                "effectCellBytes": 2325780,
+                "hits": 9,
+                "misses": 82461
+              },
+              "light": null
+            },
+            "bitmap": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 187264,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 2464,
+                "glowBytes": 1628492,
+                "effectCellBytes": 2325780,
+                "hits": 21684,
+                "misses": 60786
+              },
+              "light": {
+                "entries": 12,
+                "bytes": 29568,
+                "limit": 2097152,
+                "hits": 21675,
+                "misses": 12,
+                "totalBackingBytes": 187264
+              }
+            }
+          },
+          "progress": {
+            "surface": {
+              "drawing": 43,
+              "interaction": 0
+            },
+            "frozen": {
+              "drawing": 35,
+              "interaction": 0
+            },
+            "bitmap": {
+              "drawing": 36,
+              "interaction": 0
+            }
+          }
+        },
+        {
+          "inputFrame": 3,
+          "event": {
+            "x": 0.35,
+            "y": 0.6364899077054553,
+            "active": true,
+            "time": 99
+          },
+          "order": [
+            "frozen",
+            "bitmap",
+            "surface"
+          ],
+          "timings": {
+            "frozen": {
+              "workerMs": 4418.600000023842,
+              "completeMs": 4419.600000023842
+            },
+            "bitmap": {
+              "workerMs": 2957.399999976158,
+              "completeMs": 2958.4000000953674
+            },
+            "surface": {
+              "workerMs": 2908.399999976158,
+              "completeMs": 2909
+            }
+          },
+          "parity": {
+            "bitmap": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 1628492
+            },
+            "surface": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 1628492
+            }
+          },
+          "stats": {
+            "frozen": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 157696,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 2464,
+                "glowBytes": 1628492,
+                "effectCellBytes": 2325780,
+                "hits": 12,
+                "misses": 117610
+              },
+              "light": null
+            },
+            "bitmap": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 187264,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 2464,
+                "glowBytes": 1628492,
+                "effectCellBytes": 2325780,
+                "hits": 35742,
+                "misses": 81880
+              },
+              "light": {
+                "entries": 12,
+                "bytes": 29568,
+                "limit": 2097152,
+                "hits": 35730,
+                "misses": 12,
+                "totalBackingBytes": 187264
+              }
+            },
+            "surface": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 187264,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 2464,
+                "glowBytes": 1628492,
+                "effectCellBytes": 2325780,
+                "hits": 35742,
+                "misses": 81880
+              },
+              "light": {
+                "entries": 12,
+                "bytes": 29568,
+                "limit": 2097152,
+                "hits": 35730,
+                "misses": 12,
+                "totalBackingBytes": 187264
+              }
+            }
+          },
+          "progress": {
+            "frozen": {
+              "drawing": 39,
+              "interaction": 0
+            },
+            "bitmap": {
+              "drawing": 33,
+              "interaction": 0
+            },
+            "surface": {
+              "drawing": 39,
+              "interaction": 0
+            }
+          }
+        },
+        {
+          "inputFrame": 4,
+          "event": {
+            "x": 0.44999999999999996,
+            "y": 0.5607437234764582,
+            "active": true,
+            "time": 132
+          },
+          "order": [
+            "bitmap",
+            "surface",
+            "frozen"
+          ],
+          "timings": {
+            "bitmap": {
+              "workerMs": 3120.899999976158,
+              "completeMs": 3121.899999976158
+            },
+            "surface": {
+              "workerMs": 3006,
+              "completeMs": 3006.8000000715256
+            },
+            "frozen": {
+              "workerMs": 4571.200000047684,
+              "completeMs": 4572.399999976158
+            }
+          },
+          "parity": {
+            "bitmap": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 1628492
+            },
+            "surface": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 1628492
+            }
+          },
+          "stats": {
+            "bitmap": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 187264,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 2464,
+                "glowBytes": 1628492,
+                "effectCellBytes": 2325780,
+                "hits": 51332,
+                "misses": 103000
+              },
+              "light": {
+                "entries": 12,
+                "bytes": 29568,
+                "limit": 2097152,
+                "hits": 51317,
+                "misses": 12,
+                "totalBackingBytes": 187264
+              }
+            },
+            "surface": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 187264,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 2464,
+                "glowBytes": 1628492,
+                "effectCellBytes": 2325780,
+                "hits": 51332,
+                "misses": 103000
+              },
+              "light": {
+                "entries": 12,
+                "bytes": 29568,
+                "limit": 2097152,
+                "hits": 51317,
+                "misses": 12,
+                "totalBackingBytes": 187264
+              }
+            },
+            "frozen": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 157696,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 2464,
+                "glowBytes": 1628492,
+                "effectCellBytes": 2325780,
+                "hits": 15,
+                "misses": 154317
+              },
+              "light": null
+            }
+          },
+          "progress": {
+            "bitmap": {
+              "drawing": 37,
+              "interaction": 0
+            },
+            "surface": {
+              "drawing": 40,
+              "interaction": 0
+            },
+            "frozen": {
+              "drawing": 39,
+              "interaction": 0
+            }
+          }
+        },
+        {
+          "inputFrame": 5,
+          "event": {
+            "x": 0.5499999999999999,
+            "y": 0.4392562765235419,
+            "active": true,
+            "time": 165
+          },
+          "order": [
+            "surface",
+            "frozen",
+            "bitmap"
+          ],
+          "timings": {
+            "surface": {
+              "workerMs": 3417.899999976158,
+              "completeMs": 3418.5
+            },
+            "frozen": {
+              "workerMs": 4157.700000047684,
+              "completeMs": 4158.5
+            },
+            "bitmap": {
+              "workerMs": 2900.600000023842,
+              "completeMs": 2901.899999976158
+            }
+          },
+          "parity": {
+            "bitmap": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 1628492
+            },
+            "surface": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 1628492
+            }
+          },
+          "stats": {
+            "surface": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 187264,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 2464,
+                "glowBytes": 1628492,
+                "effectCellBytes": 2325780,
+                "hits": 67160,
+                "misses": 124559
+              },
+              "light": {
+                "entries": 12,
+                "bytes": 29568,
+                "limit": 2097152,
+                "hits": 67142,
+                "misses": 12,
+                "totalBackingBytes": 187264
+              }
+            },
+            "frozen": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 157696,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 2464,
+                "glowBytes": 1628492,
+                "effectCellBytes": 2325780,
+                "hits": 18,
+                "misses": 191701
+              },
+              "light": null
+            },
+            "bitmap": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 187264,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 2464,
+                "glowBytes": 1628492,
+                "effectCellBytes": 2325780,
+                "hits": 67160,
+                "misses": 124559
+              },
+              "light": {
+                "entries": 12,
+                "bytes": 29568,
+                "limit": 2097152,
+                "hits": 67142,
+                "misses": 12,
+                "totalBackingBytes": 187264
+              }
+            }
+          },
+          "progress": {
+            "surface": {
+              "drawing": 45,
+              "interaction": 0
+            },
+            "frozen": {
+              "drawing": 37,
+              "interaction": 0
+            },
+            "bitmap": {
+              "drawing": 36,
+              "interaction": 0
+            }
+          }
+        },
+        {
+          "inputFrame": 6,
+          "event": {
+            "x": 0.65,
+            "y": 0.3635100922945447,
+            "active": true,
+            "time": 198
+          },
+          "order": [
+            "frozen",
+            "bitmap",
+            "surface"
+          ],
+          "timings": {
+            "frozen": {
+              "workerMs": 3685.600000023842,
+              "completeMs": 3686.2999999523163
+            },
+            "bitmap": {
+              "workerMs": 3098,
+              "completeMs": 3098.7000000476837
+            },
+            "surface": {
+              "workerMs": 3080.2000000476837,
+              "completeMs": 3081.3000000715256
+            }
+          },
+          "parity": {
+            "bitmap": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 1628492
+            },
+            "surface": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 1628492
+            }
+          },
+          "stats": {
+            "frozen": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 157696,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 2464,
+                "glowBytes": 1628492,
+                "effectCellBytes": 2325780,
+                "hits": 21,
+                "misses": 229925
+              },
+              "light": null
+            },
+            "bitmap": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 187264,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 2464,
+                "glowBytes": 1628492,
+                "effectCellBytes": 2325780,
+                "hits": 82813,
+                "misses": 147133
+              },
+              "light": {
+                "entries": 12,
+                "bytes": 29568,
+                "limit": 2097152,
+                "hits": 82792,
+                "misses": 12,
+                "totalBackingBytes": 187264
+              }
+            },
+            "surface": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 187264,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 2464,
+                "glowBytes": 1628492,
+                "effectCellBytes": 2325780,
+                "hits": 82813,
+                "misses": 147133
+              },
+              "light": {
+                "entries": 12,
+                "bytes": 29568,
+                "limit": 2097152,
+                "hits": 82792,
+                "misses": 12,
+                "totalBackingBytes": 187264
+              }
+            }
+          },
+          "progress": {
+            "frozen": {
+              "drawing": 37,
+              "interaction": 0
+            },
+            "bitmap": {
+              "drawing": 34,
+              "interaction": 0
+            },
+            "surface": {
+              "drawing": 38,
+              "interaction": 0
+            }
+          }
+        },
+        {
+          "inputFrame": 7,
+          "event": {
+            "x": 0.7499999999999999,
+            "y": 0.3905435924544758,
+            "active": true,
+            "time": 231
+          },
+          "order": [
+            "bitmap",
+            "surface",
+            "frozen"
+          ],
+          "timings": {
+            "bitmap": {
+              "workerMs": 3165.5,
+              "completeMs": 3166.399999976158
+            },
+            "surface": {
+              "workerMs": 3212.5,
+              "completeMs": 3213.399999976158
+            },
+            "frozen": {
+              "workerMs": 3712.100000023842,
+              "completeMs": 3713.100000023842
+            }
+          },
+          "parity": {
+            "bitmap": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 1628492
+            },
+            "surface": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 1628492
+            }
+          },
+          "stats": {
+            "bitmap": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 187264,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 2464,
+                "glowBytes": 1628492,
+                "effectCellBytes": 2325780,
+                "hits": 97685,
+                "misses": 170171
+              },
+              "light": {
+                "entries": 12,
+                "bytes": 29568,
+                "limit": 2097152,
+                "hits": 97661,
+                "misses": 12,
+                "totalBackingBytes": 187264
+              }
+            },
+            "surface": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 187264,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 2464,
+                "glowBytes": 1628492,
+                "effectCellBytes": 2325780,
+                "hits": 97685,
+                "misses": 170171
+              },
+              "light": {
+                "entries": 12,
+                "bytes": 29568,
+                "limit": 2097152,
+                "hits": 97661,
+                "misses": 12,
+                "totalBackingBytes": 187264
+              }
+            },
+            "frozen": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 157696,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 2464,
+                "glowBytes": 1628492,
+                "effectCellBytes": 2325780,
+                "hits": 24,
+                "misses": 267832
+              },
+              "light": null
+            }
+          },
+          "progress": {
+            "bitmap": {
+              "drawing": 41,
+              "interaction": 0
+            },
+            "surface": {
+              "drawing": 42,
+              "interaction": 0
+            },
+            "frozen": {
+              "drawing": 38,
+              "interaction": 0
+            }
+          }
+        },
+        {
+          "inputFrame": 8,
+          "event": {
+            "x": 0.85,
+            "y": 0.49999999999999994,
+            "active": true,
+            "time": 264
+          },
+          "order": [
+            "surface",
+            "frozen",
+            "bitmap"
+          ],
+          "timings": {
+            "surface": {
+              "workerMs": 2946.7000000476837,
+              "completeMs": 2947.600000023842
+            },
+            "frozen": {
+              "workerMs": 3301.399999976158,
+              "completeMs": 3302.100000023842
+            },
+            "bitmap": {
+              "workerMs": 2801,
+              "completeMs": 2802.100000023842
+            }
+          },
+          "parity": {
+            "bitmap": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 1628492
+            },
+            "surface": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 1628492
+            }
+          },
+          "stats": {
+            "surface": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 187264,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 2464,
+                "glowBytes": 1628492,
+                "effectCellBytes": 2325780,
+                "hits": 110886,
+                "misses": 192913
+              },
+              "light": {
+                "entries": 12,
+                "bytes": 29568,
+                "limit": 2097152,
+                "hits": 110859,
+                "misses": 12,
+                "totalBackingBytes": 187264
+              }
+            },
+            "frozen": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 157696,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 2464,
+                "glowBytes": 1628492,
+                "effectCellBytes": 2325780,
+                "hits": 27,
+                "misses": 303772
+              },
+              "light": null
+            },
+            "bitmap": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 187264,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 2464,
+                "glowBytes": 1628492,
+                "effectCellBytes": 2325780,
+                "hits": 110886,
+                "misses": 192913
+              },
+              "light": {
+                "entries": 12,
+                "bytes": 29568,
+                "limit": 2097152,
+                "hits": 110859,
+                "misses": 12,
+                "totalBackingBytes": 187264
+              }
+            }
+          },
+          "progress": {
+            "surface": {
+              "drawing": 40,
+              "interaction": 0
+            },
+            "frozen": {
+              "drawing": 36,
+              "interaction": 0
+            },
+            "bitmap": {
+              "drawing": 37,
+              "interaction": 0
+            }
+          }
+        },
+        {
+          "inputFrame": 9,
+          "event": {
+            "x": 0.85,
+            "y": 0.5,
+            "active": false,
+            "time": 5000
+          },
+          "order": [
+            "frozen",
+            "bitmap",
+            "surface"
+          ],
+          "timings": {
+            "frozen": {
+              "workerMs": 3464.2999999523163,
+              "completeMs": 3465
+            },
+            "bitmap": {
+              "workerMs": 2837.6999999284744,
+              "completeMs": 2838.2000000476837
+            },
+            "surface": {
+              "workerMs": 2986.2000000476837,
+              "completeMs": 2987
+            }
+          },
+          "parity": {
+            "bitmap": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 1628492
+            },
+            "surface": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 1628492
+            }
+          },
+          "stats": {
+            "frozen": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 157696,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 2464,
+                "glowBytes": 1628492,
+                "effectCellBytes": 2325780,
+                "hits": 30,
+                "misses": 338361
+              },
+              "light": null
+            },
+            "bitmap": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 187264,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 2464,
+                "glowBytes": 1628492,
+                "effectCellBytes": 2325780,
+                "hits": 122878,
+                "misses": 215513
+              },
+              "light": {
+                "entries": 12,
+                "bytes": 29568,
+                "limit": 2097152,
+                "hits": 122848,
+                "misses": 12,
+                "totalBackingBytes": 187264
+              }
+            },
+            "surface": {
+              "main": {
+                "entries": 64,
+                "backingBytes": 187264,
+                "maxBackingBytes": 16777216,
+                "scratchBytes": 2464,
+                "glowBytes": 1628492,
+                "effectCellBytes": 2325780,
+                "hits": 122878,
+                "misses": 215513
+              },
+              "light": {
+                "entries": 12,
+                "bytes": 29568,
+                "limit": 2097152,
+                "hits": 122848,
+                "misses": 12,
+                "totalBackingBytes": 187264
+              }
+            }
+          },
+          "progress": {
+            "frozen": {
+              "drawing": 36,
+              "interaction": 0
+            },
+            "bitmap": {
+              "drawing": 36,
+              "interaction": 0
+            },
+            "surface": {
+              "drawing": 39,
+              "interaction": 0
+            }
+          }
+        }
+      ],
+      "summary": {
+        "frozen": {
+          "p50": 3934.900000035763,
+          "p95": 4533.050000041723,
+          "samples": 6
+        },
+        "bitmap": {
+          "p50": 3027.699999988079,
+          "p95": 3154.3499999940395,
+          "samples": 6
+        },
+        "surface": {
+          "p50": 3043.100000023842,
+          "p95": 3366.5499999821186,
+          "samples": 6
+        }
+      }
+    }
+  ],
+  "passed": true,
+  "rounds": 1
+}

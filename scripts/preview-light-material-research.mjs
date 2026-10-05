@@ -6,6 +6,8 @@ import { createHash } from 'node:crypto'
 import path from 'node:path'
 
 const out = path.resolve(process.env.ASTRA_LIGHT_MATERIAL_OUTPUT || `test-results/preview-light-material-${Date.now()}`)
+const storage = process.env.ASTRA_LIGHT_MATERIAL_STORAGE || 'bitmap'
+assert(['bitmap', 'surface'].includes(storage), 'Unknown fixed-light storage')
 await mkdir(out, { recursive: true })
 const frozen = execFileSync('git', ['show', '92bc304:src/lib/art-engine/canvas.ts'], { encoding: 'utf8' }).replaceAll('\r\n', '\n')
 const replace = (source, from, to) => { assert(source.includes(from), 'Missing material anchor: ' + from); return source.replace(from, to) }
@@ -24,8 +26,21 @@ candidate = replace(candidate, '      hits++\n      return existing', '      hit
 candidate = replace(candidate, '    misses++\n    scratch', '    misses++\n    if (fixedLight) lightMisses++\n    scratch')
 candidate = replace(candidate, '    if (tinted.size >= maxEntries || backingBytes + bytes > maxBackingBytes) return scratch', `    if ((fixedLight ? lightBytes + bytes > lightLimit : tinted.size >= maxEntries) || backingBytes + lightBytes + bytes > maxBackingBytes) return scratch`)
 candidate = replace(candidate, '    tinted.set(key, result)\n    backingBytes += bytes', '    cache.set(key, result)\n    if (fixedLight) lightBytes += bytes\n    else backingBytes += bytes')
+if (storage === 'surface') {
+  candidate = replace(candidate, "    if (typeof OffscreenCanvas !== 'undefined' && scratch instanceof OffscreenCanvas)\n      result = scratch.transferToImageBitmap()", `    if (fixedLight) {
+      result = canvas(frame.cellWidth, frame.cellHeight)
+      const target = result.getContext('2d')!
+      target.globalCompositeOperation = 'copy'
+      target.drawImage(scratch, 0, 0)
+      target.globalCompositeOperation = 'source-over'
+    } else if (typeof OffscreenCanvas !== 'undefined' && scratch instanceof OffscreenCanvas)
+      result = scratch.transferToImageBitmap()`)
+}
 candidate = replace(candidate, '  function clearTiles() {', `  function clearLightTiles() {
-    for (const value of lightTinted.values()) if ('close' in value) value.close()
+    for (const value of lightTinted.values()) {
+      if ('close' in value) value.close()
+      else value.width = value.height = 1
+    }
     lightTinted.clear(); lightGlyphs = null; lightGeometry = ''; lightBytes = 0
   }
 
@@ -49,11 +64,12 @@ catch (error) { if (error.status !== 1) throw error; patch = error.stdout }
 await writeFile(path.join(out, 'candidate.patch'), patch)
 const workerSource = (await readFile('src/lib/art-engine/frame-render.worker.ts', 'utf8')).replace("from './canvas'", "from './candidate'").replace("from './types'", "from '/src/lib/art-engine/types'").replace("from './frame-render-protocol'", "from '/src/lib/art-engine/frame-render-protocol'").replace('cacheStats: renderer.cacheStats,', 'cacheStats: renderer.cacheStats, lightMaterialStats: renderer.lightMaterialStats,')
 await writeFile(path.join(out, 'material-frame.worker.ts'), workerSource)
-if (process.env.ASTRA_LIGHT_MATERIAL_BUILD_ONLY === '1') { console.log(JSON.stringify({ out, generated: true })); process.exit(0) }
+if (process.env.ASTRA_LIGHT_MATERIAL_BUILD_ONLY === '1') { console.log(JSON.stringify({ out, storage, generated: true })); process.exit(0) }
 const prefix = '/' + path.relative(process.cwd(), out).split(path.sep).join('/')
 const browser = await chromium.launch({ channel: process.env.ASTRA_BROWSER_CHANNEL || 'chrome', headless: true })
 const report = { browser: browser.version(), parent: '92bc304', sourceHash: createHash('sha256').update(frozen).digest('hex'), candidateHash: createHash('sha256').update(candidate).digest('hex'), scope: 'Independent immutable fixed-color glow glyph reuse. Native source-in and primitive geometry unchanged, original main 64 entries unchanged, combined native backing <=16MiB and constant light <=2MiB. Neither atlas, software tint nor a temporary pool-size sweep. Full alpha/RGB parity required before cost. No production change or stable FPS claim.', cases: [], passed: false }
 const save = () => writeFile(path.join(out, 'report.json'), JSON.stringify(report, null, 2))
+report.storage = storage
 try {
   const page = await browser.newPage()
   await page.goto((process.env.ASTRA_PREVIEW_URL || 'http://127.0.0.1:5180') + '/ascii-art')
