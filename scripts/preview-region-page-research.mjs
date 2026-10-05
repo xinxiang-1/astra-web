@@ -11,16 +11,20 @@ import path from 'node:path'
 // through the original production Worker to check the candidate's exact pixels.
 const out = path.resolve(process.env.ASTRA_REGION_PAGE_OUTPUT || `test-results/preview-region-page-${Date.now()}`)
 const base = process.env.ASTRA_PREVIEW_URL || 'http://127.0.0.1:5184'
+const candidateKind = process.env.ASTRA_PREVIEW_CANDIDATE_KIND || 'region'
+const metadataWait = process.env.ASTRA_PREVIEW_METADATA_WAIT === '1'
+assert(['region', 'light-material'].includes(candidateKind))
+assert(candidateKind === 'region' || process.env.ASTRA_REGION_PAGE_BOUNDARIES !== '1', 'Region-specific raster rejection checks do not describe a light material cache')
 await mkdir(out, { recursive: true })
-execFileSync(process.execPath, ['scripts/preview-region-cache-research.mjs'], {
-  env: { ...process.env, ASTRA_REGION_OUTPUT: out, ASTRA_REGION_BUILD_ONLY: '1', ASTRA_REGION_REVISION: 'r2' },
+execFileSync(process.execPath, [candidateKind === 'region' ? 'scripts/preview-region-cache-research.mjs' : 'scripts/preview-light-material-research.mjs'], {
+  env: { ...process.env, ASTRA_REGION_OUTPUT: out, ASTRA_REGION_BUILD_ONLY: '1', ASTRA_REGION_REVISION: 'r2', ASTRA_LIGHT_MATERIAL_OUTPUT: out, ASTRA_LIGHT_MATERIAL_BUILD_ONLY: '1' },
   stdio: 'pipe',
 })
 await build({
   configFile: false, publicDir: false, logLevel: 'warn',
   build: {
     outDir: path.join(out, 'bundle'), emptyOutDir: false, minify: false,
-    lib: { entry: path.join(out, 'region-frame.worker.ts'), formats: ['es'], fileName: () => 'region-preview.worker.js' },
+    lib: { entry: path.join(out, candidateKind === 'region' ? 'region-frame.worker.ts' : 'material-frame.worker.ts'), formats: ['es'], fileName: () => 'region-preview.worker.js' },
   },
 })
 const workerCode = await readFile(path.join(out, 'bundle/region-preview.worker.js'), 'utf8')
@@ -28,10 +32,10 @@ const browser = await chromium.launch({ channel: process.env.ASTRA_BROWSER_CHANN
 const modes = { density: '光影字符', color: '原色字符', phrase: '中文铺字', contour: '轮廓线稿', braille: '点阵细节', halftone: '印刷网点' }
 const selectedModes = process.env.ASTRA_REGION_PAGE_ONLY_BOUNDARIES === '1' ? [] : (process.env.ASTRA_REGION_PAGE_MODES || Object.keys(modes).join(',')).split(',')
 const sides = (process.env.ASTRA_REGION_PAGE_SIDES || 'baseline,candidate').split(',')
-const hovers = (process.env.ASTRA_REGION_PAGE_HOVERS || 'particles').split(',')
+const hovers = (process.env.ASTRA_REGION_PAGE_HOVERS || (candidateKind === 'region' ? 'particles' : 'light')).split(',')
 assert(selectedModes.every(m => m in modes) && sides.every(s => ['baseline', 'candidate'].includes(s)) && hovers.every(h => ['particles', 'light'].includes(h)))
 const report = {
-  browser: browser.version(), base, productionSource: execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim(),
+  browser: browser.version(), base, candidateKind, productionSource: execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim(),
   scope: 'Production editor, real uploads/buttons/mouse. Isolated replacement Worker only. Original .65/.38, density 180 and full RGB/alpha. No delivery delays, synthetic request clocks or reduced columns. Capturing requests and selected bitmap readbacks adds QA overhead; wall timings are observational, not an isolated speedup or FPS benchmark.',
   hashes: {}, cases: [], errors: [], passed: false,
 }
@@ -67,7 +71,7 @@ async function open(side, options = {}) {
           const result = event.data
           if (!result?.bitmap) return
           const request = record.requests.find(r => r.snapshot.id === result.id)
-          const entry = { id: result.id, at: performance.now(), renderMs: result.renderMs, requestAt: request?.at, interactionActive: result.interactionActive, cacheStats: result.cacheStats, regionStats: result.regionStats, width: result.bitmap.width, height: result.bitmap.height }
+          const entry = { id: result.id, at: performance.now(), renderMs: result.renderMs, requestAt: request?.at, interactionActive: result.interactionActive, cacheStats: result.cacheStats, regionStats: result.regionStats, lightMaterialStats: result.lightMaterialStats, width: result.bitmap.width, height: result.bitmap.height }
           record.results.push(entry)
           // Read without consuming/closing the bitmap before the real UI handler.
           // Bound retained RGBA; requests contain all initial glyphs for replay.
@@ -205,10 +209,12 @@ async function mouseCase(side, mode, hover) {
       await page.mouse.move(box.x + box.width * (.15 + .7 * i / 17), box.y + box.height * (.5 + Math.sin(i / 17 * Math.PI * 2) * .14))
       await page.waitForTimeout(25)
     }
-    await page.waitForFunction(({ hover, baseline }) => {
+    await page.waitForFunction(({ hover, baseline, metadataWait }) => {
       const c = document.querySelector('.ascii-scroll .ascii-canvas')
-      return c && c.toDataURL() !== baseline && (hover !== 'particles' || Number(c.dataset.particlePeak) > .005)
-    }, { hover, baseline }, { timeout: 60000, polling: 100 })
+      return c && (metadataWait ? Number(c.dataset.pointerStrength) > .05 : c.toDataURL() !== baseline) && (hover !== 'particles' || Number(c.dataset.particlePeak) > .005)
+    }, { hover, baseline, metadataWait }, { timeout: 60000, polling: 100 })
+    assert.notEqual(await locator.evaluate(c => c.toDataURL()), baseline, 'Completed strong feedback must actually change the visible PNG')
+    entry.firstVisibleCriterion = metadataWait ? 'Completed frame pointer strength >.05, then one visible PNG comparison; particle peak >.005 where applicable. No repeated PNG readback while waiting.' : 'Visible PNG difference polling, particle peak >.005 where applicable'
     entry.firstVisibleMs = await page.evaluate(start => performance.now() - start, start)
     entry.peak = await locator.evaluate(c => Number(c.dataset.particlePeak))
     await locator.screenshot({ path: path.join(out, `${side}-${mode}-${hover}-active.png`) })
@@ -250,19 +256,26 @@ async function mouseCase(side, mode, hover) {
     if (side === 'candidate') {
       entry.parity = await replay(page)
       assert(entry.parity.length > 0 && entry.parity.every(r => r.changed === 0), 'All captured actual UI requests must replay to identical RGBA')
-      assert(entry.workers.some(w => w.results.some(r => r.regionStats?.hits > 0)), 'Actual static cache reuse')
-      const used = entry.workers.filter(w => w.requests.some(r => r.mode === mode && r.hover === hover))
-      const frames = used.flatMap(w => w.results.filter(r => r.requestAt >= start))
-      entry.regionOutcome = {
-        patches: used.reduce((n, w) => n + Math.max(0, ...w.results.map(r => r.regionStats?.patches || 0)), 0),
-        broadDynamicFrames: frames.filter(r => r.interactionActive && r.regionStats?.area >= .8).length,
-        peakBytes: Math.max(0, ...used.flatMap(w => w.results.map(r => r.regionStats?.bytes || 0))),
+      if (candidateKind === 'light-material') {
+        const stats = entry.workers.flatMap(w => w.results.map(r => r.lightMaterialStats).filter(Boolean))
+        assert(stats.length && stats.every(s => s.bytes <= s.limit && s.totalBackingBytes <= 16 * 1024 * 1024))
+        if (hover === 'light') assert(stats.some(s => s.hits > 0), 'Actual immutable constant-light reuse in the real Worker')
+        entry.lightMaterialOutcome = { peakBytes: Math.max(...stats.map(s => s.bytes)), peakEntries: Math.max(...stats.map(s => s.entries)), hits: Math.max(...stats.map(s => s.hits)) }
+      } else {
+        assert(entry.workers.some(w => w.results.some(r => r.regionStats?.hits > 0)), 'Actual static cache reuse')
+        const used = entry.workers.filter(w => w.requests.some(r => r.mode === mode && r.hover === hover))
+        const frames = used.flatMap(w => w.results.filter(r => r.requestAt >= start))
+        entry.regionOutcome = {
+          patches: used.reduce((n, w) => n + Math.max(0, ...w.results.map(r => r.regionStats?.patches || 0)), 0),
+          broadDynamicFrames: frames.filter(r => r.interactionActive && r.regionStats?.area >= .8).length,
+          peakBytes: Math.max(0, ...used.flatMap(w => w.results.map(r => r.regionStats?.bytes || 0))),
+        }
+        if (hover === 'particles' && entry.regionOutcome.patches === 0) {
+          assert(entry.regionOutcome.broadDynamicFrames > 0, 'No patch requires evidence of the actual wide-area full-render branch')
+          entry.regionOutcome.decision = 'Actual gesture exceeds the region threshold. Exact full-render branch verified; regional performance benefit is not demonstrated, so this case does not qualify the candidate for production.'
+        }
+        assert(entry.regionOutcome.peakBytes <= 16 * 1024 * 1024)
       }
-      if (hover === 'particles' && entry.regionOutcome.patches === 0) {
-        assert(entry.regionOutcome.broadDynamicFrames > 0, 'No patch requires evidence of the actual wide-area full-render branch')
-        entry.regionOutcome.decision = 'Actual gesture exceeds the region threshold. Exact full-render branch verified; regional performance benefit is not demonstrated, so this case does not qualify the candidate for production.'
-      }
-      assert(entry.regionOutcome.peakBytes <= 16 * 1024 * 1024)
     }
     entry.passed = true
   } catch (error) {

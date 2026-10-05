@@ -1,0 +1,473 @@
+{
+  "browser": "154.0.8037.57",
+  "base": "http://127.0.0.1:5184",
+  "candidateKind": "light-material",
+  "productionSource": "521955bf668ef140ce687a435a206d37119a515b",
+  "scope": "Production editor, real uploads/buttons/mouse. Isolated replacement Worker only. Original .65/.38, density 180 and full RGB/alpha. No delivery delays, synthetic request clocks or reduced columns. Capturing requests and selected bitmap readbacks adds QA overhead; wall timings are observational, not an isolated speedup or FPS benchmark.",
+  "hashes": {
+    "candidate.ts": "e5906647a14afec61e02ee2f65974085eabd811b2c487d923b5bd89aca9b27c7",
+    "bundle/region-preview.worker.js": "7ff02d6efcc7f3484a30d8585d54e5922fb1c0ce7be35cb30e3153766a7d862a",
+    "src/views/AsciiArtView.vue": "eb6353985c192337f2527caa70c8ad320a388464fe99d45bb4d05d74cfc47c99",
+    "src/lib/art-engine/canvas.ts": "ef913a0e8a82da6e0562c325ea8ad57f935c2696e818e3822809a1d238a17087",
+    "scripts/preview-region-page-research.mjs": "629a1aaf06eaae3cf4b5658f059ec10184a5937a016d408dfc07540c7aa01646",
+    "public/artwork/porcelain-study-v1.png": "0ce4707016f8fd4c7348fd7a6bead069789e1aaa2b1b0b12551b5227bddb36d5"
+  },
+  "cases": [
+    {
+      "side": "baseline",
+      "mode": "color",
+      "hover": "light",
+      "passed": true,
+      "gestureStarted": 16357,
+      "firstVisibleCriterion": "Completed frame pointer strength >.05, then one visible PNG comparison; particle peak >.005 where applicable. No repeated PNG readback while waiting.",
+      "firstVisibleMs": 10132.399999976158,
+      "peak": 0,
+      "recoveryMs": 31474.399999976158,
+      "exactRecovery": true,
+      "idleRequests": 0,
+      "feedbackSamples": 1084,
+      "loadingSamples": 0,
+      "peakCaptureBytes": 6513968,
+      "activeWorkers": 1,
+      "workers": [
+        {
+          "id": 0,
+          "terminated": true,
+          "results": [
+            {
+              "id": 1,
+              "renderMs": 488.1999999284744
+            },
+            {
+              "id": 2,
+              "renderMs": 287.2999999523163
+            }
+          ]
+        },
+        {
+          "id": 1,
+          "terminated": false,
+          "results": [
+            {
+              "id": 1,
+              "renderMs": 11459.899999976158
+            },
+            {
+              "id": 2,
+              "renderMs": 9920.799999952316
+            },
+            {
+              "id": 3,
+              "renderMs": 12061.100000023842
+            },
+            {
+              "id": 4,
+              "renderMs": 11089.100000023842
+            },
+            {
+              "id": 5,
+              "renderMs": 8653.199999928474
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "side": "candidate",
+      "mode": "color",
+      "hover": "light",
+      "passed": true,
+      "gestureStarted": 13057,
+      "firstVisibleCriterion": "Completed frame pointer strength >.05, then one visible PNG comparison; particle peak >.005 where applicable. No repeated PNG readback while waiting.",
+      "firstVisibleMs": 8600.300000071526,
+      "peak": 0,
+      "recoveryMs": 25557.200000047684,
+      "exactRecovery": true,
+      "idleRequests": 0,
+      "feedbackSamples": 899,
+      "loadingSamples": 0,
+      "peakCaptureBytes": 6513968,
+      "activeWorkers": 1,
+      "workers": [
+        {
+          "id": 0,
+          "terminated": true,
+          "results": [
+            {
+              "id": 1,
+              "renderMs": 244.59999990463257,
+              "lightMaterialStats": {
+                "entries": 0,
+                "bytes": 0,
+                "limit": 2097152,
+                "hits": 0,
+                "misses": 0,
+                "totalBackingBytes": 21952
+              }
+            },
+            {
+              "id": 2,
+              "renderMs": 227.39999997615814,
+              "lightMaterialStats": {
+                "entries": 0,
+                "bytes": 0,
+                "limit": 2097152,
+                "hits": 0,
+                "misses": 0,
+                "totalBackingBytes": 21952
+              }
+            }
+          ]
+        },
+        {
+          "id": 1,
+          "terminated": false,
+          "results": [
+            {
+              "id": 1,
+              "renderMs": 9780.5,
+              "lightMaterialStats": {
+                "entries": 0,
+                "bytes": 0,
+                "limit": 2097152,
+                "hits": 0,
+                "misses": 0,
+                "totalBackingBytes": 100352
+              }
+            },
+            {
+              "id": 2,
+              "renderMs": 8413.699999928474,
+              "lightMaterialStats": {
+                "entries": 14,
+                "bytes": 21952,
+                "limit": 2097152,
+                "hits": 2727,
+                "misses": 14,
+                "totalBackingBytes": 122304
+              }
+            },
+            {
+              "id": 3,
+              "renderMs": 8987.399999976158,
+              "lightMaterialStats": {
+                "entries": 14,
+                "bytes": 21952,
+                "limit": 2097152,
+                "hits": 7613,
+                "misses": 14,
+                "totalBackingBytes": 122304
+              }
+            },
+            {
+              "id": 4,
+              "renderMs": 8816.300000071526,
+              "lightMaterialStats": {
+                "entries": 14,
+                "bytes": 21952,
+                "limit": 2097152,
+                "hits": 12043,
+                "misses": 14,
+                "totalBackingBytes": 122304
+              }
+            },
+            {
+              "id": 5,
+              "renderMs": 8101.299999952316,
+              "lightMaterialStats": {
+                "entries": 14,
+                "bytes": 21952,
+                "limit": 2097152,
+                "hits": 12043,
+                "misses": 14,
+                "totalBackingBytes": 122304
+              }
+            }
+          ]
+        }
+      ],
+      "parity": [
+        {
+          "worker": 1,
+          "request": 2,
+          "width": 571,
+          "height": 713,
+          "changed": 0,
+          "maxDelta": 0
+        },
+        {
+          "worker": 1,
+          "request": 3,
+          "width": 571,
+          "height": 713,
+          "changed": 0,
+          "maxDelta": 0
+        },
+        {
+          "worker": 1,
+          "request": 4,
+          "width": 571,
+          "height": 713,
+          "changed": 0,
+          "maxDelta": 0
+        },
+        {
+          "worker": 1,
+          "request": 5,
+          "width": 571,
+          "height": 713,
+          "changed": 0,
+          "maxDelta": 0
+        }
+      ],
+      "lightMaterialOutcome": {
+        "peakBytes": 21952,
+        "peakEntries": 14,
+        "hits": 12043
+      }
+    },
+    {
+      "side": "baseline",
+      "mode": "phrase",
+      "hover": "light",
+      "passed": true,
+      "gestureStarted": 14883.100000023842,
+      "firstVisibleCriterion": "Completed frame pointer strength >.05, then one visible PNG comparison; particle peak >.005 where applicable. No repeated PNG readback while waiting.",
+      "firstVisibleMs": 18046.299999952316,
+      "peak": 0,
+      "recoveryMs": 54182.700000047684,
+      "exactRecovery": true,
+      "idleRequests": 0,
+      "feedbackSamples": 1850,
+      "loadingSamples": 0,
+      "peakCaptureBytes": 6513968,
+      "activeWorkers": 1,
+      "workers": [
+        {
+          "id": 0,
+          "terminated": true,
+          "results": [
+            {
+              "id": 1,
+              "renderMs": 197.69999992847443
+            },
+            {
+              "id": 2,
+              "renderMs": 234.80000007152557
+            }
+          ]
+        },
+        {
+          "id": 1,
+          "terminated": true,
+          "results": [
+            {
+              "id": 1,
+              "renderMs": 488.2999999523163
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "terminated": false,
+          "results": [
+            {
+              "id": 1,
+              "renderMs": 11016.5
+            },
+            {
+              "id": 2,
+              "renderMs": 17861.899999976158
+            },
+            {
+              "id": 3,
+              "renderMs": 21866.600000023842
+            },
+            {
+              "id": 4,
+              "renderMs": 22520.899999976158
+            },
+            {
+              "id": 5,
+              "renderMs": 10114
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "side": "candidate",
+      "mode": "phrase",
+      "hover": "light",
+      "passed": true,
+      "gestureStarted": 15582,
+      "firstVisibleCriterion": "Completed frame pointer strength >.05, then one visible PNG comparison; particle peak >.005 where applicable. No repeated PNG readback while waiting.",
+      "firstVisibleMs": 12451.100000023842,
+      "peak": 0,
+      "recoveryMs": 41439,
+      "exactRecovery": true,
+      "idleRequests": 0,
+      "feedbackSamples": 1391,
+      "loadingSamples": 0,
+      "peakCaptureBytes": 6513968,
+      "activeWorkers": 1,
+      "workers": [
+        {
+          "id": 0,
+          "terminated": true,
+          "results": [
+            {
+              "id": 1,
+              "renderMs": 234.30000007152557,
+              "lightMaterialStats": {
+                "entries": 0,
+                "bytes": 0,
+                "limit": 2097152,
+                "hits": 0,
+                "misses": 0,
+                "totalBackingBytes": 21952
+              }
+            },
+            {
+              "id": 2,
+              "renderMs": 205.90000009536743,
+              "lightMaterialStats": {
+                "entries": 0,
+                "bytes": 0,
+                "limit": 2097152,
+                "hits": 0,
+                "misses": 0,
+                "totalBackingBytes": 21952
+              }
+            }
+          ]
+        },
+        {
+          "id": 1,
+          "terminated": true,
+          "results": [
+            {
+              "id": 1,
+              "renderMs": 538.8000000715256,
+              "lightMaterialStats": {
+                "entries": 0,
+                "bytes": 0,
+                "limit": 2097152,
+                "hits": 0,
+                "misses": 0,
+                "totalBackingBytes": 12320
+              }
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "terminated": false,
+          "results": [
+            {
+              "id": 1,
+              "renderMs": 11320.199999928474,
+              "lightMaterialStats": {
+                "entries": 0,
+                "bytes": 0,
+                "limit": 2097152,
+                "hits": 0,
+                "misses": 0,
+                "totalBackingBytes": 157696
+              }
+            },
+            {
+              "id": 2,
+              "renderMs": 12263.100000023842,
+              "lightMaterialStats": {
+                "entries": 5,
+                "bytes": 12320,
+                "limit": 2097152,
+                "hits": 7078,
+                "misses": 5,
+                "totalBackingBytes": 170016
+              }
+            },
+            {
+              "id": 3,
+              "renderMs": 15769.600000023842,
+              "lightMaterialStats": {
+                "entries": 5,
+                "bytes": 12320,
+                "limit": 2097152,
+                "hits": 19973,
+                "misses": 5,
+                "totalBackingBytes": 170016
+              }
+            },
+            {
+              "id": 4,
+              "renderMs": 15741.700000047684,
+              "lightMaterialStats": {
+                "entries": 5,
+                "bytes": 12320,
+                "limit": 2097152,
+                "hits": 31711,
+                "misses": 5,
+                "totalBackingBytes": 170016
+              }
+            },
+            {
+              "id": 5,
+              "renderMs": 10183.799999952316,
+              "lightMaterialStats": {
+                "entries": 5,
+                "bytes": 12320,
+                "limit": 2097152,
+                "hits": 31711,
+                "misses": 5,
+                "totalBackingBytes": 170016
+              }
+            }
+          ]
+        }
+      ],
+      "parity": [
+        {
+          "worker": 2,
+          "request": 2,
+          "width": 571,
+          "height": 713,
+          "changed": 0,
+          "maxDelta": 0
+        },
+        {
+          "worker": 2,
+          "request": 3,
+          "width": 571,
+          "height": 713,
+          "changed": 0,
+          "maxDelta": 0
+        },
+        {
+          "worker": 2,
+          "request": 4,
+          "width": 571,
+          "height": 713,
+          "changed": 0,
+          "maxDelta": 0
+        },
+        {
+          "worker": 2,
+          "request": 5,
+          "width": 571,
+          "height": 713,
+          "changed": 0,
+          "maxDelta": 0
+        }
+      ],
+      "lightMaterialOutcome": {
+        "peakBytes": 12320,
+        "peakEntries": 5,
+        "hits": 31711
+      }
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

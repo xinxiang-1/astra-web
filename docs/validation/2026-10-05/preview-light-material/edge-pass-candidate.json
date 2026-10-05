@@ -1,0 +1,388 @@
+{
+  "browser": "154.0.4258.53",
+  "sourceFile": "test-results/preview-light-material-edge-r1-20261005/candidate.ts",
+  "cloneFrames": true,
+  "sourceHash": "e5906647a14afec61e02ee2f65974085eabd811b2c487d923b5bd89aca9b27c7",
+  "scope": "Isolated selected shared renderer in actual OffscreenCanvas with 64 temporary tiles. Extra GPU readback between passes isolates cost and changes batching; not a throughput or real-device FPS benchmark.",
+  "cases": [
+    {
+      "mode": "color",
+      "columns": 180,
+      "rows": 112,
+      "alphas": {
+        "visible": 11449,
+        "opaque": 649,
+        "translucent": 10800
+      },
+      "records": [
+        {
+          "hover": "light",
+          "inputFrame": 0,
+          "width": 571,
+          "height": 713,
+          "wallMs": 556.1000000238419,
+          "effectsMs": 4.5,
+          "glyphMs": 549.6000000238419,
+          "glowMs": 1,
+          "tiles": 11449,
+          "cache": {
+            "particles": {
+              "bytes": 0,
+              "limit": 10485760,
+              "maxCells": 131072,
+              "peak": 0,
+              "moving": 0,
+              "unavailable": false
+            },
+            "rift": {
+              "columns": 0,
+              "rows": 0,
+              "bytes": 0,
+              "peakOffset": 0,
+              "rawPeakOffset": 0,
+              "maxStrain": 0,
+              "minJacobian": 1,
+              "limit": 262144
+            },
+            "motionCells": 0,
+            "motionBytes": 0,
+            "choreographyBytes": 0,
+            "choreographyLimit": 4194304,
+            "effectCellBytes": 1471680,
+            "effectCellLimit": 4194304,
+            "entries": 64,
+            "backingBytes": 100352,
+            "maxBackingBytes": 16777216,
+            "scratchBytes": 1568,
+            "supersampleBytes": 0,
+            "glowBytes": 0,
+            "interactionCells": 13184,
+            "interactionActive": false,
+            "interactionBytes": 1687552,
+            "softwareMaskBytes": 0,
+            "softwareMaskEntries": 0,
+            "softwareWorkingBytes": 0,
+            "hits": 21,
+            "misses": 11428
+          },
+          "lightMaterial": {
+            "entries": 0,
+            "bytes": 0,
+            "limit": 2097152,
+            "hits": 0,
+            "misses": 0,
+            "totalBackingBytes": 100352
+          }
+        },
+        {
+          "hover": "light",
+          "inputFrame": 1,
+          "width": 571,
+          "height": 713,
+          "wallMs": 571,
+          "effectsMs": 0.6999999284744263,
+          "glyphMs": 512.3000000715256,
+          "glowMs": 57.199999928474426,
+          "tiles": 15700,
+          "cache": {
+            "particles": {
+              "bytes": 0,
+              "limit": 10485760,
+              "maxCells": 131072,
+              "peak": 0,
+              "moving": 0,
+              "unavailable": false
+            },
+            "rift": {
+              "columns": 0,
+              "rows": 0,
+              "bytes": 0,
+              "peakOffset": 0,
+              "rawPeakOffset": 0,
+              "maxStrain": 0,
+              "minJacobian": 1,
+              "limit": 262144
+            },
+            "motionCells": 0,
+            "motionBytes": 0,
+            "choreographyBytes": 0,
+            "choreographyLimit": 4194304,
+            "effectCellBytes": 1471680,
+            "effectCellLimit": 4194304,
+            "entries": 64,
+            "backingBytes": 122304,
+            "maxBackingBytes": 16777216,
+            "scratchBytes": 1568,
+            "supersampleBytes": 0,
+            "glowBytes": 1628492,
+            "interactionCells": 13184,
+            "interactionActive": true,
+            "interactionBytes": 1687552,
+            "softwareMaskBytes": 0,
+            "softwareMaskEntries": 0,
+            "softwareWorkingBytes": 0,
+            "hits": 4279,
+            "misses": 22870
+          },
+          "lightMaterial": {
+            "entries": 14,
+            "bytes": 21952,
+            "limit": 2097152,
+            "hits": 4237,
+            "misses": 14,
+            "totalBackingBytes": 122304
+          }
+        },
+        {
+          "hover": "light",
+          "inputFrame": 2,
+          "width": 571,
+          "height": 713,
+          "wallMs": 515,
+          "effectsMs": 0.19999992847442627,
+          "glyphMs": 468.3000000715256,
+          "glowMs": 45.59999990463257,
+          "tiles": 18656,
+          "cache": {
+            "particles": {
+              "bytes": 0,
+              "limit": 10485760,
+              "maxCells": 131072,
+              "peak": 0,
+              "moving": 0,
+              "unavailable": false
+            },
+            "rift": {
+              "columns": 0,
+              "rows": 0,
+              "bytes": 0,
+              "peakOffset": 0,
+              "rawPeakOffset": 0,
+              "maxStrain": 0,
+              "minJacobian": 1,
+              "limit": 262144
+            },
+            "motionCells": 0,
+            "motionBytes": 0,
+            "choreographyBytes": 0,
+            "choreographyLimit": 4194304,
+            "effectCellBytes": 1471680,
+            "effectCellLimit": 4194304,
+            "entries": 64,
+            "backingBytes": 122304,
+            "maxBackingBytes": 16777216,
+            "scratchBytes": 1568,
+            "supersampleBytes": 0,
+            "glowBytes": 1628492,
+            "interactionCells": 13184,
+            "interactionActive": true,
+            "interactionBytes": 1687552,
+            "softwareMaskBytes": 0,
+            "softwareMaskEntries": 0,
+            "softwareWorkingBytes": 0,
+            "hits": 11507,
+            "misses": 34298
+          },
+          "lightMaterial": {
+            "entries": 14,
+            "bytes": 21952,
+            "limit": 2097152,
+            "hits": 11444,
+            "misses": 14,
+            "totalBackingBytes": 122304
+          }
+        }
+      ]
+    },
+    {
+      "mode": "phrase",
+      "columns": 180,
+      "rows": 177,
+      "alphas": {
+        "visible": 31860,
+        "opaque": 8946,
+        "translucent": 9113
+      },
+      "records": [
+        {
+          "hover": "light",
+          "inputFrame": 0,
+          "width": 571,
+          "height": 713,
+          "wallMs": 767.6000000238419,
+          "effectsMs": 4.099999904632568,
+          "glyphMs": 761.9000000953674,
+          "glowMs": 0.7999999523162842,
+          "tiles": 18059,
+          "cache": {
+            "particles": {
+              "bytes": 0,
+              "limit": 10485760,
+              "maxCells": 131072,
+              "peak": 0,
+              "moving": 0,
+              "unavailable": false
+            },
+            "rift": {
+              "columns": 0,
+              "rows": 0,
+              "bytes": 0,
+              "peakOffset": 0,
+              "rawPeakOffset": 0,
+              "maxStrain": 0,
+              "minJacobian": 1,
+              "limit": 262144
+            },
+            "motionCells": 0,
+            "motionBytes": 0,
+            "choreographyBytes": 0,
+            "choreographyLimit": 4194304,
+            "effectCellBytes": 2325780,
+            "effectCellLimit": 4194304,
+            "entries": 64,
+            "backingBytes": 157696,
+            "maxBackingBytes": 16777216,
+            "scratchBytes": 2464,
+            "supersampleBytes": 0,
+            "glowBytes": 0,
+            "interactionCells": 13184,
+            "interactionActive": false,
+            "interactionBytes": 1687552,
+            "softwareMaskBytes": 0,
+            "softwareMaskEntries": 0,
+            "softwareWorkingBytes": 0,
+            "hits": 3,
+            "misses": 18056
+          },
+          "lightMaterial": {
+            "entries": 0,
+            "bytes": 0,
+            "limit": 2097152,
+            "hits": 0,
+            "misses": 0,
+            "totalBackingBytes": 157696
+          }
+        },
+        {
+          "hover": "light",
+          "inputFrame": 1,
+          "width": 571,
+          "height": 713,
+          "wallMs": 1510.7999999523163,
+          "effectsMs": 0.30000007152557373,
+          "glyphMs": 959.6000000238419,
+          "glowMs": 549.5,
+          "tiles": 32082,
+          "cache": {
+            "particles": {
+              "bytes": 0,
+              "limit": 10485760,
+              "maxCells": 131072,
+              "peak": 0,
+              "moving": 0,
+              "unavailable": false
+            },
+            "rift": {
+              "columns": 0,
+              "rows": 0,
+              "bytes": 0,
+              "peakOffset": 0,
+              "rawPeakOffset": 0,
+              "maxStrain": 0,
+              "minJacobian": 1,
+              "limit": 262144
+            },
+            "motionCells": 0,
+            "motionBytes": 0,
+            "choreographyBytes": 0,
+            "choreographyLimit": 4194304,
+            "effectCellBytes": 2325780,
+            "effectCellLimit": 4194304,
+            "entries": 64,
+            "backingBytes": 187264,
+            "maxBackingBytes": 16777216,
+            "scratchBytes": 2464,
+            "supersampleBytes": 0,
+            "glowBytes": 1628492,
+            "interactionCells": 13184,
+            "interactionActive": true,
+            "interactionBytes": 1687552,
+            "softwareMaskBytes": 0,
+            "softwareMaskEntries": 0,
+            "softwareWorkingBytes": 0,
+            "hits": 10358,
+            "misses": 39783
+          },
+          "lightMaterial": {
+            "entries": 12,
+            "bytes": 29568,
+            "limit": 2097152,
+            "hits": 10352,
+            "misses": 12,
+            "totalBackingBytes": 187264
+          }
+        },
+        {
+          "hover": "light",
+          "inputFrame": 2,
+          "width": 571,
+          "height": 713,
+          "wallMs": 1727.0999999046326,
+          "effectsMs": 0.3999999761581421,
+          "glyphMs": 925.8000000715256,
+          "glowMs": 799.6000000238419,
+          "tiles": 35108,
+          "cache": {
+            "particles": {
+              "bytes": 0,
+              "limit": 10485760,
+              "maxCells": 131072,
+              "peak": 0,
+              "moving": 0,
+              "unavailable": false
+            },
+            "rift": {
+              "columns": 0,
+              "rows": 0,
+              "bytes": 0,
+              "peakOffset": 0,
+              "rawPeakOffset": 0,
+              "maxStrain": 0,
+              "minJacobian": 1,
+              "limit": 262144
+            },
+            "motionCells": 0,
+            "motionBytes": 0,
+            "choreographyBytes": 0,
+            "choreographyLimit": 4194304,
+            "effectCellBytes": 2325780,
+            "effectCellLimit": 4194304,
+            "entries": 64,
+            "backingBytes": 187264,
+            "maxBackingBytes": 16777216,
+            "scratchBytes": 2464,
+            "supersampleBytes": 0,
+            "glowBytes": 1628492,
+            "interactionCells": 13184,
+            "interactionActive": true,
+            "interactionBytes": 1687552,
+            "softwareMaskBytes": 0,
+            "softwareMaskEntries": 0,
+            "softwareWorkingBytes": 0,
+            "hits": 24558,
+            "misses": 60691
+          },
+          "lightMaterial": {
+            "entries": 12,
+            "bytes": 29568,
+            "limit": 2097152,
+            "hits": 24549,
+            "misses": 12,
+            "totalBackingBytes": 187264
+          }
+        }
+      ]
+    }
+  ],
+  "passed": true
+}
