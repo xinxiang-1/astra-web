@@ -1,0 +1,107 @@
+diff --git "a/D:\\my\\project\\astra\\astra-web\\test-results\\preview-region-cache-r1-chrome-20261005\\frozen.ts" "b/D:\\my\\project\\astra\\astra-web\\test-results\\preview-region-cache-r1-chrome-20261005\\candidate.ts"
+index 9936bd9..fe4647f 100644
+--- "a/D:\\my\\project\\astra\\astra-web\\test-results\\preview-region-cache-r1-chrome-20261005\\frozen.ts"
++++ "b/D:\\my\\project\\astra\\astra-web\\test-results\\preview-region-cache-r1-chrome-20261005\\candidate.ts"
+@@ -399,6 +399,10 @@ export function createCanvasArtRenderer(
+       },
+     }
+   }
++  let neutralCache: HTMLCanvasElement | null = null
++  let neutralFrame: ArtFrame | null = null
++  let neutralKey = ''
++  let regionStats = { hits: 0, patches: 0, full: 0, bytes: 0, area: 1 }
+   const riftPresentation = createRiftPresentation()
+   const tinted = new Map<string, HTMLCanvasElement | ImageBitmap>()
+   const maxBackingBytes = 16 * 1024 * 1024
+@@ -2440,10 +2444,50 @@ export function createCanvasArtRenderer(
+     }
+     const cw = (w * scale) / frame.columns,
+       ch = (h * scale) / frame.rows
++    const regionEligible = effect.expressive && scale === 1 && (options.motion ?? 'none') === 'none'
++    const cacheKey = JSON.stringify([w, h, options.transparent, frame.settings])
++    if (neutralFrame !== frame || neutralKey !== cacheKey || !regionEligible) {
++      if (neutralCache) neutralCache.width = neutralCache.height = 1
++      neutralCache = null; neutralFrame = null; neutralKey = ''; regionStats.bytes = 0
++    }
++    let region: { left: number; top: number; right: number; bottom: number } | null = null
++    let neutral = regionEligible
++    if (regionEligible) {
++      let left = w, top = h, right = 0, bottom = 0
++      for (let y = 0; y < frame.rows; y++) for (let x = 0; x < frame.columns; x++) {
++        const index = y * frame.columns + x, alpha = frame.alpha[index]!, glyph = frame.indices[index]!
++        const e = effect.cell(x, y, cw, ch, alpha)
++        const wasVisible = alpha >= .005 && frame.glyphs[glyph]!.coverage >= .001
++        const isVisible = e.opacity >= .005 && frame.glyphs[e.glyph]!.coverage >= .001
++        const changed = wasVisible !== isVisible || ((wasVisible || isVisible) && (e.dx !== 0 || e.dy !== 0 || e.intensity !== 1 || e.opacity !== alpha || e.glyph !== glyph || e.size !== 1))
++        if (!changed) continue
++        neutral = false
++        const dw = cw * e.size, dh = ch * e.size
++        left = Math.min(left, x * cw - 2, x * cw + e.dx + (cw - dw) * .5 - 2)
++        top = Math.min(top, y * ch - 2, y * ch + e.dy + (ch - dh) * .5 - 2)
++        right = Math.max(right, (x + 1) * cw + 2, x * cw + e.dx + (cw + dw) * .5 + 2)
++        bottom = Math.max(bottom, (y + 1) * ch + 2, y * ch + e.dy + (ch + dh) * .5 + 2)
++      }
++      if (!neutral) region = { left: Math.max(0, Math.floor(left)), top: Math.max(0, Math.floor(top)), right: Math.min(w, Math.ceil(right)), bottom: Math.min(h, Math.ceil(bottom)) }
++    }
++    let patching = false, skipMain = false
++    regionStats.area = region ? (region.right - region.left) * (region.bottom - region.top) / (w * h) : (neutral ? 0 : 1)
++    if (neutralCache && (neutral || regionStats.area < .8)) {
++      ctx.globalCompositeOperation = 'copy'
++      ctx.drawImage(neutralCache, 0, 0)
++      ctx.globalCompositeOperation = 'source-over'
++      if (neutral) { skipMain = true; regionStats.hits++ }
++      else if (region) {
++        ctx.save(); ctx.beginPath(); ctx.rect(region.left, region.top, region.right - region.left, region.bottom - region.top); ctx.clip()
++        ctx.clearRect(0, 0, w, h)
++        if (!options.transparent) { ctx.fillStyle = frame.settings.background; ctx.fillRect(0, 0, w, h) }
++        patching = true; regionStats.patches++
++      }
++    } else regionStats.full++
+     const time = options.time ?? 0,
+       motion = options.motion ?? 'none'
+     let sliceStart = performance.now()
+-    for (let y = 0; y < frame.rows; y++)
++    for (let y = 0; !skipMain && y < frame.rows; y++)
+       for (let x = 0; x < frame.columns; x++) {
+         const cell = y * frame.columns + x,
+           alpha = frame.alpha[cell]!
+@@ -2505,6 +2549,7 @@ export function createCanvasArtRenderer(
+           : hoveredAlpha * intensity
+         const dw = cw * size,
+           dh = ch * size
++        if (patching && region && (x * cw + dx + (cw + dw) * .5 + 2 < region.left || x * cw + dx + (cw - dw) * .5 - 2 > region.right || y * ch + dy + (ch + dh) * .5 + 2 < region.top || y * ch + dy + (ch - dh) * .5 - 2 > region.bottom)) continue
+         ctx.drawImage(
+           tile(index, color),
+           x * cw + dx + (cw - dw) * 0.5,
+@@ -2518,7 +2563,12 @@ export function createCanvasArtRenderer(
+         }
+       }
+ 
++    if (patching) ctx.restore()
+     ctx.globalAlpha = 1
++    if (neutral && !neutralCache && w * h * 4 <= 16 * 1024 * 1024) {
++      neutralCache = canvas(w, h); neutralCache.getContext('2d')!.globalCompositeOperation = 'copy'; neutralCache.getContext('2d')!.drawImage(target, 0, 0)
++      neutralFrame = frame; neutralKey = cacheKey; regionStats.bytes = w * h * 4
++    }
+     if (ctx !== outputCtx) {
+       outputCtx.globalAlpha = 1
+       outputCtx.imageSmoothingQuality = 'high'
+@@ -2565,7 +2615,10 @@ export function createCanvasArtRenderer(
+       return result.value
+     },
+     destroy() {
++      if (neutralCache) neutralCache.width = neutralCache.height = 1
++      neutralCache = null; neutralFrame = null; neutralKey = ''; regionStats.bytes = 0
+       particlePresentation.destroy()
++
+       riftPresentation.destroy()
+       effectCells = effectCellValid = null
+       motionField = null
+@@ -2626,6 +2679,7 @@ export function createCanvasArtRenderer(
+     },
+     /** Read-only native trail state for prototype presentation; never advances the solver. */
+     sampleFluidField,
++    get regionStats() { return { ...regionStats } },
+     get cacheStats() {
+       return {
+         particles: particlePresentation.stats,
