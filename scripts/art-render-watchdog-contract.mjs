@@ -32,11 +32,11 @@ try {
       for (const [id, timer] of [...timers]) if (timer.due <= now) { timers.delete(id); timer.fn() }
     }
     const frame = { columns: 10, rows: 10, glyphs: [] }
-    const make = (onProgress) => {
+    const make = (onProgress, options = {}) => {
       let errors = 0, presents = 0
       const client = createFrameRenderWorker(() => presents++, () => errors++, onProgress)
       require(client, 'Worker support is required')
-      client.render(frame, {})
+      client.render(frame, options)
       return { client, worker: lastWorker, errors: () => errors, presents: () => presents }
     }
     const progress = (state, completedCells, overrides = {}) => state.worker.emit({ id: state.worker.requests.at(-1).id, completedCells, totalCells: 100, ...overrides })
@@ -75,13 +75,52 @@ try {
       const disposed = make(); disposed.client.dispose(); tick(20000); progress(disposed, 50)
       require(disposed.errors() === 0 && disposed.presents() === 0 && disposed.worker.terminated, 'Disposed work cannot be revived')
       cases.push({ name: 'disposed-task', ignoredLateProgress: true })
+
+      const particleOptions = { hover: 'particles', hoverTime: 0, hoverStrength: .65, pointer: { x: .5, y: .5, strength: 0, active: false } }
+      const makeParticle = onProgress => {
+        const state = make(onProgress, particleOptions)
+        state.worker.emit({ id: 1, bitmap: { close() {} }, renderMs: 1, interactionActive: false })
+        state.client.render(frame, { ...particleOptions, hoverTime: 3 })
+        return state
+      }
+      const phaseProgress = (state, completedSeconds, completedSteps, overrides = {}) => state.worker.emit({
+        id: state.worker.requests.at(-1).id, phase: 'interaction', completedSeconds, completedSteps, totalSeconds: 3, ...overrides,
+      })
+      const phases = [], particle = makeParticle((value, _frame, _options, phase) => phases.push({ value, phase }))
+      tick(10000); phaseProgress(particle, .5, 10); tick(10000); phaseProgress(particle, 1.5, 30); tick(10000)
+      require(particle.errors() === 0 && particle.client.pending && phases.length === 2 && phases.every(p => p.phase === 'interaction'), 'Bounded advancing simulation survives a long frame and reports its own phase')
+      particle.client.dispose(); cases.push({ name: 'advancing-interaction', virtualElapsedMs: 30000, phases })
+      for (const [name, overrides] of [
+        ['interaction-stale-task', { id: 1 }], ['interaction-wrong-duration', { totalSeconds: 4 }],
+        ['interaction-fractional-step', { completedSteps: 1.5 }], ['interaction-invalid-seconds', { completedSeconds: NaN }],
+        ['interaction-excess-steps', { completedSteps: 317 }], ['interaction-beyond-duration', { completedSeconds: 4 }],
+      ]) {
+        const invalid = makeParticle(); tick(10000); phaseProgress(invalid, .5, 10, overrides); tick(2000)
+        require(invalid.errors() === 1, name + ' must not reset the watchdog')
+        cases.push({ name, rejected: true })
+      }
+      const firstPhase = make(undefined, particleOptions); tick(10000); phaseProgress(firstPhase, .5, 10); tick(2000)
+      require(firstPhase.errors() === 1, 'First request cannot claim a previous interval')
+      cases.push({ name: 'interaction-first-request', rejected: true })
+      for (const [name, seconds, steps] of [['interaction-repeated-seconds', .5, 11], ['interaction-repeated-steps', .6, 10]]) {
+        const repeated = makeParticle(); tick(10000); phaseProgress(repeated, .5, 10); tick(10000); phaseProgress(repeated, seconds, steps); tick(2000)
+        require(repeated.errors() === 1, name + ' must not reset the watchdog')
+        cases.push({ name, rejected: true })
+      }
+      const latePhase = makeParticle(); tick(10000); progress(latePhase, 10); tick(10000); phaseProgress(latePhase, .5, 10); tick(2000)
+      require(latePhase.errors() === 1, 'Simulation messages after drawing starts cannot revive a hung draw')
+      cases.push({ name: 'interaction-after-drawing', rejected: true })
+      const phaseError = makeParticle(() => { throw new Error('Intentional simulation progress consumer error') })
+      phaseProgress(phaseError, .5, 10)
+      require(phaseError.errors() === 1 && phaseError.worker.terminated, 'Phase consumer error releases Worker')
+      cases.push({ name: 'interaction-consumer-error', terminated: true })
       require(timers.size === 0, 'Watchdog timers are released')
       return cases
     } finally {
       window.Worker = originals.Worker; window.setTimeout = originals.setTimeout; window.clearTimeout = originals.clearTimeout
     }
   })
-  assert.equal(report.cases.length, 9)
+  assert.equal(report.cases.length, 21)
   report.passed = true
 } catch (error) { report.failure = error.stack; process.exitCode = 1 }
 finally { await writeFile(path.join(out, 'report.json'), JSON.stringify(report, null, 2)); await browser.close() }

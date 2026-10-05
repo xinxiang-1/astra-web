@@ -94,7 +94,7 @@ async function runArtworkPage(
       longEdge: size,
       transparent: data.transparent,
       time: animationTime,
-      hoverTime: interactionTime,
+      hoverTime: data.hover === 'particles' ? performance.now() / 1000 : interactionTime,
       effectProfile: data.effectProfile,
       motionSpeed: data.motionSpeed,
       motionStrength: data.motionStrength,
@@ -131,13 +131,15 @@ async function runArtworkPage(
       queue()
       return
     }
-    const delta = previousTime ? Math.min(0.15, (now - previousTime) / 1000) : 0
+    const elapsed = previousTime ? Math.max(0, (now - previousTime) / 1000) : 0
+    const delta = Math.min(0.15, elapsed)
+    const pointerDelta = data.hover === 'particles' ? elapsed : delta
     previousTime = now
     last = now
     if (running && !reduced.matches) animationTime += delta
     interactionTime += delta
     pointer.strength +=
-      (pointer.target - pointer.strength) * (1 - Math.exp(-Math.max(delta, 1 / 60) / 0.16))
+      (pointer.target - pointer.strength) * (1 - Math.exp(-Math.max(pointerDelta, 1 / 60) / 0.16))
     if (!pointer.target && pointer.strength < 0.002) pointer.strength = 0
     if (video && data.source && running && (video.currentTime >= data.source.end || video.ended))
       video.currentTime = data.source.start

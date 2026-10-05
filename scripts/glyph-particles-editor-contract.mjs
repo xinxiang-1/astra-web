@@ -10,8 +10,22 @@ const out = path.resolve(process.env.ASTRA_PARTICLES_OUTPUT || `test-results/par
 await mkdir(out,{recursive:true})
 const browser = await chromium.launch({channel:process.env.ASTRA_BROWSER_CHANNEL || 'msedge',headless:true})
 const report={browser:browser.version(),base,production,errors:[],desktop:[],touch:[],passed:false}
+report.sourceHashes=Object.fromEntries(await Promise.all([
+ 'src/lib/art-engine/canvas.ts','src/lib/art-engine/frame-render-client.ts',
+ 'src/lib/art-engine/frame-render.worker.ts','src/lib/art-engine/preview-render-client.ts',
+ 'src/lib/art-engine/embed.ts','src/views/AsciiArtView.vue',
+ 'scripts/glyph-particles-editor-contract.mjs',
+].map(async file=>[file,createHash('sha256').update(await readFile(file)).digest('hex')])))
 const context=await browser.newContext({viewport:{width:1440,height:960},acceptDownloads:true,reducedMotion:'no-preference'})
-await context.addInitScript(()=>localStorage.setItem('astra-theme','dark'))
+await context.addInitScript(()=>{
+ localStorage.setItem('astra-theme','dark')
+ const NativeWorker=window.Worker
+ window.__particleWorkers=new Set()
+ window.Worker=class extends NativeWorker{
+  constructor(url,options){super(url,options);if(String(url).includes('frame-render.worker'))window.__particleWorkers.add(this)}
+  terminate(){window.__particleWorkers.delete(this);super.terminate()}
+ }
+})
 const page=await context.newPage()
 page.on('pageerror',error=>report.errors.push(error.message))
 page.on('dialog',dialog=>dialog.accept())
@@ -48,7 +62,16 @@ async function mouseGesture(target,locator){
 }
 async function touchGesture(target,selector,id){
  const el=target.locator(selector).first();await el.scrollIntoViewIfNeeded()
+ // A new fullscreen Canvas exists before its first complete asynchronous frame.
+ // Read the baseline only after the actual target is ready and at rest.
+ await target.waitForFunction(selector=>{
+  const c=document.querySelector(selector)
+  return c?.width>100 && (c.dataset.ready==='true' ||
+   (c.dataset.renderPending==='false' && c.dataset.hover==='particles' &&
+    c.dataset.pointerStrength==='0' && c.dataset.interactionActive==='false'))
+ },selector,{timeout:60000})
  const baseline=await el.evaluate(c=>c.toDataURL())
+ const baselineSize=await el.evaluate(c=>({width:c.width,height:c.height}))
  const touchAction=await el.evaluate(c=>getComputedStyle(c).touchAction)
  assert.equal(touchAction,'none',id+' touch action')
  await el.evaluate(c=>{
@@ -67,10 +90,11 @@ async function touchGesture(target,selector,id){
  await cdp.detach()
  const trace=await target.evaluate(()=>window.__particleTouch)
  assert.equal(trace.down,1);assert.equal(trace.up,1);assert.equal(trace.cancel,0);assert(trace.move>=9)
+ await target.waitForFunction(({selector,baseline})=>document.querySelector(selector)?.toDataURL()!==baseline,{selector,baseline},{timeout:60000,polling:100})
  await target.waitForFunction(({selector,baseline})=>document.querySelector(selector)?.toDataURL()===baseline,{selector,baseline},{timeout:60000,polling:250})
  const returned=await el.evaluate(c=>c.toDataURL())
  assert.equal(pngHash(returned),pngHash(baseline),id+' touch exact return')
- report.touch.push({id,touchAction,trace,exactRecovery:true})
+ report.touch.push({id,touchAction,trace,baselineSize,visibleScatter:true,exactRecovery:true})
 }
 async function exportHtml(){
  await page.locator('.editor-header-actions .art-button').click()
@@ -118,21 +142,32 @@ try{
   await ready(page,modes[labels.indexOf(label)])
   await page.mouse.move(0,0);await settled(page)
   const baseline=await image(page)
+  await canvas(page).evaluate(c=>{
+   window.__particleFrameTrace=[]
+   window.__particleFrameObserver?.disconnect()
+   window.__particleFrameObserver=new MutationObserver(()=>{
+    window.__particleFrameTrace.push({wallMs:performance.now(),clock:Number(c.dataset.interactionTime),peak:Number(c.dataset.particlePeak),pointerStrength:Number(c.dataset.pointerStrength),active:c.dataset.interactionActive})
+   })
+   window.__particleFrameObserver.observe(c,{attributes:true,attributeFilter:['data-particle-peak']})
+  })
   const recording=process.env.ASTRA_PARTICLES_RECORD==='1' && label===labels[0] ? await startRecording() : null
+  const gestureStartMs=await page.evaluate(()=>performance.now())
   await mouseGesture(page,canvas(page))
   await page.waitForFunction(()=>{
    const c=document.querySelector('.ascii-scroll .ascii-canvas')
-   return Number(c?.dataset.pointerStrength)>0 && c.dataset.interactionActive==='true'
+   return Number(c?.dataset.pointerStrength)>0 && c.dataset.interactionActive==='true' && Number(c.dataset.particlePeak)>.005
   },{},{timeout:60000})
   const during=await image(page)
   assert.notEqual(during,baseline,label+' visible scatter')
-  const stats=production ? {peak:null,bytes:null} : await canvas(page).evaluate(c=>document.querySelector('.art-editor').__vueParentComponent.setupState.artRenderers.get(c).cacheStats.particles)
-  if(!production)assert(stats.peak>.005,label+' particle movement')
+  const stats=await canvas(page).evaluate(c=>({peak:Number(c.dataset.particlePeak),bytes:Number(c.dataset.particleBytes)}))
+  assert(stats.peak>.005,label+' particle movement')
   await canvas(page).screenshot({path:path.join(out,'active-'+labels.indexOf(label)+'.png')})
   await page.mouse.move(0,0);await settled(page)
+  const recoveredMs=await page.evaluate(()=>performance.now())
   assert.equal(pngHash(await image(page)),pngHash(baseline),label+' actual page exact recovery')
   if(recording)await stopRecording(recording)
-  report.desktop.push({label,peak:stats.peak,bytes:stats.bytes,visibleScatter:true,exactRecovery:true})
+  const frameTrace=await page.evaluate(()=>window.__particleFrameTrace)
+  report.desktop.push({label,peak:stats.peak,bytes:stats.bytes,visibleScatter:true,exactRecovery:true,gestureStartMs,recoveredMs,frameTrace})
   console.log('particles-editor: '+label+' real interaction passed')
  }
  await page.locator('.six-modes button').filter({hasText:labels[0]}).click();await ready(page,'density')
@@ -141,14 +176,24 @@ try{
  await page.screenshot({path:path.join(out,'editor-dark.png')})
  await page.getByRole('button',{name:'全屏 ↗',exact:true}).click()
  const fullscreen=page.locator('.fs-overlay .ascii-canvas');await fullscreen.waitFor()
+ await page.waitForFunction(()=>{
+  const c=document.querySelector('.fs-overlay .ascii-canvas')
+  return c?.dataset.renderPending==='false' && c.dataset.hover==='particles' && c.dataset.interactionActive==='false'
+ })
+ const fullscreenBaseline=await fullscreen.evaluate(c=>c.toDataURL())
+ const fullscreenWorkers=await page.evaluate(()=>window.__particleWorkers.size)
+ assert.equal(fullscreenWorkers,2,'Both actual fullscreen workers are active')
  await mouseGesture(page,fullscreen)
+ await page.waitForFunction(()=>Number(document.querySelector('.fs-overlay .ascii-canvas')?.dataset.particlePeak)>.005)
+ assert.notEqual(await fullscreen.evaluate(c=>c.toDataURL()),fullscreenBaseline,'fullscreen visible scatter')
  await page.mouse.move(0,0)
- await page.waitForFunction(()=>document.querySelector('.fs-overlay .ascii-canvas')?.dataset.interactionActive==='false')
+ await page.waitForFunction(baseline=>document.querySelector('.fs-overlay .ascii-canvas')?.toDataURL()===baseline,fullscreenBaseline,{timeout:60000,polling:250})
  await page.keyboard.press('Escape')
- if(!production)assert.equal(await page.evaluate(()=>document.querySelector('.art-editor').__vueParentComponent.setupState.artRenderers.size),1,'fullscreen renderer released')
+ const remainingWorkers=await page.evaluate(()=>window.__particleWorkers.size)
+ assert.equal(remainingWorkers,1,'fullscreen renderer released')
  await settled(page)
  assert.equal(pngHash(await image(page)),pngHash(staticBaseline),'fullscreen returns main original')
- report.fullscreen={interactive:true,released:production?null:true,exactMainRecovery:true}
+ report.fullscreen={interactive:true,released:true,fullscreenWorkers,remainingWorkers,exactMainRecovery:true,exactFullscreenRecovery:true}
  await page.getByRole('group',{name:'六模式微动',exact:true}).getByRole('button',{name:'流动',exact:true}).click()
  await page.getByRole('button',{name:'暂停动效',exact:true}).click()
  await page.waitForFunction(()=>{
@@ -156,9 +201,13 @@ try{
   return c?.dataset.renderPending==='false' && c.dataset.paused==='true'
  })
  const time=await canvas(page).getAttribute('data-time')
+ const pausedBaseline=await image(page)
  await mouseGesture(page,canvas(page))
+ await page.waitForFunction(()=>Number(document.querySelector('.ascii-scroll .ascii-canvas')?.dataset.particlePeak)>.005)
+ assert.notEqual(await image(page),pausedBaseline,'paused ambient allows visible scatter')
  assert.equal(await canvas(page).getAttribute('data-time'),time,'ambient paused while scatter responds')
  await page.mouse.move(0,0);await settled(page)
+ assert.equal(pngHash(await image(page)),pngHash(pausedBaseline),'paused ambient exact recovery')
  report.pause={ambientFrozen:true,hoverContinues:true}
  await page.getByRole('group',{name:'六模式微动',exact:true}).getByRole('button',{name:'静态',exact:true}).click()
  await page.waitForFunction(()=>document.querySelector('.ascii-scroll .ascii-canvas')?.dataset.motion==='none')
@@ -201,10 +250,16 @@ try{
  report.videoWorker=await canvas(page).evaluate(c=>({backend:c.dataset.renderBackend,hover:c.dataset.hover,time:document.querySelector('.video-thumb.show').currentTime}))
  assert.equal(report.videoWorker.hover,'particles');assert(report.videoWorker.time>0)
  await page.mouse.move(0,0)
+ await page.locator('.editor-back').click()
+ await page.getByRole('button',{name:'放弃更改并离开',exact:true}).click()
+ await page.waitForURL(base+'/gallery')
+ assert.equal(await page.evaluate(()=>window.__particleWorkers.size),0,'Leaving editor releases all workers')
+ report.routeReleased=true
  assert.deepEqual(report.errors,[])
  report.passed=true
 }catch(error){
  report.failure=error.stack
+ report.failureFrameTrace=await page.evaluate(()=>window.__particleFrameTrace).catch(()=>null)
  report.failureCanvas=await canvas(page).evaluate(c=>({width:c.width,height:c.height,data:{...c.dataset}})).catch(()=>null)
  await page.screenshot({path:path.join(out,'failure.png'),timeout:10000}).catch(()=>{})
 }

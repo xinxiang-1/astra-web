@@ -1,5 +1,5 @@
 import type { ArtFrame, ArtRenderOptions } from './types'
-import type { ArtRendererCacheStats } from './canvas'
+import type { ArtRendererCacheStats, ArtInteractionRenderProgress } from './canvas'
 
 export type FrameRenderRequest = {
   id: number
@@ -16,4 +16,5 @@ export type FrameRenderResponse =
       cacheStats: ArtRendererCacheStats
     }
   | { id: number; completedCells: number; totalCells: number }
+  | ({ id: number; phase: 'interaction' } & ArtInteractionRenderProgress)
   | { id: number; error: string }

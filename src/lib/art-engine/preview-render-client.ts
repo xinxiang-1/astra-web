@@ -30,8 +30,9 @@ type PreviewCallbacks = {
     options: ArtRenderOptions,
     active: boolean,
     backend: 'worker' | 'responsive',
+    stats: ArtRendererCacheStats,
   ) => void
-  onProgress: (progress: number) => void
+  onProgress: (progress: number, phase?: 'drawing' | 'interaction') => void
   onFallback: () => void
   onError: (error: unknown) => void
   onSettled?: () => void
@@ -86,7 +87,7 @@ export function createPreviewRenderClient(target: HTMLCanvasElement, callbacks: 
     renderMs = elapsed
     interactionActive = active
     cacheStats = stats
-    callbacks.onResult(request.frame, request.options, active, backend)
+    callbacks.onResult(request.frame, request.options, active, backend, stats)
   }
 
   const drawCompatibility = async (request: Request) => {
@@ -107,6 +108,10 @@ export function createPreviewRenderClient(target: HTMLCanvasElement, callbacks: 
           if (current(request)) callbacks.onProgress(completed / total)
         },
         abort,
+        (progress) => {
+          if (current(request))
+            callbacks.onProgress(progress.completedSeconds / progress.totalSeconds, 'interaction')
+        },
       )
       if (abort()) return
       staging.getContext('2d')!.getImageData(0, 0, 1, 1)
@@ -175,8 +180,8 @@ export function createPreviewRenderClient(target: HTMLCanvasElement, callbacks: 
           callbacks.onFallback()
           pump()
         },
-        (progress) => {
-          if (running && current(running)) callbacks.onProgress(progress)
+        (progress, _frame, _options, phase) => {
+          if (running && current(running)) callbacks.onProgress(progress, phase)
         },
       )
       if (!worker) {

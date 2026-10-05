@@ -36,6 +36,13 @@ export type ArtFluidFieldSample = {
   active: boolean
 }
 
+/** Real elapsed interaction interval processed before character drawing starts. */
+export type ArtInteractionRenderProgress = {
+  completedSeconds: number
+  totalSeconds: number
+  completedSteps: number
+}
+
 /** Portable factory keeps the matching literal inside; integration checks enforce agreement. */
 export const ART_PARTICLE_MAX_CELLS = 131072
 
@@ -1723,7 +1730,7 @@ export function createCanvasArtRenderer(
 
   // Shared by ordinary Canvas, the area raster and the offline HTML runtime.
   // Positions change; glyph orientation, indices and phrase order never change.
-  function effects(options: ArtRenderOptions, w: number, h: number) {
+  function* effects(options: ArtRenderOptions, w: number, h: number) {
     const motion = options.motion ?? 'none',
       hover = options.hover ?? 'displace'
     const expressive =
@@ -1766,37 +1773,99 @@ export function createCanvasArtRenderer(
       }
       interactionMode = fieldMode
       interaction.configure(fieldMode, strength, options.hoverRadius ?? 0.38, false)
-      for (const sample of options.pointerSamples?.slice(-128) ?? []) {
-        if (!sample.active) {
+      const gap = interactionTime - interactionClock
+      if (
+        hover === 'particles' &&
+        interactionClock >= 0 &&
+        gap > 0.25 &&
+        Number.isFinite(interactionTime) &&
+        interactionTime <= 1e9
+      ) {
+        const startClock = interactionClock
+        let clock = startClock,
+          steps = 0,
+          sliceStart = performance.now()
+        const field = interaction
+        function* advanceTo(end: number) {
+          while (end - clock > 1e-8 && (field.active || particlePresentation.active)) {
+            const step = Math.min(0.05, end - clock)
+            field.step(step)
+            clock += step
+            particlePresentation.prepare(sampleFluidField, frame, strength, w, h, clock)
+            steps++
+            if (performance.now() - sliceStart >= 8) {
+              yield {
+                completedSeconds: Math.min(gap, Math.max(0, clock - startClock)),
+                totalSeconds: gap,
+                completedSteps: steps,
+              }
+              sliceStart = performance.now()
+            }
+          }
+          // A quiet interval needs no PDE steps, but the spring clock still advances.
+          clock = end
+          particlePresentation.prepare(sampleFluidField, frame, strength, w, h, clock)
+        }
+        for (const sample of options.pointerSamples?.slice(-128) ?? []) {
+          if (!Number.isFinite(sample.x + sample.y + sample.time)) continue
+          yield* advanceTo(clamp(sample.time / 1000, clock, interactionTime))
+          if (!sample.active) {
+            field.leave()
+            interactionPointer = null
+          } else {
+            field.move(clamp(sample.x, 0, 1), clamp(sample.y, 0, 1), sample.time)
+            interactionPointer = { x: sample.x, y: sample.y }
+          }
+        }
+        const active = pointer.active ?? pointer.strength > 0.001
+        if (
+          active &&
+          (!interactionPointer ||
+            pointer.x !== interactionPointer.x ||
+            pointer.y !== interactionPointer.y)
+        ) {
+          yield* advanceTo(interactionTime)
+          field.move(pointer.x, pointer.y, interactionTime * 1000)
+          interactionPointer = { x: pointer.x, y: pointer.y }
+        } else if (!active && interactionPointer) {
+          field.leave()
+          interactionPointer = null
+        }
+        yield* advanceTo(interactionTime)
+        interactionClock = interactionTime
+      } else {
+        for (const sample of options.pointerSamples?.slice(-128) ?? []) {
+          if (!sample.active) {
+            interaction.leave()
+            interactionPointer = null
+          } else if (Number.isFinite(sample.x + sample.y + sample.time)) {
+            interaction.move(clamp(sample.x, 0, 1), clamp(sample.y, 0, 1), sample.time)
+            interactionPointer = { x: sample.x, y: sample.y }
+          }
+        }
+        const active = pointer.active ?? pointer.strength > 0.001
+        if (
+          active &&
+          (!interactionPointer ||
+            pointer.x !== interactionPointer.x ||
+            pointer.y !== interactionPointer.y)
+        ) {
+          interaction.move(pointer.x, pointer.y, interactionTime * 1000)
+          interactionPointer = { x: pointer.x, y: pointer.y }
+        } else if (!active && interactionPointer) {
           interaction.leave()
           interactionPointer = null
-        } else if (Number.isFinite(sample.x + sample.y + sample.time)) {
-          interaction.move(clamp(sample.x, 0, 1), clamp(sample.y, 0, 1), sample.time)
-          interactionPointer = { x: sample.x, y: sample.y }
         }
+        let delta = interactionClock < 0 ? 1 / 60 : Math.max(0, interactionTime - interactionClock)
+        // Keep ordinary frames and the other Studio effects on their existing bounded clock.
+        delta = Math.min(0.25, delta)
+        while (delta > 1e-8) {
+          const step = Math.min(0.05, delta)
+          interaction.step(step)
+          delta -= step
+        }
+        interactionClock = interactionTime
       }
-      const active = pointer.active ?? pointer.strength > 0.001
-      if (
-        active &&
-        (!interactionPointer ||
-          pointer.x !== interactionPointer.x ||
-          pointer.y !== interactionPointer.y)
-      ) {
-        interaction.move(pointer.x, pointer.y, interactionTime * 1000)
-        interactionPointer = { x: pointer.x, y: pointer.y }
-      } else if (!active && interactionPointer) {
-        interaction.leave()
-        interactionPointer = null
-      }
-      let delta = interactionClock < 0 ? 1 / 60 : Math.max(0, interactionTime - interactionClock)
-      // Same fixed-step solver as Studio; catch up slow frames without dropping elapsed time.
-      delta = Math.min(0.25, delta)
-      while (delta > 1e-8) {
-        const step = Math.min(0.05, delta)
-        interaction.step(step)
-        delta -= step
-      }
-      interactionClock = interactionTime
     } else {
       interaction?.clear()
       interactionPointer = null
@@ -1996,7 +2065,10 @@ export function createCanvasArtRenderer(
     }
   }
 
-  function renderGlow(effect: ReturnType<typeof effects>, w: number, h: number) {
+  type CanvasEffects =
+    ReturnType<typeof effects> extends Generator<unknown, infer Result, unknown> ? Result : never
+
+  function renderGlow(effect: CanvasEffects, w: number, h: number) {
     if (!effect.expressive || !effect.needsGlow) return
     // One bounded glyph-mask surface; no photographic layer or per-glyph blur.
     const scale = Math.min(1, 1536 / Math.max(w, h))
@@ -2163,12 +2235,7 @@ export function createCanvasArtRenderer(
     return result
   }
 
-  function renderSoftware(
-    options: ArtRenderOptions,
-    w: number,
-    h: number,
-    effect: ReturnType<typeof effects>,
-  ) {
+  function renderSoftware(options: ArtRenderOptions, w: number, h: number, effect: CanvasEffects) {
     if (softwareGlyphs !== frame.glyphs) {
       prefixes.clear()
       softwareMasks.clear()
@@ -2336,7 +2403,7 @@ export function createCanvasArtRenderer(
       target.width = w
       target.height = h
     }
-    const effect = effects(options, w, h)
+    const effect = yield* effects(options, w, h)
     if (
       frame.settings.softwareRaster &&
       (frame.settings.mode === 'color' ||
@@ -2472,6 +2539,7 @@ export function createCanvasArtRenderer(
       options: ArtRenderOptions = {},
       onProgress?: (completedCells: number, totalCells: number) => void,
       shouldAbort?: () => boolean,
+      onInteractionProgress?: (progress: ArtInteractionRenderProgress) => void,
     ) {
       const steps = renderSteps(next, options)
       const advance = () => {
@@ -2485,8 +2553,10 @@ export function createCanvasArtRenderer(
       while (!result.done) {
         // Drain queued GPU work inside the worker before yielding. Otherwise a
         // large final readback can stall the browser compositor despite the worker.
-        outputCtx.getImageData(0, 0, 1, 1)
-        onProgress?.(result.value, next.columns * next.rows)
+        if (typeof result.value === 'number') {
+          outputCtx.getImageData(0, 0, 1, 1)
+          onProgress?.(result.value, next.columns * next.rows)
+        } else onInteractionProgress?.(result.value)
         await new Promise<void>((resolve) => setTimeout(resolve, 0))
         result = advance()
       }

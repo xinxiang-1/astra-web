@@ -1,6 +1,17 @@
 import type { ArtFrame, ArtRenderOptions } from './types'
 import type { FrameRenderRequest, FrameRenderResponse } from './frame-render-protocol'
 
+const hasInteractionClock = (frame: ArtFrame, options: ArtRenderOptions) =>
+  Boolean(options.pointer) &&
+  (options.hoverStrength ?? options.pointer?.strength ?? 0) > 0 &&
+  !(options.hover === 'particles' && frame.columns * frame.rows > 131072) &&
+  (options.effectProfile === 'expressive' ||
+    options.motionStyle === 'cinematic' ||
+    ['current', 'reform', 'caustics'].includes(options.motion ?? '') ||
+    ['trail', 'rift', 'particles', 'water', 'silk', 'vortex', 'contour', 'dissolve'].includes(
+      options.hover ?? '',
+    ))
+
 export function createFrameRenderWorker(
   onResult: (
     result: Extract<FrameRenderResponse, { bitmap: ImageBitmap }>,
@@ -8,7 +19,12 @@ export function createFrameRenderWorker(
     options: ArtRenderOptions,
   ) => void,
   onError: () => void,
-  onProgress?: (progress: number, frame: ArtFrame, options: ArtRenderOptions) => void,
+  onProgress?: (
+    progress: number,
+    frame: ArtFrame,
+    options: ArtRenderOptions,
+    phase: 'drawing' | 'interaction',
+  ) => void,
 ) {
   if (typeof Worker === 'undefined' || typeof OffscreenCanvas === 'undefined') return null
   let worker: Worker
@@ -27,6 +43,10 @@ export function createFrameRenderWorker(
   let renderMs = 0,
     interactionActive = false,
     completedCells = 0
+  let previousClock: number | null = null,
+    expectedInteractionSeconds: number | null = null
+  let interactionSteps = 0,
+    interactionSeconds = 0
   let watchdog: ReturnType<typeof setTimeout> | undefined
   const dispose = () => {
     stopped = true
@@ -34,6 +54,7 @@ export function createFrameRenderWorker(
     sentFrame = null
     sentOptions = null
     atlas = null
+    previousClock = expectedInteractionSeconds = null
     worker.terminate()
     clearTimeout(watchdog)
   }
@@ -62,6 +83,18 @@ export function createFrameRenderWorker(
       sentFrame = next.frame
       sentOptions = next.options
       completedCells = 0
+      interactionSteps = interactionSeconds = 0
+      const clock = next.options.hoverTime ?? next.options.time ?? 0
+      expectedInteractionSeconds =
+        next.options.hover === 'particles' &&
+        hasInteractionClock(next.frame, next.options) &&
+        previousClock !== null &&
+        previousClock >= 0 &&
+        Number.isFinite(clock) &&
+        clock <= 1e9 &&
+        clock - previousClock > 0.25
+          ? clock - previousClock
+          : null
       busy = true
       worker.postMessage(request)
       watchdog = setTimeout(fail, 12000)
@@ -77,6 +110,40 @@ export function createFrameRenderWorker(
     const result = event.data
     if ('error' in result) {
       fail()
+      return
+    }
+    if ('completedSteps' in result) {
+      if (
+        !stopped &&
+        busy &&
+        result.id === id &&
+        sentFrame &&
+        sentOptions &&
+        expectedInteractionSeconds !== null &&
+        completedCells === 0 &&
+        result.totalSeconds === expectedInteractionSeconds &&
+        Number.isInteger(result.completedSteps) &&
+        result.completedSteps > interactionSteps &&
+        result.completedSteps <= Math.ceil(expectedInteractionSeconds / 0.05) + 256 &&
+        Number.isFinite(result.completedSeconds) &&
+        result.completedSeconds > interactionSeconds &&
+        result.completedSeconds <= result.totalSeconds
+      ) {
+        interactionSteps = result.completedSteps
+        interactionSeconds = result.completedSeconds
+        clearTimeout(watchdog)
+        watchdog = setTimeout(fail, 12000)
+        try {
+          onProgress?.(
+            interactionSeconds / result.totalSeconds,
+            sentFrame,
+            sentOptions,
+            'interaction',
+          )
+        } catch {
+          fail()
+        }
+      }
       return
     }
     if ('completedCells' in result) {
@@ -97,7 +164,7 @@ export function createFrameRenderWorker(
         clearTimeout(watchdog)
         watchdog = setTimeout(fail, 12000)
         try {
-          onProgress?.(completedCells / result.totalCells, sentFrame, sentOptions)
+          onProgress?.(completedCells / result.totalCells, sentFrame, sentOptions, 'drawing')
         } catch {
           fail()
         }
@@ -114,6 +181,9 @@ export function createFrameRenderWorker(
     interactionActive = result.interactionActive
     const renderedFrame = sentFrame
     const renderedOptions = sentOptions
+    previousClock = hasInteractionClock(renderedFrame, renderedOptions)
+      ? (renderedOptions.hoverTime ?? renderedOptions.time ?? 0)
+      : null
     sentFrame = null
     sentOptions = null
     try {

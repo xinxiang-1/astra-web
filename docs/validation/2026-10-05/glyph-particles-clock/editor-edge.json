@@ -1,0 +1,619 @@
+{
+  "browser": "154.0.4258.53",
+  "base": "http://127.0.0.1:5184",
+  "production": true,
+  "errors": [],
+  "desktop": [
+    {
+      "label": "光影字符",
+      "peak": 0.10863467440381457,
+      "bytes": 1526400,
+      "visibleScatter": true,
+      "exactRecovery": true,
+      "gestureStartMs": 1976.4000000953674,
+      "recoveredMs": 7334.5,
+      "frameTrace": [
+        {
+          "wallMs": 2123.8000000715256,
+          "clock": 2.032700000047684,
+          "peak": 0,
+          "pointerStrength": 0.07295240861572443,
+          "active": "false"
+        },
+        {
+          "wallMs": 2394.8000000715256,
+          "clock": 2.1162000000476837,
+          "peak": 0.029396227516484116,
+          "pointerStrength": 0.33179943653236627,
+          "active": "true"
+        },
+        {
+          "wallMs": 2584.9000000953674,
+          "clock": 2.3661000000238417,
+          "peak": 0.10522672155347704,
+          "pointerStrength": 0.5966450049664757,
+          "active": "true"
+        },
+        {
+          "wallMs": 2761.7000000476837,
+          "clock": 2.566200000047684,
+          "peak": 0.10863467440381457,
+          "pointerStrength": 0.6372072080078284,
+          "active": "true"
+        },
+        {
+          "wallMs": 2935.7000000476837,
+          "clock": 2.7329000000953676,
+          "peak": 0.1065173551330804,
+          "pointerStrength": 0.6461118839133029,
+          "active": "true"
+        },
+        {
+          "wallMs": 3119.7000000476837,
+          "clock": 2.9669000000953676,
+          "peak": 0.10953337189945468,
+          "pointerStrength": 0.6492651084921377,
+          "active": "true"
+        },
+        {
+          "wallMs": 3306.4000000953674,
+          "clock": 3.166,
+          "peak": 0.09228440552391144,
+          "pointerStrength": 0.15548595510488927,
+          "active": "true"
+        },
+        {
+          "wallMs": 3478.5,
+          "clock": 3.3494000000953674,
+          "peak": 0.06657627245857885,
+          "pointerStrength": 0.04198320647059781,
+          "active": "true"
+        },
+        {
+          "wallMs": 3634,
+          "clock": 3.516100000023842,
+          "peak": 0.04605188124798815,
+          "pointerStrength": 0.012772184142058704,
+          "active": "true"
+        },
+        {
+          "wallMs": 3779.5,
+          "clock": 3.6659000000953674,
+          "peak": 0.03507798314161482,
+          "pointerStrength": 0.0043747138893755,
+          "active": "true"
+        },
+        {
+          "wallMs": 3933.8000000715256,
+          "clock": 3.816,
+          "peak": 0.027051752688815434,
+          "pointerStrength": 0.001498421992748541,
+          "active": "true"
+        },
+        {
+          "wallMs": 4087.7000000476837,
+          "clock": 3.966,
+          "peak": 0.020470017305140968,
+          "pointerStrength": 0,
+          "active": "true"
+        },
+        {
+          "wallMs": 4249.300000071526,
+          "clock": 4.1327000000476835,
+          "peak": 0.014185682577472627,
+          "pointerStrength": 0,
+          "active": "true"
+        },
+        {
+          "wallMs": 4413.5,
+          "clock": 4.282700000047684,
+          "peak": 0.00994217279119746,
+          "pointerStrength": 0,
+          "active": "true"
+        },
+        {
+          "wallMs": 4588.400000095367,
+          "clock": 4.449300000071526,
+          "peak": 0.006503153647528372,
+          "pointerStrength": 0,
+          "active": "true"
+        },
+        {
+          "wallMs": 4778.300000071526,
+          "clock": 4.633100000023842,
+          "peak": 0.0036152712772877563,
+          "pointerStrength": 0,
+          "active": "true"
+        },
+        {
+          "wallMs": 4956.900000095367,
+          "clock": 4.816,
+          "peak": 0.0020759229932760803,
+          "pointerStrength": 0,
+          "active": "true"
+        },
+        {
+          "wallMs": 5143.700000047684,
+          "clock": 4.999300000071526,
+          "peak": 0.0013347016240642024,
+          "pointerStrength": 0,
+          "active": "true"
+        },
+        {
+          "wallMs": 5320.300000071526,
+          "clock": 5.182600000023842,
+          "peak": 0.000889666275749631,
+          "pointerStrength": 0,
+          "active": "true"
+        },
+        {
+          "wallMs": 5505.400000095367,
+          "clock": 5.366,
+          "peak": 0.0005943257194768704,
+          "pointerStrength": 0,
+          "active": "true"
+        },
+        {
+          "wallMs": 5683.300000071526,
+          "clock": 5.549400000095368,
+          "peak": 0.0004017395924978507,
+          "pointerStrength": 0,
+          "active": "true"
+        },
+        {
+          "wallMs": 5853.200000047684,
+          "clock": 5.715900000095368,
+          "peak": 0.00028929957791143824,
+          "pointerStrength": 0,
+          "active": "true"
+        },
+        {
+          "wallMs": 6059,
+          "clock": 5.899300000071525,
+          "peak": 0.0002022084631706178,
+          "pointerStrength": 0,
+          "active": "true"
+        },
+        {
+          "wallMs": 6243.400000095367,
+          "clock": 6.099300000071525,
+          "peak": 0.00013032084552571882,
+          "pointerStrength": 0,
+          "active": "true"
+        },
+        {
+          "wallMs": 6415,
+          "clock": 6.2825,
+          "peak": 0.00008358659803545682,
+          "pointerStrength": 0,
+          "active": "true"
+        },
+        {
+          "wallMs": 6573.200000047684,
+          "clock": 6.449200000047684,
+          "peak": 0.00005351790665305574,
+          "pointerStrength": 0,
+          "active": "true"
+        },
+        {
+          "wallMs": 6737,
+          "clock": 6.615800000071525,
+          "peak": 0.00003352012381937247,
+          "pointerStrength": 0,
+          "active": "true"
+        },
+        {
+          "wallMs": 6892.5,
+          "clock": 6.7825,
+          "peak": 0.00002128620223013321,
+          "pointerStrength": 0,
+          "active": "true"
+        },
+        {
+          "wallMs": 7041.300000071526,
+          "clock": 6.9325,
+          "peak": 0.000014623648647245844,
+          "pointerStrength": 0,
+          "active": "true"
+        },
+        {
+          "wallMs": 7196.300000071526,
+          "clock": 7.082600000023842,
+          "peak": 0.000010649877985228368,
+          "pointerStrength": 0,
+          "active": "true"
+        },
+        {
+          "wallMs": 7318.5,
+          "clock": 7.232600000023842,
+          "peak": 0.000010649877985228368,
+          "pointerStrength": 0,
+          "active": "false"
+        }
+      ]
+    },
+    {
+      "label": "原色字符",
+      "peak": 0.10547538671821048,
+      "bytes": 1526400,
+      "visibleScatter": true,
+      "exactRecovery": true,
+      "gestureStartMs": 8469.600000023842,
+      "recoveredMs": 15917.600000023842,
+      "frameTrace": [
+        {
+          "wallMs": 9307.900000095367,
+          "clock": 8.532400000095368,
+          "peak": 0,
+          "pointerStrength": 0.07295240861572443,
+          "active": "false"
+        },
+        {
+          "wallMs": 10374.200000047684,
+          "clock": 9.216100000023841,
+          "peak": 0.10547538671821048,
+          "pointerStrength": 0.6456224195091361,
+          "active": "true"
+        },
+        {
+          "wallMs": 11655.600000023842,
+          "clock": 10.5495,
+          "peak": 0.013640584369637053,
+          "pointerStrength": 0.6499996797347408,
+          "active": "true"
+        },
+        {
+          "wallMs": 13045.600000023842,
+          "clock": 11.932300000071525,
+          "peak": 0.00044324859640213404,
+          "pointerStrength": 0,
+          "active": "true"
+        },
+        {
+          "wallMs": 14645.600000023842,
+          "clock": 13.332300000071525,
+          "peak": 0.000021671383218795655,
+          "pointerStrength": 0,
+          "active": "true"
+        },
+        {
+          "wallMs": 15909.900000095367,
+          "clock": 14.982200000047683,
+          "peak": 0.000010887491370265846,
+          "pointerStrength": 0,
+          "active": "false"
+        }
+      ]
+    },
+    {
+      "label": "中文铺字",
+      "peak": 0.10555619069551121,
+      "bytes": 2750400,
+      "visibleScatter": true,
+      "exactRecovery": true,
+      "gestureStartMs": 17082.800000071526,
+      "recoveredMs": 24533.800000071526,
+      "frameTrace": [
+        {
+          "wallMs": 18069.400000095367,
+          "clock": 17.148800000071525,
+          "peak": 0,
+          "pointerStrength": 0.07295240861572443,
+          "active": "false"
+        },
+        {
+          "wallMs": 19301.300000071526,
+          "clock": 17.865800000071527,
+          "peak": 0.10555619069551121,
+          "pointerStrength": 0.6465466205052806,
+          "active": "true"
+        },
+        {
+          "wallMs": 20823.600000023842,
+          "clock": 19.4155,
+          "peak": 0.010153102020945624,
+          "pointerStrength": 0.6499999462604308,
+          "active": "true"
+        },
+        {
+          "wallMs": 21627.400000095367,
+          "clock": 19.483,
+          "peak": 0.008480388479923644,
+          "pointerStrength": 0.4034579544658972,
+          "active": "true"
+        },
+        {
+          "wallMs": 23205.400000095367,
+          "clock": 21.649,
+          "peak": 0.000050763194297788126,
+          "pointerStrength": 0,
+          "active": "true"
+        },
+        {
+          "wallMs": 24530,
+          "clock": 23.598700000047685,
+          "peak": 0.00001543788187077101,
+          "pointerStrength": 0,
+          "active": "false"
+        }
+      ]
+    },
+    {
+      "label": "轮廓线稿",
+      "peak": 0.1041485976597303,
+      "bytes": 1526400,
+      "visibleScatter": true,
+      "exactRecovery": true,
+      "gestureStartMs": 25303.5,
+      "recoveredMs": 32117.400000095367,
+      "frameTrace": [
+        {
+          "wallMs": 25974.300000071526,
+          "clock": 25.348600000023843,
+          "peak": 0,
+          "pointerStrength": 0.07295240861572443,
+          "active": "false"
+        },
+        {
+          "wallMs": 26891,
+          "clock": 25.932300000071525,
+          "peak": 0.1041485976597303,
+          "pointerStrength": 0.641051408260061,
+          "active": "true"
+        },
+        {
+          "wallMs": 27601.5,
+          "clock": 26.032300000071526,
+          "peak": 0.10205647936707211,
+          "pointerStrength": 0.6456192915489327,
+          "active": "true"
+        },
+        {
+          "wallMs": 28573.600000023842,
+          "clock": 27.065700000047684,
+          "peak": 0.03790850511113514,
+          "pointerStrength": 0,
+          "active": "true"
+        },
+        {
+          "wallMs": 29659.300000071526,
+          "clock": 28.598800000071524,
+          "peak": 0.0007376529574939259,
+          "pointerStrength": 0,
+          "active": "true"
+        },
+        {
+          "wallMs": 30895.400000095367,
+          "clock": 29.931900000095368,
+          "peak": 0.000039476737247014176,
+          "pointerStrength": 0,
+          "active": "true"
+        },
+        {
+          "wallMs": 32115.300000071526,
+          "clock": 31.1485,
+          "peak": 0.000011891625984986091,
+          "pointerStrength": 0,
+          "active": "false"
+        }
+      ]
+    },
+    {
+      "label": "点阵细节",
+      "peak": 0.10769693076599494,
+      "bytes": 1526400,
+      "visibleScatter": true,
+      "exactRecovery": true,
+      "gestureStartMs": 32893.200000047684,
+      "recoveredMs": 39766.40000009537,
+      "frameTrace": [
+        {
+          "wallMs": 33462.5,
+          "clock": 32.931800000071526,
+          "peak": 0,
+          "pointerStrength": 0.07295240861572443,
+          "active": "false"
+        },
+        {
+          "wallMs": 34225.300000071526,
+          "clock": 33.432200000047686,
+          "peak": 0.10769693076599494,
+          "pointerStrength": 0.633771985650999,
+          "active": "true"
+        },
+        {
+          "wallMs": 34768.5,
+          "clock": 33.64860000002384,
+          "peak": 0.1019649837798872,
+          "pointerStrength": 0.6465482481433547,
+          "active": "true"
+        },
+        {
+          "wallMs": 35530,
+          "clock": 34.39870000004768,
+          "peak": 0.05253813286105681,
+          "pointerStrength": 0.0030494961999194383,
+          "active": "true"
+        },
+        {
+          "wallMs": 36476,
+          "clock": 35.54830000007153,
+          "peak": 0.0042321832408330215,
+          "pointerStrength": 0,
+          "active": "true"
+        },
+        {
+          "wallMs": 37678.60000002384,
+          "clock": 36.715,
+          "peak": 0.0002574871403522685,
+          "pointerStrength": 0,
+          "active": "true"
+        },
+        {
+          "wallMs": 38809.90000009537,
+          "clock": 37.9315,
+          "peak": 0.000018340481290367837,
+          "pointerStrength": 0,
+          "active": "true"
+        },
+        {
+          "wallMs": 39752.60000002384,
+          "clock": 39.03160000002384,
+          "peak": 0.00001157305294287997,
+          "pointerStrength": 0,
+          "active": "false"
+        }
+      ]
+    },
+    {
+      "label": "印刷网点",
+      "peak": 0.10792015832452695,
+      "bytes": 1526400,
+      "visibleScatter": true,
+      "exactRecovery": true,
+      "gestureStartMs": 40637.90000009537,
+      "recoveredMs": 47450,
+      "frameTrace": [
+        {
+          "wallMs": 41374.700000047684,
+          "clock": 40.681400000095365,
+          "peak": 0,
+          "pointerStrength": 0.07295240861572443,
+          "active": "false"
+        },
+        {
+          "wallMs": 42435.5,
+          "clock": 41.3315,
+          "peak": 0.10792015832452695,
+          "pointerStrength": 0.6444442188761741,
+          "active": "true"
+        },
+        {
+          "wallMs": 43235.5,
+          "clock": 41.38220000004768,
+          "peak": 0.10459586447206026,
+          "pointerStrength": 0.6461091056954241,
+          "active": "true"
+        },
+        {
+          "wallMs": 44453.10000002384,
+          "clock": 42.6315,
+          "peak": 0.02241770628127744,
+          "pointerStrength": 0,
+          "active": "true"
+        },
+        {
+          "wallMs": 45779.300000071526,
+          "clock": 44.48160000002384,
+          "peak": 0.00032250264116749335,
+          "pointerStrength": 0,
+          "active": "true"
+        },
+        {
+          "wallMs": 47440.90000009537,
+          "clock": 46.1145,
+          "peak": 0.00001622072286128478,
+          "pointerStrength": 0,
+          "active": "false"
+        }
+      ]
+    }
+  ],
+  "touch": [
+    {
+      "id": "mobile editor",
+      "touchAction": "none",
+      "trace": {
+        "down": 1,
+        "move": 10,
+        "up": 1,
+        "cancel": 0
+      },
+      "baselineSize": {
+        "width": 287,
+        "height": 359
+      },
+      "visibleScatter": true,
+      "exactRecovery": true
+    },
+    {
+      "id": "mobile fullscreen",
+      "touchAction": "none",
+      "trace": {
+        "down": 1,
+        "move": 10,
+        "up": 1,
+        "cancel": 0
+      },
+      "baselineSize": {
+        "width": 358,
+        "height": 447
+      },
+      "visibleScatter": true,
+      "exactRecovery": true
+    },
+    {
+      "id": "offline mobile",
+      "touchAction": "none",
+      "trace": {
+        "down": 1,
+        "move": 10,
+        "up": 1,
+        "cancel": 0
+      },
+      "baselineSize": {
+        "width": 531,
+        "height": 664
+      },
+      "visibleScatter": true,
+      "exactRecovery": true
+    }
+  ],
+  "passed": true,
+  "sourceHashes": {
+    "src/lib/art-engine/canvas.ts": "c9a2ba4f1481ea15978cc8fa3bc42b89f9fa94c281794a7fd98378cca500bca5",
+    "src/lib/art-engine/frame-render-client.ts": "2eb9a1efe09c18afb78272fd5e671a61a5bca20d64975230435d6e510eb8465f",
+    "src/lib/art-engine/frame-render.worker.ts": "8563ced8b3844b78f1b9d3535faf8db484d59c85217440e01bc9a8f0162a09dc",
+    "src/lib/art-engine/preview-render-client.ts": "20dc317a7d1b9f10122f96c204486db2c4357c795c68c0deb3dc2f430e1f2b69",
+    "src/lib/art-engine/embed.ts": "d0973a363f9110a0571e28e479d848e53785ea32c9288d0c8f56f8eb565e2b18",
+    "src/views/AsciiArtView.vue": "ac869326110cb298b6107b6e6083e3050fb2574f5f1b231fb212e420c4c8ad2f",
+    "scripts/glyph-particles-editor-contract.mjs": "20f4ca07f3d14afa21ea648a5e7b084932d533e13acb21a7269708d6310d1bc4"
+  },
+  "recording": {
+    "mime": "video/webm;codecs=vp9",
+    "width": 571,
+    "height": 713,
+    "requestedFrameRate": 30,
+    "elapsedMs": 5391.799999952316,
+    "bytes": 294888,
+    "sha256": "37e1ea98f983be42f6126d88d6a53a77846aee9f1c7ebc4c62c254aac417ee2b",
+    "source": "Actual editor Canvas with real Playwright mouse input; exported MP4 does not record an interaction track"
+  },
+  "fullscreen": {
+    "interactive": true,
+    "released": true,
+    "fullscreenWorkers": 2,
+    "remainingWorkers": 1,
+    "exactMainRecovery": true,
+    "exactFullscreenRecovery": true
+  },
+  "pause": {
+    "ambientFrozen": true,
+    "hoverContinues": true
+  },
+  "reducedMotion": {
+    "static": true,
+    "scrollAllowed": true
+  },
+  "offline": {
+    "hover": "particles",
+    "networkRequests": 0,
+    "htmlSha256": "989df2786b1b6a7296465d384112d9c4fd1f15f230265063fd61f5998ac3c326"
+  },
+  "videoWorker": {
+    "backend": "worker",
+    "hover": "particles",
+    "time": 1.225318
+  },
+  "routeReleased": true
+}

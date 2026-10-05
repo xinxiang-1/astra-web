@@ -1,0 +1,82 @@
+{
+  "browser": "154.0.8037.57",
+  "passed": false,
+  "scope": "Algorithm-only alpha-zero fixture and real Worker phase contract; actual page/Canvas quality is checked separately",
+  "result": {
+    "cases": [
+      {
+        "kind": "fast-frozen",
+        "maxStateDelta": 0
+      },
+      {
+        "kind": "released-gap",
+        "gap": 1,
+        "maxStateDelta": 0,
+        "responsiveStateDelta": 0,
+        "oldPeak": 0.09427206596738234,
+        "newPeak": 0.04870708111974648,
+        "finePeak": 0.04870708111974648,
+        "workerPeakDelta": 0,
+        "active": true,
+        "phaseMessages": 10,
+        "completedSteps": 19,
+        "timerCount": 5,
+        "timerMax": 48.90000009536743
+      },
+      {
+        "kind": "released-gap",
+        "gap": 2,
+        "maxStateDelta": 8.731149137020111e-11,
+        "responsiveStateDelta": 0,
+        "oldPeak": 0.10336983215527822,
+        "newPeak": 0.00019694047545627103,
+        "finePeak": 0.00019694047545627103,
+        "workerPeakDelta": 0,
+        "active": true,
+        "phaseMessages": 20,
+        "completedSteps": 39,
+        "timerCount": 13,
+        "timerMax": 35.60000002384186
+      },
+      {
+        "kind": "released-gap",
+        "gap": 5,
+        "maxStateDelta": 4.547473508864641e-13,
+        "responsiveStateDelta": 0,
+        "oldPeak": 0.07175599254712507,
+        "newPeak": 0.00000298000405663625,
+        "finePeak": 0.00000298000405663625,
+        "workerPeakDelta": 0,
+        "active": false,
+        "phaseMessages": 20,
+        "completedSteps": 37,
+        "timerCount": 13,
+        "timerMax": 32.10000002384186
+      },
+      {
+        "kind": "timestamp-replay",
+        "maxStateDelta": 1.0658141036401503e-14,
+        "newPeak": 0.10894819680319888
+      }
+    ],
+    "cancel": {
+      "cancelled": true,
+      "timerFiredDuringSimulation": true
+    },
+    "extreme": {
+      "durationMs": 3.6999999284744263,
+      "finite": true
+    },
+    "workerObservedPhases": [
+      "interaction"
+    ]
+  },
+  "failure": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert(report.result.cases.filter(c => c.kind === 'released-gap').every(c => c.responsiveStateDelta === 0 && c.workerPeakDelta === 0 && c.phaseMessages > 0 && c.timerCount > 5 && c.timerMax < 200))\n\n    at file:///D:/my/project/astra/astra-web/scripts/particle-clock-contract.mjs:111:3",
+  "sourceHashes": {
+    "src/lib/art-engine/canvas.ts": "c9a2ba4f1481ea15978cc8fa3bc42b89f9fa94c281794a7fd98378cca500bca5",
+    "src/lib/art-engine/frame-render-client.ts": "2eb9a1efe09c18afb78272fd5e671a61a5bca20d64975230435d6e510eb8465f",
+    "src/lib/art-engine/frame-render.worker.ts": "8563ced8b3844b78f1b9d3535faf8db484d59c85217440e01bc9a8f0162a09dc",
+    "src/lib/art-engine/embed.ts": "d0973a363f9110a0571e28e479d848e53785ea32c9288d0c8f56f8eb565e2b18",
+    "src/views/AsciiArtView.vue": "ac869326110cb298b6107b6e6083e3050fb2574f5f1b231fb212e420c4c8ad2f"
+  }
+}

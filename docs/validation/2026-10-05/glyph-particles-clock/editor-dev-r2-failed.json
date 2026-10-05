@@ -1,0 +1,189 @@
+{
+  "browser": "154.0.8037.57",
+  "base": "http://127.0.0.1:5180",
+  "production": false,
+  "errors": [],
+  "desktop": [
+    {
+      "label": "光影字符",
+      "peak": 0.10739844690265708,
+      "bytes": 1526400,
+      "visibleScatter": true,
+      "exactRecovery": true,
+      "frameTrace": [
+        {
+          "wallMs": 5496.799999952316,
+          "clock": 4.829099999904632,
+          "peak": 0,
+          "pointerStrength": 0.07295240861572443,
+          "active": "false"
+        },
+        {
+          "wallMs": 6317,
+          "clock": 5.3258999999761585,
+          "peak": 0.10739844690265708,
+          "pointerStrength": 0.6333533256434994,
+          "active": "true"
+        },
+        {
+          "wallMs": 7537.099999904633,
+          "clock": 6.163099999904633,
+          "peak": 0.10560299778973141,
+          "pointerStrength": 0.6499569301644883,
+          "active": "true"
+        },
+        {
+          "wallMs": 8976.799999952316,
+          "clock": 7.188899999976158,
+          "peak": 0.019471175574028467,
+          "pointerStrength": 0,
+          "active": "true"
+        },
+        {
+          "wallMs": 10795.399999976158,
+          "clock": 8.716899999976158,
+          "peak": 0.0004803575813181825,
+          "pointerStrength": 0,
+          "active": "true"
+        },
+        {
+          "wallMs": 12359.399999976158,
+          "clock": 10.5145,
+          "peak": 0.000014800965659521383,
+          "pointerStrength": 0,
+          "active": "false"
+        }
+      ]
+    }
+  ],
+  "touch": [],
+  "passed": false,
+  "recording": {
+    "mime": "video/webm;codecs=vp9",
+    "width": 571,
+    "height": 713,
+    "requestedFrameRate": 30,
+    "elapsedMs": 7670.100000023842,
+    "bytes": 128649,
+    "sha256": "64b0acf085e985eb82be36c7dc7bb8c9cdb488d6246a0b4941738724157daed6",
+    "source": "Actual editor Canvas with real Playwright mouse input; exported MP4 does not record an interaction track"
+  },
+  "failure": "page.waitForFunction: Timeout 60000ms exceeded.\n    at D:\\my\\project\\astra\\astra-web\\scripts\\glyph-particles-editor-contract.mjs:140:14",
+  "failureFrameTrace": [
+    {
+      "wallMs": 19020,
+      "clock": 15.925799999952316,
+      "peak": 0,
+      "pointerStrength": 0.07295240861572443,
+      "active": "false"
+    },
+    {
+      "wallMs": 25905.199999928474,
+      "clock": 19.795899999976157,
+      "peak": 0.000164205957766675,
+      "pointerStrength": 0.6499999999994326,
+      "active": "true"
+    },
+    {
+      "wallMs": 32633.799999952316,
+      "clock": 27.448199999928473,
+      "peak": 0.000010095818182946555,
+      "pointerStrength": 0.65,
+      "active": "false"
+    },
+    {
+      "wallMs": 37810.199999928474,
+      "clock": 33.93079999995231,
+      "peak": 0.000010095818182946555,
+      "pointerStrength": 0.65,
+      "active": "false"
+    },
+    {
+      "wallMs": 42859.5,
+      "clock": 38.79479999995232,
+      "peak": 0.000010095818182946555,
+      "pointerStrength": 0.65,
+      "active": "false"
+    },
+    {
+      "wallMs": 46355.09999990463,
+      "clock": 43.88139999997616,
+      "peak": 0.000010095818182946555,
+      "pointerStrength": 0.65,
+      "active": "false"
+    },
+    {
+      "wallMs": 49152.699999928474,
+      "clock": 46.97819999992848,
+      "peak": 0.000010095818182946555,
+      "pointerStrength": 0.65,
+      "active": "false"
+    },
+    {
+      "wallMs": 53365.89999997616,
+      "clock": 49.711199999928475,
+      "peak": 0.000010095818182946555,
+      "pointerStrength": 0.65,
+      "active": "false"
+    },
+    {
+      "wallMs": 57427.89999997616,
+      "clock": 54.28169999992848,
+      "peak": 0.000010095818182946555,
+      "pointerStrength": 0.65,
+      "active": "false"
+    },
+    {
+      "wallMs": 61477.699999928474,
+      "clock": 58.21329999995232,
+      "peak": 0.000010095818182946555,
+      "pointerStrength": 0.65,
+      "active": "false"
+    },
+    {
+      "wallMs": 65470,
+      "clock": 62.294699999928476,
+      "peak": 0.000010095818182946555,
+      "pointerStrength": 0.65,
+      "active": "false"
+    },
+    {
+      "wallMs": 70905,
+      "clock": 66.26429999995231,
+      "peak": 0.000010095818182946555,
+      "pointerStrength": 0.65,
+      "active": "false"
+    },
+    {
+      "wallMs": 75205.39999997616,
+      "clock": 72.07929999995231,
+      "peak": 0.000010095818182946555,
+      "pointerStrength": 0.65,
+      "active": "false"
+    }
+  ],
+  "failureCanvas": {
+    "width": 571,
+    "height": 713,
+    "data": {
+      "v-4641f82a": "",
+      "renderPending": "true",
+      "engine": "calibrated",
+      "columns": "180",
+      "mode": "color",
+      "quality": "classic",
+      "time": "1.7999999999999996",
+      "motionStyle": "cinematic",
+      "interactionTime": "72.07929999995231",
+      "pointerStrength": "0.65",
+      "interactionActive": "false",
+      "particlePeak": "0.000010095818182946555",
+      "particleBytes": "1526400",
+      "hover": "particles",
+      "paused": "false",
+      "motion": "none",
+      "hoverStrength": "0.65",
+      "renderBackend": "worker"
+    }
+  }
+}

@@ -42,6 +42,7 @@ import {
   type PreviewRenderClient,
 } from '@/lib/art-engine/preview-render-client'
 import type { ArtRenderOptions } from '@/lib/art-engine/types'
+import type { ArtRendererCacheStats } from '@/lib/art-engine/canvas'
 import '@/styles/art-editor.css'
 
 import {
@@ -150,6 +151,7 @@ const loadingSource = ref(false)
 const videoBuffering = ref(false)
 const frameRendering = ref(false)
 const frameRenderProgress = ref(0)
+const frameRenderPhase = ref<'drawing' | 'interaction'>('drawing')
 const frameRenderFallback = ref(false)
 let frameFeedbackTimer: ReturnType<typeof setTimeout> | undefined
 const pending = computed(() => converting.value || loadingSource.value)
@@ -208,6 +210,7 @@ const artRenderers = new Map<HTMLCanvasElement, PreviewRenderClient>()
 const videoRenderers = new Map<HTMLCanvasElement, FrameRenderWorker>()
 const previewRenderKeys = new Map<HTMLCanvasElement, string>()
 const previewProgress = new Map<HTMLCanvasElement, number>()
+const previewRenderPhases = new Map<HTMLCanvasElement, 'drawing' | 'interaction'>()
 const failedVideoRenderers = new Set<HTMLCanvasElement>()
 const videoRenderBudget = () =>
   Math.max(
@@ -714,11 +717,13 @@ function destroyCalibratedRenderers() {
   videoRenderers.clear()
   previewRenderKeys.clear()
   previewProgress.clear()
+  previewRenderPhases.clear()
   failedVideoRenderers.clear()
   clearTimeout(frameFeedbackTimer)
   frameFeedbackTimer = undefined
   frameRendering.value = false
   frameRenderProgress.value = 0
+  frameRenderPhase.value = 'drawing'
   frameRenderFallback.value = false
 }
 
@@ -731,10 +736,17 @@ function updateRenderFeedback() {
     frameFeedbackTimer = undefined
     frameRendering.value = false
     frameRenderProgress.value = 0
+    frameRenderPhase.value = 'drawing'
     return
   }
+  const interactionTargets = targets.filter(
+    ([canvas]) => previewRenderPhases.get(canvas) === 'interaction',
+  )
+  frameRenderPhase.value = interactionTargets.length ? 'interaction' : 'drawing'
   frameRenderProgress.value = Math.min(
-    ...targets.map(([canvas]) => previewProgress.get(canvas) ?? 0),
+    ...(interactionTargets.length ? interactionTargets : targets).map(
+      ([canvas]) => previewProgress.get(canvas) ?? 0,
+    ),
   )
   if (!frameRendering.value && !frameFeedbackTimer)
     frameFeedbackTimer = setTimeout(() => {
@@ -753,6 +765,7 @@ function releasePreviewRenderer(canvas: HTMLCanvasElement) {
   failedVideoRenderers.delete(canvas)
   previewRenderKeys.delete(canvas)
   previewProgress.delete(canvas)
+  previewRenderPhases.delete(canvas)
   updateRenderFeedback()
 }
 
@@ -782,6 +795,7 @@ function queueCalibratedAnimation() {
   if (
     (artMotion.value === 'none' || artPaused.value || artMotionStrength.value === 0) &&
     (particleCapacityExceeded.value || (artPointer.strength < 0.002 && artPointer.target === 0)) &&
+    (artHover.value !== 'particles' || artPointerSamples.length === 0) &&
     ![...artRenderers.values(), ...videoRenderers.values()].some(
       (renderer) => renderer.interactionActive,
     )
@@ -791,19 +805,30 @@ function queueCalibratedAnimation() {
   }
   artAnimationRaf = requestAnimationFrame((now) => {
     artAnimationRaf = 0
+    const particleImage = artHover.value === 'particles' && !hasVideo.value
+    const freshInput = particleImage && artPointerSamples.length > 0
+    // Preserve the queued gesture's timestamp while a complete image is in flight.
+    // Idle ticks must not age unseen input until its frame has been presented.
+    if (particleImage && !freshInput && [...artRenderers.values()].some((r) => r.pending)) {
+      queueCalibratedAnimation()
+      return
+    }
     if (
       artLastTick &&
-      now - artLastTick < Math.max(1000 / 30, lastPaintMs * 2, videoRenderBudget())
+      now - artLastTick < Math.max(1000 / 30, lastPaintMs * 2, freshInput ? 0 : videoRenderBudget())
     ) {
       queueCalibratedAnimation()
       return
     }
-    const delta = artLastTick ? Math.min(0.15, (now - artLastTick) / 1000) : 0
+    const elapsed = artLastTick ? Math.max(0, (now - artLastTick) / 1000) : 0
+    const delta = Math.min(0.15, elapsed)
+    const pointerDelta = artHover.value === 'particles' ? elapsed : delta
     artLastTick = now
     if (!artPaused.value) artElapsed += delta
     artInteractionElapsed += delta
     artPointer.strength +=
-      (artPointer.target - artPointer.strength) * (1 - Math.exp(-Math.max(delta, 1 / 60) / 0.14))
+      (artPointer.target - artPointer.strength) *
+      (1 - Math.exp(-Math.max(pointerDelta, 1 / 60) / 0.14))
     if (!artPointer.target && artPointer.strength < 0.002) artPointer.strength = 0
     schedulePaint()
   })
@@ -2376,7 +2401,8 @@ function paintTo(
       longEdge: Math.max(cssWidth, cssHeight) * Math.min(2, devicePixelRatio || 1),
       motion: reducedArtMotion.value ? 'none' : artMotion.value,
       time: artElapsed,
-      hoverTime: artInteractionElapsed,
+      // Pointer event timestamps and this particle clock share the performance time origin.
+      hoverTime: artHover.value === 'particles' ? performance.now() / 1000 : artInteractionElapsed,
       effectProfile: artEffectProfile.value,
       motionSpeed: artMotionSpeed.value,
       motionStrength: artMotionStrength.value,
@@ -2398,6 +2424,7 @@ function paintTo(
           createFrameRenderWorker(
             (result, renderedFrame, renderedOptions) => {
               previewProgress.delete(canvas)
+              previewRenderPhases.delete(canvas)
               updateRenderFeedback()
               if (
                 viewDisposed ||
@@ -2417,7 +2444,13 @@ function paintTo(
               ctx.globalCompositeOperation = 'copy'
               ctx.drawImage(result.bitmap, 0, 0)
               ctx.globalCompositeOperation = 'source-over'
-              markArtCanvas(canvas, renderedFrame, renderedOptions, result.interactionActive)
+              markArtCanvas(
+                canvas,
+                renderedFrame,
+                renderedOptions,
+                result.interactionActive,
+                result.cacheStats,
+              )
               canvas.dataset.renderBackend = 'worker'
               queueCalibratedAnimation()
             },
@@ -2425,11 +2458,12 @@ function paintTo(
               videoRenderers.delete(canvas)
               failedVideoRenderers.add(canvas)
               previewProgress.delete(canvas)
+              previewRenderPhases.delete(canvas)
               updateRenderFeedback()
               frameRenderFallback.value = true
               schedulePaint()
             },
-            (progress, renderedFrame, renderedOptions) => {
+            (progress, renderedFrame, renderedOptions, phase) => {
               if (
                 !viewDisposed &&
                 !document.hidden &&
@@ -2440,6 +2474,7 @@ function paintTo(
                   artPreviewConfigKey(renderedFrame, renderedOptions)
               ) {
                 previewProgress.set(canvas, progress)
+                previewRenderPhases.set(canvas, phase)
                 updateRenderFeedback()
               }
             },
@@ -2468,15 +2503,17 @@ function paintTo(
           editorEngine.value === 'calibrated' &&
           renderedFrame === artFrame.value &&
           previewRenderKeys.get(canvas) === artPreviewConfigKey(renderedFrame, renderedOptions),
-        onResult: (renderedFrame, renderedOptions, active, backend) => {
-          markArtCanvas(canvas, renderedFrame, renderedOptions, active)
+        onResult: (renderedFrame, renderedOptions, active, backend, stats) => {
+          markArtCanvas(canvas, renderedFrame, renderedOptions, active, stats)
           canvas.dataset.renderBackend = backend
           previewProgress.delete(canvas)
+          previewRenderPhases.delete(canvas)
           queueCalibratedAnimation()
         },
         onSettled: updateRenderFeedback,
-        onProgress: (progress) => {
+        onProgress: (progress, phase) => {
           previewProgress.set(canvas, progress)
+          previewRenderPhases.set(canvas, phase ?? 'drawing')
           updateRenderFeedback()
         },
         onFallback: () => {
@@ -2485,6 +2522,7 @@ function paintTo(
         onError: (cause) => {
           error.value = cause instanceof Error ? cause.message : '字符画绘制失败，请重试'
           previewProgress.delete(canvas)
+          previewRenderPhases.delete(canvas)
         },
       })
       artRenderers.set(canvas, renderer)
@@ -2519,6 +2557,7 @@ function markArtCanvas(
   frame: ArtFrame,
   options: ArtRenderOptions,
   interactionActive: boolean,
+  stats: ArtRendererCacheStats,
 ) {
   canvas.dataset.engine = 'calibrated'
   canvas.dataset.columns = String(frame.columns)
@@ -2535,6 +2574,8 @@ function markArtCanvas(
   canvas.dataset.interactionTime = String(options.hoverTime ?? options.time ?? 0)
   canvas.dataset.pointerStrength = String(options.pointer?.strength ?? 0)
   canvas.dataset.interactionActive = String(interactionActive)
+  canvas.dataset.particlePeak = String(stats.particles.peak)
+  canvas.dataset.particleBytes = String(stats.particles.bytes)
   canvas.dataset.hover = options.pointer ? (options.hover ?? 'light') : 'none'
   canvas.dataset.paused = String(artPaused.value)
   canvas.dataset.motion = options.motion ?? 'none'
@@ -4146,9 +4187,11 @@ onBeforeUnmount(() => {
               : videoPrerendering
                 ? '正在解析高清片段'
                 : frameRendering
-                  ? hasVideo
-                    ? '正在准备视频画面'
-                    : '正在绘制字符画'
+                  ? frameRenderPhase === 'interaction'
+                    ? '正在更新字符位置'
+                    : hasVideo
+                      ? '正在准备视频画面'
+                      : '正在绘制字符画'
                   : videoBuffering
                     ? '正在等待视频画面'
                     : '正在更新字符画'

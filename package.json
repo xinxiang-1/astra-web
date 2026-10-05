@@ -46,6 +46,7 @@
     "test:signature-responsive": "node scripts/signature-responsive-contract.mjs",
     "test:video-responsive": "node scripts/video-responsive-contract.mjs",
     "test:image-responsive": "node scripts/image-preview-responsive-contract.mjs",
+    "test:particle-clock": "node scripts/particle-clock-contract.mjs",
     "test:video-render-feedback": "node scripts/video-render-feedback-contract.mjs",
     "test:art-render-watchdog": "node scripts/art-render-watchdog-contract.mjs",
     "research:video-atlas": "node scripts/video-tile-atlas-research.mjs",

@@ -29,6 +29,11 @@ self.onmessage = async (event: MessageEvent<FrameRenderRequest>) => {
         const progress: FrameRenderResponse = { id: request.id, completedCells, totalCells }
         self.postMessage(progress)
       },
+      undefined,
+      (progress) => {
+        const response: FrameRenderResponse = { id: request.id, phase: 'interaction', ...progress }
+        self.postMessage(response)
+      },
     )
     // Bound pending GPU work before reporting the actual cost to the playback clock.
     surface.getContext('2d')!.getImageData(0, 0, 1, 1)

@@ -1,0 +1,87 @@
+{
+  "browser": "154.0.8037.57",
+  "passed": true,
+  "scope": "Algorithm-only alpha-zero fixture and real Worker phase contract; actual page/Canvas quality is checked separately",
+  "result": {
+    "cases": [
+      {
+        "kind": "fast-frozen",
+        "maxStateDelta": 0
+      },
+      {
+        "kind": "released-gap",
+        "gap": 1,
+        "maxStateDelta": 0,
+        "responsiveStateDelta": 0,
+        "oldPeak": 0.09427206596738234,
+        "newPeak": 0.04870708111974648,
+        "finePeak": 0.04870708111974648,
+        "workerPeakDelta": 0,
+        "active": true,
+        "phaseMessages": 20,
+        "heartbeatCount": 20,
+        "maxProgressSliceMs": 37,
+        "completedSteps": 20,
+        "timerCount": 17,
+        "timerMax": 47.200000047683716
+      },
+      {
+        "kind": "released-gap",
+        "gap": 2,
+        "maxStateDelta": 8.731149137020111e-11,
+        "responsiveStateDelta": 0,
+        "oldPeak": 0.10336983215527822,
+        "newPeak": 0.00019694047545627103,
+        "finePeak": 0.00019694047545627103,
+        "workerPeakDelta": 0,
+        "active": true,
+        "phaseMessages": 40,
+        "heartbeatCount": 40,
+        "maxProgressSliceMs": 38.90000009536743,
+        "completedSteps": 40,
+        "timerCount": 40,
+        "timerMax": 49.299999952316284
+      },
+      {
+        "kind": "released-gap",
+        "gap": 5,
+        "maxStateDelta": 4.547473508864641e-13,
+        "responsiveStateDelta": 0,
+        "oldPeak": 0.07175599254712507,
+        "newPeak": 0.00000298000405663625,
+        "finePeak": 0.00000298000405663625,
+        "workerPeakDelta": 0,
+        "active": false,
+        "phaseMessages": 37,
+        "heartbeatCount": 37,
+        "maxProgressSliceMs": 71.89999997615814,
+        "completedSteps": 37,
+        "timerCount": 38,
+        "timerMax": 93.89999997615814
+      },
+      {
+        "kind": "timestamp-replay",
+        "maxStateDelta": 1.0658141036401503e-14,
+        "newPeak": 0.10894819680319888
+      }
+    ],
+    "cancel": {
+      "cancelled": true,
+      "timerFiredDuringSimulation": true
+    },
+    "extreme": {
+      "durationMs": 12.699999928474426,
+      "finite": true
+    },
+    "workerObservedPhases": [
+      "interaction"
+    ]
+  },
+  "sourceHashes": {
+    "src/lib/art-engine/canvas.ts": "c9a2ba4f1481ea15978cc8fa3bc42b89f9fa94c281794a7fd98378cca500bca5",
+    "src/lib/art-engine/frame-render-client.ts": "2eb9a1efe09c18afb78272fd5e671a61a5bca20d64975230435d6e510eb8465f",
+    "src/lib/art-engine/frame-render.worker.ts": "8563ced8b3844b78f1b9d3535faf8db484d59c85217440e01bc9a8f0162a09dc",
+    "src/lib/art-engine/embed.ts": "d0973a363f9110a0571e28e479d848e53785ea32c9288d0c8f56f8eb565e2b18",
+    "src/views/AsciiArtView.vue": "ac869326110cb298b6107b6e6083e3050fb2574f5f1b231fb212e420c4c8ad2f"
+  }
+}

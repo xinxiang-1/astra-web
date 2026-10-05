@@ -1,0 +1,40 @@
+{
+  "browser": "154.0.8037.57",
+  "base": "http://127.0.0.1:5180",
+  "production": false,
+  "errors": [],
+  "desktop": [
+    {
+      "label": "光影字符",
+      "peak": 0.10401954155572354,
+      "bytes": 1526400,
+      "visibleScatter": true,
+      "exactRecovery": true
+    }
+  ],
+  "touch": [],
+  "passed": false,
+  "failure": "AssertionError [ERR_ASSERTION]: 原色字符 particle movement\n    at file:///D:/my/project/astra/astra-web/scripts/glyph-particles-editor-contract.mjs:130:18",
+  "failureCanvas": {
+    "width": 571,
+    "height": 713,
+    "data": {
+      "v-4641f82a": "",
+      "renderPending": "false",
+      "engine": "calibrated",
+      "columns": "180",
+      "mode": "color",
+      "quality": "classic",
+      "time": "0.15",
+      "motionStyle": "cinematic",
+      "interactionTime": "24.029900000095367",
+      "pointerStrength": "0.6499999999999279",
+      "interactionActive": "true",
+      "hover": "particles",
+      "paused": "false",
+      "motion": "none",
+      "hoverStrength": "0.65",
+      "renderBackend": "worker"
+    }
+  }
+}

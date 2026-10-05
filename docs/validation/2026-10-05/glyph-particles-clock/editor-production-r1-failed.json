@@ -1,0 +1,100 @@
+{
+  "browser": "154.0.8037.57",
+  "base": "http://127.0.0.1:5184",
+  "production": true,
+  "errors": [],
+  "desktop": [
+    {
+      "label": "光影字符",
+      "peak": null,
+      "bytes": null,
+      "visibleScatter": true,
+      "exactRecovery": true
+    },
+    {
+      "label": "原色字符",
+      "peak": null,
+      "bytes": null,
+      "visibleScatter": true,
+      "exactRecovery": true
+    },
+    {
+      "label": "中文铺字",
+      "peak": null,
+      "bytes": null,
+      "visibleScatter": true,
+      "exactRecovery": true
+    },
+    {
+      "label": "轮廓线稿",
+      "peak": null,
+      "bytes": null,
+      "visibleScatter": true,
+      "exactRecovery": true
+    },
+    {
+      "label": "点阵细节",
+      "peak": null,
+      "bytes": null,
+      "visibleScatter": true,
+      "exactRecovery": true
+    },
+    {
+      "label": "印刷网点",
+      "peak": null,
+      "bytes": null,
+      "visibleScatter": true,
+      "exactRecovery": true
+    }
+  ],
+  "touch": [
+    {
+      "id": "mobile editor",
+      "touchAction": "none",
+      "trace": {
+        "down": 1,
+        "move": 10,
+        "up": 1,
+        "cancel": 0
+      },
+      "exactRecovery": true
+    }
+  ],
+  "passed": false,
+  "fullscreen": {
+    "interactive": true,
+    "released": null,
+    "exactMainRecovery": true
+  },
+  "pause": {
+    "ambientFrozen": true,
+    "hoverContinues": true
+  },
+  "reducedMotion": {
+    "static": true,
+    "scrollAllowed": true
+  },
+  "failure": "page.waitForFunction: Timeout 60000ms exceeded.\n    at touchGesture (D:\\my\\project\\astra\\astra-web\\scripts\\glyph-particles-editor-contract.mjs:70:15)\n    at async file:///D:/my/project/astra/astra-web/scripts/glyph-particles-editor-contract.mjs:184:2",
+  "failureCanvas": {
+    "width": 571,
+    "height": 713,
+    "data": {
+      "vA8f3d340": "",
+      "renderPending": "false",
+      "engine": "calibrated",
+      "columns": "180",
+      "mode": "density",
+      "quality": "classic",
+      "time": "0",
+      "motionStyle": "cinematic",
+      "interactionTime": "161.0535",
+      "pointerStrength": "0",
+      "interactionActive": "false",
+      "hover": "particles",
+      "paused": "true",
+      "motion": "none",
+      "hoverStrength": "0.65",
+      "renderBackend": "worker"
+    }
+  }
+}
