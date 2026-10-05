@@ -1,0 +1,80 @@
+{
+  "result": {
+    "width": 571,
+    "height": 713,
+    "renderMs": 19324.800000071526
+  },
+  "elapsedMs": 21527.200000047684,
+  "bins": {
+    "target.fillRect": {
+      "calls": 1,
+      "ms": 0.10000002384185791
+    },
+    "scratch.clearRect": {
+      "calls": 17951,
+      "ms": 1220.0000038146973
+    },
+    "scratch.drawImage": {
+      "calls": 17951,
+      "ms": 327.6000028848648
+    },
+    "scratch.fillRect": {
+      "calls": 17951,
+      "ms": 191.59999799728394
+    },
+    "scratch.transferToImageBitmap": {
+      "calls": 6808,
+      "ms": 1186.3000013828278
+    },
+    "target.drawImage": {
+      "calls": 19450,
+      "ms": 15719.999993681908
+    },
+    "target.getImageData": {
+      "calls": 1,
+      "ms": 2201.7000000476837
+    }
+  },
+  "stats": {
+    "particles": {
+      "bytes": 0,
+      "limit": 10485760,
+      "maxCells": 131072,
+      "peak": 0,
+      "moving": 0,
+      "unavailable": false
+    },
+    "rift": {
+      "columns": 0,
+      "rows": 0,
+      "bytes": 0,
+      "peakOffset": 0,
+      "rawPeakOffset": 0,
+      "maxStrain": 0,
+      "minJacobian": 1,
+      "limit": 262144
+    },
+    "motionCells": 0,
+    "motionBytes": 0,
+    "choreographyBytes": 0,
+    "choreographyLimit": 4194304,
+    "effectCellBytes": 2509740,
+    "effectCellLimit": 4194304,
+    "entries": 6808,
+    "backingBytes": 16774912,
+    "maxBackingBytes": 16777216,
+    "scratchBytes": 2464,
+    "supersampleBytes": 0,
+    "glowBytes": 0,
+    "interactionCells": 13184,
+    "interactionActive": false,
+    "interactionBytes": 1687552,
+    "softwareMaskBytes": 0,
+    "softwareMaskEntries": 0,
+    "softwareWorkingBytes": 0,
+    "hits": 1499,
+    "misses": 17951
+  },
+  "rows": 191,
+  "columns": 180
+}

@@ -1,0 +1,746 @@
+[
+  {
+    "time": 42301,
+    "rendering": true,
+    "progress": 0.48273809523809524,
+    "converting": false,
+    "paused": true,
+    "frame": {
+      "mode": "halftone",
+      "columns": 80,
+      "phrase": "我爱你中国",
+      "charset": "@80GCLft1i;:,. ",
+      "background": "#111615",
+      "ink": "#eeeae2",
+      "colored": true,
+      "normalize": true,
+      "contrast": 0.2,
+      "exposure": 0,
+      "invert": true,
+      "fillAll": false,
+      "threshold": 0.44999999999999996,
+      "fontFamily": "Consolas, \"Cascadia Mono\", \"Courier New\", monospace",
+      "charAspect": 0.4712611607142857,
+      "ditherStrength": 0.25
+    },
+    "motion": "none",
+    "pointer": {
+      "x": 0.5,
+      "y": 0.5,
+      "strength": 0,
+      "target": 0
+    },
+    "canvas": {
+      "width": 356,
+      "height": 200,
+      "data": {
+        "v-4641f82a": "",
+        "engine": "calibrated",
+        "columns": "80",
+        "mode": "halftone",
+        "quality": "classic",
+        "time": "0",
+        "motionStyle": "cinematic",
+        "interactionTime": "0",
+        "pointerStrength": "0",
+        "interactionActive": "false",
+        "hover": "light",
+        "paused": "false",
+        "motion": "none",
+        "hoverStrength": "0.65",
+        "renderBackend": "worker"
+      }
+    },
+    "stage": {
+      "width": 356,
+      "height": 200
+    },
+    "worker": {
+      "pending": true,
+      "renderMs": 1368.3999999761581,
+      "active": false
+    }
+  },
+  {
+    "time": 42829.799999952316,
+    "rendering": true,
+    "progress": 0.8732142857142857,
+    "converting": false,
+    "paused": true,
+    "frame": {
+      "mode": "halftone",
+      "columns": 80,
+      "phrase": "我爱你中国",
+      "charset": "@80GCLft1i;:,. ",
+      "background": "#111615",
+      "ink": "#eeeae2",
+      "colored": true,
+      "normalize": true,
+      "contrast": 0.2,
+      "exposure": 0,
+      "invert": true,
+      "fillAll": false,
+      "threshold": 0.44999999999999996,
+      "fontFamily": "Consolas, \"Cascadia Mono\", \"Courier New\", monospace",
+      "charAspect": 0.4712611607142857,
+      "ditherStrength": 0.25
+    },
+    "motion": "none",
+    "pointer": {
+      "x": 0.5,
+      "y": 0.5,
+      "strength": 0,
+      "target": 0
+    },
+    "canvas": {
+      "width": 356,
+      "height": 200,
+      "data": {
+        "v-4641f82a": "",
+        "engine": "calibrated",
+        "columns": "80",
+        "mode": "halftone",
+        "quality": "classic",
+        "time": "0",
+        "motionStyle": "cinematic",
+        "interactionTime": "0",
+        "pointerStrength": "0",
+        "interactionActive": "false",
+        "hover": "light",
+        "paused": "false",
+        "motion": "none",
+        "hoverStrength": "0.65",
+        "renderBackend": "worker"
+      }
+    },
+    "stage": {
+      "width": 356,
+      "height": 200
+    },
+    "worker": {
+      "pending": true,
+      "renderMs": 1368.3999999761581,
+      "active": false
+    }
+  },
+  {
+    "time": 43343.5,
+    "rendering": true,
+    "progress": 0.23154761904761906,
+    "converting": false,
+    "paused": true,
+    "frame": {
+      "mode": "halftone",
+      "columns": 80,
+      "phrase": "我爱你中国",
+      "charset": "@80GCLft1i;:,. ",
+      "background": "#111615",
+      "ink": "#eeeae2",
+      "colored": true,
+      "normalize": true,
+      "contrast": 0.2,
+      "exposure": 0,
+      "invert": true,
+      "fillAll": false,
+      "threshold": 0.44999999999999996,
+      "fontFamily": "Consolas, \"Cascadia Mono\", \"Courier New\", monospace",
+      "charAspect": 0.4712611607142857,
+      "ditherStrength": 0.25
+    },
+    "motion": "none",
+    "pointer": {
+      "x": 0.5,
+      "y": 0.5,
+      "strength": 0,
+      "target": 0
+    },
+    "canvas": {
+      "width": 356,
+      "height": 200,
+      "data": {
+        "v-4641f82a": "",
+        "engine": "calibrated",
+        "columns": "80",
+        "mode": "halftone",
+        "quality": "classic",
+        "time": "0",
+        "motionStyle": "cinematic",
+        "interactionTime": "0",
+        "pointerStrength": "0",
+        "interactionActive": "false",
+        "hover": "light",
+        "paused": "false",
+        "motion": "none",
+        "hoverStrength": "0.65",
+        "renderBackend": "worker"
+      }
+    },
+    "stage": {
+      "width": 356,
+      "height": 200
+    },
+    "worker": {
+      "pending": true,
+      "renderMs": 1488.2000000476837,
+      "active": false
+    }
+  },
+  {
+    "time": 43855.5,
+    "rendering": true,
+    "progress": 0.6172619047619048,
+    "converting": false,
+    "paused": true,
+    "frame": {
+      "mode": "halftone",
+      "columns": 80,
+      "phrase": "我爱你中国",
+      "charset": "@80GCLft1i;:,. ",
+      "background": "#111615",
+      "ink": "#eeeae2",
+      "colored": true,
+      "normalize": true,
+      "contrast": 0.2,
+      "exposure": 0,
+      "invert": true,
+      "fillAll": false,
+      "threshold": 0.44999999999999996,
+      "fontFamily": "Consolas, \"Cascadia Mono\", \"Courier New\", monospace",
+      "charAspect": 0.4712611607142857,
+      "ditherStrength": 0.25
+    },
+    "motion": "none",
+    "pointer": {
+      "x": 0.5,
+      "y": 0.5,
+      "strength": 0,
+      "target": 0
+    },
+    "canvas": {
+      "width": 356,
+      "height": 200,
+      "data": {
+        "v-4641f82a": "",
+        "engine": "calibrated",
+        "columns": "80",
+        "mode": "halftone",
+        "quality": "classic",
+        "time": "0",
+        "motionStyle": "cinematic",
+        "interactionTime": "0",
+        "pointerStrength": "0",
+        "interactionActive": "false",
+        "hover": "light",
+        "paused": "false",
+        "motion": "none",
+        "hoverStrength": "0.65",
+        "renderBackend": "worker"
+      }
+    },
+    "stage": {
+      "width": 356,
+      "height": 200
+    },
+    "worker": {
+      "pending": true,
+      "renderMs": 1488.2000000476837,
+      "active": false
+    }
+  },
+  {
+    "time": 44370,
+    "rendering": true,
+    "progress": 0.9529761904761904,
+    "converting": false,
+    "paused": true,
+    "frame": {
+      "mode": "halftone",
+      "columns": 80,
+      "phrase": "我爱你中国",
+      "charset": "@80GCLft1i;:,. ",
+      "background": "#111615",
+      "ink": "#eeeae2",
+      "colored": true,
+      "normalize": true,
+      "contrast": 0.2,
+      "exposure": 0,
+      "invert": true,
+      "fillAll": false,
+      "threshold": 0.44999999999999996,
+      "fontFamily": "Consolas, \"Cascadia Mono\", \"Courier New\", monospace",
+      "charAspect": 0.4712611607142857,
+      "ditherStrength": 0.25
+    },
+    "motion": "none",
+    "pointer": {
+      "x": 0.5,
+      "y": 0.5,
+      "strength": 0,
+      "target": 0
+    },
+    "canvas": {
+      "width": 356,
+      "height": 200,
+      "data": {
+        "v-4641f82a": "",
+        "engine": "calibrated",
+        "columns": "80",
+        "mode": "halftone",
+        "quality": "classic",
+        "time": "0",
+        "motionStyle": "cinematic",
+        "interactionTime": "0",
+        "pointerStrength": "0",
+        "interactionActive": "false",
+        "hover": "light",
+        "paused": "false",
+        "motion": "none",
+        "hoverStrength": "0.65",
+        "renderBackend": "worker"
+      }
+    },
+    "stage": {
+      "width": 356,
+      "height": 200
+    },
+    "worker": {
+      "pending": true,
+      "renderMs": 1488.2000000476837,
+      "active": false
+    }
+  },
+  {
+    "time": 44882.699999928474,
+    "rendering": true,
+    "progress": 0.3863095238095238,
+    "converting": false,
+    "paused": true,
+    "frame": {
+      "mode": "halftone",
+      "columns": 80,
+      "phrase": "我爱你中国",
+      "charset": "@80GCLft1i;:,. ",
+      "background": "#111615",
+      "ink": "#eeeae2",
+      "colored": true,
+      "normalize": true,
+      "contrast": 0.2,
+      "exposure": 0,
+      "invert": true,
+      "fillAll": false,
+      "threshold": 0.44999999999999996,
+      "fontFamily": "Consolas, \"Cascadia Mono\", \"Courier New\", monospace",
+      "charAspect": 0.4712611607142857,
+      "ditherStrength": 0.25
+    },
+    "motion": "none",
+    "pointer": {
+      "x": 0.5,
+      "y": 0.5,
+      "strength": 0,
+      "target": 0
+    },
+    "canvas": {
+      "width": 356,
+      "height": 200,
+      "data": {
+        "v-4641f82a": "",
+        "engine": "calibrated",
+        "columns": "80",
+        "mode": "halftone",
+        "quality": "classic",
+        "time": "0",
+        "motionStyle": "cinematic",
+        "interactionTime": "0",
+        "pointerStrength": "0",
+        "interactionActive": "false",
+        "hover": "light",
+        "paused": "false",
+        "motion": "none",
+        "hoverStrength": "0.65",
+        "renderBackend": "worker"
+      }
+    },
+    "stage": {
+      "width": 356,
+      "height": 200
+    },
+    "worker": {
+      "pending": true,
+      "renderMs": 1358.2999999523163,
+      "active": false
+    }
+  },
+  {
+    "time": 45399.299999952316,
+    "rendering": true,
+    "progress": 0.7529761904761905,
+    "converting": false,
+    "paused": true,
+    "frame": {
+      "mode": "halftone",
+      "columns": 80,
+      "phrase": "我爱你中国",
+      "charset": "@80GCLft1i;:,. ",
+      "background": "#111615",
+      "ink": "#eeeae2",
+      "colored": true,
+      "normalize": true,
+      "contrast": 0.2,
+      "exposure": 0,
+      "invert": true,
+      "fillAll": false,
+      "threshold": 0.44999999999999996,
+      "fontFamily": "Consolas, \"Cascadia Mono\", \"Courier New\", monospace",
+      "charAspect": 0.4712611607142857,
+      "ditherStrength": 0.25
+    },
+    "motion": "none",
+    "pointer": {
+      "x": 0.5,
+      "y": 0.5,
+      "strength": 0,
+      "target": 0
+    },
+    "canvas": {
+      "width": 356,
+      "height": 200,
+      "data": {
+        "v-4641f82a": "",
+        "engine": "calibrated",
+        "columns": "80",
+        "mode": "halftone",
+        "quality": "classic",
+        "time": "0",
+        "motionStyle": "cinematic",
+        "interactionTime": "0",
+        "pointerStrength": "0",
+        "interactionActive": "false",
+        "hover": "light",
+        "paused": "false",
+        "motion": "none",
+        "hoverStrength": "0.65",
+        "renderBackend": "worker"
+      }
+    },
+    "stage": {
+      "width": 356,
+      "height": 200
+    },
+    "worker": {
+      "pending": true,
+      "renderMs": 1358.2999999523163,
+      "active": false
+    }
+  },
+  {
+    "time": 45922.199999928474,
+    "rendering": false,
+    "progress": 0.04642857142857143,
+    "converting": false,
+    "paused": true,
+    "frame": {
+      "mode": "halftone",
+      "columns": 80,
+      "phrase": "我爱你中国",
+      "charset": "@80GCLft1i;:,. ",
+      "background": "#111615",
+      "ink": "#eeeae2",
+      "colored": true,
+      "normalize": true,
+      "contrast": 0.2,
+      "exposure": 0,
+      "invert": true,
+      "fillAll": false,
+      "threshold": 0.44999999999999996,
+      "fontFamily": "Consolas, \"Cascadia Mono\", \"Courier New\", monospace",
+      "charAspect": 0.4712611607142857,
+      "ditherStrength": 0.25
+    },
+    "motion": "none",
+    "pointer": {
+      "x": 0.5,
+      "y": 0.5,
+      "strength": 0,
+      "target": 0
+    },
+    "canvas": {
+      "width": 356,
+      "height": 200,
+      "data": {
+        "v-4641f82a": "",
+        "engine": "calibrated",
+        "columns": "80",
+        "mode": "halftone",
+        "quality": "classic",
+        "time": "0",
+        "motionStyle": "cinematic",
+        "interactionTime": "0",
+        "pointerStrength": "0",
+        "interactionActive": "false",
+        "hover": "light",
+        "paused": "false",
+        "motion": "none",
+        "hoverStrength": "0.65",
+        "renderBackend": "worker"
+      }
+    },
+    "stage": {
+      "width": 844,
+      "height": 475
+    },
+    "worker": {
+      "pending": true,
+      "renderMs": 1396.2999999523163,
+      "active": false
+    }
+  },
+  {
+    "time": 46437.39999997616,
+    "rendering": true,
+    "progress": 0.4595238095238095,
+    "converting": false,
+    "paused": true,
+    "frame": {
+      "mode": "halftone",
+      "columns": 80,
+      "phrase": "我爱你中国",
+      "charset": "@80GCLft1i;:,. ",
+      "background": "#111615",
+      "ink": "#eeeae2",
+      "colored": true,
+      "normalize": true,
+      "contrast": 0.2,
+      "exposure": 0,
+      "invert": true,
+      "fillAll": false,
+      "threshold": 0.44999999999999996,
+      "fontFamily": "Consolas, \"Cascadia Mono\", \"Courier New\", monospace",
+      "charAspect": 0.4712611607142857,
+      "ditherStrength": 0.25
+    },
+    "motion": "none",
+    "pointer": {
+      "x": 0.5,
+      "y": 0.5,
+      "strength": 0,
+      "target": 0
+    },
+    "canvas": {
+      "width": 356,
+      "height": 200,
+      "data": {
+        "v-4641f82a": "",
+        "engine": "calibrated",
+        "columns": "80",
+        "mode": "halftone",
+        "quality": "classic",
+        "time": "0",
+        "motionStyle": "cinematic",
+        "interactionTime": "0",
+        "pointerStrength": "0",
+        "interactionActive": "false",
+        "hover": "light",
+        "paused": "false",
+        "motion": "none",
+        "hoverStrength": "0.65",
+        "renderBackend": "worker"
+      }
+    },
+    "stage": {
+      "width": 356,
+      "height": 200
+    },
+    "worker": {
+      "pending": true,
+      "renderMs": 1396.2999999523163,
+      "active": false
+    }
+  },
+  {
+    "time": 46950.799999952316,
+    "rendering": true,
+    "progress": 0.8172619047619047,
+    "converting": false,
+    "paused": true,
+    "frame": {
+      "mode": "halftone",
+      "columns": 80,
+      "phrase": "我爱你中国",
+      "charset": "@80GCLft1i;:,. ",
+      "background": "#111615",
+      "ink": "#eeeae2",
+      "colored": true,
+      "normalize": true,
+      "contrast": 0.2,
+      "exposure": 0,
+      "invert": true,
+      "fillAll": false,
+      "threshold": 0.44999999999999996,
+      "fontFamily": "Consolas, \"Cascadia Mono\", \"Courier New\", monospace",
+      "charAspect": 0.4712611607142857,
+      "ditherStrength": 0.25
+    },
+    "motion": "none",
+    "pointer": {
+      "x": 0.5,
+      "y": 0.5,
+      "strength": 0,
+      "target": 0
+    },
+    "canvas": {
+      "width": 356,
+      "height": 200,
+      "data": {
+        "v-4641f82a": "",
+        "engine": "calibrated",
+        "columns": "80",
+        "mode": "halftone",
+        "quality": "classic",
+        "time": "0",
+        "motionStyle": "cinematic",
+        "interactionTime": "0",
+        "pointerStrength": "0",
+        "interactionActive": "false",
+        "hover": "light",
+        "paused": "false",
+        "motion": "none",
+        "hoverStrength": "0.65",
+        "renderBackend": "worker"
+      }
+    },
+    "stage": {
+      "width": 356,
+      "height": 200
+    },
+    "worker": {
+      "pending": true,
+      "renderMs": 1396.2999999523163,
+      "active": false
+    }
+  },
+  {
+    "time": 47464,
+    "rendering": true,
+    "progress": 0.1880952380952381,
+    "converting": false,
+    "paused": true,
+    "frame": {
+      "mode": "halftone",
+      "columns": 80,
+      "phrase": "我爱你中国",
+      "charset": "@80GCLft1i;:,. ",
+      "background": "#111615",
+      "ink": "#eeeae2",
+      "colored": true,
+      "normalize": true,
+      "contrast": 0.2,
+      "exposure": 0,
+      "invert": true,
+      "fillAll": false,
+      "threshold": 0.44999999999999996,
+      "fontFamily": "Consolas, \"Cascadia Mono\", \"Courier New\", monospace",
+      "charAspect": 0.4712611607142857,
+      "ditherStrength": 0.25
+    },
+    "motion": "none",
+    "pointer": {
+      "x": 0.5,
+      "y": 0.5,
+      "strength": 0,
+      "target": 0
+    },
+    "canvas": {
+      "width": 356,
+      "height": 200,
+      "data": {
+        "v-4641f82a": "",
+        "engine": "calibrated",
+        "columns": "80",
+        "mode": "halftone",
+        "quality": "classic",
+        "time": "0",
+        "motionStyle": "cinematic",
+        "interactionTime": "0",
+        "pointerStrength": "0",
+        "interactionActive": "false",
+        "hover": "light",
+        "paused": "false",
+        "motion": "none",
+        "hoverStrength": "0.65",
+        "renderBackend": "worker"
+      }
+    },
+    "stage": {
+      "width": 356,
+      "height": 200
+    },
+    "worker": {
+      "pending": true,
+      "renderMs": 1420.2999999523163,
+      "active": false
+    }
+  },
+  {
+    "time": 47977.699999928474,
+    "rendering": true,
+    "progress": 0.25357142857142856,
+    "converting": false,
+    "paused": true,
+    "frame": {
+      "mode": "halftone",
+      "columns": 80,
+      "phrase": "我爱你中国",
+      "charset": "@80GCLft1i;:,. ",
+      "background": "#111615",
+      "ink": "#eeeae2",
+      "colored": true,
+      "normalize": true,
+      "contrast": 0.2,
+      "exposure": 0,
+      "invert": true,
+      "fillAll": false,
+      "threshold": 0.44999999999999996,
+      "fontFamily": "Consolas, \"Cascadia Mono\", \"Courier New\", monospace",
+      "charAspect": 0.4712611607142857,
+      "ditherStrength": 0.25
+    },
+    "motion": "none",
+    "pointer": {
+      "x": 0.5,
+      "y": 0.5,
+      "strength": 0,
+      "target": 0
+    },
+    "canvas": {
+      "width": 356,
+      "height": 200,
+      "data": {
+        "v-4641f82a": "",
+        "engine": "calibrated",
+        "columns": "80",
+        "mode": "halftone",
+        "quality": "classic",
+        "time": "0",
+        "motionStyle": "cinematic",
+        "interactionTime": "0",
+        "pointerStrength": "0",
+        "interactionActive": "false",
+        "hover": "light",
+        "paused": "false",
+        "motion": "none",
+        "hoverStrength": "0.65",
+        "renderBackend": "worker"
+      }
+    },
+    "stage": {
+      "width": 356,
+      "height": 200
+    },
+    "worker": {
+      "pending": true,
+      "renderMs": 1420.2999999523163,
+      "active": false
+    }
+  }
+]

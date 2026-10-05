@@ -1,0 +1,46 @@
+{
+  "browser": "154.0.8037.57",
+  "base": "http://127.0.0.1:5184",
+  "production": true,
+  "errors": [],
+  "desktop": [
+    {
+      "label": "光影字符",
+      "peak": null,
+      "bytes": null,
+      "visibleScatter": true,
+      "exactRecovery": true
+    },
+    {
+      "label": "原色字符",
+      "peak": null,
+      "bytes": null,
+      "visibleScatter": true,
+      "exactRecovery": true
+    }
+  ],
+  "touch": [],
+  "passed": false,
+  "failure": "page.waitForFunction: Timeout 60000ms exceeded.\n    at settled (D:\\my\\project\\astra\\astra-web\\scripts\\glyph-particles-editor-contract.mjs:35:15)\n    at D:\\my\\project\\astra\\astra-web\\scripts\\glyph-particles-editor-contract.mjs:128:36",
+  "failureCanvas": {
+    "width": 571,
+    "height": 713,
+    "data": {
+      "v-36c52292": "",
+      "engine": "calibrated",
+      "columns": "180",
+      "mode": "phrase",
+      "quality": "classic",
+      "time": "2.2499999999999996",
+      "motionStyle": "cinematic",
+      "interactionTime": "12.620600000000017",
+      "pointerStrength": "0",
+      "interactionActive": "true",
+      "hover": "particles",
+      "paused": "false",
+      "motion": "none",
+      "hoverStrength": "0.65",
+      "renderBackend": "canvas"
+    }
+  }
+}

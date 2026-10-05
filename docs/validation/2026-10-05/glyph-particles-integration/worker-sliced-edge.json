@@ -1,0 +1,118 @@
+{
+  "browser": "154.0.4258.53",
+  "errors": [],
+  "passed": true,
+  "worker": [
+    {
+      "mode": "density",
+      "transparent": false,
+      "matchedFrames": 74,
+      "peak": 0.10762360111423055,
+      "settleSeconds": 4.800000000000001,
+      "exactRecovery": true
+    },
+    {
+      "mode": "density",
+      "transparent": true,
+      "matchedFrames": 74,
+      "peak": 0.10762360111423055,
+      "settleSeconds": 4.800000000000001,
+      "exactRecovery": true
+    },
+    {
+      "mode": "color",
+      "transparent": false,
+      "matchedFrames": 74,
+      "peak": 0.10762360111423055,
+      "settleSeconds": 4.800000000000001,
+      "exactRecovery": true
+    },
+    {
+      "mode": "color",
+      "transparent": true,
+      "matchedFrames": 74,
+      "peak": 0.10762360111423055,
+      "settleSeconds": 4.800000000000001,
+      "exactRecovery": true
+    },
+    {
+      "mode": "phrase",
+      "transparent": false,
+      "matchedFrames": 74,
+      "peak": 0.1016324943711221,
+      "settleSeconds": 4.800000000000001,
+      "exactRecovery": true
+    },
+    {
+      "mode": "phrase",
+      "transparent": true,
+      "matchedFrames": 74,
+      "peak": 0.1016324943711221,
+      "settleSeconds": 4.800000000000001,
+      "exactRecovery": true
+    },
+    {
+      "mode": "contour",
+      "transparent": false,
+      "matchedFrames": 74,
+      "peak": 0.10762360111423055,
+      "settleSeconds": 4.800000000000001,
+      "exactRecovery": true
+    },
+    {
+      "mode": "contour",
+      "transparent": true,
+      "matchedFrames": 74,
+      "peak": 0.10762360111423055,
+      "settleSeconds": 4.800000000000001,
+      "exactRecovery": true
+    },
+    {
+      "mode": "braille",
+      "transparent": false,
+      "matchedFrames": 74,
+      "peak": 0.10413229149370394,
+      "settleSeconds": 4.800000000000001,
+      "exactRecovery": true
+    },
+    {
+      "mode": "braille",
+      "transparent": true,
+      "matchedFrames": 74,
+      "peak": 0.10413229149370394,
+      "settleSeconds": 4.800000000000001,
+      "exactRecovery": true
+    },
+    {
+      "mode": "halftone",
+      "transparent": false,
+      "matchedFrames": 74,
+      "peak": 0.10762360111423055,
+      "settleSeconds": 4.800000000000001,
+      "exactRecovery": true
+    },
+    {
+      "mode": "halftone",
+      "transparent": true,
+      "matchedFrames": 74,
+      "peak": 0.10762360111423055,
+      "settleSeconds": 4.800000000000001,
+      "exactRecovery": true
+    }
+  ],
+  "editorCapacity": {
+    "touchAction": "auto",
+    "bytes": 0,
+    "limit": 10485760,
+    "maxCells": 131072,
+    "peak": 0,
+    "moving": 0,
+    "unavailable": true,
+    "pointerDraws": 0
+  },
+  "offlineCapacity": {
+    "status": "字符数量超过当前聚散容量，聚散未启用；可在编辑器调整清晰度。",
+    "touchAction": "auto",
+    "pointerDraws": 0
+  }
+}

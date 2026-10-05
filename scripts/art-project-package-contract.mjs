@@ -6,14 +6,14 @@ import path from 'node:path'
 
 const base = process.env.ASTRA_PREVIEW_URL || 'http://127.0.0.1:5180'
 const hover = process.env.ASTRA_PACKAGE_HOVER
-if (hover) assert.equal(hover, 'rift')
+if (hover) assert(['rift', 'particles'].includes(hover))
 const out = path.resolve(
   process.env.ASTRA_PACKAGE_OUTPUT || 'sandbox/project-package/2026-10-01-v1/development',
 )
 await mkdir(path.dirname(out), { recursive: true })
 await mkdir(out, { recursive: false })
 const sha = (bytes) => createHash('sha256').update(bytes).digest('hex')
-const browser = await chromium.launch({ headless: true })
+const browser = await chromium.launch({ headless: true, channel: process.env.ASTRA_BROWSER_CHANNEL || 'msedge' })
 const options = {
   viewport: { width: 1440, height: 960 },
   reducedMotion: 'reduce',
@@ -43,6 +43,7 @@ const report = {
   scope:
     'Same browser, fresh storage, actual package/PNG downloads; no commercial aesthetics, real device or cross-browser certification',
   cases: [],
+  downloads: [],
   rejected: [],
   errors,
   uploads,
@@ -110,12 +111,17 @@ async function ready(target, mode = 'density') {
   )
 }
 async function download(target, action, name) {
-  const pending = target.waitForEvent('download')
-  await action()
-  const file = await pending
+  const started = performance.now()
+  report.downloadAttempt = { name, stage: 'controls' }
+  const [file] = await Promise.all([
+    target.waitForEvent('download', { timeout: 120000 }),
+    action().then(() => { report.downloadAttempt.stage = 'waiting for download' }),
+  ])
   assert.equal(await file.failure(), null)
   const dest = path.join(out, name)
   await file.saveAs(dest)
+  report.downloads.push({ name, elapsedMs: performance.now() - started })
+  delete report.downloadAttempt
   return { dest, suggested: file.suggestedFilename(), bytes: await readFile(dest) }
 }
 async function png(target, name) {
@@ -200,10 +206,11 @@ try {
       })
       await page
         .getByRole('group', { name: '六模式悬停', exact: true })
-        .getByRole('button', { name: '撕裂试用', exact: true })
+        .getByRole('button', { name: hover === 'particles' ? '字符聚散试用' : '撕裂试用', exact: true })
         .click()
       await page.waitForFunction(
-        () => document.querySelector('.ascii-scroll canvas')?.dataset.hover === 'rift',
+        value => document.querySelector('.ascii-scroll canvas')?.dataset.hover === value,
+        hover,
       )
     }
     const before = await png(page, `${key}-before.png`)
@@ -427,6 +434,12 @@ try {
   await page.goto(`${base}/ascii-art`)
   await page.locator('input[type=file]').setInputFiles(moviePath)
   await ready(page)
+  if (hover) {
+    await page.locator('.calibrated-effects').evaluate(d => { d.open = true })
+    await page.getByRole('group', { name: '六模式悬停', exact: true })
+      .getByRole('button', { name: hover === 'particles' ? '字符聚散试用' : '撕裂试用', exact: true }).click()
+    await page.waitForFunction(value => document.querySelector('.ascii-scroll canvas')?.dataset.hover === value, hover)
+  }
   if (await page.getByRole('button', { name: '暂停', exact: true }).isVisible())
     await page.getByRole('button', { name: '暂停', exact: true }).click()
   await page.getByRole('button', { name: /^超清/ }).click()
@@ -443,6 +456,7 @@ try {
     'video.astra',
   )
   const videoData = unpack(video.bytes)
+  if (hover) assert.equal(videoData.manifest.project.settings.artHover, hover)
   assert.equal(sha(videoData.source), sha(movie))
   assert.equal(videoData.manifest.project.settings.clipStart, 0.2)
   assert(Math.abs(videoData.manifest.project.settings.clipEnd - 0.7) < 1e-8)
@@ -452,6 +466,7 @@ try {
   await restored.goto(`${base}/ascii-art?project=${videoProject.id}`)
   await restored.locator('.save-status').filter({ hasText: '已从此浏览器恢复' }).waitFor()
   await ready(restored)
+  if (hover) assert.equal(await restored.locator('.ascii-scroll canvas').getAttribute('data-hover'), hover)
   const playback = await restored.locator('.video-thumb.show').evaluate((v) => ({
     currentTime: v.currentTime,
     paused: v.paused,
@@ -503,6 +518,7 @@ try {
   )
 } catch (error) {
   report.failure = { message: error.message, stack: error.stack }
+  await page.screenshot({ path: path.join(out, 'failure.png'), timeout: 10000 }).catch(() => {})
   throw error
 } finally {
   await writeFile(path.join(out, 'report.json'), JSON.stringify(report, null, 2), { flag: 'wx' })

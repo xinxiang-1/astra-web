@@ -6,6 +6,7 @@ export type ArtHover =
   | 'ripple'
   | 'trail'
   | 'rift'
+  | 'particles'
   | 'water'
   | 'silk'
   | 'vortex'

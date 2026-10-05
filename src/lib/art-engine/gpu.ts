@@ -101,7 +101,7 @@ export function createGlyphGpu() {
       if (
         options.effectProfile === 'expressive' ||
         ['current', 'reform', 'caustics'].includes(options.motion ?? 'none') ||
-        ['trail', 'rift', 'water', 'silk', 'vortex', 'contour', 'dissolve'].includes(
+        ['trail', 'rift', 'particles', 'water', 'silk', 'vortex', 'contour', 'dissolve'].includes(
           options.hover ?? 'light',
         )
       )
@@ -176,6 +176,7 @@ export function createGlyphGpu() {
           ripple: 2,
           trail: 0,
           rift: 0,
+          particles: 0,
           water: 0,
           silk: 0,
           vortex: 0,

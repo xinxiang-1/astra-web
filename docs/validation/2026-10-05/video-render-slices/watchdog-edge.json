@@ -1,0 +1,49 @@
+{
+  "browser": "154.0.4258.53",
+  "passed": true,
+  "cases": [
+    {
+      "name": "advancing-frame",
+      "virtualElapsedMs": 30000,
+      "progress": [
+        0.3,
+        0.7
+      ],
+      "completedBitmaps": 1,
+      "closedBitmaps": 1
+    },
+    {
+      "name": "silent-worker",
+      "failsAfterVirtualMs": 12000,
+      "terminated": true
+    },
+    {
+      "name": "repeated-progress",
+      "rejected": true
+    },
+    {
+      "name": "stale-task",
+      "rejected": true
+    },
+    {
+      "name": "wrong-capacity",
+      "rejected": true
+    },
+    {
+      "name": "invalid-number",
+      "rejected": true
+    },
+    {
+      "name": "beyond-frame",
+      "rejected": true
+    },
+    {
+      "name": "progress-consumer-error",
+      "terminated": true
+    },
+    {
+      "name": "disposed-task",
+      "ignoredLateProgress": true
+    }
+  ]
+}

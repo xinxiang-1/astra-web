@@ -1,0 +1,52 @@
+{
+  "scope": "Observed failures retained separately from final successful reports; no PNG base64 or source-video data URL copied here",
+  "runs": [
+    {
+      "run": "numerical/type-check initial",
+      "failure": "interaction can be null when the particle wake outlives the native field",
+      "fix": "Guard the old trail branch and clear native samples before applying a residual particle wake",
+      "resolved": true
+    },
+    {
+      "run": "particles-editor-r1-edge-20261004",
+      "failure": "Reduced-motion PNG baseline was captured before the queued static draw; six desktop modes, fullscreen and pause had already passed",
+      "fix": "Wait for actual data-motion=none before reading baseline; compare SHA rather than logging PNG base64",
+      "resolvedBy": "particles-editor-r2-edge-20261004"
+    },
+    {
+      "run": "particles-package-r1/r2-edge-20261004",
+      "failure": "MP4 fixture missing after ten exact image restores",
+      "fix": "Generate a real moving 640x360 H.264 fixture before running the video stage",
+      "resolvedBy": "particles-package-r4-edge-20261005"
+    },
+    {
+      "run": "particles-package-r3-edge-20261005",
+      "failure": "30-second download event timeout rejected before the action was awaited; process exited without final JSON",
+      "fix": "Observe action and event together with Promise.all, match existing media wait of 120 seconds, record download workflow elapsed time",
+      "resolvedBy": "particles-package-r4-edge-20261005",
+      "remainingProductConcern": "Classic color PNG workflows still took 34.4 and 50.2 seconds; the test change does not fix that latency"
+    },
+    {
+      "run": "capacity review",
+      "failure": "Offline initial warning was overwritten, over-capacity touch scrolling was disabled, and pointer input could keep redrawing a refused static work",
+      "fix": "Preserve warning, update touch-action, ignore refused input and stop static pointer scheduling",
+      "resolvedBy": "particles-capacity-r2-edge-20261005",
+      "measuredPointerDraws": {
+        "editor": 0,
+        "offline": 0
+      }
+    },
+    {
+      "run": "particles-editor-production-chrome-20261005",
+      "failure": "60-second recovery wait timed out in phrase mode after density and color passed",
+      "context": "Another browser was running a numerical matrix; no claim of sole-page causality",
+      "status": "Isolated R2 also fails; synchronous colored phrase drawing is the measured bottleneck, not established parallel-browser competition"
+    },
+    {
+      "run": "particles-editor-production-r2-chrome-20261005",
+      "resolved": false,
+      "failure": "180-column colored phrase recovery times out at 60 seconds; 571x713, mode time 2.25, interaction time 12.6206, pointer strength 0, interaction active true",
+      "next": "Optimize basic colored drawing without a lower quality or a longer recovery wait"
+    }
+  ]
+}

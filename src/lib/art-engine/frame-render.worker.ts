@@ -11,7 +11,7 @@ const renderer = createCanvasArtRenderer(surface as unknown as HTMLCanvasElement
   maxTileEntries: 64,
 })
 let glyphs: ArtGlyph[] = []
-self.onmessage = (event: MessageEvent<FrameRenderRequest>) => {
+self.onmessage = async (event: MessageEvent<FrameRenderRequest>) => {
   const request = event.data
   try {
     if (request.glyphs) {
@@ -22,7 +22,14 @@ self.onmessage = (event: MessageEvent<FrameRenderRequest>) => {
       })
     }
     const start = performance.now()
-    renderer.render({ ...request.frame, glyphs } as ArtFrame, request.options)
+    await renderer.renderResponsive(
+      { ...request.frame, glyphs } as ArtFrame,
+      request.options,
+      (completedCells, totalCells) => {
+        const progress: FrameRenderResponse = { id: request.id, completedCells, totalCells }
+        self.postMessage(progress)
+      },
+    )
     // Bound pending GPU work before reporting the actual cost to the playback clock.
     surface.getContext('2d')!.getImageData(0, 0, 1, 1)
     const renderMs = performance.now() - start

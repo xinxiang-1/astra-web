@@ -7,6 +7,7 @@ export function createFrameRenderWorker(
     frame: ArtFrame,
   ) => void,
   onError: () => void,
+  onProgress?: (progress: number, frame: ArtFrame) => void,
 ) {
   if (typeof Worker === 'undefined' || typeof OffscreenCanvas === 'undefined') return null
   let worker: Worker
@@ -22,7 +23,8 @@ export function createFrameRenderWorker(
   let queued: { frame: ArtFrame; options: ArtRenderOptions } | null = null
   let sentFrame: ArtFrame | null = null
   let renderMs = 0,
-    interactionActive = false
+    interactionActive = false,
+    completedCells = 0
   let watchdog: ReturnType<typeof setTimeout> | undefined
   const dispose = () => {
     stopped = true
@@ -55,6 +57,7 @@ export function createFrameRenderWorker(
         atlas = glyphs
       }
       sentFrame = next.frame
+      completedCells = 0
       busy = true
       worker.postMessage(request)
       watchdog = setTimeout(fail, 12000)
@@ -70,6 +73,30 @@ export function createFrameRenderWorker(
     const result = event.data
     if ('error' in result) {
       fail()
+      return
+    }
+    if ('completedCells' in result) {
+      // A slow frame that is making progress is alive. Keep the last completed
+      // bitmap visible rather than abandoning it for a blocking main-thread draw.
+      if (
+        !stopped &&
+        busy &&
+        result.id === id &&
+        sentFrame &&
+        result.totalCells === sentFrame.columns * sentFrame.rows &&
+        Number.isInteger(result.completedCells) &&
+        result.completedCells > completedCells &&
+        result.completedCells <= result.totalCells
+      ) {
+        completedCells = result.completedCells
+        clearTimeout(watchdog)
+        watchdog = setTimeout(fail, 12000)
+        try {
+          onProgress?.(completedCells / result.totalCells, sentFrame)
+        } catch {
+          fail()
+        }
+      }
       return
     }
     if (stopped || result.id !== id || !sentFrame) {

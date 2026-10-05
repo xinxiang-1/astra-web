@@ -36,6 +36,9 @@ export type ArtFluidFieldSample = {
   active: boolean
 }
 
+/** Portable factory keeps the matching literal inside; integration checks enforce agreement. */
+export const ART_PARTICLE_MAX_CELLS = 131072
+
 /** Self-contained Canvas implementation shared with the standalone HTML runtime. */
 export function createCanvasArtRenderer(
   target: HTMLCanvasElement,
@@ -43,6 +46,170 @@ export function createCanvasArtRenderer(
 ) {
   let current: ArtFrame | null = null
   let frame: ArtFrame
+  function createGlyphParticlePresentation() {
+    let glyphs: ArtFrame['glyphs'] | null = null
+    let columns = 0,
+      rows = 0,
+      previous = -1,
+      peak = 0,
+      moving = 0
+    let data = new Float32Array(0),
+      identity = new Float64Array(0)
+    const maxCells = 131072,
+      limit = maxCells * 80
+    let unavailable = false
+    const clamp = (v: number, a: number, b: number) => Math.max(a, Math.min(b, v))
+    const hash = (i: number, salt: number) => {
+      let n = Math.imul(i + salt, 0x45d9f3b)
+      n = Math.imul(n ^ (n >>> 16), 0x45d9f3b)
+      return ((n ^ (n >>> 16)) >>> 0) / 4294967296
+    }
+    const neutral = () => ({ offsetX: 0, offsetY: 0, light: 1, opacity: 1, glow: 0 })
+    const reset = () => {
+      if (moving || peak) data.fill(0)
+      previous = -1
+      peak = moving = 0
+    }
+    const destroy = () => {
+      data = new Float32Array(0)
+      identity = new Float64Array(0)
+      glyphs = null
+      columns = rows = peak = moving = 0
+      previous = -1
+    }
+    function prepare(
+      sample: (x: number, y: number) => ArtFluidFieldSample,
+      next: ArtFrame,
+      strength: number,
+      width: number,
+      height: number,
+      clock: number,
+    ) {
+      const count = next.columns * next.rows
+      unavailable = count > maxCells
+      if (unavailable) {
+        destroy()
+        return null
+      }
+      if (strength <= 0) {
+        reset()
+        return null
+      }
+      // A decoded video frame changes tone/indices, not the identity of the character grid.
+      if (columns !== next.columns || rows !== next.rows || glyphs !== next.glyphs) {
+        destroy()
+        columns = next.columns
+        rows = next.rows
+        glyphs = next.glyphs
+      }
+      if (clock < previous) reset()
+      const delta = previous < 0 ? 0 : clamp(clock - previous, 0, 0.25)
+      previous = clock
+      if (!sample(0.5, 0.5).active && moving === 0) return neutral
+      if (data.length !== count * 8) {
+        data = new Float32Array(count * 8)
+        identity = new Float64Array(count * 6)
+        for (let cell = 0; cell < count; cell++) {
+          const at = cell * 6,
+            angle = (hash(cell, 31) - 0.5) * 2.8
+          identity[at] = Math.cos(angle)
+          identity[at + 1] = Math.sin(angle)
+          identity[at + 2] = Math.cos(hash(cell, 19) * Math.PI * 2)
+          identity[at + 3] = Math.sin(hash(cell, 19) * Math.PI * 2)
+          identity[at + 4] = 0.035 + hash(cell, 71) * 0.12
+          identity[at + 5] = 8 + hash(cell, 101) * 4
+        }
+      }
+      peak = moving = 0
+      const short = Math.min(width, height),
+        sx = width / short,
+        sy = height / short
+      for (let row = 0; row < rows; row++)
+        for (let col = 0; col < columns; col++) {
+          const cell = row * columns + col,
+            at = cell * 8,
+            id = cell * 6
+          const f = sample((col + 0.5) / columns, (row + 0.5) / rows)
+          const vx = f.velocityX * sx,
+            vy = f.velocityY * sy,
+            speed = Math.hypot(vx, vy)
+          const energy = clamp(speed * 3.4 + Math.max(0, f.density) * 0.18, 0, 1)
+          const ca = identity[id]!,
+            sa = identity[id + 1]!
+          const directionX = speed > 0.00001 ? vx / speed : identity[id + 2]!
+          const directionY = speed > 0.00001 ? vy / speed : identity[id + 3]!
+          const scatter = energy * strength * identity[id + 4]!
+          const tx = clamp(
+            (ca * directionX - sa * directionY) * scatter + f.offsetX * sx * strength * 0.55,
+            -0.18,
+            0.18,
+          )
+          const ty = clamp(
+            (sa * directionX + ca * directionY) * scatter + f.offsetY * sy * strength * 0.55,
+            -0.18,
+            0.18,
+          )
+          const omega = identity[id + 5]!,
+            zeta = 0.76
+          const damping = zeta * omega,
+            wd = omega * Math.sqrt(1 - zeta * zeta)
+          const e = Math.exp(-damping * delta),
+            cs = Math.cos(wd * delta),
+            sn = Math.sin(wd * delta)
+          for (let axis = 0; axis < 2; axis++) {
+            const target = axis ? ty : tx,
+              q = data[at + axis]! - target,
+              v = data[at + 2 + axis]!
+            data[at + axis] = target + e * (q * cs + ((v + damping * q) / wd) * sn)
+            data[at + 2 + axis] = e * (v * cs - ((damping * v + omega * omega * q) / wd) * sn)
+          }
+          let distance = Math.hypot(data[at]!, data[at + 1]!)
+          const velocity = Math.hypot(data[at + 2]!, data[at + 3]!)
+          if (!f.active && distance < 0.00008 && velocity < 0.0005) {
+            data.fill(0, at, at + 4)
+            distance = 0
+          }
+          peak = Math.max(peak, distance)
+          if (distance > 0.00008 || velocity > 0.0005) moving++
+          data[at + 4] = energy
+          data[at + 5] = data[at]! / sx
+          data[at + 6] = data[at + 1]! / sy
+          data[at + 7] = clamp(distance * 5 + energy * 0.4, 0, 1)
+        }
+      return (x: number, y: number) => {
+        const col = Math.min(columns - 1, Math.max(0, Math.floor(x * columns)))
+        const row = Math.min(rows - 1, Math.max(0, Math.floor(y * rows)))
+        const at = (row * columns + col) * 8,
+          detail = data[at + 7]!
+        return {
+          offsetX: data[at + 5]!,
+          offsetY: data[at + 6]!,
+          light: 1 + detail * 0.22,
+          opacity: 1 - detail * 0.22,
+          glow: 0,
+        }
+      }
+    }
+    return {
+      prepare,
+      reset,
+      destroy,
+      get active() {
+        return moving > 0
+      },
+      get stats() {
+        return {
+          bytes: data.byteLength + identity.byteLength,
+          limit,
+          maxCells,
+          peak,
+          moving,
+          unavailable,
+        }
+      },
+    }
+  }
+  const particlePresentation = createGlyphParticlePresentation()
   function createRiftPresentation() {
     let data = new Float32Array(0),
       columns = 0,
@@ -1563,7 +1730,9 @@ export function createCanvasArtRenderer(
       options.effectProfile === 'expressive' ||
       options.motionStyle === 'cinematic' ||
       ['current', 'reform', 'caustics'].includes(motion) ||
-      ['trail', 'rift', 'water', 'silk', 'vortex', 'contour', 'dissolve'].includes(hover)
+      ['trail', 'rift', 'particles', 'water', 'silk', 'vortex', 'contour', 'dissolve'].includes(
+        hover,
+      )
     const time = (options.time ?? 0) * clamp(options.motionSpeed ?? 1, 0.2, 2)
     const interactionTime = options.hoverTime ?? options.time ?? 0
     const amount = clamp(options.motionStrength ?? 0.65, 0, 1)
@@ -1572,14 +1741,18 @@ export function createCanvasArtRenderer(
     buildChoreography(motion, time, amount, cinematic)
     const pointer = options.pointer
     const fieldMode =
-      hover === 'rift'
+      hover === 'rift' || hover === 'particles'
         ? 'trail'
         : hover === 'ripple'
           ? 'water'
           : hover === 'displace'
             ? 'silk'
             : hover
-    const strength = clamp(options.hoverStrength ?? pointer?.strength ?? 0, 0, 1)
+    const strength =
+      hover === 'particles' && frame.columns * frame.rows > 131072
+        ? 0
+        : clamp(options.hoverStrength ?? pointer?.strength ?? 0, 0, 1)
+    if (hover !== 'particles' && particlePresentation.active) particlePresentation.reset()
     if (expressive && pointer && strength > 0) {
       if (!interaction || Math.abs(interactionRatio - w / h) > 0.001) {
         interaction = makeStudioInteraction(w / h)
@@ -1631,11 +1804,13 @@ export function createCanvasArtRenderer(
       interactionMode = ''
     }
     const trailPresentation =
-      hover === 'rift' && expressive
-        ? riftPresentation.prepare(sampleFluidField, frame, strength, w, h)
-        : hover === 'trail' && expressive
-          ? prototype.experimentalTrail?.(sampleFluidField, frame, strength, w, h)
-          : null
+      hover === 'particles' && expressive
+        ? particlePresentation.prepare(sampleFluidField, frame, strength, w, h, interactionTime)
+        : hover === 'rift' && expressive
+          ? riftPresentation.prepare(sampleFluidField, frame, strength, w, h)
+          : hover === 'trail' && expressive
+            ? prototype.experimentalTrail?.(sampleFluidField, frame, strength, w, h)
+            : null
     if (coverageGlyphs !== frame.glyphs) {
       coverageGlyphs = frame.glyphs
       coverageOrder = frame.glyphs
@@ -1709,15 +1884,19 @@ export function createCanvasArtRenderer(
         }
       }
       let glyph = frame.indices[index]!
-      if (interaction?.hasRefraction && expressive) {
+      if (
+        (interaction?.hasRefraction || (hover === 'particles' && particlePresentation.active)) &&
+        expressive
+      ) {
         const nx = (x + 0.5) / frame.columns,
           ny = (y + 0.5) / frame.rows
-        interaction.sample(nx, ny, interactionSample)
+        if (interaction?.hasRefraction) interaction.sample(nx, ny, interactionSample)
+        else interactionSample.fill(0)
         const signal = interactionSample[2]! / 3
         const displacementScale = hover === 'ripple' ? 0.45 : hover === 'displace' ? 0.4 : 1
         dx += interactionSample[0]! * frame.columns * cw * displacementScale
         dy += interactionSample[1]! * frame.rows * ch * displacementScale
-        if (hover === 'trail' || hover === 'rift') {
+        if (hover === 'trail' || hover === 'rift' || hover === 'particles') {
           if (trailPresentation) {
             const detail = trailPresentation(nx, ny)
             dx += detail.offsetX * frame.columns * cw
@@ -1725,7 +1904,7 @@ export function createCanvasArtRenderer(
             intensity *= detail.light
             opacity *= detail.opacity
             glow += detail.glow
-          } else {
+          } else if (hover !== 'particles' && interaction) {
             interaction.trail.displacement(nx, ny, interactionOffset)
             dx += interactionOffset[0]! * cw * strength
             dy += interactionOffset[1]! * ch * strength
@@ -2132,150 +2311,181 @@ export function createCanvasArtRenderer(
     return true
   }
 
-  return {
-    render(next: ArtFrame, options: ArtRenderOptions = {}) {
-      const start = performance.now()
-      frame = next
-      if (current !== frame) {
-        current = frame
-        // The bounded grid can be the same size for two different aspect ratios.
-        // Frozen ambient time must still rebuild choreography for the new work.
-        motionKey = ''
-        choreographyKey = ''
-        clearTiles()
-        if (scratch) {
-          scratch.width = frame.cellWidth
-          scratch.height = frame.cellHeight
-        }
+  // Consume identical drawing commands synchronously or in bounded worker slices.
+  // Only a completed frame is presented; yielding never changes glyph order or colors.
+  function* renderSteps(next: ArtFrame, options: ArtRenderOptions = {}) {
+    const start = performance.now()
+    frame = next
+    if (current !== frame) {
+      current = frame
+      // The bounded grid can be the same size for two different aspect ratios.
+      // Frozen ambient time must still rebuild choreography for the new work.
+      motionKey = ''
+      choreographyKey = ''
+      clearTiles()
+      if (scratch) {
+        scratch.width = frame.cellWidth
+        scratch.height = frame.cellHeight
       }
-      const ratio = frame.width / frame.height,
-        edge = clamp(Math.round(options.longEdge ?? 1200), 32, 8192)
-      const w = ratio >= 1 ? edge : Math.max(1, Math.round(edge * ratio)),
-        h = ratio >= 1 ? Math.max(1, Math.round(edge / ratio)) : edge
-      if (target.width !== w || target.height !== h) {
-        target.width = w
-        target.height = h
-      }
-      const effect = effects(options, w, h)
-      if (
-        frame.settings.softwareRaster &&
-        (frame.settings.mode === 'color' ||
-          (frame.settings.mode === 'density' && !frame.settings.colored)) &&
-        renderSoftware(options, w, h, effect)
-      ) {
-        renderGlow(effect, w, h)
-        return { width: w, height: h, renderMs: performance.now() - start }
-      }
-      const quality =
-        frame.settings.mode === 'density' && !frame.settings.colored
-          ? frame.settings.rasterQuality
-          : 'legacy'
-      const scale =
-        quality === 'supersampled' && Math.max(w, h) * 2 <= 4096 && w * h * 16 <= 32 * 1024 * 1024
-          ? 2
-          : 1
-      if (scale > 1) {
-        supersample ??= canvas(w * scale, h * scale)
-        if (supersample.width !== w * scale || supersample.height !== h * scale) {
-          supersample.width = w * scale
-          supersample.height = h * scale
-        }
-        ctx = supersample.getContext('2d')!
-      } else ctx = outputCtx
-      ctx.imageSmoothingQuality = quality && quality !== 'legacy' ? 'high' : 'low'
-      ctx.globalAlpha = 1
-      if (options.transparent) ctx.clearRect(0, 0, w * scale, h * scale)
-      else {
-        ctx.fillStyle = frame.settings.background
-        ctx.fillRect(0, 0, w * scale, h * scale)
-      }
-      const cw = (w * scale) / frame.columns,
-        ch = (h * scale) / frame.rows
-      const time = options.time ?? 0,
-        motion = options.motion ?? 'none'
-      for (let y = 0; y < frame.rows; y++)
-        for (let x = 0; x < frame.columns; x++) {
-          const cell = y * frame.columns + x,
-            alpha = frame.alpha[cell]!
-          let index = frame.indices[cell]!
-          if (!effect.expressive && (alpha < 0.005 || frame.glyphs[index]!.coverage < 0.001))
-            continue
-          let color = frame.settings.ink
-          if (frame.settings.colored || frame.settings.mode === 'color') {
-            // Preserve the same sampled RGB as GPU; bound the raster cache separately.
-            color = `rgb(${frame.colors[cell * 3]!},${frame.colors[cell * 3 + 1]!},${frame.colors[cell * 3 + 2]!})`
-          }
-          let dx = 0,
-            dy = 0,
-            intensity = 1,
-            size = 1
-          let hoveredAlpha = alpha
-          if (effect.expressive) {
-            const e = effect.cell(x, y, cw, ch, alpha)
-            dx = e.dx
-            dy = e.dy
-            intensity = e.intensity
-            hoveredAlpha = e.opacity
-            index = e.glyph
-            size = e.size
-          } else {
-            if (motion === 'breathe')
-              intensity = 0.92 + Math.sin(time * 0.9 + x * 0.02 + y * 0.02) * 0.08
-            if (motion === 'wave') {
-              dx = Math.sin(y * 0.075 + time * 0.75) * cw * 0.18
-              dy = Math.cos(x * 0.055 + time * 0.6) * ch * 0.1
-            }
-            if (motion === 'assemble') {
-              const amount = Math.exp(-Math.max(0, time) * 1.4)
-              dx = Math.sin(cell * 12.9898) * cw * 12 * amount
-              dy = Math.cos(cell * 7.13) * ch * 10 * amount
-            }
-            if (options.pointer?.strength) {
-              const px = (x + 0.5) / frame.columns - options.pointer.x,
-                py = (y + 0.5) / frame.rows - options.pointer.y
-              const falloff = Math.exp(-(px * px + py * py) / 0.018) * options.pointer.strength
-              if (options.hover === 'light') {
-                // Change only the ink alpha. Glyphs, word order and tone polarity stay fixed.
-                hoveredAlpha += (1 - alpha) * falloff * 0.28
-              } else if (options.hover === 'ripple') {
-                const distance = Math.hypot(px, py)
-                const ripple = Math.sin(distance * 48 - time * 2.4) * falloff
-                // Below a quarter cell: no glyph can jump over its neighbouring word.
-                dx += (px / Math.max(0.01, distance)) * cw * ripple * 0.14
-                dy += (py / Math.max(0.01, distance)) * ch * ripple * 0.14
-                hoveredAlpha += (1 - alpha) * falloff * 0.18
-              } else {
-                dx += px * cw * 14 * falloff
-                dy += py * ch * 10 * falloff
-              }
-            }
-          }
-          if (hoveredAlpha < 0.005 || frame.glyphs[index]!.coverage < 0.001) continue
-          ctx.globalAlpha = effect.expressive
-            ? clamp(hoveredAlpha * intensity, 0, 1)
-            : hoveredAlpha * intensity
-          const dw = cw * size,
-            dh = ch * size
-          ctx.drawImage(
-            tile(index, color),
-            x * cw + dx + (cw - dw) * 0.5,
-            y * ch + dy + (ch - dh) * 0.5,
-            dw,
-            dh,
-          )
-        }
-
-      ctx.globalAlpha = 1
-      if (ctx !== outputCtx) {
-        outputCtx.globalAlpha = 1
-        outputCtx.imageSmoothingQuality = 'high'
-        if (options.transparent) outputCtx.clearRect(0, 0, w, h)
-        outputCtx.drawImage(supersample!, 0, 0, w, h)
-      }
+    }
+    const ratio = frame.width / frame.height,
+      edge = clamp(Math.round(options.longEdge ?? 1200), 32, 8192)
+    const w = ratio >= 1 ? edge : Math.max(1, Math.round(edge * ratio)),
+      h = ratio >= 1 ? Math.max(1, Math.round(edge / ratio)) : edge
+    if (target.width !== w || target.height !== h) {
+      target.width = w
+      target.height = h
+    }
+    const effect = effects(options, w, h)
+    if (
+      frame.settings.softwareRaster &&
+      (frame.settings.mode === 'color' ||
+        (frame.settings.mode === 'density' && !frame.settings.colored)) &&
+      renderSoftware(options, w, h, effect)
+    ) {
       renderGlow(effect, w, h)
       return { width: w, height: h, renderMs: performance.now() - start }
+    }
+    const quality =
+      frame.settings.mode === 'density' && !frame.settings.colored
+        ? frame.settings.rasterQuality
+        : 'legacy'
+    const scale =
+      quality === 'supersampled' && Math.max(w, h) * 2 <= 4096 && w * h * 16 <= 32 * 1024 * 1024
+        ? 2
+        : 1
+    if (scale > 1) {
+      supersample ??= canvas(w * scale, h * scale)
+      if (supersample.width !== w * scale || supersample.height !== h * scale) {
+        supersample.width = w * scale
+        supersample.height = h * scale
+      }
+      ctx = supersample.getContext('2d')!
+    } else ctx = outputCtx
+    ctx.imageSmoothingQuality = quality && quality !== 'legacy' ? 'high' : 'low'
+    ctx.globalAlpha = 1
+    if (options.transparent) ctx.clearRect(0, 0, w * scale, h * scale)
+    else {
+      ctx.fillStyle = frame.settings.background
+      ctx.fillRect(0, 0, w * scale, h * scale)
+    }
+    const cw = (w * scale) / frame.columns,
+      ch = (h * scale) / frame.rows
+    const time = options.time ?? 0,
+      motion = options.motion ?? 'none'
+    let sliceStart = performance.now()
+    for (let y = 0; y < frame.rows; y++)
+      for (let x = 0; x < frame.columns; x++) {
+        const cell = y * frame.columns + x,
+          alpha = frame.alpha[cell]!
+        let index = frame.indices[cell]!
+        if (!effect.expressive && (alpha < 0.005 || frame.glyphs[index]!.coverage < 0.001)) continue
+        let color = frame.settings.ink
+        if (frame.settings.colored || frame.settings.mode === 'color') {
+          // Preserve the same sampled RGB as GPU; bound the raster cache separately.
+          color = `rgb(${frame.colors[cell * 3]!},${frame.colors[cell * 3 + 1]!},${frame.colors[cell * 3 + 2]!})`
+        }
+        let dx = 0,
+          dy = 0,
+          intensity = 1,
+          size = 1
+        let hoveredAlpha = alpha
+        if (effect.expressive) {
+          const e = effect.cell(x, y, cw, ch, alpha)
+          dx = e.dx
+          dy = e.dy
+          intensity = e.intensity
+          hoveredAlpha = e.opacity
+          index = e.glyph
+          size = e.size
+        } else {
+          if (motion === 'breathe')
+            intensity = 0.92 + Math.sin(time * 0.9 + x * 0.02 + y * 0.02) * 0.08
+          if (motion === 'wave') {
+            dx = Math.sin(y * 0.075 + time * 0.75) * cw * 0.18
+            dy = Math.cos(x * 0.055 + time * 0.6) * ch * 0.1
+          }
+          if (motion === 'assemble') {
+            const amount = Math.exp(-Math.max(0, time) * 1.4)
+            dx = Math.sin(cell * 12.9898) * cw * 12 * amount
+            dy = Math.cos(cell * 7.13) * ch * 10 * amount
+          }
+          if (options.pointer?.strength) {
+            const px = (x + 0.5) / frame.columns - options.pointer.x,
+              py = (y + 0.5) / frame.rows - options.pointer.y
+            const falloff = Math.exp(-(px * px + py * py) / 0.018) * options.pointer.strength
+            if (options.hover === 'light') {
+              // Change only the ink alpha. Glyphs, word order and tone polarity stay fixed.
+              hoveredAlpha += (1 - alpha) * falloff * 0.28
+            } else if (options.hover === 'ripple') {
+              const distance = Math.hypot(px, py)
+              const ripple = Math.sin(distance * 48 - time * 2.4) * falloff
+              // Below a quarter cell: no glyph can jump over its neighbouring word.
+              dx += (px / Math.max(0.01, distance)) * cw * ripple * 0.14
+              dy += (py / Math.max(0.01, distance)) * ch * ripple * 0.14
+              hoveredAlpha += (1 - alpha) * falloff * 0.18
+            } else {
+              dx += px * cw * 14 * falloff
+              dy += py * ch * 10 * falloff
+            }
+          }
+        }
+        if (hoveredAlpha < 0.005 || frame.glyphs[index]!.coverage < 0.001) continue
+        ctx.globalAlpha = effect.expressive
+          ? clamp(hoveredAlpha * intensity, 0, 1)
+          : hoveredAlpha * intensity
+        const dw = cw * size,
+          dh = ch * size
+        ctx.drawImage(
+          tile(index, color),
+          x * cw + dx + (cw - dw) * 0.5,
+          y * ch + dy + (ch - dh) * 0.5,
+          dw,
+          dh,
+        )
+        if (performance.now() - sliceStart >= 8) {
+          yield cell + 1
+          sliceStart = performance.now()
+        }
+      }
+
+    ctx.globalAlpha = 1
+    if (ctx !== outputCtx) {
+      outputCtx.globalAlpha = 1
+      outputCtx.imageSmoothingQuality = 'high'
+      if (options.transparent) outputCtx.clearRect(0, 0, w, h)
+      outputCtx.drawImage(supersample!, 0, 0, w, h)
+    }
+    renderGlow(effect, w, h)
+    return { width: w, height: h, renderMs: performance.now() - start }
+  }
+
+  return {
+    render(next: ArtFrame, options: ArtRenderOptions = {}) {
+      const steps = renderSteps(next, options)
+      let result = steps.next()
+      while (!result.done) result = steps.next()
+      return result.value
+    },
+    async renderResponsive(
+      next: ArtFrame,
+      options: ArtRenderOptions = {},
+      onProgress?: (completedCells: number, totalCells: number) => void,
+    ) {
+      const steps = renderSteps(next, options)
+      let result = steps.next()
+      while (!result.done) {
+        // Drain queued GPU work inside the worker before yielding. Otherwise a
+        // large final readback can stall the browser compositor despite the worker.
+        outputCtx.getImageData(0, 0, 1, 1)
+        onProgress?.(result.value, next.columns * next.rows)
+        await new Promise<void>((resolve) => setTimeout(resolve, 0))
+        result = steps.next()
+      }
+      return result.value
     },
     destroy() {
+      particlePresentation.destroy()
       riftPresentation.destroy()
       effectCells = effectCellValid = null
       motionField = null
@@ -2316,7 +2526,7 @@ export function createCanvasArtRenderer(
       }
     },
     get interactionActive() {
-      return interaction?.active ?? false
+      return Boolean(interaction?.active || particlePresentation.active)
     },
     /** Shared native field for future particles/light layers, without re-reading the source image. */
     sampleInteraction(x: number, y: number) {
@@ -2338,6 +2548,7 @@ export function createCanvasArtRenderer(
     sampleFluidField,
     get cacheStats() {
       return {
+        particles: particlePresentation.stats,
         rift: riftPresentation.stats,
         motionCells: motionColumns * motionRows,
         motionBytes: motionField?.byteLength ?? 0,

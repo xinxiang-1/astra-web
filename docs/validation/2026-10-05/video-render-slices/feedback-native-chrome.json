@@ -1,0 +1,56 @@
+{
+  "browser": "154.0.8037.57",
+  "cases": [
+    {
+      "width": 1440,
+      "theme": "light",
+      "geometry": [
+        860,
+        729
+      ],
+      "visibleAndHiddenStable": true,
+      "inputAvailable": true,
+      "reducedMotion": true
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "geometry": [
+        860,
+        729
+      ],
+      "visibleAndHiddenStable": true,
+      "inputAvailable": true,
+      "reducedMotion": true
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "geometry": [
+        362,
+        374
+      ],
+      "visibleAndHiddenStable": true,
+      "inputAvailable": true,
+      "reducedMotion": true
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "geometry": [
+        362,
+        374
+      ],
+      "visibleAndHiddenStable": true,
+      "inputAvailable": true,
+      "reducedMotion": true
+    }
+  ],
+  "passed": true,
+  "scope": "Real local video, synthetic buffering events; no real network-stall claim",
+  "source": {
+    "file": "source.webm",
+    "generated": true,
+    "sha256": "0c08ddfd5320f6b3ada3b9fd7e0ec6bc087164aa371e9773676749950ec64f28"
+  }
+}

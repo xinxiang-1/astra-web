@@ -1,0 +1,30 @@
+{
+  "browser": "154.0.8037.57",
+  "cases": [],
+  "passed": false,
+  "scope": "Real local video, synthetic buffering events; no real network-stall claim",
+  "source": {
+    "file": "source.webm",
+    "generated": true,
+    "sha256": "34625a59ca017ae414573bcb4a21464514f695d9806955fa676098939005795c"
+  },
+  "failure": "page.waitForFunction: Timeout 30000ms exceeded.\n    at D:\\my\\project\\astra\\astra-web\\scripts\\video-render-feedback-contract.mjs:41:14",
+  "failureState": {
+    "messages": [
+      "视频解码失败，请换 MP4 / WebM 再试"
+    ],
+    "canvas": {},
+    "video": [
+      {
+        "duration": null,
+        "readyState": 0,
+        "width": 0
+      },
+      {
+        "duration": null,
+        "readyState": 0,
+        "width": 0
+      }
+    ]
+  }
+}

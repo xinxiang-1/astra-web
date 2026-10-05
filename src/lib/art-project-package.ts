@@ -34,6 +34,7 @@ const enums: Record<string, readonly string[]> = {
     'displace',
     'trail',
     'rift',
+    'particles',
     'water',
     'silk',
     'vortex',

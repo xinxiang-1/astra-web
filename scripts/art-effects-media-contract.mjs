@@ -5,13 +5,15 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 const base = process.env.ASTRA_PREVIEW_URL || 'http://127.0.0.1:5192'
 const hover = process.env.ASTRA_EFFECTS_MEDIA_HOVER
-if (hover) assert.equal(hover, 'rift')
+const ffprobePath = process.env.ASTRA_FFPROBE_PATH || 'ffprobe'
+const ffmpegPath = process.env.ASTRA_FFMPEG_PATH || 'ffmpeg'
+if (hover) assert(['rift', 'particles'].includes(hover))
 const out = path.resolve(
   process.env.ASTRA_EFFECTS_MEDIA_OUTPUT || 'sandbox/art-effects/2026-10-01-v2/media-final',
 )
 await mkdir(path.dirname(out), { recursive: true })
 await mkdir(out, { recursive: false })
-const browser = await chromium.launch({ headless: true })
+const browser = await chromium.launch({ headless: true, channel: process.env.ASTRA_BROWSER_CHANNEL || 'msedge' })
 const page = await browser.newPage({
   viewport: { width: 1440, height: 960 },
   reducedMotion: 'no-preference',
@@ -113,7 +115,7 @@ try {
   if (hover)
     await page
       .getByRole('group', { name: '六模式悬停', exact: true })
-      .getByRole('button', { name: '撕裂试用', exact: true })
+      .getByRole('button', { name: hover === 'particles' ? '字符聚散试用' : '撕裂试用', exact: true })
       .click()
   const htmlFile = await exportFile('动态网页', 'video-effects')
   const html = await readFile(htmlFile, 'utf8'),
@@ -124,7 +126,7 @@ try {
   if (hover) assert.equal(data.hover, hover)
   const probe = JSON.parse(
     execFileSync(
-      'ffprobe',
+      ffprobePath,
       ['-v', 'error', '-show_streams', '-show_format', '-of', 'json', movie],
       { encoding: 'utf8' },
     ),
@@ -132,7 +134,7 @@ try {
   const stream = probe.streams.find((s) => s.codec_type === 'video')
   assert(stream?.width === 1280 && Math.abs(Number(probe.format.duration) - 0.5) < 0.09)
   const decoded = path.join(out, 'decoded-frame-3.png')
-  execFileSync('ffmpeg', [
+  execFileSync(ffmpegPath, [
     '-v',
     'error',
     '-i',

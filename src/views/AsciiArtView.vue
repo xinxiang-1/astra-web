@@ -20,6 +20,7 @@ import {
 import {
   ART_MODES,
   ART_ENGINE_VERSION,
+  ART_PARTICLE_MAX_CELLS,
   createCanvasArtRenderer,
   prepareArtFrame,
   prepareArtFrameResponsive,
@@ -143,6 +144,7 @@ const converting = ref(false)
 const loadingSource = ref(false)
 const videoBuffering = ref(false)
 const videoRendering = ref(false)
+const videoRenderProgress = ref(0)
 const videoRenderFallback = ref(false)
 let videoFeedbackTimer: ReturnType<typeof setTimeout> | undefined
 const pending = computed(() => converting.value || loadingSource.value)
@@ -243,6 +245,7 @@ const artHoverOptions: { id: ArtHover | 'none'; label: string }[] = [
   { id: 'displace', label: '轻推' },
   { id: 'trail', label: '拖尾' },
   { id: 'rift', label: '撕裂试用' },
+  { id: 'particles', label: '字符聚散试用' },
   { id: 'water', label: '水面' },
   { id: 'silk', label: '丝绸' },
   { id: 'vortex', label: '漩涡' },
@@ -269,12 +272,20 @@ const hoverStrength = ref(0.65)
 const riftTouchActive = computed(
   () =>
     editorEngine.value === 'calibrated' &&
-    artHover.value === 'rift' &&
+    ['rift', 'particles'].includes(artHover.value) &&
     hoverStrength.value > 0 &&
+    !particleCapacityExceeded.value &&
     !reducedArtMotion.value &&
     !showOriginal.value,
 )
 const hoverRadius = ref(0.38)
+const particleCapacityExceeded = computed(
+  () =>
+    artHover.value === 'particles' &&
+    Boolean(
+      artFrame.value && artFrame.value.columns * artFrame.value.rows > ART_PARTICLE_MAX_CELLS,
+    ),
+)
 const ambientMotion = ref<AsciiStudioMotion>('none')
 
 const hoverOptions = [
@@ -644,7 +655,9 @@ function selectArtMotionStyle(next: 'studio' | 'cinematic') {
 }
 
 function selectArtHover(next: ArtHover | 'none') {
-  if (['trail', 'rift', 'water', 'silk', 'vortex', 'contour', 'dissolve'].includes(next))
+  if (
+    ['trail', 'rift', 'particles', 'water', 'silk', 'vortex', 'contour', 'dissolve'].includes(next)
+  )
     artEffectProfile.value = 'expressive'
   artHover.value = next
 }
@@ -693,6 +706,7 @@ function destroyCalibratedRenderers() {
   clearTimeout(videoFeedbackTimer)
   videoFeedbackTimer = undefined
   videoRendering.value = false
+  videoRenderProgress.value = 0
   videoRenderFallback.value = false
 }
 
@@ -721,8 +735,7 @@ function queueCalibratedAnimation() {
     return
   if (
     (artMotion.value === 'none' || artPaused.value || artMotionStrength.value === 0) &&
-    artPointer.strength < 0.002 &&
-    artPointer.target === 0 &&
+    (particleCapacityExceeded.value || (artPointer.strength < 0.002 && artPointer.target === 0)) &&
     ![...artRenderers.values(), ...videoRenderers.values()].some(
       (renderer) => renderer.interactionActive,
     )
@@ -754,6 +767,7 @@ function onCalibratedPointer(event: PointerEvent) {
   if (
     editorEngine.value !== 'calibrated' ||
     artHover.value === 'none' ||
+    particleCapacityExceeded.value ||
     reducedArtMotion.value ||
     showOriginal.value
   )
@@ -2338,6 +2352,7 @@ function paintTo(
               clearTimeout(videoFeedbackTimer)
               videoFeedbackTimer = undefined
               videoRendering.value = false
+              videoRenderProgress.value = 0
               if (
                 viewDisposed ||
                 document.hidden ||
@@ -2361,8 +2376,18 @@ function paintTo(
               videoRenderers.delete(canvas)
               failedVideoRenderers.add(canvas)
               videoRendering.value = false
+              videoRenderProgress.value = 0
               videoRenderFallback.value = true
               schedulePaint()
+            },
+            (progress, renderedFrame) => {
+              if (
+                !viewDisposed &&
+                !document.hidden &&
+                revision === sourceRevision.value &&
+                JSON.stringify(renderedFrame.settings) === JSON.stringify(artFrame.value?.settings)
+              )
+                videoRenderProgress.value = progress
             },
           ) ?? undefined
         if (worker) videoRenderers.set(canvas, worker)
@@ -3642,6 +3667,13 @@ onBeforeUnmount(() => {
             <p v-if="artHover === 'rift'" class="hint">
               快速划过，字符随流体拉开再回弹。撕裂效果正在打磨，复杂原色作品可能响应较慢。
             </p>
+            <p v-if="artHover === 'particles'" class="hint" role="status">
+              {{
+                particleCapacityExceeded
+                  ? '当前作品字符数量超过聚散容量，聚散未启用。可选择较低清晰度体验交互。'
+                  : '划动让原字符沿流体散开，松手后自然重组。环境暂停时仍可交互，复杂作品可能响应较慢。'
+              }}
+            </p>
           </div>
           <template v-if="artHover !== 'none'">
             <div class="field">
@@ -4030,6 +4062,7 @@ onBeforeUnmount(() => {
         </header>
 
         <RenderFeedback
+          class="stage-feedback"
           v-if="
             loadingSource ||
             converting ||
@@ -4056,7 +4089,9 @@ onBeforeUnmount(() => {
           :progress="
             videoPrerendering && videoPrerenderTotal
               ? videoPrerenderDone / videoPrerenderTotal
-              : undefined
+              : videoRendering
+                ? videoRenderProgress
+                : undefined
           "
         />
         <p v-if="hasVideo && videoRenderFallback" class="status" role="status">
@@ -4156,7 +4191,11 @@ onBeforeUnmount(() => {
         <div class="fs-bar">
           <p class="fs-title">全屏预览 · {{ zoom }}% · Ctrl+滚轮</p>
           <span v-if="videoRendering || converting" class="status" role="status"
-            >正在更新画面…</span
+            >正在更新画面{{
+              videoRendering && videoRenderProgress > 0
+                ? ` ${Math.round(videoRenderProgress * 100)}%`
+                : '…'
+            }}</span
           >
           <div class="fs-tools">
             <button type="button" class="btn ghost" @click="zoomOut">缩小</button>
@@ -4960,6 +4999,7 @@ onBeforeUnmount(() => {
 }
 
 .stage {
+  position: relative;
   min-width: 0;
   min-height: 0;
   height: 100%;
@@ -4970,6 +5010,17 @@ onBeforeUnmount(() => {
   display: grid;
   grid-template-rows: auto minmax(0, 1fr);
   gap: 0.65rem;
+}
+
+.stage .stage-feedback {
+  position: absolute;
+  top: 4rem;
+  right: 1rem;
+  z-index: 3;
+  width: min(420px, calc(100% - 2rem));
+  margin: 0;
+  background: var(--bg-elevated);
+  pointer-events: none;
 }
 
 .stage-head {

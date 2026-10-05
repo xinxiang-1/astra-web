@@ -1,0 +1,9 @@
+{
+  "codec": "vp9",
+  "width": 571,
+  "height": 713,
+  "decodedFrames": "34",
+  "firstPacketSeconds": 0.0,
+  "lastPacketSeconds": 21.308,
+  "scope": "Real editor mouse input; packet span is not a constant frame-rate certification"
+}

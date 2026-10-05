@@ -5,7 +5,7 @@ import { createCanvasArtRenderer } from './canvas'
 import type { ArtFrame, ArtSettings, ArtMode, ArtRenderOptions } from './types'
 export type * from './types'
 export { createArtCore } from './core'
-export { createCanvasArtRenderer } from './canvas'
+export { createCanvasArtRenderer, ART_PARTICLE_MAX_CELLS } from './canvas'
 export const ART_ENGINE_VERSION = '2.2.0'
 export const ART_DEFAULTS: ArtSettings = {
   mode: 'density',
@@ -52,7 +52,7 @@ export function createArtRenderer(
         options.effectProfile === 'expressive' ||
         options.motionStyle === 'cinematic' ||
         ['current', 'reform', 'caustics'].includes(options.motion ?? 'none') ||
-        ['trail', 'rift', 'water', 'silk', 'vortex', 'contour', 'dissolve'].includes(
+        ['trail', 'rift', 'particles', 'water', 'silk', 'vortex', 'contour', 'dissolve'].includes(
           options.hover ?? 'light',
         ) ||
         (frame.settings.softwareRaster &&

@@ -8,4 +8,5 @@ export type FrameRenderRequest = {
 }
 export type FrameRenderResponse =
   | { id: number; bitmap: ImageBitmap; renderMs: number; interactionActive: boolean }
+  | { id: number; completedCells: number; totalCells: number }
   | { id: number; error: string }

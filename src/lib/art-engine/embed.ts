@@ -70,7 +70,12 @@ async function runArtworkPage(
   const reduced = matchMedia('(prefers-reduced-motion: reduce)')
   function updateTouchAction() {
     canvas.style.touchAction =
-      data.hover === 'rift' && (data.hoverStrength ?? 1) > 0 && !reduced.matches ? 'none' : ''
+      ['rift', 'particles'].includes(data.hover) &&
+      (data.hoverStrength ?? 1) > 0 &&
+      !(data.hover === 'particles' && renderer.cacheStats.particles.unavailable) &&
+      !reduced.matches
+        ? 'none'
+        : ''
   }
   updateTouchAction()
   const pointer = { x: 0.5, y: 0.5, strength: 0, target: 0 }
@@ -110,6 +115,12 @@ async function runArtworkPage(
     })
     canvas.dataset.ready = 'true'
     canvas.dataset.time = String(video?.currentTime ?? animationTime)
+    updateTouchAction()
+    if (data.hover === 'particles' && renderer.cacheStats.particles.unavailable) {
+      status.textContent = '字符数量超过当前聚散容量，聚散未启用；可在编辑器调整清晰度。'
+      pointer.target = pointer.strength = 0
+      pointerSamples.length = 0
+    }
   }
   function queue() {
     if (!raf && !document.hidden) raf = requestAnimationFrame(tick)
@@ -149,7 +160,12 @@ async function runArtworkPage(
       queue()
   }
   function movePointer(event: PointerEvent) {
-    if (data.hover === 'none' || reduced.matches) return
+    if (
+      data.hover === 'none' ||
+      reduced.matches ||
+      (data.hover === 'particles' && renderer.cacheStats.particles.unavailable)
+    )
+      return
     const rect = canvas.getBoundingClientRect()
     const x = (event.clientX - rect.left) / rect.width,
       y = (event.clientY - rect.top) / rect.height
@@ -171,6 +187,7 @@ async function runArtworkPage(
   host.addEventListener('pointermove', movePointer)
   host.addEventListener('pointerdown', movePointer)
   function leavePointer() {
+    if (data.hover === 'particles' && renderer.cacheStats.particles.unavailable) return
     pointer.target = 0
     pointerSamples.push({ x: pointer.x, y: pointer.y, time: performance.now(), active: false })
     if (pointerSamples.length > 128) pointerSamples.shift()
@@ -255,7 +272,8 @@ async function runArtworkPage(
     lastVideoTime = video.currentTime
   }
   paint()
-  status.textContent = '移动指针探索光影 · 作品可离线打开'
+  if (!(data.hover === 'particles' && renderer.cacheStats.particles.unavailable))
+    status.textContent = '移动指针探索光影 · 作品可离线打开'
   window.addEventListener(
     'pagehide',
     () => {

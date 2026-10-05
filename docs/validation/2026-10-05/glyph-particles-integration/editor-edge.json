@@ -1,0 +1,101 @@
+{
+  "browser": "154.0.4258.53",
+  "errors": [],
+  "desktop": [
+    {
+      "label": "光影字符",
+      "peak": 0.09942067862288174,
+      "bytes": 1526400,
+      "exactRecovery": true
+    },
+    {
+      "label": "原色字符",
+      "peak": 0.09848630269607138,
+      "bytes": 1526400,
+      "exactRecovery": true
+    },
+    {
+      "label": "中文铺字",
+      "peak": 0.06367988558379352,
+      "bytes": 2750400,
+      "exactRecovery": true
+    },
+    {
+      "label": "轮廓线稿",
+      "peak": 0.08414218933624543,
+      "bytes": 1526400,
+      "exactRecovery": true
+    },
+    {
+      "label": "点阵细节",
+      "peak": 0.04182093193829925,
+      "bytes": 1526400,
+      "exactRecovery": true
+    },
+    {
+      "label": "印刷网点",
+      "peak": 0.08983008132282967,
+      "bytes": 1526400,
+      "exactRecovery": true
+    }
+  ],
+  "touch": [
+    {
+      "id": "mobile editor",
+      "touchAction": "none",
+      "trace": {
+        "down": 1,
+        "move": 10,
+        "up": 1,
+        "cancel": 0
+      },
+      "exactRecovery": true
+    },
+    {
+      "id": "mobile fullscreen",
+      "touchAction": "none",
+      "trace": {
+        "down": 1,
+        "move": 10,
+        "up": 1,
+        "cancel": 0
+      },
+      "exactRecovery": true
+    },
+    {
+      "id": "offline mobile",
+      "touchAction": "none",
+      "trace": {
+        "down": 1,
+        "move": 10,
+        "up": 1,
+        "cancel": 0
+      },
+      "exactRecovery": true
+    }
+  ],
+  "passed": true,
+  "fullscreen": {
+    "interactive": true,
+    "released": true,
+    "exactMainRecovery": true
+  },
+  "pause": {
+    "ambientFrozen": true,
+    "hoverContinues": true
+  },
+  "reducedMotion": {
+    "static": true,
+    "scrollAllowed": true
+  },
+  "offline": {
+    "hover": "particles",
+    "networkRequests": 0,
+    "htmlSha256": "bf525f7893c692cdf55a6cdd2691e75fffbd1921fa0b28b79fccfd6995c3b34f"
+  },
+  "videoWorker": {
+    "backend": "worker",
+    "hover": "particles",
+    "time": 2.318229
+  }
+}

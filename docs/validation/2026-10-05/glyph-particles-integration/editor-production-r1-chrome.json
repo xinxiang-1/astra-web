@@ -1,0 +1,35 @@
+{
+  "browser": "154.0.8037.57",
+  "base": "http://127.0.0.1:5184",
+  "production": true,
+  "errors": [],
+  "desktop": [
+    {
+      "label": "光影字符",
+      "peak": null,
+      "bytes": null,
+      "visibleScatter": true,
+      "exactRecovery": true
+    },
+    {
+      "label": "原色字符",
+      "peak": null,
+      "bytes": null,
+      "visibleScatter": true,
+      "exactRecovery": true
+    }
+  ],
+  "touch": [],
+  "passed": false,
+  "recording": {
+    "mime": "video/webm;codecs=vp9",
+    "width": 571,
+    "height": 713,
+    "requestedFrameRate": 30,
+    "elapsedMs": 21746.099999904633,
+    "bytes": 321961,
+    "sha256": "b98b6aa9b6c408c66d366502216d1db0049c3349eedba2eeb3cc040cc4066cab",
+    "source": "Actual editor Canvas with real Playwright mouse input; exported MP4 does not record an interaction track"
+  },
+  "failure": "page.waitForFunction: Timeout 60000ms exceeded.\n    at settled (D:\\my\\project\\astra\\astra-web\\scripts\\glyph-particles-editor-contract.mjs:32:15)\n    at D:\\my\\project\\astra\\astra-web\\scripts\\glyph-particles-editor-contract.mjs:124:36"
+}
