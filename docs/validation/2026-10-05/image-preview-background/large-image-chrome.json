@@ -1,0 +1,34 @@
+{
+  "browser": "154.0.8037.57",
+  "passed": true,
+  "errors": [],
+  "scope": "Page timer/rAF and actual theme click during a native image Worker frame; these are not character output FPS",
+  "themeClickMs": 80,
+  "nativeFrame": {
+    "columns": 180,
+    "rows": 191,
+    "width": 571,
+    "height": 713,
+    "workerRenderMs": 2408.8000000715256,
+    "baselineMs": 5951.600000023842,
+    "changed": 0,
+    "maxDelta": 0,
+    "sameBytes": true,
+    "timer": {
+      "count": 121,
+      "p95": 21.5,
+      "max": 42.59999990463257
+    },
+    "pageRaf": {
+      "count": 105,
+      "p95": 50,
+      "max": 66.70000000000027
+    },
+    "wallMs": 2441.5
+  },
+  "sourceHashes": {
+    "src/lib/art-engine/canvas.ts": "05f119b29a3f1081b6905719a2487e1a5166d74db945ceb0678d2f10062e26f9",
+    "src/lib/art-engine/preview-render-client.ts": "781d8568e886c366f416de8e13c354df3fb957eb384297f0bf70b4653ef6ccba",
+    "src/views/AsciiArtView.vue": "a660091df681de1e60c7fdd943e66d5bf8b88f88e5cd43dcc26a3324a4b0c295"
+  }
+}

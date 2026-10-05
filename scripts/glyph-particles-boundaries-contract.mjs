@@ -92,7 +92,8 @@ try {
   await page.waitForFunction(() => {
     const canvas = document.querySelector('.ascii-scroll .ascii-canvas')
     const state = document.querySelector('.art-editor').__vueParentComponent.setupState
-    return canvas && state.artRenderers.get(canvas)?.cacheStats.particles.unavailable
+    const renderer = state.artRenderers.get(canvas)
+    return canvas && renderer && !renderer.pending && renderer.cacheStats?.particles.unavailable
   })
   report.editorCapacity = await page.locator('.ascii-scroll .ascii-canvas').evaluate(c => ({
     touchAction: getComputedStyle(c).touchAction,

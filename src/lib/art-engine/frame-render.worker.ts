@@ -39,6 +39,7 @@ self.onmessage = async (event: MessageEvent<FrameRenderRequest>) => {
       bitmap,
       renderMs,
       interactionActive: renderer.interactionActive,
+      cacheStats: renderer.cacheStats,
     }
     self.postMessage(response, [bitmap])
   } catch (e) {

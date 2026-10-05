@@ -1,0 +1,144 @@
+{
+  "acceptedForProduction": false,
+  "calibrationProof": {
+    "sha256": "b5ee7b6c2b3aa80dc59141bc52a186722024f64f9cbc93d77be9c42467a57b3f",
+    "passed": false,
+    "tested": 46,
+    "failure": {
+      "family": "Consolas",
+      "glyph": "我",
+      "color": [
+        0,
+        0,
+        0
+      ],
+      "scale": 0.17,
+      "opacity": 0.37,
+      "offset": 0.27,
+      "background": false,
+      "targetCPU": true,
+      "changed": 13,
+      "maxDelta": 6
+    }
+  },
+  "canvasLut": {
+    "sha256": "c7ac2c0b8151037718911f7efb8786f598c78110c764f1edcd143a25ba58ac03",
+    "report": {
+      "passed": false,
+      "cases": [
+        {
+          "i": 0,
+          "ms": 7014,
+          "changed": 561161,
+          "maxDelta": 178
+        }
+      ]
+    }
+  },
+  "bitmapLut": {
+    "sha256": "3cda40ab8d20457a36f94a8b9f069255897eb4b29ec49515bb6c6e03ed41fbc7",
+    "report": {
+      "passed": false,
+      "cases": [
+        {
+          "i": 0,
+          "ms": 7117.599999904633,
+          "changed": 561161,
+          "maxDelta": 178
+        }
+      ]
+    }
+  },
+  "rawTiles": {
+    "sha256": "d106fe982d481fca50d786acdea27800af19ad8a9f9f1c9ecf33afe9fb421100",
+    "report": {
+      "passed": true,
+      "checked": 300
+    }
+  },
+  "nativeTilePool": {
+    "sha256": "7033c0dec045cf27c30d4f4ca93a9aaf73b620caa717203db77cda6f0f4417a4",
+    "report": {
+      "passed": true,
+      "columns": 180,
+      "rows": 191,
+      "width": 571,
+      "height": 713,
+      "cases": [
+        {
+          "i": 0,
+          "ms": 11542.600000023842,
+          "changed": 0,
+          "maxDelta": 0
+        },
+        {
+          "i": 1,
+          "ms": 15426.600000023842,
+          "changed": 0,
+          "maxDelta": 0
+        },
+        {
+          "i": 2,
+          "ms": 13246.600000023842,
+          "changed": 0,
+          "maxDelta": 0
+        }
+      ],
+      "count": 128
+    }
+  },
+  "nativeTileBaseline": {
+    "sha256": "2421b19b2798e8a389920f639d2f09c6cdae6de1945537fd1d661b836c4e0e9e",
+    "report": {
+      "cpu": false,
+      "timings": [
+        21019,
+        8477.100000023842,
+        7692.299999952316
+      ],
+      "width": 571,
+      "height": 713,
+      "stats": {
+        "particles": {
+          "bytes": 2750400,
+          "limit": 10485760,
+          "maxCells": 131072,
+          "peak": 0.02054121136093343,
+          "moving": 8736,
+          "unavailable": false
+        },
+        "rift": {
+          "columns": 0,
+          "rows": 0,
+          "bytes": 0,
+          "peakOffset": 0,
+          "rawPeakOffset": 0,
+          "maxStrain": 0,
+          "minJacobian": 1,
+          "limit": 262144
+        },
+        "motionCells": 0,
+        "motionBytes": 0,
+        "choreographyBytes": 0,
+        "choreographyLimit": 4194304,
+        "effectCellBytes": 2509740,
+        "effectCellLimit": 4194304,
+        "entries": 6808,
+        "backingBytes": 16774912,
+        "maxBackingBytes": 16777216,
+        "scratchBytes": 2464,
+        "supersampleBytes": 0,
+        "glowBytes": 0,
+        "interactionCells": 13184,
+        "interactionActive": true,
+        "interactionBytes": 1687552,
+        "softwareMaskBytes": 0,
+        "softwareMaskEntries": 0,
+        "softwareWorkingBytes": 0,
+        "hits": 18111,
+        "misses": 40237
+      }
+    }
+  },
+  "note": "Raw tile equality does not prove the final draw. LUT scripts exited 0 despite passed:false. Native pool passed RGBA but failed the performance decision. These older timings are not a controlled speedup comparison with the new controller."
+}

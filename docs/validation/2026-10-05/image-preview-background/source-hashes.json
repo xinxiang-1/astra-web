@@ -1,0 +1,21 @@
+{
+  "baseCommit": "5adb64ad7726f6a96e99a968a3bacefb0fb216f7",
+  "hashes": {
+    "src/lib/art-engine/canvas.ts": "05f119b29a3f1081b6905719a2487e1a5166d74db945ceb0678d2f10062e26f9",
+    "src/lib/art-engine/frame-render-client.ts": "790d76e04bc8f39a1709e30145fe8f3db13a464a9fadd3f056d07c33e7fe3604",
+    "src/lib/art-engine/frame-render-protocol.ts": "51bec78c77e69b584bd0241f693f9f0a32c7a3ec965e6d29475d106af47a11b1",
+    "src/lib/art-engine/frame-render.worker.ts": "3efb2eaa6cb9db06e68a90d416d28b9a26e97616ca17d17ec08773427984cb11",
+    "src/lib/art-engine/preview-render-client.ts": "781d8568e886c366f416de8e13c354df3fb957eb384297f0bf70b4653ef6ccba",
+    "src/views/AsciiArtView.vue": "67ddfee78c1c2357cc5b4f557d2f97a466df3f777454dcc3e5183cab786dd0d7",
+    "scripts/image-preview-responsive-contract.mjs": "3030444742a8995861425b1378190f2e02e92fdceb0276dd6e5c0bfe15b76e80",
+    "scripts/image-preview-latency-contract.mjs": "a6dbf2cf9b0c562981ec8dafc78114b06b0a59bb609eaea8bc7804c14779baa3",
+    "scripts/image-preview-heavy-particles-contract.mjs": "8917b21ad5f1e90434f0051226c8dae5e900fd32ee56e582693a8f06d2cfd952",
+    "scripts/image-preview-production-contract.mjs": "30233086718f975d4b149ccbd0a7513d36af21897b0e8c40aafa2a5a355295e4",
+    "scripts/glyph-particles-boundaries-contract.mjs": "bde774550e0051c712122105abf0f29a2120bceae02b07715d9a75475dbe6f72",
+    "scripts/glyph-particles-editor-contract.mjs": "1e7bdd53da04962f861419bb554c27d6c99fac294e7fe2da97ccd3fa568a18de",
+    "scripts/video-responsive-contract.mjs": "ba345cb62ba8cd004ccb4c6166116cdfdde2091fe80d0d364800ee3944be180b",
+    "src/views/ArtHomeView.vue": "db2b7e0ffa0d590be0e3e9d99caa8ecaba4716721b5d03b2d6269e46ad4458dd",
+    "src/components/CharacterArtwork.vue": "99da7635979b98f70aa622887bcf775047114529b4130de201cebf40d0ab2858",
+    "src/lib/ascii/studio-preview.ts": "87ef73fd4261872b1a6bc3d66fd2a05498bc73fa047294b4934174ede9af1a07"
+  }
+}

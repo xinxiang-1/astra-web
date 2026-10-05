@@ -36,6 +36,11 @@ import {
   createFrameRenderWorker,
   type FrameRenderWorker,
 } from '@/lib/art-engine/frame-render-client'
+import {
+  artPreviewConfigKey,
+  createPreviewRenderClient,
+  type PreviewRenderClient,
+} from '@/lib/art-engine/preview-render-client'
 import type { ArtRenderOptions } from '@/lib/art-engine/types'
 import '@/styles/art-editor.css'
 
@@ -143,10 +148,10 @@ const imageAspect = ref(0)
 const converting = ref(false)
 const loadingSource = ref(false)
 const videoBuffering = ref(false)
-const videoRendering = ref(false)
-const videoRenderProgress = ref(0)
-const videoRenderFallback = ref(false)
-let videoFeedbackTimer: ReturnType<typeof setTimeout> | undefined
+const frameRendering = ref(false)
+const frameRenderProgress = ref(0)
+const frameRenderFallback = ref(false)
+let frameFeedbackTimer: ReturnType<typeof setTimeout> | undefined
 const pending = computed(() => converting.value || loadingSource.value)
 const sourceRevision = ref(0)
 let sourceLoadController: AbortController | null = null
@@ -199,11 +204,16 @@ const artQualityOptions = computed(() => [
 ])
 const artFrame = shallowRef<ArtFrame | null>(null)
 const reducedArtMotion = ref(matchMedia('(prefers-reduced-motion: reduce)').matches)
-const artRenderers = new Map<HTMLCanvasElement, ReturnType<typeof createCanvasArtRenderer>>()
+const artRenderers = new Map<HTMLCanvasElement, PreviewRenderClient>()
 const videoRenderers = new Map<HTMLCanvasElement, FrameRenderWorker>()
+const previewRenderKeys = new Map<HTMLCanvasElement, string>()
+const previewProgress = new Map<HTMLCanvasElement, number>()
 const failedVideoRenderers = new Set<HTMLCanvasElement>()
 const videoRenderBudget = () =>
-  Math.max(0, ...[...videoRenderers.values()].map((r) => r.renderMs * 1.25))
+  Math.max(
+    0,
+    ...[...artRenderers.values(), ...videoRenderers.values()].map((r) => r.renderMs * 1.25),
+  )
 let artAnimationRaf = 0,
   artLastTick = 0,
   artElapsed = 0,
@@ -702,12 +712,48 @@ function destroyCalibratedRenderers() {
   artRenderers.clear()
   for (const renderer of videoRenderers.values()) renderer.dispose()
   videoRenderers.clear()
+  previewRenderKeys.clear()
+  previewProgress.clear()
   failedVideoRenderers.clear()
-  clearTimeout(videoFeedbackTimer)
-  videoFeedbackTimer = undefined
-  videoRendering.value = false
-  videoRenderProgress.value = 0
-  videoRenderFallback.value = false
+  clearTimeout(frameFeedbackTimer)
+  frameFeedbackTimer = undefined
+  frameRendering.value = false
+  frameRenderProgress.value = 0
+  frameRenderFallback.value = false
+}
+
+function updateRenderFeedback() {
+  for (const [canvas, renderer] of [...artRenderers, ...videoRenderers])
+    canvas.dataset.renderPending = String(renderer.pending)
+  const targets = [...artRenderers, ...videoRenderers].filter(([, renderer]) => renderer.pending)
+  if (!targets.length) {
+    clearTimeout(frameFeedbackTimer)
+    frameFeedbackTimer = undefined
+    frameRendering.value = false
+    frameRenderProgress.value = 0
+    return
+  }
+  frameRenderProgress.value = Math.min(
+    ...targets.map(([canvas]) => previewProgress.get(canvas) ?? 0),
+  )
+  if (!frameRendering.value && !frameFeedbackTimer)
+    frameFeedbackTimer = setTimeout(() => {
+      frameFeedbackTimer = undefined
+      frameRendering.value = [...artRenderers.values(), ...videoRenderers.values()].some(
+        (r) => r.pending,
+      )
+    }, 150)
+}
+
+function releasePreviewRenderer(canvas: HTMLCanvasElement) {
+  videoRenderers.get(canvas)?.dispose()
+  videoRenderers.delete(canvas)
+  artRenderers.get(canvas)?.destroy()
+  artRenderers.delete(canvas)
+  failedVideoRenderers.delete(canvas)
+  previewRenderKeys.delete(canvas)
+  previewProgress.delete(canvas)
+  updateRenderFeedback()
 }
 
 function onArtVisibilityChange() {
@@ -1456,6 +1502,7 @@ function startVideoLoop() {
       !downloading.value &&
       !videoPrerendering.value &&
       ![...videoRenderers.values()].some((r) => r.pending) &&
+      ![...artRenderers.values()].some((r) => r.pending) &&
       (artStageVisible || fullscreen.value),
     getMinIntervalMs: () => Math.max(lastPaintMs * 2, videoRenderBudget()),
     onError: () => {
@@ -2342,22 +2389,24 @@ function paintTo(
     }
     canvas.style.width = `${cssWidth}px`
     canvas.style.height = `${cssHeight}px`
+    previewRenderKeys.set(canvas, artPreviewConfigKey(frame, renderOptions))
     if (hasVideo.value && !failedVideoRenderers.has(canvas)) {
       let worker = videoRenderers.get(canvas)
       if (!worker) {
         const revision = sourceRevision.value
         worker =
           createFrameRenderWorker(
-            (result, renderedFrame) => {
-              clearTimeout(videoFeedbackTimer)
-              videoFeedbackTimer = undefined
-              videoRendering.value = false
-              videoRenderProgress.value = 0
+            (result, renderedFrame, renderedOptions) => {
+              previewProgress.delete(canvas)
+              updateRenderFeedback()
               if (
                 viewDisposed ||
                 document.hidden ||
                 revision !== sourceRevision.value ||
-                JSON.stringify(renderedFrame.settings) !== JSON.stringify(artFrame.value?.settings)
+                JSON.stringify(renderedFrame.settings) !==
+                  JSON.stringify(artFrame.value?.settings) ||
+                previewRenderKeys.get(canvas) !==
+                  artPreviewConfigKey(renderedFrame, renderedOptions)
               )
                 return
               const ctx = canvas.getContext('2d', { willReadFrequently: false })
@@ -2368,53 +2417,80 @@ function paintTo(
               ctx.globalCompositeOperation = 'copy'
               ctx.drawImage(result.bitmap, 0, 0)
               ctx.globalCompositeOperation = 'source-over'
-              markArtCanvas(canvas, renderedFrame, result.interactionActive)
+              markArtCanvas(canvas, renderedFrame, renderedOptions, result.interactionActive)
               canvas.dataset.renderBackend = 'worker'
               queueCalibratedAnimation()
             },
             () => {
               videoRenderers.delete(canvas)
               failedVideoRenderers.add(canvas)
-              videoRendering.value = false
-              videoRenderProgress.value = 0
-              videoRenderFallback.value = true
+              previewProgress.delete(canvas)
+              updateRenderFeedback()
+              frameRenderFallback.value = true
               schedulePaint()
             },
-            (progress, renderedFrame) => {
+            (progress, renderedFrame, renderedOptions) => {
               if (
                 !viewDisposed &&
                 !document.hidden &&
                 revision === sourceRevision.value &&
-                JSON.stringify(renderedFrame.settings) === JSON.stringify(artFrame.value?.settings)
-              )
-                videoRenderProgress.value = progress
+                JSON.stringify(renderedFrame.settings) ===
+                  JSON.stringify(artFrame.value?.settings) &&
+                previewRenderKeys.get(canvas) ===
+                  artPreviewConfigKey(renderedFrame, renderedOptions)
+              ) {
+                previewProgress.set(canvas, progress)
+                updateRenderFeedback()
+              }
             },
           ) ?? undefined
         if (worker) videoRenderers.set(canvas, worker)
         else {
           failedVideoRenderers.add(canvas)
-          videoRenderFallback.value = true
+          frameRenderFallback.value = true
         }
       }
       if (worker) {
         worker.render(frame, renderOptions)
-        if (!videoFeedbackTimer)
-          videoFeedbackTimer = setTimeout(() => {
-            videoFeedbackTimer = undefined
-            videoRendering.value = [...videoRenderers.values()].some((r) => r.pending)
-          }, 150)
+        updateRenderFeedback()
         return
       }
     }
     let renderer = artRenderers.get(canvas)
     if (!renderer) {
-      renderer = createCanvasArtRenderer(canvas)
+      const revision = sourceRevision.value
+      renderer = createPreviewRenderClient(canvas, {
+        compatibilityOnly: hasVideo.value,
+        isCurrent: (renderedFrame, renderedOptions) =>
+          !viewDisposed &&
+          !document.hidden &&
+          revision === sourceRevision.value &&
+          editorEngine.value === 'calibrated' &&
+          renderedFrame === artFrame.value &&
+          previewRenderKeys.get(canvas) === artPreviewConfigKey(renderedFrame, renderedOptions),
+        onResult: (renderedFrame, renderedOptions, active, backend) => {
+          markArtCanvas(canvas, renderedFrame, renderedOptions, active)
+          canvas.dataset.renderBackend = backend
+          previewProgress.delete(canvas)
+          queueCalibratedAnimation()
+        },
+        onSettled: updateRenderFeedback,
+        onProgress: (progress) => {
+          previewProgress.set(canvas, progress)
+          updateRenderFeedback()
+        },
+        onFallback: () => {
+          frameRenderFallback.value = true
+        },
+        onError: (cause) => {
+          error.value = cause instanceof Error ? cause.message : '字符画绘制失败，请重试'
+          previewProgress.delete(canvas)
+        },
+      })
       artRenderers.set(canvas, renderer)
     }
     renderer.render(frame, renderOptions)
-    markArtCanvas(canvas, frame, renderer.interactionActive)
-    canvas.dataset.renderBackend = 'canvas'
-    queueCalibratedAnimation()
+    updateRenderFeedback()
     return
   }
   // Preview canvas is owned by Studio while hover/motion is on.
@@ -2438,7 +2514,12 @@ function paintTo(
   }
 }
 
-function markArtCanvas(canvas: HTMLCanvasElement, frame: ArtFrame, interactionActive: boolean) {
+function markArtCanvas(
+  canvas: HTMLCanvasElement,
+  frame: ArtFrame,
+  options: ArtRenderOptions,
+  interactionActive: boolean,
+) {
   canvas.dataset.engine = 'calibrated'
   canvas.dataset.columns = String(frame.columns)
   canvas.dataset.mode = frame.settings.mode
@@ -2449,18 +2530,15 @@ function markArtCanvas(canvas: HTMLCanvasElement, frame: ArtFrame, interactionAc
       : frame.settings.rasterQuality === 'supersampled'
         ? 'smooth'
         : 'classic'
-  canvas.dataset.time = String(artElapsed)
-  canvas.dataset.motionStyle =
-    artEffectProfile.value === 'expressive' ? artMotionStyle.value : 'studio'
-  canvas.dataset.interactionTime = String(artInteractionElapsed)
-  canvas.dataset.pointerStrength = String(artPointer.strength)
+  canvas.dataset.time = String(options.time ?? 0)
+  canvas.dataset.motionStyle = options.motionStyle ?? 'studio'
+  canvas.dataset.interactionTime = String(options.hoverTime ?? options.time ?? 0)
+  canvas.dataset.pointerStrength = String(options.pointer?.strength ?? 0)
   canvas.dataset.interactionActive = String(interactionActive)
-  canvas.dataset.hover = artHover.value
+  canvas.dataset.hover = options.pointer ? (options.hover ?? 'light') : 'none'
   canvas.dataset.paused = String(artPaused.value)
-  canvas.dataset.motion = reducedArtMotion.value ? 'none' : artMotion.value
-  canvas.dataset.hoverStrength = String(
-    reducedArtMotion.value || downloading.value ? 0 : hoverStrength.value,
-  )
+  canvas.dataset.motion = options.motion ?? 'none'
+  canvas.dataset.hoverStrength = String(options.hoverStrength ?? 0)
 }
 
 function paintPreview() {
@@ -2493,13 +2571,7 @@ async function openFullscreen() {
 
 function closeFullscreen() {
   const canvas = fullscreenCanvas.value
-  if (canvas) {
-    videoRenderers.get(canvas)?.dispose()
-    videoRenderers.delete(canvas)
-    artRenderers.get(canvas)?.destroy()
-    artRenderers.delete(canvas)
-    failedVideoRenderers.delete(canvas)
-  }
+  if (canvas) releasePreviewRenderer(canvas)
   fullscreen.value = false
 }
 
@@ -2642,8 +2714,7 @@ watch(
 
 watch(previewCanvas, (el, previous) => {
   if (previous) {
-    artRenderers.get(previous)?.destroy()
-    artRenderers.delete(previous)
+    releasePreviewRenderer(previous)
   }
   if (!el) return
   artVisibilityObserver?.disconnect()
@@ -2693,8 +2764,7 @@ watch(fullscreenScroll, (el, _prev, onCleanup) => {
 
 watch(fullscreenCanvas, (el, previous) => {
   if (previous) {
-    artRenderers.get(previous)?.destroy()
-    artRenderers.delete(previous)
+    releasePreviewRenderer(previous)
   }
   if (el && ascii.value) schedulePaint()
 })
@@ -4067,7 +4137,7 @@ onBeforeUnmount(() => {
             loadingSource ||
             converting ||
             videoPrerendering ||
-            videoRendering ||
+            frameRendering ||
             (hasVideo && videoBuffering)
           "
           :title="
@@ -4075,8 +4145,10 @@ onBeforeUnmount(() => {
               ? '正在读取素材'
               : videoPrerendering
                 ? '正在解析高清片段'
-                : videoRendering
-                  ? '正在准备视频画面'
+                : frameRendering
+                  ? hasVideo
+                    ? '正在准备视频画面'
+                    : '正在绘制字符画'
                   : videoBuffering
                     ? '正在等待视频画面'
                     : '正在更新字符画'
@@ -4089,13 +4161,15 @@ onBeforeUnmount(() => {
           :progress="
             videoPrerendering && videoPrerenderTotal
               ? videoPrerenderDone / videoPrerenderTotal
-              : videoRendering
-                ? videoRenderProgress
+              : frameRendering
+                ? frameRenderProgress
                 : undefined
           "
         />
-        <p v-if="hasVideo && videoRenderFallback" class="status" role="status">
-          已切换到兼容预览；如播放较慢，可以降低清晰度或先解析短片段。
+        <p v-if="frameRenderFallback" class="status stage-compatibility" role="status">
+          已切换到分段兼容预览，完整画面准备好后显示。{{
+            hasVideo ? '播放较慢时可以先解析短片段。' : ''
+          }}
         </p>
 
         <div
@@ -4190,10 +4264,10 @@ onBeforeUnmount(() => {
       >
         <div class="fs-bar">
           <p class="fs-title">全屏预览 · {{ zoom }}% · Ctrl+滚轮</p>
-          <span v-if="videoRendering || converting" class="status" role="status"
+          <span v-if="frameRendering || converting" class="status" role="status"
             >正在更新画面{{
-              videoRendering && videoRenderProgress > 0
-                ? ` ${Math.round(videoRenderProgress * 100)}%`
+              frameRendering && frameRenderProgress > 0
+                ? ` ${Math.round(frameRenderProgress * 100)}%`
                 : '…'
             }}</span
           >
@@ -5012,7 +5086,8 @@ onBeforeUnmount(() => {
   gap: 0.65rem;
 }
 
-.stage .stage-feedback {
+.stage .stage-feedback,
+.stage .stage-compatibility {
   position: absolute;
   top: 4rem;
   right: 1rem;
@@ -5021,6 +5096,15 @@ onBeforeUnmount(() => {
   margin: 0;
   background: var(--bg-elevated);
   pointer-events: none;
+}
+
+.stage .stage-compatibility {
+  top: auto;
+  bottom: 1rem;
+  height: auto;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
 }
 
 .stage-head {

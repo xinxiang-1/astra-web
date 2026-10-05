@@ -1,0 +1,1016 @@
+{
+  "browser": "154.0.4258.53",
+  "passed": true,
+  "errors": [],
+  "parity": [
+    {
+      "profile": {
+        "mode": "density"
+      },
+      "compatibilityOnly": false,
+      "transparent": false,
+      "hover": "light",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 10.199999928474426
+    },
+    {
+      "profile": {
+        "mode": "density"
+      },
+      "compatibilityOnly": false,
+      "transparent": false,
+      "hover": "particles",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 14.399999976158142
+    },
+    {
+      "profile": {
+        "mode": "density"
+      },
+      "compatibilityOnly": false,
+      "transparent": true,
+      "hover": "light",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 9.700000047683716
+    },
+    {
+      "profile": {
+        "mode": "density"
+      },
+      "compatibilityOnly": false,
+      "transparent": true,
+      "hover": "particles",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 16.300000071525574
+    },
+    {
+      "profile": {
+        "mode": "density"
+      },
+      "compatibilityOnly": true,
+      "transparent": false,
+      "hover": "light",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 10.699999928474426
+    },
+    {
+      "profile": {
+        "mode": "density"
+      },
+      "compatibilityOnly": true,
+      "transparent": false,
+      "hover": "particles",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 15.199999928474426
+    },
+    {
+      "profile": {
+        "mode": "density"
+      },
+      "compatibilityOnly": true,
+      "transparent": true,
+      "hover": "light",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 5.300000071525574
+    },
+    {
+      "profile": {
+        "mode": "density"
+      },
+      "compatibilityOnly": true,
+      "transparent": true,
+      "hover": "particles",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 5.600000023841858
+    },
+    {
+      "profile": {
+        "mode": "color"
+      },
+      "compatibilityOnly": false,
+      "transparent": false,
+      "hover": "light",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 86.30000007152557
+    },
+    {
+      "profile": {
+        "mode": "color"
+      },
+      "compatibilityOnly": false,
+      "transparent": false,
+      "hover": "particles",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 100.30000007152557
+    },
+    {
+      "profile": {
+        "mode": "color"
+      },
+      "compatibilityOnly": false,
+      "transparent": true,
+      "hover": "light",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 85
+    },
+    {
+      "profile": {
+        "mode": "color"
+      },
+      "compatibilityOnly": false,
+      "transparent": true,
+      "hover": "particles",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 102.5
+    },
+    {
+      "profile": {
+        "mode": "color"
+      },
+      "compatibilityOnly": true,
+      "transparent": false,
+      "hover": "light",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 265.6999999284744
+    },
+    {
+      "profile": {
+        "mode": "color"
+      },
+      "compatibilityOnly": true,
+      "transparent": false,
+      "hover": "particles",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 82.89999997615814
+    },
+    {
+      "profile": {
+        "mode": "color"
+      },
+      "compatibilityOnly": true,
+      "transparent": true,
+      "hover": "light",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 78.70000004768372
+    },
+    {
+      "profile": {
+        "mode": "color"
+      },
+      "compatibilityOnly": true,
+      "transparent": true,
+      "hover": "particles",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 96.79999995231628
+    },
+    {
+      "profile": {
+        "mode": "phrase"
+      },
+      "compatibilityOnly": false,
+      "transparent": false,
+      "hover": "light",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 378.39999997615814
+    },
+    {
+      "profile": {
+        "mode": "phrase"
+      },
+      "compatibilityOnly": false,
+      "transparent": false,
+      "hover": "particles",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 148.40000009536743
+    },
+    {
+      "profile": {
+        "mode": "phrase"
+      },
+      "compatibilityOnly": false,
+      "transparent": true,
+      "hover": "light",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 150.59999990463257
+    },
+    {
+      "profile": {
+        "mode": "phrase"
+      },
+      "compatibilityOnly": false,
+      "transparent": true,
+      "hover": "particles",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 137.5
+    },
+    {
+      "profile": {
+        "mode": "phrase"
+      },
+      "compatibilityOnly": true,
+      "transparent": false,
+      "hover": "light",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 541.7999999523163
+    },
+    {
+      "profile": {
+        "mode": "phrase"
+      },
+      "compatibilityOnly": true,
+      "transparent": false,
+      "hover": "particles",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 224.69999992847443
+    },
+    {
+      "profile": {
+        "mode": "phrase"
+      },
+      "compatibilityOnly": true,
+      "transparent": true,
+      "hover": "light",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 197.79999995231628
+    },
+    {
+      "profile": {
+        "mode": "phrase"
+      },
+      "compatibilityOnly": true,
+      "transparent": true,
+      "hover": "particles",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 193.20000004768372
+    },
+    {
+      "profile": {
+        "mode": "contour"
+      },
+      "compatibilityOnly": false,
+      "transparent": false,
+      "hover": "light",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 14
+    },
+    {
+      "profile": {
+        "mode": "contour"
+      },
+      "compatibilityOnly": false,
+      "transparent": false,
+      "hover": "particles",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 20.700000047683716
+    },
+    {
+      "profile": {
+        "mode": "contour"
+      },
+      "compatibilityOnly": false,
+      "transparent": true,
+      "hover": "light",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 13.799999952316284
+    },
+    {
+      "profile": {
+        "mode": "contour"
+      },
+      "compatibilityOnly": false,
+      "transparent": true,
+      "hover": "particles",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 23.899999976158142
+    },
+    {
+      "profile": {
+        "mode": "contour"
+      },
+      "compatibilityOnly": true,
+      "transparent": false,
+      "hover": "light",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 8.600000023841858
+    },
+    {
+      "profile": {
+        "mode": "contour"
+      },
+      "compatibilityOnly": true,
+      "transparent": false,
+      "hover": "particles",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 9.399999976158142
+    },
+    {
+      "profile": {
+        "mode": "contour"
+      },
+      "compatibilityOnly": true,
+      "transparent": true,
+      "hover": "light",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 7
+    },
+    {
+      "profile": {
+        "mode": "contour"
+      },
+      "compatibilityOnly": true,
+      "transparent": true,
+      "hover": "particles",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 7.100000023841858
+    },
+    {
+      "profile": {
+        "mode": "braille"
+      },
+      "compatibilityOnly": false,
+      "transparent": false,
+      "hover": "light",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 47.299999952316284
+    },
+    {
+      "profile": {
+        "mode": "braille"
+      },
+      "compatibilityOnly": false,
+      "transparent": false,
+      "hover": "particles",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 42.10000002384186
+    },
+    {
+      "profile": {
+        "mode": "braille"
+      },
+      "compatibilityOnly": false,
+      "transparent": true,
+      "hover": "light",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 28.5
+    },
+    {
+      "profile": {
+        "mode": "braille"
+      },
+      "compatibilityOnly": false,
+      "transparent": true,
+      "hover": "particles",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 41.5
+    },
+    {
+      "profile": {
+        "mode": "braille"
+      },
+      "compatibilityOnly": true,
+      "transparent": false,
+      "hover": "light",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 39.300000071525574
+    },
+    {
+      "profile": {
+        "mode": "braille"
+      },
+      "compatibilityOnly": true,
+      "transparent": false,
+      "hover": "particles",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 14.799999952316284
+    },
+    {
+      "profile": {
+        "mode": "braille"
+      },
+      "compatibilityOnly": true,
+      "transparent": true,
+      "hover": "light",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 8
+    },
+    {
+      "profile": {
+        "mode": "braille"
+      },
+      "compatibilityOnly": true,
+      "transparent": true,
+      "hover": "particles",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 9.199999928474426
+    },
+    {
+      "profile": {
+        "mode": "halftone"
+      },
+      "compatibilityOnly": false,
+      "transparent": false,
+      "hover": "light",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 10.399999976158142
+    },
+    {
+      "profile": {
+        "mode": "halftone"
+      },
+      "compatibilityOnly": false,
+      "transparent": false,
+      "hover": "particles",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 15.899999976158142
+    },
+    {
+      "profile": {
+        "mode": "halftone"
+      },
+      "compatibilityOnly": false,
+      "transparent": true,
+      "hover": "light",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 9.899999976158142
+    },
+    {
+      "profile": {
+        "mode": "halftone"
+      },
+      "compatibilityOnly": false,
+      "transparent": true,
+      "hover": "particles",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 15.100000023841858
+    },
+    {
+      "profile": {
+        "mode": "halftone"
+      },
+      "compatibilityOnly": true,
+      "transparent": false,
+      "hover": "light",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 5.700000047683716
+    },
+    {
+      "profile": {
+        "mode": "halftone"
+      },
+      "compatibilityOnly": true,
+      "transparent": false,
+      "hover": "particles",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 9.100000023841858
+    },
+    {
+      "profile": {
+        "mode": "halftone"
+      },
+      "compatibilityOnly": true,
+      "transparent": true,
+      "hover": "light",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 4.600000023841858
+    },
+    {
+      "profile": {
+        "mode": "halftone"
+      },
+      "compatibilityOnly": true,
+      "transparent": true,
+      "hover": "particles",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 5.599999904632568
+    },
+    {
+      "profile": {
+        "mode": "density",
+        "rasterQuality": "high",
+        "fontWeight": 600
+      },
+      "compatibilityOnly": false,
+      "transparent": false,
+      "hover": "light",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 20.600000023841858
+    },
+    {
+      "profile": {
+        "mode": "density",
+        "rasterQuality": "high",
+        "fontWeight": 600
+      },
+      "compatibilityOnly": false,
+      "transparent": false,
+      "hover": "particles",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 36
+    },
+    {
+      "profile": {
+        "mode": "density",
+        "rasterQuality": "high",
+        "fontWeight": 600
+      },
+      "compatibilityOnly": false,
+      "transparent": true,
+      "hover": "light",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 18.5
+    },
+    {
+      "profile": {
+        "mode": "density",
+        "rasterQuality": "high",
+        "fontWeight": 600
+      },
+      "compatibilityOnly": false,
+      "transparent": true,
+      "hover": "particles",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 27
+    },
+    {
+      "profile": {
+        "mode": "density",
+        "rasterQuality": "high",
+        "fontWeight": 600
+      },
+      "compatibilityOnly": true,
+      "transparent": false,
+      "hover": "light",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 17.59999990463257
+    },
+    {
+      "profile": {
+        "mode": "density",
+        "rasterQuality": "high",
+        "fontWeight": 600
+      },
+      "compatibilityOnly": true,
+      "transparent": false,
+      "hover": "particles",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 17.899999976158142
+    },
+    {
+      "profile": {
+        "mode": "density",
+        "rasterQuality": "high",
+        "fontWeight": 600
+      },
+      "compatibilityOnly": true,
+      "transparent": true,
+      "hover": "light",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 11.600000023841858
+    },
+    {
+      "profile": {
+        "mode": "density",
+        "rasterQuality": "high",
+        "fontWeight": 600
+      },
+      "compatibilityOnly": true,
+      "transparent": true,
+      "hover": "particles",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 9.899999976158142
+    },
+    {
+      "profile": {
+        "mode": "density",
+        "rasterQuality": "supersampled",
+        "fontWeight": 600
+      },
+      "compatibilityOnly": false,
+      "transparent": false,
+      "hover": "light",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 18
+    },
+    {
+      "profile": {
+        "mode": "density",
+        "rasterQuality": "supersampled",
+        "fontWeight": 600
+      },
+      "compatibilityOnly": false,
+      "transparent": false,
+      "hover": "particles",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 21.799999952316284
+    },
+    {
+      "profile": {
+        "mode": "density",
+        "rasterQuality": "supersampled",
+        "fontWeight": 600
+      },
+      "compatibilityOnly": false,
+      "transparent": true,
+      "hover": "light",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 16.399999976158142
+    },
+    {
+      "profile": {
+        "mode": "density",
+        "rasterQuality": "supersampled",
+        "fontWeight": 600
+      },
+      "compatibilityOnly": false,
+      "transparent": true,
+      "hover": "particles",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 23.800000071525574
+    },
+    {
+      "profile": {
+        "mode": "density",
+        "rasterQuality": "supersampled",
+        "fontWeight": 600
+      },
+      "compatibilityOnly": true,
+      "transparent": false,
+      "hover": "light",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 19.100000023841858
+    },
+    {
+      "profile": {
+        "mode": "density",
+        "rasterQuality": "supersampled",
+        "fontWeight": 600
+      },
+      "compatibilityOnly": true,
+      "transparent": false,
+      "hover": "particles",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 32.89999997615814
+    },
+    {
+      "profile": {
+        "mode": "density",
+        "rasterQuality": "supersampled",
+        "fontWeight": 600
+      },
+      "compatibilityOnly": true,
+      "transparent": true,
+      "hover": "light",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 12.900000095367432
+    },
+    {
+      "profile": {
+        "mode": "density",
+        "rasterQuality": "supersampled",
+        "fontWeight": 600
+      },
+      "compatibilityOnly": true,
+      "transparent": true,
+      "hover": "particles",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 11.899999976158142
+    },
+    {
+      "profile": {
+        "mode": "density",
+        "softwareRaster": true,
+        "fontWeight": 600,
+        "colorFidelity": true
+      },
+      "compatibilityOnly": false,
+      "transparent": false,
+      "hover": "light",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 54.10000002384186
+    },
+    {
+      "profile": {
+        "mode": "density",
+        "softwareRaster": true,
+        "fontWeight": 600,
+        "colorFidelity": true
+      },
+      "compatibilityOnly": false,
+      "transparent": false,
+      "hover": "particles",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 34.39999997615814
+    },
+    {
+      "profile": {
+        "mode": "density",
+        "softwareRaster": true,
+        "fontWeight": 600,
+        "colorFidelity": true
+      },
+      "compatibilityOnly": false,
+      "transparent": true,
+      "hover": "light",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 24.899999976158142
+    },
+    {
+      "profile": {
+        "mode": "density",
+        "softwareRaster": true,
+        "fontWeight": 600,
+        "colorFidelity": true
+      },
+      "compatibilityOnly": false,
+      "transparent": true,
+      "hover": "particles",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 32.39999997615814
+    },
+    {
+      "profile": {
+        "mode": "density",
+        "softwareRaster": true,
+        "fontWeight": 600,
+        "colorFidelity": true
+      },
+      "compatibilityOnly": true,
+      "transparent": false,
+      "hover": "light",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 21.59999990463257
+    },
+    {
+      "profile": {
+        "mode": "density",
+        "softwareRaster": true,
+        "fontWeight": 600,
+        "colorFidelity": true
+      },
+      "compatibilityOnly": true,
+      "transparent": false,
+      "hover": "particles",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 21.600000023841858
+    },
+    {
+      "profile": {
+        "mode": "density",
+        "softwareRaster": true,
+        "fontWeight": 600,
+        "colorFidelity": true
+      },
+      "compatibilityOnly": true,
+      "transparent": true,
+      "hover": "light",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 20.700000047683716
+    },
+    {
+      "profile": {
+        "mode": "density",
+        "softwareRaster": true,
+        "fontWeight": 600,
+        "colorFidelity": true
+      },
+      "compatibilityOnly": true,
+      "transparent": true,
+      "hover": "particles",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 11.800000071525574
+    },
+    {
+      "profile": {
+        "mode": "color",
+        "softwareRaster": true,
+        "fontWeight": 600,
+        "colorFidelity": true
+      },
+      "compatibilityOnly": false,
+      "transparent": false,
+      "hover": "light",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 28.299999952316284
+    },
+    {
+      "profile": {
+        "mode": "color",
+        "softwareRaster": true,
+        "fontWeight": 600,
+        "colorFidelity": true
+      },
+      "compatibilityOnly": false,
+      "transparent": false,
+      "hover": "particles",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 40.200000047683716
+    },
+    {
+      "profile": {
+        "mode": "color",
+        "softwareRaster": true,
+        "fontWeight": 600,
+        "colorFidelity": true
+      },
+      "compatibilityOnly": false,
+      "transparent": true,
+      "hover": "light",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 28.100000023841858
+    },
+    {
+      "profile": {
+        "mode": "color",
+        "softwareRaster": true,
+        "fontWeight": 600,
+        "colorFidelity": true
+      },
+      "compatibilityOnly": false,
+      "transparent": true,
+      "hover": "particles",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 64.89999997615814
+    },
+    {
+      "profile": {
+        "mode": "color",
+        "softwareRaster": true,
+        "fontWeight": 600,
+        "colorFidelity": true
+      },
+      "compatibilityOnly": true,
+      "transparent": false,
+      "hover": "light",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 46.60000002384186
+    },
+    {
+      "profile": {
+        "mode": "color",
+        "softwareRaster": true,
+        "fontWeight": 600,
+        "colorFidelity": true
+      },
+      "compatibilityOnly": true,
+      "transparent": false,
+      "hover": "particles",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 27.199999928474426
+    },
+    {
+      "profile": {
+        "mode": "color",
+        "softwareRaster": true,
+        "fontWeight": 600,
+        "colorFidelity": true
+      },
+      "compatibilityOnly": true,
+      "transparent": true,
+      "hover": "light",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 18.300000071525574
+    },
+    {
+      "profile": {
+        "mode": "color",
+        "softwareRaster": true,
+        "fontWeight": 600,
+        "colorFidelity": true
+      },
+      "compatibilityOnly": true,
+      "transparent": true,
+      "hover": "particles",
+      "changed": 0,
+      "maxDelta": 0,
+      "renderMs": 6.300000071525574
+    }
+  ],
+  "transactions": {
+    "obsoleteScaleTerminated": true,
+    "stalePixelsIgnored": true,
+    "actualTime": [
+      1,
+      3
+    ],
+    "boundedSamples": 128,
+    "bitmapReleased": true,
+    "destroyed": true
+  },
+  "cancellation": {
+    "timerDuringDraw": true,
+    "completed": 0,
+    "noPartialPixels": true,
+    "released": true
+  },
+  "replacement": {
+    "completed": [
+      "density"
+    ],
+    "exactLatestPixels": true,
+    "errors": []
+  },
+  "runtimeFallback": {
+    "terminated": true,
+    "fallback": 1,
+    "backend": "responsive",
+    "exactPixels": true
+  },
+  "fullscreen": {
+    "controllers": 2,
+    "backend": "worker",
+    "released": true
+  },
+  "zoom": {
+    "backend": "worker",
+    "width": 571
+  },
+  "compatibilityUi": {
+    "nativeConstructorFailure": true,
+    "backend": "responsive",
+    "mobileOverflow": false
+  },
+  "sourceHashes": {
+    "src/lib/art-engine/canvas.ts": "05f119b29a3f1081b6905719a2487e1a5166d74db945ceb0678d2f10062e26f9",
+    "src/lib/art-engine/preview-render-client.ts": "781d8568e886c366f416de8e13c354df3fb957eb384297f0bf70b4653ef6ccba",
+    "src/views/AsciiArtView.vue": "67ddfee78c1c2357cc5b4f557d2f97a466df3f777454dcc3e5183cab786dd0d7"
+  }
+}

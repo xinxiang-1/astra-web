@@ -1,0 +1,108 @@
+{
+  "browser": "154.0.8037.57",
+  "passed": true,
+  "scope": "Three native active frames at the prior slow fixture dimensions; page clock is not character output FPS and simulated recovery is not real recovery",
+  "result": {
+    "settings": {
+      "mode": "phrase",
+      "columns": 180,
+      "phrase": "我爱你中国",
+      "charset": " .,:;i1tfLCG08@",
+      "background": "#111615",
+      "ink": "#eeeae2",
+      "colored": true,
+      "normalize": true,
+      "contrast": 0.08,
+      "exposure": 0,
+      "invert": true,
+      "fillAll": true,
+      "threshold": 0.1,
+      "charAspect": 0.85,
+      "fontFamily": "Microsoft YaHei, monospace"
+    },
+    "columns": 180,
+    "rows": 191,
+    "width": 571,
+    "height": 713,
+    "cases": [
+      {
+        "i": 0,
+        "baselineMs": 6582,
+        "workerRenderMs": 2158.0999999046326,
+        "changed": 0,
+        "maxDelta": 0,
+        "timer": {
+          "count": 110,
+          "p95": 21.199999928474426,
+          "max": 21.700000047683716
+        },
+        "pageRaf": {
+          "count": 133,
+          "p95": 16.799999999999272,
+          "max": 16.80000000000109
+        },
+        "nativePeak": 0,
+        "particles": {
+          "bytes": 0,
+          "limit": 10485760,
+          "maxCells": 131072,
+          "peak": 0,
+          "moving": 0,
+          "unavailable": false
+        }
+      },
+      {
+        "i": 1,
+        "baselineMs": 1889.7999999523163,
+        "workerRenderMs": 2219,
+        "changed": 0,
+        "maxDelta": 0,
+        "timer": {
+          "count": 110,
+          "p95": 21.100000023841858,
+          "max": 21.600000023841858
+        },
+        "pageRaf": {
+          "count": 132,
+          "p95": 16.700000000000728,
+          "max": 16.80000000000291
+        },
+        "nativePeak": 0.006291274499013665,
+        "particles": {
+          "bytes": 2750400,
+          "limit": 10485760,
+          "maxCells": 131072,
+          "peak": 0.006291274499013665,
+          "moving": 5920,
+          "unavailable": false
+        }
+      },
+      {
+        "i": 2,
+        "baselineMs": 1837.8999999761581,
+        "workerRenderMs": 2209.9000000953674,
+        "changed": 0,
+        "maxDelta": 0,
+        "timer": {
+          "count": 110,
+          "p95": 21.100000023841858,
+          "max": 21.5
+        },
+        "pageRaf": {
+          "count": 132,
+          "p95": 16.799999999999272,
+          "max": 16.80000000000291
+        },
+        "nativePeak": 0.02054121136093343,
+        "particles": {
+          "bytes": 2750400,
+          "limit": 10485760,
+          "maxCells": 131072,
+          "peak": 0.02054121136093343,
+          "moving": 8736,
+          "unavailable": false
+        }
+      }
+    ]
+  }
+}

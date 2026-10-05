@@ -2471,16 +2471,24 @@ export function createCanvasArtRenderer(
       next: ArtFrame,
       options: ArtRenderOptions = {},
       onProgress?: (completedCells: number, totalCells: number) => void,
+      shouldAbort?: () => boolean,
     ) {
       const steps = renderSteps(next, options)
-      let result = steps.next()
+      const advance = () => {
+        if (shouldAbort?.()) {
+          steps.return({ width: 0, height: 0, renderMs: 0 })
+          throw new DOMException('绘制已取消', 'AbortError')
+        }
+        return steps.next()
+      }
+      let result = advance()
       while (!result.done) {
         // Drain queued GPU work inside the worker before yielding. Otherwise a
         // large final readback can stall the browser compositor despite the worker.
         outputCtx.getImageData(0, 0, 1, 1)
         onProgress?.(result.value, next.columns * next.rows)
         await new Promise<void>((resolve) => setTimeout(resolve, 0))
-        result = steps.next()
+        result = advance()
       }
       return result.value
     },
@@ -2590,3 +2598,5 @@ export function createCanvasArtRenderer(
     },
   }
 }
+
+export type ArtRendererCacheStats = ReturnType<typeof createCanvasArtRenderer>['cacheStats']

@@ -5,9 +5,10 @@ export function createFrameRenderWorker(
   onResult: (
     result: Extract<FrameRenderResponse, { bitmap: ImageBitmap }>,
     frame: ArtFrame,
+    options: ArtRenderOptions,
   ) => void,
   onError: () => void,
-  onProgress?: (progress: number, frame: ArtFrame) => void,
+  onProgress?: (progress: number, frame: ArtFrame, options: ArtRenderOptions) => void,
 ) {
   if (typeof Worker === 'undefined' || typeof OffscreenCanvas === 'undefined') return null
   let worker: Worker
@@ -22,6 +23,7 @@ export function createFrameRenderWorker(
   let atlas: ArtFrame['glyphs'] | null = null
   let queued: { frame: ArtFrame; options: ArtRenderOptions } | null = null
   let sentFrame: ArtFrame | null = null
+  let sentOptions: ArtRenderOptions | null = null
   let renderMs = 0,
     interactionActive = false,
     completedCells = 0
@@ -30,6 +32,7 @@ export function createFrameRenderWorker(
     stopped = true
     queued = null
     sentFrame = null
+    sentOptions = null
     atlas = null
     worker.terminate()
     clearTimeout(watchdog)
@@ -57,6 +60,7 @@ export function createFrameRenderWorker(
         atlas = glyphs
       }
       sentFrame = next.frame
+      sentOptions = next.options
       completedCells = 0
       busy = true
       worker.postMessage(request)
@@ -83,6 +87,7 @@ export function createFrameRenderWorker(
         busy &&
         result.id === id &&
         sentFrame &&
+        sentOptions &&
         result.totalCells === sentFrame.columns * sentFrame.rows &&
         Number.isInteger(result.completedCells) &&
         result.completedCells > completedCells &&
@@ -92,14 +97,14 @@ export function createFrameRenderWorker(
         clearTimeout(watchdog)
         watchdog = setTimeout(fail, 12000)
         try {
-          onProgress?.(completedCells / result.totalCells, sentFrame)
+          onProgress?.(completedCells / result.totalCells, sentFrame, sentOptions)
         } catch {
           fail()
         }
       }
       return
     }
-    if (stopped || result.id !== id || !sentFrame) {
+    if (stopped || result.id !== id || !sentFrame || !sentOptions) {
       result.bitmap.close()
       return
     }
@@ -108,9 +113,11 @@ export function createFrameRenderWorker(
     renderMs = result.renderMs
     interactionActive = result.interactionActive
     const renderedFrame = sentFrame
+    const renderedOptions = sentOptions
     sentFrame = null
+    sentOptions = null
     try {
-      onResult(result, renderedFrame)
+      onResult(result, renderedFrame, renderedOptions)
     } catch {
       fail()
     } finally {

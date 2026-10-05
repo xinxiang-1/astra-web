@@ -28,13 +28,13 @@ async function choose(target){
 async function ready(target,mode){
  await target.waitForFunction(mode=>{
   const c=document.querySelector('.ascii-scroll .ascii-canvas')
-  return c?.width>100 && (!mode || c.dataset.mode===mode) && !document.querySelector('.editor-package')?.disabled
+  return c?.width>100 && c.dataset.renderPending==='false' && (!mode || c.dataset.mode===mode) && !document.querySelector('.editor-package')?.disabled
  },mode)
 }
 async function settled(target){
  await target.waitForFunction(()=>{
   const c=document.querySelector('.ascii-scroll .ascii-canvas')
-  return c?.dataset.pointerStrength==='0' && c.dataset.interactionActive==='false'
+  return c?.dataset.renderPending==='false' && c.dataset.pointerStrength==='0' && c.dataset.interactionActive==='false'
  },{},{timeout:60000})
 }
 async function mouseGesture(target,locator){
@@ -120,6 +120,10 @@ try{
   const baseline=await image(page)
   const recording=process.env.ASTRA_PARTICLES_RECORD==='1' && label===labels[0] ? await startRecording() : null
   await mouseGesture(page,canvas(page))
+  await page.waitForFunction(()=>{
+   const c=document.querySelector('.ascii-scroll .ascii-canvas')
+   return Number(c?.dataset.pointerStrength)>0 && c.dataset.interactionActive==='true'
+  },{},{timeout:60000})
   const during=await image(page)
   assert.notEqual(during,baseline,label+' visible scatter')
   const stats=production ? {peak:null,bytes:null} : await canvas(page).evaluate(c=>document.querySelector('.art-editor').__vueParentComponent.setupState.artRenderers.get(c).cacheStats.particles)
@@ -147,6 +151,10 @@ try{
  report.fullscreen={interactive:true,released:production?null:true,exactMainRecovery:true}
  await page.getByRole('group',{name:'六模式微动',exact:true}).getByRole('button',{name:'流动',exact:true}).click()
  await page.getByRole('button',{name:'暂停动效',exact:true}).click()
+ await page.waitForFunction(()=>{
+  const c=document.querySelector('.ascii-scroll .ascii-canvas')
+  return c?.dataset.renderPending==='false' && c.dataset.paused==='true'
+ })
  const time=await canvas(page).getAttribute('data-time')
  await mouseGesture(page,canvas(page))
  assert.equal(await canvas(page).getAttribute('data-time'),time,'ambient paused while scatter responds')

@@ -1,0 +1,49 @@
+{
+  "browser": "154.0.8037.57",
+  "passed": true,
+  "errors": [],
+  "modes": [
+    {
+      "mode": "density",
+      "columns": "80",
+      "backend": "worker"
+    },
+    {
+      "mode": "color",
+      "columns": "80",
+      "backend": "worker"
+    },
+    {
+      "mode": "phrase",
+      "columns": "80",
+      "backend": "worker"
+    },
+    {
+      "mode": "contour",
+      "columns": "80",
+      "backend": "worker"
+    },
+    {
+      "mode": "braille",
+      "columns": "80",
+      "backend": "worker"
+    },
+    {
+      "mode": "halftone",
+      "columns": "80",
+      "backend": "worker"
+    }
+  ],
+  "scope": "Built application, actual upload/click/mouse and DOM only; 64-column interaction, not the unresolved 180-column recovery",
+  "particles": {
+    "visible": true,
+    "exactRecovery": true,
+    "releaseToRecoveryMs": 10466
+  },
+  "workers": {
+    "live": 1,
+    "peak": 2
+  },
+  "zoomAndTheme": true,
+  "unmountReleased": true
+}

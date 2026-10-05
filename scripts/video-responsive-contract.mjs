@@ -530,10 +530,10 @@ try {
   await fallback.locator('input[type=file]').first().setInputFiles(fixture)
   await fallback
     .getByRole('status')
-    .filter({ hasText: '已切换到兼容预览' })
+    .filter({ hasText: '已切换到分段兼容预览' })
     .waitFor({ timeout: 60000 })
   await fallback.waitForFunction(
-    () => document.querySelector('.ascii-canvas')?.dataset.renderBackend === 'canvas',
+    () => document.querySelector('.ascii-canvas')?.dataset.renderBackend === 'responsive',
   )
   report.workerFallback = true
   await fallback.close()
