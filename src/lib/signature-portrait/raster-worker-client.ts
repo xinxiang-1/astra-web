@@ -1,6 +1,7 @@
 import type { SignatureStamp } from './extract'
 import type { Placement, SignatureLayoutOptions } from './layout'
 import type { RasterRequest, RasterResponse, RasterScene } from './raster-worker-protocol'
+import { SIGNATURE_COLOR_WASH_LONG } from './color-wash'
 
 /** Private worker renderer for ordinary ink. Negative plates retain the verified responsive Canvas path. */
 export async function createSignatureRasterWorker(
@@ -10,6 +11,7 @@ export async function createSignatureRasterWorker(
   layoutH: number,
   options: SignatureLayoutOptions,
   signal?: { cancelled?: boolean },
+  colorWash?: HTMLCanvasElement,
 ) {
   if (
     options.inkStyle === 'cutout' ||
@@ -41,13 +43,22 @@ export async function createSignatureRasterWorker(
       background: options.background,
       colorize: options.colorize,
       coverFill: options.coverFill,
+      underlay: options.underlay,
     },
   }
+  if ((options.underlay ?? 0) > 0) {
+    if (!colorWash || Math.max(colorWash.width, colorWash.height) > SIGNATURE_COLOR_WASH_LONG)
+      throw new Error('浓彩融合需要有界的彩绘底色')
+    const ctx = colorWash.getContext('2d')
+    if (!ctx) throw new Error('无法读取彩绘底色')
+    scene.colorWash = ctx.getImageData(0, 0, colorWash.width, colorWash.height)
+  }
+  if (signal?.cancelled) throw new Error('已取消')
   const worker = new Worker(new URL('./raster.worker.ts', import.meta.url), { type: 'module' })
-  worker.postMessage(
-    { type: 'scene', scene },
-    templates.map((template) => template.pixels.data.buffer),
-  )
+  worker.postMessage({ type: 'scene', scene }, [
+    ...templates.map((template) => template.pixels.data.buffer),
+    ...(scene.colorWash ? [scene.colorWash.data.buffer] : []),
+  ])
   let id = 0,
     disposed = false
   let pending: {

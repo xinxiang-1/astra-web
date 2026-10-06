@@ -1,0 +1,62 @@
+{
+  "browser": "154.0.8037.93",
+  "cases": [],
+  "errors": [],
+  "response": {
+    "duration": 11714.099999904633,
+    "frames": 642,
+    "frameP95": 16.80000000000291,
+    "maxFrame": 466.5699999999997,
+    "maxTimer": 67.30000007152557
+  },
+  "zoom": [
+    {
+      "quality": "clear",
+      "width": 776,
+      "height": 662,
+      "region": {
+        "x": 0,
+        "y": 0,
+        "w": 776,
+        "h": 662
+      }
+    },
+    {
+      "quality": "fast",
+      "width": 776,
+      "height": 662,
+      "region": {
+        "x": 0,
+        "y": 0,
+        "w": 776,
+        "h": 662
+      }
+    },
+    {
+      "quality": "detail",
+      "width": 1552,
+      "height": 1324,
+      "region": {
+        "x": 0,
+        "y": 0,
+        "w": 776,
+        "h": 662
+      }
+    }
+  ],
+  "ui": {
+    "count": 15996,
+    "size": [
+      1536,
+      2048
+    ],
+    "pureHash": "bbe87058de12e45154319e4ec3ae99c467838c1e752559ecfe93e542c753a2a3",
+    "fusedHash": "2ee472ec4dbcfb955cd5cdace6cea7ff61161b7263bfc6786d75b4fa854275cd",
+    "geometryEqual": true,
+    "explicitMixedLabel": true,
+    "unappliedSnapshot": true,
+    "projectExactPng": true,
+    "privateSource": true
+  },
+  "passed": true
+}

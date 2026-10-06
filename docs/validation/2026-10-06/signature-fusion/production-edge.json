@@ -1,0 +1,27 @@
+{
+  "browser": "154.0.4258.62",
+  "cases": [],
+  "errors": [],
+  "response": {
+    "duration": 8173,
+    "frames": 476,
+    "frameP95": 16.799999999999272,
+    "maxFrame": 99.90000000000146,
+    "maxTimer": 48.39999997615814
+  },
+  "ui": {
+    "count": 15996,
+    "size": [
+      1536,
+      2048
+    ],
+    "pureHash": "bbe87058de12e45154319e4ec3ae99c467838c1e752559ecfe93e542c753a2a3",
+    "fusedHash": "2ee472ec4dbcfb955cd5cdace6cea7ff61161b7263bfc6786d75b4fa854275cd",
+    "geometryEqual": true,
+    "explicitMixedLabel": true,
+    "unappliedSnapshot": true,
+    "projectExactPng": true,
+    "privateSource": true
+  },
+  "passed": true
+}

@@ -2,7 +2,7 @@
 
 完整签名画像。默认 `woven` 错行排列，旧 WVS 通过 `layoutMethod: 'stipple'` 保留作对照。
 
-`Placement[]` 为布局源；生产预览是最长边1280的Canvas概览＋最长边2400的独立可见高清裁片，CSS表示缩放几何，避免分配整幅放大画布。PNG分块输出，Path SVG引用模板路径。默认无照片underlay、无填色椭圆；原图对比需显式启用。纸白/夜光的墨色和可选填色在栅格/路径中使用同样语义。
+`Placement[]` 为布局源；生产预览是最长边1280的Canvas概览＋最长边2400的独立可见高清裁片，CSS表示缩放几何，避免分配整幅放大画布。PNG分块输出，Path SVG引用模板路径。默认无照片underlay、无填色椭圆；原图对比需显式启用。可选“浓彩融合”明确使用照片生成的384px彩绘底色＋完整签名，underlay为0–.85；它是混合画面，SVG嵌入底色PNG并保留签名路径，不称整幅纯矢量或纯签名。纸白/夜光的墨色和可选填色在栅格/路径中使用同样语义。
 
 GPU 尚未通过小笔迹一致性，`SIGNATURE_GPU_PREVIEW_VERIFIED=false`。`createGlStampPreview()` 默认返回 null；实验通过第二参数 `{ allowUnverified: true }` 调用。暗背景平均误差小不代表局部笔迹通过。
 

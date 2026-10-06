@@ -91,6 +91,37 @@ async function paint(request: RasterRequest, signal: { cancelled: boolean }) {
       ctx = context(output)
     ctx.fillStyle = scene.options.background ?? '#f5f0e8'
     ctx.fillRect(0, 0, width, height)
+    if ((scene.options.underlay ?? 0) > 0) {
+      const wash = scene.colorWash
+      if (!wash || Math.max(wash.width, wash.height) > 384) throw new Error('彩绘底色超出后台预算')
+      const base = createSurface(wash.width, wash.height)
+      const cropped = request.region ? createSurface(width, height) : null
+      try {
+        context(base).putImageData(wash, 0, 0)
+        if (cropped && request.region) {
+          const r = request.region
+          context(cropped).drawImage(
+            base,
+            (r.x / scene.layoutW) * wash.width,
+            (r.y / scene.layoutH) * wash.height,
+            (r.w / scene.layoutW) * wash.width,
+            (r.h / scene.layoutH) * wash.height,
+            0,
+            0,
+            width,
+            height,
+          )
+        }
+        ctx.globalAlpha = Math.min(0.85, Math.max(0, scene.options.underlay ?? 0))
+        // Region follows the existing synchronous painter's crop/resample steps.
+        ctx.imageSmoothingQuality = request.region ? 'low' : 'high'
+        ctx.drawImage(cropped ?? base, 0, 0, width, height)
+        ctx.globalAlpha = 1
+      } finally {
+        base.width = base.height = 1
+        if (cropped) cropped.width = cropped.height = 1
+      }
+    }
     const tiled = !request.region,
       size = tiled ? Math.max(128, request.tileSize ?? 320) : Math.max(width, height)
     const nx = Math.ceil(width / size),

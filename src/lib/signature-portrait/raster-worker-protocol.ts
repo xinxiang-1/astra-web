@@ -6,7 +6,8 @@ export type RasterScene = {
   templates: RasterTemplate[]
   layoutW: number
   layoutH: number
-  options: Pick<SignatureLayoutOptions, 'background' | 'colorize' | 'coverFill'>
+  colorWash?: ImageData
+  options: Pick<SignatureLayoutOptions, 'background' | 'colorize' | 'coverFill' | 'underlay'>
 }
 export type RasterRequest = {
   type: 'paint'

@@ -1,0 +1,232 @@
+{
+  "browser": "154.0.8037.93",
+  "cases": [
+    {
+      "background": "#f5f3ef",
+      "inkStyle": "ink",
+      "underlay": 0,
+      "project": {
+        "changed": 0,
+        "maxDelta": 0,
+        "channels": 327680
+      },
+      "full": {
+        "changed": 0,
+        "maxDelta": 0,
+        "channels": 327680
+      },
+      "crop": {
+        "changed": 0,
+        "maxDelta": 0,
+        "channels": 288000
+      },
+      "svgImages": 0
+    },
+    {
+      "background": "#f5f3ef",
+      "inkStyle": "ink",
+      "underlay": 0.75,
+      "project": {
+        "changed": 0,
+        "maxDelta": 0,
+        "channels": 327680
+      },
+      "full": {
+        "changed": 0,
+        "maxDelta": 0,
+        "channels": 327680
+      },
+      "crop": {
+        "changed": 0,
+        "maxDelta": 0,
+        "channels": 288000
+      },
+      "svgImages": 1
+    },
+    {
+      "background": "#f5f3ef",
+      "inkStyle": "ink",
+      "underlay": 0.85,
+      "project": {
+        "changed": 0,
+        "maxDelta": 0,
+        "channels": 327680
+      },
+      "full": {
+        "changed": 0,
+        "maxDelta": 0,
+        "channels": 327680
+      },
+      "crop": {
+        "changed": 0,
+        "maxDelta": 0,
+        "channels": 288000
+      },
+      "svgImages": 1
+    },
+    {
+      "background": "#f5f3ef",
+      "inkStyle": "cutout",
+      "underlay": 0,
+      "project": {
+        "changed": 0,
+        "maxDelta": 0,
+        "channels": 327680
+      },
+      "full": null,
+      "crop": null,
+      "svgImages": 0
+    },
+    {
+      "background": "#f5f3ef",
+      "inkStyle": "cutout",
+      "underlay": 0.75,
+      "project": {
+        "changed": 0,
+        "maxDelta": 0,
+        "channels": 327680
+      },
+      "full": null,
+      "crop": null,
+      "svgImages": 1
+    },
+    {
+      "background": "#f5f3ef",
+      "inkStyle": "cutout",
+      "underlay": 0.85,
+      "project": {
+        "changed": 0,
+        "maxDelta": 0,
+        "channels": 327680
+      },
+      "full": null,
+      "crop": null,
+      "svgImages": 1
+    },
+    {
+      "background": "#111615",
+      "inkStyle": "ink",
+      "underlay": 0,
+      "project": {
+        "changed": 0,
+        "maxDelta": 0,
+        "channels": 327680
+      },
+      "full": {
+        "changed": 0,
+        "maxDelta": 0,
+        "channels": 327680
+      },
+      "crop": {
+        "changed": 0,
+        "maxDelta": 0,
+        "channels": 288000
+      },
+      "svgImages": 0
+    },
+    {
+      "background": "#111615",
+      "inkStyle": "ink",
+      "underlay": 0.75,
+      "project": {
+        "changed": 0,
+        "maxDelta": 0,
+        "channels": 327680
+      },
+      "full": {
+        "changed": 0,
+        "maxDelta": 0,
+        "channels": 327680
+      },
+      "crop": {
+        "changed": 0,
+        "maxDelta": 0,
+        "channels": 288000
+      },
+      "svgImages": 1
+    },
+    {
+      "background": "#111615",
+      "inkStyle": "ink",
+      "underlay": 0.85,
+      "project": {
+        "changed": 0,
+        "maxDelta": 0,
+        "channels": 327680
+      },
+      "full": {
+        "changed": 0,
+        "maxDelta": 0,
+        "channels": 327680
+      },
+      "crop": {
+        "changed": 0,
+        "maxDelta": 0,
+        "channels": 288000
+      },
+      "svgImages": 1
+    },
+    {
+      "background": "#111615",
+      "inkStyle": "cutout",
+      "underlay": 0,
+      "project": {
+        "changed": 0,
+        "maxDelta": 0,
+        "channels": 327680
+      },
+      "full": null,
+      "crop": null,
+      "svgImages": 0
+    },
+    {
+      "background": "#111615",
+      "inkStyle": "cutout",
+      "underlay": 0.75,
+      "project": {
+        "changed": 0,
+        "maxDelta": 0,
+        "channels": 327680
+      },
+      "full": null,
+      "crop": null,
+      "svgImages": 1
+    },
+    {
+      "background": "#111615",
+      "inkStyle": "cutout",
+      "underlay": 0.85,
+      "project": {
+        "changed": 0,
+        "maxDelta": 0,
+        "channels": 327680
+      },
+      "full": null,
+      "crop": null,
+      "svgImages": 1
+    }
+  ],
+  "errors": [],
+  "response": {
+    "duration": 12065.900000095367,
+    "frames": 682,
+    "frameP95": 16.80000000000291,
+    "maxFrame": 100.09999999999854,
+    "maxTimer": 91.89999997615814
+  },
+  "ui": {
+    "count": 15996,
+    "size": [
+      1536,
+      2048
+    ],
+    "pureHash": "bbe87058de12e45154319e4ec3ae99c467838c1e752559ecfe93e542c753a2a3",
+    "fusedHash": "2ee472ec4dbcfb955cd5cdace6cea7ff61161b7263bfc6786d75b4fa854275cd",
+    "geometryEqual": true,
+    "explicitMixedLabel": true,
+    "unappliedSnapshot": true,
+    "projectExactPng": true,
+    "privateSource": true
+  },
+  "passed": true
+}

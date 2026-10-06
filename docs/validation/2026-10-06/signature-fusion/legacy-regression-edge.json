@@ -1,0 +1,245 @@
+{
+  "browser": "154.0.4258.62",
+  "parent": "abd34996e940e94d4f2271562c310314da8ab4cc",
+  "errors": [],
+  "cases": [
+    {
+      "layoutMethod": "woven",
+      "orientationMode": "classic",
+      "surface": "paper",
+      "count": 162,
+      "geometryRetained": true,
+      "frozenDefaultEqual": true,
+      "meanStrength": 0.31052940663328504,
+      "enhancedMean": 0.47820805369194386
+    },
+    {
+      "layoutMethod": "woven",
+      "orientationMode": "classic",
+      "surface": "night",
+      "count": 162,
+      "geometryRetained": true,
+      "frozenDefaultEqual": true,
+      "meanStrength": 0.4223088948367852,
+      "enhancedMean": 0.6190061071854862
+    },
+    {
+      "layoutMethod": "woven",
+      "orientationMode": "flow",
+      "surface": "paper",
+      "count": 162,
+      "geometryRetained": true,
+      "frozenDefaultEqual": true,
+      "meanStrength": 0.31381002979080663,
+      "enhancedMean": 0.4827061947537917
+    },
+    {
+      "layoutMethod": "woven",
+      "orientationMode": "flow",
+      "surface": "night",
+      "count": 162,
+      "geometryRetained": true,
+      "frozenDefaultEqual": true,
+      "meanStrength": 0.4281610138248713,
+      "enhancedMean": 0.6255126840347864
+    },
+    {
+      "layoutMethod": "stipple",
+      "orientationMode": "classic",
+      "surface": "paper",
+      "count": 2000,
+      "geometryRetained": true,
+      "frozenDefaultEqual": true,
+      "meanStrength": 0.6820202892850717,
+      "enhancedMean": 0.8633031422435262
+    },
+    {
+      "layoutMethod": "stipple",
+      "orientationMode": "classic",
+      "surface": "night",
+      "count": 2000,
+      "geometryRetained": true,
+      "frozenDefaultEqual": true,
+      "meanStrength": 0.7168617130820806,
+      "enhancedMean": 0.8791087711178434
+    },
+    {
+      "inkStyle": "ink",
+      "surface": "paper",
+      "sourceColor": false,
+      "count": 966,
+      "synchronous": {
+        "changed": 0,
+        "max": 0,
+        "channels": 327680
+      },
+      "tiled": {
+        "changed": 0,
+        "max": 0,
+        "channels": 327680
+      },
+      "worker": {
+        "changed": 0,
+        "max": 0,
+        "channels": 327680
+      },
+      "svgOpacityRetained": true
+    },
+    {
+      "inkStyle": "ink",
+      "surface": "paper",
+      "sourceColor": true,
+      "count": 966,
+      "synchronous": {
+        "changed": 0,
+        "max": 0,
+        "channels": 327680
+      },
+      "tiled": {
+        "changed": 0,
+        "max": 0,
+        "channels": 327680
+      },
+      "worker": {
+        "changed": 0,
+        "max": 0,
+        "channels": 327680
+      },
+      "svgOpacityRetained": true
+    },
+    {
+      "inkStyle": "ink",
+      "surface": "night",
+      "sourceColor": false,
+      "count": 966,
+      "synchronous": {
+        "changed": 0,
+        "max": 0,
+        "channels": 327680
+      },
+      "tiled": {
+        "changed": 0,
+        "max": 0,
+        "channels": 327680
+      },
+      "worker": {
+        "changed": 0,
+        "max": 0,
+        "channels": 327680
+      },
+      "svgOpacityRetained": true
+    },
+    {
+      "inkStyle": "ink",
+      "surface": "night",
+      "sourceColor": true,
+      "count": 966,
+      "synchronous": {
+        "changed": 0,
+        "max": 0,
+        "channels": 327680
+      },
+      "tiled": {
+        "changed": 0,
+        "max": 0,
+        "channels": 327680
+      },
+      "worker": {
+        "changed": 0,
+        "max": 0,
+        "channels": 327680
+      },
+      "svgOpacityRetained": true
+    },
+    {
+      "inkStyle": "cutout",
+      "surface": "paper",
+      "sourceColor": false,
+      "count": 966,
+      "synchronous": {
+        "changed": 0,
+        "max": 0,
+        "channels": 327680
+      },
+      "tiled": {
+        "changed": 0,
+        "max": 0,
+        "channels": 327680
+      },
+      "worker": null,
+      "svgOpacityRetained": true
+    },
+    {
+      "inkStyle": "cutout",
+      "surface": "paper",
+      "sourceColor": true,
+      "count": 966,
+      "synchronous": {
+        "changed": 0,
+        "max": 0,
+        "channels": 327680
+      },
+      "tiled": {
+        "changed": 0,
+        "max": 0,
+        "channels": 327680
+      },
+      "worker": null,
+      "svgOpacityRetained": true
+    },
+    {
+      "inkStyle": "cutout",
+      "surface": "night",
+      "sourceColor": false,
+      "count": 966,
+      "synchronous": {
+        "changed": 0,
+        "max": 0,
+        "channels": 327680
+      },
+      "tiled": {
+        "changed": 0,
+        "max": 0,
+        "channels": 327680
+      },
+      "worker": null,
+      "svgOpacityRetained": true
+    },
+    {
+      "inkStyle": "cutout",
+      "surface": "night",
+      "sourceColor": true,
+      "count": 966,
+      "synchronous": {
+        "changed": 0,
+        "max": 0,
+        "channels": 327680
+      },
+      "tiled": {
+        "changed": 0,
+        "max": 0,
+        "channels": 327680
+      },
+      "worker": null,
+      "svgOpacityRetained": true
+    }
+  ],
+  "ui": {
+    "beforeHash": "84af0f7439e89639eb07d06b38e5da27a1740fc744cf9af4dcfcb4dee6d7436d",
+    "enhancedHash": "c5c561a5905a64b09e60f92258c4890ba7b7c10e883eab7dba753fecc5b502b7",
+    "coloredHash": "d70bbc7b7d5dc907e15ab1c51258bab6fb201a516df05eb0ce7597ecbf3e51c2",
+    "count": 13610,
+    "geometryRetained": true,
+    "unappliedSnapshotRetained": true,
+    "projectExactPng": true,
+    "themes": [
+      "dark",
+      "light"
+    ],
+    "widths": [
+      1440,
+      390
+    ]
+  },
+  "passed": true
+}

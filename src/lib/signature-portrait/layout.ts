@@ -32,7 +32,7 @@ export type SignatureLayoutOptions = {
   /** 印章下垫软色椭圆（Canvas / Path SVG；GPU 候选另行验证） */
   coverFill?: boolean
   background?: string
-  /** Optional photograph underlay; pure signature artwork is the default. */
+  /** Explicit mixed-media colour wash (0–.85); zero keeps pure signature artwork. */
   underlay?: number
   seed?: number
   overlap?: number

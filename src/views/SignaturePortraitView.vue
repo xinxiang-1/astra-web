@@ -43,6 +43,7 @@ import {
   type SignatureFontId,
 } from '@/lib/signature-portrait'
 import { useThemeStore } from '@/stores/theme'
+import { signatureColorWash } from '@/lib/signature-portrait/color-wash'
 import {
   fitSignatureRaster,
   measureSignatureViewport,
@@ -161,6 +162,16 @@ const maxSizePct = ref(4)
 const colorize = ref(true)
 const colorMode = ref<'ink' | 'source'>('ink')
 const toneGain = ref(1)
+const colorWashStrength = ref(0)
+const colorTreatment = computed({
+  get: () => (colorWashStrength.value > 0 ? 'fusion' : 'pure'),
+  set: (value: string) => {
+    colorWashStrength.value = value === 'fusion' ? 0.75 : 0
+  },
+})
+function resultColorWash(result: SignatureProject) {
+  return (result.options.underlay ?? 0) > 0 ? signatureColorWash(result.portrait) : undefined
+}
 const coverFill = ref(false)
 const fillHighlights = ref(false)
 /** true = 亮处密铺（密度反向）；null = 自动 */
@@ -208,13 +219,15 @@ function currentLayoutOptions(): SignatureLayoutOptions {
         ? colorMode.value
         : undefined,
     toneGain:
-      toneGain.value !== 1 || restoredLayoutOptions.value.toneGain === 1 ? toneGain.value : undefined,
+      toneGain.value !== 1 || restoredLayoutOptions.value.toneGain === 1
+        ? toneGain.value
+        : undefined,
     coverFill: coverFill.value,
     ink: signatureSurface.value === 'night' ? { r: 238, g: 234, b: 226 } : undefined,
     overlap: restoredLayoutOptions.value.overlap ?? 0.22,
     gamma: restoredLayoutOptions.value.gamma ?? 1.15,
     background: previewBg.value,
-    underlay: 0,
+    underlay: colorWashStrength.value,
     seed: seed.value,
     edgeOutline: edgeOutline.value,
     edgeBoost: edgeBoost.value,
@@ -259,7 +272,8 @@ const viewScaleLabel = computed(() => {
 
 const lastOutputMeta = computed(() => {
   if (!hasResult.value || layoutW <= 0) return ''
-  return `${layoutW}×${layoutH} · ${placementCount.value} 枚签名`
+  const treatment = (generatedResult.value?.options.underlay ?? 0) > 0 ? '浓彩融合' : '纯签名'
+  return `${layoutW}×${layoutH} · ${placementCount.value} 枚签名 · ${treatment}`
 })
 
 const maxSideLabel = computed(() => {
@@ -520,7 +534,11 @@ function ensureCanvas2d(): HTMLCanvasElement {
 
 function ensureGlPreview(): GlStampPreview | null {
   // The new path-cutout contract has not passed a GPU renderer gate.
-  if (generatedResult.value?.options.inkStyle === 'cutout') return null
+  if (
+    generatedResult.value?.options.inkStyle === 'cutout' ||
+    (generatedResult.value?.options.underlay ?? 0) > 0
+  )
+    return null
   if (glPreview) return glPreview
   // 新 canvas，避免已被 getContext('2d') 占用
   const canvas = document.createElement('canvas')
@@ -762,10 +780,10 @@ async function paintSharpViewport() {
     inkStyle: result.options.inkStyle,
     colorize: result.options.colorize,
     coverFill: result.options.coverFill,
-    portrait: result.portrait,
+    portrait: resultColorWash(result),
     layoutW,
     layoutH,
-    underlay: 0,
+    underlay: result.options.underlay,
     stampMaxLong: Math.min(
       profile.stampLong,
       Math.max(800, Math.round(Math.max(outW, outH) * 0.65)),
@@ -783,6 +801,7 @@ async function paintSharpViewport() {
           layoutH,
           result.options,
           signal,
+          resultColorWash(result),
         )
         if (signal.cancelled) {
           candidate?.dispose()
@@ -1387,6 +1406,7 @@ async function renderNow() {
             layoutH,
             result.options,
             signal,
+            resultColorWash(generatedResult.value!),
           )
         } catch (error) {
           if (signal.cancelled || (error instanceof Error && error.message === '已取消'))
@@ -1429,8 +1449,8 @@ async function renderNow() {
               inkStyle: result.options.inkStyle,
               colorize: result.options.colorize,
               coverFill: result.options.coverFill,
-              portrait: result.portrait,
-              underlay: 0,
+              portrait: resultColorWash(generatedResult.value!),
+              underlay: result.options.underlay,
               tileSize: 320,
               onTile: ({ canvas: partial, done, total }) => {
                 if (seq !== renderSeq || signal.cancelled) return
@@ -1539,6 +1559,7 @@ function restoreProjectControls(options: SignatureLayoutOptions) {
   colorize.value = options.colorize ?? true
   colorMode.value = options.colorMode ?? 'ink'
   toneGain.value = options.toneGain ?? 1
+  colorWashStrength.value = options.underlay ?? 0
   coverFill.value = options.coverFill ?? false
   seed.value = options.seed ?? 42
   edgeOutline.value = options.edgeOutline ?? false
@@ -1593,8 +1614,8 @@ async function onProjectChange(event: Event) {
         inkStyle: scene.options.inkStyle,
         colorize: scene.options.colorize,
         coverFill: scene.options.coverFill,
-        portrait: scene.portrait,
-        underlay: 0,
+        portrait: resultColorWash(scene),
+        underlay: scene.options.underlay,
         tileSize: 320,
         stableRaster: true,
         signal,
@@ -1764,7 +1785,8 @@ async function downloadPathSvg() {
       background: result.options.background,
       inkStyle: result.options.inkStyle,
       colorize: result.options.colorize,
-      underlay: 0,
+      portraitHref: resultColorWash(result)?.toDataURL('image/png'),
+      underlay: result.options.underlay,
       coverFill: result.options.coverFill,
     })
     triggerDownload(
@@ -1801,8 +1823,8 @@ async function downloadPng() {
         inkStyle: result.options.inkStyle,
         colorize: result.options.colorize,
         coverFill: result.options.coverFill,
-        portrait: result.portrait,
-        underlay: 0,
+        portrait: resultColorWash(result),
+        underlay: result.options.underlay,
         tileSize: 384,
         onTile: ({ done, total }) => {
           progressStage.value = `导出 ${done}/${total}`
@@ -1843,6 +1865,12 @@ function reshuffle() {
 function enhanceInk() {
   if (pending.value || bankBusy.value || !canRender.value) return
   toneGain.value = Math.max(toneGain.value, 1.8)
+  void renderNow()
+}
+
+function applyColorFusion() {
+  if (pending.value || bankBusy.value || !canRender.value) return
+  colorWashStrength.value = Math.max(colorWashStrength.value, 0.75)
   void renderNow()
 }
 
@@ -2131,6 +2159,33 @@ watch([coverFill, colorize, signatureInkStyle], () => {
 
         <section class="panel settings-panel">
           <h2><span class="step-number">02</span> 画面设置</h2>
+          <label class="ink-control">
+            <span class="ink-control-head"><span>画面风格</span></span>
+            <UiSelect v-model="colorTreatment" aria-label="画面风格" :disabled="pending">
+              <option value="pure">纯签名 · 纸上笔迹</option>
+              <option value="fusion">浓彩融合 · 彩绘底色＋签名</option>
+            </UiSelect>
+            <p class="hint">
+              浓彩融合用照片生成柔和底色，补足大面积颜色，再叠加真实完整签名；属于混合画面。选择后点击生成预览。
+            </p>
+          </label>
+          <label v-if="colorTreatment === 'fusion'" class="ink-control">
+            <span class="ink-control-head"
+              ><span>底色浓度</span
+              ><strong>{{ Math.round(colorWashStrength * 100) }}%</strong></span
+            >
+            <input
+              v-model.number="colorWashStrength"
+              aria-label="底色浓度"
+              type="range"
+              min="0.1"
+              max="0.85"
+              step="0.05"
+            />
+            <p class="hint">
+              推荐75%。底色保留大面积光影，细节由签名补充；生成后应用，拖动不会反复绘制。
+            </p>
+          </label>
           <label class="ink-control">
             <span class="ink-control-head">
               <span>墨量</span>
@@ -2476,8 +2531,18 @@ watch([coverFill, colorize, signatureInkStyle], () => {
           <FxButton type="button" :disabled="pending || bankBusy" @click="enhanceInk"
             >增强笔迹</FxButton
           >
-          <span class="hint">觉得偏淡时可一键增强；会应用当前创作参数。</span>
+          <FxButton type="button" :disabled="pending || bankBusy" @click="applyColorFusion"
+            >浓彩融合</FxButton
+          >
+          <span class="hint">增强笔迹提高墨量；浓彩融合补入彩绘底色。按钮会应用当前参数。</span>
         </div>
+        <p
+          v-if="hasResult && (generatedResult?.options.underlay ?? 0) > 0"
+          class="hint fusion-notice"
+          role="status"
+        >
+          当前作品为浓彩融合：照片生成的彩绘底色＋完整签名。SVG保留签名矢量路径，同时嵌入底色图像。
+        </p>
         <RenderFeedback
           v-if="pending || generatingVariants || sharpPainting"
           :title="sharpPainting && !pending ? '正在精绘局部笔迹' : progressStage || '正在准备作品'"

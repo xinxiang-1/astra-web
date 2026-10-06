@@ -91,7 +91,7 @@ function optionsOf(value: unknown): SignatureLayoutOptions {
     orientationStrength: [0, 1],
     minSizeRatio: [0.001, 0.2],
     maxSizeRatio: [0.001, 0.3],
-    underlay: [0, 0],
+    underlay: [0, 0.85],
     seed: [0, Number.MAX_SAFE_INTEGER],
     overlap: [0, 0.9],
     gamma: [0.1, 5],

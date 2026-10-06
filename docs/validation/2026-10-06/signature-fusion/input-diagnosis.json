@@ -1,0 +1,138 @@
+{
+  "sourceDimensions": [
+    768,
+    1024
+  ],
+  "resultDimensions": [
+    6144,
+    8192
+  ],
+  "sampleStride": 8,
+  "paperRGB": [
+    245.0,
+    243.0,
+    239.0
+  ],
+  "regions": {
+    "all": {
+      "source": {
+        "meanRGB": [
+          168.879,
+          124.566,
+          101.082
+        ],
+        "meanLumaSrgb": 132.291,
+        "nearPaperFraction": 0.0,
+        "darkFractionBelow64": 0.273085,
+        "lumaP05": 12.919
+      },
+      "result": {
+        "meanRGB": [
+          227.467,
+          221.251,
+          215.667
+        ],
+        "meanLumaSrgb": 222.169,
+        "nearPaperFraction": 0.452545,
+        "darkFractionBelow64": 0.007661,
+        "lumaP05": 119.928
+      }
+    },
+    "hair": {
+      "source": {
+        "meanRGB": [
+          64.968,
+          49.999,
+          39.863
+        ],
+        "meanLumaSrgb": 52.45,
+        "nearPaperFraction": 0.0,
+        "darkFractionBelow64": 0.804543,
+        "lumaP05": 7.856
+      },
+      "result": {
+        "meanRGB": [
+          197.763,
+          193.82,
+          189.326
+        ],
+        "meanLumaSrgb": 194.334,
+        "nearPaperFraction": 0.430282,
+        "darkFractionBelow64": 0.020833,
+        "lumaP05": 79.164
+      }
+    },
+    "cheek": {
+      "source": {
+        "meanRGB": [
+          218.258,
+          148.304,
+          119.775
+        ],
+        "meanLumaSrgb": 161.116,
+        "nearPaperFraction": 0.0,
+        "darkFractionBelow64": 0.008979,
+        "lumaP05": 105.181
+      },
+      "result": {
+        "meanRGB": [
+          241.441,
+          231.785,
+          225.398
+        ],
+        "meanLumaSrgb": 233.377,
+        "nearPaperFraction": 0.446111,
+        "darkFractionBelow64": 0.0,
+        "lumaP05": 199.719
+      }
+    },
+    "clothing": {
+      "source": {
+        "meanRGB": [
+          227.679,
+          167.46,
+          143.104
+        ],
+        "meanLumaSrgb": 178.504,
+        "nearPaperFraction": 0.0,
+        "darkFractionBelow64": 0.0,
+        "lumaP05": 140.338
+      },
+      "result": {
+        "meanRGB": [
+          243.383,
+          236.459,
+          230.762
+        ],
+        "meanLumaSrgb": 237.52,
+        "nearPaperFraction": 0.459966,
+        "darkFractionBelow64": 0.0,
+        "lumaP05": 222.743
+      }
+    },
+    "background": {
+      "source": {
+        "meanRGB": [
+          242.467,
+          190.182,
+          143.114
+        ],
+        "meanLumaSrgb": 197.899,
+        "nearPaperFraction": 0.0,
+        "darkFractionBelow64": 0.0,
+        "lumaP05": 183.865
+      },
+      "result": {
+        "meanRGB": [
+          244.769,
+          239.812,
+          233.31
+        ],
+        "meanLumaSrgb": 240.397,
+        "nearPaperFraction": 0.497297,
+        "darkFractionBelow64": 0.0,
+        "lumaP05": 232.54
+      }
+    }
+  }
+}
