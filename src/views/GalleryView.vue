@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { artworkPresets } from '@/content/artwork'
-import CharacterArtwork from '@/components/CharacterArtwork.vue'
+import ArtworkPreview from '@/components/ArtworkPreview.vue'
 import ArtFooter from '@/components/ArtFooter.vue'
 import ArtIcon from '@/components/ui/ArtIcon.vue'
 const filter = ref('全部')
 const search = ref('')
+const categories = ['全部', ...new Set(artworkPresets.map(art => art.category))]
 function resetFilters() {
   search.value = ''
   filter.value = '全部'
@@ -30,7 +31,7 @@ const filtered = computed(() =>
       <div class="gallery-tools">
         <div class="gallery-filters">
           <button
-            v-for="item in ['全部', '人物', '中文铺字', '彩色']"
+            v-for="item in categories"
             :key="item"
             class="art-chip"
             :class="{ active: filter === item }"
@@ -54,17 +55,12 @@ const filtered = computed(() =>
           :to="`/ascii-art?preset=${art.id}`"
           class="art-card"
           ><div class="art-card-image">
-            <CharacterArtwork
-              :src="art.src"
-              :color="art.color"
-              :phrase="art.phrase"
-              :label="art.title"
-            /><span class="art-number">0{{ index + 1 }}</span>
+            <ArtworkPreview :art="art" /><span class="art-number">0{{ index + 1 }}</span>
           </div>
           <div class="art-card-info">
             <div>
               <h3>{{ art.title }}</h3>
-              <p>{{ art.category }} · 图片</p>
+              <p>{{ art.category }} · {{ art.phrase ? '中文铺字' : art.color ? '原色字符' : '光影字符' }}</p>
             </div>
             <span class="template-action">试用此风格 <ArtIcon :size="15" /></span></div
         ></RouterLink>
@@ -89,7 +85,7 @@ const filtered = computed(() =>
           /></RouterLink>
         </div>
         <div class="feature-art">
-          <CharacterArtwork src="/demos/ascii-live/aristotle-bust.webp" />
+          <ArtworkPreview :art="artworkPresets[4]!" />
         </div>
       </section>
     </div>
@@ -158,7 +154,8 @@ const filtered = computed(() =>
   gap: 25px;
 }
 .gallery-grid .art-card-image {
-  height: 360px;
+  height: auto;
+  aspect-ratio: 4 / 5;
   position: relative;
 }
 .art-number {
@@ -184,8 +181,8 @@ const filtered = computed(() =>
 }
 .gallery-feature {
   margin-top: 60px;
-  background: #151918;
-  color: #f3f0e8;
+  background: var(--bg-elevated);
+  color: var(--text);
   display: flex;
   justify-content: space-between;
   height: 280px;
@@ -202,11 +199,11 @@ const filtered = computed(() =>
 }
 .gallery-feature p {
   font-size: 12px;
-  color: #a6b19d;
+  color: var(--text-muted);
   margin-bottom: 24px;
 }
 .gallery-feature .art-button {
-  color: var(--art-cyan);
+  color: var(--accent);
   font-size: 11px;
   min-height: 38px;
   padding: 8px 18px;
@@ -251,7 +248,7 @@ const filtered = computed(() =>
     grid-template-columns: 1fr;
   }
   .gallery-grid .art-card-image {
-    height: 370px;
+    height: auto;
   }
   .gallery-search input {
     width: 100%;

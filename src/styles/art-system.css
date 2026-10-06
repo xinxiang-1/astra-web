@@ -24,7 +24,109 @@
   font-weight: 500;
 }
 /* The homepage hero keeps its established artwork; surrounding UI uses the palette. */
-[data-theme='dark'] .home-art .step-icon { background: var(--bg-soft); }
+[data-theme='dark'] .home-art .step-icon {
+  background: var(--bg-soft);
+}
+/* Homepage chrome follows the site theme; live artwork keeps its own ink/paper. */
+html[data-theme] .home-art .hero-gallery {
+  background: var(--bg);
+  color: var(--text);
+}
+html[data-theme] .home-art .hero-shade {
+  background: linear-gradient(
+    90deg,
+    var(--bg) 0%,
+    var(--bg) 25%,
+    color-mix(in srgb, var(--bg) 88%, transparent) 34%,
+    transparent 57%
+  );
+}
+html[data-theme] .home-art .hero-kicker,
+html[data-theme] .home-art .hero-copy > p,
+html[data-theme] .home-art .hero-index,
+html[data-theme] .home-art .hero-side-label,
+html[data-theme] .home-art .hero-coordinate {
+  color: var(--text-muted);
+}
+html[data-theme] .home-art .hero-copy h1 span {
+  color: var(--accent);
+}
+html[data-theme] .home-art .hero-actions .art-link {
+  color: var(--text);
+}
+html[data-theme] .home-art .index-line {
+  background: var(--text-faint);
+}
+html[data-theme] .home-art .hero-art {
+  border-color: var(--border);
+}
+html[data-theme] .home-art .featured-grid .art-card-image {
+  height: auto;
+  aspect-ratio: 4 / 5;
+}
+html[data-theme] .home-art .engine-story,
+html[data-theme] .home-art .trust-strip,
+html[data-theme] .home-art .closing-strip {
+  background: var(--bg-elevated);
+  color: var(--text);
+  border-color: var(--border);
+}
+html[data-theme] .home-art .trust-strip > .art-eyebrow,
+html[data-theme] .home-art .trust-aside,
+html[data-theme] .home-art .story-copy p,
+html[data-theme] .home-art .story-note,
+html[data-theme] .home-art .story-registration,
+html[data-theme] .home-art .closing-strip p,
+html[data-theme] .home-art .closing-strip > div > svg {
+  color: var(--text-muted);
+}
+html[data-theme] .home-art .trust-aside b,
+html[data-theme] .home-art .story-copy > .art-eyebrow,
+html[data-theme] .home-art .closing-strip .art-link {
+  color: var(--accent);
+}
+html[data-theme] .home-art .trust-strip i {
+  background: var(--text-faint);
+}
+html[data-theme] .home-art .story-modes button {
+  background: var(--bg);
+  color: var(--text-muted);
+  border-color: var(--border);
+}
+html[data-theme] .home-art .story-modes .mode-number {
+  color: var(--text-faint);
+}
+html[data-theme] .home-art .story-modes button:hover,
+html[data-theme] .home-art .story-modes button.active {
+  color: var(--accent);
+  background: var(--bg-soft);
+  border-color: var(--accent);
+}
+html[data-theme] .home-art .story-modes button:focus-visible {
+  outline-color: var(--accent);
+}
+html[data-theme] .home-art .story-art {
+  background: var(--bg);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow);
+}
+html[data-theme] .home-art .story-art-heading,
+html[data-theme] .home-art .story-art-toolbar {
+  color: var(--text-muted);
+  border-color: var(--border);
+}
+html[data-theme] .home-art .story-art-heading .art-eyebrow {
+  color: var(--text-faint);
+}
+html[data-theme] .home-art .story-art-toolbar button {
+  color: var(--text-muted);
+}
+html[data-theme] .home-art .story-art-toolbar button:hover,
+html[data-theme] .home-art .story-art-toolbar button.active {
+  color: var(--accent);
+  background: var(--bg-soft);
+  border-color: var(--border);
+}
 .art-wrap {
   max-width: 1440px;
   margin: auto;
@@ -88,13 +190,13 @@
   display: flex;
   align-items: center;
   gap: 28px;
-  background: #151918;
-  color: #eeece4;
-  border-top: 1px solid #ffffff24;
+  background: var(--bg-elevated);
+  color: var(--text);
+  border-top: 1px solid var(--border);
 }
 .art-footer p {
   font-size: 11px;
-  color: #a2a59f;
+  color: var(--text-muted);
 }
 .art-footer nav {
   display: flex;
@@ -104,12 +206,12 @@
 .art-footer nav a {
   font-size: 11px;
   text-decoration: none;
-  color: #c4c6bf;
+  color: var(--text-muted);
 }
 .art-footer > .art-eyebrow {
   margin-left: 30px;
   font-size: 8px;
-  color: #93978f;
+  color: var(--text-faint);
 }
 .art-section-heading {
   display: flex;

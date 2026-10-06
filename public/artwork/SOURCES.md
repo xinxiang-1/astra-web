@@ -10,7 +10,7 @@ License: https://unsplash.com/license
 
 ## Generated portrait
 
-- portrait-reference.png: generated with built-in ImageGen, referencing the approved `design/astra-prototype-v1/01-homepage.png` hero. Used for the live homepage and portrait/Chinese text presets.
+- portrait-reference.png: generated with built-in ImageGen, referencing the approved `design/astra-prototype-v1/01-homepage.png` hero. Used for the live homepage hero and engine demonstration. The gallery presets were replaced on 2026-10-05; this historical source remains available.
 - `design/astra-prototype-v1/source-alternatives/portrait-editorial.png` (workspace root): earlier alternative concept, not used in the site.
 
 Final prompt: Extract and reconstruct only the adult woman from the approved top hero into a standalone clean monochrome photographic source portrait. Preserve the same face, long black hair, three-quarter pose and gaze; remove all text, ASCII overlays, UI and comparison controls. Vertical 4:5 head-and-shoulders portrait, near-black #111615 background, softly lit face, no hand touching the face, no text or watermark. The source is then converted by Astra's real browser renderer.
@@ -25,3 +25,12 @@ Final prompt: Extract and reconstruct only the adult woman from the approved top
 > Use case: stylized-concept. Asset type: an original source image for Astra's commercial ASCII / Chinese typography art converter, a clean image to be sampled by real algorithms, NOT already ASCII art. Create one exceptionally polished studio photograph-style rendering of an original contemporary porcelain sculpture of an adult woman's head and shoulders, a calm three-quarter pose looking slightly upward. Elegant recognizable facial planes, complete forehead, cheeks, nose and neck. Smooth ivory ceramic with subtle fine surface texture, a single flowing drape across one shoulder with restrained muted turquoise glaze, no jewelry. Centered 4:5 vertical portrait; sculpture occupies about 78 percent of frame with generous safe margins. Deep nearly black charcoal background with no objects or scenery. Large soft key light from upper left, precise gentle cool rim light from right. Broad continuous midtones on the face, legible shadows that retain form, brightest ceramic highlight below clipping. Very clear silhouette. Museum catalogue quality, 85mm photographic composition, refined art direction, excellent dimensional material detail without oversharpening. It must depict a newly invented sculpture, not a replica of any named existing artwork or a known real person. No lettering, signatures, watermark, logos, frames, UI, collage, ASCII characters, particle effects or motion blur. Desired output image about 1536x1920 or best available vertical resolution.
 
 The actual resolution above takes precedence over the desired prompt resolution. The generated image is sampled by the existing Astra engine; no photo underlay is used for the character result.
+
+## Monumental gallery collection · 2026-10-05
+
+The six gallery works and homepage featured cards now use new built-in ImageGen sources: mountain, architecture, cosmos, dunes, eagle and sea. All were generated individually without reference images. Originals and scene summaries (the complete earlier tool prompts were not recovered in the continuation): [collection source record](../../design/artwork-collection-20261005/README.md).
+
+- Runtime sources and character previews: `collection-20261005/*.webp`; [manifest](./collection-20261005/manifest.json) records dimensions, hashes, byte sizes, engine source hashes and rendering settings.
+- All source images are 1122 × 1402. WebP source and preview encoding is lossless; decoded RGBA was checked against each original PNG. These are not native 4K source images.
+- Gallery cards display images rendered by the actual Astra character engine at 180 columns / 1402px, with no photographic underlay. Browsing a card does not rerun the engine; the editor loads the corresponding full source for creation and export.
+- Old source files remain for the homepage, saved work and historical research. Legacy preset URLs resolve to the corresponding new preset.

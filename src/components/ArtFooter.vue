@@ -35,10 +35,10 @@ import AstraLogo from '@/components/ui/AstraLogo.vue'
   align-items: center;
 }
 .art-footer a:hover {
-  color: var(--art-cyan);
+  color: var(--accent);
 }
 .art-footer a:focus-visible {
-  outline: 2px solid var(--art-cyan);
+  outline: 2px solid var(--accent);
   outline-offset: 4px;
 }
 </style>

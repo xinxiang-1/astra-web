@@ -10,7 +10,7 @@ import RenderFeedback from '@/components/ui/RenderFeedback.vue'
 import ExportSheet from '@/components/ExportSheet.vue'
 import UnsavedChangesDialog from '@/components/UnsavedChangesDialog.vue'
 import { prepareArtSource, type PreparedArtSource } from '@/lib/art-media-source'
-import { artworkPresets, type ArtworkPreset } from '@/content/artwork'
+import { artworkPresets, findArtworkPreset, type ArtworkPreset } from '@/content/artwork'
 import { getArtProject, saveArtProject } from '@/lib/art-projects'
 import {
   assertArtProjectEngineCompatible,
@@ -3138,7 +3138,7 @@ async function loadRouteProject() {
       error.value = cause instanceof Error ? cause.message : '项目无法恢复，请检查浏览器存储权限。'
     }
   } else {
-    const preset = artworkPresets.find((p) => p.id === route.query.preset)
+    const preset = findArtworkPreset(route.query.preset)
     if (preset) await applyPreset(preset, true)
   }
 }
@@ -3475,7 +3475,7 @@ onBeforeUnmount(() => {
             >
               <div class="preset-image">
                 <CharacterArtwork
-                  :src="preset.src"
+                  :src="preset.preview"
                   :color="preset.color"
                   :phrase="preset.phrase"
                   :label="preset.title"

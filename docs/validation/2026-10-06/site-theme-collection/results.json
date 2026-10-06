@@ -1,0 +1,25 @@
+{
+  "edge": {
+    "cases": 15,
+    "browser": "154.0.4258.53",
+    "passed": true,
+    "errors": []
+  },
+  "homeHover": {
+    "passed": true,
+    "browser": "msedge",
+    "checks": 13
+  },
+  "chrome": {
+    "cases": 15,
+    "browser": "154.0.8037.57",
+    "passed": true,
+    "errors": []
+  },
+  "signatureTheme": {
+    "cases": 13,
+    "browser": "154.0.4258.62",
+    "passed": true,
+    "errors": []
+  }
+}

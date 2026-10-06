@@ -55,6 +55,8 @@
     "research:preview-region-page": "node scripts/preview-region-page-research.mjs",
     "research:preview-light-material": "node scripts/preview-light-material-research.mjs",
     "research:preview-light-storage": "node scripts/preview-light-storage-contract.mjs",
+    "assets:gallery": "node scripts/render-gallery-collection.mjs",
+    "test:site-theme-collection": "node scripts/site-theme-collection-contract.mjs",
     "test:art-render-watchdog": "node scripts/art-render-watchdog-contract.mjs",
     "research:video-atlas": "node scripts/video-tile-atlas-research.mjs",
     "test:glyph-particles-integration": "node scripts/glyph-particles-integration-contract.mjs",

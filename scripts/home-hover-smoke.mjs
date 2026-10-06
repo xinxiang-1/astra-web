@@ -6,7 +6,10 @@ import { chromium } from 'playwright'
 const base = process.env.ASTRA_PREVIEW_URL || 'http://127.0.0.1:5180'
 const out = path.resolve(process.env.ASTRA_HOVER_OUTPUT || 'test-results/home-interaction')
 await mkdir(out, { recursive: true })
-const browser = await chromium.launch({ headless: true })
+const browser = await chromium.launch({
+  channel: process.env.ASTRA_BROWSER_CHANNEL || 'msedge',
+  headless: true,
+})
 const page = await browser.newPage({ viewport: { width: 1440, height: 960 } })
 page.setDefaultNavigationTimeout(60000)
 const errors = []

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import CharacterArtwork from '@/components/CharacterArtwork.vue'
+import ArtworkPreview from '@/components/ArtworkPreview.vue'
 import ArtIcon from '@/components/ui/ArtIcon.vue'
 import ArtFooter from '@/components/ArtFooter.vue'
 import { artworkPresets } from '@/content/artwork'
@@ -71,12 +72,7 @@ useScrollMotion(home)
           :to="`/ascii-art?preset=${art.id}`"
           class="art-card"
           ><div class="art-card-image">
-            <CharacterArtwork
-              :src="art.src"
-              :color="art.color"
-              :phrase="art.phrase"
-              :label="art.title"
-            />
+            <ArtworkPreview :art="art" />
           </div>
           <div class="art-card-info">
             <div>
