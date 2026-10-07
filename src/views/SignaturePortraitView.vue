@@ -10,7 +10,6 @@ import {
   addStampToBank,
   addStampsToBank,
   buildPathSvgDocument,
-  canvasToPngBlob,
   createGlStampPreview,
   createTextStamp,
   deleteBank,
@@ -43,6 +42,7 @@ import {
   type SignatureFontId,
 } from '@/lib/signature-portrait'
 import { useThemeStore } from '@/stores/theme'
+import { exportSignaturePng } from '@/lib/signature-portrait/png-export'
 import { prepareSignatureWash, preparedSignatureWash } from '@/lib/signature-portrait/styled-wash'
 import {
   SIGNATURE_WASH_PALETTES,
@@ -144,6 +144,9 @@ let comparePointerId: number | null = null
 const error = ref('')
 const pending = ref(false)
 const renderBusy = ref(false)
+const pngBusy = ref(false)
+const pngBackend = ref<'worker' | 'canvas' | null>(null)
+let pngSignal: { cancelled?: boolean } | null = null
 const hasInk = ref(false)
 const bankSaving = ref(false)
 const generatingVariants = ref(false)
@@ -186,7 +189,9 @@ const resultWashLabel = computed(() => {
   const options = generatedResult.value?.options
   if (!options?.washStyle) return '原色融合'
   const style = options.washStyle === 'duotone-v1' ? '双色绘影 · 试用' : '波普彩绘 · 试用'
-  const palette = SIGNATURE_WASH_PALETTES.find(p => p.id === (options.washPalette ?? 'blue-coral'))!
+  const palette = SIGNATURE_WASH_PALETTES.find(
+    (p) => p.id === (options.washPalette ?? 'blue-coral'),
+  )!
   return `${style} / ${palette.name}`
 })
 const coverFill = ref(false)
@@ -245,8 +250,10 @@ function currentLayoutOptions(): SignatureLayoutOptions {
     gamma: restoredLayoutOptions.value.gamma ?? 1.15,
     background: previewBg.value,
     underlay: colorWashStrength.value,
-    washStyle: colorWashStrength.value > 0 && washStyle.value !== 'source' ? washStyle.value : undefined,
-    washPalette: colorWashStrength.value > 0 && washStyle.value !== 'source' ? washPalette.value : undefined,
+    washStyle:
+      colorWashStrength.value > 0 && washStyle.value !== 'source' ? washStyle.value : undefined,
+    washPalette:
+      colorWashStrength.value > 0 && washStyle.value !== 'source' ? washPalette.value : undefined,
     seed: seed.value,
     edgeOutline: edgeOutline.value,
     edgeBoost: edgeBoost.value,
@@ -270,7 +277,7 @@ const resultBackground = computed(
 )
 
 const portraitSrc = ref('')
-watch(generatedResult, result => {
+watch(generatedResult, (result) => {
   if (portraitSrc.value) URL.revokeObjectURL(portraitSrc.value)
   portraitSrc.value = result ? URL.createObjectURL(result.portraitFile) : ''
 })
@@ -557,11 +564,7 @@ function ensureCanvas2d(): HTMLCanvasElement {
 
 function prepareGlPreview(scene: SignatureProject): GlStampPreview | null {
   // The new path-cutout contract has not passed a GPU renderer gate.
-  if (
-    scene.options.inkStyle === 'cutout' ||
-    (scene.options.underlay ?? 0) > 0
-  )
-    return null
+  if (scene.options.inkStyle === 'cutout' || (scene.options.underlay ?? 0) > 0) return null
   // 新 canvas，避免已被 getContext('2d') 占用
   const canvas = document.createElement('canvas')
   const preview = createGlStampPreview(canvas)
@@ -1136,6 +1139,7 @@ onBeforeUnmount(() => {
   viewDisposed = true
   projectController?.abort()
   generationController?.abort()
+  if (pngSignal) pngSignal.cancelled = true
   paintSignal.cancelled = true
   disposeRasterWorker()
   disposeGlPreview()
@@ -1394,14 +1398,14 @@ async function renderNow() {
       progressStage.value = '准备彩绘底色'
       await prepareSignatureWash(scene.portrait, scene.options, {
         signal,
-        onProgress: ratio => {
-          if (!stale()) progressRatio.value = .5 + ratio * .08
+        onProgress: (ratio) => {
+          if (!stale()) progressRatio.value = 0.5 + ratio * 0.08
         },
       })
     }
     if (stale()) return
     progressStage.value = '准备预览'
-    progressRatio.value = .58
+    progressRatio.value = 0.58
     candidateGl = prepareGlPreview(scene)
     if (candidateGl) {
       candidateGl.setBackground(scene.options.background ?? '#f5f3ef')
@@ -1415,39 +1419,54 @@ async function renderNow() {
       const onProgress = (done: number, total: number) => {
         if (stale()) return
         progressStage.value = '精绘笔迹与色彩'
-        progressRatio.value = .58 + (done / Math.max(1, total)) * .42
+        progressRatio.value = 0.58 + (done / Math.max(1, total)) * 0.42
       }
       try {
         candidateRaster = await createSignatureRasterWorker(
-          placements, scene.stamps, width, height, scene.options, signal, resultColorWash(scene),
+          placements,
+          scene.stamps,
+          width,
+          height,
+          scene.options,
+          signal,
+          resultColorWash(scene),
         )
-        if (candidateRaster) overview = await candidateRaster.paint(
-          size.width, size.height,
-          Math.min(1000, Math.max(480, Math.round(Math.max(size.width, size.height) * .4))),
-          { tileSize: 320, signal, onProgress },
-        )
+        if (candidateRaster)
+          overview = await candidateRaster.paint(
+            size.width,
+            size.height,
+            Math.min(1000, Math.max(480, Math.round(Math.max(size.width, size.height) * 0.4))),
+            { tileSize: 320, signal, onProgress },
+          )
       } catch (error) {
         candidateRaster?.dispose()
         candidateRaster = null
         if (stale() || (error instanceof Error && error.message === '已取消')) throw error
       }
-      if (!overview) overview = await paintPlacementsTiled(
-        placements, scene.stamps, width, height, size.width, size.height,
-        {
-          background: scene.options.background,
-          inkStyle: scene.options.inkStyle,
-          colorize: scene.options.colorize,
-          coverFill: scene.options.coverFill,
-          portrait: resultColorWash(scene),
-          underlay: scene.options.underlay,
-          tileSize: 320,
-          signal,
-          onTile: ({ done, total }) => onProgress(done, total),
-        },
-      )
+      if (!overview)
+        overview = await paintPlacementsTiled(
+          placements,
+          scene.stamps,
+          width,
+          height,
+          size.width,
+          size.height,
+          {
+            background: scene.options.background,
+            inkStyle: scene.options.inkStyle,
+            colorize: scene.options.colorize,
+            coverFill: scene.options.coverFill,
+            portrait: resultColorWash(scene),
+            underlay: scene.options.underlay,
+            tileSize: 320,
+            signal,
+            onTile: ({ done, total }) => onProgress(done, total),
+          },
+        )
     }
     if (stale()) return
-    const cssW = getFitWidth(width), cssH = Math.max(1, Math.round(height * cssW / width))
+    const cssW = getFitWidth(width),
+      cssH = Math.max(1, Math.round((height * cssW) / width))
     if (overview) display = createOverviewDisplay(overview, cssW, cssH)
     // Only a complete candidate replaces the visible artwork and export snapshot.
     if (zoomPaintTimer) clearTimeout(zoomPaintTimer)
@@ -1602,7 +1621,9 @@ async function onProjectChange(event: Event) {
       progressStage.value = '恢复彩绘底色'
       await prepareSignatureWash(scene.portrait, scene.options, {
         signal,
-        onProgress: ratio => { progressRatio.value = .5 + ratio * .08 },
+        onProgress: (ratio) => {
+          progressRatio.value = 0.5 + ratio * 0.08
+        },
       })
     }
     progressStage.value = '恢复预览'
@@ -1808,44 +1829,50 @@ async function downloadPathSvg() {
 
 async function downloadPng() {
   const result = generatedResult.value
-  if (!lastPlacements.length || layoutW <= 0 || !result) return
+  if (pending.value || !lastPlacements.length || layoutW <= 0 || !result) return
   error.value = ''
   pending.value = true
+  pngBusy.value = true
+  pngBackend.value = null
   progressStage.value = '导出 PNG'
   progressRatio.value = 0
   const signal = { cancelled: false }
+  pngSignal = signal
   try {
-    const canvas = await paintPlacementsTiled(
-      result.placements,
-      result.stamps,
-      result.width,
-      result.height,
-      result.width,
-      result.height,
-      {
-        background: result.options.background,
-        inkStyle: result.options.inkStyle,
-        colorize: result.options.colorize,
-        coverFill: result.options.coverFill,
-        portrait: resultColorWash(result),
-        underlay: result.options.underlay,
-        tileSize: 384,
-        onTile: ({ done, total }) => {
-          progressStage.value = `导出 ${done}/${total}`
-          progressRatio.value = done / Math.max(1, total)
-        },
-        signal,
+    const blob = await exportSignaturePng(result, {
+      signal,
+      onBackend: (backend) => {
+        pngBackend.value = backend
       },
-    )
-    const blob = await canvasToPngBlob(canvas)
+      onProgress: (stage, ratio) => {
+        if (signal.cancelled || viewDisposed) return
+        progressStage.value =
+          stage === 'prepare'
+            ? '准备高清导出'
+            : stage === 'encode'
+              ? '正在编码PNG'
+              : '正在绘制高清PNG'
+        progressRatio.value =
+          stage === 'prepare' ? 0 : stage === 'encode' ? 0.95 : 0.05 + ratio * 0.9
+      },
+    })
+    if (signal.cancelled || viewDisposed) return
     triggerDownload(blob, `signature-portrait-${result.width}x${result.height}.png`)
   } catch (e) {
-    error.value = e instanceof Error ? e.message : '导出失败'
+    if (!signal.cancelled) error.value = e instanceof Error ? e.message : '导出失败'
   } finally {
+    if (pngSignal === signal) pngSignal = null
+    pngBusy.value = false
+    pngBackend.value = null
     pending.value = false
     progressStage.value = ''
     progressRatio.value = 0
   }
+}
+
+function cancelPng() {
+  if (pngSignal) pngSignal.cancelled = true
+  projectNotice.value = '已取消PNG导出，当前作品保留。'
 }
 
 function hexToRgb(hex: string): { r: number; g: number; b: number } {
@@ -1933,11 +1960,11 @@ watch([coverFill, colorize, signatureInkStyle], () => {
           :disabled="pending || !canRender"
           @click="renderNow"
         >
-          {{ pending ? '生成中…' : '生成预览' }} </FxButton
+          {{ renderBusy ? '生成中…' : '生成预览' }} </FxButton
         ><FxButton v-if="renderBusy" type="button" @click="cancelRender">取消生成</FxButton
         ><FxButton type="button" :disabled="!hasResult || pending" @click="downloadPng">
-          下载 PNG
-        </FxButton>
+          {{ pngBusy ? '导出PNG中…' : '下载 PNG' }} </FxButton
+        ><FxButton v-if="pngBusy" type="button" @click="cancelPng"> 取消PNG导出 </FxButton>
       </div>
       <div class="project-actions">
         <FxButton type="button" :disabled="bankBusy" @click="projectInput?.click()">
@@ -2186,7 +2213,11 @@ watch([coverFill, colorize, signatureInkStyle], () => {
           <label v-if="colorTreatment === 'fusion' && washStyle !== 'source'" class="ink-control">
             <span class="ink-control-head"><span>彩绘色板</span></span>
             <UiSelect v-model="washPalette" aria-label="彩绘色板" :disabled="pending">
-              <option v-for="palette in SIGNATURE_WASH_PALETTES" :key="palette.id" :value="palette.id">
+              <option
+                v-for="palette in SIGNATURE_WASH_PALETTES"
+                :key="palette.id"
+                :value="palette.id"
+              >
                 {{ palette.name }}
               </option>
             </UiSelect>
@@ -2541,7 +2572,7 @@ watch([coverFill, colorize, signatureInkStyle], () => {
           <span v-if="pending" class="meta">
             {{ progressStage || '生成中' }}
             <template v-if="progressRatio"> · {{ Math.round(progressRatio * 100) }}% </template>
-            · 正在准备作品
+            · {{ pngBusy ? '导出完成后将自动下载' : '正在准备作品' }}
           </span>
           <span v-else-if="canCompare" class="meta">
             滚轮放大 · {{ previewPan || !comparisonActive ? '拖动移动' : '拖动对比' }} ·
@@ -2563,7 +2594,9 @@ watch([coverFill, colorize, signatureInkStyle], () => {
           class="hint fusion-notice"
           role="status"
         >
-          当前作品为浓彩融合（{{ resultWashLabel }}）：照片生成的彩绘底色＋完整签名。SVG保留签名矢量路径，同时嵌入底色图像。
+          当前作品为浓彩融合（{{
+            resultWashLabel
+          }}）：照片生成的彩绘底色＋完整签名。SVG保留签名矢量路径，同时嵌入底色图像。
         </p>
         <RenderFeedback
           v-if="pending || generatingVariants || sharpPainting"
@@ -2571,9 +2604,16 @@ watch([coverFill, colorize, signatureInkStyle], () => {
           :detail="
             sharpPainting && !pending
               ? '视图已更新，清晰笔迹随后呈现。可以继续缩放或拖动。'
-              : '可以继续浏览页面，完成后会呈现完整笔迹与色彩。'
+              : pngBusy
+                ? pngBackend === 'canvas'
+                  ? '正在分段兼容绘制，PNG编码可能需要等待。可以取消，当前作品会保留。'
+                  : pngBackend === 'worker'
+                    ? '高清绘制与PNG编码在后台进行。可以继续浏览或取消，当前作品会保留。'
+                    : '正在准备高清导出。可以继续浏览或取消，当前作品会保留。'
+                : '可以继续浏览页面，完成后会呈现完整笔迹与色彩。'
           "
           :progress="pending ? progressRatio : undefined"
+          :progress-label="pngBusy ? 'PNG导出进度' : '作品生成进度'"
         />
         <label v-if="hasResult" class="preview-quality">
           <span>缩放清晰度</span>

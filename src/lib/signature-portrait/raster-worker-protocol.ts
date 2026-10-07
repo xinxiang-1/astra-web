@@ -1,16 +1,24 @@
-import type { Placement, SignatureLayoutOptions } from './layout'
+import type { SignatureLayoutOptions } from './layout'
 
-export type RasterTemplate = { width: number; height: number; pixels: ImageData }
+export type RasterTemplate = {
+  width: number
+  height: number
+  pixels: ImageData
+  vector?: import('./trace').StampVector | null
+}
 export type RasterScene = {
-  placements: Placement[]
+  placements: Float64Array
   templates: RasterTemplate[]
   layoutW: number
   layoutH: number
   colorWash?: ImageData
-  options: Pick<SignatureLayoutOptions, 'background' | 'colorize' | 'coverFill' | 'underlay'>
+  options: Pick<
+    SignatureLayoutOptions,
+    'background' | 'colorize' | 'coverFill' | 'underlay' | 'inkStyle'
+  >
 }
 export type RasterRequest = {
-  type: 'paint'
+  type: 'paint' | 'png'
   id: number
   width: number
   height: number
@@ -19,6 +27,7 @@ export type RasterRequest = {
   tileSize?: number
 }
 export type RasterResponse =
-  | { type: 'progress'; id: number; done: number; total: number }
+  | { type: 'progress'; id: number; done: number; total: number; stage?: 'render' | 'encode' }
   | { type: 'complete'; id: number; pixels: ImageData }
+  | { type: 'encoded'; id: number; blob: Blob }
   | { type: 'error'; id: number; error: string }

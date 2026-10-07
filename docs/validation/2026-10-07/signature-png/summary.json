@@ -1,0 +1,4738 @@
+{
+  "scope": "Windows development and production PNG stage; not complete commercial/device/print acceptance",
+  "runs": {
+    "edge-contract": {
+      "browser": "154.0.4258.62",
+      "parent": "70de56c100e6ca056e0f447d0c62744a25f5d54c",
+      "frozenHashes": {
+        "layout": "c82713302a61998e284170da141e453e96a742f7efb448f57ae72218690ca38f",
+        "trace": "d27de11e6cd52741b95678e4a8f2ab753ac6365caf114398d3aa29afa92b4e4c",
+        "vector-ink": "ab433686481343aa8d9a2d8f6483bf28acdd6e2a9b99ec7b8716a9eafd5fe8f7"
+      },
+      "errors": [],
+      "cases": [
+        {
+          "kind": "frozen-png",
+          "underlay": 0,
+          "background": "#f5f3ef",
+          "inkStyle": "ink",
+          "colorize": false,
+          "coverFill": false,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0,
+          "background": "#f5f3ef",
+          "inkStyle": "ink",
+          "colorize": false,
+          "coverFill": true,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0,
+          "background": "#f5f3ef",
+          "inkStyle": "ink",
+          "colorize": true,
+          "coverFill": false,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0,
+          "background": "#f5f3ef",
+          "inkStyle": "ink",
+          "colorize": true,
+          "coverFill": true,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "background": "#f5f3ef",
+          "inkStyle": "ink",
+          "colorize": false,
+          "coverFill": false,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "background": "#f5f3ef",
+          "inkStyle": "ink",
+          "colorize": false,
+          "coverFill": true,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "background": "#f5f3ef",
+          "inkStyle": "ink",
+          "colorize": true,
+          "coverFill": false,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "background": "#f5f3ef",
+          "inkStyle": "ink",
+          "colorize": true,
+          "coverFill": true,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "washStyle": "duotone-v1",
+          "washPalette": "forest-rose",
+          "background": "#f5f3ef",
+          "inkStyle": "ink",
+          "colorize": false,
+          "coverFill": false,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "washStyle": "duotone-v1",
+          "washPalette": "forest-rose",
+          "background": "#f5f3ef",
+          "inkStyle": "ink",
+          "colorize": false,
+          "coverFill": true,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "washStyle": "duotone-v1",
+          "washPalette": "forest-rose",
+          "background": "#f5f3ef",
+          "inkStyle": "ink",
+          "colorize": true,
+          "coverFill": false,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "washStyle": "duotone-v1",
+          "washPalette": "forest-rose",
+          "background": "#f5f3ef",
+          "inkStyle": "ink",
+          "colorize": true,
+          "coverFill": true,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.85,
+          "washStyle": "pop-v1",
+          "washPalette": "violet-gold",
+          "background": "#f5f3ef",
+          "inkStyle": "ink",
+          "colorize": false,
+          "coverFill": false,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.85,
+          "washStyle": "pop-v1",
+          "washPalette": "violet-gold",
+          "background": "#f5f3ef",
+          "inkStyle": "ink",
+          "colorize": false,
+          "coverFill": true,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.85,
+          "washStyle": "pop-v1",
+          "washPalette": "violet-gold",
+          "background": "#f5f3ef",
+          "inkStyle": "ink",
+          "colorize": true,
+          "coverFill": false,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.85,
+          "washStyle": "pop-v1",
+          "washPalette": "violet-gold",
+          "background": "#f5f3ef",
+          "inkStyle": "ink",
+          "colorize": true,
+          "coverFill": true,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0,
+          "background": "#f5f3ef",
+          "inkStyle": "cutout",
+          "colorize": false,
+          "coverFill": false,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0,
+          "background": "#f5f3ef",
+          "inkStyle": "cutout",
+          "colorize": false,
+          "coverFill": true,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0,
+          "background": "#f5f3ef",
+          "inkStyle": "cutout",
+          "colorize": true,
+          "coverFill": false,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0,
+          "background": "#f5f3ef",
+          "inkStyle": "cutout",
+          "colorize": true,
+          "coverFill": true,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "background": "#f5f3ef",
+          "inkStyle": "cutout",
+          "colorize": false,
+          "coverFill": false,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "background": "#f5f3ef",
+          "inkStyle": "cutout",
+          "colorize": false,
+          "coverFill": true,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "background": "#f5f3ef",
+          "inkStyle": "cutout",
+          "colorize": true,
+          "coverFill": false,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "background": "#f5f3ef",
+          "inkStyle": "cutout",
+          "colorize": true,
+          "coverFill": true,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "washStyle": "duotone-v1",
+          "washPalette": "forest-rose",
+          "background": "#f5f3ef",
+          "inkStyle": "cutout",
+          "colorize": false,
+          "coverFill": false,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "washStyle": "duotone-v1",
+          "washPalette": "forest-rose",
+          "background": "#f5f3ef",
+          "inkStyle": "cutout",
+          "colorize": false,
+          "coverFill": true,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "washStyle": "duotone-v1",
+          "washPalette": "forest-rose",
+          "background": "#f5f3ef",
+          "inkStyle": "cutout",
+          "colorize": true,
+          "coverFill": false,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "washStyle": "duotone-v1",
+          "washPalette": "forest-rose",
+          "background": "#f5f3ef",
+          "inkStyle": "cutout",
+          "colorize": true,
+          "coverFill": true,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.85,
+          "washStyle": "pop-v1",
+          "washPalette": "violet-gold",
+          "background": "#f5f3ef",
+          "inkStyle": "cutout",
+          "colorize": false,
+          "coverFill": false,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.85,
+          "washStyle": "pop-v1",
+          "washPalette": "violet-gold",
+          "background": "#f5f3ef",
+          "inkStyle": "cutout",
+          "colorize": false,
+          "coverFill": true,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.85,
+          "washStyle": "pop-v1",
+          "washPalette": "violet-gold",
+          "background": "#f5f3ef",
+          "inkStyle": "cutout",
+          "colorize": true,
+          "coverFill": false,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.85,
+          "washStyle": "pop-v1",
+          "washPalette": "violet-gold",
+          "background": "#f5f3ef",
+          "inkStyle": "cutout",
+          "colorize": true,
+          "coverFill": true,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0,
+          "background": "#111615",
+          "inkStyle": "ink",
+          "colorize": false,
+          "coverFill": false,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0,
+          "background": "#111615",
+          "inkStyle": "ink",
+          "colorize": false,
+          "coverFill": true,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0,
+          "background": "#111615",
+          "inkStyle": "ink",
+          "colorize": true,
+          "coverFill": false,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0,
+          "background": "#111615",
+          "inkStyle": "ink",
+          "colorize": true,
+          "coverFill": true,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "background": "#111615",
+          "inkStyle": "ink",
+          "colorize": false,
+          "coverFill": false,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "background": "#111615",
+          "inkStyle": "ink",
+          "colorize": false,
+          "coverFill": true,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "background": "#111615",
+          "inkStyle": "ink",
+          "colorize": true,
+          "coverFill": false,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "background": "#111615",
+          "inkStyle": "ink",
+          "colorize": true,
+          "coverFill": true,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "washStyle": "duotone-v1",
+          "washPalette": "forest-rose",
+          "background": "#111615",
+          "inkStyle": "ink",
+          "colorize": false,
+          "coverFill": false,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "washStyle": "duotone-v1",
+          "washPalette": "forest-rose",
+          "background": "#111615",
+          "inkStyle": "ink",
+          "colorize": false,
+          "coverFill": true,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "washStyle": "duotone-v1",
+          "washPalette": "forest-rose",
+          "background": "#111615",
+          "inkStyle": "ink",
+          "colorize": true,
+          "coverFill": false,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "washStyle": "duotone-v1",
+          "washPalette": "forest-rose",
+          "background": "#111615",
+          "inkStyle": "ink",
+          "colorize": true,
+          "coverFill": true,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.85,
+          "washStyle": "pop-v1",
+          "washPalette": "violet-gold",
+          "background": "#111615",
+          "inkStyle": "ink",
+          "colorize": false,
+          "coverFill": false,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.85,
+          "washStyle": "pop-v1",
+          "washPalette": "violet-gold",
+          "background": "#111615",
+          "inkStyle": "ink",
+          "colorize": false,
+          "coverFill": true,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.85,
+          "washStyle": "pop-v1",
+          "washPalette": "violet-gold",
+          "background": "#111615",
+          "inkStyle": "ink",
+          "colorize": true,
+          "coverFill": false,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.85,
+          "washStyle": "pop-v1",
+          "washPalette": "violet-gold",
+          "background": "#111615",
+          "inkStyle": "ink",
+          "colorize": true,
+          "coverFill": true,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0,
+          "background": "#111615",
+          "inkStyle": "cutout",
+          "colorize": false,
+          "coverFill": false,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0,
+          "background": "#111615",
+          "inkStyle": "cutout",
+          "colorize": false,
+          "coverFill": true,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0,
+          "background": "#111615",
+          "inkStyle": "cutout",
+          "colorize": true,
+          "coverFill": false,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0,
+          "background": "#111615",
+          "inkStyle": "cutout",
+          "colorize": true,
+          "coverFill": true,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "background": "#111615",
+          "inkStyle": "cutout",
+          "colorize": false,
+          "coverFill": false,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "background": "#111615",
+          "inkStyle": "cutout",
+          "colorize": false,
+          "coverFill": true,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "background": "#111615",
+          "inkStyle": "cutout",
+          "colorize": true,
+          "coverFill": false,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "background": "#111615",
+          "inkStyle": "cutout",
+          "colorize": true,
+          "coverFill": true,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "washStyle": "duotone-v1",
+          "washPalette": "forest-rose",
+          "background": "#111615",
+          "inkStyle": "cutout",
+          "colorize": false,
+          "coverFill": false,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "washStyle": "duotone-v1",
+          "washPalette": "forest-rose",
+          "background": "#111615",
+          "inkStyle": "cutout",
+          "colorize": false,
+          "coverFill": true,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "washStyle": "duotone-v1",
+          "washPalette": "forest-rose",
+          "background": "#111615",
+          "inkStyle": "cutout",
+          "colorize": true,
+          "coverFill": false,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "washStyle": "duotone-v1",
+          "washPalette": "forest-rose",
+          "background": "#111615",
+          "inkStyle": "cutout",
+          "colorize": true,
+          "coverFill": true,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.85,
+          "washStyle": "pop-v1",
+          "washPalette": "violet-gold",
+          "background": "#111615",
+          "inkStyle": "cutout",
+          "colorize": false,
+          "coverFill": false,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.85,
+          "washStyle": "pop-v1",
+          "washPalette": "violet-gold",
+          "background": "#111615",
+          "inkStyle": "cutout",
+          "colorize": false,
+          "coverFill": true,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.85,
+          "washStyle": "pop-v1",
+          "washPalette": "violet-gold",
+          "background": "#111615",
+          "inkStyle": "cutout",
+          "colorize": true,
+          "coverFill": false,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.85,
+          "washStyle": "pop-v1",
+          "washPalette": "violet-gold",
+          "background": "#111615",
+          "inkStyle": "cutout",
+          "colorize": true,
+          "coverFill": true,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "wire-and-geometry",
+          "encoded": 64,
+          "fullPixels": 0,
+          "packedScenes": 64,
+          "stride": 13
+        },
+        {
+          "kind": "cancel",
+          "phase": "immediate",
+          "rejectMs": 1.1999999284744263
+        },
+        {
+          "kind": "cancel",
+          "phase": "render",
+          "rejectMs": 154.70000004768372
+        },
+        {
+          "kind": "cancel",
+          "phase": "encode",
+          "rejectMs": 280.5
+        },
+        {
+          "kind": "worker-failure-compatibility",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        }
+      ],
+      "passed": true
+    },
+    "chrome-contract": {
+      "browser": "154.0.8037.98",
+      "parent": "70de56c100e6ca056e0f447d0c62744a25f5d54c",
+      "frozenHashes": {
+        "layout": "c82713302a61998e284170da141e453e96a742f7efb448f57ae72218690ca38f",
+        "trace": "d27de11e6cd52741b95678e4a8f2ab753ac6365caf114398d3aa29afa92b4e4c",
+        "vector-ink": "ab433686481343aa8d9a2d8f6483bf28acdd6e2a9b99ec7b8716a9eafd5fe8f7"
+      },
+      "errors": [],
+      "cases": [
+        {
+          "kind": "frozen-png",
+          "underlay": 0,
+          "background": "#f5f3ef",
+          "inkStyle": "ink",
+          "colorize": false,
+          "coverFill": false,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0,
+          "background": "#f5f3ef",
+          "inkStyle": "ink",
+          "colorize": false,
+          "coverFill": true,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0,
+          "background": "#f5f3ef",
+          "inkStyle": "ink",
+          "colorize": true,
+          "coverFill": false,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0,
+          "background": "#f5f3ef",
+          "inkStyle": "ink",
+          "colorize": true,
+          "coverFill": true,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "background": "#f5f3ef",
+          "inkStyle": "ink",
+          "colorize": false,
+          "coverFill": false,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "background": "#f5f3ef",
+          "inkStyle": "ink",
+          "colorize": false,
+          "coverFill": true,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "background": "#f5f3ef",
+          "inkStyle": "ink",
+          "colorize": true,
+          "coverFill": false,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "background": "#f5f3ef",
+          "inkStyle": "ink",
+          "colorize": true,
+          "coverFill": true,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "washStyle": "duotone-v1",
+          "washPalette": "forest-rose",
+          "background": "#f5f3ef",
+          "inkStyle": "ink",
+          "colorize": false,
+          "coverFill": false,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "washStyle": "duotone-v1",
+          "washPalette": "forest-rose",
+          "background": "#f5f3ef",
+          "inkStyle": "ink",
+          "colorize": false,
+          "coverFill": true,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "washStyle": "duotone-v1",
+          "washPalette": "forest-rose",
+          "background": "#f5f3ef",
+          "inkStyle": "ink",
+          "colorize": true,
+          "coverFill": false,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "washStyle": "duotone-v1",
+          "washPalette": "forest-rose",
+          "background": "#f5f3ef",
+          "inkStyle": "ink",
+          "colorize": true,
+          "coverFill": true,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.85,
+          "washStyle": "pop-v1",
+          "washPalette": "violet-gold",
+          "background": "#f5f3ef",
+          "inkStyle": "ink",
+          "colorize": false,
+          "coverFill": false,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.85,
+          "washStyle": "pop-v1",
+          "washPalette": "violet-gold",
+          "background": "#f5f3ef",
+          "inkStyle": "ink",
+          "colorize": false,
+          "coverFill": true,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.85,
+          "washStyle": "pop-v1",
+          "washPalette": "violet-gold",
+          "background": "#f5f3ef",
+          "inkStyle": "ink",
+          "colorize": true,
+          "coverFill": false,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.85,
+          "washStyle": "pop-v1",
+          "washPalette": "violet-gold",
+          "background": "#f5f3ef",
+          "inkStyle": "ink",
+          "colorize": true,
+          "coverFill": true,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0,
+          "background": "#f5f3ef",
+          "inkStyle": "cutout",
+          "colorize": false,
+          "coverFill": false,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0,
+          "background": "#f5f3ef",
+          "inkStyle": "cutout",
+          "colorize": false,
+          "coverFill": true,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0,
+          "background": "#f5f3ef",
+          "inkStyle": "cutout",
+          "colorize": true,
+          "coverFill": false,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0,
+          "background": "#f5f3ef",
+          "inkStyle": "cutout",
+          "colorize": true,
+          "coverFill": true,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "background": "#f5f3ef",
+          "inkStyle": "cutout",
+          "colorize": false,
+          "coverFill": false,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "background": "#f5f3ef",
+          "inkStyle": "cutout",
+          "colorize": false,
+          "coverFill": true,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "background": "#f5f3ef",
+          "inkStyle": "cutout",
+          "colorize": true,
+          "coverFill": false,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "background": "#f5f3ef",
+          "inkStyle": "cutout",
+          "colorize": true,
+          "coverFill": true,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "washStyle": "duotone-v1",
+          "washPalette": "forest-rose",
+          "background": "#f5f3ef",
+          "inkStyle": "cutout",
+          "colorize": false,
+          "coverFill": false,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "washStyle": "duotone-v1",
+          "washPalette": "forest-rose",
+          "background": "#f5f3ef",
+          "inkStyle": "cutout",
+          "colorize": false,
+          "coverFill": true,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "washStyle": "duotone-v1",
+          "washPalette": "forest-rose",
+          "background": "#f5f3ef",
+          "inkStyle": "cutout",
+          "colorize": true,
+          "coverFill": false,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "washStyle": "duotone-v1",
+          "washPalette": "forest-rose",
+          "background": "#f5f3ef",
+          "inkStyle": "cutout",
+          "colorize": true,
+          "coverFill": true,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.85,
+          "washStyle": "pop-v1",
+          "washPalette": "violet-gold",
+          "background": "#f5f3ef",
+          "inkStyle": "cutout",
+          "colorize": false,
+          "coverFill": false,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.85,
+          "washStyle": "pop-v1",
+          "washPalette": "violet-gold",
+          "background": "#f5f3ef",
+          "inkStyle": "cutout",
+          "colorize": false,
+          "coverFill": true,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.85,
+          "washStyle": "pop-v1",
+          "washPalette": "violet-gold",
+          "background": "#f5f3ef",
+          "inkStyle": "cutout",
+          "colorize": true,
+          "coverFill": false,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.85,
+          "washStyle": "pop-v1",
+          "washPalette": "violet-gold",
+          "background": "#f5f3ef",
+          "inkStyle": "cutout",
+          "colorize": true,
+          "coverFill": true,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0,
+          "background": "#111615",
+          "inkStyle": "ink",
+          "colorize": false,
+          "coverFill": false,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0,
+          "background": "#111615",
+          "inkStyle": "ink",
+          "colorize": false,
+          "coverFill": true,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0,
+          "background": "#111615",
+          "inkStyle": "ink",
+          "colorize": true,
+          "coverFill": false,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0,
+          "background": "#111615",
+          "inkStyle": "ink",
+          "colorize": true,
+          "coverFill": true,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "background": "#111615",
+          "inkStyle": "ink",
+          "colorize": false,
+          "coverFill": false,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "background": "#111615",
+          "inkStyle": "ink",
+          "colorize": false,
+          "coverFill": true,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "background": "#111615",
+          "inkStyle": "ink",
+          "colorize": true,
+          "coverFill": false,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "background": "#111615",
+          "inkStyle": "ink",
+          "colorize": true,
+          "coverFill": true,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "washStyle": "duotone-v1",
+          "washPalette": "forest-rose",
+          "background": "#111615",
+          "inkStyle": "ink",
+          "colorize": false,
+          "coverFill": false,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "washStyle": "duotone-v1",
+          "washPalette": "forest-rose",
+          "background": "#111615",
+          "inkStyle": "ink",
+          "colorize": false,
+          "coverFill": true,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "washStyle": "duotone-v1",
+          "washPalette": "forest-rose",
+          "background": "#111615",
+          "inkStyle": "ink",
+          "colorize": true,
+          "coverFill": false,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "washStyle": "duotone-v1",
+          "washPalette": "forest-rose",
+          "background": "#111615",
+          "inkStyle": "ink",
+          "colorize": true,
+          "coverFill": true,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.85,
+          "washStyle": "pop-v1",
+          "washPalette": "violet-gold",
+          "background": "#111615",
+          "inkStyle": "ink",
+          "colorize": false,
+          "coverFill": false,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.85,
+          "washStyle": "pop-v1",
+          "washPalette": "violet-gold",
+          "background": "#111615",
+          "inkStyle": "ink",
+          "colorize": false,
+          "coverFill": true,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.85,
+          "washStyle": "pop-v1",
+          "washPalette": "violet-gold",
+          "background": "#111615",
+          "inkStyle": "ink",
+          "colorize": true,
+          "coverFill": false,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.85,
+          "washStyle": "pop-v1",
+          "washPalette": "violet-gold",
+          "background": "#111615",
+          "inkStyle": "ink",
+          "colorize": true,
+          "coverFill": true,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0,
+          "background": "#111615",
+          "inkStyle": "cutout",
+          "colorize": false,
+          "coverFill": false,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0,
+          "background": "#111615",
+          "inkStyle": "cutout",
+          "colorize": false,
+          "coverFill": true,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0,
+          "background": "#111615",
+          "inkStyle": "cutout",
+          "colorize": true,
+          "coverFill": false,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0,
+          "background": "#111615",
+          "inkStyle": "cutout",
+          "colorize": true,
+          "coverFill": true,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "background": "#111615",
+          "inkStyle": "cutout",
+          "colorize": false,
+          "coverFill": false,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "background": "#111615",
+          "inkStyle": "cutout",
+          "colorize": false,
+          "coverFill": true,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "background": "#111615",
+          "inkStyle": "cutout",
+          "colorize": true,
+          "coverFill": false,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "background": "#111615",
+          "inkStyle": "cutout",
+          "colorize": true,
+          "coverFill": true,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "washStyle": "duotone-v1",
+          "washPalette": "forest-rose",
+          "background": "#111615",
+          "inkStyle": "cutout",
+          "colorize": false,
+          "coverFill": false,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "washStyle": "duotone-v1",
+          "washPalette": "forest-rose",
+          "background": "#111615",
+          "inkStyle": "cutout",
+          "colorize": false,
+          "coverFill": true,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "washStyle": "duotone-v1",
+          "washPalette": "forest-rose",
+          "background": "#111615",
+          "inkStyle": "cutout",
+          "colorize": true,
+          "coverFill": false,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.75,
+          "washStyle": "duotone-v1",
+          "washPalette": "forest-rose",
+          "background": "#111615",
+          "inkStyle": "cutout",
+          "colorize": true,
+          "coverFill": true,
+          "traced": false,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.85,
+          "washStyle": "pop-v1",
+          "washPalette": "violet-gold",
+          "background": "#111615",
+          "inkStyle": "cutout",
+          "colorize": false,
+          "coverFill": false,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.85,
+          "washStyle": "pop-v1",
+          "washPalette": "violet-gold",
+          "background": "#111615",
+          "inkStyle": "cutout",
+          "colorize": false,
+          "coverFill": true,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.85,
+          "washStyle": "pop-v1",
+          "washPalette": "violet-gold",
+          "background": "#111615",
+          "inkStyle": "cutout",
+          "colorize": true,
+          "coverFill": false,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "frozen-png",
+          "underlay": 0.85,
+          "washStyle": "pop-v1",
+          "washPalette": "violet-gold",
+          "background": "#111615",
+          "inkStyle": "cutout",
+          "colorize": true,
+          "coverFill": true,
+          "traced": true,
+          "backend": "worker",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        },
+        {
+          "kind": "wire-and-geometry",
+          "encoded": 64,
+          "fullPixels": 0,
+          "packedScenes": 64,
+          "stride": 13
+        },
+        {
+          "kind": "cancel",
+          "phase": "immediate",
+          "rejectMs": 0.6999999284744263
+        },
+        {
+          "kind": "cancel",
+          "phase": "render",
+          "rejectMs": 290.40000009536743
+        },
+        {
+          "kind": "cancel",
+          "phase": "encode",
+          "rejectMs": 513.5
+        },
+        {
+          "kind": "worker-failure-compatibility",
+          "changed": 0,
+          "max": 0,
+          "channels": 1310720
+        }
+      ],
+      "passed": true
+    },
+    "edge-ui": {
+      "browser": "154.0.4258.62",
+      "production": "http://127.0.0.1:5188",
+      "parent": "70de56c100e6ca056e0f447d0c62744a25f5d54c",
+      "frozenHashes": {
+        "layout": "c82713302a61998e284170da141e453e96a742f7efb448f57ae72218690ca38f",
+        "trace": "d27de11e6cd52741b95678e4a8f2ab753ac6365caf114398d3aa29afa92b4e4c",
+        "vector-ink": "ab433686481343aa8d9a2d8f6483bf28acdd6e2a9b99ec7b8716a9eafd5fe8f7"
+      },
+      "recording": false,
+      "cases": [
+        {
+          "id": "pure-2k",
+          "worker": {
+            "raster": true,
+            "terminated": true,
+            "png": true,
+            "encoded": 1,
+            "fullPixels": 0,
+            "packed": true,
+            "stages": [
+              "render",
+              "encode"
+            ],
+            "start": 6096,
+            "durationMs": 2766.600000023842
+          },
+          "response": {
+            "durationMs": 2961.7000000476837,
+            "rafCount": 136,
+            "rafP95": 50,
+            "rafMax": 83.39999999999964,
+            "longTasks": [],
+            "feedback": [
+              "准备高清导出",
+              "正在绘制高清PNG",
+              "正在编码PNG"
+            ]
+          },
+          "width": 1639,
+          "height": 2048,
+          "placements": 15029,
+          "templates": 10
+        },
+        {
+          "id": "source-2k",
+          "worker": {
+            "raster": true,
+            "terminated": true,
+            "png": true,
+            "encoded": 1,
+            "fullPixels": 0,
+            "packed": true,
+            "stages": [
+              "render",
+              "encode"
+            ],
+            "start": 12557.600000023842,
+            "durationMs": 2603
+          },
+          "response": {
+            "durationMs": 2773,
+            "rafCount": 129,
+            "rafP95": 50,
+            "rafMax": 83.39999999999964,
+            "longTasks": [],
+            "feedback": [
+              "准备高清导出",
+              "正在绘制高清PNG",
+              "正在编码PNG"
+            ]
+          },
+          "width": 1639,
+          "height": 2048,
+          "placements": 15029,
+          "templates": 10
+        },
+        {
+          "id": "duotone-2k",
+          "worker": {
+            "raster": true,
+            "terminated": true,
+            "png": true,
+            "encoded": 1,
+            "fullPixels": 0,
+            "packed": true,
+            "stages": [
+              "render",
+              "encode"
+            ],
+            "start": 19344.399999976158,
+            "durationMs": 2778.3000000715256
+          },
+          "response": {
+            "durationMs": 2952.5,
+            "rafCount": 126,
+            "rafP95": 50,
+            "rafMax": 116.80000000000291,
+            "longTasks": [],
+            "feedback": [
+              "准备高清导出",
+              "正在绘制高清PNG",
+              "正在编码PNG"
+            ]
+          },
+          "width": 1639,
+          "height": 2048,
+          "placements": 15029,
+          "templates": 10
+        },
+        {
+          "id": "pop-2k",
+          "worker": {
+            "raster": true,
+            "terminated": true,
+            "png": true,
+            "encoded": 1,
+            "fullPixels": 0,
+            "packed": true,
+            "stages": [
+              "render",
+              "encode"
+            ],
+            "start": 25626.399999976158,
+            "durationMs": 3310.5
+          },
+          "response": {
+            "durationMs": 3470.2000000476837,
+            "rafCount": 117,
+            "rafP95": 83.29999999999927,
+            "rafMax": 100,
+            "longTasks": [],
+            "feedback": [
+              "准备高清导出",
+              "正在绘制高清PNG",
+              "正在编码PNG"
+            ]
+          },
+          "width": 1639,
+          "height": 2048,
+          "placements": 15029,
+          "templates": 10
+        },
+        {
+          "id": "failed-png-keeps-scene-and-retries",
+          "preserved": true
+        },
+        {
+          "id": "cutout-2k",
+          "worker": {
+            "raster": true,
+            "terminated": true,
+            "png": true,
+            "encoded": 1,
+            "fullPixels": 0,
+            "packed": true,
+            "stages": [
+              "render",
+              "encode"
+            ],
+            "start": 43542,
+            "durationMs": 1153.2000000476837
+          },
+          "response": {
+            "durationMs": 1319.6000000238419,
+            "rafCount": 50,
+            "rafP95": 66.80000000000291,
+            "rafMax": 100,
+            "longTasks": [],
+            "feedback": [
+              "准备高清导出",
+              "正在绘制高清PNG",
+              "正在编码PNG"
+            ]
+          },
+          "width": 1639,
+          "height": 2048,
+          "placements": 15029,
+          "templates": 10
+        },
+        {
+          "id": "pop-4k",
+          "worker": {
+            "raster": true,
+            "terminated": true,
+            "png": true,
+            "encoded": 1,
+            "fullPixels": 0,
+            "packed": true,
+            "stages": [
+              "render",
+              "encode"
+            ],
+            "start": 53658.10000002384,
+            "durationMs": 6348.699999928474
+          },
+          "response": {
+            "durationMs": 6545.5,
+            "rafCount": 324,
+            "rafP95": 33.5,
+            "rafMax": 66.69999999999709,
+            "longTasks": [],
+            "feedback": [
+              "准备高清导出",
+              "正在绘制高清PNG",
+              "正在编码PNG"
+            ]
+          },
+          "width": 3278,
+          "height": 4096,
+          "placements": 29070,
+          "templates": 10
+        },
+        {
+          "id": "cancel-prepare",
+          "responseMs": 122
+        },
+        {
+          "id": "cancel-render",
+          "responseMs": 154
+        },
+        {
+          "id": "cancel-encode",
+          "responseMs": 110
+        },
+        {
+          "id": "pop-8k",
+          "worker": {
+            "raster": true,
+            "terminated": true,
+            "png": true,
+            "encoded": 1,
+            "fullPixels": 0,
+            "packed": true,
+            "stages": [
+              "render",
+              "encode"
+            ],
+            "start": 80678.5,
+            "durationMs": 22113.700000047684
+          },
+          "response": {
+            "durationMs": 22434.399999976158,
+            "rafCount": 1241,
+            "rafP95": 33.20000000001164,
+            "rafMax": 183.39999999999418,
+            "longTasks": [
+              {
+                "startMs": 22215.899999976158,
+                "duration": 56
+              }
+            ],
+            "feedback": [
+              "准备高清导出",
+              "正在绘制高清PNG",
+              "正在编码PNG"
+            ]
+          },
+          "width": 6556,
+          "height": 8192,
+          "placements": 76913,
+          "templates": 10
+        },
+        {
+          "id": "snapshot-fallback-reopen-themes-unmount",
+          "scenePreserved": true,
+          "noDownloadAfterLeave": true
+        }
+      ],
+      "errors": [],
+      "pixels": [
+        {
+          "old": "pure-2k-frozen.png",
+          "new": "pure-2k.png",
+          "width": 1639,
+          "height": 2048,
+          "changed": 0,
+          "max": 0,
+          "channels": 13426688
+        },
+        {
+          "old": "source-2k-frozen.png",
+          "new": "source-2k.png",
+          "width": 1639,
+          "height": 2048,
+          "changed": 0,
+          "max": 0,
+          "channels": 13426688
+        },
+        {
+          "old": "duotone-2k-frozen.png",
+          "new": "duotone-2k.png",
+          "width": 1639,
+          "height": 2048,
+          "changed": 0,
+          "max": 0,
+          "channels": 13426688
+        },
+        {
+          "old": "pop-2k-frozen.png",
+          "new": "pop-2k.png",
+          "width": 1639,
+          "height": 2048,
+          "changed": 0,
+          "max": 0,
+          "channels": 13426688
+        },
+        {
+          "old": "cutout-2k-frozen.png",
+          "new": "cutout-2k.png",
+          "width": 1639,
+          "height": 2048,
+          "changed": 0,
+          "max": 0,
+          "channels": 13426688
+        },
+        {
+          "old": "pop-4k-frozen.png",
+          "new": "pop-4k.png",
+          "width": 3278,
+          "height": 4096,
+          "changed": 0,
+          "max": 0,
+          "channels": 53706752
+        },
+        {
+          "old": "pop-8k-frozen.png",
+          "new": "pop-8k.png",
+          "width": 6556,
+          "height": 8192,
+          "changed": 0,
+          "max": 0,
+          "channels": 214827008
+        },
+        {
+          "old": "pop-2k.png",
+          "new": "unapplied.png",
+          "width": 1639,
+          "height": 2048,
+          "changed": 0,
+          "max": 0,
+          "channels": 13426688
+        },
+        {
+          "old": "pop-2k.png",
+          "new": "fallback.png",
+          "width": 1639,
+          "height": 2048,
+          "changed": 0,
+          "max": 0,
+          "channels": 13426688
+        },
+        {
+          "old": "pop-4k.png",
+          "new": "restored.png",
+          "width": 3278,
+          "height": 4096,
+          "changed": 0,
+          "max": 0,
+          "channels": 53706752
+        },
+        {
+          "old": "pop-2k.png",
+          "new": "retry.png",
+          "width": 1639,
+          "height": 2048,
+          "changed": 0,
+          "max": 0,
+          "channels": 13426688
+        }
+      ],
+      "passed": true,
+      "pageClosedAt": 12,
+      "sourceHashes": {
+        "src/lib/signature-portrait/png-export.ts": "68f6f43ff1c0608e0b14bc49b3c673d8855dded8a7d50645f7fcff963a8f8c38",
+        "src/lib/signature-portrait/raster-worker-client.ts": "a7dd9fd671db61f45c939d4c31728d4bdb5b2f34acf87a1d97df0155138edbb4",
+        "src/lib/signature-portrait/raster.worker.ts": "1868c80a0875dc0917b7babd84c0ccc60ac694fadc0579651ec553afd4f79ed9",
+        "src/lib/signature-portrait/layout.ts": "67b674f270673cb9ef12bc492f8e2b08a7bb93dee92a665eb9040a3ddb47c4b1",
+        "src/lib/signature-portrait/raster-placement-wire.ts": "37a478af16a3d9cc79d157a12ac532412fc025beeb9b18d69df59a4f698bfc64",
+        "src/lib/signature-portrait/vector-ink-geometry.ts": "143a6df56d4a5f4e4ceb9d90446788e8a2b8bf77fbdd0f352f2822fc6c427b02",
+        "src/views/SignaturePortraitView.vue": "e415f1adca4877fdbfed80f99c39f0d85ae7073018f48b658e722dc469c3ebca",
+        "public/artwork/portrait-reference.png": "dcedb28b650aa9b644847026c41bf21159d1ba704e440e12d6ec2e741f1266e1"
+      }
+    },
+    "chrome-ui": {
+      "browser": "154.0.8037.98",
+      "production": "http://127.0.0.1:5188",
+      "parent": "70de56c100e6ca056e0f447d0c62744a25f5d54c",
+      "frozenHashes": {
+        "layout": "c82713302a61998e284170da141e453e96a742f7efb448f57ae72218690ca38f",
+        "trace": "d27de11e6cd52741b95678e4a8f2ab753ac6365caf114398d3aa29afa92b4e4c",
+        "vector-ink": "ab433686481343aa8d9a2d8f6483bf28acdd6e2a9b99ec7b8716a9eafd5fe8f7"
+      },
+      "recording": false,
+      "cases": [
+        {
+          "id": "pure-2k",
+          "worker": {
+            "raster": true,
+            "terminated": true,
+            "png": true,
+            "encoded": 1,
+            "fullPixels": 0,
+            "packed": true,
+            "stages": [
+              "render",
+              "encode"
+            ],
+            "start": 29097.100000023842,
+            "durationMs": 16248.200000047684
+          },
+          "response": {
+            "durationMs": 16886.899999976158,
+            "rafCount": 815,
+            "rafP95": 49.900000000001455,
+            "rafMax": 99.90000000000146,
+            "longTasks": [],
+            "feedback": [
+              "准备高清导出",
+              "正在绘制高清PNG",
+              "正在编码PNG"
+            ]
+          },
+          "width": 1639,
+          "height": 2048,
+          "placements": 15029,
+          "templates": 10
+        },
+        {
+          "id": "source-2k",
+          "worker": {
+            "raster": true,
+            "terminated": true,
+            "png": true,
+            "encoded": 1,
+            "fullPixels": 0,
+            "packed": true,
+            "stages": [
+              "render",
+              "encode"
+            ],
+            "start": 61674,
+            "durationMs": 16045
+          },
+          "response": {
+            "durationMs": 16423.800000071526,
+            "rafCount": 822,
+            "rafP95": 33.5,
+            "rafMax": 83.50000000000728,
+            "longTasks": [],
+            "feedback": [
+              "准备高清导出",
+              "正在绘制高清PNG",
+              "正在编码PNG"
+            ]
+          },
+          "width": 1639,
+          "height": 2048,
+          "placements": 15029,
+          "templates": 10
+        },
+        {
+          "id": "duotone-2k",
+          "worker": {
+            "raster": true,
+            "terminated": true,
+            "png": true,
+            "encoded": 1,
+            "fullPixels": 0,
+            "packed": true,
+            "stages": [
+              "render",
+              "encode"
+            ],
+            "start": 95052.10000002384,
+            "durationMs": 12338.600000023842
+          },
+          "response": {
+            "durationMs": 12693.399999976158,
+            "rafCount": 617,
+            "rafP95": 49.89999999999418,
+            "rafMax": 100.10000000000582,
+            "longTasks": [],
+            "feedback": [
+              "准备高清导出",
+              "正在绘制高清PNG",
+              "正在编码PNG"
+            ]
+          },
+          "width": 1639,
+          "height": 2048,
+          "placements": 15029,
+          "templates": 10
+        },
+        {
+          "id": "pop-2k",
+          "worker": {
+            "raster": true,
+            "terminated": true,
+            "png": true,
+            "encoded": 1,
+            "fullPixels": 0,
+            "packed": true,
+            "stages": [
+              "render",
+              "encode"
+            ],
+            "start": 120816.30000007153,
+            "durationMs": 5034.399999976158
+          },
+          "response": {
+            "durationMs": 5235.699999928474,
+            "rafCount": 227,
+            "rafP95": 66.59999999999127,
+            "rafMax": 100.10000000000582,
+            "longTasks": [],
+            "feedback": [
+              "准备高清导出",
+              "正在绘制高清PNG",
+              "正在编码PNG"
+            ]
+          },
+          "width": 1639,
+          "height": 2048,
+          "placements": 15029,
+          "templates": 10
+        },
+        {
+          "id": "cutout-2k",
+          "worker": {
+            "raster": true,
+            "terminated": true,
+            "png": true,
+            "encoded": 1,
+            "fullPixels": 0,
+            "packed": true,
+            "stages": [
+              "render",
+              "encode"
+            ],
+            "start": 139763.10000002384,
+            "durationMs": 1376.7999999523163
+          },
+          "response": {
+            "durationMs": 1547.8000000715256,
+            "rafCount": 53,
+            "rafP95": 83.39999999999418,
+            "rafMax": 116.69999999998254,
+            "longTasks": [],
+            "feedback": [
+              "准备高清导出",
+              "正在绘制高清PNG",
+              "正在编码PNG"
+            ]
+          },
+          "width": 1639,
+          "height": 2048,
+          "placements": 15029,
+          "templates": 10
+        },
+        {
+          "id": "pop-4k",
+          "worker": {
+            "raster": true,
+            "terminated": true,
+            "png": true,
+            "encoded": 1,
+            "fullPixels": 0,
+            "packed": true,
+            "stages": [
+              "render",
+              "encode"
+            ],
+            "start": 164599.60000002384,
+            "durationMs": 27343.899999976158
+          },
+          "response": {
+            "durationMs": 27728.600000023842,
+            "rafCount": 1442,
+            "rafP95": 33.39999999999418,
+            "rafMax": 216.79999999998836,
+            "longTasks": [],
+            "feedback": [
+              "准备高清导出",
+              "正在绘制高清PNG",
+              "正在编码PNG"
+            ]
+          },
+          "width": 3278,
+          "height": 4096,
+          "placements": 29070,
+          "templates": 10
+        },
+        {
+          "id": "cancel-prepare",
+          "responseMs": 315
+        },
+        {
+          "id": "cancel-render",
+          "responseMs": 268
+        },
+        {
+          "id": "cancel-encode",
+          "responseMs": 344
+        },
+        {
+          "id": "pop-8k",
+          "worker": {
+            "raster": true,
+            "terminated": true,
+            "png": true,
+            "encoded": 1,
+            "fullPixels": 0,
+            "packed": true,
+            "stages": [
+              "render",
+              "encode"
+            ],
+            "start": 265132.2000000477,
+            "durationMs": 73921.5
+          },
+          "response": {
+            "durationMs": 74718.10000002384,
+            "rafCount": 4213,
+            "rafP95": 17,
+            "rafMax": 383,
+            "longTasks": [
+              {
+                "startMs": 74086.70000004768,
+                "duration": 112
+              }
+            ],
+            "feedback": [
+              "准备高清导出",
+              "正在绘制高清PNG",
+              "正在编码PNG"
+            ]
+          },
+          "width": 6556,
+          "height": 8192,
+          "placements": 76913,
+          "templates": 10
+        },
+        {
+          "id": "snapshot-fallback-reopen-themes-unmount",
+          "scenePreserved": true,
+          "noDownloadAfterLeave": true
+        }
+      ],
+      "errors": [],
+      "resumedFromFailure": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('link', { name: '返回首页' })\u001b[22m\n\n    at D:\\my\\project\\astra\\astra-web\\scripts\\signature-png-ui.mjs:296:64",
+      "pixels": [
+        {
+          "old": "pure-2k-frozen.png",
+          "new": "pure-2k.png",
+          "width": 1639,
+          "height": 2048,
+          "changed": 0,
+          "max": 0,
+          "channels": 13426688
+        },
+        {
+          "old": "source-2k-frozen.png",
+          "new": "source-2k.png",
+          "width": 1639,
+          "height": 2048,
+          "changed": 0,
+          "max": 0,
+          "channels": 13426688
+        },
+        {
+          "old": "duotone-2k-frozen.png",
+          "new": "duotone-2k.png",
+          "width": 1639,
+          "height": 2048,
+          "changed": 0,
+          "max": 0,
+          "channels": 13426688
+        },
+        {
+          "old": "pop-2k-frozen.png",
+          "new": "pop-2k.png",
+          "width": 1639,
+          "height": 2048,
+          "changed": 0,
+          "max": 0,
+          "channels": 13426688
+        },
+        {
+          "old": "cutout-2k-frozen.png",
+          "new": "cutout-2k.png",
+          "width": 1639,
+          "height": 2048,
+          "changed": 0,
+          "max": 0,
+          "channels": 13426688
+        },
+        {
+          "old": "pop-4k-frozen.png",
+          "new": "pop-4k.png",
+          "width": 3278,
+          "height": 4096,
+          "changed": 0,
+          "max": 0,
+          "channels": 53706752
+        },
+        {
+          "old": "pop-8k-frozen.png",
+          "new": "pop-8k.png",
+          "width": 6556,
+          "height": 8192,
+          "changed": 0,
+          "max": 0,
+          "channels": 214827008
+        },
+        {
+          "old": "pop-2k.png",
+          "new": "unapplied.png",
+          "width": 1639,
+          "height": 2048,
+          "changed": 0,
+          "max": 0,
+          "channels": 13426688
+        },
+        {
+          "old": "pop-2k.png",
+          "new": "fallback.png",
+          "width": 1639,
+          "height": 2048,
+          "changed": 0,
+          "max": 0,
+          "channels": 13426688
+        },
+        {
+          "old": "pop-4k.png",
+          "new": "restored.png",
+          "width": 3278,
+          "height": 4096,
+          "changed": 0,
+          "max": 0,
+          "channels": 53706752
+        }
+      ],
+      "passed": true,
+      "pageClosedAt": 11,
+      "sourceHashes": {
+        "src/lib/signature-portrait/png-export.ts": "68f6f43ff1c0608e0b14bc49b3c673d8855dded8a7d50645f7fcff963a8f8c38",
+        "src/lib/signature-portrait/raster-worker-client.ts": "a7dd9fd671db61f45c939d4c31728d4bdb5b2f34acf87a1d97df0155138edbb4",
+        "src/lib/signature-portrait/raster.worker.ts": "1868c80a0875dc0917b7babd84c0ccc60ac694fadc0579651ec553afd4f79ed9",
+        "src/lib/signature-portrait/layout.ts": "67b674f270673cb9ef12bc492f8e2b08a7bb93dee92a665eb9040a3ddb47c4b1",
+        "src/lib/signature-portrait/raster-placement-wire.ts": "37a478af16a3d9cc79d157a12ac532412fc025beeb9b18d69df59a4f698bfc64",
+        "src/lib/signature-portrait/vector-ink-geometry.ts": "143a6df56d4a5f4e4ceb9d90446788e8a2b8bf77fbdd0f352f2822fc6c427b02",
+        "src/views/SignaturePortraitView.vue": "e415f1adca4877fdbfed80f99c39f0d85ae7073018f48b658e722dc469c3ebca",
+        "public/artwork/portrait-reference.png": "dcedb28b650aa9b644847026c41bf21159d1ba704e440e12d6ec2e741f1266e1"
+      }
+    },
+    "failed-chrome-home-selector": {
+      "browser": "154.0.8037.98",
+      "production": "http://127.0.0.1:5188",
+      "parent": "70de56c100e6ca056e0f447d0c62744a25f5d54c",
+      "frozenHashes": {
+        "layout": "c82713302a61998e284170da141e453e96a742f7efb448f57ae72218690ca38f",
+        "trace": "d27de11e6cd52741b95678e4a8f2ab753ac6365caf114398d3aa29afa92b4e4c",
+        "vector-ink": "ab433686481343aa8d9a2d8f6483bf28acdd6e2a9b99ec7b8716a9eafd5fe8f7"
+      },
+      "recording": false,
+      "cases": [
+        {
+          "id": "pure-2k",
+          "worker": {
+            "raster": true,
+            "terminated": true,
+            "png": true,
+            "encoded": 1,
+            "fullPixels": 0,
+            "packed": true,
+            "stages": [
+              "render",
+              "encode"
+            ],
+            "start": 29097.100000023842,
+            "durationMs": 16248.200000047684
+          },
+          "response": {
+            "durationMs": 16886.899999976158,
+            "rafCount": 815,
+            "rafP95": 49.900000000001455,
+            "rafMax": 99.90000000000146,
+            "longTasks": [],
+            "feedback": [
+              "准备高清导出",
+              "正在绘制高清PNG",
+              "正在编码PNG"
+            ]
+          }
+        },
+        {
+          "id": "source-2k",
+          "worker": {
+            "raster": true,
+            "terminated": true,
+            "png": true,
+            "encoded": 1,
+            "fullPixels": 0,
+            "packed": true,
+            "stages": [
+              "render",
+              "encode"
+            ],
+            "start": 61674,
+            "durationMs": 16045
+          },
+          "response": {
+            "durationMs": 16423.800000071526,
+            "rafCount": 822,
+            "rafP95": 33.5,
+            "rafMax": 83.50000000000728,
+            "longTasks": [],
+            "feedback": [
+              "准备高清导出",
+              "正在绘制高清PNG",
+              "正在编码PNG"
+            ]
+          }
+        },
+        {
+          "id": "duotone-2k",
+          "worker": {
+            "raster": true,
+            "terminated": true,
+            "png": true,
+            "encoded": 1,
+            "fullPixels": 0,
+            "packed": true,
+            "stages": [
+              "render",
+              "encode"
+            ],
+            "start": 95052.10000002384,
+            "durationMs": 12338.600000023842
+          },
+          "response": {
+            "durationMs": 12693.399999976158,
+            "rafCount": 617,
+            "rafP95": 49.89999999999418,
+            "rafMax": 100.10000000000582,
+            "longTasks": [],
+            "feedback": [
+              "准备高清导出",
+              "正在绘制高清PNG",
+              "正在编码PNG"
+            ]
+          }
+        },
+        {
+          "id": "pop-2k",
+          "worker": {
+            "raster": true,
+            "terminated": true,
+            "png": true,
+            "encoded": 1,
+            "fullPixels": 0,
+            "packed": true,
+            "stages": [
+              "render",
+              "encode"
+            ],
+            "start": 120816.30000007153,
+            "durationMs": 5034.399999976158
+          },
+          "response": {
+            "durationMs": 5235.699999928474,
+            "rafCount": 227,
+            "rafP95": 66.59999999999127,
+            "rafMax": 100.10000000000582,
+            "longTasks": [],
+            "feedback": [
+              "准备高清导出",
+              "正在绘制高清PNG",
+              "正在编码PNG"
+            ]
+          }
+        },
+        {
+          "id": "cutout-2k",
+          "worker": {
+            "raster": true,
+            "terminated": true,
+            "png": true,
+            "encoded": 1,
+            "fullPixels": 0,
+            "packed": true,
+            "stages": [
+              "render",
+              "encode"
+            ],
+            "start": 139763.10000002384,
+            "durationMs": 1376.7999999523163
+          },
+          "response": {
+            "durationMs": 1547.8000000715256,
+            "rafCount": 53,
+            "rafP95": 83.39999999999418,
+            "rafMax": 116.69999999998254,
+            "longTasks": [],
+            "feedback": [
+              "准备高清导出",
+              "正在绘制高清PNG",
+              "正在编码PNG"
+            ]
+          }
+        },
+        {
+          "id": "pop-4k",
+          "worker": {
+            "raster": true,
+            "terminated": true,
+            "png": true,
+            "encoded": 1,
+            "fullPixels": 0,
+            "packed": true,
+            "stages": [
+              "render",
+              "encode"
+            ],
+            "start": 164599.60000002384,
+            "durationMs": 27343.899999976158
+          },
+          "response": {
+            "durationMs": 27728.600000023842,
+            "rafCount": 1442,
+            "rafP95": 33.39999999999418,
+            "rafMax": 216.79999999998836,
+            "longTasks": [],
+            "feedback": [
+              "准备高清导出",
+              "正在绘制高清PNG",
+              "正在编码PNG"
+            ]
+          }
+        },
+        {
+          "id": "cancel-prepare",
+          "responseMs": 315
+        },
+        {
+          "id": "cancel-render",
+          "responseMs": 268
+        },
+        {
+          "id": "cancel-encode",
+          "responseMs": 344
+        },
+        {
+          "id": "pop-8k",
+          "worker": {
+            "raster": true,
+            "terminated": true,
+            "png": true,
+            "encoded": 1,
+            "fullPixels": 0,
+            "packed": true,
+            "stages": [
+              "render",
+              "encode"
+            ],
+            "start": 265132.2000000477,
+            "durationMs": 73921.5
+          },
+          "response": {
+            "durationMs": 74718.10000002384,
+            "rafCount": 4213,
+            "rafP95": 17,
+            "rafMax": 383,
+            "longTasks": [
+              {
+                "startMs": 74086.70000004768,
+                "duration": 112
+              }
+            ],
+            "feedback": [
+              "准备高清导出",
+              "正在绘制高清PNG",
+              "正在编码PNG"
+            ]
+          }
+        }
+      ],
+      "errors": [],
+      "failure": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('link', { name: '返回首页' })\u001b[22m\n\n    at D:\\my\\project\\astra\\astra-web\\scripts\\signature-png-ui.mjs:296:64",
+      "pageClosedAt": 10,
+      "sourceHashes": {
+        "src/lib/signature-portrait/png-export.ts": "68f6f43ff1c0608e0b14bc49b3c673d8855dded8a7d50645f7fcff963a8f8c38",
+        "src/lib/signature-portrait/raster-worker-client.ts": "a7dd9fd671db61f45c939d4c31728d4bdb5b2f34acf87a1d97df0155138edbb4",
+        "src/lib/signature-portrait/raster.worker.ts": "1868c80a0875dc0917b7babd84c0ccc60ac694fadc0579651ec553afd4f79ed9",
+        "src/lib/signature-portrait/layout.ts": "67b674f270673cb9ef12bc492f8e2b08a7bb93dee92a665eb9040a3ddb47c4b1",
+        "src/lib/signature-portrait/raster-placement-wire.ts": "37a478af16a3d9cc79d157a12ac532412fc025beeb9b18d69df59a4f698bfc64",
+        "src/lib/signature-portrait/vector-ink-geometry.ts": "143a6df56d4a5f4e4ceb9d90446788e8a2b8bf77fbdd0f352f2822fc6c427b02",
+        "src/views/SignaturePortraitView.vue": "e415f1adca4877fdbfed80f99c39f0d85ae7073018f48b658e722dc469c3ebca",
+        "public/artwork/portrait-reference.png": "dcedb28b650aa9b644847026c41bf21159d1ba704e440e12d6ec2e741f1266e1"
+      }
+    },
+    "baseline-profile": {
+      "browser": "154.0.4258.62",
+      "cases": [
+        {
+          "mode": "current-main-canvas",
+          "side": 4096,
+          "width": 3278,
+          "height": 4096,
+          "placements": 29160,
+          "templates": 10,
+          "layoutMs": 161.19999992847443,
+          "drawMs": 2759.7999999523163,
+          "encodeMs": 2864.8000000715256,
+          "totalMs": 5624.600000023842,
+          "blobBytes": 20582691,
+          "response": {
+            "raf": {
+              "count": 151,
+              "p95": 18.199999999999818,
+              "max": 2464.2
+            },
+            "timer": {
+              "count": 129,
+              "p95": 51.90000009536743,
+              "max": 2479.100000023842
+            },
+            "drawRaf": {
+              "count": 120,
+              "p95": 18.100000000000364,
+              "max": 530.5
+            },
+            "encodeRaf": {
+              "count": 31,
+              "p95": 18.199999999999818,
+              "max": 2464.2
+            },
+            "longTasks": [
+              468,
+              2467
+            ]
+          }
+        }
+      ],
+      "errors": [],
+      "passed": true
+    },
+    "worker-profile-4k": {
+      "browser": "154.0.4258.62",
+      "cases": [
+        {
+          "mode": "worker-png",
+          "backend": "worker",
+          "side": 4096,
+          "width": 3278,
+          "height": 4096,
+          "placements": 29160,
+          "templates": 10,
+          "layoutMs": 170.30000007152557,
+          "drawMs": 5211.800000071526,
+          "encodeMs": 376.1999999284744,
+          "totalMs": 5588,
+          "blobBytes": 20582691,
+          "response": {
+            "raf": {
+              "count": 321,
+              "p95": 18.100000000000364,
+              "max": 19.300000000000182
+            },
+            "timer": {
+              "count": 285,
+              "p95": 21.100000023841858,
+              "max": 28.100000023841858
+            },
+            "drawRaf": {
+              "count": 293,
+              "p95": 18.100000000000364,
+              "max": 19.300000000000182
+            },
+            "encodeRaf": {
+              "count": 28,
+              "p95": 18.099999999998545,
+              "max": 18.19999999999891
+            },
+            "longTasks": []
+          }
+        }
+      ],
+      "errors": [],
+      "passed": true
+    },
+    "worker-profile-8k": {
+      "browser": "154.0.4258.62",
+      "cases": [
+        {
+          "mode": "worker-png",
+          "backend": "worker",
+          "side": 8192,
+          "width": 6556,
+          "height": 8192,
+          "placements": 77206,
+          "templates": 10,
+          "layoutMs": 282,
+          "drawMs": 19900.799999952316,
+          "encodeMs": 1458.5,
+          "totalMs": 21359.299999952316,
+          "blobBytes": 73347594,
+          "response": {
+            "raf": {
+              "count": 1207,
+              "p95": 18.100000000002183,
+              "max": 35.400000000001455
+            },
+            "timer": {
+              "count": 1072,
+              "p95": 21.100000023841858,
+              "max": 48.5
+            },
+            "drawRaf": {
+              "count": 1120,
+              "p95": 18.100000000002183,
+              "max": 26.600000000000364
+            },
+            "encodeRaf": {
+              "count": 87,
+              "p95": 18.200000000000728,
+              "max": 35.400000000001455
+            },
+            "longTasks": []
+          }
+        }
+      ],
+      "errors": [],
+      "passed": true
+    },
+    "failed-edge-recording": {
+      "browser": "154.0.4258.62",
+      "production": "http://127.0.0.1:5188",
+      "parent": "70de56c100e6ca056e0f447d0c62744a25f5d54c",
+      "frozenHashes": {
+        "layout": "c82713302a61998e284170da141e453e96a742f7efb448f57ae72218690ca38f",
+        "trace": "d27de11e6cd52741b95678e4a8f2ab753ac6365caf114398d3aa29afa92b4e4c",
+        "vector-ink": "ab433686481343aa8d9a2d8f6483bf28acdd6e2a9b99ec7b8716a9eafd5fe8f7"
+      },
+      "cases": [
+        {
+          "id": "pure-2k",
+          "worker": {
+            "raster": true,
+            "terminated": true,
+            "png": true,
+            "encoded": 1,
+            "fullPixels": 0,
+            "packed": true,
+            "stages": [
+              "render",
+              "encode"
+            ]
+          },
+          "response": {
+            "durationMs": 26876.599999904633,
+            "rafCount": 1579,
+            "rafP95": 16.80000000000291,
+            "rafMax": 83.30000000000291,
+            "longTasks": [],
+            "feedback": [
+              "准备高清导出",
+              "正在绘制高清PNG",
+              "正在编码PNG"
+            ]
+          }
+        },
+        {
+          "id": "source-2k",
+          "worker": {
+            "raster": true,
+            "terminated": true,
+            "png": true,
+            "encoded": 1,
+            "fullPixels": 0,
+            "packed": true,
+            "stages": [
+              "render",
+              "encode"
+            ]
+          },
+          "response": {
+            "durationMs": 28613.5,
+            "rafCount": 1682,
+            "rafP95": 16.89999999999418,
+            "rafMax": 66.89999999999418,
+            "longTasks": [],
+            "feedback": [
+              "准备高清导出",
+              "正在绘制高清PNG",
+              "正在编码PNG"
+            ]
+          }
+        }
+      ],
+      "errors": [],
+      "failure": "page.waitForEvent: Target page, context or browser has been closed\n=========================== logs ===========================\nwaiting for event \"download\"\n============================================================\n    at scene (D:\\my\\project\\astra\\astra-web\\scripts\\signature-png-ui.mjs:165:24)\n    at async file:///D:/my/project/astra/astra-web/scripts/signature-png-ui.mjs:211:3",
+      "sourceHashes": {
+        "src/lib/signature-portrait/png-export.ts": "68f6f43ff1c0608e0b14bc49b3c673d8855dded8a7d50645f7fcff963a8f8c38",
+        "src/lib/signature-portrait/raster-worker-client.ts": "a7dd9fd671db61f45c939d4c31728d4bdb5b2f34acf87a1d97df0155138edbb4",
+        "src/lib/signature-portrait/raster.worker.ts": "1868c80a0875dc0917b7babd84c0ccc60ac694fadc0579651ec553afd4f79ed9",
+        "src/lib/signature-portrait/layout.ts": "67b674f270673cb9ef12bc492f8e2b08a7bb93dee92a665eb9040a3ddb47c4b1",
+        "src/lib/signature-portrait/raster-placement-wire.ts": "37a478af16a3d9cc79d157a12ac532412fc025beeb9b18d69df59a4f698bfc64",
+        "src/lib/signature-portrait/vector-ink-geometry.ts": "143a6df56d4a5f4e4ceb9d90446788e8a2b8bf77fbdd0f352f2822fc6c427b02",
+        "src/views/SignaturePortraitView.vue": "e415f1adca4877fdbfed80f99c39f0d85ae7073018f48b658e722dc469c3ebca",
+        "public/artwork/portrait-reference.png": "dcedb28b650aa9b644847026c41bf21159d1ba704e440e12d6ec2e741f1266e1"
+      }
+    },
+    "failed-scaled-readback": {
+      "browser": "154.0.4258.62",
+      "parent": "70de56c100e6ca056e0f447d0c62744a25f5d54c",
+      "frozenHashes": {
+        "layout": "c82713302a61998e284170da141e453e96a742f7efb448f57ae72218690ca38f",
+        "trace": "d27de11e6cd52741b95678e4a8f2ab753ac6365caf114398d3aa29afa92b4e4c",
+        "vector-ink": "ab433686481343aa8d9a2d8f6483bf28acdd6e2a9b99ec7b8716a9eafd5fe8f7"
+      },
+      "errors": [],
+      "cases": [],
+      "failure": "page.evaluate: Error: Exact frozen decoded RGBA ink/0/false/true: {\"changed\":2870,\"max\":3,\"channels\":1310720}\n    at check (eval at evaluate (:311:30), <anonymous>:8:49)\n    at eval (eval at evaluate (:311:30), <anonymous>:53:11)\n    at async <anonymous>:337:30\n    at D:\\my\\project\\astra\\astra-web\\scripts\\signature-png-contract.mjs:26:29"
+    },
+    "failed-bitmap": {
+      "browser": "154.0.4258.62",
+      "parent": "70de56c100e6ca056e0f447d0c62744a25f5d54c",
+      "frozenHashes": {
+        "layout": "c82713302a61998e284170da141e453e96a742f7efb448f57ae72218690ca38f",
+        "trace": "d27de11e6cd52741b95678e4a8f2ab753ac6365caf114398d3aa29afa92b4e4c",
+        "vector-ink": "ab433686481343aa8d9a2d8f6483bf28acdd6e2a9b99ec7b8716a9eafd5fe8f7"
+      },
+      "errors": [],
+      "cases": [],
+      "failure": "page.evaluate: Error: Exact frozen decoded RGBA ink/0/false/false: {\"changed\":976,\"max\":2,\"channels\":1310720}\n    at check (eval at evaluate (:311:30), <anonymous>:8:49)\n    at eval (eval at evaluate (:311:30), <anonymous>:53:11)\n    at async <anonymous>:337:30\n    at D:\\my\\project\\astra\\astra-web\\scripts\\signature-png-contract.mjs:26:29"
+    },
+    "edge-responsive-regression": {
+      "browser": "154.0.4258.62",
+      "baselineCommit": "a7f219000beb884e8cd5d682f1ba0bf4ac97028c",
+      "errors": [],
+      "cases": [
+        {
+          "inkStyle": "ink",
+          "background": "#f5f3ef",
+          "colorize": false,
+          "coverFill": false,
+          "checks": {
+            "sync": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "responsive": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "tiled": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "region": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 180480
+            },
+            "workerTiled": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "workerRegion": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 180480
+            }
+          }
+        },
+        {
+          "inkStyle": "ink",
+          "background": "#f5f3ef",
+          "colorize": false,
+          "coverFill": true,
+          "checks": {
+            "sync": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "responsive": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "tiled": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "region": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 180480
+            },
+            "workerTiled": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "workerRegion": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 180480
+            }
+          }
+        },
+        {
+          "inkStyle": "ink",
+          "background": "#f5f3ef",
+          "colorize": true,
+          "coverFill": false,
+          "checks": {
+            "sync": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "responsive": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "tiled": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "region": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 180480
+            },
+            "workerTiled": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "workerRegion": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 180480
+            }
+          }
+        },
+        {
+          "inkStyle": "ink",
+          "background": "#f5f3ef",
+          "colorize": true,
+          "coverFill": true,
+          "checks": {
+            "sync": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "responsive": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "tiled": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "region": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 180480
+            },
+            "workerTiled": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "workerRegion": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 180480
+            }
+          }
+        },
+        {
+          "inkStyle": "ink",
+          "background": "#111615",
+          "colorize": false,
+          "coverFill": false,
+          "checks": {
+            "sync": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "responsive": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "tiled": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "region": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 180480
+            },
+            "workerTiled": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "workerRegion": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 180480
+            }
+          }
+        },
+        {
+          "inkStyle": "ink",
+          "background": "#111615",
+          "colorize": false,
+          "coverFill": true,
+          "checks": {
+            "sync": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "responsive": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "tiled": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "region": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 180480
+            },
+            "workerTiled": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "workerRegion": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 180480
+            }
+          }
+        },
+        {
+          "inkStyle": "ink",
+          "background": "#111615",
+          "colorize": true,
+          "coverFill": false,
+          "checks": {
+            "sync": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "responsive": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "tiled": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "region": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 180480
+            },
+            "workerTiled": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "workerRegion": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 180480
+            }
+          }
+        },
+        {
+          "inkStyle": "ink",
+          "background": "#111615",
+          "colorize": true,
+          "coverFill": true,
+          "checks": {
+            "sync": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "responsive": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "tiled": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "region": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 180480
+            },
+            "workerTiled": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "workerRegion": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 180480
+            }
+          }
+        },
+        {
+          "inkStyle": "cutout",
+          "background": "#f5f3ef",
+          "colorize": false,
+          "coverFill": false,
+          "checks": {
+            "sync": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "responsive": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "tiled": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "region": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 180480
+            }
+          }
+        },
+        {
+          "inkStyle": "cutout",
+          "background": "#f5f3ef",
+          "colorize": false,
+          "coverFill": true,
+          "checks": {
+            "sync": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "responsive": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "tiled": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "region": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 180480
+            }
+          }
+        },
+        {
+          "inkStyle": "cutout",
+          "background": "#f5f3ef",
+          "colorize": true,
+          "coverFill": false,
+          "checks": {
+            "sync": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "responsive": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "tiled": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "region": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 180480
+            }
+          }
+        },
+        {
+          "inkStyle": "cutout",
+          "background": "#f5f3ef",
+          "colorize": true,
+          "coverFill": true,
+          "checks": {
+            "sync": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "responsive": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "tiled": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "region": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 180480
+            }
+          }
+        },
+        {
+          "inkStyle": "cutout",
+          "background": "#111615",
+          "colorize": false,
+          "coverFill": false,
+          "checks": {
+            "sync": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "responsive": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "tiled": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "region": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 180480
+            }
+          }
+        },
+        {
+          "inkStyle": "cutout",
+          "background": "#111615",
+          "colorize": false,
+          "coverFill": true,
+          "checks": {
+            "sync": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "responsive": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "tiled": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "region": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 180480
+            }
+          }
+        },
+        {
+          "inkStyle": "cutout",
+          "background": "#111615",
+          "colorize": true,
+          "coverFill": false,
+          "checks": {
+            "sync": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "responsive": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "tiled": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "region": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 180480
+            }
+          }
+        },
+        {
+          "inkStyle": "cutout",
+          "background": "#111615",
+          "colorize": true,
+          "coverFill": true,
+          "checks": {
+            "sync": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "responsive": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "tiled": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "region": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 180480
+            }
+          }
+        },
+        {
+          "cancellation": true,
+          "ms": 30.5
+        }
+      ],
+      "baselineSha256": "d730a237cabad278e0561c4192239a2aa59c54faaf419e142a2575a947570400",
+      "passed": true,
+      "sourceHashes": {
+        "src/lib/signature-portrait/layout.ts": "67b674f270673cb9ef12bc492f8e2b08a7bb93dee92a665eb9040a3ddb47c4b1",
+        "src/lib/signature-portrait/vector-ink.ts": "85c0dfa9c2f6fce1c3ca18ffeed073cd308961acde921aea3b63be07c7769350",
+        "src/lib/signature-portrait/variants.ts": "65996b59db6170f33a00f8adb261e323633d264999b2b20844bbe22aa9a1d401",
+        "src/lib/signature-portrait/raster-cache.ts": "aedd4c280597a5fca8861a22f76998b7f3d90cba6531c73eab8fcf56f608e829",
+        "src/lib/signature-portrait/raster-worker-client.ts": "a7dd9fd671db61f45c939d4c31728d4bdb5b2f34acf87a1d97df0155138edbb4",
+        "src/lib/signature-portrait/raster-worker-protocol.ts": "4231f6b159f90d0b1c9a0a9d6dc7a6fb1f5c57a0f08fca2f791e14aa8b8f08c4",
+        "src/lib/signature-portrait/raster.worker.ts": "1868c80a0875dc0917b7babd84c0ccc60ac694fadc0579651ec553afd4f79ed9",
+        "src/views/SignaturePortraitView.vue": "e415f1adca4877fdbfed80f99c39f0d85ae7073018f48b658e722dc469c3ebca"
+      }
+    },
+    "chrome-responsive-regression": {
+      "browser": "154.0.8037.98",
+      "baselineCommit": "a7f219000beb884e8cd5d682f1ba0bf4ac97028c",
+      "errors": [],
+      "cases": [
+        {
+          "inkStyle": "ink",
+          "background": "#f5f3ef",
+          "colorize": false,
+          "coverFill": false,
+          "checks": {
+            "sync": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "responsive": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "tiled": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "region": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 180480
+            },
+            "workerTiled": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "workerRegion": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 180480
+            }
+          }
+        },
+        {
+          "inkStyle": "ink",
+          "background": "#f5f3ef",
+          "colorize": false,
+          "coverFill": true,
+          "checks": {
+            "sync": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "responsive": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "tiled": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "region": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 180480
+            },
+            "workerTiled": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "workerRegion": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 180480
+            }
+          }
+        },
+        {
+          "inkStyle": "ink",
+          "background": "#f5f3ef",
+          "colorize": true,
+          "coverFill": false,
+          "checks": {
+            "sync": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "responsive": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "tiled": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "region": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 180480
+            },
+            "workerTiled": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "workerRegion": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 180480
+            }
+          }
+        },
+        {
+          "inkStyle": "ink",
+          "background": "#f5f3ef",
+          "colorize": true,
+          "coverFill": true,
+          "checks": {
+            "sync": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "responsive": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "tiled": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "region": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 180480
+            },
+            "workerTiled": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "workerRegion": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 180480
+            }
+          }
+        },
+        {
+          "inkStyle": "ink",
+          "background": "#111615",
+          "colorize": false,
+          "coverFill": false,
+          "checks": {
+            "sync": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "responsive": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "tiled": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "region": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 180480
+            },
+            "workerTiled": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "workerRegion": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 180480
+            }
+          }
+        },
+        {
+          "inkStyle": "ink",
+          "background": "#111615",
+          "colorize": false,
+          "coverFill": true,
+          "checks": {
+            "sync": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "responsive": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "tiled": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "region": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 180480
+            },
+            "workerTiled": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "workerRegion": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 180480
+            }
+          }
+        },
+        {
+          "inkStyle": "ink",
+          "background": "#111615",
+          "colorize": true,
+          "coverFill": false,
+          "checks": {
+            "sync": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "responsive": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "tiled": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "region": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 180480
+            },
+            "workerTiled": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "workerRegion": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 180480
+            }
+          }
+        },
+        {
+          "inkStyle": "ink",
+          "background": "#111615",
+          "colorize": true,
+          "coverFill": true,
+          "checks": {
+            "sync": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "responsive": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "tiled": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "region": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 180480
+            },
+            "workerTiled": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "workerRegion": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 180480
+            }
+          }
+        },
+        {
+          "inkStyle": "cutout",
+          "background": "#f5f3ef",
+          "colorize": false,
+          "coverFill": false,
+          "checks": {
+            "sync": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "responsive": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "tiled": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "region": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 180480
+            }
+          }
+        },
+        {
+          "inkStyle": "cutout",
+          "background": "#f5f3ef",
+          "colorize": false,
+          "coverFill": true,
+          "checks": {
+            "sync": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "responsive": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "tiled": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "region": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 180480
+            }
+          }
+        },
+        {
+          "inkStyle": "cutout",
+          "background": "#f5f3ef",
+          "colorize": true,
+          "coverFill": false,
+          "checks": {
+            "sync": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "responsive": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "tiled": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "region": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 180480
+            }
+          }
+        },
+        {
+          "inkStyle": "cutout",
+          "background": "#f5f3ef",
+          "colorize": true,
+          "coverFill": true,
+          "checks": {
+            "sync": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "responsive": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "tiled": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "region": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 180480
+            }
+          }
+        },
+        {
+          "inkStyle": "cutout",
+          "background": "#111615",
+          "colorize": false,
+          "coverFill": false,
+          "checks": {
+            "sync": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "responsive": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "tiled": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "region": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 180480
+            }
+          }
+        },
+        {
+          "inkStyle": "cutout",
+          "background": "#111615",
+          "colorize": false,
+          "coverFill": true,
+          "checks": {
+            "sync": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "responsive": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "tiled": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "region": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 180480
+            }
+          }
+        },
+        {
+          "inkStyle": "cutout",
+          "background": "#111615",
+          "colorize": true,
+          "coverFill": false,
+          "checks": {
+            "sync": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "responsive": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "tiled": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "region": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 180480
+            }
+          }
+        },
+        {
+          "inkStyle": "cutout",
+          "background": "#111615",
+          "colorize": true,
+          "coverFill": true,
+          "checks": {
+            "sync": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "responsive": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "tiled": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 327680
+            },
+            "region": {
+              "changed": 0,
+              "maxDelta": 0,
+              "channels": 180480
+            }
+          }
+        },
+        {
+          "cancellation": true,
+          "ms": 32.60000002384186
+        }
+      ],
+      "baselineSha256": "d730a237cabad278e0561c4192239a2aa59c54faaf419e142a2575a947570400",
+      "passed": true,
+      "sourceHashes": {
+        "src/lib/signature-portrait/layout.ts": "67b674f270673cb9ef12bc492f8e2b08a7bb93dee92a665eb9040a3ddb47c4b1",
+        "src/lib/signature-portrait/vector-ink.ts": "85c0dfa9c2f6fce1c3ca18ffeed073cd308961acde921aea3b63be07c7769350",
+        "src/lib/signature-portrait/variants.ts": "65996b59db6170f33a00f8adb261e323633d264999b2b20844bbe22aa9a1d401",
+        "src/lib/signature-portrait/raster-cache.ts": "aedd4c280597a5fca8861a22f76998b7f3d90cba6531c73eab8fcf56f608e829",
+        "src/lib/signature-portrait/raster-worker-client.ts": "a7dd9fd671db61f45c939d4c31728d4bdb5b2f34acf87a1d97df0155138edbb4",
+        "src/lib/signature-portrait/raster-worker-protocol.ts": "4231f6b159f90d0b1c9a0a9d6dc7a6fb1f5c57a0f08fca2f791e14aa8b8f08c4",
+        "src/lib/signature-portrait/raster.worker.ts": "1868c80a0875dc0917b7babd84c0ccc60ac694fadc0579651ec553afd4f79ed9",
+        "src/views/SignaturePortraitView.vue": "e415f1adca4877fdbfed80f99c39f0d85ae7073018f48b658e722dc469c3ebca"
+      }
+    },
+    "edge-wash-regression": {
+      "browser": "154.0.4258.62",
+      "cases": [
+        {
+          "kind": "profile",
+          "washStyle": "duotone-v1",
+          "washPalette": "blue-coral",
+          "processingMs": 377.10000002384186,
+          "alphaEqual": true,
+          "algorithmEqual": true
+        },
+        {
+          "kind": "output",
+          "washStyle": "duotone-v1",
+          "washPalette": "blue-coral",
+          "background": "#f5f3ef",
+          "inkStyle": "ink",
+          "project": {
+            "changed": 0,
+            "max": 0,
+            "channels": 327680
+          },
+          "full": {
+            "changed": 0,
+            "max": 0,
+            "channels": 327680
+          },
+          "crop": {
+            "changed": 0,
+            "max": 0,
+            "channels": 288000
+          },
+          "svgImages": 1
+        },
+        {
+          "kind": "output",
+          "washStyle": "duotone-v1",
+          "washPalette": "blue-coral",
+          "background": "#f5f3ef",
+          "inkStyle": "cutout",
+          "project": {
+            "changed": 0,
+            "max": 0,
+            "channels": 327680
+          },
+          "full": null,
+          "crop": null,
+          "svgImages": 1
+        },
+        {
+          "kind": "output",
+          "washStyle": "duotone-v1",
+          "washPalette": "blue-coral",
+          "background": "#111615",
+          "inkStyle": "ink",
+          "project": {
+            "changed": 0,
+            "max": 0,
+            "channels": 327680
+          },
+          "full": {
+            "changed": 0,
+            "max": 0,
+            "channels": 327680
+          },
+          "crop": {
+            "changed": 0,
+            "max": 0,
+            "channels": 288000
+          },
+          "svgImages": 1
+        },
+        {
+          "kind": "output",
+          "washStyle": "duotone-v1",
+          "washPalette": "blue-coral",
+          "background": "#111615",
+          "inkStyle": "cutout",
+          "project": {
+            "changed": 0,
+            "max": 0,
+            "channels": 327680
+          },
+          "full": null,
+          "crop": null,
+          "svgImages": 1
+        },
+        {
+          "kind": "profile",
+          "washStyle": "duotone-v1",
+          "washPalette": "forest-rose",
+          "processingMs": 383.7999999523163,
+          "alphaEqual": true,
+          "algorithmEqual": true
+        },
+        {
+          "kind": "output",
+          "washStyle": "duotone-v1",
+          "washPalette": "forest-rose",
+          "background": "#f5f3ef",
+          "inkStyle": "ink",
+          "project": {
+            "changed": 0,
+            "max": 0,
+            "channels": 327680
+          },
+          "full": {
+            "changed": 0,
+            "max": 0,
+            "channels": 327680
+          },
+          "crop": {
+            "changed": 0,
+            "max": 0,
+            "channels": 288000
+          },
+          "svgImages": 1
+        },
+        {
+          "kind": "output",
+          "washStyle": "duotone-v1",
+          "washPalette": "forest-rose",
+          "background": "#f5f3ef",
+          "inkStyle": "cutout",
+          "project": {
+            "changed": 0,
+            "max": 0,
+            "channels": 327680
+          },
+          "full": null,
+          "crop": null,
+          "svgImages": 1
+        },
+        {
+          "kind": "output",
+          "washStyle": "duotone-v1",
+          "washPalette": "forest-rose",
+          "background": "#111615",
+          "inkStyle": "ink",
+          "project": {
+            "changed": 0,
+            "max": 0,
+            "channels": 327680
+          },
+          "full": {
+            "changed": 0,
+            "max": 0,
+            "channels": 327680
+          },
+          "crop": {
+            "changed": 0,
+            "max": 0,
+            "channels": 288000
+          },
+          "svgImages": 1
+        },
+        {
+          "kind": "output",
+          "washStyle": "duotone-v1",
+          "washPalette": "forest-rose",
+          "background": "#111615",
+          "inkStyle": "cutout",
+          "project": {
+            "changed": 0,
+            "max": 0,
+            "channels": 327680
+          },
+          "full": null,
+          "crop": null,
+          "svgImages": 1
+        },
+        {
+          "kind": "profile",
+          "washStyle": "duotone-v1",
+          "washPalette": "violet-gold",
+          "processingMs": 274.39999997615814,
+          "alphaEqual": true,
+          "algorithmEqual": true
+        },
+        {
+          "kind": "output",
+          "washStyle": "duotone-v1",
+          "washPalette": "violet-gold",
+          "background": "#f5f3ef",
+          "inkStyle": "ink",
+          "project": {
+            "changed": 0,
+            "max": 0,
+            "channels": 327680
+          },
+          "full": {
+            "changed": 0,
+            "max": 0,
+            "channels": 327680
+          },
+          "crop": {
+            "changed": 0,
+            "max": 0,
+            "channels": 288000
+          },
+          "svgImages": 1
+        },
+        {
+          "kind": "output",
+          "washStyle": "duotone-v1",
+          "washPalette": "violet-gold",
+          "background": "#f5f3ef",
+          "inkStyle": "cutout",
+          "project": {
+            "changed": 0,
+            "max": 0,
+            "channels": 327680
+          },
+          "full": null,
+          "crop": null,
+          "svgImages": 1
+        },
+        {
+          "kind": "output",
+          "washStyle": "duotone-v1",
+          "washPalette": "violet-gold",
+          "background": "#111615",
+          "inkStyle": "ink",
+          "project": {
+            "changed": 0,
+            "max": 0,
+            "channels": 327680
+          },
+          "full": {
+            "changed": 0,
+            "max": 0,
+            "channels": 327680
+          },
+          "crop": {
+            "changed": 0,
+            "max": 0,
+            "channels": 288000
+          },
+          "svgImages": 1
+        },
+        {
+          "kind": "output",
+          "washStyle": "duotone-v1",
+          "washPalette": "violet-gold",
+          "background": "#111615",
+          "inkStyle": "cutout",
+          "project": {
+            "changed": 0,
+            "max": 0,
+            "channels": 327680
+          },
+          "full": null,
+          "crop": null,
+          "svgImages": 1
+        },
+        {
+          "kind": "profile",
+          "washStyle": "pop-v1",
+          "washPalette": "blue-coral",
+          "processingMs": 388.5,
+          "alphaEqual": true,
+          "algorithmEqual": true
+        },
+        {
+          "kind": "output",
+          "washStyle": "pop-v1",
+          "washPalette": "blue-coral",
+          "background": "#f5f3ef",
+          "inkStyle": "ink",
+          "project": {
+            "changed": 0,
+            "max": 0,
+            "channels": 327680
+          },
+          "full": {
+            "changed": 0,
+            "max": 0,
+            "channels": 327680
+          },
+          "crop": {
+            "changed": 0,
+            "max": 0,
+            "channels": 288000
+          },
+          "svgImages": 1
+        },
+        {
+          "kind": "output",
+          "washStyle": "pop-v1",
+          "washPalette": "blue-coral",
+          "background": "#f5f3ef",
+          "inkStyle": "cutout",
+          "project": {
+            "changed": 0,
+            "max": 0,
+            "channels": 327680
+          },
+          "full": null,
+          "crop": null,
+          "svgImages": 1
+        },
+        {
+          "kind": "output",
+          "washStyle": "pop-v1",
+          "washPalette": "blue-coral",
+          "background": "#111615",
+          "inkStyle": "ink",
+          "project": {
+            "changed": 0,
+            "max": 0,
+            "channels": 327680
+          },
+          "full": {
+            "changed": 0,
+            "max": 0,
+            "channels": 327680
+          },
+          "crop": {
+            "changed": 0,
+            "max": 0,
+            "channels": 288000
+          },
+          "svgImages": 1
+        },
+        {
+          "kind": "output",
+          "washStyle": "pop-v1",
+          "washPalette": "blue-coral",
+          "background": "#111615",
+          "inkStyle": "cutout",
+          "project": {
+            "changed": 0,
+            "max": 0,
+            "channels": 327680
+          },
+          "full": null,
+          "crop": null,
+          "svgImages": 1
+        },
+        {
+          "kind": "profile",
+          "washStyle": "pop-v1",
+          "washPalette": "forest-rose",
+          "processingMs": 182.69999992847443,
+          "alphaEqual": true,
+          "algorithmEqual": true
+        },
+        {
+          "kind": "output",
+          "washStyle": "pop-v1",
+          "washPalette": "forest-rose",
+          "background": "#f5f3ef",
+          "inkStyle": "ink",
+          "project": {
+            "changed": 0,
+            "max": 0,
+            "channels": 327680
+          },
+          "full": {
+            "changed": 0,
+            "max": 0,
+            "channels": 327680
+          },
+          "crop": {
+            "changed": 0,
+            "max": 0,
+            "channels": 288000
+          },
+          "svgImages": 1
+        },
+        {
+          "kind": "output",
+          "washStyle": "pop-v1",
+          "washPalette": "forest-rose",
+          "background": "#f5f3ef",
+          "inkStyle": "cutout",
+          "project": {
+            "changed": 0,
+            "max": 0,
+            "channels": 327680
+          },
+          "full": null,
+          "crop": null,
+          "svgImages": 1
+        },
+        {
+          "kind": "output",
+          "washStyle": "pop-v1",
+          "washPalette": "forest-rose",
+          "background": "#111615",
+          "inkStyle": "ink",
+          "project": {
+            "changed": 0,
+            "max": 0,
+            "channels": 327680
+          },
+          "full": {
+            "changed": 0,
+            "max": 0,
+            "channels": 327680
+          },
+          "crop": {
+            "changed": 0,
+            "max": 0,
+            "channels": 288000
+          },
+          "svgImages": 1
+        },
+        {
+          "kind": "output",
+          "washStyle": "pop-v1",
+          "washPalette": "forest-rose",
+          "background": "#111615",
+          "inkStyle": "cutout",
+          "project": {
+            "changed": 0,
+            "max": 0,
+            "channels": 327680
+          },
+          "full": null,
+          "crop": null,
+          "svgImages": 1
+        },
+        {
+          "kind": "profile",
+          "washStyle": "pop-v1",
+          "washPalette": "violet-gold",
+          "processingMs": 206.89999997615814,
+          "alphaEqual": true,
+          "algorithmEqual": true
+        },
+        {
+          "kind": "output",
+          "washStyle": "pop-v1",
+          "washPalette": "violet-gold",
+          "background": "#f5f3ef",
+          "inkStyle": "ink",
+          "project": {
+            "changed": 0,
+            "max": 0,
+            "channels": 327680
+          },
+          "full": {
+            "changed": 0,
+            "max": 0,
+            "channels": 327680
+          },
+          "crop": {
+            "changed": 0,
+            "max": 0,
+            "channels": 288000
+          },
+          "svgImages": 1
+        },
+        {
+          "kind": "output",
+          "washStyle": "pop-v1",
+          "washPalette": "violet-gold",
+          "background": "#f5f3ef",
+          "inkStyle": "cutout",
+          "project": {
+            "changed": 0,
+            "max": 0,
+            "channels": 327680
+          },
+          "full": null,
+          "crop": null,
+          "svgImages": 1
+        },
+        {
+          "kind": "output",
+          "washStyle": "pop-v1",
+          "washPalette": "violet-gold",
+          "background": "#111615",
+          "inkStyle": "ink",
+          "project": {
+            "changed": 0,
+            "max": 0,
+            "channels": 327680
+          },
+          "full": {
+            "changed": 0,
+            "max": 0,
+            "channels": 327680
+          },
+          "crop": {
+            "changed": 0,
+            "max": 0,
+            "channels": 288000
+          },
+          "svgImages": 1
+        },
+        {
+          "kind": "output",
+          "washStyle": "pop-v1",
+          "washPalette": "violet-gold",
+          "background": "#111615",
+          "inkStyle": "cutout",
+          "project": {
+            "changed": 0,
+            "max": 0,
+            "channels": 327680
+          },
+          "full": null,
+          "crop": null,
+          "svgImages": 1
+        },
+        {
+          "kind": "forced-worker-failure-and-mid-compute-cancel",
+          "exact": true
+        },
+        {
+          "kind": "pure-preserved-geometry-immutable-rejections-default"
+        }
+      ],
+      "errors": [],
+      "privateSource": false,
+      "passed": true
+    }
+  }
+}

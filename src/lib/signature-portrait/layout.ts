@@ -9,6 +9,7 @@ import { autoInvertDensity } from './layout-compute'
 import { createTintedStampCache } from './raster-cache'
 import { prepareSignatureInk, type SignatureInkStyle } from './ink-style'
 import { createVectorInkPainterSteps } from './vector-ink'
+import { paintSignatureCover } from './cover-ink'
 import type { SignatureWashRecipe } from './wash-style'
 
 export type SignatureLayoutOptions = SignatureWashRecipe & {
@@ -114,6 +115,7 @@ function prepareStamp(
     }
   }
   const traits = measureStampTraits(canvas)
+  if (src !== stamp.canvas && src !== canvas) src.width = src.height = 1
   return {
     canvas,
     width: canvas.width,
@@ -121,29 +123,6 @@ function prepareStamp(
     inkRatio: Math.max(0.04, Math.min(0.4, traits.inkRatio)),
     aspect: traits.aspect,
   }
-}
-
-/** 印章下垫软色椭圆，补笔画空隙（填色） */
-function paintCoverBlob(
-  ctx: CanvasRenderingContext2D,
-  p: Placement,
-  glyphW: number,
-  glyphH: number,
-  scale: number,
-) {
-  const rw = Math.max(2, glyphW * scale * 0.52)
-  const rh = Math.max(2, glyphH * scale * 0.38)
-  const { r, g, b } = p.tint
-  ctx.save()
-  ctx.translate(p.x, p.y)
-  ctx.rotate(p.angle)
-  ctx.globalCompositeOperation = 'source-over'
-  ctx.globalAlpha = clamp01(0.14 + p.depth * 0.28) * clamp01(p.strength)
-  ctx.fillStyle = `rgb(${r | 0},${g | 0},${b | 0})`
-  ctx.beginPath()
-  ctx.ellipse(0, 0, rw, rh, 0, 0, Math.PI * 2)
-  ctx.fill()
-  ctx.restore()
 }
 
 export async function renderSignaturePortrait(
@@ -431,7 +410,7 @@ function* paintPlacementSteps(
       if (vectorPainter) {
         const metric = metrics[p.stampIndex]!
         if (coverFill)
-          paintCoverBlob(
+          paintSignatureCover(
             ctx,
             p,
             metric.width,
@@ -453,7 +432,7 @@ function* paintPlacementSteps(
       const stampLong = Math.max(glyph.width, glyph.height)
       const scale = p.targetSize / stampLong
 
-      if (coverFill) paintCoverBlob(ctx, p, glyph.width, glyph.height, scale)
+      if (coverFill) paintSignatureCover(ctx, p, glyph.width, glyph.height, scale)
 
       ctx.save()
       ctx.translate(p.x, p.y)
@@ -581,58 +560,64 @@ export async function paintPlacementsTiled(
   const tileSize = Math.max(128, options.tileSize ?? 384)
   const metrics: StampMetrics[] = []
   let sliceStart = performance.now()
-  for (const stamp of stamps) {
-    if (options.signal?.cancelled) throw new Error('已取消')
-    metrics.push(
-      prepareStamp(
-        stamp,
-        options.stampMaxLong ??
-          Math.min(1000, Math.max(480, Math.round(Math.max(outW, outH) * 0.4))),
-        options.inkStyle,
-        options.stableRaster,
-      ),
-    )
-    if (performance.now() - sliceStart >= 8) {
-      await yieldFrame()
-      sliceStart = performance.now()
-    }
-  }
-
-  const canvas = makeCanvas(outW, outH)
-  const ctx = canvas.getContext('2d', { willReadFrequently: options.stableRaster ?? false })
-  if (!ctx) throw new Error('无法创建输出画布')
-  ctx.fillStyle = background
-  ctx.fillRect(0, 0, outW, outH)
-  if (options.portrait && underlay > 0) {
-    ctx.globalAlpha = underlay
-    ctx.imageSmoothingEnabled = true
-    ctx.imageSmoothingQuality = 'high'
-    ctx.drawImage(options.portrait, 0, 0, outW, outH)
-    ctx.globalAlpha = 1
-  }
-  // 先亮底图，立刻可看
-  options.onTile?.({ canvas, done: 0, total: 1 })
-  await yieldFrame()
-
-  const tintCache = createTintedStampCache(
-    metrics.map((metric) => metric.canvas),
-    colorize,
-    undefined,
-    undefined,
-    undefined,
-    options.stableRaster,
-  )
-
-  const tilesX = Math.ceil(outW / tileSize)
-  const tilesY = Math.ceil(outH / tileSize)
-  const total = tilesX * tilesY
-  let done = 0
-  const vectorPainter =
-    options.inkStyle === 'cutout'
-      ? await runResponsiveSteps(createVectorInkPainterSteps(stamps), options.signal)
-      : null
-
+  let canvas: HTMLCanvasElement | null = null
+  let completed = false
+  let tintCache: ReturnType<typeof createTintedStampCache> | null = null
   try {
+    for (const stamp of stamps) {
+      if (options.signal?.cancelled) throw new Error('已取消')
+      metrics.push(
+        prepareStamp(
+          stamp,
+          options.stampMaxLong ??
+            Math.min(1000, Math.max(480, Math.round(Math.max(outW, outH) * 0.4))),
+          options.inkStyle,
+          options.stableRaster,
+        ),
+      )
+      if (performance.now() - sliceStart >= 8) {
+        await yieldFrame()
+        sliceStart = performance.now()
+      }
+    }
+
+    canvas = makeCanvas(outW, outH)
+    const ctx = canvas.getContext('2d', { willReadFrequently: options.stableRaster ?? false })
+    if (!ctx) {
+      canvas.width = canvas.height = 1
+      throw new Error('无法创建输出画布')
+    }
+    ctx.fillStyle = background
+    ctx.fillRect(0, 0, outW, outH)
+    if (options.portrait && underlay > 0) {
+      ctx.globalAlpha = underlay
+      ctx.imageSmoothingEnabled = true
+      ctx.imageSmoothingQuality = 'high'
+      ctx.drawImage(options.portrait, 0, 0, outW, outH)
+      ctx.globalAlpha = 1
+    }
+    // 先亮底图，立刻可看
+    options.onTile?.({ canvas, done: 0, total: 1 })
+    await yieldFrame()
+
+    tintCache = createTintedStampCache(
+      metrics.map((metric) => metric.canvas),
+      colorize,
+      undefined,
+      undefined,
+      undefined,
+      options.stableRaster,
+    )
+
+    const tilesX = Math.ceil(outW / tileSize)
+    const tilesY = Math.ceil(outH / tileSize)
+    const total = tilesX * tilesY
+    let done = 0
+    const vectorPainter =
+      options.inkStyle === 'cutout'
+        ? await runResponsiveSteps(createVectorInkPainterSteps(stamps), options.signal)
+        : null
+
     for (let ty = 0; ty < tilesY; ty++) {
       for (let tx = 0; tx < tilesX; tx++) {
         if (options.signal?.cancelled) throw new Error('已取消')
@@ -643,71 +628,78 @@ export async function paintPlacementsTiled(
 
         const tile = makeCanvas(tw, th)
         const tctx = tile.getContext('2d', { willReadFrequently: options.stableRaster ?? false })
-        if (!tctx) continue
-        // 透明底，叠到主画布
-        tctx.clearRect(0, 0, tw, th)
-
-        for (let i = 0; i < mapped.length; i++) {
-          if (i % 32 === 0) {
-            if (options.signal?.cancelled) throw new Error('已取消')
-            if (performance.now() - sliceStart >= 8) {
-              await yieldFrame()
-              sliceStart = performance.now()
-            }
-          }
-          const p = mapped[i]!
-          // A rotated rectangle fits within sqrt(2)/2 of its longest side.
-          // Three pixels also cover the optional minimum-radius ellipse and antialiasing.
-          const rad = p.targetSize * 0.75 + 3
-          if (p.x + rad < x0 || p.x - rad > x0 + tw || p.y + rad < y0 || p.y - rad > y0 + th) {
-            continue
-          }
-          if (vectorPainter) {
-            const metric = metrics[p.stampIndex]!
-            const local = { ...p, x: p.x - x0, y: p.y - y0 }
-            if (coverFill)
-              paintCoverBlob(
-                tctx,
-                local,
-                metric.width,
-                metric.height,
-                p.targetSize / Math.max(metric.width, metric.height),
-              )
-            vectorPainter(tctx, local, colorize)
-            continue
-          }
-          const glyph = tintCache.get(
-            p.stampIndex,
-            p.tint.r,
-            p.tint.g,
-            p.tint.b,
-            p.depth,
-            Boolean(p.tintLiteral),
-          )
-          const stampLong = Math.max(glyph.width, glyph.height)
-          const scale = p.targetSize / stampLong
-          const local = {
-            ...p,
-            x: p.x - x0,
-            y: p.y - y0,
-          }
-          if (coverFill) paintCoverBlob(tctx, local, glyph.width, glyph.height, scale)
-          tctx.save()
-          tctx.translate(p.x - x0, p.y - y0)
-          tctx.rotate(p.angle)
-          tctx.scale(scale, scale)
-          tctx.imageSmoothingEnabled = true
-          tctx.imageSmoothingQuality = 'high'
-          tctx.globalAlpha = clamp01(p.strength)
-          tctx.globalCompositeOperation = p.blend === 'soft' ? 'source-over' : 'multiply'
-          tctx.drawImage(glyph, -glyph.width / 2, -glyph.height / 2)
-          tctx.restore()
+        if (!tctx) {
+          tile.width = tile.height = 1
+          throw new Error('无法创建绘图分块')
         }
+        try {
+          // 透明底，叠到主画布
+          tctx.clearRect(0, 0, tw, th)
 
-        ctx.save()
-        ctx.globalCompositeOperation = 'source-over'
-        ctx.drawImage(tile, x0, y0)
-        ctx.restore()
+          for (let i = 0; i < mapped.length; i++) {
+            if (i % 32 === 0) {
+              if (options.signal?.cancelled) throw new Error('已取消')
+              if (performance.now() - sliceStart >= 8) {
+                await yieldFrame()
+                sliceStart = performance.now()
+              }
+            }
+            const p = mapped[i]!
+            // A rotated rectangle fits within sqrt(2)/2 of its longest side.
+            // Three pixels also cover the optional minimum-radius ellipse and antialiasing.
+            const rad = p.targetSize * 0.75 + 3
+            if (p.x + rad < x0 || p.x - rad > x0 + tw || p.y + rad < y0 || p.y - rad > y0 + th) {
+              continue
+            }
+            if (vectorPainter) {
+              const metric = metrics[p.stampIndex]!
+              const local = { ...p, x: p.x - x0, y: p.y - y0 }
+              if (coverFill)
+                paintSignatureCover(
+                  tctx,
+                  local,
+                  metric.width,
+                  metric.height,
+                  p.targetSize / Math.max(metric.width, metric.height),
+                )
+              vectorPainter(tctx, local, colorize)
+              continue
+            }
+            const glyph = tintCache.get(
+              p.stampIndex,
+              p.tint.r,
+              p.tint.g,
+              p.tint.b,
+              p.depth,
+              Boolean(p.tintLiteral),
+            )
+            const stampLong = Math.max(glyph.width, glyph.height)
+            const scale = p.targetSize / stampLong
+            const local = {
+              ...p,
+              x: p.x - x0,
+              y: p.y - y0,
+            }
+            if (coverFill) paintSignatureCover(tctx, local, glyph.width, glyph.height, scale)
+            tctx.save()
+            tctx.translate(p.x - x0, p.y - y0)
+            tctx.rotate(p.angle)
+            tctx.scale(scale, scale)
+            tctx.imageSmoothingEnabled = true
+            tctx.imageSmoothingQuality = 'high'
+            tctx.globalAlpha = clamp01(p.strength)
+            tctx.globalCompositeOperation = p.blend === 'soft' ? 'source-over' : 'multiply'
+            tctx.drawImage(glyph, -glyph.width / 2, -glyph.height / 2)
+            tctx.restore()
+          }
+
+          ctx.save()
+          ctx.globalCompositeOperation = 'source-over'
+          ctx.drawImage(tile, x0, y0)
+          ctx.restore()
+        } finally {
+          tile.width = tile.height = 1
+        }
 
         done++
         options.onTile?.({ canvas, done, total })
@@ -715,9 +707,15 @@ export async function paintPlacementsTiled(
       }
     }
 
+    completed = true
     return canvas
   } finally {
-    tintCache.clear()
+    tintCache?.clear()
+    if (!completed && canvas) canvas.width = canvas.height = 1
+    for (let i = 0; i < metrics.length; i++) {
+      const source = metrics[i]!.canvas
+      if (source !== stamps[i]!.canvas) source.width = source.height = 1
+    }
   }
 }
 

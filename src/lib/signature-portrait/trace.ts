@@ -51,6 +51,11 @@ export function traceStampCanvas(canvas: HTMLCanvasElement): StampVector {
   const ctx = canvas.getContext('2d', { willReadFrequently: true })
   if (!ctx) throw new Error('无法读取印章像素')
   const imgd = ctx.getImageData(0, 0, canvas.width, canvas.height)
+  return traceStampPixels(imgd)
+}
+
+/** Owns and binarizes this pixel buffer; the tracing recipe stays identical in a Worker. */
+export function traceStampPixels(imgd: ImageData): StampVector {
   // 透明像素当白底，便于二值描边
   const data = imgd.data
   for (let i = 0; i < data.length; i += 4) {
@@ -97,8 +102,8 @@ export function traceStampCanvas(canvas: HTMLCanvasElement): StampVector {
   }
 
   return {
-    width: canvas.width,
-    height: canvas.height,
+    width: imgd.width,
+    height: imgd.height,
     paths,
   }
 }

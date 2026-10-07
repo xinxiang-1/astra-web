@@ -1,7 +1,15 @@
+import { paintSignatureCover } from './cover-ink'
 /// <reference lib="webworker" />
 import { createTintedStampCache } from './raster-cache'
 import type { RasterRequest, RasterResponse, RasterScene } from './raster-worker-protocol'
 import type { Placement } from './layout'
+import { RASTER_PLACEMENT_STRIDE, readRasterPlacement } from './raster-placement-wire'
+import { traceStampPixels } from './trace'
+import {
+  paintVectorInkTemplate,
+  prepareVectorInkTemplate,
+  type VectorInkTemplate,
+} from './vector-ink-geometry'
 
 const createSurface = (width = 1, height = 1) => {
   const surface = new OffscreenCanvas(width, height)
@@ -36,14 +44,35 @@ async function paint(request: RasterRequest, signal: { cancelled: boolean }) {
   )
     throw new Error('后台绘图参数无效')
   const sources: OffscreenCanvas[] = []
+  const vectorTemplates: VectorInkTemplate[] = []
   let templateBytes = 0
+  let pathBytes = 0
   try {
     for (const template of scene.templates) {
       check(signal)
       templateBytes += template.width * template.height * 4
       if (templateBytes > 96 * 1024 * 1024) throw new Error('签名模板超过后台绘图预算')
+      let pixels = template.pixels
+      if (scene.options.inkStyle === 'cutout') {
+        const vector =
+          template.vector ??
+          traceStampPixels(new ImageData(pixels.data.slice(), pixels.width, pixels.height))
+        pathBytes += vector.paths.reduce((sum, d) => sum + d.length * 2, 0)
+        if (pathBytes > 16 * 1024 * 1024) throw new Error('签名路径超过后台绘图预算')
+        vectorTemplates.push(prepareVectorInkTemplate(vector))
+        pixels = new ImageData(pixels.data.slice(), pixels.width, pixels.height)
+        let ink = 0
+        for (let i = 3; i < pixels.data.length; i += 4) ink += pixels.data[i]!
+        if (!ink) throw new Error('签名模板没有有效笔迹')
+        for (let i = 0; i < pixels.data.length; i += 4) {
+          pixels.data[i] = 20
+          pixels.data[i + 1] = 24
+          pixels.data[i + 2] = 32
+          pixels.data[i + 3] = 255 - pixels.data[i + 3]!
+        }
+      }
       const raw = createSurface(template.width, template.height)
-      context(raw).putImageData(template.pixels, 0, 0)
+      context(raw).putImageData(pixels, 0, 0)
       const scale = Math.min(1, request.stampMaxLong / Math.max(template.width, template.height))
       if (scale < 1) {
         const surface = createSurface(
@@ -66,7 +95,8 @@ async function paint(request: RasterRequest, signal: { cancelled: boolean }) {
       ? height / Math.max(1e-3, request.region.h)
       : height / Math.max(1, scene.layoutH)
     const mapped: Placement[] = []
-    for (const p of scene.placements) {
+    for (let at = 0; at < scene.placements.length; at += RASTER_PLACEMENT_STRIDE) {
+      const p = readRasterPlacement(scene.placements, at)
       if (request.region) {
         const r = request.region,
           rad = p.targetSize * 0.7,
@@ -163,36 +193,35 @@ async function paint(request: RasterRequest, signal: { cancelled: boolean }) {
               (p.x + rad < x0 || p.x - rad > x0 + w || p.y + rad < y0 || p.y - rad > y0 + h)
             )
               continue
-            const glyph = cache.get(
-              p.stampIndex,
-              p.tint.r,
-              p.tint.g,
-              p.tint.b,
-              p.depth,
-              Boolean(p.tintLiteral),
-            )
+            const glyph =
+              scene.options.inkStyle === 'cutout'
+                ? sources[p.stampIndex]!
+                : cache.get(
+                    p.stampIndex,
+                    p.tint.r,
+                    p.tint.g,
+                    p.tint.b,
+                    p.depth,
+                    Boolean(p.tintLiteral),
+                  )
             const scale = p.targetSize / Math.max(glyph.width, glyph.height)
             if (scene.options.coverFill) {
-              target.save()
-              target.translate(p.x - x0, p.y - y0)
-              target.rotate(p.angle)
-              target.globalCompositeOperation = 'source-over'
-              target.globalAlpha =
-                Math.min(1, Math.max(0, 0.14 + p.depth * 0.28)) *
-                Math.min(1, Math.max(0, p.strength))
-              target.fillStyle = `rgb(${p.tint.r | 0},${p.tint.g | 0},${p.tint.b | 0})`
-              target.beginPath()
-              target.ellipse(
-                0,
-                0,
-                Math.max(2, glyph.width * scale * 0.52),
-                Math.max(2, glyph.height * scale * 0.38),
-                0,
-                0,
-                Math.PI * 2,
+              paintSignatureCover(
+                target,
+                { ...p, x: p.x - x0, y: p.y - y0 },
+                glyph.width,
+                glyph.height,
+                scale,
               )
-              target.fill()
-              target.restore()
+            }
+            if (scene.options.inkStyle === 'cutout') {
+              paintVectorInkTemplate(
+                target,
+                { ...p, x: p.x - x0, y: p.y - y0 },
+                vectorTemplates[p.stampIndex]!,
+                scene.options.colorize ?? true,
+              )
+              continue
             }
             target.save()
             target.translate(p.x - x0, p.y - y0)
@@ -213,8 +242,15 @@ async function paint(request: RasterRequest, signal: { cancelled: boolean }) {
           send({ type: 'progress', id: request.id, done: ++done, total })
         }
       check(signal)
-      const pixels = ctx.getImageData(0, 0, width, height)
-      send({ type: 'complete', id: request.id, pixels }, [pixels.data.buffer])
+      if (request.type === 'png') {
+        send({ type: 'progress', id: request.id, done: 0, total: 1, stage: 'encode' })
+        const blob = await output.convertToBlob({ type: 'image/png' })
+        check(signal)
+        send({ type: 'encoded', id: request.id, blob })
+      } else {
+        const pixels = ctx.getImageData(0, 0, width, height)
+        send({ type: 'complete', id: request.id, pixels }, [pixels.data.buffer])
+      }
     } finally {
       cache.clear()
       output.width = 1

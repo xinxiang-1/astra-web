@@ -1,5 +1,10 @@
 <script setup lang="ts">
-defineProps<{ title: string; detail?: string; progress?: number }>()
+withDefaults(
+  defineProps<{ title: string; detail?: string; progress?: number; progressLabel?: string }>(),
+  {
+    progressLabel: '作品生成进度',
+  },
+)
 </script>
 
 <template>
@@ -12,7 +17,7 @@ defineProps<{ title: string; detail?: string; progress?: number }>()
         v-if="progress !== undefined && progress > 0"
         :value="progress"
         max="1"
-        aria-label="作品生成进度"
+        :aria-label="progressLabel"
       />
     </div>
   </div>
