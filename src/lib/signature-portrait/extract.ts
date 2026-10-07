@@ -1,4 +1,5 @@
 /** Signature → transparent ink stamp (整段签名当一枚印章). */
+import type { SignatureFontId } from './fonts'
 
 export type SignatureStamp = {
   id: string
@@ -12,7 +13,7 @@ export type SignatureStamp = {
   source?: {
     kind: 'font'
     version: 2
-    font: 'mashanzheng' | 'longcang'
+    font: SignatureFontId
     text: string
     seed: number
     variant: number

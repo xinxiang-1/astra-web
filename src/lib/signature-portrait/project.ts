@@ -1,7 +1,7 @@
 import { loadImageElement, type SignatureStamp } from './extract'
 import type { Placement, SignatureLayoutOptions } from './layout'
 import { SIGNATURE_FONT_LICENSES } from './font-licenses'
-import type { SignatureFontId } from './fonts'
+import { isSignatureFontId, type SignatureFontId } from './fonts'
 import { washRecipe } from './wash-style'
 
 export const SIGNATURE_PROJECT_ACCEPT = '.astra-signature'
@@ -174,7 +174,7 @@ function vectorOf(value: unknown): SignatureStamp['vector'] {
 function recipeOf(value: unknown): SignatureStamp['source'] {
   if (value === undefined) return undefined
   const v = record(value, '字体来源')
-  if (v.kind !== 'font' || v.version !== 2 || (v.font !== 'mashanzheng' && v.font !== 'longcang'))
+  if (v.kind !== 'font' || v.version !== 2 || !isSignatureFontId(v.font))
     fail('字体来源版本暂不支持')
   return {
     kind: 'font',

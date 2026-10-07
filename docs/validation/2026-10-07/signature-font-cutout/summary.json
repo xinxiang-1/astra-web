@@ -1,0 +1,24 @@
+{
+  "checks": [
+    "6 fonts, 2 names, 8 repeatable variants",
+    "six-font project exact RGBA and recipe restore",
+    "six controlled handwriting backgrounds, zero residue",
+    "blank input and cancellation rejection",
+    "production six-font preview and bank generation",
+    "production cutout confirmation, adjustment, batch cancel, two themes at390px"
+  ],
+  "limitations": [
+    "Controlled backgrounds are not arbitrary photo validation",
+    "Main-thread image decode and bounded readback not certified stall-free",
+    "16K signature export not included"
+  ],
+  "browsers": [
+    "Edge 154.0.4258.62",
+    "Chrome 154.0.8037.61"
+  ],
+  "passed": true,
+  "reports": [
+    "edge.json",
+    "chrome.json"
+  ]
+}

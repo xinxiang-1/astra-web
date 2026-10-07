@@ -1,5 +1,7 @@
 /** Full pinned copyright/OFL notices accompany portable font-derived templates. */
+import { SIGNATURE_FONT_EXTENSION_LICENSES } from './font-extension'
 export const SIGNATURE_FONT_LICENSES = {
+  ...SIGNATURE_FONT_EXTENSION_LICENSES,
   mashanzheng: {
     fontSha256: '6d2546bb189c732a8ca29af9e22457b152387d158aa459e4ac2ce1e51788b7fb',
     sourceUrl:

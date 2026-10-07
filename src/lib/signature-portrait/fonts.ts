@@ -1,4 +1,5 @@
 /** Pinned, locally hosted OFL 1.1 fonts. Never substitute a platform font silently. */
+import { SIGNATURE_FONT_EXTENSION } from './font-extension'
 export const SIGNATURE_FONTS = [
   {
     id: 'mashanzheng',
@@ -14,8 +15,12 @@ export const SIGNATURE_FONTS = [
     file: 'LongCang-Regular.ttf',
     sha256: 'e5bf2c3f24ef2327c6f136d8f73e2f9dfdf44896fdbeb35a9515f44777bb91bc',
   },
+  ...SIGNATURE_FONT_EXTENSION,
 ] as const
 export type SignatureFontId = (typeof SIGNATURE_FONTS)[number]['id']
+export function isSignatureFontId(value: unknown): value is SignatureFontId {
+  return SIGNATURE_FONTS.some((font) => font.id === value)
+}
 type LoadedFont = { family: string; supports: (codepoint: number) => boolean }
 const fonts = new Map<SignatureFontId, Promise<LoadedFont>>()
 

@@ -6,6 +6,8 @@ import UiInput from '@/components/ui/UiInput.vue'
 import UiSelect from '@/components/ui/UiSelect.vue'
 import DisclosurePanel from '@/components/ui/DisclosurePanel.vue'
 import RenderFeedback from '@/components/ui/RenderFeedback.vue'
+import SignatureCutoutDialog from '@/components/signature/SignatureCutoutDialog.vue'
+import SignatureFontPreview from '@/components/signature/SignatureFontPreview.vue'
 import {
   addStampToBank,
   addStampsToBank,
@@ -28,7 +30,6 @@ import {
   replaceBankStamps,
   SIGNATURE_FONTS,
   stampFromDrawnCanvas,
-  stampFromFile,
   stampHasVector,
   traceStamps,
   triggerDownload,
@@ -160,8 +161,7 @@ const activeBank = ref<NameBank | null>(null)
 const bankEntries = ref<BankEntryView[]>([])
 const banks = ref<NameBank[]>([])
 
-const threshold = ref(168)
-const invertInk = ref(false)
+const signatureFiles = shallowRef<File[]>([])
 const density = ref(30)
 /** 成图布局/导出最长边：影响点数与 PNG；屏上预览另有轻量概览 */
 const maxSide = ref(4096)
@@ -1163,33 +1163,19 @@ onBeforeUnmount(() => {
   delete (window as unknown as { __runSignatureDemo?: () => Promise<void> }).__runSignatureDemo
 })
 
-async function addSignatureFiles(files: FileList | File[] | null) {
+function addSignatureFiles(files: FileList | File[] | null) {
   if (bankBusy.value) return
   if (!files || files.length === 0) return
   error.value = ''
-  pending.value = true
-  try {
-    const next: SignatureStamp[] = []
-    for (const file of Array.from(files)) {
-      if (!file.type.startsWith('image/')) continue
-      const stamp = await stampFromFile(file, {
-        threshold: threshold.value,
-        invert: invertInk.value,
-      })
-      next.push(stamp)
-    }
-    if (next.length === 0) {
-      error.value = '请选择签名图片'
-      return
-    }
-    stamps.value = [...stamps.value, ...next]
-    void maybeAutoRender()
-  } catch (e) {
-    error.value = e instanceof Error ? e.message : '签名抠模失败'
-  } finally {
-    pending.value = false
-    if (signatureInput.value) signatureInput.value.value = ''
-  }
+  signatureFiles.value = Array.from(files).filter((file) => file.type.startsWith('image/')).slice(0, 200)
+  if (!signatureFiles.value.length) error.value = '请选择签名图片'
+  if (signatureInput.value) signatureInput.value.value = ''
+}
+
+function acceptSignatureCutouts(next: SignatureStamp[]) {
+  signatureFiles.value = []
+  stamps.value = [...stamps.value, ...next]
+  void maybeAutoRender()
 }
 
 function onSignatureChange(event: Event) {
@@ -1922,6 +1908,7 @@ watch([coverFill, colorize, signatureInkStyle], () => {
 
 <template>
   <div class="page">
+    <SignatureCutoutDialog v-if="signatureFiles.length" :files="signatureFiles" @accept="acceptSignatureCutouts" @cancel="signatureFiles = []" />
     <header class="head">
       <p class="eyebrow">实验</p>
       <h1>签名画像</h1>
@@ -2025,6 +2012,7 @@ watch([coverFill, colorize, signatureInkStyle], () => {
               />
             </label>
           </div>
+          <SignatureFontPreview :font="signatureFont" :text="demoName" />
           <div class="row name-generate">
             <FxButton
               type="button"
@@ -2034,6 +2022,8 @@ watch([coverFill, colorize, signatureInkStyle], () => {
             >
               {{ generatingVariants ? '生成中…' : `一键生成 ${bankGoal} 种写法` }}
             </FxButton>
+            <FxButton type="button" :disabled="bankBusy" @click="signatureInput?.click()">上传手写签名 · 抠图</FxButton>
+            <input ref="signatureInput" class="sr-only" type="file" accept="image/*" multiple @change="onSignatureChange" />
           </div>
 
           <p v-if="activeBank" class="bank-progress">
@@ -2148,7 +2138,7 @@ watch([coverFill, colorize, signatureInkStyle], () => {
             </ul>
             <p v-else class="empty">名字库还是空的 — 开始写第 1 遍吧</p>
           </DisclosurePanel>
-          <DisclosurePanel title="上传签名与临时写法" description="导入图片笔迹，调整提取阈值">
+          <DisclosurePanel title="上传签名与临时写法" description="上传后先抠图并确认透明笔迹，再用于画像">
             <div class="row">
               <FxButton type="button" :disabled="!hasInk" @click="commitDrawnStamp">
                 仅加入临时池
@@ -2156,29 +2146,12 @@ watch([coverFill, colorize, signatureInkStyle], () => {
               <FxButton type="button" :disabled="bankBusy" @click="signatureInput?.click()">
                 上传签名
               </FxButton>
-              <input
-                ref="signatureInput"
-                class="sr-only"
-                type="file"
-                accept="image/*"
-                multiple
-                @change="onSignatureChange"
-              />
               <FxButton type="button" @click="addDemoStamp">示意印章</FxButton>
               <FxButton v-if="stamps.length" type="button" @click="clearStamps">
                 清空临时池
               </FxButton>
             </div>
-            <div class="sliders compact">
-              <label>
-                上传抠模阈值 {{ threshold }}
-                <input v-model.number="threshold" type="range" min="80" max="230" />
-              </label>
-              <label class="check">
-                <input v-model="invertInk" type="checkbox" />
-                浅色字 / 深色底
-              </label>
-            </div>
+            <p class="hint">上传的签名先分离纸面与笔迹，可在透明预览中调整提取力度、检查完整名字。</p>
             <ul v-if="stamps.length" class="stamps">
               <li v-for="s in stamps" :key="s.id">
                 <img :src="s.previewUrl" :alt="s.label" />
