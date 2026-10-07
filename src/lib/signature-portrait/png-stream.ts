@@ -38,6 +38,23 @@ export function createPngRowEncoder(width: number, height: number, settings: Str
     writer = stream.writable.getWriter(),
     reader = stream.readable.getReader()
   const chunks: Blob[] = []
+  // A PNG built from thousands of tiny stream blobs can stall the UI's Blob
+  // registration at download time. Coalesce IDAT payloads here in the Worker.
+  const chunkBytes = 1024 * 1024
+  let group: Uint8Array[] = [],
+    groupBytes = 0
+  function flushGroup() {
+    if (!groupBytes) return
+    const payload = new Uint8Array(groupBytes)
+    let offset = 0
+    for (const part of group) {
+      payload.set(part, offset)
+      offset += part.byteLength
+    }
+    chunks.push(chunk('IDAT', payload))
+    group = []
+    groupBytes = 0
+  }
   let bytes = 0,
     rows = 0,
     state: 'open' | 'finished' | 'aborted' = 'open',
@@ -47,11 +64,20 @@ export function createPngRowEncoder(width: number, height: number, settings: Str
     try {
       while (true) {
         const { value, done } = await reader.read()
-        if (done) return
+        if (done) {
+          flushGroup()
+          return
+        }
         check()
         bytes += value.byteLength
         if (bytes > maxBytes) throw new Error('超清 PNG 文件过大，请降低导出分辨率')
-        chunks.push(chunk('IDAT', value))
+        for (let offset = 0; offset < value.byteLength;) {
+          const take = Math.min(chunkBytes - groupBytes, value.byteLength - offset)
+          group.push(value.subarray(offset, offset + take))
+          groupBytes += take
+          offset += take
+          if (groupBytes === chunkBytes) flushGroup()
+        }
       }
     } catch (error) {
       readError = error
@@ -69,6 +95,8 @@ export function createPngRowEncoder(width: number, height: number, settings: Str
     await Promise.allSettled([writer.abort(reason), reader.cancel(reason)])
     await drain
     chunks.length = 0
+    group = []
+    groupBytes = 0
   }
   async function writeRows(pixels: ImageData) {
     if (state !== 'open' || writing) throw new Error('PNG 条带写入状态无效')

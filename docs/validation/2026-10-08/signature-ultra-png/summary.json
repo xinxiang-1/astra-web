@@ -1,0 +1,309 @@
+{
+  "completedOn": "2026-10-08",
+  "stage": "8K/16K fixed-layout background PNG with original or outline ink",
+  "parentCommit": "a9add76eb49eaae16d9a12d5f2fb1ef05fc26a87",
+  "scope": "Production build on this Windows laptop; software outline backend; overall commercial goal remains active; no deployment or universal smoothness claim",
+  "machine": {
+    "cpu": "Intel Core i5-13420H",
+    "cores": 8,
+    "threads": 12,
+    "gpu": "Intel UHD Graphics",
+    "gpuDriver": "31.0.101.4502",
+    "os": "Windows 11 10.0.26200",
+    "visibleMemoryKiB": 16492280,
+    "node": "v24.9.0",
+    "headless": true,
+    "performanceRunsSerial": true
+  },
+  "fixture": {
+    "source": "public/artwork/portrait-reference.png",
+    "fictionalName": "林晓晚",
+    "packageSha256": "f3db72c2e5b484d98b27a6a51cbdab34981b4d496d61e6183e01994c937f18d9",
+    "width": 3278,
+    "height": 4096,
+    "placements": 29070,
+    "templates": 100,
+    "rawProject": "test-results/signature-png-ui-production-edge-final/pop-4k.astra-signature"
+  },
+  "reports": {
+    "edge-ui": {
+      "file": "edge-ui.json",
+      "rawDirectory": "test-results/signature-ultra-ui-1791390646283",
+      "browser": "154.0.4258.62",
+      "cases": 3,
+      "passed": true,
+      "checks": [
+        {
+          "case": "unapplied-controls-use-fixed-layout",
+          "passed": true
+        },
+        {
+          "case": "mobile-two-theme-cancel-no-download",
+          "passed": true
+        },
+        {
+          "case": "failure-keeps-result-and-retry",
+          "passed": true
+        },
+        {
+          "case": "leave-cancels-and-releases-export-worker",
+          "passed": true
+        }
+      ]
+    },
+    "chrome-ui": {
+      "file": "chrome-ui.json",
+      "rawDirectory": "test-results/signature-ultra-ui-1791391050204",
+      "browser": "154.0.8037.98",
+      "cases": 3,
+      "passed": true,
+      "checks": [
+        {
+          "case": "unapplied-controls-use-fixed-layout",
+          "passed": true
+        },
+        {
+          "case": "mobile-two-theme-cancel-no-download",
+          "passed": true
+        },
+        {
+          "case": "failure-keeps-result-and-retry",
+          "passed": true
+        },
+        {
+          "case": "leave-cancels-and-releases-export-worker",
+          "passed": true
+        }
+      ]
+    },
+    "edge-ultra-contract": {
+      "file": "edge-ultra-contract.json",
+      "rawDirectory": "test-results/signature-ultra-1791391157209",
+      "browser": "154.0.4258.62",
+      "cases": 33,
+      "passed": true,
+      "checks": []
+    },
+    "chrome-ultra-contract": {
+      "file": "chrome-ultra-contract.json",
+      "rawDirectory": "test-results/signature-ultra-1791391187823",
+      "browser": "154.0.8037.98",
+      "cases": 33,
+      "passed": true,
+      "checks": []
+    },
+    "edge-ordinary-png": {
+      "file": "edge-ordinary-png.json",
+      "rawDirectory": "test-results/signature-png-contract-1791391236294",
+      "browser": "154.0.4258.62",
+      "cases": 69,
+      "passed": true,
+      "checks": []
+    },
+    "chrome-ordinary-png": {
+      "file": "chrome-ordinary-png.json",
+      "rawDirectory": "test-results/signature-png-contract-1791391291904",
+      "browser": "154.0.8037.98",
+      "cases": 69,
+      "passed": true,
+      "checks": []
+    },
+    "edge-responsive-api": {
+      "file": "edge-responsive-api.json",
+      "rawDirectory": "test-results/signature-responsive-1791391254888",
+      "browser": "154.0.4258.62",
+      "cases": 17,
+      "passed": true,
+      "checks": []
+    },
+    "chrome-responsive-api": {
+      "file": "chrome-responsive-api.json",
+      "rawDirectory": "test-results/signature-responsive-1791391312468",
+      "browser": "154.0.8037.98",
+      "cases": 17,
+      "passed": true,
+      "checks": []
+    },
+    "edge-codec": {
+      "file": "edge-codec.json",
+      "rawDirectory": "test-results/signature-png-stream-1791389677887",
+      "browser": "154.0.4258.62",
+      "cases": 7,
+      "passed": true,
+      "checks": []
+    }
+  },
+  "performance": {
+    "edge-ui": [
+      {
+        "id": "outline-8k",
+        "width": 6556,
+        "height": 8192,
+        "durationMs": 11616.600000023842,
+        "rafCount": 657,
+        "rafP95": 18.100000000000364,
+        "rafMax": 18.700000000000728,
+        "longTasks": [],
+        "titles": [
+          "准备超清导出",
+          "后台分块重绘与编码"
+        ]
+      },
+      {
+        "id": "outline-16k",
+        "width": 13112,
+        "height": 16384,
+        "durationMs": 33331.799999952316,
+        "rafCount": 1877,
+        "rafP95": 18.10000000000582,
+        "rafMax": 58.59999997615887,
+        "longTasks": [],
+        "titles": [
+          "准备超清导出",
+          "后台分块重绘与编码"
+        ]
+      },
+      {
+        "id": "retry-8k",
+        "width": 6556,
+        "height": 8192,
+        "durationMs": 11670.600000023842,
+        "rafCount": 659,
+        "rafP95": 18.10000000000582,
+        "rafMax": 18.700000000004366,
+        "longTasks": [],
+        "titles": [
+          "准备超清导出",
+          "后台分块重绘与编码",
+          "正在编码PNG"
+        ]
+      }
+    ],
+    "chrome-ui": [
+      {
+        "id": "outline-8k",
+        "width": 6556,
+        "height": 8192,
+        "durationMs": 9830.899999976158,
+        "rafCount": 555,
+        "rafP95": 18.100000000000364,
+        "rafMax": 18.69999999999891,
+        "longTasks": [],
+        "titles": [
+          "准备超清导出",
+          "后台分块重绘与编码"
+        ]
+      },
+      {
+        "id": "outline-16k",
+        "width": 13112,
+        "height": 16384,
+        "durationMs": 27495.600000023842,
+        "rafCount": 1540,
+        "rafP95": 18.200000000000728,
+        "rafMax": 249.79999999999927,
+        "longTasks": [],
+        "titles": [
+          "准备超清导出",
+          "后台分块重绘与编码"
+        ]
+      },
+      {
+        "id": "retry-8k",
+        "width": 6556,
+        "height": 8192,
+        "durationMs": 9608.399999976158,
+        "rafCount": 542,
+        "rafP95": 18.10000000000582,
+        "rafMax": 18.69999999999709,
+        "longTasks": [],
+        "titles": [
+          "准备超清导出",
+          "后台分块重绘与编码"
+        ]
+      }
+    ]
+  },
+  "decode": {
+    "file": "decoded.json",
+    "allSixPngsAllRowsAndCrcValid": true,
+    "sameSizeCrossBrowserRgbaEqual": true,
+    "retryRgbaEqual": true,
+    "allDecodedRgbaBytes": 2577924096,
+    "noFull16kBufferInInspector": true
+  },
+  "algorithmContracts": {
+    "perBrowser": 33,
+    "originalInkRgbaExactCases": 16,
+    "singleNameSoftwareExactCases": 4,
+    "independentSvgCases": 4,
+    "denseOutlineCases": 8,
+    "cancelRetryDimensionReject": 1,
+    "denseSoftFillMaxChannelDifference": 14,
+    "denseMaxNormalizedMae": 4.053928172340166e-06,
+    "denseBandBoundaryMaxDifference": 0,
+    "svgMaxNormalizedMae": 0.0006929608940672441,
+    "notClaimingSvgOrAllOutlinePixelsExact": true
+  },
+  "buildChecks": {
+    "typeCheck": "passed before final production UI, same product source",
+    "relatedEslint": "passed before final production UI, same product source",
+    "productionBuild": "passed, final production QA uses that build",
+    "warnings": "Existing stream externalization / large chunks / dynamic import warnings retained",
+    "testScriptSyntax": "node --check on 3 new scripts and Python compile passed"
+  },
+  "developerVisualInspection": {
+    "files": [
+      "16k-overview.png",
+      "16k-name-detail-1.png",
+      "16k-name-detail-2.png",
+      "16k-name-detail-3.png",
+      "loading-light-mobile.png",
+      "loading-dark-mobile.png",
+      "loading-desktop.png"
+    ],
+    "conclusion": "Complete fictional names readable in native crops; holes, order and strokes preserved; no visible band seams. Loading controls fit both 390px themes. Development review does not replace user aesthetics or physical print QA."
+  },
+  "priorAttempts": "prior-attempts.json",
+  "budgets": {
+    "maxOutputLongSide": 16384,
+    "encodedRowsPerStripe": 384,
+    "workCanvasBytes": 134217728,
+    "templateBytes": 100663296,
+    "pathStringBytes": 16777216,
+    "compressedPayloadBytes": 536870912,
+    "tileReferences": 20000000,
+    "idatPayloadBytes": 1048576,
+    "processPeakMemoryMeasured": false
+  },
+  "limits": [
+    "PNG has finite pixels; original blur or details lost by old tracing cannot be invented.",
+    "Outline tracing follows existing alpha24/pathomit6 and does not preserve all original RGBA opacity.",
+    "Soft elliptical cover-fill rasterization has documented local differences.",
+    "Chrome final 16K has a 249.8ms rAF interval despite no observed >=50ms main-thread long task.",
+    "Whole-process memory, slower devices, downstream editors, arbitrary complex signature backgrounds and physical print results are not certified here."
+  ],
+  "sourceHashes": {
+    "src/views/SignaturePortraitView.vue": "0a1763fe538b680e0108a38a1e65283937704ac3ad18c45ba5845ecee6dbcb0f",
+    "src/components/signature/SignatureUltraExport.vue": "5be0e02c307bcdf57ec21c6788ed320c1e19918e71f65675996204b83bc42d51",
+    "src/lib/signature-portrait/raster-stripes.ts": "4196cec166d727e85fe1dac442a7c5d2efae7dacc5f5386f3a619a5937983ba6",
+    "src/lib/signature-portrait/ultra-png-export.ts": "43ef69dad2bf42ff99977e152727334be3d06966f2d2a3c5d4e4f1796f4f8868",
+    "src/lib/signature-portrait/png-stream.ts": "a2225b734248481bc3799337180b992747279a3172a95a7d03cbcb7801750ead",
+    "src/lib/signature-portrait/raster-worker-client.ts": "2c4ad6c205e852d7d35fe1cf72e2a3c8480687e68f34bd090965e9b89b8a1eb5",
+    "src/lib/signature-portrait/raster-worker-protocol.ts": "83405583024ffbcdbe305fa42f192732402049b8a0d99b5338bc88b461e8ff49",
+    "src/lib/signature-portrait/raster.worker.ts": "0ce62d91a15ae4aa1fe82c82680740f7286466966e3e737cbfd6b31d6d113df0",
+    "src/lib/signature-portrait/trace.ts": "89de4ba3d7ad3f72ac5b7c893c37a5e27265513ad809d7415cdb0adb7dc7a416",
+    "src/lib/signature-portrait/raster-cache.ts": "aedd4c280597a5fca8861a22f76998b7f3d90cba6531c73eab8fcf56f608e829",
+    "src/lib/signature-portrait/raster-placement-wire.ts": "37a478af16a3d9cc79d157a12ac532412fc025beeb9b18d69df59a4f698bfc64",
+    "src/lib/signature-portrait/vector-ink-geometry.ts": "143a6df56d4a5f4e4ceb9d90446788e8a2b8bf77fbdd0f352f2822fc6c427b02",
+    "src/lib/signature-portrait/cover-ink.ts": "9e82a98532a458a18b5e83d26d9c95bba39b250c1f709f836cbfdbac8b192744",
+    "src/lib/signature-portrait/render-style.ts": "4a0c9d746e9fc7cca7cd3a08f45daa99c0d236f829815654e1cdb0677bf0322e",
+    "src/lib/signature-portrait/styled-wash.ts": "96359c73caedf0b6b528c42a0cd38b6a765fb5ba235c3cf5aa494fc6a5dc1b44",
+    "src/lib/signature-portrait/png-export.ts": "68f6f43ff1c0608e0b14bc49b3c673d8855dded8a7d50645f7fcff963a8f8c38",
+    "src/components/ui/RenderFeedback.vue": "abcd74a1f646bb94396a862f64f9d0035187ffb11f4f979432c6191ad497cfcb",
+    "scripts/signature-ultra-png-ui.mjs": "a049e103e5b98c40eb1c4a952bdc702130b74bf850b6fb82b0bcdd83243e694f",
+    "scripts/signature-ultra-png-contract.mjs": "f6960551935d7ead4f0770c570e2f6dbda21edfca09333edef67cfc4d939dbb4",
+    "scripts/signature-ultra-png-real.mjs": "0234c2163a52b02c3f79866a03a2144fd5f87029595ea9db563210e47c6bd3f0",
+    "scripts/signature-ultra-png-inspect.py": "d8eb0eb963cf1a7bbe374365dc8d66988a77746f482259a76277add4192405ee"
+  }
+}

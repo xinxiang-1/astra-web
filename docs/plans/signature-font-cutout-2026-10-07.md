@@ -22,6 +22,6 @@
 
 真实开发页面：确认后加入、调整力度、批量中途取消无部分追加、亮暗主题390px无对话框溢出；实际查看6字体样张、桌面及暗色手机截图。类型检查、相关ESLint与build通过，保留既有stream外部化/大chunk/动态import警告。
 
-生产Edge154.0.4258.62/Chrome154.0.8037.61均补齐六款字体切换、名字预览、10写法库生成与上传确认/取消/手机主题操作，每浏览器5组合同通过、页面异常0。脚本：`node scripts/signature-font-cutout-contract.mjs`，用 `ASTRA_UI_URL=http://127.0.0.1:5188` 验真实生产UI（核心合同仍访问开发源），`ASTRA_BROWSER_CHANNEL=chrome` 切换浏览器。[精简证据](../validation/2026-10-07/signature-font-cutout/summary.json)，实际截图同目录；原始失败、PNG和Edge录屏保留在ignored `test-results/signature-font-cutout-*`。
+生产Edge154.0.4258.62/Chrome154.0.8037.98均补齐六款字体切换、名字预览、10写法库生成与上传确认/取消/手机主题操作，每浏览器5组合同通过、页面异常0。脚本：`node scripts/signature-font-cutout-contract.mjs`，用 `ASTRA_UI_URL=http://127.0.0.1:5188` 验真实生产UI（核心合同仍访问开发源），`ASTRA_BROWSER_CHANNEL=chrome` 切换浏览器。[精简证据](../validation/2026-10-07/signature-font-cutout/summary.json)，实际截图同目录；原始失败、PNG和Edge录屏保留在ignored `test-results/signature-font-cutout-*`。
 
-超清分块PNG仍属下一阶段，不能用本记录证明16K签名细节已通过。六方向总目标继续active。
+本字体/抠图记录不作为16K验收证据；后续正式入口、原大姓名及性能验证见[超清PNG阶段](./signature-ultra-png-2026-10-07.md)，完成于2026-10-08。六方向总目标继续active。

@@ -5,6 +5,7 @@ import type { RasterRequest, RasterResponse, RasterScene } from './raster-worker
 import type { Placement } from './layout'
 import { RASTER_PLACEMENT_STRIDE, readRasterPlacement } from './raster-placement-wire'
 import { traceStampPixels } from './trace'
+import { paintSignatureStripePng } from './raster-stripes'
 import {
   paintVectorInkTemplate,
   prepareVectorInkTemplate,
@@ -34,6 +35,10 @@ async function paint(request: RasterRequest, signal: { cancelled: boolean }) {
   const { width, height } = request
   const scene = loadedScene
   if (!scene) throw new Error('后台作品尚未准备好')
+  if (request.type === 'png-stripes') {
+    await paintSignatureStripePng(scene, request, signal, send)
+    return
+  }
   if (
     !Number.isSafeInteger(width) ||
     !Number.isSafeInteger(height) ||

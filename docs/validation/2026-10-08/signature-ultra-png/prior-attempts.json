@@ -1,0 +1,160 @@
+[
+  {
+    "rawReport": "test-results/signature-ultra-real-1791386499481/report.json",
+    "scope": "Early GPU candidate; 8K overlapped Chrome core QA, invalid for independent performance conclusion",
+    "browser": "154.0.4258.62",
+    "passed": true,
+    "cases": [
+      {
+        "longSide": 8192,
+        "width": 6556,
+        "height": 8192
+      },
+      {
+        "longSide": 16384,
+        "width": 13112,
+        "height": 16384
+      }
+    ]
+  },
+  {
+    "rawReport": "test-results/signature-ultra-real-1791386827654/report.json",
+    "scope": "Early software tile candidate, before full-contour halo",
+    "browser": "154.0.4258.62",
+    "passed": true,
+    "cases": [
+      {
+        "longSide": 8192,
+        "width": 6556,
+        "height": 8192
+      },
+      {
+        "longSide": 16384,
+        "width": 13112,
+        "height": 16384
+      }
+    ]
+  },
+  {
+    "rawReport": "test-results/signature-ultra-1791387055661/report.json",
+    "scope": "Software tiles failed single-name pixel/band contract",
+    "browser": "154.0.4258.62",
+    "failure": "Error: page.evaluate: Error: full outline raster parity {\"fullChanged\":3655,\"fullMax\":28,\"seamMax\":21}\n    at check (eval at evaluate (:311:30), <anonymous>:7:41)\n    at eval (eval at evaluate (:311:30), <anonymous>:51:9)\n    at async <anonymous>:337:30"
+  },
+  {
+    "rawReport": "test-results/signature-ultra-1791387499693/report.json",
+    "scope": "Fixed 32px halo failed single-name pixel/band contract",
+    "browser": "154.0.4258.62",
+    "failure": "Error: page.evaluate: Error: full outline raster parity {\"fullChanged\":1174,\"fullMax\":28,\"seamMax\":9}\n    at check (eval at evaluate (:311:30), <anonymous>:7:41)\n    at eval (eval at evaluate (:311:30), <anonymous>:51:9)\n    at async <anonymous>:337:30"
+  },
+  {
+    "rawReport": "test-results/signature-ultra-1791387742533/report.json",
+    "scope": "Diagnostic worst-pixel report; clipping distant curves changed local rasterization",
+    "browser": "154.0.4258.62",
+    "failure": "Error: page.evaluate: Error: full outline raster parity {\"fullChanged\":1174,\"fullMax\":28,\"seamMax\":9,\"worst\":{\"x\":708,\"y\":521,\"actual\":[213,214,215,255],\"expected\":[185,186,189,255]}}\n    at check (eval at evaluate (:311:30), <anonymous>:7:41)\n    at eval (eval at evaluate (:311:30), <anonymous>:55:9)\n    at async <anonymous>:337:30",
+    "diagnostic": {
+      "fullChanged": 1174,
+      "fullMax": 28,
+      "seamMax": 9,
+      "worst": {
+        "x": 708,
+        "y": 521,
+        "actual": [
+          213,
+          214,
+          215,
+          255
+        ],
+        "expected": [
+          185,
+          186,
+          189,
+          255
+        ]
+      }
+    }
+  },
+  {
+    "rawReport": "test-results/signature-ultra-1791388145174/report.json",
+    "scope": "Strict max3 assumption failed for translation-sensitive soft ellipse fill; seams were exact",
+    "browser": "154.0.4258.62",
+    "failure": "Error: page.evaluate: Error: dense full outline parity {\"colorize\":false,\"coverFill\":true,\"underlay\":0,\"changed\":2584,\"max\":14,\"seamMax\":0}\n    at check (eval at evaluate (:311:30), <anonymous>:8:41)\n    at eval (eval at evaluate (:311:30), <anonymous>:92:9)\n    at async <anonymous>:337:30"
+  },
+  {
+    "rawReport": "test-results/signature-ultra-ui-1791389231037/report.json",
+    "scope": "First production UI passed operations but 16K completion caused a 304ms main-thread long task",
+    "browser": "154.0.4258.62",
+    "passed": true,
+    "cases": [
+      {
+        "id": "outline-8k",
+        "longSide": 8192,
+        "width": 6556,
+        "height": 8192,
+        "performance": {
+          "durationMs": 12635.399999976158,
+          "rafCount": 713,
+          "rafP95": 18.19999999999891,
+          "rafMax": 34.79999999999927,
+          "longTasks": [
+            {
+              "start": 12204.100000023842,
+              "duration": 50
+            }
+          ],
+          "titles": [
+            "准备超清导出",
+            "后台分块重绘与编码",
+            "正在编码PNG"
+          ]
+        }
+      },
+      {
+        "id": "outline-16k",
+        "longSide": 16384,
+        "width": 13112,
+        "height": 16384,
+        "performance": {
+          "durationMs": 35656.200000047684,
+          "rafCount": 1998,
+          "rafP95": 18.10000000000582,
+          "rafMax": 298.8000000000029,
+          "longTasks": [
+            {
+              "start": 34971.800000071526,
+              "duration": 304
+            }
+          ],
+          "titles": [
+            "准备超清导出",
+            "后台分块重绘与编码",
+            "正在编码PNG"
+          ]
+        }
+      },
+      {
+        "id": "retry-8k",
+        "longSide": 8192,
+        "width": 6556,
+        "height": 8192,
+        "performance": {
+          "durationMs": 13101.699999928474,
+          "rafCount": 736,
+          "rafP95": 18.10000000000582,
+          "rafMax": 70.10000000000582,
+          "longTasks": [
+            {
+              "start": 12812.699999928474,
+              "duration": 87
+            }
+          ],
+          "titles": [
+            "准备超清导出",
+            "后台分块重绘与编码",
+            "正在编码PNG"
+          ]
+        }
+      }
+    ]
+  }
+]

@@ -12,6 +12,7 @@ import { packRasterPlacements } from './raster-placement-wire'
 type RasterSettings = {
   region?: RasterRequest['region']
   tileSize?: number
+  inkMode?: RasterRequest['inkMode']
   signal?: { cancelled?: boolean }
   onProgress?: (done: number, total: number, stage?: 'render' | 'encode') => void
 }
@@ -55,7 +56,7 @@ export async function createSignatureRasterWorker(
   options: SignatureLayoutOptions,
   signal?: { cancelled?: boolean },
   colorWash?: HTMLCanvasElement,
-  capabilities: { cutout?: boolean; stampMaxLong?: number } = {},
+  capabilities: { cutout?: boolean; stampMaxLong?: number; outline?: boolean } = {},
 ) {
   if (
     (options.inkStyle === 'cutout' && !capabilities.cutout) ||
@@ -72,7 +73,7 @@ export async function createSignatureRasterWorker(
     templates.push(
       snapshotTemplate(
         stamp,
-        options.inkStyle === 'cutout' ? undefined : capabilities.stampMaxLong,
+        options.inkStyle === 'cutout' || capabilities.outline ? undefined : capabilities.stampMaxLong,
       ),
     )
     await new Promise((resolve) => setTimeout(resolve, 0))
@@ -115,7 +116,7 @@ export async function createSignatureRasterWorker(
     id: number
     reject: (error: Error) => void
     resolve: (result: HTMLCanvasElement | Blob) => void
-    resultType: 'paint' | 'png'
+    resultType: RasterRequest['type']
     activity: number
     progress?: (done: number, total: number, stage?: 'render' | 'encode') => void
     timer: ReturnType<typeof setInterval>
@@ -144,7 +145,7 @@ export async function createSignatureRasterWorker(
     }
     if (message.type === 'encoded') {
       if (
-        current.resultType === 'png' &&
+        current.resultType !== 'paint' &&
         message.blob.type === 'image/png' &&
         message.blob.size > 0
       )
@@ -181,7 +182,7 @@ export async function createSignatureRasterWorker(
     worker.terminate()
   }
   function requestRaster<T extends HTMLCanvasElement | Blob>(
-    resultType: 'paint' | 'png',
+    resultType: RasterRequest['type'],
     width: number,
     height: number,
     stampMaxLong: number,
@@ -197,6 +198,7 @@ export async function createSignatureRasterWorker(
       stampMaxLong,
       region: settings.region,
       tileSize: settings.tileSize,
+      inkMode: settings.inkMode,
     }
     return new Promise<T>((resolve, reject) => {
       if (settings.signal?.cancelled) {
@@ -205,7 +207,7 @@ export async function createSignatureRasterWorker(
       }
       const timer = setInterval(() => {
         if (settings.signal?.cancelled) cancel()
-        else if (pending && resultType === 'png' && performance.now() - pending.activity > 60000) {
+        else if (pending && resultType !== 'paint' && performance.now() - pending.activity > 60000) {
           const current = pending
           pending = null
           clearInterval(current.timer)
@@ -241,6 +243,8 @@ export async function createSignatureRasterWorker(
       stampMaxLong: number,
       settings: RasterSettings = {},
     ) => requestRaster<Blob>('png', width, height, stampMaxLong, settings),
+    exportStripePng: (width: number, height: number, stampMaxLong: number, settings: RasterSettings = {}) =>
+      requestRaster<Blob>('png-stripes', width, height, stampMaxLong, settings),
     cancel,
     dispose() {
       if (disposed) return

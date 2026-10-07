@@ -1,0 +1,358 @@
+{
+  "browser": "154.0.8037.98",
+  "errors": [],
+  "cases": [
+    {
+      "case": "full-rgba",
+      "inkStyle": "ink",
+      "colorize": false,
+      "coverFill": false,
+      "underlay": 0,
+      "background": "#f5f3ef",
+      "width": 769,
+      "height": 1001,
+      "changed": 0,
+      "max": 0
+    },
+    {
+      "case": "full-rgba",
+      "inkStyle": "ink",
+      "colorize": false,
+      "coverFill": false,
+      "underlay": 0.75,
+      "background": "#f5f3ef",
+      "width": 769,
+      "height": 1001,
+      "changed": 0,
+      "max": 0
+    },
+    {
+      "case": "full-rgba",
+      "inkStyle": "ink",
+      "colorize": false,
+      "coverFill": true,
+      "underlay": 0,
+      "background": "#f5f3ef",
+      "width": 769,
+      "height": 1001,
+      "changed": 0,
+      "max": 0
+    },
+    {
+      "case": "full-rgba",
+      "inkStyle": "ink",
+      "colorize": false,
+      "coverFill": true,
+      "underlay": 0.75,
+      "background": "#f5f3ef",
+      "width": 769,
+      "height": 1001,
+      "changed": 0,
+      "max": 0
+    },
+    {
+      "case": "full-rgba",
+      "inkStyle": "ink",
+      "colorize": true,
+      "coverFill": false,
+      "underlay": 0,
+      "background": "#f5f3ef",
+      "width": 769,
+      "height": 1001,
+      "changed": 0,
+      "max": 0
+    },
+    {
+      "case": "full-rgba",
+      "inkStyle": "ink",
+      "colorize": true,
+      "coverFill": false,
+      "underlay": 0.75,
+      "background": "#f5f3ef",
+      "width": 769,
+      "height": 1001,
+      "changed": 0,
+      "max": 0
+    },
+    {
+      "case": "full-rgba",
+      "inkStyle": "ink",
+      "colorize": true,
+      "coverFill": true,
+      "underlay": 0,
+      "background": "#f5f3ef",
+      "width": 769,
+      "height": 1001,
+      "changed": 0,
+      "max": 0
+    },
+    {
+      "case": "full-rgba",
+      "inkStyle": "ink",
+      "colorize": true,
+      "coverFill": true,
+      "underlay": 0.75,
+      "background": "#f5f3ef",
+      "width": 769,
+      "height": 1001,
+      "changed": 0,
+      "max": 0
+    },
+    {
+      "case": "full-rgba",
+      "inkStyle": "cutout",
+      "colorize": false,
+      "coverFill": false,
+      "underlay": 0,
+      "background": "#f5f3ef",
+      "width": 769,
+      "height": 1001,
+      "changed": 0,
+      "max": 0
+    },
+    {
+      "case": "full-rgba",
+      "inkStyle": "cutout",
+      "colorize": false,
+      "coverFill": false,
+      "underlay": 0.75,
+      "background": "#f5f3ef",
+      "width": 769,
+      "height": 1001,
+      "changed": 0,
+      "max": 0
+    },
+    {
+      "case": "full-rgba",
+      "inkStyle": "cutout",
+      "colorize": false,
+      "coverFill": true,
+      "underlay": 0,
+      "background": "#f5f3ef",
+      "width": 769,
+      "height": 1001,
+      "changed": 0,
+      "max": 0
+    },
+    {
+      "case": "full-rgba",
+      "inkStyle": "cutout",
+      "colorize": false,
+      "coverFill": true,
+      "underlay": 0.75,
+      "background": "#f5f3ef",
+      "width": 769,
+      "height": 1001,
+      "changed": 0,
+      "max": 0
+    },
+    {
+      "case": "full-rgba",
+      "inkStyle": "cutout",
+      "colorize": true,
+      "coverFill": false,
+      "underlay": 0,
+      "background": "#f5f3ef",
+      "width": 769,
+      "height": 1001,
+      "changed": 0,
+      "max": 0
+    },
+    {
+      "case": "full-rgba",
+      "inkStyle": "cutout",
+      "colorize": true,
+      "coverFill": false,
+      "underlay": 0.75,
+      "background": "#f5f3ef",
+      "width": 769,
+      "height": 1001,
+      "changed": 0,
+      "max": 0
+    },
+    {
+      "case": "full-rgba",
+      "inkStyle": "cutout",
+      "colorize": true,
+      "coverFill": true,
+      "underlay": 0,
+      "background": "#f5f3ef",
+      "width": 769,
+      "height": 1001,
+      "changed": 0,
+      "max": 0
+    },
+    {
+      "case": "full-rgba",
+      "inkStyle": "cutout",
+      "colorize": true,
+      "coverFill": true,
+      "underlay": 0.75,
+      "background": "#f5f3ef",
+      "width": 769,
+      "height": 1001,
+      "changed": 0,
+      "max": 0
+    },
+    {
+      "case": "outline-full-raster",
+      "name": "李云舟",
+      "strength": 0.35,
+      "fullChanged": 0,
+      "fullMax": 0,
+      "seamMax": 0
+    },
+    {
+      "case": "outline-svg",
+      "name": "李云舟",
+      "strength": 0.35,
+      "mae": 0.0001026548122251753,
+      "max": 63,
+      "changed": 14834,
+      "seam": 2620
+    },
+    {
+      "case": "outline-full-raster",
+      "name": "李云舟",
+      "strength": 1,
+      "fullChanged": 0,
+      "fullMax": 0,
+      "seamMax": 0
+    },
+    {
+      "case": "outline-svg",
+      "name": "李云舟",
+      "strength": 1,
+      "mae": 0.00029180216405278364,
+      "max": 179,
+      "changed": 15846,
+      "seam": 7427
+    },
+    {
+      "case": "outline-full-raster",
+      "name": "字体写法 #1",
+      "strength": 0.35,
+      "fullChanged": 0,
+      "fullMax": 0,
+      "seamMax": 0
+    },
+    {
+      "case": "outline-svg",
+      "name": "字体写法 #1",
+      "strength": 0.35,
+      "mae": 0.00024270167297489554,
+      "max": 50,
+      "changed": 29954,
+      "seam": 4316
+    },
+    {
+      "case": "outline-full-raster",
+      "name": "字体写法 #1",
+      "strength": 1,
+      "fullChanged": 0,
+      "fullMax": 0,
+      "seamMax": 0
+    },
+    {
+      "case": "outline-svg",
+      "name": "字体写法 #1",
+      "strength": 1,
+      "mae": 0.0006929608940672441,
+      "max": 144,
+      "changed": 31882,
+      "seam": 12371
+    },
+    {
+      "case": "dense-full-outline",
+      "colorize": false,
+      "coverFill": false,
+      "underlay": 0,
+      "changed": 33,
+      "max": 3,
+      "seamMax": 0,
+      "mae": 6.368093264750498e-08,
+      "softFillPixelExact": false
+    },
+    {
+      "case": "dense-full-outline",
+      "colorize": false,
+      "coverFill": false,
+      "underlay": 0.75,
+      "changed": 25,
+      "max": 2,
+      "seamMax": 0,
+      "mae": 4.0755796894403184e-08,
+      "softFillPixelExact": false
+    },
+    {
+      "case": "dense-full-outline",
+      "colorize": false,
+      "coverFill": true,
+      "underlay": 0,
+      "changed": 2584,
+      "max": 14,
+      "seamMax": 0,
+      "mae": 4.0526545536872164e-06,
+      "softFillPixelExact": false
+    },
+    {
+      "case": "dense-full-outline",
+      "colorize": false,
+      "coverFill": true,
+      "underlay": 0.75,
+      "changed": 2049,
+      "max": 6,
+      "seamMax": 0,
+      "mae": 2.7777622820841668e-06,
+      "softFillPixelExact": false
+    },
+    {
+      "case": "dense-full-outline",
+      "colorize": true,
+      "coverFill": false,
+      "underlay": 0,
+      "changed": 38,
+      "max": 3,
+      "seamMax": 0,
+      "mae": 6.877540725930537e-08,
+      "softFillPixelExact": false
+    },
+    {
+      "case": "dense-full-outline",
+      "colorize": true,
+      "coverFill": false,
+      "underlay": 0.75,
+      "changed": 32,
+      "max": 3,
+      "seamMax": 0,
+      "mae": 4.9671127465053883e-08,
+      "softFillPixelExact": false
+    },
+    {
+      "case": "dense-full-outline",
+      "colorize": true,
+      "coverFill": true,
+      "underlay": 0,
+      "changed": 2583,
+      "max": 14,
+      "seamMax": 0,
+      "mae": 4.053928172340166e-06,
+      "softFillPixelExact": false
+    },
+    {
+      "case": "dense-full-outline",
+      "colorize": true,
+      "coverFill": true,
+      "underlay": 0.75,
+      "changed": 2053,
+      "max": 6,
+      "seamMax": 0,
+      "mae": 2.7828567566959675e-06,
+      "softFillPixelExact": false
+    },
+    {
+      "case": "cancel-retry-dimension-reject"
+    }
+  ],
+  "passed": true
+}

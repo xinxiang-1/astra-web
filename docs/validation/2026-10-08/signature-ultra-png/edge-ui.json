@@ -1,0 +1,158 @@
+{
+  "browser": "154.0.4258.62",
+  "base": "http://127.0.0.1:5188",
+  "sourceSha256": "f3db72c2e5b484d98b27a6a51cbdab34981b4d496d61e6183e01994c937f18d9",
+  "errors": [],
+  "cases": [
+    {
+      "id": "outline-8k",
+      "file": "outline-8k.png",
+      "longSide": 8192,
+      "inkMode": "outline",
+      "width": 6556,
+      "height": 8192,
+      "placements": 29070,
+      "crops": [
+        {
+          "x": 1776,
+          "y": 2465,
+          "width": 1024,
+          "height": 768
+        },
+        {
+          "x": 2757,
+          "y": 3706,
+          "width": 1024,
+          "height": 768
+        },
+        {
+          "x": 4064,
+          "y": 4922,
+          "width": 1024,
+          "height": 768
+        }
+      ],
+      "performance": {
+        "durationMs": 11616.600000023842,
+        "rafCount": 657,
+        "rafP95": 18.100000000000364,
+        "rafMax": 18.700000000000728,
+        "longTasks": [],
+        "titles": [
+          "准备超清导出",
+          "后台分块重绘与编码"
+        ]
+      }
+    },
+    {
+      "id": "outline-16k",
+      "file": "outline-16k.png",
+      "longSide": 16384,
+      "inkMode": "outline",
+      "width": 13112,
+      "height": 16384,
+      "placements": 29070,
+      "crops": [
+        {
+          "x": 4064,
+          "y": 5315,
+          "width": 1024,
+          "height": 768
+        },
+        {
+          "x": 6025,
+          "y": 7797,
+          "width": 1024,
+          "height": 768
+        },
+        {
+          "x": 8640,
+          "y": 10228,
+          "width": 1024,
+          "height": 768
+        }
+      ],
+      "performance": {
+        "durationMs": 33331.799999952316,
+        "rafCount": 1877,
+        "rafP95": 18.10000000000582,
+        "rafMax": 58.59999997615887,
+        "longTasks": [],
+        "titles": [
+          "准备超清导出",
+          "后台分块重绘与编码"
+        ]
+      }
+    },
+    {
+      "id": "retry-8k",
+      "file": "retry-8k.png",
+      "longSide": 8192,
+      "inkMode": "outline",
+      "width": 6556,
+      "height": 8192,
+      "placements": 29070,
+      "crops": [
+        {
+          "x": 1776,
+          "y": 2465,
+          "width": 1024,
+          "height": 768
+        },
+        {
+          "x": 2757,
+          "y": 3706,
+          "width": 1024,
+          "height": 768
+        },
+        {
+          "x": 4064,
+          "y": 4922,
+          "width": 1024,
+          "height": 768
+        }
+      ],
+      "performance": {
+        "durationMs": 11670.600000023842,
+        "rafCount": 659,
+        "rafP95": 18.10000000000582,
+        "rafMax": 18.700000000004366,
+        "longTasks": [],
+        "titles": [
+          "准备超清导出",
+          "后台分块重绘与编码",
+          "正在编码PNG"
+        ]
+      }
+    }
+  ],
+  "checks": [
+    {
+      "case": "unapplied-controls-use-fixed-layout",
+      "passed": true
+    },
+    {
+      "case": "mobile-two-theme-cancel-no-download",
+      "passed": true
+    },
+    {
+      "case": "failure-keeps-result-and-retry",
+      "passed": true
+    },
+    {
+      "case": "leave-cancels-and-releases-export-worker",
+      "passed": true
+    }
+  ],
+  "sourceHashes": {
+    "src/views/SignaturePortraitView.vue": "0a1763fe538b680e0108a38a1e65283937704ac3ad18c45ba5845ecee6dbcb0f",
+    "src/components/signature/SignatureUltraExport.vue": "5be0e02c307bcdf57ec21c6788ed320c1e19918e71f65675996204b83bc42d51",
+    "src/lib/signature-portrait/raster-stripes.ts": "4196cec166d727e85fe1dac442a7c5d2efae7dacc5f5386f3a619a5937983ba6",
+    "src/lib/signature-portrait/ultra-png-export.ts": "43ef69dad2bf42ff99977e152727334be3d06966f2d2a3c5d4e4f1796f4f8868",
+    "src/lib/signature-portrait/png-stream.ts": "a2225b734248481bc3799337180b992747279a3172a95a7d03cbcb7801750ead",
+    "src/lib/signature-portrait/raster-worker-client.ts": "2c4ad6c205e852d7d35fe1cf72e2a3c8480687e68f34bd090965e9b89b8a1eb5",
+    "src/lib/signature-portrait/raster-worker-protocol.ts": "83405583024ffbcdbe305fa42f192732402049b8a0d99b5338bc88b461e8ff49",
+    "src/lib/signature-portrait/raster.worker.ts": "0ce62d91a15ae4aa1fe82c82680740f7286466966e3e737cbfd6b31d6d113df0"
+  },
+  "passed": true
+}

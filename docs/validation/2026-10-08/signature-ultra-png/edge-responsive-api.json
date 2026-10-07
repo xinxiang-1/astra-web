@@ -1,0 +1,551 @@
+{
+  "browser": "154.0.4258.62",
+  "baselineCommit": "a7f219000beb884e8cd5d682f1ba0bf4ac97028c",
+  "errors": [],
+  "cases": [
+    {
+      "inkStyle": "ink",
+      "background": "#f5f3ef",
+      "colorize": false,
+      "coverFill": false,
+      "checks": {
+        "sync": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "responsive": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "tiled": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "region": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 180480
+        },
+        "workerTiled": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "workerRegion": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 180480
+        }
+      }
+    },
+    {
+      "inkStyle": "ink",
+      "background": "#f5f3ef",
+      "colorize": false,
+      "coverFill": true,
+      "checks": {
+        "sync": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "responsive": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "tiled": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "region": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 180480
+        },
+        "workerTiled": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "workerRegion": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 180480
+        }
+      }
+    },
+    {
+      "inkStyle": "ink",
+      "background": "#f5f3ef",
+      "colorize": true,
+      "coverFill": false,
+      "checks": {
+        "sync": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "responsive": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "tiled": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "region": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 180480
+        },
+        "workerTiled": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "workerRegion": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 180480
+        }
+      }
+    },
+    {
+      "inkStyle": "ink",
+      "background": "#f5f3ef",
+      "colorize": true,
+      "coverFill": true,
+      "checks": {
+        "sync": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "responsive": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "tiled": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "region": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 180480
+        },
+        "workerTiled": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "workerRegion": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 180480
+        }
+      }
+    },
+    {
+      "inkStyle": "ink",
+      "background": "#111615",
+      "colorize": false,
+      "coverFill": false,
+      "checks": {
+        "sync": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "responsive": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "tiled": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "region": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 180480
+        },
+        "workerTiled": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "workerRegion": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 180480
+        }
+      }
+    },
+    {
+      "inkStyle": "ink",
+      "background": "#111615",
+      "colorize": false,
+      "coverFill": true,
+      "checks": {
+        "sync": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "responsive": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "tiled": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "region": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 180480
+        },
+        "workerTiled": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "workerRegion": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 180480
+        }
+      }
+    },
+    {
+      "inkStyle": "ink",
+      "background": "#111615",
+      "colorize": true,
+      "coverFill": false,
+      "checks": {
+        "sync": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "responsive": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "tiled": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "region": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 180480
+        },
+        "workerTiled": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "workerRegion": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 180480
+        }
+      }
+    },
+    {
+      "inkStyle": "ink",
+      "background": "#111615",
+      "colorize": true,
+      "coverFill": true,
+      "checks": {
+        "sync": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "responsive": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "tiled": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "region": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 180480
+        },
+        "workerTiled": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "workerRegion": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 180480
+        }
+      }
+    },
+    {
+      "inkStyle": "cutout",
+      "background": "#f5f3ef",
+      "colorize": false,
+      "coverFill": false,
+      "checks": {
+        "sync": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "responsive": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "tiled": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "region": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 180480
+        }
+      }
+    },
+    {
+      "inkStyle": "cutout",
+      "background": "#f5f3ef",
+      "colorize": false,
+      "coverFill": true,
+      "checks": {
+        "sync": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "responsive": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "tiled": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "region": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 180480
+        }
+      }
+    },
+    {
+      "inkStyle": "cutout",
+      "background": "#f5f3ef",
+      "colorize": true,
+      "coverFill": false,
+      "checks": {
+        "sync": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "responsive": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "tiled": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "region": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 180480
+        }
+      }
+    },
+    {
+      "inkStyle": "cutout",
+      "background": "#f5f3ef",
+      "colorize": true,
+      "coverFill": true,
+      "checks": {
+        "sync": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "responsive": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "tiled": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "region": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 180480
+        }
+      }
+    },
+    {
+      "inkStyle": "cutout",
+      "background": "#111615",
+      "colorize": false,
+      "coverFill": false,
+      "checks": {
+        "sync": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "responsive": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "tiled": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "region": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 180480
+        }
+      }
+    },
+    {
+      "inkStyle": "cutout",
+      "background": "#111615",
+      "colorize": false,
+      "coverFill": true,
+      "checks": {
+        "sync": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "responsive": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "tiled": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "region": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 180480
+        }
+      }
+    },
+    {
+      "inkStyle": "cutout",
+      "background": "#111615",
+      "colorize": true,
+      "coverFill": false,
+      "checks": {
+        "sync": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "responsive": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "tiled": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "region": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 180480
+        }
+      }
+    },
+    {
+      "inkStyle": "cutout",
+      "background": "#111615",
+      "colorize": true,
+      "coverFill": true,
+      "checks": {
+        "sync": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "responsive": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "tiled": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 327680
+        },
+        "region": {
+          "changed": 0,
+          "maxDelta": 0,
+          "channels": 180480
+        }
+      }
+    },
+    {
+      "cancellation": true,
+      "ms": 27.09999990463257
+    }
+  ],
+  "baselineSha256": "d730a237cabad278e0561c4192239a2aa59c54faaf419e142a2575a947570400",
+  "passed": true,
+  "sourceHashes": {
+    "src/lib/signature-portrait/layout.ts": "67b674f270673cb9ef12bc492f8e2b08a7bb93dee92a665eb9040a3ddb47c4b1",
+    "src/lib/signature-portrait/vector-ink.ts": "85c0dfa9c2f6fce1c3ca18ffeed073cd308961acde921aea3b63be07c7769350",
+    "src/lib/signature-portrait/variants.ts": "65996b59db6170f33a00f8adb261e323633d264999b2b20844bbe22aa9a1d401",
+    "src/lib/signature-portrait/raster-cache.ts": "aedd4c280597a5fca8861a22f76998b7f3d90cba6531c73eab8fcf56f608e829",
+    "src/lib/signature-portrait/raster-worker-client.ts": "2c4ad6c205e852d7d35fe1cf72e2a3c8480687e68f34bd090965e9b89b8a1eb5",
+    "src/lib/signature-portrait/raster-worker-protocol.ts": "83405583024ffbcdbe305fa42f192732402049b8a0d99b5338bc88b461e8ff49",
+    "src/lib/signature-portrait/raster.worker.ts": "0ce62d91a15ae4aa1fe82c82680740f7286466966e3e737cbfd6b31d6d113df0",
+    "src/views/SignaturePortraitView.vue": "0a1763fe538b680e0108a38a1e65283937704ac3ad18c45ba5845ecee6dbcb0f"
+  }
+}

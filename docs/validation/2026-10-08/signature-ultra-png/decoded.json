@@ -1,0 +1,102 @@
+{
+  "edge-ui": [
+    {
+      "file": "outline-8k.png",
+      "width": 6556,
+      "height": 8192,
+      "rows": 8192,
+      "channels": 214827008,
+      "crcValid": true,
+      "filters": [
+        1,
+        2
+      ],
+      "idatChunks": 42,
+      "rgbaSha256": "3d209a43ec3981141ad5dca45391b3864e8ff7fc7ebc61a415465ffc7afb7e66",
+      "fileBytes": 43482770,
+      "fullImageAllocated": false
+    },
+    {
+      "file": "outline-16k.png",
+      "width": 13112,
+      "height": 16384,
+      "rows": 16384,
+      "channels": 859308032,
+      "crcValid": true,
+      "filters": [
+        1,
+        2
+      ],
+      "idatChunks": 105,
+      "rgbaSha256": "f547236bee2754a6463195b8da3c38dd3233e8872d12e7d84646374e521cb08a",
+      "fileBytes": 110010706,
+      "fullImageAllocated": false
+    },
+    {
+      "file": "retry-8k.png",
+      "width": 6556,
+      "height": 8192,
+      "rows": 8192,
+      "channels": 214827008,
+      "crcValid": true,
+      "filters": [
+        1,
+        2
+      ],
+      "idatChunks": 42,
+      "rgbaSha256": "3d209a43ec3981141ad5dca45391b3864e8ff7fc7ebc61a415465ffc7afb7e66",
+      "fileBytes": 43482770,
+      "fullImageAllocated": false
+    }
+  ],
+  "chrome-ui": [
+    {
+      "file": "outline-8k.png",
+      "width": 6556,
+      "height": 8192,
+      "rows": 8192,
+      "channels": 214827008,
+      "crcValid": true,
+      "filters": [
+        1,
+        2
+      ],
+      "idatChunks": 42,
+      "rgbaSha256": "3d209a43ec3981141ad5dca45391b3864e8ff7fc7ebc61a415465ffc7afb7e66",
+      "fileBytes": 43482770,
+      "fullImageAllocated": false
+    },
+    {
+      "file": "outline-16k.png",
+      "width": 13112,
+      "height": 16384,
+      "rows": 16384,
+      "channels": 859308032,
+      "crcValid": true,
+      "filters": [
+        1,
+        2
+      ],
+      "idatChunks": 105,
+      "rgbaSha256": "f547236bee2754a6463195b8da3c38dd3233e8872d12e7d84646374e521cb08a",
+      "fileBytes": 110010706,
+      "fullImageAllocated": false
+    },
+    {
+      "file": "retry-8k.png",
+      "width": 6556,
+      "height": 8192,
+      "rows": 8192,
+      "channels": 214827008,
+      "crcValid": true,
+      "filters": [
+        1,
+        2
+      ],
+      "idatChunks": 42,
+      "rgbaSha256": "3d209a43ec3981141ad5dca45391b3864e8ff7fc7ebc61a415465ffc7afb7e66",
+      "fileBytes": 43482770,
+      "fullImageAllocated": false
+    }
+  ]
+}

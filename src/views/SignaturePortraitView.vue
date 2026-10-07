@@ -8,6 +8,7 @@ import DisclosurePanel from '@/components/ui/DisclosurePanel.vue'
 import RenderFeedback from '@/components/ui/RenderFeedback.vue'
 import SignatureCutoutDialog from '@/components/signature/SignatureCutoutDialog.vue'
 import SignatureFontPreview from '@/components/signature/SignatureFontPreview.vue'
+import SignatureUltraExport from '@/components/signature/SignatureUltraExport.vue'
 import {
   addStampToBank,
   addStampsToBank,
@@ -43,7 +44,8 @@ import {
   type SignatureFontId,
 } from '@/lib/signature-portrait'
 import { useThemeStore } from '@/stores/theme'
-import { exportSignaturePng } from '@/lib/signature-portrait/png-export'
+import { exportSignaturePng, type SignaturePngStage } from '@/lib/signature-portrait/png-export'
+import { exportSignatureUltraPng } from '@/lib/signature-portrait/ultra-png-export'
 import { prepareSignatureWash, preparedSignatureWash } from '@/lib/signature-portrait/styled-wash'
 import {
   SIGNATURE_WASH_PALETTES,
@@ -147,6 +149,8 @@ const pending = ref(false)
 const renderBusy = ref(false)
 const pngBusy = ref(false)
 const pngBackend = ref<'worker' | 'canvas' | null>(null)
+const ultraLongSide = ref<8192 | 16384>(8192)
+const ultraInkMode = ref<'original' | 'outline'>('outline')
 let pngSignal: { cancelled?: boolean } | null = null
 const hasInk = ref(false)
 const bankSaving = ref(false)
@@ -1167,7 +1171,9 @@ function addSignatureFiles(files: FileList | File[] | null) {
   if (bankBusy.value) return
   if (!files || files.length === 0) return
   error.value = ''
-  signatureFiles.value = Array.from(files).filter((file) => file.type.startsWith('image/')).slice(0, 200)
+  signatureFiles.value = Array.from(files)
+    .filter((file) => file.type.startsWith('image/'))
+    .slice(0, 200)
   if (!signatureFiles.value.length) error.value = '请选择签名图片'
   if (signatureInput.value) signatureInput.value.value = ''
 }
@@ -1813,9 +1819,10 @@ async function downloadPathSvg() {
   }
 }
 
-async function downloadPng() {
+async function downloadPng(ultra = false) {
   const result = generatedResult.value
   if (pending.value || !lastPlacements.length || layoutW <= 0 || !result) return
+  const ultraSettings = { longSide: ultraLongSide.value, inkMode: ultraInkMode.value }
   error.value = ''
   pending.value = true
   pngBusy.value = true
@@ -1825,25 +1832,39 @@ async function downloadPng() {
   const signal = { cancelled: false }
   pngSignal = signal
   try {
-    const blob = await exportSignaturePng(result, {
+    const hooks = {
       signal,
-      onBackend: (backend) => {
+      onBackend: (backend: 'worker' | 'canvas') => {
         pngBackend.value = backend
       },
-      onProgress: (stage, ratio) => {
+      onProgress: (stage: SignaturePngStage, ratio: number) => {
         if (signal.cancelled || viewDisposed) return
         progressStage.value =
           stage === 'prepare'
-            ? '准备高清导出'
+            ? ultra
+              ? '准备超清导出'
+              : '准备高清导出'
             : stage === 'encode'
               ? '正在编码PNG'
-              : '正在绘制高清PNG'
+              : ultra
+                ? '后台分块重绘与编码'
+                : '正在绘制高清PNG'
         progressRatio.value =
           stage === 'prepare' ? 0 : stage === 'encode' ? 0.95 : 0.05 + ratio * 0.9
       },
-    })
+    }
+    const output = ultra
+      ? await exportSignatureUltraPng(result, ultraSettings, hooks)
+      : {
+          blob: await exportSignaturePng(result, hooks),
+          width: result.width,
+          height: result.height,
+        }
     if (signal.cancelled || viewDisposed) return
-    triggerDownload(blob, `signature-portrait-${result.width}x${result.height}.png`)
+    triggerDownload(
+      output.blob,
+      `signature-portrait-${output.width}x${output.height}${ultra ? '-' + ultraSettings.inkMode : ''}.png`,
+    )
   } catch (e) {
     if (!signal.cancelled) error.value = e instanceof Error ? e.message : '导出失败'
   } finally {
@@ -1908,7 +1929,12 @@ watch([coverFill, colorize, signatureInkStyle], () => {
 
 <template>
   <div class="page">
-    <SignatureCutoutDialog v-if="signatureFiles.length" :files="signatureFiles" @accept="acceptSignatureCutouts" @cancel="signatureFiles = []" />
+    <SignatureCutoutDialog
+      v-if="signatureFiles.length"
+      :files="signatureFiles"
+      @accept="acceptSignatureCutouts"
+      @cancel="signatureFiles = []"
+    />
     <header class="head">
       <p class="eyebrow">实验</p>
       <h1>签名画像</h1>
@@ -1949,7 +1975,7 @@ watch([coverFill, colorize, signatureInkStyle], () => {
         >
           {{ renderBusy ? '生成中…' : '生成预览' }} </FxButton
         ><FxButton v-if="renderBusy" type="button" @click="cancelRender">取消生成</FxButton
-        ><FxButton type="button" :disabled="!hasResult || pending" @click="downloadPng">
+        ><FxButton type="button" :disabled="!hasResult || pending" @click="downloadPng()">
           {{ pngBusy ? '导出PNG中…' : '下载 PNG' }} </FxButton
         ><FxButton v-if="pngBusy" type="button" @click="cancelPng"> 取消PNG导出 </FxButton>
       </div>
@@ -1968,6 +1994,25 @@ watch([coverFill, colorize, signatureInkStyle], () => {
           >取消文件操作</FxButton
         >
       </div>
+      <SignatureUltraExport
+        v-model:long-side="ultraLongSide"
+        v-model:ink-mode="ultraInkMode"
+        :width="generatedResult?.width ?? 0"
+        :height="generatedResult?.height ?? 0"
+        :disabled="pending || bankBusy"
+        @export="downloadPng(true)"
+      />
+      <RenderFeedback
+        v-if="pngBusy"
+        :title="progressStage || '准备PNG导出'"
+        :progress="progressRatio"
+        progress-label="PNG导出进度"
+        :detail="
+          pngBackend === 'canvas'
+            ? '正在分段兼容绘制，编码可能需要等待。可以取消，当前作品会保留。'
+            : '绘制与编码在后台进行，完成后自动下载。可以继续浏览、缩放预览或取消。'
+        "
+      />
       <p v-if="error" class="error" role="alert">{{ error }}</p>
       <p v-if="projectNotice" class="hint" role="status">{{ projectNotice }}</p>
       <p
@@ -2022,8 +2067,17 @@ watch([coverFill, colorize, signatureInkStyle], () => {
             >
               {{ generatingVariants ? '生成中…' : `一键生成 ${bankGoal} 种写法` }}
             </FxButton>
-            <FxButton type="button" :disabled="bankBusy" @click="signatureInput?.click()">上传手写签名 · 抠图</FxButton>
-            <input ref="signatureInput" class="sr-only" type="file" accept="image/*" multiple @change="onSignatureChange" />
+            <FxButton type="button" :disabled="bankBusy" @click="signatureInput?.click()"
+              >上传手写签名 · 抠图</FxButton
+            >
+            <input
+              ref="signatureInput"
+              class="sr-only"
+              type="file"
+              accept="image/*"
+              multiple
+              @change="onSignatureChange"
+            />
           </div>
 
           <p v-if="activeBank" class="bank-progress">
@@ -2138,7 +2192,10 @@ watch([coverFill, colorize, signatureInkStyle], () => {
             </ul>
             <p v-else class="empty">名字库还是空的 — 开始写第 1 遍吧</p>
           </DisclosurePanel>
-          <DisclosurePanel title="上传签名与临时写法" description="上传后先抠图并确认透明笔迹，再用于画像">
+          <DisclosurePanel
+            title="上传签名与临时写法"
+            description="上传后先抠图并确认透明笔迹，再用于画像"
+          >
             <div class="row">
               <FxButton type="button" :disabled="!hasInk" @click="commitDrawnStamp">
                 仅加入临时池
@@ -2151,7 +2208,9 @@ watch([coverFill, colorize, signatureInkStyle], () => {
                 清空临时池
               </FxButton>
             </div>
-            <p class="hint">上传的签名先分离纸面与笔迹，可在透明预览中调整提取力度、检查完整名字。</p>
+            <p class="hint">
+              上传的签名先分离纸面与笔迹，可在透明预览中调整提取力度、检查完整名字。
+            </p>
             <ul v-if="stamps.length" class="stamps">
               <li v-for="s in stamps" :key="s.id">
                 <img :src="s.previewUrl" :alt="s.label" />
@@ -2572,7 +2631,7 @@ watch([coverFill, colorize, signatureInkStyle], () => {
           }}）：照片生成的彩绘底色＋完整签名。SVG保留签名矢量路径，同时嵌入底色图像。
         </p>
         <RenderFeedback
-          v-if="pending || generatingVariants || sharpPainting"
+          v-if="(pending && !pngBusy) || generatingVariants || sharpPainting"
           :title="sharpPainting && !pending ? '正在精绘局部笔迹' : progressStage || '正在准备作品'"
           :detail="
             sharpPainting && !pending

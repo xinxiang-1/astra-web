@@ -18,13 +18,14 @@ export type RasterScene = {
   >
 }
 export type RasterRequest = {
-  type: 'paint' | 'png'
+  type: 'paint' | 'png' | 'png-stripes'
   id: number
   width: number
   height: number
   stampMaxLong: number
   region?: { x: number; y: number; w: number; h: number }
   tileSize?: number
+  inkMode?: 'original' | 'outline'
 }
 export type RasterResponse =
   | { type: 'progress'; id: number; done: number; total: number; stage?: 'render' | 'encode' }
