@@ -1,0 +1,445 @@
+{
+  "scope": "Codec only. Production 16K signature rendering and clarity acceptance remain pending.",
+  "runs": {
+    "edge": {
+      "browser": "154.0.4258.62",
+      "cases": [
+        {
+          "id": "1x1",
+          "width": 1,
+          "height": 1,
+          "peakStripeBytes": 4,
+          "rows": 1,
+          "compressedBytes": 11,
+          "rowScratchBytes": 17,
+          "durationMs": 7.700000047683716,
+          "blobBytes": 93
+        },
+        {
+          "id": "17x129",
+          "width": 17,
+          "height": 129,
+          "peakStripeBytes": 2108,
+          "rows": 129,
+          "compressedBytes": 194,
+          "rowScratchBytes": 273,
+          "durationMs": 21.800000071525574,
+          "blobBytes": 276
+        },
+        {
+          "id": "384x257",
+          "width": 384,
+          "height": 257,
+          "peakStripeBytes": 196608,
+          "rows": 257,
+          "compressedBytes": 1921,
+          "rowScratchBytes": 6145,
+          "durationMs": 93.40000009536743,
+          "blobBytes": 2003
+        },
+        {
+          "id": "519x513",
+          "width": 519,
+          "height": 513,
+          "peakStripeBytes": 263652,
+          "rows": 513,
+          "compressedBytes": 4619,
+          "rowScratchBytes": 8305,
+          "durationMs": 229.10000002384186,
+          "blobBytes": 4701
+        },
+        {
+          "id": "16384x33",
+          "width": 16384,
+          "height": 33,
+          "peakStripeBytes": 1114112,
+          "rows": 33,
+          "compressedBytes": 5683,
+          "rowScratchBytes": 262145,
+          "durationMs": 92.5,
+          "blobBytes": 5765
+        },
+        {
+          "id": "17x16384",
+          "width": 17,
+          "height": 16384,
+          "peakStripeBytes": 8704,
+          "rows": 16384,
+          "compressedBytes": 8136,
+          "rowScratchBytes": 273,
+          "durationMs": 5572.700000047684,
+          "blobBytes": 8218
+        },
+        {
+          "id": "13112x16384",
+          "width": 13112,
+          "height": 16384,
+          "peakStripeBytes": 6713344,
+          "rows": 16384,
+          "compressedBytes": 2224415,
+          "rowScratchBytes": 209793,
+          "durationMs": 11718.200000047684,
+          "blobBytes": 2227077
+        }
+      ],
+      "errors": [],
+      "scope": "Streaming codec only; no claim that signature clarity or production 16K export is integrated.",
+      "rejections": [
+        {
+          "kind": "invalid-dimension",
+          "value": "0"
+        },
+        {
+          "kind": "invalid-dimension",
+          "value": "1.5"
+        },
+        {
+          "kind": "invalid-dimension",
+          "value": "16385"
+        },
+        {
+          "kind": "invalid-dimension",
+          "value": "NaN"
+        },
+        {
+          "id": "cancel",
+          "error": "已取消",
+          "rows": 17,
+          "compressedBytes": 2,
+          "rowScratchBytes": 513
+        },
+        {
+          "id": "budget",
+          "error": "超清 PNG 文件过大，请降低导出分辨率",
+          "rows": 64,
+          "compressedBytes": 188,
+          "rowScratchBytes": 513
+        },
+        {
+          "id": "incomplete",
+          "error": "PNG 条带不完整",
+          "rows": 63,
+          "compressedBytes": 2,
+          "rowScratchBytes": 513
+        },
+        {
+          "kind": "invalid-stripe"
+        }
+      ],
+      "decoded": [
+        {
+          "file": "13112x16384.png",
+          "width": 13112,
+          "height": 16384,
+          "rows": 16384,
+          "channels": 859308032,
+          "filters": [
+            1,
+            2
+          ],
+          "changed": 0,
+          "crcValid": true
+        },
+        {
+          "file": "16384x33.png",
+          "width": 16384,
+          "height": 33,
+          "rows": 33,
+          "channels": 2162688,
+          "filters": [
+            1,
+            2
+          ],
+          "changed": 0,
+          "crcValid": true
+        },
+        {
+          "file": "17x129.png",
+          "width": 17,
+          "height": 129,
+          "rows": 129,
+          "channels": 8772,
+          "filters": [
+            1,
+            2
+          ],
+          "changed": 0,
+          "crcValid": true
+        },
+        {
+          "file": "17x16384.png",
+          "width": 17,
+          "height": 16384,
+          "rows": 16384,
+          "channels": 1114112,
+          "filters": [
+            1,
+            2
+          ],
+          "changed": 0,
+          "crcValid": true
+        },
+        {
+          "file": "1x1.png",
+          "width": 1,
+          "height": 1,
+          "rows": 1,
+          "channels": 4,
+          "filters": [
+            1
+          ],
+          "changed": 0,
+          "crcValid": true
+        },
+        {
+          "file": "384x257.png",
+          "width": 384,
+          "height": 257,
+          "rows": 257,
+          "channels": 394752,
+          "filters": [
+            1,
+            2
+          ],
+          "changed": 0,
+          "crcValid": true
+        },
+        {
+          "file": "519x513.png",
+          "width": 519,
+          "height": 513,
+          "rows": 513,
+          "channels": 1064988,
+          "filters": [
+            1,
+            2
+          ],
+          "changed": 0,
+          "crcValid": true
+        }
+      ],
+      "passed": true,
+      "sourceSha256": "58d8b4ece82d30c7cc56a3f80a83b497c533a98ef1686851a3aaeec06755dbd2"
+    },
+    "chrome": {
+      "browser": "154.0.8037.98",
+      "cases": [
+        {
+          "id": "1x1",
+          "width": 1,
+          "height": 1,
+          "peakStripeBytes": 4,
+          "rows": 1,
+          "compressedBytes": 11,
+          "rowScratchBytes": 17,
+          "durationMs": 1.9000000953674316,
+          "blobBytes": 93
+        },
+        {
+          "id": "17x129",
+          "width": 17,
+          "height": 129,
+          "peakStripeBytes": 2108,
+          "rows": 129,
+          "compressedBytes": 194,
+          "rowScratchBytes": 273,
+          "durationMs": 12,
+          "blobBytes": 276
+        },
+        {
+          "id": "384x257",
+          "width": 384,
+          "height": 257,
+          "peakStripeBytes": 196608,
+          "rows": 257,
+          "compressedBytes": 1921,
+          "rowScratchBytes": 6145,
+          "durationMs": 60.200000047683716,
+          "blobBytes": 2003
+        },
+        {
+          "id": "519x513",
+          "width": 519,
+          "height": 513,
+          "peakStripeBytes": 263652,
+          "rows": 513,
+          "compressedBytes": 4619,
+          "rowScratchBytes": 8305,
+          "durationMs": 147.10000002384186,
+          "blobBytes": 4701
+        },
+        {
+          "id": "16384x33",
+          "width": 16384,
+          "height": 33,
+          "peakStripeBytes": 1114112,
+          "rows": 33,
+          "compressedBytes": 5683,
+          "rowScratchBytes": 262145,
+          "durationMs": 29.299999952316284,
+          "blobBytes": 5765
+        },
+        {
+          "id": "17x16384",
+          "width": 17,
+          "height": 16384,
+          "peakStripeBytes": 8704,
+          "rows": 16384,
+          "compressedBytes": 8136,
+          "rowScratchBytes": 273,
+          "durationMs": 5101.600000023842,
+          "blobBytes": 8218
+        },
+        {
+          "id": "13112x16384",
+          "width": 13112,
+          "height": 16384,
+          "peakStripeBytes": 6713344,
+          "rows": 16384,
+          "compressedBytes": 2224415,
+          "rowScratchBytes": 209793,
+          "durationMs": 12140.200000047684,
+          "blobBytes": 2227077
+        }
+      ],
+      "errors": [],
+      "scope": "Streaming codec only; no claim that signature clarity or production 16K export is integrated.",
+      "rejections": [
+        {
+          "kind": "invalid-dimension",
+          "value": "0"
+        },
+        {
+          "kind": "invalid-dimension",
+          "value": "1.5"
+        },
+        {
+          "kind": "invalid-dimension",
+          "value": "16385"
+        },
+        {
+          "kind": "invalid-dimension",
+          "value": "NaN"
+        },
+        {
+          "id": "cancel",
+          "error": "已取消",
+          "rows": 17,
+          "compressedBytes": 2,
+          "rowScratchBytes": 513
+        },
+        {
+          "id": "budget",
+          "error": "超清 PNG 文件过大，请降低导出分辨率",
+          "rows": 64,
+          "compressedBytes": 188,
+          "rowScratchBytes": 513
+        },
+        {
+          "id": "incomplete",
+          "error": "PNG 条带不完整",
+          "rows": 63,
+          "compressedBytes": 2,
+          "rowScratchBytes": 513
+        },
+        {
+          "kind": "invalid-stripe"
+        }
+      ],
+      "decoded": [
+        {
+          "file": "13112x16384.png",
+          "width": 13112,
+          "height": 16384,
+          "rows": 16384,
+          "channels": 859308032,
+          "filters": [
+            1,
+            2
+          ],
+          "changed": 0,
+          "crcValid": true
+        },
+        {
+          "file": "16384x33.png",
+          "width": 16384,
+          "height": 33,
+          "rows": 33,
+          "channels": 2162688,
+          "filters": [
+            1,
+            2
+          ],
+          "changed": 0,
+          "crcValid": true
+        },
+        {
+          "file": "17x129.png",
+          "width": 17,
+          "height": 129,
+          "rows": 129,
+          "channels": 8772,
+          "filters": [
+            1,
+            2
+          ],
+          "changed": 0,
+          "crcValid": true
+        },
+        {
+          "file": "17x16384.png",
+          "width": 17,
+          "height": 16384,
+          "rows": 16384,
+          "channels": 1114112,
+          "filters": [
+            1,
+            2
+          ],
+          "changed": 0,
+          "crcValid": true
+        },
+        {
+          "file": "1x1.png",
+          "width": 1,
+          "height": 1,
+          "rows": 1,
+          "channels": 4,
+          "filters": [
+            1
+          ],
+          "changed": 0,
+          "crcValid": true
+        },
+        {
+          "file": "384x257.png",
+          "width": 384,
+          "height": 257,
+          "rows": 257,
+          "channels": 394752,
+          "filters": [
+            1,
+            2
+          ],
+          "changed": 0,
+          "crcValid": true
+        },
+        {
+          "file": "519x513.png",
+          "width": 519,
+          "height": 513,
+          "rows": 513,
+          "channels": 1064988,
+          "filters": [
+            1,
+            2
+          ],
+          "changed": 0,
+          "crcValid": true
+        }
+      ],
+      "passed": true,
+      "sourceSha256": "58d8b4ece82d30c7cc56a3f80a83b497c533a98ef1686851a3aaeec06755dbd2"
+    }
+  }
+}

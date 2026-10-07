@@ -98,7 +98,8 @@
     "test:signature-wash-prototype": "node scripts/signature-wash-prototype.mjs",
     "test:signature-png": "node scripts/signature-png-contract.mjs",
     "test:signature-png-ui": "node scripts/signature-png-ui.mjs",
-    "profile:signature-png": "node scripts/signature-png-profile.mjs"
+    "profile:signature-png": "node scripts/signature-png-profile.mjs",
+    "test:signature-png-stream": "node scripts/signature-png-stream-contract.mjs"
   },
   "dependencies": {
     "@file-viewer/preset-office": "^3.1.1",
