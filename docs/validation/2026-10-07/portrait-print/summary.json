@@ -1,0 +1,386 @@
+{
+  "date": "2026-10-07",
+  "scope": "Independent static character-print prototype; 15 UI/algorithm cases per browser. UI production bundle; mask audit uses same worktree dev modules. Not production presets, whole-signature templates, physical print certification, or full commercial acceptance.",
+  "sourceHashes": {
+    "model.ts": "637025f5b3b2010a1b9c947aa3ce5e3d916cb326ff2e22affaff6c9788a6f360",
+    "atlas.ts": "a4f34e43b327f4dcc87402f2e03d9b6df94fce585a0bf0d8305db025d586f0ef",
+    "engine.ts": "d4718f45d6d135b4449ddf8f6085e79ea20af382b4673f40966b3f874205208b",
+    "worker.ts": "dab95872065323d69089d9c855c22f94840791b60964e08577f4bbb11e0fa370",
+    "main.ts": "4f7f9ee353fe6abaeb0e9f0983ba37f2270f729863cae85049d041964b37bf9f",
+    "controls.css": "73c3982023387f049375768f095204e08c0f4201390ea219be48f37e83a905d9",
+    "index.html": "6647a93f7622d36afe6a661188169120b0d6edfa5249da2cb74613e9ee7cf907",
+    "tsconfig.json": "50203ebac9bc511cd2b7523ddcc64fed7890edd872805229e2dfc9413cd25090"
+  },
+  "reports": {
+    "edge": {
+      "browser": "154.0.4258.62",
+      "privateSource": false,
+      "passed": true,
+      "caseCount": 15,
+      "caseKinds": [
+        "initial",
+        "actual-source",
+        "unapplied-zoom-export",
+        "cancel-transaction",
+        "partial-cancel-transaction",
+        "invalid-media-transaction",
+        "deterministic-replay",
+        "palette",
+        "palette",
+        "chinese",
+        "mobile-theme",
+        "mobile-theme",
+        "idle-stop",
+        "transparent-source",
+        "glyph-only-and-validation"
+      ],
+      "actual": {
+        "kind": "actual-source",
+        "state": {
+          "busy": false,
+          "generation": 2,
+          "completed": 2,
+          "candidateCount": 0,
+          "snapshot": {
+            "version": 1,
+            "palette": "blue-coral",
+            "screen": "ramp",
+            "phrase": "林晓晚，把名字写进光影。",
+            "columns": 160,
+            "longEdge": 2048,
+            "contrast": 0.15,
+            "grain": 0.4,
+            "registration": 0.8,
+            "seed": 20261007
+          },
+          "stats": [
+            {
+              "style": "duotone",
+              "width": 1639,
+              "height": 2048,
+              "columns": 160,
+              "rows": 103,
+              "glyphs": 18822,
+              "capacityClipped": 14346,
+              "maxCoverage": 0.9591331269349845,
+              "elapsedMs": 87.89999997615814,
+              "inks": [
+                "#163b63",
+                "#f15060"
+              ],
+              "paper": "#fff5e6",
+              "timings": {
+                "samplingMs": 4.599999904632568,
+                "separationMs": 3,
+                "glyphRasterMs": 4.200000047683716,
+                "printingMs": 69.89999997615814
+              }
+            },
+            {
+              "style": "riso",
+              "width": 1639,
+              "height": 2048,
+              "columns": 160,
+              "rows": 103,
+              "glyphs": 32764,
+              "capacityClipped": 14410,
+              "maxCoverage": 0.9591331269349845,
+              "elapsedMs": 148.29999995231628,
+              "inks": [
+                "#163b63",
+                "#f15060"
+              ],
+              "paper": "#fff5e6",
+              "timings": {
+                "samplingMs": 5.599999904632568,
+                "separationMs": 4.300000071525574,
+                "glyphRasterMs": 4.199999928474426,
+                "printingMs": 120.90000009536743
+              }
+            },
+            {
+              "style": "pop",
+              "width": 1639,
+              "height": 2048,
+              "columns": 160,
+              "rows": 103,
+              "glyphs": 46931,
+              "capacityClipped": 14523,
+              "maxCoverage": 0.9591331269349845,
+              "elapsedMs": 258.2999999523163,
+              "inks": [
+                "#ed388a",
+                "#16b9ce",
+                "#182337"
+              ],
+              "paper": "#fff098",
+              "timings": {
+                "samplingMs": 2.5,
+                "separationMs": 77.29999995231628,
+                "glyphRasterMs": 4.100000023841858,
+                "printingMs": 162.39999997615814
+              }
+            }
+          ]
+        },
+        "measurement": {
+          "rafP95": 16.799999999999955,
+          "rafMax": 16.800000000000068,
+          "timerP95": 21.899999976158142,
+          "timerMax": 27.199999928474426,
+          "longTasks": []
+        },
+        "hashes": {
+          "duotone": "d0275e536ec7dc6d77bab46dcc6f8f00230a28d53ff475a9c9fa10032a9a4b3e",
+          "riso": "e26ac3eb05a8b1b41bb2d899221a154db7c90d9580cf85d4fe73efe30af66043",
+          "pop": "e7d48f945cbdea8ffc7df4db16d18d07032fc3ecdee88119954b17de972a869d"
+        }
+      },
+      "partialCancel": {
+        "kind": "partial-cancel-transaction",
+        "pending": 1,
+        "completed": 2
+      },
+      "maskAudit": {
+        "kind": "glyph-only-and-validation",
+        "result": [
+          {
+            "style": "duotone",
+            "changed": 0
+          },
+          {
+            "style": "riso",
+            "changed": 0
+          },
+          {
+            "style": "pop",
+            "changed": 0
+          }
+        ],
+        "rejected": 4,
+        "maxCoverage": 0.9591331269349845
+      },
+      "transparency": {
+        "kind": "transparent-source",
+        "result": [
+          {
+            "style": "duotone",
+            "changed": 0
+          },
+          {
+            "style": "riso",
+            "changed": 0
+          },
+          {
+            "style": "pop",
+            "changed": 0
+          }
+        ]
+      },
+      "errors": []
+    },
+    "chrome": {
+      "browser": "154.0.8037.93",
+      "privateSource": true,
+      "passed": true,
+      "caseCount": 15,
+      "caseKinds": [
+        "initial",
+        "actual-source",
+        "unapplied-zoom-export",
+        "cancel-transaction",
+        "partial-cancel-transaction",
+        "invalid-media-transaction",
+        "deterministic-replay",
+        "palette",
+        "palette",
+        "chinese",
+        "mobile-theme",
+        "mobile-theme",
+        "idle-stop",
+        "transparent-source",
+        "glyph-only-and-validation"
+      ],
+      "actual": {
+        "kind": "actual-source",
+        "state": {
+          "busy": false,
+          "generation": 2,
+          "completed": 2,
+          "candidateCount": 0,
+          "snapshot": {
+            "version": 1,
+            "palette": "blue-coral",
+            "screen": "ramp",
+            "phrase": "林晓晚，把名字写进光影。",
+            "columns": 160,
+            "longEdge": 2048,
+            "contrast": 0.15,
+            "grain": 0.4,
+            "registration": 0.8,
+            "seed": 20261007
+          },
+          "stats": [
+            {
+              "style": "duotone",
+              "width": 1536,
+              "height": 2048,
+              "columns": 160,
+              "rows": 110,
+              "glyphs": 30946,
+              "capacityClipped": 4225,
+              "maxCoverage": 0.9591331269349845,
+              "elapsedMs": 127.80000007152557,
+              "inks": [
+                "#163b63",
+                "#f15060"
+              ],
+              "paper": "#fff5e6",
+              "timings": {
+                "samplingMs": 4.400000095367432,
+                "separationMs": 3.1999999284744263,
+                "glyphRasterMs": 4.399999976158142,
+                "printingMs": 107.5
+              }
+            },
+            {
+              "style": "riso",
+              "width": 1536,
+              "height": 2048,
+              "columns": 160,
+              "rows": 110,
+              "glyphs": 32783,
+              "capacityClipped": 4323,
+              "maxCoverage": 0.9591331269349845,
+              "elapsedMs": 147.89999997615814,
+              "inks": [
+                "#163b63",
+                "#f15060"
+              ],
+              "paper": "#fff5e6",
+              "timings": {
+                "samplingMs": 4.899999976158142,
+                "separationMs": 4,
+                "glyphRasterMs": 3.799999952316284,
+                "printingMs": 130.60000002384186
+              }
+            },
+            {
+              "style": "pop",
+              "width": 1536,
+              "height": 2048,
+              "columns": 160,
+              "rows": 110,
+              "glyphs": 27767,
+              "capacityClipped": 4579,
+              "maxCoverage": 0.9591331269349845,
+              "elapsedMs": 179.39999997615814,
+              "inks": [
+                "#ed388a",
+                "#16b9ce",
+                "#182337"
+              ],
+              "paper": "#fff098",
+              "timings": {
+                "samplingMs": 2.6999999284744263,
+                "separationMs": 69.40000009536743,
+                "glyphRasterMs": 4.200000047683716,
+                "printingMs": 93.39999997615814
+              }
+            }
+          ]
+        },
+        "measurement": {
+          "rafP95": 16.799999999999955,
+          "rafMax": 16.800000000000182,
+          "timerP95": 21.5,
+          "timerMax": 31.300000071525574,
+          "longTasks": []
+        },
+        "hashes": {
+          "duotone": "f333a41d27befa9b3881a0f7919ba925967c92d4c251ab79036c8ee1c424a229",
+          "riso": "09f294fe96bb598dd4d5983561f9a59170c47b172bfa701af772cd2691ccf97d",
+          "pop": "2ba924f6d747a48f663264c5163fa71fd38389aa9e453b8fd1a578bd6ab2a31c"
+        }
+      },
+      "partialCancel": {
+        "kind": "partial-cancel-transaction",
+        "pending": 1,
+        "completed": 2
+      },
+      "maskAudit": {
+        "kind": "glyph-only-and-validation",
+        "result": [
+          {
+            "style": "duotone",
+            "changed": 0
+          },
+          {
+            "style": "riso",
+            "changed": 0
+          },
+          {
+            "style": "pop",
+            "changed": 0
+          }
+        ],
+        "rejected": 4,
+        "maxCoverage": 0.9591331269349845
+      },
+      "transparency": {
+        "kind": "transparent-source",
+        "result": [
+          {
+            "style": "duotone",
+            "changed": 0
+          },
+          {
+            "style": "riso",
+            "changed": 0
+          },
+          {
+            "style": "pop",
+            "changed": 0
+          }
+        ]
+      },
+      "errors": []
+    }
+  },
+  "followup": {
+    "edge": {
+      "passed": true,
+      "navigation": [
+        "http://127.0.0.1:5180/art",
+        "http://127.0.0.1:5180/ascii-art"
+      ]
+    },
+    "chrome": {
+      "passed": true,
+      "navigation": [
+        "http://127.0.0.1:5180/art",
+        "http://127.0.0.1:5180/ascii-art"
+      ]
+    }
+  },
+  "protectedUnchanged": true,
+  "checks": {
+    "prototypeTypes": true,
+    "prototypeESLint": true,
+    "independentBundle": true,
+    "appTypeCheck": true,
+    "appBuild": true
+  },
+  "knownFailures": [
+    "Chrome initial production completion timeouts",
+    "Low-memory test overlap terminated after identity verification",
+    "CPU destination/default glyph source copying took roughly 13s per 1K frame",
+    "Odd-width zoom test compared integer CSS width with a half-pixel expected value"
+  ],
+  "visualReview": {
+    "duotone": "Subject retained; visible dark vertical cell pattern remains.",
+    "riso": "Independent area screen and registration give a distinct texture; midtone glyphs remain prominent.",
+    "pop": "Stronger facial/color-plane contrast on supplied source; coarse quantization and clothing lines remain.",
+    "chinese": "Fine phrase glyphs retain lower coverage; not whole handwritten signatures."
+  }
+}

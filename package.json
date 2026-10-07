@@ -88,7 +88,10 @@
     "test:signature-direction": "node scripts/signature-direction-contract.mjs",
     "test:signature-tone": "node scripts/signature-tone-contract.mjs",
     "test:signature-fusion": "node scripts/signature-fusion-contract.mjs",
-    "research:portrait-styles": "node scripts/render-portrait-styleboard.mjs"
+    "research:portrait-styles": "node scripts/render-portrait-styleboard.mjs",
+    "demo:portrait-print": "node scripts/portrait-print-bundle.mjs --serve",
+    "test:portrait-print": "node scripts/portrait-print-study.mjs",
+    "check:portrait-print": "tsc --project docs/prototypes/v13-portrait-styles/tsconfig.json --noEmit"
   },
   "dependencies": {
     "@file-viewer/preset-office": "^3.1.1",

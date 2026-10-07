@@ -1,0 +1,16 @@
+/* Same native selection contract as UiSelect: keyboard behavior stays native. */
+@supports (appearance: base-select) {
+  select, select::picker(select) { appearance: base-select; }
+  select::picker(select) {
+    color: var(--text); background: var(--panel); border: 1px solid var(--line);
+    border-radius: 10px; padding: 6px; margin-block: 5px; max-height: min(320px, 60dvh);
+    overflow-y: auto; box-shadow: 0 8px 24px #0002;
+  }
+  option { min-height: 42px; padding: 9px 12px; border-radius: 5px; gap: 10px; cursor: pointer; }
+  option:checked, option:hover, option:focus { color: var(--text); background: var(--soft); }
+  option::checkmark { color: var(--accent); }
+}
+@media (forced-colors: active) {
+  select, select::picker(select) { appearance: auto; }
+  option { color: CanvasText; background: Canvas; }
+}
