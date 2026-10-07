@@ -9,8 +9,9 @@ import { autoInvertDensity } from './layout-compute'
 import { createTintedStampCache } from './raster-cache'
 import { prepareSignatureInk, type SignatureInkStyle } from './ink-style'
 import { createVectorInkPainterSteps } from './vector-ink'
+import type { SignatureWashRecipe } from './wash-style'
 
-export type SignatureLayoutOptions = {
+export type SignatureLayoutOptions = SignatureWashRecipe & {
   inkStyle?: SignatureInkStyle
   layoutMethod?: 'woven' | 'stipple'
   ink?: { r: number; g: number; b: number }

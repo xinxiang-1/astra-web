@@ -1,0 +1,374 @@
+{
+  "date": "2026-10-07",
+  "stage": "signature mixed-media background styles",
+  "privateAssetsPublished": false,
+  "artifacts": [
+    "public-comparison.png",
+    "public-operations.webm"
+  ],
+  "outputRecipe": {
+    "styles": [
+      "duotone-v1",
+      "pop-v1"
+    ],
+    "palettes": [
+      "blue-coral",
+      "forest-rose",
+      "violet-gold"
+    ],
+    "longestBackgroundPx": 384,
+    "defaultPathPreserved": true,
+    "signatureGeometryAndInkPreserved": true
+  },
+  "checks": {
+    "engineEdge": {
+      "browser": "154.0.4258.62",
+      "passed": true,
+      "caseGroups": 32,
+      "errorCount": 0,
+      "allProjectMaxDelta": 0,
+      "workerFullMaxDelta": 0,
+      "workerRegionMaxDelta": 0
+    },
+    "engineChrome": {
+      "browser": "154.0.8037.93",
+      "passed": true,
+      "caseGroups": 32,
+      "errorCount": 0,
+      "allProjectMaxDelta": 0,
+      "workerFullMaxDelta": 0,
+      "workerRegionMaxDelta": 0
+    },
+    "uiProductionEdge": {
+      "browser": "154.0.4258.62",
+      "passed": true,
+      "caseGroups": 0,
+      "errorCount": 0,
+      "ui": {
+        "outputs": [
+          {
+            "style": "duotone-v1",
+            "palette": "blue-coral",
+            "hash": "c9f978b3f90f6390be403fafcf065787b684cdb27a32deef3a4248d703ec00f3",
+            "geometryEqual": true,
+            "response": {
+              "durationMs": 2941.0999999046326,
+              "frames": 161,
+              "rafP95": 18.100000000000364,
+              "rafMax": 89.70000000000073,
+              "longTasks": []
+            }
+          },
+          {
+            "style": "pop-v1",
+            "palette": "violet-gold",
+            "hash": "faade0326cec7879989a0d37d3971569ca9aba80bb2c606538743583b084256d",
+            "geometryEqual": true,
+            "response": {
+              "durationMs": 2941.100000023842,
+              "frames": 140,
+              "rafP95": 18.200000000000728,
+              "rafMax": 372.1139999523166,
+              "longTasks": []
+            }
+          }
+        ],
+        "projectExact": true,
+        "unappliedSnapshot": true,
+        "immediateCancel": true,
+        "lateCancel": true,
+        "failedPreparationKeepsScene": true,
+        "cancelledPhotoKeepsOriginalComparison": true
+      },
+      "zoom": [
+        {
+          "quality": "clear",
+          "width": 776,
+          "height": 662
+        },
+        {
+          "quality": "fast",
+          "width": 776,
+          "height": 662
+        },
+        {
+          "quality": "detail",
+          "width": 1552,
+          "height": 1324
+        }
+      ]
+    },
+    "uiProductionChrome": {
+      "browser": "154.0.8037.93",
+      "passed": true,
+      "caseGroups": 0,
+      "errorCount": 0,
+      "ui": {
+        "outputs": [
+          {
+            "style": "duotone-v1",
+            "palette": "blue-coral",
+            "hash": "c9f978b3f90f6390be403fafcf065787b684cdb27a32deef3a4248d703ec00f3",
+            "geometryEqual": true,
+            "response": {
+              "durationMs": 3269,
+              "frames": 151,
+              "rafP95": 34.79999999999927,
+              "rafMax": 389.5,
+              "longTasks": []
+            }
+          },
+          {
+            "style": "pop-v1",
+            "palette": "violet-gold",
+            "hash": "faade0326cec7879989a0d37d3971569ca9aba80bb2c606538743583b084256d",
+            "geometryEqual": true,
+            "response": {
+              "durationMs": 3861.8000000715256,
+              "frames": 203,
+              "rafP95": 18.200000000000728,
+              "rafMax": 71.20000000000073,
+              "longTasks": []
+            }
+          }
+        ],
+        "projectExact": true,
+        "unappliedSnapshot": true,
+        "immediateCancel": true,
+        "lateCancel": true,
+        "failedPreparationKeepsScene": true,
+        "cancelledPhotoKeepsOriginalComparison": true
+      },
+      "zoom": [
+        {
+          "quality": "clear",
+          "width": 776,
+          "height": 662
+        },
+        {
+          "quality": "fast",
+          "width": 776,
+          "height": 662
+        },
+        {
+          "quality": "detail",
+          "width": 1552,
+          "height": 1324
+        }
+      ]
+    },
+    "labelsProductionEdge": {
+      "browser": "154.0.4258.62",
+      "passed": true,
+      "caseGroups": 0,
+      "errorCount": 0,
+      "labels": [
+        {
+          "style": "duotone-v1",
+          "snapshotLabel": true,
+          "dirtyState": true
+        },
+        {
+          "style": "pop-v1",
+          "snapshotLabel": true,
+          "dirtyState": true
+        }
+      ]
+    },
+    "labelsProductionChrome": {
+      "browser": "154.0.8037.93",
+      "passed": true,
+      "caseGroups": 0,
+      "errorCount": 0,
+      "labels": [
+        {
+          "style": "duotone-v1",
+          "snapshotLabel": true,
+          "dirtyState": true
+        },
+        {
+          "style": "pop-v1",
+          "snapshotLabel": true,
+          "dirtyState": true
+        }
+      ]
+    },
+    "prototypeProductionEdge": {
+      "browser": "154.0.4258.62",
+      "passed": true,
+      "caseGroups": 5,
+      "errorCount": 0,
+      "actualComparison": {
+        "kind": "visual",
+        "state": {
+          "busy": false,
+          "count": 2,
+          "candidateCount": 0,
+          "placements": 9579,
+          "recipes": [
+            {},
+            {
+              "washStyle": "duotone-v1",
+              "washPalette": "blue-coral"
+            },
+            {
+              "washStyle": "pop-v1",
+              "washPalette": "blue-coral"
+            }
+          ],
+          "elapsed": [
+            2085.4000000953674,
+            2331.0999999046326,
+            2476.7000000476837
+          ]
+        },
+        "hashes": {
+          "source": "88a543c4b1cc14549c9a738ac3a1d3de6ef7c48f43953df5b22e5f19b4f333eb",
+          "duotone-v1": "b217aa94cdaf4603e3a5373e6516d2c21c3d18e563fa16489f6ea3c8c3dfc585",
+          "pop-v1": "4f1566e6ca0fe45d9e1ecd6f769fd342ce9e0f6756af82a3649d0bdd80f6d2b6"
+        }
+      }
+    },
+    "prototypeProductionChrome": {
+      "browser": "154.0.8037.93",
+      "passed": true,
+      "caseGroups": 5,
+      "errorCount": 0,
+      "actualComparison": {
+        "kind": "visual",
+        "state": {
+          "busy": false,
+          "count": 2,
+          "candidateCount": 0,
+          "placements": 9579,
+          "recipes": [
+            {},
+            {
+              "washStyle": "duotone-v1",
+              "washPalette": "blue-coral"
+            },
+            {
+              "washStyle": "pop-v1",
+              "washPalette": "blue-coral"
+            }
+          ],
+          "elapsed": [
+            1733.2999999523163,
+            1818.3000000715256,
+            2411.5
+          ]
+        },
+        "hashes": {
+          "source": "88a543c4b1cc14549c9a738ac3a1d3de6ef7c48f43953df5b22e5f19b4f333eb",
+          "duotone-v1": "b217aa94cdaf4603e3a5373e6516d2c21c3d18e563fa16489f6ea3c8c3dfc585",
+          "pop-v1": "4f1566e6ca0fe45d9e1ecd6f769fd342ce9e0f6756af82a3649d0bdd80f6d2b6"
+        }
+      }
+    },
+    "frozenToneEdge": {
+      "browser": "154.0.4258.62",
+      "passed": true,
+      "caseGroups": 14,
+      "errorCount": 0,
+      "ui": {
+        "beforeHash": "84af0f7439e89639eb07d06b38e5da27a1740fc744cf9af4dcfcb4dee6d7436d",
+        "enhancedHash": "c5c561a5905a64b09e60f92258c4890ba7b7c10e883eab7dba753fecc5b502b7",
+        "coloredHash": "d70bbc7b7d5dc907e15ab1c51258bab6fb201a516df05eb0ce7597ecbf3e51c2",
+        "count": 13610,
+        "geometryRetained": true,
+        "unappliedSnapshotRetained": true,
+        "projectExactPng": true,
+        "themes": [
+          "dark",
+          "light"
+        ],
+        "widths": [
+          1440,
+          390
+        ]
+      }
+    },
+    "rawFusionEdge": {
+      "browser": "154.0.4258.62",
+      "passed": true,
+      "caseGroups": 12,
+      "errorCount": 0,
+      "ui": {
+        "count": 15029,
+        "size": [
+          1638,
+          2048
+        ],
+        "pureHash": "6267087ac20166f2eb0d7c84fbc03ba6e9acbe2168567a7254b93f5956b36704",
+        "fusedHash": "f6129beced273d3b74343df8300f0656f296db1f3aa3a94430a8f56c829940fa",
+        "geometryEqual": true,
+        "explicitMixedLabel": true,
+        "unappliedSnapshot": true,
+        "projectExactPng": true,
+        "privateSource": false
+      },
+      "zoom": [
+        {
+          "quality": "clear",
+          "width": 776,
+          "height": 662,
+          "region": {
+            "x": 0,
+            "y": 0,
+            "w": 776,
+            "h": 662
+          }
+        },
+        {
+          "quality": "fast",
+          "width": 776,
+          "height": 662,
+          "region": {
+            "x": 0,
+            "y": 0,
+            "w": 776,
+            "h": 662
+          }
+        },
+        {
+          "quality": "detail",
+          "width": 1552,
+          "height": 1324,
+          "region": {
+            "x": 0,
+            "y": 0,
+            "w": 776,
+            "h": 662
+          }
+        }
+      ]
+    }
+  },
+  "video": {
+    "source": "public prototype Edge recording with visible pauses",
+    "sourceRangeSeconds": [
+      14.7,
+      20.4
+    ],
+    "outputDimensions": [
+      1200,
+      900
+    ],
+    "speedUnchanged": true,
+    "audio": false
+  },
+  "privateReview": {
+    "nativeLongestSides": [
+      1024,
+      2048
+    ],
+    "sourceUploadedLocally": true,
+    "commercialAestheticConfirmed": false
+  },
+  "failuresAndLimits": [
+    "Independent tsc initially missing existing Imagetracer shim; fixed.",
+    "Direct ImageData versus premultiplied canvas comparison was invalid; corrected to the same canvas roundtrip, exact RGBA retained.",
+    "Repeated UI rAF outliers retained; no device-wide no-jank or 60fps claim.",
+    "384px background remains soft at native resolution; real handwritten signatures, 8K/low-memory/Safari and printed output need further acceptance."
+  ]
+}

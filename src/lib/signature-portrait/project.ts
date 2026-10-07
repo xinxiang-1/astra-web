@@ -2,6 +2,7 @@ import { loadImageElement, type SignatureStamp } from './extract'
 import type { Placement, SignatureLayoutOptions } from './layout'
 import { SIGNATURE_FONT_LICENSES } from './font-licenses'
 import type { SignatureFontId } from './fonts'
+import { washRecipe } from './wash-style'
 
 export const SIGNATURE_PROJECT_ACCEPT = '.astra-signature'
 export const SIGNATURE_PROJECT_ENGINE = 'signature-1'
@@ -114,6 +115,8 @@ function optionsOf(value: unknown): SignatureLayoutOptions {
     layoutMethod: ['woven', 'stipple'],
     orientationMode: ['classic', 'flow'],
     edgeColorMode: ['auto', 'custom', 'ink'],
+    washStyle: ['duotone-v1', 'pop-v1'],
+    washPalette: ['blue-coral', 'forest-rose', 'violet-gold'],
   }
   for (const [key, val] of Object.entries(raw)) {
     if (val === undefined) continue
@@ -127,7 +130,7 @@ function optionsOf(value: unknown): SignatureLayoutOptions {
       if (typeof val !== 'boolean') fail('开关参数无效')
       result[key] = val
     } else if (Object.hasOwn(enums, key)) {
-      if (!enums[key]!.includes(String(val))) fail('样式参数暂不支持')
+      if (typeof val !== 'string' || !enums[key]!.includes(val)) fail('样式参数暂不支持')
       result[key] = val
     } else if (key === 'ink' || key === 'edgeColor') result[key] = rgb(val)
     else if (key === 'background') {
@@ -137,6 +140,11 @@ function optionsOf(value: unknown): SignatureLayoutOptions {
   }
   if (Number(result.minSizeRatio ?? 0.022) > Number(result.maxSizeRatio ?? 0.065))
     fail('签名大小范围无效')
+  const recipe = washRecipe(result as SignatureLayoutOptions)
+  if (recipe) {
+    if (!(Number(result.underlay ?? 0) > 0)) fail('彩绘风格需要启用融合底色')
+    result.washPalette = recipe.palette
+  }
   return result as SignatureLayoutOptions
 }
 function vectorOf(value: unknown): SignatureStamp['vector'] {

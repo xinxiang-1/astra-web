@@ -1,0 +1,4 @@
+{
+  "extends": "../v13-portrait-styles/tsconfig.json",
+  "include": ["./*.ts", "../../../src/shims/imagetracerjs.d.ts"]
+}

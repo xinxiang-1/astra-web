@@ -91,7 +91,11 @@
     "research:portrait-styles": "node scripts/render-portrait-styleboard.mjs",
     "demo:portrait-print": "node scripts/portrait-print-bundle.mjs --serve",
     "test:portrait-print": "node scripts/portrait-print-study.mjs",
-    "check:portrait-print": "tsc --project docs/prototypes/v13-portrait-styles/tsconfig.json --noEmit"
+    "check:portrait-print": "tsc --project docs/prototypes/v13-portrait-styles/tsconfig.json --noEmit",
+    "demo:signature-wash": "node scripts/signature-wash-bundle.mjs --serve",
+    "check:signature-wash": "tsc --project docs/prototypes/v14-signature-wash/tsconfig.json --noEmit",
+    "test:signature-wash": "node scripts/signature-wash-contract.mjs",
+    "test:signature-wash-prototype": "node scripts/signature-wash-prototype.mjs"
   },
   "dependencies": {
     "@file-viewer/preset-office": "^3.1.1",

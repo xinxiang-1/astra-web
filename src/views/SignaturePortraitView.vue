@@ -43,7 +43,12 @@ import {
   type SignatureFontId,
 } from '@/lib/signature-portrait'
 import { useThemeStore } from '@/stores/theme'
-import { signatureColorWash } from '@/lib/signature-portrait/color-wash'
+import { prepareSignatureWash, preparedSignatureWash } from '@/lib/signature-portrait/styled-wash'
+import {
+  SIGNATURE_WASH_PALETTES,
+  type SignatureWashStyle,
+  type SignatureWashPalette,
+} from '@/lib/signature-portrait/wash-style'
 import {
   fitSignatureRaster,
   measureSignatureViewport,
@@ -138,6 +143,7 @@ let comparePointerId: number | null = null
 
 const error = ref('')
 const pending = ref(false)
+const renderBusy = ref(false)
 const hasInk = ref(false)
 const bankSaving = ref(false)
 const generatingVariants = ref(false)
@@ -163,6 +169,8 @@ const colorize = ref(true)
 const colorMode = ref<'ink' | 'source'>('ink')
 const toneGain = ref(1)
 const colorWashStrength = ref(0)
+const washStyle = ref<'source' | SignatureWashStyle>('source')
+const washPalette = ref<SignatureWashPalette>('blue-coral')
 const colorTreatment = computed({
   get: () => (colorWashStrength.value > 0 ? 'fusion' : 'pure'),
   set: (value: string) => {
@@ -170,8 +178,17 @@ const colorTreatment = computed({
   },
 })
 function resultColorWash(result: SignatureProject) {
-  return (result.options.underlay ?? 0) > 0 ? signatureColorWash(result.portrait) : undefined
+  return (result.options.underlay ?? 0) > 0
+    ? preparedSignatureWash(result.portrait, result.options)
+    : undefined
 }
+const resultWashLabel = computed(() => {
+  const options = generatedResult.value?.options
+  if (!options?.washStyle) return '原色融合'
+  const style = options.washStyle === 'duotone-v1' ? '双色绘影 · 试用' : '波普彩绘 · 试用'
+  const palette = SIGNATURE_WASH_PALETTES.find(p => p.id === (options.washPalette ?? 'blue-coral'))!
+  return `${style} / ${palette.name}`
+})
 const coverFill = ref(false)
 const fillHighlights = ref(false)
 /** true = 亮处密铺（密度反向）；null = 自动 */
@@ -228,6 +245,8 @@ function currentLayoutOptions(): SignatureLayoutOptions {
     gamma: restoredLayoutOptions.value.gamma ?? 1.15,
     background: previewBg.value,
     underlay: colorWashStrength.value,
+    washStyle: colorWashStrength.value > 0 && washStyle.value !== 'source' ? washStyle.value : undefined,
+    washPalette: colorWashStrength.value > 0 && washStyle.value !== 'source' ? washPalette.value : undefined,
     seed: seed.value,
     edgeOutline: edgeOutline.value,
     edgeBoost: edgeBoost.value,
@@ -250,7 +269,11 @@ const resultBackground = computed(
   () => generatedResult.value?.options.background ?? previewBg.value,
 )
 
-const portraitSrc = computed(() => portraitObjectUrl.value || portrait.value?.src || '')
+const portraitSrc = ref('')
+watch(generatedResult, result => {
+  if (portraitSrc.value) URL.revokeObjectURL(portraitSrc.value)
+  portraitSrc.value = result ? URL.createObjectURL(result.portraitFile) : ''
+})
 
 const canCompare = computed(() => hasResult.value && Boolean(portraitSrc.value))
 const comparisonActive = computed(() => canCompare.value && showComparison.value)
@@ -532,21 +555,17 @@ function ensureCanvas2d(): HTMLCanvasElement {
   return canvas
 }
 
-function ensureGlPreview(): GlStampPreview | null {
+function prepareGlPreview(scene: SignatureProject): GlStampPreview | null {
   // The new path-cutout contract has not passed a GPU renderer gate.
   if (
-    generatedResult.value?.options.inkStyle === 'cutout' ||
-    (generatedResult.value?.options.underlay ?? 0) > 0
+    scene.options.inkStyle === 'cutout' ||
+    (scene.options.underlay ?? 0) > 0
   )
     return null
-  if (glPreview) return glPreview
   // 新 canvas，避免已被 getContext('2d') 占用
   const canvas = document.createElement('canvas')
   const preview = createGlStampPreview(canvas)
   if (!preview) return null
-  glPreview = preview
-  previewBackend = 'webgl'
-  mountDisplayCanvas(preview.canvas)
   return preview
 }
 
@@ -1110,7 +1129,7 @@ function onPreviewScroll() {
 function onWindowResize() {
   syncDrawSurface()
   if (layoutW > 0) applyStageDisplaySize()
-  else clearResultStage()
+  else if (!pending.value) clearResultStage()
 }
 
 onBeforeUnmount(() => {
@@ -1131,6 +1150,7 @@ onBeforeUnmount(() => {
     resultCanvas.value.height = 1
   }
   revokePortraitUrl()
+  if (portraitSrc.value) URL.revokeObjectURL(portraitSrc.value)
   for (const scene of importedScenes) scene.dispose()
   importedScenes.clear()
   revokeEntryUrls(bankEntries.value)
@@ -1312,8 +1332,14 @@ async function maybeAutoRender() {
   await renderNow()
 }
 
+function cancelRender() {
+  paintSignal.cancelled = true
+  projectNotice.value = '已取消生成，上一幅完整作品保留。'
+}
+
 async function renderNow() {
   error.value = ''
+  projectNotice.value = ''
   if (!portrait.value || !portraitFile.value) {
     error.value = '请先上传画像照片'
     return
@@ -1333,15 +1359,18 @@ async function renderNow() {
     stamps: stamps.value.map((stamp) => ({ ...stamp })),
     options: currentLayoutOptions(),
   }
-  pending.value = true
+  pending.value = renderBusy.value = true
   progressStage.value = '准备中'
   progressRatio.value = 0
+  let overview: HTMLCanvasElement | null = null
+  let display: HTMLCanvasElement | null = null
+  let candidateRaster: SignatureRasterWorker | null = null
+  let candidateGl: GlStampPreview | null = null
+  const stale = () => seq !== renderSeq || signal.cancelled || viewDisposed
   try {
     await new Promise((r) => setTimeout(r, 0))
-    if (seq !== renderSeq) return
-
-    // 1) 只算矢量排版（坐标 / 印章编号 / 大小 / 角度）
-    const { placements, width, height } = await renderSignaturePortrait(
+    if (stale()) return
+    const layout = await renderSignaturePortrait(
       result.portrait,
       result.portrait.naturalWidth || result.portrait.width,
       result.portrait.naturalHeight || result.portrait.height,
@@ -1350,158 +1379,123 @@ async function renderNow() {
         ...result.options,
         skipPaint: true,
         onProgress: (stage, ratio) => {
-          if (seq !== renderSeq) return
+          if (stale()) return
           progressStage.value = stage
-          progressRatio.value = ratio * 0.55
+          progressRatio.value = ratio * 0.5
         },
       },
       signal,
     )
-    if (seq !== renderSeq || signal.cancelled) return
-
+    layout.canvas.width = layout.canvas.height = 1
+    if (stale()) return
+    const { placements, width, height } = layout
+    const scene: SignatureProject = { ...result, placements, width, height }
+    if ((scene.options.underlay ?? 0) > 0) {
+      progressStage.value = '准备彩绘底色'
+      await prepareSignatureWash(scene.portrait, scene.options, {
+        signal,
+        onProgress: ratio => {
+          if (!stale()) progressRatio.value = .5 + ratio * .08
+        },
+      })
+    }
+    if (stale()) return
+    progressStage.value = '准备预览'
+    progressRatio.value = .58
+    candidateGl = prepareGlPreview(scene)
+    if (candidateGl) {
+      candidateGl.setBackground(scene.options.background ?? '#f5f3ef')
+      candidateGl.setColorize(Boolean(scene.options.colorize))
+      candidateGl.setCoverFill(Boolean(scene.options.coverFill))
+      candidateGl.setPortrait(null, 0)
+      candidateGl.setStamps(scene.stamps)
+      candidateGl.setPlacements(placements, width, height)
+    } else {
+      const size = fitSignatureRaster(width, height, OVERVIEW_LONG)
+      const onProgress = (done: number, total: number) => {
+        if (stale()) return
+        progressStage.value = '精绘笔迹与色彩'
+        progressRatio.value = .58 + (done / Math.max(1, total)) * .42
+      }
+      try {
+        candidateRaster = await createSignatureRasterWorker(
+          placements, scene.stamps, width, height, scene.options, signal, resultColorWash(scene),
+        )
+        if (candidateRaster) overview = await candidateRaster.paint(
+          size.width, size.height,
+          Math.min(1000, Math.max(480, Math.round(Math.max(size.width, size.height) * .4))),
+          { tileSize: 320, signal, onProgress },
+        )
+      } catch (error) {
+        candidateRaster?.dispose()
+        candidateRaster = null
+        if (stale() || (error instanceof Error && error.message === '已取消')) throw error
+      }
+      if (!overview) overview = await paintPlacementsTiled(
+        placements, scene.stamps, width, height, size.width, size.height,
+        {
+          background: scene.options.background,
+          inkStyle: scene.options.inkStyle,
+          colorize: scene.options.colorize,
+          coverFill: scene.options.coverFill,
+          portrait: resultColorWash(scene),
+          underlay: scene.options.underlay,
+          tileSize: 320,
+          signal,
+          onTile: ({ done, total }) => onProgress(done, total),
+        },
+      )
+    }
+    if (stale()) return
+    const cssW = getFitWidth(width), cssH = Math.max(1, Math.round(height * cssW / width))
+    if (overview) display = createOverviewDisplay(overview, cssW, cssH)
+    // Only a complete candidate replaces the visible artwork and export snapshot.
+    if (zoomPaintTimer) clearTimeout(zoomPaintTimer)
+    zoomPaintTimer = null
+    disposeGlPreview()
+    disposeRasterWorker()
+    if (lastOverview) lastOverview.width = lastOverview.height = 1
+    generatedResult.value = scene
     lastPlacements = placements
-    generatedResult.value = { ...result, placements, width, height }
     layoutW = width
     layoutH = height
     placementCount.value = placements.length
     hasResult.value = true
     comparePct.value = 52
     viewScale.value = 1
+    stageW.value = cssW
+    stageH.value = cssH
+    lastOverview = overview
+    overview = null
+    overviewRevision++
+    rasterWorker = candidateRaster
+    candidateRaster = null
+    rasterWorkerScene = rasterWorker ? scene : null
+    glPreview = candidateGl
+    candidateGl = null
+    previewBackend = glPreview ? 'webgl' : 'canvas2d'
+    mountDisplayCanvas(glPreview ? glPreview.canvas : display!)
+    display = null
+    displayedOverviewRevision = overviewRevision
+    previewError.value = ''
+    progressStage.value = '完成'
+    progressRatio.value = 1
     await nextTick()
-    stageW.value = getFitWidth(layoutW)
-    stageH.value = Math.max(1, Math.round(layoutH * (stageW.value / layoutW)))
-
-    // 2) 优先 WebGL 图集实例化；失败则回退 Canvas2D 分块概览
-    progressStage.value = '准备预览'
-    progressRatio.value = 0.55
-    await nextTick()
-
-    disposeGlPreview()
-    const gl = ensureGlPreview()
-    if (gl) {
-      progressStage.value = 'WebGL 实例化'
-      progressRatio.value = 0.7
-      gl.setBackground(result.options.background ?? '#f5f3ef')
-      gl.setColorize(Boolean(result.options.colorize))
-      gl.setCoverFill(Boolean(result.options.coverFill))
-      gl.setPortrait(null, 0)
-      gl.setStamps(result.stamps)
-      gl.setPlacements(placements, layoutW, layoutH)
-      if (seq !== renderSeq || signal.cancelled) return
-      progressStage.value = '完成'
-      progressRatio.value = 1
-      applyStageDisplaySize()
-    } else {
-      previewBackend = 'canvas2d'
-      ensureCanvas2d()
-      const { width: outW, height: outH } = fitSignatureRaster(layoutW, layoutH, OVERVIEW_LONG)
-      let overview: HTMLCanvasElement
-      let candidateRaster: SignatureRasterWorker | null = null
-      try {
-        try {
-          candidateRaster = await createSignatureRasterWorker(
-            placements,
-            result.stamps,
-            layoutW,
-            layoutH,
-            result.options,
-            signal,
-            resultColorWash(generatedResult.value!),
-          )
-        } catch (error) {
-          if (signal.cancelled || (error instanceof Error && error.message === '已取消'))
-            throw error
-        }
-        if (candidateRaster) {
-          try {
-            progressStage.value = '精绘笔迹与色彩'
-            overview = await candidateRaster.paint(
-              outW,
-              outH,
-              Math.min(1000, Math.max(480, Math.round(Math.max(outW, outH) * 0.4))),
-              {
-                tileSize: 320,
-                signal,
-                onProgress: (done, total) => {
-                  if (seq !== renderSeq || signal.cancelled) return
-                  progressStage.value = '精绘笔迹与色彩'
-                  progressRatio.value = 0.55 + (done / Math.max(1, total)) * 0.45
-                },
-              },
-            )
-          } catch (error) {
-            candidateRaster.dispose()
-            candidateRaster = null
-            if (signal.cancelled || (error instanceof Error && error.message === '已取消'))
-              throw error
-          }
-        }
-        if (!candidateRaster) {
-          overview = await paintPlacementsTiled(
-            placements,
-            result.stamps,
-            layoutW,
-            layoutH,
-            outW,
-            outH,
-            {
-              background: result.options.background,
-              inkStyle: result.options.inkStyle,
-              colorize: result.options.colorize,
-              coverFill: result.options.coverFill,
-              portrait: resultColorWash(generatedResult.value!),
-              underlay: result.options.underlay,
-              tileSize: 320,
-              onTile: ({ canvas: partial, done, total }) => {
-                if (seq !== renderSeq || signal.cancelled) return
-                if (lastOverview && lastOverview !== partial) {
-                  lastOverview.width = 1
-                  lastOverview.height = 1
-                }
-                lastOverview = partial
-                overviewRevision++
-                progressStage.value = `预览 ${done}/${total}`
-                progressRatio.value = 0.55 + (done / Math.max(1, total)) * 0.45
-                applyStageDisplaySize()
-              },
-              signal,
-            },
-          )
-        }
-        if (seq !== renderSeq || signal.cancelled) {
-          candidateRaster?.dispose()
-          overview!.width = 1
-          overview!.height = 1
-          return
-        }
-        disposeRasterWorker()
-        rasterWorker = candidateRaster
-        rasterWorkerScene = generatedResult.value
-      } catch (error) {
-        candidateRaster?.dispose()
-        throw error
-      }
-      if (seq !== renderSeq || signal.cancelled) return
-      lastOverview = overview!
-      overviewRevision++
-      progressStage.value = '完成'
-      progressRatio.value = 1
-      applyStageDisplaySize()
-    }
+    applyStageDisplaySize()
     previewHost.value?.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
   } catch (e) {
-    if (seq !== renderSeq) return
-    if (e instanceof Error && e.message === '已取消') return
+    if (stale() || (e instanceof Error && e.message === '已取消')) return
     error.value = e instanceof Error ? e.message : '渲染失败'
-    clearResultStage()
   } finally {
+    candidateRaster?.dispose()
+    candidateGl?.dispose()
+    if (overview) overview.width = overview.height = 1
+    if (display) display.width = display.height = 1
     releaseUnusedImportedScenes()
     if (seq === renderSeq) {
-      pending.value = false
-      if (!error.value) {
-        progressStage.value = ''
-        progressRatio.value = 0
-      }
+      pending.value = renderBusy.value = false
+      progressStage.value = ''
+      progressRatio.value = 0
     }
   }
 }
@@ -1560,6 +1554,8 @@ function restoreProjectControls(options: SignatureLayoutOptions) {
   colorMode.value = options.colorMode ?? 'ink'
   toneGain.value = options.toneGain ?? 1
   colorWashStrength.value = options.underlay ?? 0
+  washStyle.value = options.washStyle ?? 'source'
+  washPalette.value = options.washPalette ?? 'blue-coral'
   coverFill.value = options.coverFill ?? false
   seed.value = options.seed ?? 42
   edgeOutline.value = options.edgeOutline ?? false
@@ -1602,6 +1598,14 @@ async function onProjectChange(event: Event) {
         return controller.signal.aborted
       },
     }
+    if ((scene.options.underlay ?? 0) > 0) {
+      progressStage.value = '恢复彩绘底色'
+      await prepareSignatureWash(scene.portrait, scene.options, {
+        signal,
+        onProgress: ratio => { progressRatio.value = .5 + ratio * .08 },
+      })
+    }
+    progressStage.value = '恢复预览'
     overview = await paintPlacementsTiled(
       scene.placements,
       scene.stamps,
@@ -1620,7 +1624,7 @@ async function onProjectChange(event: Event) {
         stableRaster: true,
         signal,
         onTile: ({ done, total }) => {
-          progressRatio.value = 0.5 + (done / Math.max(1, total)) * 0.5
+          progressRatio.value = 0.58 + (done / Math.max(1, total)) * 0.42
         },
       },
     )
@@ -1930,6 +1934,7 @@ watch([coverFill, colorize, signatureInkStyle], () => {
           @click="renderNow"
         >
           {{ pending ? '生成中…' : '生成预览' }} </FxButton
+        ><FxButton v-if="renderBusy" type="button" @click="cancelRender">取消生成</FxButton
         ><FxButton type="button" :disabled="!hasResult || pending" @click="downloadPng">
           下载 PNG
         </FxButton>
@@ -2168,6 +2173,23 @@ watch([coverFill, colorize, signatureInkStyle], () => {
             <p class="hint">
               浓彩融合用照片生成柔和底色，补足大面积颜色，再叠加真实完整签名；属于混合画面。选择后点击生成预览。
             </p>
+          </label>
+          <label v-if="colorTreatment === 'fusion'" class="ink-control">
+            <span class="ink-control-head"><span>底色配色</span></span>
+            <UiSelect v-model="washStyle" aria-label="底色配色" :disabled="pending">
+              <option value="source">原色融合</option>
+              <option value="duotone-v1">双色绘影 · 试用</option>
+              <option value="pop-v1">波普彩绘 · 试用</option>
+            </UiSelect>
+            <p class="hint">只改变彩绘底色，保留完整签名的走向、疏密与墨色。选择后点击生成预览。</p>
+          </label>
+          <label v-if="colorTreatment === 'fusion' && washStyle !== 'source'" class="ink-control">
+            <span class="ink-control-head"><span>彩绘色板</span></span>
+            <UiSelect v-model="washPalette" aria-label="彩绘色板" :disabled="pending">
+              <option v-for="palette in SIGNATURE_WASH_PALETTES" :key="palette.id" :value="palette.id">
+                {{ palette.name }}
+              </option>
+            </UiSelect>
           </label>
           <label v-if="colorTreatment === 'fusion'" class="ink-control">
             <span class="ink-control-head"
@@ -2541,7 +2563,7 @@ watch([coverFill, colorize, signatureInkStyle], () => {
           class="hint fusion-notice"
           role="status"
         >
-          当前作品为浓彩融合：照片生成的彩绘底色＋完整签名。SVG保留签名矢量路径，同时嵌入底色图像。
+          当前作品为浓彩融合（{{ resultWashLabel }}）：照片生成的彩绘底色＋完整签名。SVG保留签名矢量路径，同时嵌入底色图像。
         </p>
         <RenderFeedback
           v-if="pending || generatingVariants || sharpPainting"
