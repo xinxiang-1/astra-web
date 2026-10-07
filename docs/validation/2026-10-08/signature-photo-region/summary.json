@@ -1,0 +1,120 @@
+{
+  "completedOn": "2026-10-08",
+  "parentCommit": "62761d3eadea44147b515110fe89cd9e9d5a5616",
+  "scope": "Original-source crop before downsampling, native cutout and production pointer/keyboard/touch transaction. Overall commercial goal stays active; no deployment.",
+  "fixture": {
+    "historicalSignature": "docs/research/2026-10-04-signature-capacity/beethoven-signature.svg",
+    "licenseEvidence": "docs/research/2026-10-04-signature-capacity/beethoven-metadata.json",
+    "controlledBackground": "6000x3000 white paper with two dark distractions outside the chosen region",
+    "region": {
+      "x": 0.4,
+      "y": 0.4,
+      "width": 0.2,
+      "height": 0.1
+    },
+    "nativeCrop": [
+      1200,
+      300
+    ],
+    "oldWholePhotoScaledRegionApprox": [
+      406,
+      102
+    ],
+    "newWholePhotoBudget": [
+      2032,
+      1016
+    ],
+    "fileBytes": 401139,
+    "fixtureSha256": "a7ff3d9cafd959aa7d118db128c441fb7e7691bbb0001168507c49008a99c9be"
+  },
+  "reports": {
+    "edge": {
+      "file": "edge.json",
+      "browser": "154.0.4258.62",
+      "cases": 4,
+      "passed": true,
+      "rawDirectory": "test-results/signature-photo-region-1791392976651"
+    },
+    "chrome": {
+      "file": "chrome.json",
+      "browser": "154.0.8037.98",
+      "cases": 4,
+      "passed": true,
+      "rawDirectory": "test-results/signature-photo-region-1791392991016"
+    },
+    "edge-font-regression": {
+      "file": "edge-font-regression.json",
+      "browser": "154.0.4258.62",
+      "cases": 5,
+      "passed": true,
+      "rawDirectory": "test-results/signature-font-cutout-1791392693141"
+    },
+    "chrome-font-regression": {
+      "file": "chrome-font-regression.json",
+      "browser": "154.0.8037.98",
+      "cases": 5,
+      "passed": true,
+      "rawDirectory": "test-results/signature-font-cutout-1791392706533"
+    }
+  },
+  "checks": [
+    "Selected source pixels all RGBA exact against native photo region",
+    "Extracted native handwriting all RGBA exact",
+    "Production transparent preview exact against native extraction",
+    "Changed selection immediately disables stale confirmation",
+    "Mouse redraw, relative corner resize, clamping beyond image edges and keyboard move",
+    "390px light/dark real CDP touch move/cancel with restored region",
+    "Clipped ink at selected edge produces an enlarge-region warning",
+    "Confirm and cancel release original source URLs",
+    "Batch next resets crop and cancelling does not partially append",
+    "Four malformed regions, preabort and overlong source rejected"
+  ],
+  "build": {
+    "typeCheck": "passed",
+    "relatedEslint": "passed",
+    "productionBuild": "passed; existing externalization/large-chunk/dynamic-import warnings retained",
+    "log": "test-results/signature-crop-build.log"
+  },
+  "regressionScope": "Six-font and upload contract passed after corner interaction fixes; subsequent edge-warning and endpoint-clamp changes are covered by both final region contracts. Ink extraction/font algorithms unchanged.",
+  "visualInspection": {
+    "files": [
+      "crop-desktop.png",
+      "crop-light-mobile.png",
+      "crop-dark-mobile.png",
+      "expected-native.png"
+    ],
+    "scope": "Desktop and both mobile crop previews fit and complete historical strokes readable; development inspection, not actual phone or arbitrary photo certification."
+  },
+  "sourceHashes": {
+    "src/lib/image-region.ts": "f325aae103476d99f4085185b44a750c8d6dfbde27760b3c4e5659cb2b4f292a",
+    "src/components/ui/ImageRegionSelect.vue": "cc0261601d74550bf0c5d8d3e8d951bda29ec3b384ff2ed6fdd4bdfe713dd7e4",
+    "src/components/signature/SignatureCutoutDialog.vue": "e80393ba95024e7c4571d99fdb789cfff1089ed0707a4434a82f25791dfc90c1",
+    "src/lib/signature-portrait/cutout-client.ts": "e18b2d406b39393eb8c1d9c858613e2bc2ee7a5ad41bd49ec77f365b65a5567b",
+    "src/lib/signature-portrait/signature-cutout.ts": "54db7567e2dca14219db8abe293cb6fa1f77c99eb7257bf9cdff58d210158331"
+  },
+  "failures": [
+    {
+      "rawReport": "test-results/signature-photo-region-1791392162698/report.json",
+      "failure": "page.evaluate: Error: crop before downsample preserves native dimensions\n    at check (eval at evaluate (:311:30), <anonymous>:6:21)\n    at eval (eval at evaluate (:311:30), <anonymous>:28:5)\n    at async <anonymous>:337:30\n    at D:\\my\\project\\astra\\astra-web\\scripts\\signature-photo-region-contract.mjs:44:27",
+      "completedCases": 0
+    },
+    {
+      "rawReport": "test-results/signature-photo-region-1791392197895/report.json",
+      "failure": "page.waitForFunction: Timeout 30000ms exceeded.\n    at ready (D:\\my\\project\\astra\\astra-web\\scripts\\signature-photo-region-contract.mjs:188:10)\n    at D:\\my\\project\\astra\\astra-web\\scripts\\signature-photo-region-contract.mjs:250:9",
+      "completedCases": 1
+    },
+    {
+      "rawReport": "test-results/signature-photo-region-1791392487927/report.json",
+      "failure": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert(Math.abs(Number(await page.getByLabel('签名区域高度百分比').inputValue()) - 9) < 0.1)\n\n    at file:///D:/my/project/astra/astra-web/scripts/signature-photo-region-contract.mjs:268:3",
+      "completedCases": 1
+    }
+  ],
+  "limits": [
+    "Controlled historical signature/background does not prove arbitrary complex photo segmentation.",
+    "Clipping warning detects border ink, not complete-name OCR.",
+    "Selected RGBA readback is bounded main-thread work; no all-device smoothness or process-peak-memory claim.",
+    "Source pixel limits are checked after image load; decoding can already consume memory.",
+    "The 48M source/2032px selected input/64MiB batch template budgets do not imply whole-process memory bounds.",
+    "No physical print proof or recovery of inherently blurred source."
+  ]
+}
