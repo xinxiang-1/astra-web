@@ -1,6 +1,6 @@
 # Astra
 
-2026-10-08账户接续：新增`/account/orders`与`/account/library`，只读后端本人订单/权益，双用户真实联调、游标/503/401恢复通过；[实施与证据](./docs/plans/account-commerce-2026-10-08.md)。领取文件、购买/退款/会员和真实收款仍待继续，免费创作保持。
+2026-10-08账户接续：`/account/orders`与`/account/library`读取后端本人订单/权益；已购文件现支持后端票据领取、SHA256校验、下载与导入为新项目，真实双账户联调通过；[领取实施与证据](./docs/plans/purchased-delivery-2026-10-08.md)、[只读阶段](./docs/plans/account-commerce-2026-10-08.md)。购买/退款/会员和真实收款仍待继续，免费创作保持。
 
 2026-10-08最新接续：[产品打磨、前后端商业联调、服务端付费/会员边界及部署办理清单](../astra-cloud/docs/plans/launch-readiness-2026-10-08.md)、[90天推广方案](./docs/plans/growth-playbook-2026-10-08.md)。用户从零逐步推进，当前优先品质与联调，真实收款和会员尚未开放。
 
@@ -14,7 +14,7 @@
 
 商业开发依据：[商品与付费创作PRD](./docs/plans/prd-commerce.md)、[商业合同执行记录](./docs/plans/commerce-contract-iteration-2026-10-02.md)；后端目录/鉴权及订单创建/查询、快照/幂等/安全到期已真实联调，见[订单接续阶段](./docs/plans/commerce-orders-iteration-2026-10-02.md)。真实渠道、前端购买流程及批量工作台尚未实现，production新建订单与真实收款关闭，当前免费能力保持。
 
-后端[支付适配](./docs/plans/payment-provider-iteration-2026-10-02.md)及[支付接口/任务恢复/原子入账](./docs/plans/payment-flow-iteration-2026-10-02.md)已实现，67JUnit/25真实集成、268HTTP/260schema通过，含完整JVM重启与来源权益回滚恢复。尚无真实SDK、退款消费者、权益领取/私有交付及前端购买流程，技术模拟不当收款，production新建和支付继续关闭。
+后端[支付适配](./docs/plans/payment-provider-iteration-2026-10-02.md)及[支付接口/任务恢复/原子入账](./docs/plans/payment-flow-iteration-2026-10-02.md)已实现，67JUnit/25真实集成、268HTTP/260schema通过，含完整JVM重启与来源权益回滚恢复。私有交付已接账户领取；真实SDK、退款消费者及前端完整购买流程仍待完成，技术模拟不当收款，production新建和支付继续关闭。
 
 每完成一个可验收小阶段，记录步骤/失败/检查后单独提交并立即推送，官方MCP核验远端SHA。提交推送使用用户指定的GitHub MCP连接账户 `xinxiang-1`。先核验账户与目标仓库权限；浏览器登录和本地Git凭证不替代MCP授权。
 

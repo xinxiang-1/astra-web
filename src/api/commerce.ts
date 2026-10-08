@@ -68,3 +68,16 @@ export function fetchOwnedEntitlements(cursor?: string, signal?: AbortSignal) {
     signal,
   })
 }
+
+export interface CommerceDownloadTicket {
+  ticket: string
+  downloadPath: string
+  expiresAt: string
+  file: CommerceAsset
+}
+export function issuePurchasedDownloadTicket(assetId: string, signal?: AbortSignal) {
+  return http<CommerceDownloadTicket>(`/system/assets/${assetId}/download-ticket`, {
+    method: 'POST',
+    signal,
+  })
+}

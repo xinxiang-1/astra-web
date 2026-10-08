@@ -8,6 +8,10 @@ import {
   type CommerceEntitlement,
 } from '@/api/commerce'
 import ArtFooter from '@/components/ArtFooter.vue'
+import { fetchPurchasedAsset, formatPurchasedFileSize } from '@/lib/purchased-assets'
+import { readArtProjectPackage, assertArtProjectEngineCompatible } from '@/lib/art-project-package'
+import { saveArtProject } from '@/lib/art-projects'
+import type { CommerceAsset } from '@/api/commerce'
 import { useAuthStore } from '@/stores/auth'
 
 const props = defineProps<{ collection: 'orders' | 'library' }>()
@@ -19,6 +23,14 @@ const busy = ref(false)
 const error = ref('')
 const needsLogin = ref(false)
 const loaded = ref(false)
+const transfer = ref('')
+const transferPhase = ref<'reading' | 'saving' | ''>('')
+const transferMessage = ref('')
+const transferError = ref('')
+const received = ref(0)
+const total = ref(0)
+let transferController: AbortController | undefined
+let lastObjectUrl: string | undefined
 let controller: AbortController | undefined
 const title = computed(() => (props.collection === 'orders' ? '我的订单' : '已购内容'))
 const loginTarget = computed(() => ({
@@ -61,6 +73,7 @@ function money(cents: number, currency: string) {
     : '金额待确认'
 }
 async function load(append = false) {
+  transferController?.abort()
   controller?.abort()
   const attempt = new AbortController()
   controller = attempt
@@ -116,14 +129,76 @@ async function load(append = false) {
     if (controller === attempt) busy.value = false
   }
 }
+async function receiveAsset(file: CommerceAsset, action: 'download' | 'import') {
+  if (transfer.value || busy.value) return
+  const token = getAccessToken()
+  if (!token) {
+    needsLogin.value = true
+    return
+  }
+  const attempt = new AbortController()
+  transferController = attempt
+  transfer.value = file.id
+  transferPhase.value = 'reading'
+  transferMessage.value = ''
+  transferError.value = ''
+  received.value = 0
+  total.value = file.sizeBytes
+  try {
+    const binary = await fetchPurchasedAsset(file, attempt.signal, (count, size) => {
+      received.value = count
+      total.value = size
+    })
+    if (attempt.signal.aborted || getAccessToken() !== token) return
+    if (action === 'import') {
+      const result = await readArtProjectPackage(binary)
+      assertArtProjectEngineCompatible(result.project)
+      if (attempt.signal.aborted || getAccessToken() !== token) return
+      transferPhase.value = 'saving'
+      try {
+        await saveArtProject(result.project)
+      } catch {
+        throw new Error('浏览器未能保存项目，请检查存储空间或先下载作品包备份。')
+      }
+      if (getAccessToken() === token && !attempt.signal.aborted)
+        transferMessage.value = result.notice
+    } else {
+      if (lastObjectUrl) URL.revokeObjectURL(lastObjectUrl)
+      lastObjectUrl = URL.createObjectURL(binary)
+      const anchor = document.createElement('a')
+      anchor.href = lastObjectUrl
+      anchor.download = binary.name
+      anchor.rel = 'noopener'
+      document.body.appendChild(anchor)
+      anchor.click()
+      anchor.remove()
+      transferMessage.value = '文件校验通过，已发起下载。请确认浏览器中的保存结果。'
+    }
+  } catch (cause) {
+    if (attempt.signal.aborted || getAccessToken() !== token) return
+    transferError.value = cause instanceof Error ? cause.message : '领取未完成，请重新领取。'
+  } finally {
+    if (transferController === attempt) {
+      transfer.value = ''
+      transferPhase.value = ''
+    }
+  }
+}
 watch(
   [() => props.collection, () => auth.user?.id],
   () => {
+    transferController?.abort()
+    transferMessage.value = ''
+    transferError.value = ''
     void load()
   },
   { immediate: true },
 )
-onBeforeUnmount(() => controller?.abort())
+onBeforeUnmount(() => {
+  controller?.abort()
+  transferController?.abort()
+  if (lastObjectUrl) URL.revokeObjectURL(lastObjectUrl)
+})
 </script>
 
 <template>
@@ -148,6 +223,26 @@ onBeforeUnmount(() => controller?.abort())
         <RouterLink to="/projects">本地项目 ↗</RouterLink>
       </nav>
       <section :aria-label="title" :aria-busy="busy">
+        <div v-if="transfer" class="transfer-status" role="status">
+          <p>
+            {{
+              transferPhase === 'saving'
+                ? '正在保存新的本地项目…'
+                : `正在领取并校验文件：${Math.round((received / total) * 100)}%`
+            }}
+          </p>
+          <button
+            v-if="transferPhase !== 'saving'"
+            class="art-button"
+            @click="transferController?.abort()"
+          >
+            取消领取
+          </button>
+        </div>
+        <p v-if="transferMessage" role="status">
+          {{ transferMessage }} <RouterLink to="/projects">查看本地项目 ↗</RouterLink>
+        </p>
+        <p v-if="transferError" role="alert">{{ transferError }}</p>
         <div v-if="needsLogin" class="account-notice">
           <h2>登录后查看你的{{ collection === 'orders' ? '订单' : '已购内容' }}</h2>
           <p>请使用购买时的账户登录。</p>
@@ -199,8 +294,25 @@ onBeforeUnmount(() => controller?.abort())
             <p>来自订单 {{ item.sourceOrderId }} · {{ date(item.grantedAt) }}</p>
             <p v-for="content in item.release.deliveryContents" :key="content">{{ content }}</p>
             <ul class="file-list">
-              <li v-for="file in item.release.assets" :key="file.id">
-                {{ file.fileName }} · {{ (file.sizeBytes / 1024 / 1024).toFixed(2) }} MB
+              <li v-for="file in item.release.assets" :key="file.id" :data-asset="file.id">
+                <span>{{ file.fileName }} · {{ formatPurchasedFileSize(file.sizeBytes) }}</span>
+                <div class="file-actions">
+                  <button
+                    class="art-button"
+                    :disabled="item.state !== 'ACTIVE' || busy || Boolean(transfer)"
+                    @click="receiveAsset(file, 'download')"
+                  >
+                    下载文件
+                  </button>
+                  <button
+                    v-if="file.fileName.toLowerCase().endsWith('.astra')"
+                    class="art-button"
+                    :disabled="item.state !== 'ACTIVE' || busy || Boolean(transfer)"
+                    @click="receiveAsset(file, 'import')"
+                  >
+                    导入为新项目
+                  </button>
+                </div>
               </li>
             </ul>
             <details>
@@ -212,7 +324,7 @@ onBeforeUnmount(() => controller?.abort())
         <button
           v-if="cursor && !needsLogin"
           class="art-button load-more"
-          :disabled="busy"
+          :disabled="busy || Boolean(transfer)"
           @click="load(true)"
         >
           读取更多
@@ -220,7 +332,7 @@ onBeforeUnmount(() => controller?.abort())
         <button
           v-if="loaded && !needsLogin"
           class="art-button refresh-list"
-          :disabled="busy"
+          :disabled="busy || Boolean(transfer)"
           @click="load()"
         >
           刷新记录
@@ -296,6 +408,18 @@ time {
   font-size: 13px;
   line-height: 1.8;
   padding-left: 20px;
+}
+.file-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 12px 0 22px;
+}
+.file-actions button {
+  min-height: 44px;
+}
+.transfer-status {
+  padding-block: 12px;
 }
 summary {
   cursor: pointer;

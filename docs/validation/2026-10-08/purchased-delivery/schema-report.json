@@ -1,0 +1,1540 @@
+{
+  "passed": true,
+  "scope": "actual-http-json-domain/binary-digest-and-trace/bodyless-head; ticket values redacted after live domain checks",
+  "httpResponses": 217,
+  "jsonSchemaResponses": 176,
+  "binaryResponses": 39,
+  "bodylessHeadResponses": 2,
+  "redactedLiveTickets": 54,
+  "checks": [
+    {
+      "method": "POST",
+      "path": "/system/assets/189304737000010104/download-ticket",
+      "status": 401,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/system/assets/189304737000010104/download-ticket",
+      "status": 401,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/system/assets/189304737000010104/download-ticket",
+      "status": 401,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/system/assets/189304737000010104/download-ticket",
+      "status": 404,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/system/assets/189304737000010104/download-ticket",
+      "status": 400,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/system/assets/189304737000010104/download-ticket",
+      "status": 400,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/system/assets/189304737000010104/download",
+      "status": 400,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/system/assets/189304737000010104/download",
+      "status": 400,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/system/assets/189304737000010104/download",
+      "status": 410,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/system/assets/189304737000010104/download",
+      "status": 401,
+      "viaGateway": false,
+      "validation": "boundary-error"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010104/download-ticket",
+      "status": 401,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010104/download-ticket",
+      "status": 401,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010104/download-ticket",
+      "status": 401,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010104/download-ticket",
+      "status": 404,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010104/download-ticket",
+      "status": 400,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010104/download-ticket",
+      "status": 400,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010104/download",
+      "status": 400,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010104/download",
+      "status": 400,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010104/download",
+      "status": 410,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010104/download",
+      "status": 401,
+      "viaGateway": true,
+      "validation": "boundary-error"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366430740671496192/payments",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366430742454075392/payments",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366430743687200768/payments",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366430744882577408/payments",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366430746145062912/payments",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/system/assets/189304737000010104/download-ticket",
+      "status": 200,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/system/assets/189304737000010104/download",
+      "status": 200,
+      "viaGateway": false,
+      "validation": "actual-binary"
+    },
+    {
+      "method": "GET",
+      "path": "/system/assets/189304737000010104/download",
+      "status": 410,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/system/assets/189304737000010105/download-ticket",
+      "status": 200,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/system/assets/189304737000010105/download",
+      "status": 200,
+      "viaGateway": false,
+      "validation": "actual-binary"
+    },
+    {
+      "method": "GET",
+      "path": "/system/assets/189304737000010105/download",
+      "status": 410,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010104/download-ticket",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010104/download",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "actual-binary"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010104/download",
+      "status": 410,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010105/download-ticket",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010105/download",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "actual-binary"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010105/download",
+      "status": 410,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/system/assets/189304737000010104/download-ticket",
+      "status": 200,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/system/assets/189304737000010105/download",
+      "status": 404,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/system/assets/189304737000010104/download",
+      "status": 400,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/system/assets/189304737000010104/download",
+      "status": 400,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/system/assets/189304737000010104/download",
+      "status": 200,
+      "viaGateway": false,
+      "validation": "actual-binary"
+    },
+    {
+      "method": "POST",
+      "path": "/system/assets/189304737000010104/download-ticket",
+      "status": 200,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/system/assets/189304737000010104/download",
+      "status": 410,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010104/download-ticket",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010105/download",
+      "status": 404,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010104/download",
+      "status": 400,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010104/download",
+      "status": 400,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010104/download",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "actual-binary"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010104/download-ticket",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010104/download",
+      "status": 410,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/system/assets/189304737000010104/download-ticket",
+      "status": 200,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "HEAD",
+      "path": "/system/assets/189304737000010104/download",
+      "status": 405,
+      "viaGateway": false,
+      "validation": "bodyless-head"
+    },
+    {
+      "method": "GET",
+      "path": "/system/assets/189304737000010104/download",
+      "status": 416,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/system/assets/189304737000010104/download",
+      "status": 416,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/system/assets/189304737000010104/download",
+      "status": 200,
+      "viaGateway": false,
+      "validation": "actual-binary"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010104/download-ticket",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "HEAD",
+      "path": "/api/system/assets/189304737000010104/download",
+      "status": 405,
+      "viaGateway": true,
+      "validation": "bodyless-head"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010104/download",
+      "status": 416,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010104/download",
+      "status": 416,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010104/download",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "actual-binary"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010104/download-ticket",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/system/assets/189304737000010104/download",
+      "status": 410,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/system/assets/189304737000010104/download",
+      "status": 410,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/system/assets/189304737000010104/download",
+      "status": 410,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010104/download",
+      "status": 410,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/system/assets/189304737000010104/download",
+      "status": 200,
+      "viaGateway": false,
+      "validation": "actual-binary"
+    },
+    {
+      "method": "GET",
+      "path": "/system/assets/189304737000010104/download",
+      "status": 410,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/system/assets/189304737000010104/download",
+      "status": 410,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010104/download",
+      "status": 410,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010104/download",
+      "status": 410,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010104/download",
+      "status": 410,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010104/download",
+      "status": 410,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010104/download",
+      "status": 410,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/system/assets/189304737000010104/download-ticket",
+      "status": 200,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/system/assets/189304737000010104/download",
+      "status": 410,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/system/assets/189304737000010104/download",
+      "status": 200,
+      "viaGateway": false,
+      "validation": "actual-binary"
+    },
+    {
+      "method": "POST",
+      "path": "/system/assets/189304737000010104/download-ticket",
+      "status": 200,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/system/assets/189304737000010104/download",
+      "status": 410,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/system/assets/189304737000010104/download",
+      "status": 200,
+      "viaGateway": false,
+      "validation": "actual-binary"
+    },
+    {
+      "method": "POST",
+      "path": "/system/assets/189304737000010104/download-ticket",
+      "status": 200,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/system/assets/189304737000010104/download",
+      "status": 410,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/system/assets/189304737000010104/download",
+      "status": 200,
+      "viaGateway": false,
+      "validation": "actual-binary"
+    },
+    {
+      "method": "POST",
+      "path": "/system/assets/189304737000010104/download-ticket",
+      "status": 200,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/system/assets/189304737000010104/download",
+      "status": 410,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/system/assets/189304737000010104/download",
+      "status": 200,
+      "viaGateway": false,
+      "validation": "actual-binary"
+    },
+    {
+      "method": "POST",
+      "path": "/system/assets/189304737000010104/download-ticket",
+      "status": 200,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/system/assets/189304737000010104/download",
+      "status": 503,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/system/assets/189304737000010104/download",
+      "status": 200,
+      "viaGateway": false,
+      "validation": "actual-binary"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010104/download-ticket",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010104/download",
+      "status": 410,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010104/download",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "actual-binary"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010104/download-ticket",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010104/download",
+      "status": 410,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010104/download",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "actual-binary"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010104/download-ticket",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010104/download",
+      "status": 410,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010104/download",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "actual-binary"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010104/download-ticket",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010104/download",
+      "status": 410,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010104/download",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "actual-binary"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010104/download-ticket",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010104/download",
+      "status": 503,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010104/download",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "actual-binary"
+    },
+    {
+      "method": "POST",
+      "path": "/system/assets/189304737000010104/download-ticket",
+      "status": 200,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/system/assets/189304737000010104/download-ticket",
+      "status": 422,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/system/assets/189304737000010104/download",
+      "status": 422,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/system/assets/189304737000010104/download",
+      "status": 200,
+      "viaGateway": false,
+      "validation": "actual-binary"
+    },
+    {
+      "method": "POST",
+      "path": "/system/assets/189304737000010104/download-ticket",
+      "status": 200,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/system/assets/189304737000010104/download-ticket",
+      "status": 422,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/system/assets/189304737000010104/download",
+      "status": 422,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/system/assets/189304737000010104/download",
+      "status": 200,
+      "viaGateway": false,
+      "validation": "actual-binary"
+    },
+    {
+      "method": "POST",
+      "path": "/system/assets/189304737000010104/download-ticket",
+      "status": 200,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/system/assets/189304737000010104/download-ticket",
+      "status": 422,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/system/assets/189304737000010104/download",
+      "status": 422,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/system/assets/189304737000010104/download",
+      "status": 200,
+      "viaGateway": false,
+      "validation": "actual-binary"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010104/download-ticket",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010104/download-ticket",
+      "status": 422,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010104/download",
+      "status": 422,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010104/download",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "actual-binary"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010104/download-ticket",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010104/download-ticket",
+      "status": 422,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010104/download",
+      "status": 422,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010104/download",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "actual-binary"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010104/download-ticket",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010104/download-ticket",
+      "status": 422,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010104/download",
+      "status": 422,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010104/download",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "actual-binary"
+    },
+    {
+      "method": "POST",
+      "path": "/system/assets/189304737000010104/download-ticket",
+      "status": 200,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/system/assets/189304737000010104/download",
+      "status": 200,
+      "viaGateway": false,
+      "validation": "actual-binary"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010104/download-ticket",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010104/download",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "actual-binary"
+    },
+    {
+      "method": "POST",
+      "path": "/system/assets/189304737000010104/download-ticket",
+      "status": 200,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/system/assets/189304737000010104/download",
+      "status": 503,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/system/assets/189304737000010104/download",
+      "status": 200,
+      "viaGateway": false,
+      "validation": "actual-binary"
+    },
+    {
+      "method": "POST",
+      "path": "/system/assets/189304737000010104/download-ticket",
+      "status": 200,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/system/assets/189304737000010104/download",
+      "status": 503,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/system/assets/189304737000010104/download",
+      "status": 200,
+      "viaGateway": false,
+      "validation": "actual-binary"
+    },
+    {
+      "method": "POST",
+      "path": "/system/assets/189304737000010104/download-ticket",
+      "status": 200,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/system/assets/189304737000010104/download",
+      "status": 503,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/system/assets/189304737000010104/download",
+      "status": 200,
+      "viaGateway": false,
+      "validation": "actual-binary"
+    },
+    {
+      "method": "POST",
+      "path": "/system/assets/189304737000010104/download-ticket",
+      "status": 200,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/system/assets/189304737000010104/download",
+      "status": 503,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/system/assets/189304737000010104/download",
+      "status": 200,
+      "viaGateway": false,
+      "validation": "actual-binary"
+    },
+    {
+      "method": "POST",
+      "path": "/system/assets/189304737000010104/download-ticket",
+      "status": 200,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/system/assets/189304737000010104/download",
+      "status": 503,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/system/assets/189304737000010104/download",
+      "status": 200,
+      "viaGateway": false,
+      "validation": "actual-binary"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010104/download-ticket",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010104/download",
+      "status": 503,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010104/download",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "actual-binary"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010104/download-ticket",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010104/download",
+      "status": 503,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010104/download",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "actual-binary"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010104/download-ticket",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010104/download",
+      "status": 503,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010104/download",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "actual-binary"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010104/download-ticket",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010104/download",
+      "status": 503,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010104/download",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "actual-binary"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010104/download-ticket",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010104/download",
+      "status": 503,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010104/download",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "actual-binary"
+    },
+    {
+      "method": "POST",
+      "path": "/system/assets/189304737000010104/download-ticket",
+      "status": 200,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/system/assets/189304737000010104/download-ticket",
+      "status": 200,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/system/assets/189304737000010104/download-ticket",
+      "status": 200,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010104/download-ticket",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010104/download-ticket",
+      "status": 429,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010104/download-ticket",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/system/assets/189304737000010104/download-ticket",
+      "status": 429,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/system/assets/189304737000010104/download-ticket",
+      "status": 200,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010104/download-ticket",
+      "status": 429,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010104/download-ticket",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/system/assets/189304737000010104/download-ticket",
+      "status": 429,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010104/download-ticket",
+      "status": 429,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010104/download-ticket",
+      "status": 429,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010104/download-ticket",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/system/assets/189304737000010104/download-ticket",
+      "status": 429,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/system/assets/189304737000010104/download-ticket",
+      "status": 200,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/system/assets/189304737000010104/download-ticket",
+      "status": 429,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/system/assets/189304737000010104/download-ticket",
+      "status": 429,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010104/download-ticket",
+      "status": 429,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010104/download-ticket",
+      "status": 429,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010104/download-ticket",
+      "status": 429,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/system/assets/189304737000010104/download-ticket",
+      "status": 200,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/system/assets/189304737000010104/download-ticket",
+      "status": 429,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/system/assets/189304737000010104/download-ticket",
+      "status": 429,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/system/assets/189304737000010104/download-ticket",
+      "status": 429,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010104/download-ticket",
+      "status": 429,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/system/assets/189304737000010104/download-ticket",
+      "status": 429,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/system/assets/189304737000010104/download-ticket",
+      "status": 429,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010104/download-ticket",
+      "status": 429,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010104/download-ticket",
+      "status": 429,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010104/download-ticket",
+      "status": 429,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/system/assets/189304737000010104/download-ticket",
+      "status": 429,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010104/download-ticket",
+      "status": 429,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010104/download-ticket",
+      "status": 429,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010104/download-ticket",
+      "status": 429,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/system/assets/189304737000010104/download-ticket",
+      "status": 429,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010104/download-ticket",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010304/download-ticket",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010304/download",
+      "status": 503,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010304/download",
+      "status": 410,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010304/download-ticket",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010304/download",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "actual-binary"
+    },
+    {
+      "method": "POST",
+      "path": "/system/assets/189304737000010104/download-ticket",
+      "status": 200,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/system/assets/189304737000010104/download-ticket",
+      "status": 503,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/system/assets/189304737000010104/download",
+      "status": 503,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/system/assets/189304737000010104/download-ticket",
+      "status": 503,
+      "viaGateway": false,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010104/download",
+      "status": 503,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010104/download-ticket",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "json-schema"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010104/download",
+      "status": 200,
+      "viaGateway": true,
+      "validation": "actual-binary"
+    }
+  ],
+  "captureSha256": "62a564faea216307bd2d5be0ef695194b95928d761f2642584c667fab6ada344",
+  "openapiSha256": "aea4063b65dda96d24f9bc32ff455e1194a77285fe4c07f958b2a153290d4c65",
+  "notVerified": [
+    "real channel funds",
+    "cloud object storage adapter",
+    "real refunds/reconciliation",
+    "complete frontend checkout",
+    "commercial visual acceptance",
+    "deployment"
+  ]
+}
