@@ -214,9 +214,14 @@ export const useAuthStore = defineStore('auth', () => {
       const profile = await authApi.fetchMe()
       user.value = mapUser(profile)
       return true
-    } catch {
-      setAccessToken(null)
-      user.value = null
+    } catch (err) {
+      if (
+        err instanceof ApiError &&
+        (err.status === 401 || ((!err.status || err.status === 200) && err.code === 401))
+      ) {
+        setAccessToken(null)
+        user.value = null
+      }
       return false
     }
   }
