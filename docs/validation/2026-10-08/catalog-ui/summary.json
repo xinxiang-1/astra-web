@@ -1,0 +1,39 @@
+{
+  "passed": true,
+  "date": "2026-10-08",
+  "scope": "Anonymous real owned MySQL/system/gateway catalogue; local shared Redis preserved; no payment or auth fixtures; external invalid previews blocked; 503 faults and delayed responses explicitly injected",
+  "realJUnit": 15,
+  "browserChecks": 12,
+  "browserGatewayRequests": 32,
+  "backendCapturedHttp": 193,
+  "totalActualHttp": 225,
+  "schemaResponses": 217,
+  "emptyCatalogueFreeProjectCreated": true,
+  "zeroBrowserOrdersAndPayments": true,
+  "ownedSchema": "astra_commerce_it_567d4ad9b780",
+  "ownedSchemaAndGatewayCleanupComplete": true,
+  "sharedRedisPreserved": true,
+  "typeCheck": true,
+  "relatedESLint": true,
+  "productionBuild": true,
+  "sourceSha256": {
+    "astra-web/src/api/commerce.ts": "61c72c1a0f4dc1a05f251320fcbab2d2d9aade0fff0cd6a99051c854a238483c",
+    "astra-web/src/views/CommerceCatalogView.vue": "2c2e08f514acdd755ff2894612fa5f52bcb8873316a883f7f46b119638da9bfa",
+    "astra-web/src/views/AccountCommerceView.vue": "e1dde13c8b14b957a30a89bcac10b06ff5ff4dfc1e62b1192c6d7b407abd91d8",
+    "astra-web/src/views/TemplatesView.vue": "e47c9d60888efc0237e8769183119d0e0986a754fc5247dc1812cb779e848fc3",
+    "astra-web/src/router/index.ts": "e550101a5efc48ba18f763f7d0d5fefb6fc7b2b0be05aa78407c267db44c37c5",
+    "astra-web/src/content/navigation.ts": "555afb1789eb7d765fc5db1d9e951630b981325198faeddce6e566d8804a6469",
+    "astra-web/scripts/commerce-catalog-live.mjs": "694ddc585d859228fd416877cb6348e31ea0fa9155b638d3427dce7f29ed260e",
+    "astra-cloud/astra-modules/astra-system/src/test/java/com/astra/system/commerce/CommerceCatalogIntegrationTest.java": "7a173b896ec368a7af48bfdb58114acb36179f7ada85f606c6ba0f52bc652169",
+    "astra-cloud/scripts/validate-commerce-catalog-evidence.py": "6f6a0539ba2f498664fff7ad475ff8bb5ce4441dbe2c7c9412185fc6d14926e1"
+  },
+  "notVerified": [
+    "Real payments, refunds or funds",
+    "Full authentication/login flow; browser catalogue is anonymous",
+    "Production catalogue migration and real content quality",
+    "Real phone, Safari and complete accessibility audit",
+    "Membership and end-to-end checkout",
+    "Linux production deployment"
+  ],
+  "rawEvidence": "astra-cloud/tmp/payment-provider-it-567d4ad9b780; astra/tmp/catalog-ui-live-r1/r2.log; astra/tmp/catalog-ui-build-r1.log"
+}

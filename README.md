@@ -1,6 +1,6 @@
 # Astra
 
-2026-10-08账户接续：`/account/orders`与`/account/library`读取后端本人订单/权益；已购文件现支持后端票据领取、SHA256校验、下载与导入为新项目，真实双账户联调通过；[领取实施与证据](./docs/plans/purchased-delivery-2026-10-08.md)、[只读阶段](./docs/plans/account-commerce-2026-10-08.md)。购买/退款/会员和真实收款仍待继续，免费创作保持。
+2026-10-08最新接续：[内容合集与版本交付说明](./docs/plans/catalog-ui-2026-10-08.md)已真实联调，价格/文件/许可取后端，购买尚未开放；15真实JUnit及12浏览器检查通过。`/account/orders`与`/account/library`读取本人记录，已购支持[后端票据领取、校验及新项目导入](./docs/plans/purchased-delivery-2026-10-08.md)。完整购买/退款/会员和真实收款仍待继续，免费创作保持。
 
 2026-10-08最新接续：[产品打磨、前后端商业联调、服务端付费/会员边界及部署办理清单](../astra-cloud/docs/plans/launch-readiness-2026-10-08.md)、[90天推广方案](./docs/plans/growth-playbook-2026-10-08.md)。用户从零逐步推进，当前优先品质与联调，真实收款和会员尚未开放。
 

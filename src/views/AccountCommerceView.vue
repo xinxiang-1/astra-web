@@ -221,6 +221,7 @@ onBeforeUnmount(() => {
           >已购内容</RouterLink
         >
         <RouterLink to="/projects">本地项目 ↗</RouterLink>
+        <RouterLink to="/collections">内容合集 ↗</RouterLink>
       </nav>
       <section :aria-label="title" :aria-busy="busy">
         <div v-if="transfer" class="transfer-status" role="status">

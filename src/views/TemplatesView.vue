@@ -117,6 +117,7 @@ onBeforeUnmount(() => {
             >挑选模板 <ArtIcon :size="17"
           /></a>
           <RouterLink to="/help" class="hero-help">第一次创作？查看使用帮助 ↗</RouterLink>
+          <RouterLink to="/collections" class="hero-help">查看内容合集与交付说明 ↗</RouterLink>
         </div>
         <div class="collection-symbol" aria-hidden="true">
           <span>03</span><i></i><small>LIGHT · COLOR · WORDS</small>

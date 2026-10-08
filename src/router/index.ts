@@ -18,6 +18,17 @@ const router = createRouter({
     { path: '/gallery', name: 'gallery', component: () => import('@/views/GalleryView.vue') },
     { path: '/templates', name: 'templates', component: () => import('@/views/TemplatesView.vue') },
     {
+      path: '/collections',
+      name: 'collections',
+      component: () => import('@/views/CommerceCatalogView.vue'),
+    },
+    {
+      path: '/collections/:slug',
+      name: 'collection-detail',
+      component: () => import('@/views/CommerceCatalogView.vue'),
+      props: true,
+    },
+    {
       path: '/help',
       name: 'creation-help',
       component: () => import('@/views/CreationHelpView.vue'),

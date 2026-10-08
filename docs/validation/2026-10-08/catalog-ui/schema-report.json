@@ -1,0 +1,1537 @@
+{
+  "passed": true,
+  "scope": "actual-captured-http-vs-openapi",
+  "httpRequests": 225,
+  "schemaResponsesChecked": 217,
+  "browserChecks": 12,
+  "checks": [
+    {
+      "method": "GET",
+      "path": "/system/catalog/capabilities",
+      "viaGateway": false,
+      "status": 200,
+      "schema": "CapabilitiesResult"
+    },
+    {
+      "method": "GET",
+      "path": "/system/catalog/products",
+      "viaGateway": false,
+      "status": 200,
+      "schema": "ProductPageResult"
+    },
+    {
+      "method": "GET",
+      "path": "/system/catalog/products/not-a-product",
+      "viaGateway": false,
+      "status": 404,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/catalog/capabilities",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "CapabilitiesResult"
+    },
+    {
+      "method": "GET",
+      "path": "/system/catalog/products",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "ProductPageResult"
+    },
+    {
+      "method": "GET",
+      "path": "/system/catalog/products/not-a-product",
+      "viaGateway": true,
+      "status": 404,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/catalog/products?limit=1",
+      "viaGateway": false,
+      "status": 200,
+      "schema": "ProductPageResult"
+    },
+    {
+      "method": "GET",
+      "path": "/system/catalog/products?limit=1&cursor=Y2F0YWxvZy12MXxBTEx8MTg5MzA0NzM3MDAwMDAwMzAwEHR5vStJV-H0SY1uQfH8ifDvG3EYysoNlolhl41V-68",
+      "viaGateway": false,
+      "status": 200,
+      "schema": "ProductPageResult"
+    },
+    {
+      "method": "GET",
+      "path": "/system/catalog/products?kind=CREATION_KIT&cursor=Y2F0YWxvZy12MXxBTEx8MTg5MzA0NzM3MDAwMDAwMzAwEHR5vStJV-H0SY1uQfH8ifDvG3EYysoNlolhl41V-68",
+      "viaGateway": false,
+      "status": 400,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/catalog/products?cursor=Y2F0YWxvZy12MXxBTEx8MTg5MzA0NzM3MDAwMDAwMzAwEHR5vStJV-H0SY1uQfH8ifDvG3EYysoNlolhl41V-68x",
+      "viaGateway": false,
+      "status": 400,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/catalog/products?limit=0",
+      "viaGateway": false,
+      "status": 400,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/catalog/products?limit=51",
+      "viaGateway": false,
+      "status": 400,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/catalog/products?limit=bad",
+      "viaGateway": false,
+      "status": 400,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/catalog/products?kind=BAD",
+      "viaGateway": false,
+      "status": 400,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/catalog/products?cursor=%21bad",
+      "viaGateway": false,
+      "status": 400,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/catalog/products/test-theme-0",
+      "viaGateway": false,
+      "status": 200,
+      "schema": "ProductDetailResult"
+    },
+    {
+      "method": "GET",
+      "path": "/system/catalog/products?kind=CREATION_KIT",
+      "viaGateway": false,
+      "status": 200,
+      "schema": "ProductPageResult"
+    },
+    {
+      "method": "GET",
+      "path": "/system/catalog/products?limit=1",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "ProductPageResult"
+    },
+    {
+      "method": "GET",
+      "path": "/system/catalog/products?limit=1&cursor=Y2F0YWxvZy12MXxBTEx8MTg5MzA0NzM3MDAwMDAwMzAwEHR5vStJV-H0SY1uQfH8ifDvG3EYysoNlolhl41V-68",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "ProductPageResult"
+    },
+    {
+      "method": "GET",
+      "path": "/system/catalog/products?kind=CREATION_KIT&cursor=Y2F0YWxvZy12MXxBTEx8MTg5MzA0NzM3MDAwMDAwMzAwEHR5vStJV-H0SY1uQfH8ifDvG3EYysoNlolhl41V-68",
+      "viaGateway": true,
+      "status": 400,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/catalog/products?cursor=Y2F0YWxvZy12MXxBTEx8MTg5MzA0NzM3MDAwMDAwMzAwEHR5vStJV-H0SY1uQfH8ifDvG3EYysoNlolhl41V-68x",
+      "viaGateway": true,
+      "status": 400,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/catalog/products?limit=0",
+      "viaGateway": true,
+      "status": 400,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/catalog/products?limit=51",
+      "viaGateway": true,
+      "status": 400,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/catalog/products?limit=bad",
+      "viaGateway": true,
+      "status": 400,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/catalog/products?kind=BAD",
+      "viaGateway": true,
+      "status": 400,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/catalog/products?cursor=%21bad",
+      "viaGateway": true,
+      "status": 400,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/catalog/products/test-theme-0",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "ProductDetailResult"
+    },
+    {
+      "method": "GET",
+      "path": "/system/catalog/products?kind=CREATION_KIT",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "ProductPageResult"
+    },
+    {
+      "method": "GET",
+      "path": "/system/ping",
+      "viaGateway": false,
+      "status": 401,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/ping",
+      "viaGateway": false,
+      "status": 401,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/ping",
+      "viaGateway": false,
+      "status": 401,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/ping",
+      "viaGateway": false,
+      "status": 401,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/ping",
+      "viaGateway": false,
+      "status": 401,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/ping",
+      "viaGateway": false,
+      "status": 401,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/ping",
+      "viaGateway": false,
+      "status": 401,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/admin/orders",
+      "viaGateway": false,
+      "status": 403,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/admin/orders",
+      "viaGateway": false,
+      "status": 404,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/syst%65m/ping",
+      "viaGateway": false,
+      "status": 401,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/syst%65m/admin/orders",
+      "viaGateway": false,
+      "status": 403,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system;v=1/admin/orders",
+      "viaGateway": false,
+      "status": 403,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/assets/42/download",
+      "viaGateway": false,
+      "status": 400,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/catalog/products/a/admin",
+      "viaGateway": false,
+      "status": 401,
+      "schema": "Error"
+    },
+    {
+      "method": "POST",
+      "path": "/system/catalog/products",
+      "viaGateway": false,
+      "status": 401,
+      "schema": "Error"
+    },
+    {
+      "method": "POST",
+      "path": "/system/payments/callbacks/wechat-native",
+      "viaGateway": false,
+      "status": 401,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/ping",
+      "viaGateway": true,
+      "status": 401,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/ping",
+      "viaGateway": true,
+      "status": 401,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/ping",
+      "viaGateway": true,
+      "status": 401,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/ping",
+      "viaGateway": true,
+      "status": 401,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/ping",
+      "viaGateway": true,
+      "status": 401,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/ping",
+      "viaGateway": true,
+      "status": 401,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/ping",
+      "viaGateway": true,
+      "status": 401,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/admin/orders",
+      "viaGateway": true,
+      "status": 403,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/admin/orders",
+      "viaGateway": true,
+      "status": 404,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/syst%65m/ping",
+      "viaGateway": true,
+      "status": 401,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/syst%65m/admin/orders",
+      "viaGateway": true,
+      "status": 403,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system;v=1/admin/orders",
+      "viaGateway": true,
+      "status": 403,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/assets/42/download",
+      "viaGateway": true,
+      "status": 400,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/catalog/products/a/admin",
+      "viaGateway": true,
+      "status": 401,
+      "schema": "Error"
+    },
+    {
+      "method": "POST",
+      "path": "/system/catalog/products",
+      "viaGateway": true,
+      "status": 401,
+      "schema": "Error"
+    },
+    {
+      "method": "POST",
+      "path": "/system/payments/callbacks/wechat-native",
+      "viaGateway": true,
+      "status": 401,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/catalog/products/test-theme-0",
+      "viaGateway": false,
+      "status": 404,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/catalog/products/test-theme-0",
+      "viaGateway": true,
+      "status": 404,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/catalog/products/test-theme-0",
+      "viaGateway": false,
+      "status": 404,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/catalog/products/test-theme-0",
+      "viaGateway": true,
+      "status": 404,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/catalog/products/test-theme-0",
+      "viaGateway": false,
+      "status": 503,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/catalog/products/test-theme-0",
+      "viaGateway": true,
+      "status": 503,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/catalog/products/test-theme-0",
+      "viaGateway": false,
+      "status": 503,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/catalog/products/test-theme-0",
+      "viaGateway": true,
+      "status": 503,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/ping",
+      "viaGateway": false,
+      "status": 503,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/catalog/capabilities",
+      "viaGateway": false,
+      "status": 200,
+      "schema": "CapabilitiesResult"
+    },
+    {
+      "method": "GET",
+      "path": "/system/catalog/products",
+      "viaGateway": false,
+      "status": 200,
+      "schema": "ProductPageResult"
+    },
+    {
+      "method": "GET",
+      "path": "/system/ping",
+      "viaGateway": true,
+      "status": 503,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/catalog/capabilities",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "CapabilitiesResult"
+    },
+    {
+      "method": "GET",
+      "path": "/system/catalog/products",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "ProductPageResult"
+    },
+    {
+      "method": "GET",
+      "path": "/system/ping",
+      "viaGateway": false,
+      "status": 503,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/catalog/products",
+      "viaGateway": false,
+      "status": 503,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/catalog/capabilities",
+      "viaGateway": false,
+      "status": 200,
+      "schema": "CapabilitiesResult"
+    },
+    {
+      "method": "GET",
+      "path": "/system/ping",
+      "viaGateway": true,
+      "status": 503,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/catalog/products",
+      "viaGateway": true,
+      "status": 503,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/catalog/capabilities",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "CapabilitiesResult"
+    },
+    {
+      "method": "GET",
+      "path": "/system/catalog/products/test-theme-0",
+      "viaGateway": false,
+      "status": 200,
+      "schema": "ProductDetailResult"
+    },
+    {
+      "method": "GET",
+      "path": "/system/catalog/products/test-theme-0",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "ProductDetailResult"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": false,
+      "status": 401,
+      "schema": "Error"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": false,
+      "status": 400,
+      "schema": "Error"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": false,
+      "status": 400,
+      "schema": "Error"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": false,
+      "status": 400,
+      "schema": "Error"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": false,
+      "status": 400,
+      "schema": "Error"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": false,
+      "status": 400,
+      "schema": "Error"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": false,
+      "status": 400,
+      "schema": "Error"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": false,
+      "status": 400,
+      "schema": "Error"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": false,
+      "status": 400,
+      "schema": "Error"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": false,
+      "status": 400,
+      "schema": "Error"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": false,
+      "status": 409,
+      "schema": "Error"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": false,
+      "status": 409,
+      "schema": "Error"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": true,
+      "status": 401,
+      "schema": "Error"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": true,
+      "status": 400,
+      "schema": "Error"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": true,
+      "status": 400,
+      "schema": "Error"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": true,
+      "status": 400,
+      "schema": "Error"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": true,
+      "status": 400,
+      "schema": "Error"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": true,
+      "status": 400,
+      "schema": "Error"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": true,
+      "status": 400,
+      "schema": "Error"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": true,
+      "status": 400,
+      "schema": "Error"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": true,
+      "status": 400,
+      "schema": "Error"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": true,
+      "status": 400,
+      "schema": "Error"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": true,
+      "status": 409,
+      "schema": "Error"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": true,
+      "status": 409,
+      "schema": "Error"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": false,
+      "status": 503,
+      "schema": "Error"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": true,
+      "status": 503,
+      "schema": "Error"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": false,
+      "status": 200,
+      "schema": "OrderResult"
+    },
+    {
+      "method": "GET",
+      "path": "/system/orders/366435557892554752",
+      "viaGateway": false,
+      "status": 200,
+      "schema": "OrderResult"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": false,
+      "status": 200,
+      "schema": "OrderResult"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": false,
+      "status": 200,
+      "schema": "OrderResult"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": false,
+      "status": 409,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/orders/366435557892554752",
+      "viaGateway": false,
+      "status": 404,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/orders/9223372036854775807",
+      "viaGateway": false,
+      "status": 404,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/orders/9223372036854775808",
+      "viaGateway": false,
+      "status": 400,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/orders/366435557892554752",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "OrderResult"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "OrderResult"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "OrderResult"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": true,
+      "status": 409,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/orders/366435557892554752",
+      "viaGateway": true,
+      "status": 404,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/orders/9223372036854775807",
+      "viaGateway": true,
+      "status": 404,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/orders/9223372036854775808",
+      "viaGateway": true,
+      "status": 400,
+      "schema": "Error"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": true,
+      "status": 409,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/orders/366435557892554752",
+      "viaGateway": false,
+      "status": 503,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/orders/366435557892554752",
+      "viaGateway": true,
+      "status": 503,
+      "schema": "Error"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": false,
+      "status": 200,
+      "schema": "OrderResult"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": false,
+      "status": 200,
+      "schema": "OrderResult"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "OrderResult"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": false,
+      "status": 200,
+      "schema": "OrderResult"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "OrderResult"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "OrderResult"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": false,
+      "status": 409,
+      "schema": "Error"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": false,
+      "status": 409,
+      "schema": "Error"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": false,
+      "status": 409,
+      "schema": "Error"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": true,
+      "status": 409,
+      "schema": "Error"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": true,
+      "status": 409,
+      "schema": "Error"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": true,
+      "status": 409,
+      "schema": "Error"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": true,
+      "status": 409,
+      "schema": "Error"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": false,
+      "status": 200,
+      "schema": "OrderResult"
+    },
+    {
+      "method": "GET",
+      "path": "/system/orders?limit=1",
+      "viaGateway": false,
+      "status": 200,
+      "schema": "OrderPageResult"
+    },
+    {
+      "method": "GET",
+      "path": "/system/orders?limit=1&cursor=b3JkZXJzLXYxfEFMTHwyMDI2LTEwLTA4VDA0OjA0OjA1Ljc5NVp8MzY2NDM1NTYxMDY3NjQyODgwCvd2XTPvWJQZM2pbrZ-a57kas1BTGwtV8vR2-9VmG0s",
+      "viaGateway": false,
+      "status": 200,
+      "schema": "OrderPageResult"
+    },
+    {
+      "method": "GET",
+      "path": "/system/orders?limit=1&cursor=b3JkZXJzLXYxfEFMTHwyMDI2LTEwLTA4VDA0OjA0OjA1Ljc5NVp8MzY2NDM1NTYxMDY3NjQyODgwCvd2XTPvWJQZM2pbrZ-a57kas1BTGwtV8vR2-9VmG0s",
+      "viaGateway": false,
+      "status": 400,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/orders?state=CLOSED&cursor=b3JkZXJzLXYxfEFMTHwyMDI2LTEwLTA4VDA0OjA0OjA1Ljc5NVp8MzY2NDM1NTYxMDY3NjQyODgwCvd2XTPvWJQZM2pbrZ-a57kas1BTGwtV8vR2-9VmG0s",
+      "viaGateway": false,
+      "status": 400,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/orders?cursor=b3JkZXJzLXYxfEFMTHwyMDI2LTEwLTA4VDA0OjA0OjA1Ljc5NVp8MzY2NDM1NTYxMDY3NjQyODgwCvd2XTPvWJQZM2pbrZ-a57kas1BTGwtV8vR2-9VmG0sx",
+      "viaGateway": false,
+      "status": 400,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/orders?limit=0",
+      "viaGateway": false,
+      "status": 400,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/orders?limit=51",
+      "viaGateway": false,
+      "status": 400,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/orders?limit=bad",
+      "viaGateway": false,
+      "status": 400,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/orders?state=BAD",
+      "viaGateway": false,
+      "status": 400,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/orders",
+      "viaGateway": false,
+      "status": 200,
+      "schema": "OrderPageResult"
+    },
+    {
+      "method": "GET",
+      "path": "/system/orders?limit=1",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "OrderPageResult"
+    },
+    {
+      "method": "GET",
+      "path": "/system/orders?limit=1&cursor=b3JkZXJzLXYxfEFMTHwyMDI2LTEwLTA4VDA0OjA0OjA1Ljc5NVp8MzY2NDM1NTYxMDY3NjQyODgwCvd2XTPvWJQZM2pbrZ-a57kas1BTGwtV8vR2-9VmG0s",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "OrderPageResult"
+    },
+    {
+      "method": "GET",
+      "path": "/system/orders?limit=1&cursor=b3JkZXJzLXYxfEFMTHwyMDI2LTEwLTA4VDA0OjA0OjA1Ljc5NVp8MzY2NDM1NTYxMDY3NjQyODgwCvd2XTPvWJQZM2pbrZ-a57kas1BTGwtV8vR2-9VmG0s",
+      "viaGateway": true,
+      "status": 400,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/orders?state=CLOSED&cursor=b3JkZXJzLXYxfEFMTHwyMDI2LTEwLTA4VDA0OjA0OjA1Ljc5NVp8MzY2NDM1NTYxMDY3NjQyODgwCvd2XTPvWJQZM2pbrZ-a57kas1BTGwtV8vR2-9VmG0s",
+      "viaGateway": true,
+      "status": 400,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/orders?cursor=b3JkZXJzLXYxfEFMTHwyMDI2LTEwLTA4VDA0OjA0OjA1Ljc5NVp8MzY2NDM1NTYxMDY3NjQyODgwCvd2XTPvWJQZM2pbrZ-a57kas1BTGwtV8vR2-9VmG0sx",
+      "viaGateway": true,
+      "status": 400,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/orders?limit=0",
+      "viaGateway": true,
+      "status": 400,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/orders?limit=51",
+      "viaGateway": true,
+      "status": 400,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/orders?limit=bad",
+      "viaGateway": true,
+      "status": 400,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/orders?state=BAD",
+      "viaGateway": true,
+      "status": 400,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/orders",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "OrderPageResult"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": false,
+      "status": 200,
+      "schema": "OrderResult"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "OrderResult"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "OrderResult"
+    },
+    {
+      "method": "GET",
+      "path": "/system/orders/366435563223515136",
+      "viaGateway": false,
+      "status": 200,
+      "schema": "OrderResult"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": false,
+      "status": 409,
+      "schema": "Error"
+    },
+    {
+      "method": "GET",
+      "path": "/system/orders/366435563223515136",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "OrderResult"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": true,
+      "status": 409,
+      "schema": "Error"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": false,
+      "status": 409,
+      "schema": "Error"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": true,
+      "status": 409,
+      "schema": "Error"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": false,
+      "status": 409,
+      "schema": "Error"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": true,
+      "status": 409,
+      "schema": "Error"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": false,
+      "status": 503,
+      "schema": "Error"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "OrderResult"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": false,
+      "status": 200,
+      "schema": "OrderResult"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": false,
+      "status": 200,
+      "schema": "OrderResult"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": false,
+      "status": 200,
+      "schema": "OrderResult"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": false,
+      "status": 200,
+      "schema": "OrderResult"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": false,
+      "status": 200,
+      "schema": "OrderResult"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": false,
+      "status": 429,
+      "schema": "Error"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": false,
+      "status": 429,
+      "schema": "Error"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": false,
+      "status": 200,
+      "schema": "OrderResult"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": true,
+      "status": 429,
+      "schema": "Error"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "OrderResult"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": true,
+      "status": 429,
+      "schema": "Error"
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "OrderResult"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/capabilities",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "CapabilitiesResult"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/products",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "ProductPageResult"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/capabilities",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "CapabilitiesResult"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/products",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "ProductPageResult"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/capabilities",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "CapabilitiesResult"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/products",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "ProductPageResult"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/products",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "ProductPageResult"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/products",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "ProductPageResult"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/capabilities",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "CapabilitiesResult"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/products",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "ProductPageResult"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/capabilities",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "CapabilitiesResult"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/products",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "ProductPageResult"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/capabilities",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "CapabilitiesResult"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/products/test-theme-0",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "ProductDetailResult"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/capabilities",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "CapabilitiesResult"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/capabilities",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "CapabilitiesResult"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/products/test-theme-0",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "ProductDetailResult"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/products/test-theme-0",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "ProductDetailResult"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/capabilities",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "CapabilitiesResult"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/products/test-theme-0",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "ProductDetailResult"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/capabilities",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "CapabilitiesResult"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/products",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "ProductPageResult"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/capabilities",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "CapabilitiesResult"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/products",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "ProductPageResult"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/capabilities",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "CapabilitiesResult"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/products/test-theme-0",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "ProductDetailResult"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/capabilities",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "CapabilitiesResult"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/products",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "ProductPageResult"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/capabilities",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "CapabilitiesResult"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/products/test-theme-2",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "ProductDetailResult"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/capabilities",
+      "viaGateway": true,
+      "status": 200,
+      "schema": "CapabilitiesResult"
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/products/not-a-product",
+      "viaGateway": true,
+      "status": 404,
+      "schema": "Error"
+    }
+  ],
+  "captureSha256": "bbd2cbeb8fedda1345e3aefe64f805e067604f0a3724173503d363bc0f664cbe",
+  "openapiSha256": "aea4063b65dda96d24f9bc32ff455e1194a77285fe4c07f958b2a153290d4c65",
+  "notVerified": [
+    "real payment/refund",
+    "frontend complete checkout",
+    "production deployment",
+    "commercial image quality",
+    "Linux runtime"
+  ]
+}

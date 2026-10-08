@@ -12,6 +12,8 @@ export const routeTitles: Record<string, string> = {
   home: '把照片变成由文字组成的作品',
   gallery: '作品案例',
   templates: '原创模板',
+  collections: '内容合集',
+  'collection-detail': '合集详情',
   'creation-help': '创作帮助',
   projects: '我的项目',
   'account-orders': '我的订单',

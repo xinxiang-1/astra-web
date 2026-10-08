@@ -1,0 +1,43 @@
+{
+  "scope": "Anonymous real owned MySQL/system/gateway catalogue; local shared Redis preserved; no payment or auth fixtures; external invalid previews blocked; 503 faults and delayed responses explicitly injected",
+  "browser": "154.0.4258.62",
+  "checks": [
+    "Actual empty database renders empty catalogue and disabled sale state",
+    "Free three starter templates remain usable with no published paid catalogue"
+  ],
+  "requests": [
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/capabilities",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "paymentEnabled": false,
+          "paymentChannel": "wechat_native",
+          "supportedCheckoutDevices": [
+            "desktop"
+          ],
+          "creationKitReady": false,
+          "environment": "test",
+          "mockPayment": false
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/products",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "items": []
+        }
+      }
+    }
+  ],
+  "injectedFailures": [],
+  "passed": true
+}
