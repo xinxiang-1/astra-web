@@ -99,6 +99,7 @@ onBeforeUnmount(() => {
     <div class="header-actions">
       <ThemeToggle v-if="showTheme" compact />
       <template v-if="!account">
+        <RouterLink class="header-login" to="/account/library">已购</RouterLink>
         <RouterLink v-if="!auth.isLoggedIn" class="header-login" to="/login">登录</RouterLink>
         <button
           v-else

@@ -17,8 +17,24 @@ const router = createRouter({
     { path: '/art-lab', name: 'art-lab', component: () => import('@/views/ArtEngineView.vue') },
     { path: '/gallery', name: 'gallery', component: () => import('@/views/GalleryView.vue') },
     { path: '/templates', name: 'templates', component: () => import('@/views/TemplatesView.vue') },
-    { path: '/help', name: 'creation-help', component: () => import('@/views/CreationHelpView.vue') },
+    {
+      path: '/help',
+      name: 'creation-help',
+      component: () => import('@/views/CreationHelpView.vue'),
+    },
     { path: '/projects', name: 'projects', component: () => import('@/views/ProjectsView.vue') },
+    {
+      path: '/account/orders',
+      name: 'account-orders',
+      component: () => import('@/views/AccountCommerceView.vue'),
+      props: { collection: 'orders' },
+    },
+    {
+      path: '/account/library',
+      name: 'account-library',
+      component: () => import('@/views/AccountCommerceView.vue'),
+      props: { collection: 'library' },
+    },
     {
       path: '/login',
       name: 'login',

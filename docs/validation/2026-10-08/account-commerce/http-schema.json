@@ -1,0 +1,1295 @@
+{
+  "passed": true,
+  "scope": "real-captured-http-vs-openapi",
+  "httpResponses": 142,
+  "entitlementResponses": 134,
+  "checks": [
+    {
+      "method": "GET",
+      "path": "/system/entitlements",
+      "status": 401,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements",
+      "status": 401,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements",
+      "status": 401,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements",
+      "status": 401,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements",
+      "status": 401,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements",
+      "status": 200,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements",
+      "status": 401,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements",
+      "status": 401,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements",
+      "status": 401,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements",
+      "status": 401,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements",
+      "status": 401,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements",
+      "status": 200,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders",
+      "status": 200,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/OrderResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements",
+      "status": 200,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366423883739430912/payments",
+      "status": 200,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/PaymentResult"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders",
+      "status": 200,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/OrderResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements",
+      "status": 200,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders/366423885568147456/payments",
+      "status": 200,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/PaymentResult"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders",
+      "status": 200,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/OrderResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements",
+      "status": 200,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366423887312977920/payments",
+      "status": 200,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/PaymentResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements",
+      "status": 200,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements",
+      "status": 200,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements",
+      "status": 200,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements",
+      "status": 200,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements?limit=1",
+      "status": 200,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements?limit=1&cursor=ZW50aXRsZW1lbnRzLXYxfEFMTHwyMDI2LTEwLTAyVDEyOjAwOjAwLjEyM1p8MzY2NDIzODg4MjkwMjUwNzUyj2yUTGP3sXYfpxBbRmw7yx6bjaGnxWq8dDMJxyNAwCM",
+      "status": 200,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements?limit=1&cursor=ZW50aXRsZW1lbnRzLXYxfEFMTHwyMDI2LTEwLTAyVDEyOjAwOjAwLjEyM1p8MzY2NDIzODg3MTM2ODE3MTUy4N1Fkg6mxEaVaP5Qb36sD9LZQakCF2rcoJ3a3RRWHeY",
+      "status": 200,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements?limit=50",
+      "status": 200,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements?limit=1",
+      "status": 200,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements?cursor=ZW50aXRsZW1lbnRzLXYxfEFMTHwyMDI2LTEwLTAyVDEyOjAwOjAwLjEyM1p8MzY2NDIzODg4MjkwMjUwNzUyj2yUTGP3sXYfpxBbRmw7yx6bjaGnxWq8dDMJxyNAwCM",
+      "status": 400,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements?state=ACTIVE&cursor=ZW50aXRsZW1lbnRzLXYxfEFMTHwyMDI2LTEwLTAyVDEyOjAwOjAwLjEyM1p8MzY2NDIzODg4MjkwMjUwNzUyj2yUTGP3sXYfpxBbRmw7yx6bjaGnxWq8dDMJxyNAwCM",
+      "status": 400,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements?cursor=ZW50aXRsZW1lbnRzLXYxfEFMTHwyMDI2LTEwLTAyVDEyOjAwOjAwLjEyM1p8MzY2NDIzODg4MjkwMjUwNzUyj2yUTGP3sXYfpxBbRmw7yx6bjaGnxWq8dDMJxyNAwCMx",
+      "status": 400,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements?limit=0",
+      "status": 400,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements?limit=51",
+      "status": 400,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements?limit=no",
+      "status": 400,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements?state=bad",
+      "status": 400,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements?cursor=",
+      "status": 400,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements?cursor=%21",
+      "status": 400,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements?cursor=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "status": 400,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements?limit=1",
+      "status": 200,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements?limit=1&cursor=ZW50aXRsZW1lbnRzLXYxfEFMTHwyMDI2LTEwLTAyVDEyOjAwOjAwLjEyM1p8MzY2NDIzODg4MjkwMjUwNzUyj2yUTGP3sXYfpxBbRmw7yx6bjaGnxWq8dDMJxyNAwCM",
+      "status": 200,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements?limit=1&cursor=ZW50aXRsZW1lbnRzLXYxfEFMTHwyMDI2LTEwLTAyVDEyOjAwOjAwLjEyM1p8MzY2NDIzODg3MTM2ODE3MTUy4N1Fkg6mxEaVaP5Qb36sD9LZQakCF2rcoJ3a3RRWHeY",
+      "status": 200,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements?limit=50",
+      "status": 200,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements?limit=1",
+      "status": 200,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements?cursor=ZW50aXRsZW1lbnRzLXYxfEFMTHwyMDI2LTEwLTAyVDEyOjAwOjAwLjEyM1p8MzY2NDIzODg4MjkwMjUwNzUyj2yUTGP3sXYfpxBbRmw7yx6bjaGnxWq8dDMJxyNAwCM",
+      "status": 400,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements?state=ACTIVE&cursor=ZW50aXRsZW1lbnRzLXYxfEFMTHwyMDI2LTEwLTAyVDEyOjAwOjAwLjEyM1p8MzY2NDIzODg4MjkwMjUwNzUyj2yUTGP3sXYfpxBbRmw7yx6bjaGnxWq8dDMJxyNAwCM",
+      "status": 400,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements?cursor=ZW50aXRsZW1lbnRzLXYxfEFMTHwyMDI2LTEwLTAyVDEyOjAwOjAwLjEyM1p8MzY2NDIzODg4MjkwMjUwNzUyj2yUTGP3sXYfpxBbRmw7yx6bjaGnxWq8dDMJxyNAwCMx",
+      "status": 400,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements?limit=0",
+      "status": 400,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements?limit=51",
+      "status": 400,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements?limit=no",
+      "status": 400,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements?state=bad",
+      "status": 400,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements?cursor=",
+      "status": 400,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements?cursor=%21",
+      "status": 400,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements?cursor=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "status": 400,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements",
+      "status": 200,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements?state=ACTIVE",
+      "status": 200,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements?state=FROZEN",
+      "status": 200,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements?state=REVOKED",
+      "status": 200,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements",
+      "status": 200,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements?state=ACTIVE",
+      "status": 200,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements?state=FROZEN",
+      "status": 200,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements?state=REVOKED",
+      "status": 200,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements",
+      "status": 200,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements",
+      "status": 200,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements",
+      "status": 200,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements",
+      "status": 503,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements",
+      "status": 503,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements",
+      "status": 503,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements",
+      "status": 503,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements",
+      "status": 503,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements",
+      "status": 503,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements",
+      "status": 503,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements",
+      "status": 503,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements",
+      "status": 503,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements",
+      "status": 503,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements",
+      "status": 503,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements",
+      "status": 503,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements",
+      "status": 503,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements",
+      "status": 503,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements",
+      "status": 503,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements",
+      "status": 503,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements",
+      "status": 503,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements",
+      "status": 503,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements",
+      "status": 503,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements",
+      "status": 503,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements",
+      "status": 503,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements",
+      "status": 503,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements",
+      "status": 503,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements",
+      "status": 503,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements",
+      "status": 503,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements",
+      "status": 503,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements",
+      "status": 503,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements",
+      "status": 503,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements",
+      "status": 503,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements",
+      "status": 503,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements",
+      "status": 503,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements",
+      "status": 503,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements",
+      "status": 200,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements",
+      "status": 200,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements",
+      "status": 200,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements",
+      "status": 200,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements",
+      "status": 200,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements",
+      "status": 200,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements",
+      "status": 200,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements",
+      "status": 200,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements",
+      "status": 200,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements",
+      "status": 200,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements",
+      "status": 200,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements",
+      "status": 200,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements",
+      "status": 200,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements",
+      "status": 200,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements",
+      "status": 200,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements",
+      "status": 200,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements",
+      "status": 200,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements",
+      "status": 429,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements",
+      "status": 200,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements",
+      "status": 200,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements",
+      "status": 429,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements",
+      "status": 200,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements",
+      "status": 200,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements",
+      "status": 200,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements",
+      "status": 429,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements",
+      "status": 200,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements",
+      "status": 200,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements",
+      "status": 200,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements",
+      "status": 429,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements",
+      "status": 200,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements",
+      "status": 200,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements",
+      "status": 200,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements",
+      "status": 200,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements",
+      "status": 200,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements",
+      "status": 429,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements",
+      "status": 200,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements",
+      "status": 429,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements",
+      "status": 200,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/EntitlementPageResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements",
+      "status": 503,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements",
+      "status": 503,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/orders/366423883739430912",
+      "status": 200,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/OrderResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/system/entitlements",
+      "status": 503,
+      "viaGateway": false,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/orders/366423883739430912",
+      "status": 200,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/OrderResult"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements",
+      "status": 503,
+      "viaGateway": true,
+      "schema": {
+        "$ref": "#/components/schemas/Error"
+      }
+    }
+  ],
+  "captureSha256": "b287209a35658a14f4af2751e801d60a8ec799699eaed8a29466783dba12b5d3",
+  "openapiSha256": "aea4063b65dda96d24f9bc32ff455e1194a77285fe4c07f958b2a153290d4c65",
+  "notVerified": [
+    "real channel funds",
+    "download/private delivery",
+    "refund consumers",
+    "frontend purchase",
+    "deployment"
+  ]
+}

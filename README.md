@@ -1,5 +1,7 @@
 # Astra
 
+2026-10-08账户接续：新增`/account/orders`与`/account/library`，只读后端本人订单/权益，双用户真实联调、游标/503/401恢复通过；[实施与证据](./docs/plans/account-commerce-2026-10-08.md)。领取文件、购买/退款/会员和真实收款仍待继续，免费创作保持。
+
 2026-10-08最新接续：[产品打磨、前后端商业联调、服务端付费/会员边界及部署办理清单](../astra-cloud/docs/plans/launch-readiness-2026-10-08.md)、[90天推广方案](./docs/plans/growth-playbook-2026-10-08.md)。用户从零逐步推进，当前优先品质与联调，真实收款和会员尚未开放。
 
 2026-10-04名字画接续：[字体与安全保存](./docs/plans/signature-font-bank-iteration-2026-10-04.md)已接入授权本地行楷/草书、完整长名字渲染和失败保留原库；修复镂空Canvas/SVG差异。夜光/自然布局/真实手写商业画质继续验收，整体目标保持进行。

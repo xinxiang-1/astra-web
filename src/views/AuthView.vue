@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, reactive, ref, watch } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
 
 import { AtmosphereStage } from '@/components/styles'
@@ -19,6 +19,12 @@ const props = withDefaults(
 )
 
 const router = useRouter()
+const route = useRoute()
+const returnTo = computed(() =>
+  route.query.returnTo === '/account/orders' || route.query.returnTo === '/account/library'
+    ? route.query.returnTo
+    : '/',
+)
 const auth = useAuthStore()
 
 const mode = ref<AuthMode>(props.initialMode)
@@ -242,7 +248,10 @@ function switchMode(next: AuthMode) {
   error.value = ''
   resetSent.value = false
   auth.lastMessage = ''
-  void router.replace(modePath[next])
+  void router.replace({
+    path: modePath[next],
+    query: returnTo.value === '/' ? {} : { returnTo: returnTo.value },
+  })
 }
 
 async function startWechatSession() {
@@ -277,7 +286,7 @@ function scheduleWechatPoll() {
         auth.acceptToken(session.token)
         auth.lastMessage = '微信登录成功'
         ElMessage.success(`微信登录成功，欢迎 ${session.token.user.nickname}`)
-        await router.push('/')
+        await router.push(returnTo.value)
         return
       }
       if (session.status !== 'expired' && session.status !== 'confirmed') {
@@ -318,7 +327,7 @@ async function confirmWechatScan() {
   wechatStatus.value = 'scanned'
   error.value = ''
   const ok = await auth.loginWithWechat(wechatTicket.value)
-  if (ok) await router.push('/')
+  if (ok) await router.push(returnTo.value)
 }
 
 function isEmail(value: string) {
@@ -512,7 +521,7 @@ async function onSubmit() {
     )
   }
 
-  if (ok) await router.push('/')
+  if (ok) await router.push(returnTo.value)
   else {
     error.value = auth.lastMessage || '操作失败'
     await enableCaptcha()

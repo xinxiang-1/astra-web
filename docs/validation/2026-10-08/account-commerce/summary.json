@@ -1,0 +1,37 @@
+{
+  "scope": "read-only commercial account UI against owned real gateway/system/MySQL/Redis; trusted simulated settlement",
+  "junitTests": 10,
+  "junitSkipped": 0,
+  "browserChecks": 8,
+  "browserActualGatewayRequests": 9,
+  "backendHttpResponses": 142,
+  "entitlementSchemaResponses": 134,
+  "ownedFixtureCleanup": true,
+  "frontendTypeCheck": true,
+  "relatedEslint": true,
+  "productionBuild": true,
+  "authHttpRegressionRequests": 7,
+  "authStoreRegressionScenarios": 7,
+  "sourceSha256": {
+    "src/api/commerce.ts": "1fafb0f09ced3ed26292e72bc3a95abb752a29a2e3fcef957ea1563548335386",
+    "src/views/AccountCommerceView.vue": "b44a94017c1ef192f5cb6467f54a9c11eef8b46d8a246774861f3f23b9c837f1",
+    "src/views/AuthView.vue": "18bf203b5cd35cb92dc912cb969db6ba9b0d1ec501c08fe6e7423e5adcb0df92",
+    "src/router/index.ts": "7c99a2af9df6a3c3abff9bf5d0090fad1f008af636c748fbfc86c0360a396912",
+    "src/components/ArtHeader.vue": "0f552781b2b4e3e3518ea839496c83c49571141fc401af21d84ac256ae158e88",
+    "src/content/navigation.ts": "b3132fb71540461cbdef33701a73fd0ee85a1b0627e36dc302317663c571604e",
+    "scripts/account-commerce-live.mjs": "fa8effbddeb509948a091632e1be6d545efce44b155f0bfe95bfd2aeb893c665"
+  },
+  "limitations": [
+    "auth/me unavailable in fixture and simulated as 503",
+    "no real payment funds",
+    "no actual file download frontend yet",
+    "no membership implementation",
+    "390px simulated viewport, not real phone",
+    "no full Linux deployment"
+  ],
+  "protectedFileGitBlobs": {
+    "src/views/ArtHomeView.vue": "8ab88da893492a508b375ccd1383b6867545cd59",
+    "src/components/CharacterArtwork.vue": "74e2aa40a948cff8eb8f2c9c9f99c102350e1c71",
+    "src/lib/ascii/studio-preview.ts": "bd62d61bf6b892659b643441cc82bbf7ecef60d1"
+  }
+}

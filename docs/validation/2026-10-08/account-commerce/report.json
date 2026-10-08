@@ -1,0 +1,62 @@
+{
+  "scope": "Live isolated MySQL/Redis/system/gateway; simulated payment settlements; auth/me unavailable",
+  "browser": "154.0.4258.62",
+  "checks": [
+    "Owner sees three real paid orders; payment and fulfillment shown separately",
+    "Owned release, file metadata and frozen license rendered; bigint IDs retained exactly",
+    "Three actual limit=1 backend pages append through returned opaque cursors without loss or duplication",
+    "503 preserves credential and recovers by user retry without any purchase write",
+    "390px simulated viewport has no horizontal overflow",
+    "Second real backend user cannot see owner orders or content",
+    "Invalid JWT shows login and removes private rows; internal return path retained",
+    "Anonymous account view requires login and makes no protected request"
+  ],
+  "requests": [
+    {
+      "path": "/api/system/orders",
+      "query": "?limit=20",
+      "status": 200
+    },
+    {
+      "path": "/api/system/entitlements",
+      "query": "?limit=20",
+      "status": 200
+    },
+    {
+      "path": "/api/system/entitlements",
+      "query": "?limit=1",
+      "status": 200
+    },
+    {
+      "path": "/api/system/entitlements",
+      "query": "?limit=1&cursor=ZW50aXRsZW1lbnRzLXYxfEFMTHwyMDI2LTEwLTA4VDAzOjE3OjQyLjc5MFp8MzY2NDIzODg4MjkwMjUwNzUyIS0a0ZnlenBJ8oNMc1C5YnyCyGiPle262XWY9RLPEo4",
+      "status": 200
+    },
+    {
+      "path": "/api/system/entitlements",
+      "query": "?limit=1&cursor=ZW50aXRsZW1lbnRzLXYxfEFMTHwyMDI2LTEwLTA4VDAzOjE3OjQyLjUxNVp8MzY2NDIzODg3MTM2ODE3MTUy_TpdFTOxB7qhvVb35z0Rg5T2pLMgm0XPF7ZeUYFii20",
+      "status": 200
+    },
+    {
+      "path": "/api/system/entitlements",
+      "query": "?limit=20",
+      "status": 200
+    },
+    {
+      "path": "/api/system/entitlements",
+      "query": "?limit=20",
+      "status": 200
+    },
+    {
+      "path": "/api/system/orders",
+      "query": "?limit=20",
+      "status": 200
+    },
+    {
+      "path": "/api/system/orders",
+      "query": "?limit=20",
+      "status": 401
+    }
+  ],
+  "passed": true
+}

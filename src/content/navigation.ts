@@ -14,6 +14,8 @@ export const routeTitles: Record<string, string> = {
   templates: '原创模板',
   'creation-help': '创作帮助',
   projects: '我的项目',
+  'account-orders': '我的订单',
+  'account-library': '已购内容',
   tools: '创作工具',
   studio: '视觉实验室',
   'ascii-art': '字符画工作台',
