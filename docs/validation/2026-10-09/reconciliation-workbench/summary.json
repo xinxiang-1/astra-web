@@ -1,0 +1,93 @@
+{
+  "passed": true,
+  "stage": "reconciliation-workbench-2026-10-09",
+  "finalRun": "reconciliation-admin-it-0a6b1188ca21",
+  "backendJUnit": {
+    "tests": 13,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "browser": {
+    "checks": 15,
+    "actualResponses": 46,
+    "reconciliationResponses": 42,
+    "existingAccountAdminResponses": 4,
+    "pageErrors": [],
+    "screenshots": 8
+  },
+  "responseSchema": {
+    "backend": 161,
+    "backendDirect": 101,
+    "backendGateway": 60,
+    "browser": 46,
+    "total": 207
+  },
+  "contracts": {
+    "reconciliation": 13,
+    "refundReviewRegression": 11
+  },
+  "checks": {
+    "typeCheck": {
+      "exitCode": 0,
+      "log": "astra-web/test-results/reconciliation-workbench-types-r4.log",
+      "sha256": "0a7d40c8ea67ee87b4bcdc91418a201a96bc30f3286185c82d8888ec96c6d6fb"
+    },
+    "eslint": {
+      "exitCode": 0,
+      "log": "astra-web/test-results/reconciliation-workbench-eslint-r4.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "browserScriptEslint": {
+      "exitCode": 0,
+      "log": "astra-web/test-results/reconciliation-workbench-browser-eslint-r7.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "frontendBuild": {
+      "exitCode": 0,
+      "log": "astra-web/test-results/reconciliation-workbench-build-r4.log",
+      "sha256": "bf47cf196847265e8d7d5ca97553ef37e5e60327ed453169bc952d64b415d902"
+    },
+    "reconciliationContract": {
+      "exitCode": 0,
+      "log": "astra-web/test-results/reconciliation-workbench-contract-r3.log",
+      "sha256": "18cca2aea7acd7e9f9be2a5104a01aa1fca715c124708cb248116b62eab6f446"
+    },
+    "refundContract": {
+      "exitCode": 0,
+      "log": "astra-web/test-results/reconciliation-workbench-refund-contract-r3.log",
+      "sha256": "1888b6a6dde5de17ac8275c60af772d29bdb9108c3c355369788c3cf9657c298"
+    },
+    "backendBuild": {
+      "exitCode": 0,
+      "log": "astra-cloud/tmp/reconciliation-workbench-build-r3.log",
+      "sha256": "068e87daea0729535793d229bde48384fc33cb379dbc4d9c44109d7ff8c4c363"
+    },
+    "integration": {
+      "exitCode": 0,
+      "log": "astra-cloud/tmp/reconciliation-workbench-r7.log",
+      "sha256": "52c3444ccf0b41a2e49a10bf79e97c080252d6067e1237271c1a43ae402fb69d"
+    }
+  },
+  "openapiExistingDefinitionsUnchanged": true,
+  "ownedFixtureCleanupComplete": true,
+  "mockAndInjectedScope": [
+    "mock channel statement provider",
+    "auth/me explicitly simulated503; fixture JWT and admin role",
+    "no-op scheduler mock only; real worker executes",
+    "explicit read503 and accepted200 response loss",
+    "real server page-size1 override for signed-cursor browser exercise"
+  ],
+  "notVerified": [
+    "real channel funds/statements",
+    "trusted anomaly query recovery",
+    "production deployment",
+    "entire commercial goal",
+    "production authentication; auth/me explicitly simulated503 in the owned browser fixture",
+    "membership subscriptions",
+    "signature multi-font/cutout/export quality",
+    "all-site visual quality",
+    "entire commercial acceptance"
+  ],
+  "prior44RegressionTestsNotRerun": true
+}

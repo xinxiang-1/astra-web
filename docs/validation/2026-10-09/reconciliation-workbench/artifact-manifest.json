@@ -1,0 +1,62 @@
+{
+  "failure-history.json": {
+    "bytes": 2386,
+    "sha256": "8bc00c5a811bbaf939caf0f49d527d2cbcd4fea085e98ee8ec6ef171bfdd9c50"
+  },
+  "http-evidence.json": {
+    "bytes": 124049,
+    "sha256": "459902563660fab511252bb1f261661e37cf0ee92bdc679abd8f48c9b8754cc9"
+  },
+  "http-schema.json": {
+    "bytes": 71276,
+    "sha256": "db3fcb49c17bce9664a854bc606730f58fcdf414aca7b49660812f1a6a57ae1c"
+  },
+  "junit.json": {
+    "bytes": 1100,
+    "sha256": "b329e7c3054d10996fc15713275fa75f640173f9cf7fdebb41cd9fa0c971a660"
+  },
+  "README.md": {
+    "bytes": 1985,
+    "sha256": "b32d3cf69bde8efbd9266c0518f8fbd44db9cb6e4a926f120506421fcbca7935"
+  },
+  "summary.json": {
+    "bytes": 3273,
+    "sha256": "6a3ee47c0d7f296b79634b43f7174091028cef6496b6924f9ed5d10919d110a2"
+  },
+  "workbench-ui/browser-report.json": {
+    "bytes": 56885,
+    "sha256": "c59f761ac2f4003e0a1d6f13aa0d828dd641d0098628dd91bb803d3df0a19337"
+  },
+  "workbench-ui/reconciliation-chrome-dark-mobile.png": {
+    "bytes": 177280,
+    "sha256": "6a57b99ad5609e246c4ec8d3ccdfdba702f0107b3fbefa51464f72ac85a8e875"
+  },
+  "workbench-ui/reconciliation-chrome-light-mobile.png": {
+    "bytes": 174655,
+    "sha256": "efda8525a70aa5e8045345de6769c19747bbed62240dd72aec9a19d53cfa9cfe"
+  },
+  "workbench-ui/reconciliation-edge-dark-desktop.png": {
+    "bytes": 184948,
+    "sha256": "3f9212287e81aa1c8f4050552aa257aadeef9790709f051c6fb9403a0eedb01f"
+  },
+  "workbench-ui/reconciliation-edge-dark-form.png": {
+    "bytes": 29212,
+    "sha256": "fca96b0fa96ea0c9e43e15fafb7e376370646a9dd74c0870bbe51ca68f154509"
+  },
+  "workbench-ui/reconciliation-edge-dark-mobile.png": {
+    "bytes": 160848,
+    "sha256": "fbd64f39c4f1ec7c16cf94f4c82f6c46e95b0ca8d6d20d400a973cffc548d509"
+  },
+  "workbench-ui/reconciliation-edge-light-desktop.png": {
+    "bytes": 183657,
+    "sha256": "72952c2aecd2ab7930301c100c9ac45133026794d2f0b52e2250e2d79aa3dfb5"
+  },
+  "workbench-ui/reconciliation-edge-light-form.png": {
+    "bytes": 28880,
+    "sha256": "68aab65446ec195ac238312f54a0f2ac95409e53223d4e95ad6246b25167882a"
+  },
+  "workbench-ui/reconciliation-edge-light-mobile.png": {
+    "bytes": 158228,
+    "sha256": "ccf72df9f41047e026dd69d70d60306b3182d66c54b3b3c2b8e3ec3a98a11e7e"
+  }
+}

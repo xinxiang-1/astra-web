@@ -6,6 +6,7 @@ import { availableRefundDecisions, submitRefundDecision, validateRefundContext }
 import { normalizeRefundReason } from '@/lib/refund-request'
 import { useAuthStore } from '@/stores/auth'
 import ArtFooter from '@/components/ArtFooter.vue'
+import AdminNavigation from '@/components/commerce/AdminNavigation.vue'
 
 const auth = useAuthStore()
 const allowed = ref(false), needsLogin = ref(false), busy = ref(false), loaded = ref(false)
@@ -106,6 +107,7 @@ onBeforeUnmount(() => { controller?.abort(); window.removeEventListener('storage
     <div class="art-wrap admin-content" :aria-busy="busy">
       <header><span class="art-eyebrow">ASTRA · OPERATIONS</span><h1>退款工作台</h1><p>先核对申请与原订单，再提交审核。金额、权限和最终退款状态由后台确认。</p><RouterLink to="/account/orders">返回我的订单 ↗</RouterLink></header>
       <section v-if="needsLogin" class="panel"><h2>请登录运营账户</h2><RouterLink :to="{ path: '/login', query: { returnTo: '/admin/refunds' } }" class="art-button primary">前往登录</RouterLink></section>
+      <AdminNavigation v-if="allowed" />
       <p v-if="busy" role="status">正在核对后台记录…</p>
       <div v-if="error" class="panel" role="alert"><p>{{ error }}</p><button class="art-button" :disabled="busy" @click="load()">重新读取</button></div>
       <p v-if="notice" class="panel" role="status">{{ notice }}</p>

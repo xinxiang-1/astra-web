@@ -1,0 +1,51 @@
+{
+  "iterations": [
+    {
+      "run": "R1",
+      "outcome": "test compilation failure",
+      "cause": "Two JwtSupport calls passed int where Long is required",
+      "fix": "Use122L",
+      "logSha256": "50f62460fadc0ac4a3e61133fda463321d8d1608ee3e7fbd5d09c936cb15b274"
+    },
+    {
+      "run": "R2",
+      "outcome": "13JUnit and13browser checks passed",
+      "finding": "Full23-issue list produces5728px mobile page and indistinguishable statement-only rows",
+      "logSha256": "630bd324b55d6f137d8e2df89f92ed8037a97319a92eef8c0a1499d3dc00e27a"
+    },
+    {
+      "run": "R3",
+      "outcome": "13JUnit and14browser checks passed",
+      "fix": "Safe issue identifiers, bounded keyboard-scrollable list and full-size form captures",
+      "logSha256": "4feec21ba9ad7c9d72d0526556d4a0541fe1af67dd1c1adc279079b1d65b7b95"
+    },
+    {
+      "run": "R4",
+      "outcome": "13JUnit and15browser checks passed",
+      "fix": "Snapshot applied filters; three actual jobs exercise signed cursor with server page size1",
+      "finding": "Full-page screenshot of scrolled viewport captures offscreen skip link",
+      "logSha256": "474be4a84220f674ee0b9cb11f56106e810231cf4e7f916e945f41963252ff92"
+    },
+    {
+      "run": "R5",
+      "outcome": "13JUnit and15browser checks passed",
+      "fix": "Capture Edge full pages from top; product build unchanged fromR4",
+      "logSha256": "61a9d4fca78e596863e3f8b58406240e370223579652413e5c624d5fb959ddc9"
+    },
+    {
+      "run": "R6",
+      "outcome": "13JUnit, one failure;15browser checks passed",
+      "fix": "Apply top-of-page capture to Chrome too",
+      "failure": "queryQuotaAndRedisFailureFailClosed immediately expected200 after Redis restart while gateway still returned503",
+      "logSha256": "c8fe11defd712aefe4e288a9d883acc48a5bef221020076ce8d59bf7bf73aab2",
+      "junitSha256": "630f1159b25a4e1a4669d7e5ee35d7f8cf85bb05ed7999e35127eeb9bf2b4c08"
+    },
+    {
+      "run": "R7",
+      "outcome": "Final13JUnit and15browser checks passed",
+      "fix": "Bounded recovery GET polling accepts only transient503 and requires actual200 within20s; Redis-down assertions remain strict",
+      "logSha256": "52c3444ccf0b41a2e49a10bf79e97c080252d6067e1237271c1a43ae402fb69d"
+    }
+  ],
+  "counting": "Only final run counts; earlier passing iterations are not cumulative tests."
+}

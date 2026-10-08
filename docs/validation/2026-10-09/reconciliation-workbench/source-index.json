@@ -1,0 +1,216 @@
+{
+  "passed": true,
+  "scope": "Exact actual-run source worktree SHA256 plus staged Git blob SHA256; any difference must be CRLF normalization only",
+  "repos": {
+    "astra-cloud": {
+      "baseCommit": "e1b5ff87f67458520fe1dc2a1909be1f2ddb977c",
+      "sources": [
+        {
+          "path": "astra-api/src/main/java/com/astra/api/commerce/CommerceReconciliationDto.java",
+          "worktreeSha256": "724424b33bb679fbdff2939133a11ae58c02c691bc2bcce3fe3bac17a0ea4311",
+          "indexSha256": "724424b33bb679fbdff2939133a11ae58c02c691bc2bcce3fe3bac17a0ea4311",
+          "gitBlob": "53ca89b0b6e9205fc8adfccc87487b9cf5839ac1",
+          "lineEndingNormalizationOnly": false
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/reconciliation/DailyLedgerRepository.java",
+          "worktreeSha256": "321bd25b11135c575d14748724619fedc17805f35db7eac8128d0f21e94ecc19",
+          "indexSha256": "8937d5999dcfaa87e4baff142ef646ec7b28eef3d483962b990ea35c5cb69a9d",
+          "gitBlob": "b38546ef4a003e462abc666c33602f02fc736491",
+          "lineEndingNormalizationOnly": true
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/reconciliation/DailyReconciliationService.java",
+          "worktreeSha256": "aac87c9fcb5cd762fa7af36fa0c9d444aec78bff60c8c45a54e59e9cc265f346",
+          "indexSha256": "4f5a5baf6dcefc6dbb56cd86feb70b6ce7a49693e03c8db6569ee35d8456da5d",
+          "gitBlob": "da25c3790cea394592d2b494d0fb9fc2e0e1060b",
+          "lineEndingNormalizationOnly": true
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/reconciliation/ReconciliationAdminController.java",
+          "worktreeSha256": "ae99801a05cef43c95017e4bc6114c63e24da3e7764ca418eb37033ffc9fd1e5",
+          "indexSha256": "ae99801a05cef43c95017e4bc6114c63e24da3e7764ca418eb37033ffc9fd1e5",
+          "gitBlob": "26a144eaf33f8fa31673503e52d55256f6add1f7",
+          "lineEndingNormalizationOnly": false
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/reconciliation/ReconciliationAdminRepository.java",
+          "worktreeSha256": "49c69e61a24946d7999feaf50241dbc3d2524b6c069d4a3410c5b10936607a9d",
+          "indexSha256": "49c69e61a24946d7999feaf50241dbc3d2524b6c069d4a3410c5b10936607a9d",
+          "gitBlob": "9cdd227104ec603c1f5b62f0ef6c28862d52f3c4",
+          "lineEndingNormalizationOnly": false
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/reconciliation/ReconciliationAdminService.java",
+          "worktreeSha256": "25690ef53d8aa1da470338a35d558c4ef6cb8fbbfc7237a3dc15d6fc6a63e9a7",
+          "indexSha256": "25690ef53d8aa1da470338a35d558c4ef6cb8fbbfc7237a3dc15d6fc6a63e9a7",
+          "gitBlob": "85d9635bce3a98c0442dbec1a273f0923eff11a0",
+          "lineEndingNormalizationOnly": false
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/reconciliation/ReconciliationInput.java",
+          "worktreeSha256": "949bab9b4c8e6e737e5e9e2d27f6336816bd33de462d246748a340a7cf077ae7",
+          "indexSha256": "949bab9b4c8e6e737e5e9e2d27f6336816bd33de462d246748a340a7cf077ae7",
+          "gitBlob": "fdd250c6f769f8eacde8d467e570394d2d992fdf",
+          "lineEndingNormalizationOnly": false
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/reconciliation/ReconciliationJobRepository.java",
+          "worktreeSha256": "480f340319771fd4331bfc23c22cbc461ccd6cbed6c0dcc6ca6b42736b52b031",
+          "indexSha256": "664b4f05c9d644c2c25e6ccadd2fb76efd9dbbc346ec54af0267f8b0889c7c23",
+          "gitBlob": "2cb059d0ed6b097da132a3328a8815a6c14efa83",
+          "lineEndingNormalizationOnly": true
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/reconciliation/ReconciliationProperties.java",
+          "worktreeSha256": "6f7893882081b6250586fd8c661f0161234abcd3d6d645f49ed94171733743f8",
+          "indexSha256": "f26ac9463a663c6e716a18d969db16e14462340c3116ece81053b8bc0fc11929",
+          "gitBlob": "c906dd4ea5d03aae8afe477a83073e3e4890b5b9",
+          "lineEndingNormalizationOnly": true
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/reconciliation/ReconciliationScheduler.java",
+          "worktreeSha256": "33cc0306df55c6592162934685778842e20a2ba9fd3fe9c6fc24a82fea9d4901",
+          "indexSha256": "a805c188f98fd531204f4167149e35cd7f6e3a49419ac778a2cf009295dfff14",
+          "gitBlob": "20f0dbf98fa16787fd3b71308cbc1a9ccc4c6e2a",
+          "lineEndingNormalizationOnly": true
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/reconciliation/ReconciliationWorker.java",
+          "worktreeSha256": "58769386f0ec0b022b19935b28d04f6f5265632e1ec51617d722949385235c2d",
+          "indexSha256": "986cdc9dde6fd3d139524915da873a3aef05fe7416ec1a3be88c0f8fbe61024a",
+          "gitBlob": "bb9b1b7cadef1549ba3ec31a5d56a6b9d488976b",
+          "lineEndingNormalizationOnly": true
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/support/UserRateLimiter.java",
+          "worktreeSha256": "44c646fec88ce21c97aab5af47018e45e2523958a48c020c66efe00bccc5d502",
+          "indexSha256": "d2c3b22b12e7ca277a754a31ce55ee83867bd4fc47f00e3cd1259a45f5a36cda",
+          "gitBlob": "b415ad26ec53af29a2de75fd7a5acd1ccd3ddee0",
+          "lineEndingNormalizationOnly": true
+        },
+        {
+          "path": "astra-modules/astra-system/src/test/java/com/astra/system/commerce/ReconciliationAdminIntegrationTest.java",
+          "worktreeSha256": "37764325de5aa867718969b195bcb10fc613f31de468b6994fa0cc715212f2ce",
+          "indexSha256": "7fe7233c8a687c674732f009bf277706bd094036add89201daa6ddeb08b37085",
+          "gitBlob": "1fc26b03d0cf31a0db5dd902377906e2e5fbbbc5",
+          "lineEndingNormalizationOnly": true
+        },
+        {
+          "path": "docs/commerce/openapi.json",
+          "worktreeSha256": "329de2fe764628c05b6ccf3d113609d1c3f3c4755c8a2905571b66a6f92005ea",
+          "indexSha256": "7d07a6d7fc03308ec33e87d010d3d1b3fcdbffb2e5fbd18969efe3e1f9ab37e1",
+          "gitBlob": "a09227bfc951ac7de75a2b0ee95a20165073270f",
+          "lineEndingNormalizationOnly": true
+        },
+        {
+          "path": "scripts/validate-reconciliation-admin-evidence.py",
+          "worktreeSha256": "0e520b2ee0d23f060a06fcf29933e9cbe123d921e3bcb1124a5f6896a7ad0494",
+          "indexSha256": "0e520b2ee0d23f060a06fcf29933e9cbe123d921e3bcb1124a5f6896a7ad0494",
+          "gitBlob": "51817cc106270a1efe9743bb0c58e0427658c2c3",
+          "lineEndingNormalizationOnly": false
+        },
+        {
+          "path": "sql/migrations/V20261008_01__commerce_statement_indexes.sql",
+          "worktreeSha256": "f2e83772a79eaf189fe100e724283ef9f590186fc0d9bf4259d8b512ca8c0c7e",
+          "indexSha256": "20b38309762cdf1f33ce3f508a54a57ebfc3c218d90ab68d2bfe4a1eaf31548d",
+          "gitBlob": "18597ff9d5aaf4e5fcd319eceff4f11f3cad63df",
+          "lineEndingNormalizationOnly": true
+        },
+        {
+          "path": "sql/migrations/V20261008_02__commerce_daily_reconciliation.sql",
+          "worktreeSha256": "69b3cb039f7e2eb6c3602c4ccf1c6531a96f4c1090415db3da000c8d2e17b498",
+          "indexSha256": "08bff42f706dc4e200f5ae434a536ef3c089128b06a457912ed203413bf8f8de",
+          "gitBlob": "aa1b150756e092c2a5186ac4489d04863d7f8c64",
+          "lineEndingNormalizationOnly": true
+        }
+      ],
+      "archivedEvidenceBytesMatched": 15,
+      "protectedFilesExcluded": true
+    },
+    "astra-web": {
+      "baseCommit": "b30a6028fdee76763ef06b748a8a9f27b37c3cf7",
+      "sources": [
+        {
+          "path": "src/api/reconciliation.ts",
+          "worktreeSha256": "0067070ebe086f94eb79d8ad5dd5058a529f2adb76e347f66f7be8de1f44da4c",
+          "indexSha256": "0067070ebe086f94eb79d8ad5dd5058a529f2adb76e347f66f7be8de1f44da4c",
+          "gitBlob": "1bc55002141bf67758e9243f8c4c8b0cb58f99b8",
+          "lineEndingNormalizationOnly": false
+        },
+        {
+          "path": "src/lib/admin-reconciliations.ts",
+          "worktreeSha256": "51762b4e58e9852567509497530213d9f9377e0bef2db9e376feb8a2354d3acc",
+          "indexSha256": "51762b4e58e9852567509497530213d9f9377e0bef2db9e376feb8a2354d3acc",
+          "gitBlob": "19438a277443f85e6f9e1de0499224722138bec2",
+          "lineEndingNormalizationOnly": false
+        },
+        {
+          "path": "src/lib/account-return.ts",
+          "worktreeSha256": "95b50a5c0b4b25d9f1994f13868c77068d0f372ade16431d6416c22a72419dee",
+          "indexSha256": "95b50a5c0b4b25d9f1994f13868c77068d0f372ade16431d6416c22a72419dee",
+          "gitBlob": "2925f7ae50402946db8f3a6fa0308711e44f3f18",
+          "lineEndingNormalizationOnly": false
+        },
+        {
+          "path": "src/router/index.ts",
+          "worktreeSha256": "1c00e94337871b732f189abce18bdaa43d16e3ea841c613f2f9009c128adb916",
+          "indexSha256": "1c00e94337871b732f189abce18bdaa43d16e3ea841c613f2f9009c128adb916",
+          "gitBlob": "ad8fa50b31abd1616260a5bbf43aa9436cfa75a6",
+          "lineEndingNormalizationOnly": false
+        },
+        {
+          "path": "src/content/navigation.ts",
+          "worktreeSha256": "3ce3f27aec53a32715e4cd3a291dc113d790c5a88131cc196477bab54fd6f44e",
+          "indexSha256": "3ce3f27aec53a32715e4cd3a291dc113d790c5a88131cc196477bab54fd6f44e",
+          "gitBlob": "7bfa0ab50f3d4cd96cf9b3c18b28b4f43b4a33e4",
+          "lineEndingNormalizationOnly": false
+        },
+        {
+          "path": "src/components/commerce/AdminNavigation.vue",
+          "worktreeSha256": "8d9ae971a0bec09b360d86e6d643baa89fce2aaf401658cb71f2efe157ec3401",
+          "indexSha256": "8d9ae971a0bec09b360d86e6d643baa89fce2aaf401658cb71f2efe157ec3401",
+          "gitBlob": "05ac330ea7ce63aeed27d4fe32f9cdd683d94569",
+          "lineEndingNormalizationOnly": false
+        },
+        {
+          "path": "src/views/AdminReconciliationsView.vue",
+          "worktreeSha256": "18ef402e1d111b8e000ade541a2c2e13e842e728b081fb9aaa9a1df18c100487",
+          "indexSha256": "18ef402e1d111b8e000ade541a2c2e13e842e728b081fb9aaa9a1df18c100487",
+          "gitBlob": "f2ace55b792ff2f892ca06aac5fcc38985d01fcb",
+          "lineEndingNormalizationOnly": false
+        },
+        {
+          "path": "src/views/AdminRefundsView.vue",
+          "worktreeSha256": "f701b742efc694eac275552f346e0541a5eaeafccf2911825a607d65480885da",
+          "indexSha256": "f701b742efc694eac275552f346e0541a5eaeafccf2911825a607d65480885da",
+          "gitBlob": "9e3dd68e165d93edab5152bd178155cae7148849",
+          "lineEndingNormalizationOnly": false
+        },
+        {
+          "path": "src/views/AccountCommerceView.vue",
+          "worktreeSha256": "af7d0166394213b68ec5f9f9aeb0115edff00a43c8a4e3e6883c4747904ed3db",
+          "indexSha256": "af7d0166394213b68ec5f9f9aeb0115edff00a43c8a4e3e6883c4747904ed3db",
+          "gitBlob": "3d14fffb0ce7904c51d8b37e7470db0f85d343f4",
+          "lineEndingNormalizationOnly": false
+        },
+        {
+          "path": "scripts/admin-reconciliations-contract.mjs",
+          "worktreeSha256": "53a0e418ab592ba3dbb56b40a6aab6f0cefded13501257c6566e5bbc5dd96e62",
+          "indexSha256": "53a0e418ab592ba3dbb56b40a6aab6f0cefded13501257c6566e5bbc5dd96e62",
+          "gitBlob": "80ef1e4ef0f0636b86ef8ce25023bd97271a374b",
+          "lineEndingNormalizationOnly": false
+        },
+        {
+          "path": "scripts/admin-reconciliations-live.mjs",
+          "worktreeSha256": "50d64de5dd87d6b495ab50ef552d974a14add8515ab7d7e831f9cf5f6924c92c",
+          "indexSha256": "50d64de5dd87d6b495ab50ef552d974a14add8515ab7d7e831f9cf5f6924c92c",
+          "gitBlob": "804fd547f95972bdfc2eaf48ea9250a1c07cfd74",
+          "lineEndingNormalizationOnly": false
+        }
+      ],
+      "archivedEvidenceBytesMatched": 15,
+      "protectedFilesExcluded": true
+    }
+  }
+}

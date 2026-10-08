@@ -1,3 +1,5 @@
 * text=auto eol=lf
 # Preserve downloaded historical vector bytes and the recorded provenance SHA256.
 docs/research/2026-10-04-signature-capacity/beethoven-signature.svg -text whitespace=cr-at-eol
+docs/validation/2026-10-09/reconciliation-workbench/*.json -text whitespace=cr-at-eol
+docs/validation/2026-10-09/reconciliation-workbench/workbench-ui/*.json -text whitespace=cr-at-eol

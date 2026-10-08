@@ -1,0 +1,1948 @@
+{
+  "passed": true,
+  "scope": "Built frontend + owned gateway/system/MySQL/Redis; mock statements; auth/me explicitly simulated503",
+  "checks": [
+    "Anonymous page sends no private reconciliation calls and preserves exact login return",
+    "Actual database role403 hides private records and operator actions",
+    "Backend numeric totals and all23 paginated differences render without duplication; DONE remains an issue report",
+    "All23 safe issue identifiers remain readable in a bounded keyboard-scrollable list; End/Home reach both ends",
+    "Native themed dropdown filtering; Edge desktop/390px in both themes, keyboard-focusable controls and reduced motion",
+    "Reads server date/current generation before allowing a5–500-character reason and explicit unchecked confirmation",
+    "Accepted response loss/double click creates one task; reload and renewed JWT recover original viaGET without stored reason/token or anotherPOST",
+    "Actual owned worker completes original queued job; manual refresh displays persisted immutable result",
+    "Real competing administrator causes43008; old confirmation is discarded and active next generation blocks rerun",
+    "Actual backend execution switch disables creation while original23-issue history remains readable with latest generation2",
+    "Editing an unapplied filter keeps the original signed cursor; all three real jobs load without duplicates or400",
+    "Explicit read503 injection provides retry, retains JWT and never substitutes local success data",
+    "Delayed previously authorized response cannot restore private report after cross-tab account switch",
+    "Account discovers operator entry from database role; buyer does not get it",
+    "Chrome390px reads real protected reports in both themes, creation stays closed, no financial writes"
+  ],
+  "requests": [
+    {
+      "method": "GET",
+      "path": "/api/system/admin/reconciliations/access",
+      "status": 403,
+      "body": {
+        "code": 403,
+        "msg": "无管理权限"
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "236b6484-aa58-4cba-85ba-1fb4deb82cb2",
+        "retryAfter": ""
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/reconciliations/access",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "actorId": "122",
+          "executionEnabled": true,
+          "mock": true,
+          "environment": "test",
+          "latestBillDate": "2026-10-07",
+          "earliestBillDate": "2024-10-08",
+          "observedAt": "2026-10-08T17:38:12.865Z"
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "71f3ecb7-8d6d-4c75-896d-bb3f436208c1",
+        "retryAfter": ""
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/reconciliations",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "items": [
+            {
+              "id": "366640431741734913",
+              "billDate": "2026-10-07",
+              "timeZone": "Asia/Shanghai",
+              "generation": 1,
+              "source": "MANUAL",
+              "requestedBy": "122",
+              "state": "DONE",
+              "attempts": 1,
+              "createdAt": "2026-10-08T17:38:10.777Z",
+              "completedAt": "2026-10-08T17:38:10.795Z",
+              "issueCount": 23
+            }
+          ]
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "c1068ae1-7143-4c38-b012-aaa0daf2aa7f",
+        "retryAfter": ""
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/reconciliations/366640431741734913",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "job": {
+            "id": "366640431741734913",
+            "billDate": "2026-10-07",
+            "timeZone": "Asia/Shanghai",
+            "generation": 1,
+            "source": "MANUAL",
+            "requestedBy": "122",
+            "state": "DONE",
+            "attempts": 1,
+            "createdAt": "2026-10-08T17:38:10.777Z",
+            "completedAt": "2026-10-08T17:38:10.795Z",
+            "issueCount": 23
+          },
+          "latestGeneration": 1,
+          "reason": "核查账单并保留原报告",
+          "statementSha256": "fd1d33f54423870c46614fe7a9f6cfedc9df39e32dc4642f6ff173c4349d580a",
+          "observedAt": "2026-10-08T17:38:10.789Z",
+          "summary": {
+            "statementPaymentCount": 23,
+            "statementPaymentCent": 89700,
+            "statementRefundCount": 0,
+            "statementRefundCent": 0,
+            "localPaymentCount": 0,
+            "localPaymentCent": 0,
+            "localRefundCount": 0,
+            "localRefundCent": 0,
+            "matchedPayments": 0,
+            "matchedRefunds": 0
+          },
+          "attempts": [
+            {
+              "attempt": 1,
+              "result": "SUCCEEDED",
+              "startedAt": "2026-10-08T17:38:10.784Z",
+              "finishedAt": "2026-10-08T17:38:10.796Z"
+            }
+          ]
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "f37f0ff9-0b8f-4bee-b758-c9a600db344a",
+        "retryAfter": ""
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/reconciliations/366640431741734913/issues",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "items": [
+            {
+              "id": "366640431800455190",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455189",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455188",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455187",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455186",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455185",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455184",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455183",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455182",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455181",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455180",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455179",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455178",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455177",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455176",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455175",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455174",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455173",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455172",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455171",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            }
+          ],
+          "nextCursor": "b3JkZXJzLXYxfGFkbWluLXJlY29uY2lsZS1pc3N1ZXM6MzY2NjQwNDMxNzQxNzM0OTEzfDE5NzAtMDEtMDFUMDA6MDA6MDBafDM2NjY0MDQzMTgwMDQ1NTE3MZc7vRRs1f9eFArC_eANsIklnySSGQer8GQFFlJknB0k"
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "12498818-dd67-40b7-98e6-9307ef881bb5",
+        "retryAfter": ""
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/reconciliations/366640431741734913/issues",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "items": [
+            {
+              "id": "366640431800455170",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455169",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455168",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            }
+          ]
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "5865b451-3b67-4853-8d12-7e1378356a8b",
+        "retryAfter": ""
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/reconciliations/access",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "actorId": "122",
+          "executionEnabled": true,
+          "mock": true,
+          "environment": "test",
+          "latestBillDate": "2026-10-07",
+          "earliestBillDate": "2024-10-08",
+          "observedAt": "2026-10-08T17:38:14.358Z"
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "f21ebc21-de89-44c1-9f34-488ce8a1be5c",
+        "retryAfter": ""
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/reconciliations",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "items": [
+            {
+              "id": "366640431741734913",
+              "billDate": "2026-10-07",
+              "timeZone": "Asia/Shanghai",
+              "generation": 1,
+              "source": "MANUAL",
+              "requestedBy": "122",
+              "state": "DONE",
+              "attempts": 1,
+              "createdAt": "2026-10-08T17:38:10.777Z",
+              "completedAt": "2026-10-08T17:38:10.795Z",
+              "issueCount": 23
+            }
+          ]
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "391e5a70-4fde-4839-9212-2787703e0d43",
+        "retryAfter": ""
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/reconciliations/access",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "actorId": "122",
+          "executionEnabled": true,
+          "mock": true,
+          "environment": "test",
+          "latestBillDate": "2026-10-07",
+          "earliestBillDate": "2024-10-08",
+          "observedAt": "2026-10-08T17:38:14.479Z"
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "65bf927a-cb6a-4ff7-93f9-5118bff4d402",
+        "retryAfter": ""
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/reconciliations",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "items": []
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "a78c3bc1-b962-4482-b955-ca877ef497ca",
+        "retryAfter": ""
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/admin/reconciliations/2026-09-17/runs",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "job": {
+            "id": "366640448393121792",
+            "billDate": "2026-09-17",
+            "timeZone": "Asia/Shanghai",
+            "generation": 1,
+            "source": "MANUAL",
+            "requestedBy": "122",
+            "state": "READY",
+            "attempts": 0,
+            "createdAt": "2026-10-08T17:38:14.746Z"
+          },
+          "latestGeneration": 1,
+          "reason": "核查历史账单并保留完整报告",
+          "attempts": []
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "de3a20e7-5813-499e-92da-026e96aa2d9d",
+        "retryAfter": ""
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/reconciliations/access",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "actorId": "122",
+          "executionEnabled": true,
+          "mock": true,
+          "environment": "test",
+          "latestBillDate": "2026-10-07",
+          "earliestBillDate": "2024-10-08",
+          "observedAt": "2026-10-08T17:38:15.032Z"
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "1eb4eddc-6dba-4e9e-9cf3-ac7808bf60d8",
+        "retryAfter": ""
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/reconciliations",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "items": [
+            {
+              "id": "366640448393121792",
+              "billDate": "2026-09-17",
+              "timeZone": "Asia/Shanghai",
+              "generation": 1,
+              "source": "MANUAL",
+              "requestedBy": "122",
+              "state": "READY",
+              "attempts": 0,
+              "createdAt": "2026-10-08T17:38:14.746Z"
+            },
+            {
+              "id": "366640431741734913",
+              "billDate": "2026-10-07",
+              "timeZone": "Asia/Shanghai",
+              "generation": 1,
+              "source": "MANUAL",
+              "requestedBy": "122",
+              "state": "DONE",
+              "attempts": 1,
+              "createdAt": "2026-10-08T17:38:10.777Z",
+              "completedAt": "2026-10-08T17:38:10.795Z",
+              "issueCount": 23
+            }
+          ]
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "81ecd1a6-5edb-4b07-aa3a-8985d6692476",
+        "retryAfter": ""
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/reconciliations/commands/2026-09-17/360f5f36-3880-467e-921f-ec21d1fe101a",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "job": {
+            "id": "366640448393121792",
+            "billDate": "2026-09-17",
+            "timeZone": "Asia/Shanghai",
+            "generation": 1,
+            "source": "MANUAL",
+            "requestedBy": "122",
+            "state": "READY",
+            "attempts": 0,
+            "createdAt": "2026-10-08T17:38:14.746Z"
+          },
+          "latestGeneration": 1,
+          "reason": "核查历史账单并保留完整报告",
+          "attempts": []
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "d9e8fe4d-d697-41f9-8296-4050f5086876",
+        "retryAfter": ""
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/reconciliations/366640448393121792",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "job": {
+            "id": "366640448393121792",
+            "billDate": "2026-09-17",
+            "timeZone": "Asia/Shanghai",
+            "generation": 1,
+            "source": "MANUAL",
+            "requestedBy": "122",
+            "state": "DONE",
+            "attempts": 1,
+            "createdAt": "2026-10-08T17:38:14.746Z",
+            "completedAt": "2026-10-08T17:38:15.185Z",
+            "issueCount": 0
+          },
+          "latestGeneration": 1,
+          "reason": "核查历史账单并保留完整报告",
+          "statementSha256": "d45890e0299a6767af9c7d5eb1fd71eb0ed780207ae7a4e25ba4ffbbd006d117",
+          "observedAt": "2026-10-08T17:38:15.182Z",
+          "summary": {
+            "statementPaymentCount": 0,
+            "statementPaymentCent": 0,
+            "statementRefundCount": 0,
+            "statementRefundCent": 0,
+            "localPaymentCount": 0,
+            "localPaymentCent": 0,
+            "localRefundCount": 0,
+            "localRefundCent": 0,
+            "matchedPayments": 0,
+            "matchedRefunds": 0
+          },
+          "attempts": [
+            {
+              "attempt": 1,
+              "result": "SUCCEEDED",
+              "startedAt": "2026-10-08T17:38:15.179Z",
+              "finishedAt": "2026-10-08T17:38:15.185Z"
+            }
+          ]
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "ef57f11a-7b80-4b17-b0b5-5dbf0f441d38",
+        "retryAfter": ""
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/reconciliations/366640448393121792/issues",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "items": []
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "edb1ee9d-923f-4f08-bd80-09a92802a94a",
+        "retryAfter": ""
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/reconciliations/access",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "actorId": "122",
+          "executionEnabled": true,
+          "mock": true,
+          "environment": "test",
+          "latestBillDate": "2026-10-07",
+          "earliestBillDate": "2024-10-08",
+          "observedAt": "2026-10-08T17:38:15.411Z"
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "0fd2f03a-e158-4463-bfed-e04c33290d51",
+        "retryAfter": ""
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/reconciliations",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "items": [
+            {
+              "id": "366640431741734913",
+              "billDate": "2026-10-07",
+              "timeZone": "Asia/Shanghai",
+              "generation": 1,
+              "source": "MANUAL",
+              "requestedBy": "122",
+              "state": "DONE",
+              "attempts": 1,
+              "createdAt": "2026-10-08T17:38:10.777Z",
+              "completedAt": "2026-10-08T17:38:10.795Z",
+              "issueCount": 23
+            }
+          ]
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "beaedbf5-e923-4a10-92d7-e6252470276a",
+        "retryAfter": ""
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/reconciliations/366640431741734913",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "job": {
+            "id": "366640431741734913",
+            "billDate": "2026-10-07",
+            "timeZone": "Asia/Shanghai",
+            "generation": 1,
+            "source": "MANUAL",
+            "requestedBy": "122",
+            "state": "DONE",
+            "attempts": 1,
+            "createdAt": "2026-10-08T17:38:10.777Z",
+            "completedAt": "2026-10-08T17:38:10.795Z",
+            "issueCount": 23
+          },
+          "latestGeneration": 1,
+          "reason": "核查账单并保留原报告",
+          "statementSha256": "fd1d33f54423870c46614fe7a9f6cfedc9df39e32dc4642f6ff173c4349d580a",
+          "observedAt": "2026-10-08T17:38:10.789Z",
+          "summary": {
+            "statementPaymentCount": 23,
+            "statementPaymentCent": 89700,
+            "statementRefundCount": 0,
+            "statementRefundCent": 0,
+            "localPaymentCount": 0,
+            "localPaymentCent": 0,
+            "localRefundCount": 0,
+            "localRefundCent": 0,
+            "matchedPayments": 0,
+            "matchedRefunds": 0
+          },
+          "attempts": [
+            {
+              "attempt": 1,
+              "result": "SUCCEEDED",
+              "startedAt": "2026-10-08T17:38:10.784Z",
+              "finishedAt": "2026-10-08T17:38:10.796Z"
+            }
+          ]
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "84ee60f4-53d9-4473-a3a8-4a7ed35497ff",
+        "retryAfter": ""
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/admin/reconciliations/2026-10-07/runs",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "job": {
+            "id": "366640451773730816",
+            "billDate": "2026-10-07",
+            "timeZone": "Asia/Shanghai",
+            "generation": 2,
+            "source": "MANUAL",
+            "requestedBy": "125",
+            "state": "READY",
+            "attempts": 0,
+            "createdAt": "2026-10-08T17:38:15.552Z"
+          },
+          "latestGeneration": 2,
+          "reason": "另一管理员发起新一轮核对",
+          "attempts": []
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "abe9e794-ba2f-4e29-86cc-0d5d746f8c5d",
+        "retryAfter": ""
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/admin/reconciliations/2026-10-07/runs",
+      "status": 409,
+      "body": {
+        "code": 43008,
+        "msg": "对账代次已改变，请刷新后重新确认"
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "b46f0805-c459-4f4a-be56-d74f220569bf",
+        "retryAfter": ""
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/reconciliations/access",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "actorId": "122",
+          "executionEnabled": true,
+          "mock": true,
+          "environment": "test",
+          "latestBillDate": "2026-10-07",
+          "earliestBillDate": "2024-10-08",
+          "observedAt": "2026-10-08T17:38:15.673Z"
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "4ed43342-3565-421b-9ef1-b34bbcb8c4fa",
+        "retryAfter": ""
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/reconciliations",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "items": [
+            {
+              "id": "366640451773730816",
+              "billDate": "2026-10-07",
+              "timeZone": "Asia/Shanghai",
+              "generation": 2,
+              "source": "MANUAL",
+              "requestedBy": "125",
+              "state": "READY",
+              "attempts": 0,
+              "createdAt": "2026-10-08T17:38:15.552Z"
+            },
+            {
+              "id": "366640431741734913",
+              "billDate": "2026-10-07",
+              "timeZone": "Asia/Shanghai",
+              "generation": 1,
+              "source": "MANUAL",
+              "requestedBy": "122",
+              "state": "DONE",
+              "attempts": 1,
+              "createdAt": "2026-10-08T17:38:10.777Z",
+              "completedAt": "2026-10-08T17:38:10.795Z",
+              "issueCount": 23
+            }
+          ]
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "2b2d90a9-0751-4524-b6b0-43874acc4ea0",
+        "retryAfter": ""
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/reconciliations/366640451773730816",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "job": {
+            "id": "366640451773730816",
+            "billDate": "2026-10-07",
+            "timeZone": "Asia/Shanghai",
+            "generation": 2,
+            "source": "MANUAL",
+            "requestedBy": "125",
+            "state": "READY",
+            "attempts": 0,
+            "createdAt": "2026-10-08T17:38:15.552Z"
+          },
+          "latestGeneration": 2,
+          "reason": "另一管理员发起新一轮核对",
+          "attempts": []
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "ad777768-446c-4ca3-8531-0eca2bcb2ce2",
+        "retryAfter": ""
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/reconciliations/access",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "actorId": "122",
+          "executionEnabled": false,
+          "mock": true,
+          "environment": "test",
+          "latestBillDate": "2026-10-07",
+          "earliestBillDate": "2024-10-08",
+          "observedAt": "2026-10-08T17:38:16.090Z"
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "dc601c12-2527-4669-8cbb-8a013cce2927",
+        "retryAfter": ""
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/reconciliations",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "items": [
+            {
+              "id": "366640451773730816",
+              "billDate": "2026-10-07",
+              "timeZone": "Asia/Shanghai",
+              "generation": 2,
+              "source": "MANUAL",
+              "requestedBy": "125",
+              "state": "READY",
+              "attempts": 0,
+              "createdAt": "2026-10-08T17:38:15.552Z"
+            },
+            {
+              "id": "366640448393121792",
+              "billDate": "2026-09-17",
+              "timeZone": "Asia/Shanghai",
+              "generation": 1,
+              "source": "MANUAL",
+              "requestedBy": "122",
+              "state": "DONE",
+              "attempts": 1,
+              "createdAt": "2026-10-08T17:38:14.746Z",
+              "completedAt": "2026-10-08T17:38:15.185Z",
+              "issueCount": 0
+            },
+            {
+              "id": "366640431741734913",
+              "billDate": "2026-10-07",
+              "timeZone": "Asia/Shanghai",
+              "generation": 1,
+              "source": "MANUAL",
+              "requestedBy": "122",
+              "state": "DONE",
+              "attempts": 1,
+              "createdAt": "2026-10-08T17:38:10.777Z",
+              "completedAt": "2026-10-08T17:38:10.795Z",
+              "issueCount": 23
+            }
+          ]
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "db6bddc2-41b5-4ca8-8863-3126c6202e12",
+        "retryAfter": ""
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/reconciliations/366640431741734913",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "job": {
+            "id": "366640431741734913",
+            "billDate": "2026-10-07",
+            "timeZone": "Asia/Shanghai",
+            "generation": 1,
+            "source": "MANUAL",
+            "requestedBy": "122",
+            "state": "DONE",
+            "attempts": 1,
+            "createdAt": "2026-10-08T17:38:10.777Z",
+            "completedAt": "2026-10-08T17:38:10.795Z",
+            "issueCount": 23
+          },
+          "latestGeneration": 2,
+          "reason": "核查账单并保留原报告",
+          "statementSha256": "fd1d33f54423870c46614fe7a9f6cfedc9df39e32dc4642f6ff173c4349d580a",
+          "observedAt": "2026-10-08T17:38:10.789Z",
+          "summary": {
+            "statementPaymentCount": 23,
+            "statementPaymentCent": 89700,
+            "statementRefundCount": 0,
+            "statementRefundCent": 0,
+            "localPaymentCount": 0,
+            "localPaymentCent": 0,
+            "localRefundCount": 0,
+            "localRefundCent": 0,
+            "matchedPayments": 0,
+            "matchedRefunds": 0
+          },
+          "attempts": [
+            {
+              "attempt": 1,
+              "result": "SUCCEEDED",
+              "startedAt": "2026-10-08T17:38:10.784Z",
+              "finishedAt": "2026-10-08T17:38:10.796Z"
+            }
+          ]
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "b5d3b314-d2eb-40a6-b35e-c3468a4e871b",
+        "retryAfter": ""
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/reconciliations/366640431741734913/issues",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "items": [
+            {
+              "id": "366640431800455190",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455189",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455188",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455187",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455186",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455185",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455184",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455183",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455182",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455181",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455180",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455179",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455178",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455177",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455176",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455175",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455174",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455173",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455172",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455171",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            }
+          ],
+          "nextCursor": "b3JkZXJzLXYxfGFkbWluLXJlY29uY2lsZS1pc3N1ZXM6MzY2NjQwNDMxNzQxNzM0OTEzfDE5NzAtMDEtMDFUMDA6MDA6MDBafDM2NjY0MDQzMTgwMDQ1NTE3MZc7vRRs1f9eFArC_eANsIklnySSGQer8GQFFlJknB0k"
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "3acd74fe-5b54-409d-a7dd-240c4bd34e0e",
+        "retryAfter": ""
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/reconciliations/access",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "actorId": "122",
+          "executionEnabled": false,
+          "mock": true,
+          "environment": "test",
+          "latestBillDate": "2026-10-07",
+          "earliestBillDate": "2024-10-08",
+          "observedAt": "2026-10-08T17:38:16.370Z"
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "ac331195-dfe3-46d9-8347-2609f6033c07",
+        "retryAfter": ""
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/reconciliations",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "items": [
+            {
+              "id": "366640451773730816",
+              "billDate": "2026-10-07",
+              "timeZone": "Asia/Shanghai",
+              "generation": 2,
+              "source": "MANUAL",
+              "requestedBy": "125",
+              "state": "READY",
+              "attempts": 0,
+              "createdAt": "2026-10-08T17:38:15.552Z"
+            }
+          ],
+          "nextCursor": "b3JkZXJzLXYxfGFkbWluLXJlY29uY2lsZTpBTEw6QUxMfDIwMjYtMTAtMDhUMTc6Mzg6MTUuNTUyWnwzNjY2NDA0NTE3NzM3MzA4MTaC6vltvRDREhK9Tvo-Gb7l_5ZYbF1KLjuxWeD8wKubzA"
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "a71cf897-b894-4f9a-b04b-4022ad7e24f8",
+        "retryAfter": ""
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/reconciliations/access",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "actorId": "122",
+          "executionEnabled": false,
+          "mock": true,
+          "environment": "test",
+          "latestBillDate": "2026-10-07",
+          "earliestBillDate": "2024-10-08",
+          "observedAt": "2026-10-08T17:38:16.486Z"
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "ad3bbc12-28b3-4411-9100-c9a203445544",
+        "retryAfter": ""
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/reconciliations",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "items": [
+            {
+              "id": "366640448393121792",
+              "billDate": "2026-09-17",
+              "timeZone": "Asia/Shanghai",
+              "generation": 1,
+              "source": "MANUAL",
+              "requestedBy": "122",
+              "state": "DONE",
+              "attempts": 1,
+              "createdAt": "2026-10-08T17:38:14.746Z",
+              "completedAt": "2026-10-08T17:38:15.185Z",
+              "issueCount": 0
+            }
+          ],
+          "nextCursor": "b3JkZXJzLXYxfGFkbWluLXJlY29uY2lsZTpBTEw6QUxMfDIwMjYtMTAtMDhUMTc6Mzg6MTQuNzQ2WnwzNjY2NDA0NDgzOTMxMjE3OTIxkY4Siaw1wEdtBlNSJ2O2UBbH-3rvH-mW3xCU9zp1AA"
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "5373b53d-a29f-49fc-8292-88a7f1a185d4",
+        "retryAfter": ""
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/reconciliations/access",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "actorId": "122",
+          "executionEnabled": false,
+          "mock": true,
+          "environment": "test",
+          "latestBillDate": "2026-10-07",
+          "earliestBillDate": "2024-10-08",
+          "observedAt": "2026-10-08T17:38:16.590Z"
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "0eb57989-2808-4b70-9edf-fc6d0c9aa06d",
+        "retryAfter": ""
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/reconciliations",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "items": [
+            {
+              "id": "366640431741734913",
+              "billDate": "2026-10-07",
+              "timeZone": "Asia/Shanghai",
+              "generation": 1,
+              "source": "MANUAL",
+              "requestedBy": "122",
+              "state": "DONE",
+              "attempts": 1,
+              "createdAt": "2026-10-08T17:38:10.777Z",
+              "completedAt": "2026-10-08T17:38:10.795Z",
+              "issueCount": 23
+            }
+          ]
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "0196a969-c4ee-47ba-86a8-499aa15d7810",
+        "retryAfter": ""
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/reconciliations/access",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "actorId": "122",
+          "executionEnabled": false,
+          "mock": true,
+          "environment": "test",
+          "latestBillDate": "2026-10-07",
+          "earliestBillDate": "2024-10-08",
+          "observedAt": "2026-10-08T17:38:16.808Z"
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "f0dad2f3-51a0-431f-97b7-3728e2c73d79",
+        "retryAfter": ""
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/reconciliations",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "items": [
+            {
+              "id": "366640448393121792",
+              "billDate": "2026-09-17",
+              "timeZone": "Asia/Shanghai",
+              "generation": 1,
+              "source": "MANUAL",
+              "requestedBy": "122",
+              "state": "DONE",
+              "attempts": 1,
+              "createdAt": "2026-10-08T17:38:14.746Z",
+              "completedAt": "2026-10-08T17:38:15.185Z",
+              "issueCount": 0
+            },
+            {
+              "id": "366640431741734913",
+              "billDate": "2026-10-07",
+              "timeZone": "Asia/Shanghai",
+              "generation": 1,
+              "source": "MANUAL",
+              "requestedBy": "122",
+              "state": "DONE",
+              "attempts": 1,
+              "createdAt": "2026-10-08T17:38:10.777Z",
+              "completedAt": "2026-10-08T17:38:10.795Z",
+              "issueCount": 23
+            }
+          ]
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "b22459af-b7e1-4f69-8498-84bc4e7ac0fd",
+        "retryAfter": ""
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/reconciliations/366640431741734913",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "job": {
+            "id": "366640431741734913",
+            "billDate": "2026-10-07",
+            "timeZone": "Asia/Shanghai",
+            "generation": 1,
+            "source": "MANUAL",
+            "requestedBy": "122",
+            "state": "DONE",
+            "attempts": 1,
+            "createdAt": "2026-10-08T17:38:10.777Z",
+            "completedAt": "2026-10-08T17:38:10.795Z",
+            "issueCount": 23
+          },
+          "latestGeneration": 2,
+          "reason": "核查账单并保留原报告",
+          "statementSha256": "fd1d33f54423870c46614fe7a9f6cfedc9df39e32dc4642f6ff173c4349d580a",
+          "observedAt": "2026-10-08T17:38:10.789Z",
+          "summary": {
+            "statementPaymentCount": 23,
+            "statementPaymentCent": 89700,
+            "statementRefundCount": 0,
+            "statementRefundCent": 0,
+            "localPaymentCount": 0,
+            "localPaymentCent": 0,
+            "localRefundCount": 0,
+            "localRefundCent": 0,
+            "matchedPayments": 0,
+            "matchedRefunds": 0
+          },
+          "attempts": [
+            {
+              "attempt": 1,
+              "result": "SUCCEEDED",
+              "startedAt": "2026-10-08T17:38:10.784Z",
+              "finishedAt": "2026-10-08T17:38:10.796Z"
+            }
+          ]
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "099e0014-cfd8-4bc3-9f88-c010156b9571",
+        "retryAfter": ""
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/reconciliations/access",
+      "status": 403,
+      "body": {
+        "code": 403,
+        "msg": "无管理权限"
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "372b597e-6b54-4c71-9bae-9d69dea1f097",
+        "retryAfter": ""
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/access",
+      "status": 403,
+      "body": {
+        "code": 403,
+        "msg": "无管理权限"
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "f26f94b0-1c2b-4e51-97aa-081c2ba3ac2f",
+        "retryAfter": ""
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/orders",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "items": []
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "6a1eba8f-ddbc-4c18-bd3a-17b8380560fe",
+        "retryAfter": ""
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/orders",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "items": []
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "86ba72f9-6cb8-409b-b6e6-dd243a07c03d",
+        "retryAfter": ""
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/access",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "role": "COMMERCE_ADMIN"
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "5f2cf627-9125-4b6a-b6f5-8009437704b6",
+        "retryAfter": ""
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/reconciliations/access",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "actorId": "122",
+          "executionEnabled": false,
+          "mock": true,
+          "environment": "test",
+          "latestBillDate": "2026-10-07",
+          "earliestBillDate": "2024-10-08",
+          "observedAt": "2026-10-08T17:38:19.645Z"
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "b6b81d02-b29d-40ac-ac59-8972b5dc4b8b",
+        "retryAfter": ""
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/reconciliations",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "items": [
+            {
+              "id": "366640451773730816",
+              "billDate": "2026-10-07",
+              "timeZone": "Asia/Shanghai",
+              "generation": 2,
+              "source": "MANUAL",
+              "requestedBy": "125",
+              "state": "READY",
+              "attempts": 0,
+              "createdAt": "2026-10-08T17:38:15.552Z"
+            },
+            {
+              "id": "366640448393121792",
+              "billDate": "2026-09-17",
+              "timeZone": "Asia/Shanghai",
+              "generation": 1,
+              "source": "MANUAL",
+              "requestedBy": "122",
+              "state": "DONE",
+              "attempts": 1,
+              "createdAt": "2026-10-08T17:38:14.746Z",
+              "completedAt": "2026-10-08T17:38:15.185Z",
+              "issueCount": 0
+            },
+            {
+              "id": "366640431741734913",
+              "billDate": "2026-10-07",
+              "timeZone": "Asia/Shanghai",
+              "generation": 1,
+              "source": "MANUAL",
+              "requestedBy": "122",
+              "state": "DONE",
+              "attempts": 1,
+              "createdAt": "2026-10-08T17:38:10.777Z",
+              "completedAt": "2026-10-08T17:38:10.795Z",
+              "issueCount": 23
+            }
+          ]
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "9efd91ad-4481-4b73-a16c-0e9d08022b30",
+        "retryAfter": ""
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/reconciliations/366640431741734913",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "job": {
+            "id": "366640431741734913",
+            "billDate": "2026-10-07",
+            "timeZone": "Asia/Shanghai",
+            "generation": 1,
+            "source": "MANUAL",
+            "requestedBy": "122",
+            "state": "DONE",
+            "attempts": 1,
+            "createdAt": "2026-10-08T17:38:10.777Z",
+            "completedAt": "2026-10-08T17:38:10.795Z",
+            "issueCount": 23
+          },
+          "latestGeneration": 2,
+          "reason": "核查账单并保留原报告",
+          "statementSha256": "fd1d33f54423870c46614fe7a9f6cfedc9df39e32dc4642f6ff173c4349d580a",
+          "observedAt": "2026-10-08T17:38:10.789Z",
+          "summary": {
+            "statementPaymentCount": 23,
+            "statementPaymentCent": 89700,
+            "statementRefundCount": 0,
+            "statementRefundCent": 0,
+            "localPaymentCount": 0,
+            "localPaymentCent": 0,
+            "localRefundCount": 0,
+            "localRefundCent": 0,
+            "matchedPayments": 0,
+            "matchedRefunds": 0
+          },
+          "attempts": [
+            {
+              "attempt": 1,
+              "result": "SUCCEEDED",
+              "startedAt": "2026-10-08T17:38:10.784Z",
+              "finishedAt": "2026-10-08T17:38:10.796Z"
+            }
+          ]
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "c19d30d2-e120-4020-865e-8a3f01f833a0",
+        "retryAfter": ""
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/reconciliations/366640431741734913/issues",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "items": [
+            {
+              "id": "366640431800455190",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455189",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455188",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455187",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455186",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455185",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455184",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455183",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455182",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455181",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455180",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455179",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455178",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455177",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455176",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455175",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455174",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455173",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455172",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            },
+            {
+              "id": "366640431800455171",
+              "kind": "PAYMENT",
+              "statementAmountCent": 3900,
+              "differences": [
+                "STATEMENT_ONLY"
+              ]
+            }
+          ],
+          "nextCursor": "b3JkZXJzLXYxfGFkbWluLXJlY29uY2lsZS1pc3N1ZXM6MzY2NjQwNDMxNzQxNzM0OTEzfDE5NzAtMDEtMDFUMDA6MDA6MDBafDM2NjY0MDQzMTgwMDQ1NTE3MZc7vRRs1f9eFArC_eANsIklnySSGQer8GQFFlJknB0k"
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "3598434a-9d3a-4c1c-b0cb-4f152c48ec08",
+        "retryAfter": ""
+      },
+      "viaGateway": true
+    }
+  ],
+  "injectedFailures": [
+    {
+      "kind": "accepted200-run-response-lost",
+      "path": "/api/system/admin/reconciliations/2026-09-17/runs"
+    },
+    {
+      "kind": "read503",
+      "path": "/api/system/admin/reconciliations/access"
+    }
+  ],
+  "pageErrors": [],
+  "screenshots": [
+    "reconciliation-edge-light-desktop.png",
+    "reconciliation-edge-light-form.png",
+    "reconciliation-edge-light-mobile.png",
+    "reconciliation-edge-dark-desktop.png",
+    "reconciliation-edge-dark-form.png",
+    "reconciliation-edge-dark-mobile.png",
+    "reconciliation-chrome-light-mobile.png",
+    "reconciliation-chrome-dark-mobile.png"
+  ]
+}

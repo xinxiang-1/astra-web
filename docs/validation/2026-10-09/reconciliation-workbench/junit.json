@@ -1,0 +1,23 @@
+{
+  "suite": "com.astra.system.commerce.ReconciliationAdminIntegrationTest",
+  "tests": 13,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "rawXmlSha256": "e685fc46991b98e3de9584cb95f080e4df23355ebf410a0a9bf009b22dd066e1",
+  "testcases": [
+    "bothEntryPointsRequireDatabaseRoleAndCurrentAccount",
+    "lostResponseRecoversOriginalJobAndCompletedReportIsImmutable",
+    "staleAndActiveRequestsDoNotCreateAnotherGeneration",
+    "simultaneousAdministratorsAndAutomaticQueueKeepSingleCoordinator",
+    "bothPagesUseSignedActorFilterAndResourceBoundCursorsWithoutLeaks",
+    "strictInputDatesAndDuplicateParametersNeverQueue",
+    "auditAndCommandFailuresRollbackEveryQueuedPart",
+    "executionDisabledStillAllowsHistoryAndOriginalKeyRecovery",
+    "queryQuotaAndRedisFailureFailClosed",
+    "concurrentSameKeyAndOperationQuotaPreserveRecovery",
+    "executionAccessIsAuthoritativeAndDisabledModeRetainsReadAuthority",
+    "commandLookupIsActorAndDateBoundSurvivesTokenRenewalAndNeverQueues",
+    "actualWorkbenchRecoversAndKeepsHistoricalReportsWithServerPermissions"
+  ]
+}

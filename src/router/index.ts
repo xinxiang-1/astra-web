@@ -35,6 +35,7 @@ const router = createRouter({
     },
     { path: '/projects', name: 'projects', component: () => import('@/views/ProjectsView.vue') },
     { path: '/admin/refunds', name: 'admin-refunds', component: () => import('@/views/AdminRefundsView.vue') },
+    { path: '/admin/reconciliations', name: 'admin-reconciliations', component: () => import('@/views/AdminReconciliationsView.vue') },
     {
       path: '/account/orders',
       name: 'account-orders',

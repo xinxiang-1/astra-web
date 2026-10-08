@@ -1,0 +1,3841 @@
+{
+  "cleanupComplete" : true,
+  "notVerified" : [ "real channel funds", "production admin bootstrap", "private file bytes", "admin reconciliation UI", "deployment" ],
+  "ownedRedisPort" : 51759,
+  "ownedSchema" : "astra_commerce_it_0a6b1188ca21",
+  "responses" : [ {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "5f3033d6-2d39-4bbf-a56a-43d64091d65c"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations/2026-10-07/runs",
+    "rawBodySha256" : "6f17813946507b8d59798c848556c32d3e98d966c032eaa5af965647e7db325a",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640382383165440",
+          "billDate" : "2026-10-07",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:37:58.998Z"
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "attempts" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "dbedae21-fced-43b0-9f4c-44d02d94c353"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations",
+    "rawBodySha256" : "e847a8f8959931e07840413b176286dc704734dde2a588b8927d6a3bb80292ff",
+    "body" : {
+      "code" : 401,
+      "msg" : "未登录"
+    },
+    "status" : 401,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "2b6e3d83-d31b-4127-9dad-bb4a944a8db6"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations",
+    "rawBodySha256" : "6c72060b7f50dc9909038d802c858918e2c0917bcb0d3d50d2a9eabf2ddd01d3",
+    "body" : {
+      "code" : 403,
+      "msg" : "无管理权限"
+    },
+    "status" : 403,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "7260aad2-6b10-4f26-9e94-3f3a5aa7812d"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations",
+    "rawBodySha256" : "419d4f60b230fe1481e6f7f61b0f27e46809f68d978bc6953583410d7f0f7d1f",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "items" : [ {
+          "id" : "366640382383165440",
+          "billDate" : "2026-10-07",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:37:58.998Z"
+        } ]
+      }
+    },
+    "status" : 200,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "7bee3b75-b671-44af-bbf5-01e3c7f90547"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/366640382383165440",
+    "rawBodySha256" : "e847a8f8959931e07840413b176286dc704734dde2a588b8927d6a3bb80292ff",
+    "body" : {
+      "code" : 401,
+      "msg" : "未登录"
+    },
+    "status" : 401,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "a33ea910-21dc-4efb-bab1-55c6a5200625"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/366640382383165440",
+    "rawBodySha256" : "6c72060b7f50dc9909038d802c858918e2c0917bcb0d3d50d2a9eabf2ddd01d3",
+    "body" : {
+      "code" : 403,
+      "msg" : "无管理权限"
+    },
+    "status" : 403,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "3c20bf53-ab8f-4f30-aeb5-61697bd42033"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/366640382383165440",
+    "rawBodySha256" : "6f17813946507b8d59798c848556c32d3e98d966c032eaa5af965647e7db325a",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640382383165440",
+          "billDate" : "2026-10-07",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:37:58.998Z"
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "attempts" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "c39bd80c-6e42-4207-9fff-1c25cb577d63"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/366640382383165440/issues",
+    "rawBodySha256" : "e847a8f8959931e07840413b176286dc704734dde2a588b8927d6a3bb80292ff",
+    "body" : {
+      "code" : 401,
+      "msg" : "未登录"
+    },
+    "status" : 401,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "368a87bb-5108-463b-b8fd-2bbf776765be"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/366640382383165440/issues",
+    "rawBodySha256" : "6c72060b7f50dc9909038d802c858918e2c0917bcb0d3d50d2a9eabf2ddd01d3",
+    "body" : {
+      "code" : 403,
+      "msg" : "无管理权限"
+    },
+    "status" : 403,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "5a42c496-f929-476d-a2b5-06a2c5314967"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/366640382383165440/issues",
+    "rawBodySha256" : "65350062672ff024b28b1c5f9197680f3ef53e1a97d288271599c840c90feddf",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "items" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "3fd9ea4f-606d-4be2-bbf9-efef24fe8670"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-10-06/runs",
+    "rawBodySha256" : "6c72060b7f50dc9909038d802c858918e2c0917bcb0d3d50d2a9eabf2ddd01d3",
+    "body" : {
+      "code" : 403,
+      "msg" : "无管理权限"
+    },
+    "status" : 403,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "f6f9b88a-7e08-448d-b1e2-f73bf6cc300d"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations",
+    "rawBodySha256" : "6c72060b7f50dc9909038d802c858918e2c0917bcb0d3d50d2a9eabf2ddd01d3",
+    "body" : {
+      "code" : 403,
+      "msg" : "无管理权限"
+    },
+    "status" : 403,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "8b6bfb60-c8e0-4362-9f09-074f28a5eb08"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-10-07/runs",
+    "rawBodySha256" : "6c72060b7f50dc9909038d802c858918e2c0917bcb0d3d50d2a9eabf2ddd01d3",
+    "body" : {
+      "code" : 403,
+      "msg" : "无管理权限"
+    },
+    "status" : 403,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "2356f7de-be6e-4614-b843-d992c09a0d90"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations",
+    "rawBodySha256" : "434b682b4190b7fc729c72f716486fb3875cba0d49efca029404633238cbe9ae",
+    "body" : {
+      "code" : 401,
+      "msg" : "登录已失效"
+    },
+    "status" : 401,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "da444be4-c10d-404e-b4ac-eee302841d79"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations",
+    "rawBodySha256" : "434b682b4190b7fc729c72f716486fb3875cba0d49efca029404633238cbe9ae",
+    "body" : {
+      "code" : 401,
+      "msg" : "登录已失效"
+    },
+    "status" : 401,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "6d1ff8b4-f02f-465a-8f9b-3f5b187e402b"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations",
+    "rawBodySha256" : "e847a8f8959931e07840413b176286dc704734dde2a588b8927d6a3bb80292ff",
+    "body" : {
+      "code" : 401,
+      "msg" : "未登录"
+    },
+    "status" : 401,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "02566766-a813-439b-a714-02751f63c812"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations",
+    "rawBodySha256" : "6c72060b7f50dc9909038d802c858918e2c0917bcb0d3d50d2a9eabf2ddd01d3",
+    "body" : {
+      "code" : 403,
+      "msg" : "无管理权限"
+    },
+    "status" : 403,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "1b2449d7-3485-46ee-b87f-64f074b6dcda"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations",
+    "rawBodySha256" : "419d4f60b230fe1481e6f7f61b0f27e46809f68d978bc6953583410d7f0f7d1f",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "items" : [ {
+          "id" : "366640382383165440",
+          "billDate" : "2026-10-07",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:37:58.998Z"
+        } ]
+      }
+    },
+    "status" : 200,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "d676fb5e-698d-416a-8924-1df393ab65f8"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations/366640382383165440",
+    "rawBodySha256" : "e847a8f8959931e07840413b176286dc704734dde2a588b8927d6a3bb80292ff",
+    "body" : {
+      "code" : 401,
+      "msg" : "未登录"
+    },
+    "status" : 401,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "a03a48aa-8ffb-4c25-8175-5c7ecf52b5f4"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations/366640382383165440",
+    "rawBodySha256" : "6c72060b7f50dc9909038d802c858918e2c0917bcb0d3d50d2a9eabf2ddd01d3",
+    "body" : {
+      "code" : 403,
+      "msg" : "无管理权限"
+    },
+    "status" : 403,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "6b9baa20-9f9c-49c3-a87e-51bd2306a77d"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations/366640382383165440",
+    "rawBodySha256" : "6f17813946507b8d59798c848556c32d3e98d966c032eaa5af965647e7db325a",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640382383165440",
+          "billDate" : "2026-10-07",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:37:58.998Z"
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "attempts" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "4b80fe28-584a-4080-83fa-9b6a7d951eb1"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations/366640382383165440/issues",
+    "rawBodySha256" : "e847a8f8959931e07840413b176286dc704734dde2a588b8927d6a3bb80292ff",
+    "body" : {
+      "code" : 401,
+      "msg" : "未登录"
+    },
+    "status" : 401,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "27cdb8bc-d081-4973-a6a4-d8118b2a846f"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations/366640382383165440/issues",
+    "rawBodySha256" : "6c72060b7f50dc9909038d802c858918e2c0917bcb0d3d50d2a9eabf2ddd01d3",
+    "body" : {
+      "code" : 403,
+      "msg" : "无管理权限"
+    },
+    "status" : 403,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "c575d5e0-0cb9-4693-85f5-ba830d34d5b7"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations/366640382383165440/issues",
+    "rawBodySha256" : "65350062672ff024b28b1c5f9197680f3ef53e1a97d288271599c840c90feddf",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "items" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "fc70bba2-d6b2-4be3-8183-29366abf7a8a"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations/2026-10-06/runs",
+    "rawBodySha256" : "6c72060b7f50dc9909038d802c858918e2c0917bcb0d3d50d2a9eabf2ddd01d3",
+    "body" : {
+      "code" : 403,
+      "msg" : "无管理权限"
+    },
+    "status" : 403,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "df5089f5-082e-45ea-a3f5-557390783f5c"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations",
+    "rawBodySha256" : "6c72060b7f50dc9909038d802c858918e2c0917bcb0d3d50d2a9eabf2ddd01d3",
+    "body" : {
+      "code" : 403,
+      "msg" : "无管理权限"
+    },
+    "status" : 403,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "174f4ba6-f3b0-4845-aefe-d3baef96a011"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations/2026-10-07/runs",
+    "rawBodySha256" : "6c72060b7f50dc9909038d802c858918e2c0917bcb0d3d50d2a9eabf2ddd01d3",
+    "body" : {
+      "code" : 403,
+      "msg" : "无管理权限"
+    },
+    "status" : 403,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "5492c0e9-bfb8-4c95-9e66-7fd811eb6d76"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations",
+    "rawBodySha256" : "434b682b4190b7fc729c72f716486fb3875cba0d49efca029404633238cbe9ae",
+    "body" : {
+      "code" : 401,
+      "msg" : "登录已失效"
+    },
+    "status" : 401,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "17e4c9b6-6311-4a68-80b1-0262a03c70e2"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations",
+    "rawBodySha256" : "434b682b4190b7fc729c72f716486fb3875cba0d49efca029404633238cbe9ae",
+    "body" : {
+      "code" : 401,
+      "msg" : "登录已失效"
+    },
+    "status" : 401,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "fbb29613-4a90-4a6f-8090-23c4c82520da"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations/2026-10-07/runs",
+    "rawBodySha256" : "eba918525e7f4750d2619f5dbe8e2c2e20bdf122067a079254b9c766b065a30b",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640384316739584",
+          "billDate" : "2026-10-07",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:37:59.468Z"
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "attempts" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "ae215609-506e-4ca1-b8b1-36e74fe63312"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/366640384316739584",
+    "rawBodySha256" : "63eb3be3e91559db713b8a512bef8ab79c34bb4d3d57ad8431ffde8261ca3b3e",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640384316739584",
+          "billDate" : "2026-10-07",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "DONE",
+          "attempts" : 1,
+          "createdAt" : "2026-10-08T17:37:59.468Z",
+          "completedAt" : "2026-10-08T17:37:59.545Z",
+          "issueCount" : 3
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "statementSha256" : "b19b19e61c246582a143168257c968f1d5a5d0a7213a6e6f84469ae39296bc42",
+        "observedAt" : "2026-10-08T17:37:59.519Z",
+        "summary" : {
+          "statementPaymentCount" : 3,
+          "statementPaymentCent" : 11700,
+          "statementRefundCount" : 0,
+          "statementRefundCent" : 0,
+          "localPaymentCount" : 0,
+          "localPaymentCent" : 0,
+          "localRefundCount" : 0,
+          "localRefundCent" : 0,
+          "matchedPayments" : 0,
+          "matchedRefunds" : 0
+        },
+        "attempts" : [ {
+          "attempt" : 1,
+          "result" : "SUCCEEDED",
+          "startedAt" : "2026-10-08T17:37:59.506Z",
+          "finishedAt" : "2026-10-08T17:37:59.546Z"
+        } ]
+      }
+    },
+    "status" : 200,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "8bebba69-d6b8-434e-8a80-4fb1ce16a57f"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/366640384316739584",
+    "rawBodySha256" : "63eb3be3e91559db713b8a512bef8ab79c34bb4d3d57ad8431ffde8261ca3b3e",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640384316739584",
+          "billDate" : "2026-10-07",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "DONE",
+          "attempts" : 1,
+          "createdAt" : "2026-10-08T17:37:59.468Z",
+          "completedAt" : "2026-10-08T17:37:59.545Z",
+          "issueCount" : 3
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "statementSha256" : "b19b19e61c246582a143168257c968f1d5a5d0a7213a6e6f84469ae39296bc42",
+        "observedAt" : "2026-10-08T17:37:59.519Z",
+        "summary" : {
+          "statementPaymentCount" : 3,
+          "statementPaymentCent" : 11700,
+          "statementRefundCount" : 0,
+          "statementRefundCent" : 0,
+          "localPaymentCount" : 0,
+          "localPaymentCent" : 0,
+          "localRefundCount" : 0,
+          "localRefundCent" : 0,
+          "matchedPayments" : 0,
+          "matchedRefunds" : 0
+        },
+        "attempts" : [ {
+          "attempt" : 1,
+          "result" : "SUCCEEDED",
+          "startedAt" : "2026-10-08T17:37:59.506Z",
+          "finishedAt" : "2026-10-08T17:37:59.546Z"
+        } ]
+      }
+    },
+    "status" : 200,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "bafebc95-3cc1-40bf-bdbd-6e8d1fef8a72"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-10-07/runs",
+    "rawBodySha256" : "63eb3be3e91559db713b8a512bef8ab79c34bb4d3d57ad8431ffde8261ca3b3e",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640384316739584",
+          "billDate" : "2026-10-07",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "DONE",
+          "attempts" : 1,
+          "createdAt" : "2026-10-08T17:37:59.468Z",
+          "completedAt" : "2026-10-08T17:37:59.545Z",
+          "issueCount" : 3
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "statementSha256" : "b19b19e61c246582a143168257c968f1d5a5d0a7213a6e6f84469ae39296bc42",
+        "observedAt" : "2026-10-08T17:37:59.519Z",
+        "summary" : {
+          "statementPaymentCount" : 3,
+          "statementPaymentCent" : 11700,
+          "statementRefundCount" : 0,
+          "statementRefundCent" : 0,
+          "localPaymentCount" : 0,
+          "localPaymentCent" : 0,
+          "localRefundCount" : 0,
+          "localRefundCent" : 0,
+          "matchedPayments" : 0,
+          "matchedRefunds" : 0
+        },
+        "attempts" : [ {
+          "attempt" : 1,
+          "result" : "SUCCEEDED",
+          "startedAt" : "2026-10-08T17:37:59.506Z",
+          "finishedAt" : "2026-10-08T17:37:59.546Z"
+        } ]
+      }
+    },
+    "status" : 200,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "36c5ff01-3592-4467-82c2-0bc1fdda038a"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations/2026-10-07/runs",
+    "rawBodySha256" : "53d1a00355f5ab082527cfc1e288e6f42623fcaf77ca9591cb6c581460be1868",
+    "body" : {
+      "code" : 43001,
+      "msg" : "幂等键已用于不同对账操作，请恢复原请求"
+    },
+    "status" : 409,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "c0bec850-47da-4f55-8eb2-f75edf626fa6"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations/2026-10-07/runs",
+    "rawBodySha256" : "781708e6da9cacf45068a93953c50bd6c7705f5cc8b18b6ed34dc5d20f10531d",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640384962662400",
+          "billDate" : "2026-10-07",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 2,
+          "source" : "MANUAL",
+          "requestedBy" : "125",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:37:59.622Z"
+        },
+        "latestGeneration" : 2,
+        "reason" : "核查账单并保留原报告",
+        "attempts" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "adc8fade-4602-4523-a8c0-180b78f1f6f6"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/366640384316739584",
+    "rawBodySha256" : "37dc0e2871df3a9b2bcec3c00a614f86250ab98857481bc746c3bbc638b00bb6",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640384316739584",
+          "billDate" : "2026-10-07",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "DONE",
+          "attempts" : 1,
+          "createdAt" : "2026-10-08T17:37:59.468Z",
+          "completedAt" : "2026-10-08T17:37:59.545Z",
+          "issueCount" : 3
+        },
+        "latestGeneration" : 2,
+        "reason" : "核查账单并保留原报告",
+        "statementSha256" : "b19b19e61c246582a143168257c968f1d5a5d0a7213a6e6f84469ae39296bc42",
+        "observedAt" : "2026-10-08T17:37:59.519Z",
+        "summary" : {
+          "statementPaymentCount" : 3,
+          "statementPaymentCent" : 11700,
+          "statementRefundCount" : 0,
+          "statementRefundCent" : 0,
+          "localPaymentCount" : 0,
+          "localPaymentCent" : 0,
+          "localRefundCount" : 0,
+          "localRefundCent" : 0,
+          "matchedPayments" : 0,
+          "matchedRefunds" : 0
+        },
+        "attempts" : [ {
+          "attempt" : 1,
+          "result" : "SUCCEEDED",
+          "startedAt" : "2026-10-08T17:37:59.506Z",
+          "finishedAt" : "2026-10-08T17:37:59.546Z"
+        } ]
+      }
+    },
+    "status" : 200,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "6a70c2d8-f021-47c2-a17c-c5277f0cc2e6"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations/2026-10-07/runs",
+    "rawBodySha256" : "967b467540ce5248c33f44d9cd70b476b84396ed18ff1c37213833aa26c5a250",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640385247875072",
+          "billDate" : "2026-10-07",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:37:59.690Z"
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "attempts" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "7f0805c0-e472-4fc2-b6ee-22213b9980fd"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-10-07/runs",
+    "rawBodySha256" : "6ed8fa3168367a1edc82663a3c13e634e8e1392d72fed6377f34ca6c3a16243e",
+    "body" : {
+      "code" : 43008,
+      "msg" : "对账代次已改变，请刷新后重新确认"
+    },
+    "status" : 409,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "0b904089-837e-450b-8e10-96e302b81d50"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations/2026-10-07/runs",
+    "rawBodySha256" : "9da05fa7d05bd2418a706cbc9492fdaac9d243695324d75fe92c83a86feafd5e",
+    "body" : {
+      "code" : 43005,
+      "msg" : "当天对账仍在执行，请查看原任务"
+    },
+    "status" : 409,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "26f4628c-2677-4585-87c2-acd274e84706"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-10-07/runs",
+    "rawBodySha256" : "9da05fa7d05bd2418a706cbc9492fdaac9d243695324d75fe92c83a86feafd5e",
+    "body" : {
+      "code" : 43005,
+      "msg" : "当天对账仍在执行，请查看原任务"
+    },
+    "status" : 409,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "4df67224-618b-4d01-a94d-ee22363da0df"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-10-07/runs",
+    "rawBodySha256" : "3ca21b4f0319f141214cff4c018c033ab42f42863369341cf6346e32e795c706",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640385625362432",
+          "billDate" : "2026-10-07",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 2,
+          "source" : "MANUAL",
+          "requestedBy" : "125",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:37:59.779Z"
+        },
+        "latestGeneration" : 2,
+        "reason" : "核查账单并保留原报告",
+        "attempts" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "224be0f2-259a-4ba9-962c-e8a133500e86"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/366640385247875072",
+    "rawBodySha256" : "89d119a697b27ff0cace4748e3e89e32b2c1b89f438781794b172ae44da8ae06",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640385247875072",
+          "billDate" : "2026-10-07",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "DEAD",
+          "attempts" : 1,
+          "lastErrorCode" : "INVALID_BINDING",
+          "createdAt" : "2026-10-08T17:37:59.690Z"
+        },
+        "latestGeneration" : 2,
+        "reason" : "核查账单并保留原报告",
+        "attempts" : [ {
+          "attempt" : 1,
+          "result" : "DEAD",
+          "errorCode" : "INVALID_BINDING",
+          "startedAt" : "2026-10-08T17:37:59.741Z",
+          "finishedAt" : "2026-10-08T17:37:59.768Z"
+        } ]
+      }
+    },
+    "status" : 200,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "8aed3bf5-e9e8-45cb-baab-9b6f7fff6be0"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-10-07/runs",
+    "rawBodySha256" : "89357feb06710e2f88e6a839c52f4755e6f41750e4bf4b2ae91160ca4c02a794",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640385835077632",
+          "billDate" : "2026-10-07",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:37:59.831Z"
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "attempts" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "9c406dfc-9460-4b13-aa44-60562633b625"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-10-07/runs",
+    "rawBodySha256" : "6ed8fa3168367a1edc82663a3c13e634e8e1392d72fed6377f34ca6c3a16243e",
+    "body" : {
+      "code" : 43008,
+      "msg" : "对账代次已改变，请刷新后重新确认"
+    },
+    "status" : 409,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "9c5887d3-9800-442e-aaa9-4fe7ba9c1f59"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-10-07/runs",
+    "rawBodySha256" : "6ed8fa3168367a1edc82663a3c13e634e8e1392d72fed6377f34ca6c3a16243e",
+    "body" : {
+      "code" : 43008,
+      "msg" : "对账代次已改变，请刷新后重新确认"
+    },
+    "status" : 409,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "138d96b1-c661-453c-aaa0-e3693c1c7e96"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations/2026-10-07/runs",
+    "rawBodySha256" : "c4aac920fd0f45cc6d7a8a1c3b2062ace9c5cc79a2f71434f26a1540796c7534",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640386137067521",
+          "billDate" : "2026-10-07",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:37:59.903Z"
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "attempts" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "3d809a34-63cc-4cfd-b159-124c80d66089"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations/2026-10-06/runs",
+    "rawBodySha256" : "b8c2f89dac2662ff6ea22e15adc2b9f15bd1f495da90d1d9325ff03a9a6806f5",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640386267090944",
+          "billDate" : "2026-10-06",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:37:59.934Z"
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "attempts" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "cf153ab2-a41e-4c62-a33b-6a2676f0dbdc"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations/2026-10-05/runs",
+    "rawBodySha256" : "338a36d60efda417993f7a64e4eef084f2dc429ac1fc52779b4542ff774bb130",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640386342588417",
+          "billDate" : "2026-10-05",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:37:59.952Z"
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "attempts" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "4fa458e5-e635-4860-a25a-e6e2b013eedb"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations",
+    "rawBodySha256" : "7346b414d80250b85f8c2bf58d6c494b692356bea4ecbdfb5601f2e063e7fad6",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "items" : [ {
+          "id" : "366640386342588417",
+          "billDate" : "2026-10-05",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:37:59.952Z"
+        } ],
+        "nextCursor" : "b3JkZXJzLXYxfGFkbWluLXJlY29uY2lsZTpBTEw6QUxMfDIwMjYtMTAtMDhUMTc6Mzc6NTkuOTUyWnwzNjY2NDAzODYzNDI1ODg0MTfSwymMnyxctKbovZdr2BFEtkiAkVJyw6YXhw124xk-DQ"
+      }
+    },
+    "status" : 200,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "0efff50f-ce58-4840-bb00-f78e69ace0d7"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations",
+    "rawBodySha256" : "afad7bb90c351f1c90511eb6987f9d6feffe053eb9451447d0167ed6dfa51308",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "items" : [ {
+          "id" : "366640386267090944",
+          "billDate" : "2026-10-06",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:37:59.934Z"
+        } ],
+        "nextCursor" : "b3JkZXJzLXYxfGFkbWluLXJlY29uY2lsZTpBTEw6QUxMfDIwMjYtMTAtMDhUMTc6Mzc6NTkuOTM0WnwzNjY2NDAzODYyNjcwOTA5NDRe4XslAYKR4OUgwjQ-HRX0YqINvwniUfMfTpBimBHIAg"
+      }
+    },
+    "status" : 200,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "097ecaf1-d9b0-4a4d-8dd2-60ef339a3d09"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations",
+    "rawBodySha256" : "d6a43d17c07c0cbe96cb5daaae1959889eba4b80c88e6cea9c8290ec99e4dd8a",
+    "body" : {
+      "code" : 400,
+      "msg" : "订单分页凭证无效，请重新查询"
+    },
+    "status" : 400,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "b4b02a0c-f27d-456e-bfda-a01b8a91c162"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations",
+    "rawBodySha256" : "d6a43d17c07c0cbe96cb5daaae1959889eba4b80c88e6cea9c8290ec99e4dd8a",
+    "body" : {
+      "code" : 400,
+      "msg" : "订单分页凭证无效，请重新查询"
+    },
+    "status" : 400,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "6a12204f-a77d-49ff-b607-363ec2e13ee2"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations",
+    "rawBodySha256" : "d6a43d17c07c0cbe96cb5daaae1959889eba4b80c88e6cea9c8290ec99e4dd8a",
+    "body" : {
+      "code" : 400,
+      "msg" : "订单分页凭证无效，请重新查询"
+    },
+    "status" : 400,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "fc6742c0-60e1-42e3-a91c-09924fbc291b"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations/366640386137067521/issues",
+    "rawBodySha256" : "c704e959e8e196e5010d939b0523f8a08234d5d16fca9d33d6e3e62ed16f073a",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "items" : [ {
+          "id" : "366640386204176386",
+          "kind" : "PAYMENT",
+          "statementAmountCent" : 3900,
+          "differences" : [ "STATEMENT_ONLY" ]
+        } ],
+        "nextCursor" : "b3JkZXJzLXYxfGFkbWluLXJlY29uY2lsZS1pc3N1ZXM6MzY2NjQwMzg2MTM3MDY3NTIxfDE5NzAtMDEtMDFUMDA6MDA6MDBafDM2NjY0MDM4NjIwNDE3NjM4NgQIu0rE2-niE-pOip6R9j2JycFck0vsHV0JDxpiJNb8"
+      }
+    },
+    "status" : 200,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "b1e4520f-e4c4-4344-b8db-26925143cbbe"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/366640386137067521/issues",
+    "rawBodySha256" : "7764bb64115ce3eaaf60a18fee59e378426586cb036be8a2ccc51bfe7a857dd5",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "items" : [ {
+          "id" : "366640386204176385",
+          "kind" : "PAYMENT",
+          "statementAmountCent" : 3900,
+          "differences" : [ "STATEMENT_ONLY" ]
+        } ],
+        "nextCursor" : "b3JkZXJzLXYxfGFkbWluLXJlY29uY2lsZS1pc3N1ZXM6MzY2NjQwMzg2MTM3MDY3NTIxfDE5NzAtMDEtMDFUMDA6MDA6MDBafDM2NjY0MDM4NjIwNDE3NjM4NT0jms7030qF0uiSxwysaJ_MrGZb6mdoKHPHZ6e_y1_I"
+      }
+    },
+    "status" : 200,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "6e23b4fa-f5f9-413f-9e83-c4062db2f968"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/366640386137067521/issues",
+    "rawBodySha256" : "e7c5a90b729de7d624717334090f8d059468326f4450185d6384be3c50ebe882",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "items" : [ {
+          "id" : "366640386204176384",
+          "kind" : "PAYMENT",
+          "statementAmountCent" : 3900,
+          "differences" : [ "STATEMENT_ONLY" ]
+        } ]
+      }
+    },
+    "status" : 200,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "27d65bf1-e91e-4a6d-ba12-fc32db60087e"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/366640386137067521/issues",
+    "rawBodySha256" : "d6a43d17c07c0cbe96cb5daaae1959889eba4b80c88e6cea9c8290ec99e4dd8a",
+    "body" : {
+      "code" : 400,
+      "msg" : "订单分页凭证无效，请重新查询"
+    },
+    "status" : 400,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "bc77d162-7466-48cf-b476-69cd899c091f"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/366640386267090944/issues",
+    "rawBodySha256" : "d6a43d17c07c0cbe96cb5daaae1959889eba4b80c88e6cea9c8290ec99e4dd8a",
+    "body" : {
+      "code" : 400,
+      "msg" : "订单分页凭证无效，请重新查询"
+    },
+    "status" : 400,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "8291aac0-7704-4051-b622-d6139da0a74e"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations",
+    "rawBodySha256" : "d6a43d17c07c0cbe96cb5daaae1959889eba4b80c88e6cea9c8290ec99e4dd8a",
+    "body" : {
+      "code" : 400,
+      "msg" : "订单分页凭证无效，请重新查询"
+    },
+    "status" : 400,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "2ca58c6e-c82a-4344-879c-218514d408d8"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/366640386137067521",
+    "rawBodySha256" : "d73c1bd3ade65383af8e90f39478b0e532422b1d44e3d2a74fc921da63f71f3f",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640386137067521",
+          "billDate" : "2026-10-07",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "DONE",
+          "attempts" : 1,
+          "createdAt" : "2026-10-08T17:37:59.903Z",
+          "completedAt" : "2026-10-08T17:37:59.922Z",
+          "issueCount" : 3
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "statementSha256" : "b19b19e61c246582a143168257c968f1d5a5d0a7213a6e6f84469ae39296bc42",
+        "observedAt" : "2026-10-08T17:37:59.917Z",
+        "summary" : {
+          "statementPaymentCount" : 3,
+          "statementPaymentCent" : 11700,
+          "statementRefundCount" : 0,
+          "statementRefundCent" : 0,
+          "localPaymentCount" : 0,
+          "localPaymentCent" : 0,
+          "localRefundCount" : 0,
+          "localRefundCent" : 0,
+          "matchedPayments" : 0,
+          "matchedRefunds" : 0
+        },
+        "attempts" : [ {
+          "attempt" : 1,
+          "result" : "SUCCEEDED",
+          "startedAt" : "2026-10-08T17:37:59.913Z",
+          "finishedAt" : "2026-10-08T17:37:59.922Z"
+        } ]
+      }
+    },
+    "status" : 200,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "e4de86e6-fbd9-469f-b04d-669212e8813e"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-10-07/runs",
+    "rawBodySha256" : "45d0a81ef60450a484b73b8de741d38b64fe274266aa95552c8c5f16bc26abcd",
+    "body" : {
+      "code" : 400,
+      "msg" : "对账参数无效，请填写5至500字原因并确认代次"
+    },
+    "status" : 400,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "f0b04978-0e6d-4f04-8da4-8adb9269519d"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-10-07/runs",
+    "rawBodySha256" : "45d0a81ef60450a484b73b8de741d38b64fe274266aa95552c8c5f16bc26abcd",
+    "body" : {
+      "code" : 400,
+      "msg" : "对账参数无效，请填写5至500字原因并确认代次"
+    },
+    "status" : 400,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "a233b7d0-fe44-452a-b782-4942d67aaffc"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-10-07/runs",
+    "rawBodySha256" : "45d0a81ef60450a484b73b8de741d38b64fe274266aa95552c8c5f16bc26abcd",
+    "body" : {
+      "code" : 400,
+      "msg" : "对账参数无效，请填写5至500字原因并确认代次"
+    },
+    "status" : 400,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "3bb8a7ed-82e5-4923-be07-ff98e5890324"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-10-07/runs",
+    "rawBodySha256" : "45d0a81ef60450a484b73b8de741d38b64fe274266aa95552c8c5f16bc26abcd",
+    "body" : {
+      "code" : 400,
+      "msg" : "对账参数无效，请填写5至500字原因并确认代次"
+    },
+    "status" : 400,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "cf14c02f-d6c8-4bff-8c2a-88342d588938"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-10-07/runs",
+    "rawBodySha256" : "45d0a81ef60450a484b73b8de741d38b64fe274266aa95552c8c5f16bc26abcd",
+    "body" : {
+      "code" : 400,
+      "msg" : "对账参数无效，请填写5至500字原因并确认代次"
+    },
+    "status" : 400,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "4a4bf1b6-0bdc-4c55-82cb-afb0e9fc4c96"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-10-07/runs",
+    "rawBodySha256" : "45d0a81ef60450a484b73b8de741d38b64fe274266aa95552c8c5f16bc26abcd",
+    "body" : {
+      "code" : 400,
+      "msg" : "对账参数无效，请填写5至500字原因并确认代次"
+    },
+    "status" : 400,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "f570e5fa-8a48-4f20-8591-fd5d27a5bdb3"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-10-07/runs",
+    "rawBodySha256" : "45d0a81ef60450a484b73b8de741d38b64fe274266aa95552c8c5f16bc26abcd",
+    "body" : {
+      "code" : 400,
+      "msg" : "对账参数无效，请填写5至500字原因并确认代次"
+    },
+    "status" : 400,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "f44e1b74-08cc-441d-bc92-32eb3b746feb"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-10-07/runs",
+    "rawBodySha256" : "45d0a81ef60450a484b73b8de741d38b64fe274266aa95552c8c5f16bc26abcd",
+    "body" : {
+      "code" : 400,
+      "msg" : "对账参数无效，请填写5至500字原因并确认代次"
+    },
+    "status" : 400,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "f395795b-7791-4250-83d3-a31d7b4ebde3"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-10-07/runs",
+    "rawBodySha256" : "45d0a81ef60450a484b73b8de741d38b64fe274266aa95552c8c5f16bc26abcd",
+    "body" : {
+      "code" : 400,
+      "msg" : "对账参数无效，请填写5至500字原因并确认代次"
+    },
+    "status" : 400,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "2916d250-c951-4bdd-8d7a-7d30d6754b95"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations/2026-02-30/runs",
+    "rawBodySha256" : "04e56775cc2bfd7ba83a8f8f8de932b1ede501eec909bee4fd6e422a81011a4b",
+    "body" : {
+      "code" : 400,
+      "msg" : "账单日期格式无效"
+    },
+    "status" : 400,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "d4d6dba3-63b3-429e-8f2a-be99a763d20d"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations/20261008/runs",
+    "rawBodySha256" : "04e56775cc2bfd7ba83a8f8f8de932b1ede501eec909bee4fd6e422a81011a4b",
+    "body" : {
+      "code" : 400,
+      "msg" : "账单日期格式无效"
+    },
+    "status" : 400,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "1373e26a-cb3a-497c-a5c2-e3d7a7c7e2af"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations/2026-1-01/runs",
+    "rawBodySha256" : "04e56775cc2bfd7ba83a8f8f8de932b1ede501eec909bee4fd6e422a81011a4b",
+    "body" : {
+      "code" : 400,
+      "msg" : "账单日期格式无效"
+    },
+    "status" : 400,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "aef22679-24c2-4945-b5f5-2854d0c96515"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations/2026-10-08/runs",
+    "rawBodySha256" : "59ccce8f857f7d85551986102a5ea3bc0698ed105b83f79335db6a345095d25e",
+    "body" : {
+      "code" : 400,
+      "msg" : "请选择已就绪且最近730天内的账单日"
+    },
+    "status" : 400,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "84684369-1c9b-4c26-b32c-2d3fb7226516"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations/2024-10-07/runs",
+    "rawBodySha256" : "59ccce8f857f7d85551986102a5ea3bc0698ed105b83f79335db6a345095d25e",
+    "body" : {
+      "code" : 400,
+      "msg" : "请选择已就绪且最近730天内的账单日"
+    },
+    "status" : 400,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "7c943ff6-a134-441a-b6c5-60b0a864dc2a"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-10-07/runs",
+    "rawBodySha256" : "962b577c917e0bd96006e79e7e078a871ceafeafe9c6d5f7a5f5d4b428c77c88",
+    "body" : {
+      "code" : 400,
+      "msg" : "需要一个有效幂等键"
+    },
+    "status" : 400,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "dd6f7aa2-6ed5-4da6-b5e6-87517a0c4216"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-10-07/runs",
+    "rawBodySha256" : "962b577c917e0bd96006e79e7e078a871ceafeafe9c6d5f7a5f5d4b428c77c88",
+    "body" : {
+      "code" : 400,
+      "msg" : "需要一个有效幂等键"
+    },
+    "status" : 400,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "5deef9c8-3831-470e-ace9-b2a5881d9497"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations",
+    "rawBodySha256" : "7a36f9161634d7d2d1c7b1860dc43c7c92b6e70720dadc3c1f659f17a53a94b9",
+    "body" : {
+      "code" : 400,
+      "msg" : "对账查询参数无效"
+    },
+    "status" : 400,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "18aca23b-af99-400b-98cd-27ac3a63fae2"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations",
+    "rawBodySha256" : "7a36f9161634d7d2d1c7b1860dc43c7c92b6e70720dadc3c1f659f17a53a94b9",
+    "body" : {
+      "code" : 400,
+      "msg" : "对账查询参数无效"
+    },
+    "status" : 400,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "91184195-2067-4525-8a47-a604a70a2d86"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations",
+    "rawBodySha256" : "01870f71404262e3ecd9cf31ecefde2c84142ee1aceb377571a324e8d93fc234",
+    "body" : {
+      "code" : 400,
+      "msg" : "分页大小应为1至50"
+    },
+    "status" : 400,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "21284c2f-d2cf-4379-8d84-6db5238e9061"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations",
+    "rawBodySha256" : "01870f71404262e3ecd9cf31ecefde2c84142ee1aceb377571a324e8d93fc234",
+    "body" : {
+      "code" : 400,
+      "msg" : "分页大小应为1至50"
+    },
+    "status" : 400,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "78066d2a-1674-45a3-ba68-bcd0866fa216"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations",
+    "rawBodySha256" : "a354b44f071319347d121252556b2e1d86854acb55be19b6e11e508b454df1a1",
+    "body" : {
+      "code" : 400,
+      "msg" : "对账状态无效"
+    },
+    "status" : 400,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "5f17df92-e7de-40af-a10d-e7c78e076f37"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations",
+    "rawBodySha256" : "d6a43d17c07c0cbe96cb5daaae1959889eba4b80c88e6cea9c8290ec99e4dd8a",
+    "body" : {
+      "code" : 400,
+      "msg" : "订单分页凭证无效，请重新查询"
+    },
+    "status" : 400,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "3429b10c-8fe0-4a50-ab70-6c6a2575b406"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/999",
+    "rawBodySha256" : "55e3b8433ca85aafe6e1bbc8836d2bac6030ea5d44fb045d78996ae64dc7c9f6",
+    "body" : {
+      "code" : 404,
+      "msg" : "对账任务不存在"
+    },
+    "status" : 404,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "4ddb6c10-5079-4d09-85df-2c071b2283df"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations/999/issues",
+    "rawBodySha256" : "55e3b8433ca85aafe6e1bbc8836d2bac6030ea5d44fb045d78996ae64dc7c9f6",
+    "body" : {
+      "code" : 404,
+      "msg" : "对账任务不存在"
+    },
+    "status" : 404,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "4dbfb6e4-c23c-401f-8b37-db376d0ed29a"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations/2026-09-17/runs",
+    "rawBodySha256" : "c30afcc65dc01190d42ae8ec0cc2e9590d5b392176ae98ab5a3892a50ce328e7",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640388397797376",
+          "billDate" : "2026-09-17",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:38:00.442Z"
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "attempts" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "4c62720a-c2d0-4126-acc2-383133fc8cdd"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/366640388397797376",
+    "rawBodySha256" : "47db80801986a22d82c944dcd7a09827587eab2789a21ffea785bf665d213902",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640388397797376",
+          "billDate" : "2026-09-17",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "DONE",
+          "attempts" : 1,
+          "createdAt" : "2026-10-08T17:38:00.442Z",
+          "completedAt" : "2026-10-08T17:38:00.465Z",
+          "issueCount" : 0
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "statementSha256" : "d45890e0299a6767af9c7d5eb1fd71eb0ed780207ae7a4e25ba4ffbbd006d117",
+        "observedAt" : "2026-10-08T17:38:00.461Z",
+        "summary" : {
+          "statementPaymentCount" : 0,
+          "statementPaymentCent" : 0,
+          "statementRefundCount" : 0,
+          "statementRefundCent" : 0,
+          "localPaymentCount" : 0,
+          "localPaymentCent" : 0,
+          "localRefundCount" : 0,
+          "localRefundCent" : 0,
+          "matchedPayments" : 0,
+          "matchedRefunds" : 0
+        },
+        "attempts" : [ {
+          "attempt" : 1,
+          "result" : "SUCCEEDED",
+          "startedAt" : "2026-10-08T17:38:00.456Z",
+          "finishedAt" : "2026-10-08T17:38:00.466Z"
+        } ]
+      }
+    },
+    "status" : 200,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "d53f25bf-efe0-4b03-80b9-374579ae88b8"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-10-07/runs",
+    "rawBodySha256" : "5f9b265d6e945f30868d79f4848dc1cad71d19ce6cefedf04546acc2d759a113",
+    "body" : {
+      "code" : 503,
+      "msg" : "商业服务暂不可用，请稍后重试"
+    },
+    "status" : 503,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "d5e0e982-453a-4566-9bd8-bc090be3d3a3"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations/2026-10-07/runs",
+    "rawBodySha256" : "a45987a5e7fe24e050931c4353e5afeba2e6ca4cad0513924c5b23dc93443c0a",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640390109073408",
+          "billDate" : "2026-10-07",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:38:00.849Z"
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "attempts" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "a09df922-025e-4c98-bff0-9391335f4690"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-10-07/runs",
+    "rawBodySha256" : "5f9b265d6e945f30868d79f4848dc1cad71d19ce6cefedf04546acc2d759a113",
+    "body" : {
+      "code" : 503,
+      "msg" : "商业服务暂不可用，请稍后重试"
+    },
+    "status" : 503,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "183b8339-013f-4d70-bb99-ccf947e80925"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations/2026-10-07/runs",
+    "rawBodySha256" : "82f2e6ac46716192b2a42fa8f9edd7f04c56a9d5488f445211cf69d9e36973a8",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640390318788608",
+          "billDate" : "2026-10-07",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:38:00.899Z"
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "attempts" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "84794521-f5ba-4ed1-80e9-0fd335a279c9"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-10-07/runs",
+    "rawBodySha256" : "0b2d4fc79001f5010ed6eb61b8b4ee06401ea56a18449acedd6861248e43b701",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640390453006336",
+          "billDate" : "2026-10-07",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:38:00.932Z"
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "attempts" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "1ac5f12c-d492-41d1-b56a-06a2c6412978"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations/2026-10-06/runs",
+    "rawBodySha256" : "aaf5a1b88df70676e7f8151d67e767a3d35ce84025dddaae44f0fd147b65500a",
+    "body" : {
+      "code" : 503,
+      "msg" : "对账执行尚未开放，可查看既有报告"
+    },
+    "status" : 503,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "61446efb-5144-4cf2-a943-2f2254045c6f"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/366640390453006336",
+    "rawBodySha256" : "0b2d4fc79001f5010ed6eb61b8b4ee06401ea56a18449acedd6861248e43b701",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640390453006336",
+          "billDate" : "2026-10-07",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:38:00.932Z"
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "attempts" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "eb2b1b40-2cf9-44f6-9201-83efba53a432"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-10-06/runs",
+    "rawBodySha256" : "aaf5a1b88df70676e7f8151d67e767a3d35ce84025dddaae44f0fd147b65500a",
+    "body" : {
+      "code" : 503,
+      "msg" : "对账执行尚未开放，可查看既有报告"
+    },
+    "status" : 503,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "9d9ce0fd-394a-4cda-89bd-05ed9b15fa6d"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations/2026-10-07/runs",
+    "rawBodySha256" : "0b2d4fc79001f5010ed6eb61b8b4ee06401ea56a18449acedd6861248e43b701",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640390453006336",
+          "billDate" : "2026-10-07",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:38:00.932Z"
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "attempts" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "aec71653-b6ab-4a70-baa4-0e1a9af7080f"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/366640390453006336",
+    "rawBodySha256" : "0b2d4fc79001f5010ed6eb61b8b4ee06401ea56a18449acedd6861248e43b701",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640390453006336",
+          "billDate" : "2026-10-07",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:38:00.932Z"
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "attempts" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "60",
+      "requestId" : "7734d8fc-79f9-447e-ba98-511e47b2387e"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations",
+    "rawBodySha256" : "4e077c6ea41d9af81145a954cadacdba74f84cf30991ff48acc70e4bec286aab",
+    "body" : {
+      "code" : 429,
+      "msg" : "内容请求过于频繁，请稍后重试"
+    },
+    "status" : 429,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "2f70b55d-ee07-48f6-b3cd-733bc2c3f65d"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations",
+    "rawBodySha256" : "65350062672ff024b28b1c5f9197680f3ef53e1a97d288271599c840c90feddf",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "items" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "0f1ac843-679e-4634-8694-492b5387eb09"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations",
+    "rawBodySha256" : "bf0559fe961bc1f571e625240f840082e3fee0c19bc3497ea17307e7b569b2ae",
+    "body" : {
+      "code" : 503,
+      "msg" : "认证服务暂不可用，请稍后重试"
+    },
+    "status" : 503,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "5c280d51-7745-4eae-a0bc-1916cbc3bf50"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-10-07/runs",
+    "rawBodySha256" : "bf0559fe961bc1f571e625240f840082e3fee0c19bc3497ea17307e7b569b2ae",
+    "body" : {
+      "code" : 503,
+      "msg" : "认证服务暂不可用，请稍后重试"
+    },
+    "status" : 503,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "6554a1bc-0b08-4e9c-b6eb-1d93445d1d33"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations",
+    "rawBodySha256" : "65350062672ff024b28b1c5f9197680f3ef53e1a97d288271599c840c90feddf",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "items" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "3b237a56-ab79-49b5-993c-7cc67f41d1d2"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-10-07/runs",
+    "rawBodySha256" : "bd90ab7650278d4a12a349acc2784b4118705d6c4ebc15ff1022df1a9d7ef4dc",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640428893802497",
+          "billDate" : "2026-10-07",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:38:10.097Z"
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "attempts" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "6cfa3177-b12c-4fb3-bcc9-35b2be6a8ebf"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations/2026-10-07/runs",
+    "rawBodySha256" : "bd90ab7650278d4a12a349acc2784b4118705d6c4ebc15ff1022df1a9d7ef4dc",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640428893802497",
+          "billDate" : "2026-10-07",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:38:10.097Z"
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "attempts" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "fdff3b44-748c-4f3a-93e5-fd647acb3586"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-10-06/runs",
+    "rawBodySha256" : "27cf9767b3fcb728375eb5433377afeefa6d54b14c1960c38ef3cb22c84b25fa",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640428969299968",
+          "billDate" : "2026-10-06",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:38:10.115Z"
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "attempts" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "d9640af7-a2e7-4c38-afca-446015264089"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-10-05/runs",
+    "rawBodySha256" : "0c1ac2e0dce5b43b16c1c535de9f7b9fd78518e64828923e6c24bad7ae70c654",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640429048991745",
+          "billDate" : "2026-10-05",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:38:10.134Z"
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "attempts" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "029e556c-4d58-4252-8f83-f34bce1c7c5d"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-10-04/runs",
+    "rawBodySha256" : "bbecb4a0f8ff4644d8f1f09f9faf1c0c20a0e380a27a1305cb519296c243cf92",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640429149655040",
+          "billDate" : "2026-10-04",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:38:10.158Z"
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "attempts" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "283d4901-da55-40f3-8917-6524b471fa66"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-10-03/runs",
+    "rawBodySha256" : "6ab25fbb387f5327c4f9a6147e60e895c878e423a8a034bccaac4e366bb7bb87",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640429195792385",
+          "billDate" : "2026-10-03",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:38:10.170Z"
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "attempts" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "44282dc8-0dc8-48c4-843c-4061d8d69938"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-10-02/runs",
+    "rawBodySha256" : "9f5393098c43107f24685556ca5a55b626094fba81d12e3d78f5bf327abfee53",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640429246124033",
+          "billDate" : "2026-10-02",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:38:10.182Z"
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "attempts" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "8ba30bc8-cb4d-41a3-98e8-b95225bf1626"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-10-01/runs",
+    "rawBodySha256" : "a880c28010706f833a21bd461c26b994c13f2226adc86309bd353a73e681d395",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640429288067073",
+          "billDate" : "2026-10-01",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:38:10.192Z"
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "attempts" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "d0973ea2-1064-4998-882f-ffc3a30235a9"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-09-30/runs",
+    "rawBodySha256" : "9753632bd94ca67691cfd720ae37ef9481b1ac87e2452426da3bdd2d365bc1da",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640429338398721",
+          "billDate" : "2026-09-30",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:38:10.204Z"
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "attempts" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "fe60e860-556b-4744-83d9-9796bf336329"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-09-29/runs",
+    "rawBodySha256" : "3fee8b423be980f81edd0f59d0fe858def0a8bfecd653974361e954c6a34e2f9",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640429388730368",
+          "billDate" : "2026-09-29",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:38:10.216Z"
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "attempts" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "87907a09-3774-4b92-b333-2a251d8bff19"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-09-28/runs",
+    "rawBodySha256" : "0b69a2ac1ab12cc24ac95b4c70dfac7d6e54bafb7f1de4aa2dccc51be6a146f2",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640429439062017",
+          "billDate" : "2026-09-28",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:38:10.228Z"
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "attempts" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "2ad20dba-3759-483f-a640-3df3ec9bba7e"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-09-27/runs",
+    "rawBodySha256" : "25ce1154a5f816b75e3b74b533ca24d263ce4f4ec0e0aaa18001bd9e9f2b000c",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640429497782272",
+          "billDate" : "2026-09-27",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:38:10.241Z"
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "attempts" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "a68422df-4c7b-44a2-b1f9-272b2d949ff2"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-09-26/runs",
+    "rawBodySha256" : "4dd63b9127381955cd6b66090a4a968b8409436603b24649a641306495447a0d",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640429556502528",
+          "billDate" : "2026-09-26",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:38:10.254Z"
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "attempts" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "8d100053-ca77-48bf-ab3f-a6fdcb388b5e"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-09-25/runs",
+    "rawBodySha256" : "5359b4cf40d79d598c49c54331fbb4496a3e1fe6f66f1d322bc91c55d221ca63",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640429611028481",
+          "billDate" : "2026-09-25",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:38:10.269Z"
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "attempts" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "88066fb0-9a95-45c5-98e9-63a1aeeaed33"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-09-24/runs",
+    "rawBodySha256" : "8a356f4d5df1182e05099958d2b34db63879139912b5d83cb158f6dd8e42dff8",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640429657165825",
+          "billDate" : "2026-09-24",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:38:10.280Z"
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "attempts" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "00636e11-9d42-43b0-931e-021cfea6e568"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-09-23/runs",
+    "rawBodySha256" : "07f49d8e330e4e2da40f726770c6d69232cd199a6d94a280aa8f887ed2210b04",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640429699108865",
+          "billDate" : "2026-09-23",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:38:10.290Z"
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "attempts" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "fbbbb266-6a46-4d08-804e-02f504511ee2"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-09-22/runs",
+    "rawBodySha256" : "b79ec2f876317cdf441a1c5ab30b77230a3930f6c48a2874231b21fc7bfb0eb0",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640429753634816",
+          "billDate" : "2026-09-22",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:38:10.302Z"
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "attempts" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "3e2d64f4-c0dd-40d2-97ac-ff0795e7f1d0"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-09-21/runs",
+    "rawBodySha256" : "c3966d7596a53a963dd5bf8e5ea72f9940009dbf82e712d3bb24ef3b536cb471",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640429799772161",
+          "billDate" : "2026-09-21",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:38:10.314Z"
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "attempts" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "83df1ac5-3c30-481f-8522-55575258806a"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-09-20/runs",
+    "rawBodySha256" : "7745cf5d24ae2d9fe9b688c4d91de413e593157ae88f1c47cc79784d9619119d",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640429841715201",
+          "billDate" : "2026-09-20",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:38:10.324Z"
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "attempts" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "1ee5656f-0441-4d96-a1ea-9aef988bccb5"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-09-19/runs",
+    "rawBodySha256" : "6aff3428763d47cf67cf83e0e70b39bf27e91c75f4aa96efe34faafff2e7f200",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640429896241152",
+          "billDate" : "2026-09-19",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:38:10.336Z"
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "attempts" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "3eb69144-dd0d-4d4e-9a30-7cb2b922c55c"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-09-18/runs",
+    "rawBodySha256" : "566252b84961eab87305446c7a799fb7c2fb3052faa3cecaf4164b9c4de8d7da",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640429946572800",
+          "billDate" : "2026-09-18",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:38:10.348Z"
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "attempts" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "e1f190d5-afb3-41a2-ba44-61ab50666c77"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-09-17/runs",
+    "rawBodySha256" : "bef0f763fdffca7197e0709e1f04dd55d7dfcaafffad0bba9f2149cae3be437f",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640429992710144",
+          "billDate" : "2026-09-17",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:38:10.359Z"
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "attempts" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "463b59c1-a224-4038-aebb-68212d95dbec"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-09-16/runs",
+    "rawBodySha256" : "6cfb67eb03a0993bb00781bd711d96e0cd8f067e362d2a991cdb94e478232208",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640430043041792",
+          "billDate" : "2026-09-16",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:38:10.371Z"
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "attempts" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "b9bad595-84fc-4935-a3f2-d83538e37438"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-09-15/runs",
+    "rawBodySha256" : "acf24a2a8fd50d1860dd1476f113fac4557e5a13855da05d4c3030a31a63f967",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640430084984832",
+          "billDate" : "2026-09-15",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:38:10.382Z"
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "attempts" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "3000e3b4-d075-47cc-b211-e1dd671e5031"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-09-14/runs",
+    "rawBodySha256" : "d3b6864e31d467df9b07e62fa49ce3af2967f669310040cb80ea99c2db64f584",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640430131122176",
+          "billDate" : "2026-09-14",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:38:10.392Z"
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "attempts" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "4586a566-4f03-4b3d-844c-daf08cf96980"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-09-13/runs",
+    "rawBodySha256" : "84335788db6284be76a62270005d575fc54ab7833d282ec93315b1eb33073f74",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640430181453824",
+          "billDate" : "2026-09-13",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:38:10.405Z"
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "attempts" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "f5450235-626e-4e5c-9c63-44747f898402"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-09-12/runs",
+    "rawBodySha256" : "744fc3f0425c981eda35f5cc5e8d4d7c597c6019285f418926e5ea0b38301d51",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640430235979776",
+          "billDate" : "2026-09-12",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:38:10.417Z"
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "attempts" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "f4604e96-9a18-4b27-9349-aa6333bbf682"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-09-11/runs",
+    "rawBodySha256" : "f20513af99e07f018a5f56571c3c4eac99637b8804ce6b07967d2d27307a7b4b",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640430290505729",
+          "billDate" : "2026-09-11",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:38:10.430Z"
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "attempts" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "3b5295ab-6648-4d04-bb6e-0f1c7e7e712e"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-09-10/runs",
+    "rawBodySha256" : "ff9f3491b4c901c2adca01c4a8e33d36c6ac5d22f56188874c66f8c0cf96bec0",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640430332448768",
+          "billDate" : "2026-09-10",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:38:10.440Z"
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "attempts" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "ee3ecbc8-78d9-4912-9b6c-400e02bc86c7"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-09-09/runs",
+    "rawBodySha256" : "dcbbe9a67d40634be4e37c59af6fc4bab7db9e21461e4254c763ee7c37762aac",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640430378586113",
+          "billDate" : "2026-09-09",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:38:10.452Z"
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "attempts" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "aa54d80f-846a-43cd-81d0-250bfd8991d3"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-09-08/runs",
+    "rawBodySha256" : "9c185d78764cb29368c485b99cca39a9bb36bec1dfcf9da356cce24035d5696a",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640430424723456",
+          "billDate" : "2026-09-08",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:38:10.462Z"
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "attempts" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "60",
+      "requestId" : "83eba90e-8a3e-4436-aa8f-571d2fd9b260"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations/2026-08-28/runs",
+    "rawBodySha256" : "8f2f00336c6ca2f9711a1e0dad83098f5f1d0e25861eb34dc9d994a5acc46685",
+    "body" : {
+      "code" : 429,
+      "msg" : "对账操作过于频繁，请恢复原请求或稍后重试"
+    },
+    "status" : 429,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "f0134022-a0ec-4de0-bb79-ee2514bcd7d7"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-10-07/runs",
+    "rawBodySha256" : "bd90ab7650278d4a12a349acc2784b4118705d6c4ebc15ff1022df1a9d7ef4dc",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640428893802497",
+          "billDate" : "2026-10-07",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:38:10.097Z"
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "attempts" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "d09800b4-b49f-47b1-8770-516b6afaa7dc"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/access",
+    "rawBodySha256" : "e847a8f8959931e07840413b176286dc704734dde2a588b8927d6a3bb80292ff",
+    "body" : {
+      "code" : 401,
+      "msg" : "未登录"
+    },
+    "status" : 401,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "c4093071-91e6-49a6-80d0-96bad5c821ba"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/access",
+    "rawBodySha256" : "6c72060b7f50dc9909038d802c858918e2c0917bcb0d3d50d2a9eabf2ddd01d3",
+    "body" : {
+      "code" : 403,
+      "msg" : "无管理权限"
+    },
+    "status" : 403,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "b61fba7f-c114-436a-901f-8b1e7c22a832"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/access",
+    "rawBodySha256" : "cd59030e990091523eec167e632fcca785f2b08bfaa6c7b9a0ce0636ef803841",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "actorId" : "122",
+        "executionEnabled" : true,
+        "mock" : true,
+        "environment" : "test",
+        "latestBillDate" : "2026-10-07",
+        "earliestBillDate" : "2024-10-08",
+        "observedAt" : "2026-10-08T17:38:10.513Z"
+      }
+    },
+    "status" : 200,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "cbc1b627-4071-476f-b2f2-c548ddba9c20"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/access",
+    "rawBodySha256" : "7a36f9161634d7d2d1c7b1860dc43c7c92b6e70720dadc3c1f659f17a53a94b9",
+    "body" : {
+      "code" : 400,
+      "msg" : "对账查询参数无效"
+    },
+    "status" : 400,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "d4befa20-e8ad-4e79-aae6-e8f27b92b657"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/access",
+    "rawBodySha256" : "baed1148b487138baaa27e6851a8e1d267ec286d4891c8b4a1ec395be7245fe7",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "actorId" : "122",
+        "executionEnabled" : false,
+        "mock" : true,
+        "environment" : "test",
+        "latestBillDate" : "2026-10-07",
+        "earliestBillDate" : "2024-10-08",
+        "observedAt" : "2026-10-08T17:38:10.527Z"
+      }
+    },
+    "status" : 200,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "86bfa700-bd3e-4641-8a4a-57bfe83938eb"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/access",
+    "rawBodySha256" : "887f286a773889dcac8136cb1eb2a7f35ea5aecc956eed3ab5a9abbd1ce5e45e",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "actorId" : "122",
+        "executionEnabled" : false,
+        "mock" : false,
+        "environment" : "test",
+        "latestBillDate" : "2026-10-07",
+        "earliestBillDate" : "2024-10-08",
+        "observedAt" : "2026-10-08T17:38:10.533Z"
+      }
+    },
+    "status" : 200,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "a282aa14-02df-4f78-acef-96b918326778"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations/access",
+    "rawBodySha256" : "e847a8f8959931e07840413b176286dc704734dde2a588b8927d6a3bb80292ff",
+    "body" : {
+      "code" : 401,
+      "msg" : "未登录"
+    },
+    "status" : 401,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "135151b2-2145-43ce-be9e-20b008f562d0"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations/access",
+    "rawBodySha256" : "6c72060b7f50dc9909038d802c858918e2c0917bcb0d3d50d2a9eabf2ddd01d3",
+    "body" : {
+      "code" : 403,
+      "msg" : "无管理权限"
+    },
+    "status" : 403,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "778027bd-d942-4e18-8783-c732389a90ff"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations/access",
+    "rawBodySha256" : "d9f1f6765695cdd9790b02e083201cd1d69806e3e31d2d846a48a62e30284c59",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "actorId" : "122",
+        "executionEnabled" : true,
+        "mock" : true,
+        "environment" : "test",
+        "latestBillDate" : "2026-10-07",
+        "earliestBillDate" : "2024-10-08",
+        "observedAt" : "2026-10-08T17:38:10.554Z"
+      }
+    },
+    "status" : 200,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "47c4ee20-4b2c-4255-9952-95006e54c026"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations/access",
+    "rawBodySha256" : "7a36f9161634d7d2d1c7b1860dc43c7c92b6e70720dadc3c1f659f17a53a94b9",
+    "body" : {
+      "code" : 400,
+      "msg" : "对账查询参数无效"
+    },
+    "status" : 400,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "b3854820-c10a-45f4-b993-bc54b78548b4"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations/access",
+    "rawBodySha256" : "9331d086cdccc1bde5ee7aad5a7f1ddf67d4d723737337835451553bfc21eca8",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "actorId" : "122",
+        "executionEnabled" : false,
+        "mock" : true,
+        "environment" : "test",
+        "latestBillDate" : "2026-10-07",
+        "earliestBillDate" : "2024-10-08",
+        "observedAt" : "2026-10-08T17:38:10.574Z"
+      }
+    },
+    "status" : 200,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "5da4d4bd-b5b5-4952-b35f-fcd1704841f1"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations/access",
+    "rawBodySha256" : "c36b2553da8270a903fa10160ce0ed7cbe5e903f4d4ef1b75a010800fb0f6450",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "actorId" : "122",
+        "executionEnabled" : false,
+        "mock" : false,
+        "environment" : "test",
+        "latestBillDate" : "2026-10-07",
+        "earliestBillDate" : "2024-10-08",
+        "observedAt" : "2026-10-08T17:38:10.584Z"
+      }
+    },
+    "status" : 200,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "e13ceaa4-68ab-426a-b62b-16cd7d27e5ca"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/2026-10-07/runs",
+    "rawBodySha256" : "c589339b1679988cb545d9a84c933fef4cd5306c353718fd24827829e1b7ef13",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640430990954497",
+          "billDate" : "2026-10-07",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:38:10.599Z"
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "attempts" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "a1ff07d2-d3d3-42f4-8d71-e377094c736e"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/commands/2026-10-07/4a08cf37-b84a-46e6-bc1b-5c80196de245",
+    "rawBodySha256" : "c589339b1679988cb545d9a84c933fef4cd5306c353718fd24827829e1b7ef13",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640430990954497",
+          "billDate" : "2026-10-07",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:38:10.599Z"
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "attempts" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "9df653f2-b90b-47d1-84ea-231a4577df38"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/commands/2026-10-07/4a08cf37-b84a-46e6-bc1b-5c80196de245",
+    "rawBodySha256" : "d3a37f0ab557841421774161f2d825dbaed3bfff7732fe8733ca9fda38065adf",
+    "body" : {
+      "code" : 404,
+      "msg" : "该操作尚未查询到已受理记录，请保留原请求"
+    },
+    "status" : 404,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "f6fd7b97-b47c-4e18-86fd-a153d15f88ba"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/commands/2026-10-06/4a08cf37-b84a-46e6-bc1b-5c80196de245",
+    "rawBodySha256" : "d3a37f0ab557841421774161f2d825dbaed3bfff7732fe8733ca9fda38065adf",
+    "body" : {
+      "code" : 404,
+      "msg" : "该操作尚未查询到已受理记录，请保留原请求"
+    },
+    "status" : 404,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "95f474a0-4759-46d6-8841-55e419ded5f9"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/commands/2026-10-07/4a08cf37-b84a-46e6-bc1b-5c80196de245",
+    "rawBodySha256" : "6c72060b7f50dc9909038d802c858918e2c0917bcb0d3d50d2a9eabf2ddd01d3",
+    "body" : {
+      "code" : 403,
+      "msg" : "无管理权限"
+    },
+    "status" : 403,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "b5d60d4e-03cd-449c-a073-d14370d64443"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/commands/2026-10-07/bad-key",
+    "rawBodySha256" : "8c02e1b61c4d0ca0632d30693ee10f291c2def0650028f63a21c7cb7bd72e83d",
+    "body" : {
+      "code" : 400,
+      "msg" : "需要有效的UUIDv4幂等键"
+    },
+    "status" : 400,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "9d078333-17d4-4afd-985b-be34a836d75f"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/commands/2026-10-07/4a08cf37-b84a-46e6-bc1b-5c80196de245",
+    "rawBodySha256" : "7a36f9161634d7d2d1c7b1860dc43c7c92b6e70720dadc3c1f659f17a53a94b9",
+    "body" : {
+      "code" : 400,
+      "msg" : "对账查询参数无效"
+    },
+    "status" : 400,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "dac30aa9-ce06-4a7f-9d78-101f3f9d821d"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations/commands/2026-10-07/4a08cf37-b84a-46e6-bc1b-5c80196de245",
+    "rawBodySha256" : "c589339b1679988cb545d9a84c933fef4cd5306c353718fd24827829e1b7ef13",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640430990954497",
+          "billDate" : "2026-10-07",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:38:10.599Z"
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "attempts" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "0658ad6a-6eee-452f-9e01-afc2012b574f"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations/commands/2026-10-07/4a08cf37-b84a-46e6-bc1b-5c80196de245",
+    "rawBodySha256" : "d3a37f0ab557841421774161f2d825dbaed3bfff7732fe8733ca9fda38065adf",
+    "body" : {
+      "code" : 404,
+      "msg" : "该操作尚未查询到已受理记录，请保留原请求"
+    },
+    "status" : 404,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "4a52aee3-3c11-4f6a-9b23-b3133afb3732"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations/commands/2026-10-06/4a08cf37-b84a-46e6-bc1b-5c80196de245",
+    "rawBodySha256" : "d3a37f0ab557841421774161f2d825dbaed3bfff7732fe8733ca9fda38065adf",
+    "body" : {
+      "code" : 404,
+      "msg" : "该操作尚未查询到已受理记录，请保留原请求"
+    },
+    "status" : 404,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "a900e7aa-d887-46b1-9076-5e6eb85ceb54"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations/commands/2026-10-07/4a08cf37-b84a-46e6-bc1b-5c80196de245",
+    "rawBodySha256" : "6c72060b7f50dc9909038d802c858918e2c0917bcb0d3d50d2a9eabf2ddd01d3",
+    "body" : {
+      "code" : 403,
+      "msg" : "无管理权限"
+    },
+    "status" : 403,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "5f0af958-7759-425c-8d0f-7cc00007f12b"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations/commands/2026-10-07/bad-key",
+    "rawBodySha256" : "8c02e1b61c4d0ca0632d30693ee10f291c2def0650028f63a21c7cb7bd72e83d",
+    "body" : {
+      "code" : 400,
+      "msg" : "需要有效的UUIDv4幂等键"
+    },
+    "status" : 400,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "ceb534f1-de45-4e9e-96b1-55eb339601cd"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations/commands/2026-10-07/4a08cf37-b84a-46e6-bc1b-5c80196de245",
+    "rawBodySha256" : "7a36f9161634d7d2d1c7b1860dc43c7c92b6e70720dadc3c1f659f17a53a94b9",
+    "body" : {
+      "code" : 400,
+      "msg" : "对账查询参数无效"
+    },
+    "status" : 400,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "d71c7ed9-f6d2-461c-8e96-b06cfc7f0196"
+    },
+    "viaGateway" : false,
+    "path" : "/system/admin/reconciliations/commands/2026-10-07/4a08cf37-b84a-46e6-bc1b-5c80196de245",
+    "rawBodySha256" : "6c72060b7f50dc9909038d802c858918e2c0917bcb0d3d50d2a9eabf2ddd01d3",
+    "body" : {
+      "code" : 403,
+      "msg" : "无管理权限"
+    },
+    "status" : 403,
+    "method" : "GET",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  }, {
+    "headers" : {
+      "cacheControl" : "no-store",
+      "retryAfter" : "",
+      "requestId" : "64c8c446-44f0-4a99-9d95-92197d5031f3"
+    },
+    "viaGateway" : true,
+    "path" : "/api/system/admin/reconciliations/2026-10-07/runs",
+    "rawBodySha256" : "6db80f050d4747a8049879de2febb6d235338fc43e9c7865d0ed89c180f6aacb",
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "job" : {
+          "id" : "366640431741734913",
+          "billDate" : "2026-10-07",
+          "timeZone" : "Asia/Shanghai",
+          "generation" : 1,
+          "source" : "MANUAL",
+          "requestedBy" : "122",
+          "state" : "READY",
+          "attempts" : 0,
+          "createdAt" : "2026-10-08T17:38:10.777Z"
+        },
+        "latestGeneration" : 1,
+        "reason" : "核查账单并保留原报告",
+        "attempts" : [ ]
+      }
+    },
+    "status" : 200,
+    "method" : "POST",
+    "checkoutUrlOmittedAfterLiveValidation" : false
+  } ],
+  "redisNamespace" : "it-0a6b1188ca21",
+  "testsPassed" : 13,
+  "passed" : true
+}

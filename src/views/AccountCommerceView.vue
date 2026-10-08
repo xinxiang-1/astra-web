@@ -230,6 +230,7 @@ onBeforeUnmount(() => {
         <RouterLink to="/projects">本地项目 ↗</RouterLink>
         <RouterLink to="/collections">内容合集 ↗</RouterLink>
         <RouterLink v-if="adminAvailable" to="/admin/refunds">退款工作台 ↗</RouterLink>
+        <RouterLink v-if="adminAvailable" to="/admin/reconciliations">每日对账 ↗</RouterLink>
       </nav>
       <section :aria-label="title" :aria-busy="busy">
         <div v-if="transfer" class="transfer-status" role="status">
