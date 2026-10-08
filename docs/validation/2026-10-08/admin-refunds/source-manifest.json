@@ -1,0 +1,420 @@
+{
+  "hashNormalization": "CRLF to LF",
+  "files": [
+    {
+      "repository": "astra-cloud",
+      "path": "astra-api/src/main/java/com/astra/api/commerce/CommerceAdminDto.java",
+      "sha256": "7ef02754ddec2d7b34fb78757d18c0dfe447fbf01e6de3c4fac11fb8bb2fc92c"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-api/src/main/java/com/astra/api/commerce/CommerceCatalogDto.java",
+      "sha256": "db260f3ef9e37123fd1eef447e261152500e96368056bdc63ea6fb463cbd91f8"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-api/src/main/java/com/astra/api/commerce/CommerceDeliveryDto.java",
+      "sha256": "e6f33ca059aa099cc66fa4fd3bb01e0342b2b4791c7d5a3caa3ce88b5c860d42"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-api/src/main/java/com/astra/api/commerce/CommerceEntitlementDto.java",
+      "sha256": "2d794d4c4c30d64e866639e7e8dac267559f714fe7ffc41f6769059f5d553d4b"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-api/src/main/java/com/astra/api/commerce/CommerceOrderDto.java",
+      "sha256": "d53871a1a4e4fa73dcd647b13b17bb75ff74bb5b469fda18aadb6a83bdbaea9e"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-api/src/main/java/com/astra/api/commerce/CommercePaymentDto.java",
+      "sha256": "ce339c8b8635e2dd503329335400b22d49f9dd1c611104878ec1b82bdf2fd378"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-api/src/main/java/com/astra/api/commerce/CommerceRefundDto.java",
+      "sha256": "f421331feaf920707afc4e982147f05d6d7e77a4b69f14bf631a7699ea29fc57"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-common/src/main/java/com/astra/common/security/JwtSupport.java",
+      "sha256": "0355bb7f6416d8c824e4c03bfaedfb2c91c4d48238ec4ac6116bc16ae83c50d7"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-common/src/main/java/com/astra/common/security/UserContext.java",
+      "sha256": "e05b438207fe3c3e52ad53e68b272ceb95fa6dea050673806958efa1720d1797"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-gateway/src/main/java/com/astra/gateway/filter/JwtAuthGlobalFilter.java",
+      "sha256": "6136dae8d78ff5bf41568bd9bcd1cfb939a6fe2e197d6fc0b69eaacd1c356fc7"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/admin/CommerceAdminController.java",
+      "sha256": "54f45d961de516876638e4c992f237df294098cf5de5121cfa6ae2457a1db798"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/admin/CommerceAdminRepository.java",
+      "sha256": "0e42daf6876c65dce7667a6308bcbf06cf1f1bb218367a8504d415a16798bd43"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/admin/CommerceAdminService.java",
+      "sha256": "1592a5a8d8bbd6bc081f83c6a5fac182a4a3358c9ddef168b124298b736f5236"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/catalog/CatalogController.java",
+      "sha256": "2995e25f591d4acb1566fb06bb83dd995a4b601ce1da452b319584add696761f"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/catalog/CatalogCursor.java",
+      "sha256": "01f953aa71ffb90263014b25e427ce8998778f25111906656e2242b5bc697435"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/catalog/CatalogRepository.java",
+      "sha256": "338bb89825b0890e687e2e7f2a566a76055f6e8b34b395fc89a5ab377eb172c8"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/catalog/CatalogService.java",
+      "sha256": "99a894c9b13d9dfdccf7e545da1477defae7f48a9e8e64f75cb3fe72229eb212"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/config/CommerceExceptionHandler.java",
+      "sha256": "d622a528d4dbbf3fc09c8d92bcb43e958bda19ef3d317375c0a66a677849a89d"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/config/CommerceProperties.java",
+      "sha256": "7195b6052d293754a85559c9e5d66d22914fc0d6b626cc7bc09f723798ab39c9"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/delivery/DeliveryAuthorization.java",
+      "sha256": "d818f16829dc384512cc7be7299d6112528dc40061427457ac4c4cdd2cbde9bd"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/delivery/DeliveryController.java",
+      "sha256": "409ce2c2614d910cb8eed584b56fad0ee7352cdbb5bbd7c27d1dd160186bffb5"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/delivery/DeliveryException.java",
+      "sha256": "920e414f3a47609b67e40c8bf67ec7089e8dbd90270fda10a4cbe91e63ba42d9"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/delivery/DeliveryProperties.java",
+      "sha256": "05b63c17f1646c2d57745370d51f4330ec8dc49096932cd815a5c223018dc44c"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/delivery/DeliveryRepository.java",
+      "sha256": "b5b78e78fa9f47c4bd8085b71525b050147bba15bd4510204007482be7a0571a"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/delivery/DeliveryService.java",
+      "sha256": "67c9fa9c61b081f93a68afb004fa8e8a83c4afad81688886a230effeb91aa466"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/delivery/DownloadTicketStore.java",
+      "sha256": "11f417c2069740e4fbf6cc281938834addd7a4193de4386630a9ea82c77c1b5d"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/delivery/PrivateAssetStorage.java",
+      "sha256": "8f539d9f4281ede33dcd345b0cc59f5b2aff8f7bb836a6666a69f45acbc9ed0a"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/entitlement/EntitlementController.java",
+      "sha256": "e58df5c4cefafa1cd0b6ffe895c9438091ce8c0c35740f0bfdbe0382aa0685bd"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/entitlement/EntitlementCursor.java",
+      "sha256": "434f1c51ea1008506a4a9725255b8cdc23077aceb76ec8b5c913a19c71e2123f"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/entitlement/EntitlementRepository.java",
+      "sha256": "6580d24aa6adb69809e85f84e19766faa75c58326c4c4231ae9d1941d0ac590b"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/entitlement/EntitlementService.java",
+      "sha256": "530ba68ca2a26630d1fb8d5d2c6c6ec7c2e94ca6e0441052c9100502457fc610"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/order/OrderController.java",
+      "sha256": "5130445854bc650b2dc5afef0ee0309c60a10788991bf297021c24546e9d7977"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/order/OrderCursor.java",
+      "sha256": "4fada2cbe05564fb164699f85cb7220fc68afca60b52254f4dcd65c648b47817"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/order/OrderExpiryScheduler.java",
+      "sha256": "b08f3af231bec4e75c264cca79ef44d50daf150febdf4af1c628440793b42fcc"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/order/OrderInput.java",
+      "sha256": "368691c42c12eb610b903e3629c56704c9d7e40408eda529999fb778373621af"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/order/OrderRateLimitException.java",
+      "sha256": "d5ad9a56c5a4dc8210b49467bf4d8423c384366de9669f275438a8845bb63ab6"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/order/OrderRepository.java",
+      "sha256": "ad70999626393bae8c172f6a4173fd1b86659e8784c662819f2c8927b1021b64"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/order/OrderService.java",
+      "sha256": "4b4c76e92f9dc46047339dffd82e5fd75596ac77d4497cc9c8143f9ceedfdc20"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/CheckoutCipher.java",
+      "sha256": "bbe696a60262ab7f45b9096862f8704b40e210c7d6fd2a3bf69038568f6972dd"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/DisabledPaymentProvider.java",
+      "sha256": "9d523d6535b287ee062a4aa6dac7aa706c124661235406ceac72d56304fac399"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/MockPaymentProvider.java",
+      "sha256": "8eb9ecf6dc5e179f9c8cbb11bd22add3563a51185375e3bc8aeb0b6c99bbfa0b"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/PaymentConfiguration.java",
+      "sha256": "35db6e9a308ffe15e01fd53fa868ca15e9c81389a99554eed2d7e840dea579ac"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/PaymentController.java",
+      "sha256": "c16f621a76e961e0a1b97111b196b835e648b73698d25d6ecd358df71cc9d1f7"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/PaymentFactService.java",
+      "sha256": "807df4270332916f54405ae99fea71ace26a0ba5b5ebf047020ab58c7be7f9ac"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/PaymentInput.java",
+      "sha256": "ccd2df7c079526bbe765f397caf2c5aef715a0fd9fb1047bec568746a0e2d34c"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/PaymentOutboxRepository.java",
+      "sha256": "3e9ead286eabc4d83dde57e7536b321e1cb0880a928f36c86fbbdd9a5b39bb07"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/PaymentProperties.java",
+      "sha256": "6d5f4d40840f7e013ba59d9198983f16236aade7c04ae79865d14737f886c681"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/PaymentProvider.java",
+      "sha256": "0f73779910be7925d5399fc7670587579600b615a91fe29f39a36194536ce2c8"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/PaymentProviderExecutor.java",
+      "sha256": "bcbd6069124edd98fb49d8d686ffe03a73529f10b7e6de490131ab3c60b834fc"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/PaymentRepository.java",
+      "sha256": "4cb09b4edfb63cb0ed42b72dc446876e78f6e1559bc16ac733181dcaa99114c2"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/PaymentService.java",
+      "sha256": "f0a40e64f1aa83da93384e4e0de93f00bafe9b27e09d469f5c860d5fec31a1bb"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/PaymentWorker.java",
+      "sha256": "48cd10cd184e02fddb42d8195a494b0d0d028ec853be554f8bdd72501c4e1b95"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/PaymentWorkerScheduler.java",
+      "sha256": "37cbb173ef5cd5020df6dc215382fa6228531e983bef0c50cd9315fdf5f8cec5"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/refund/RefundApplicationController.java",
+      "sha256": "b1cf51344537a3f2e09d0f541fde6751d498dcfcca07fd98b81b437f2633167d"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/refund/RefundApplicationRepository.java",
+      "sha256": "e4acbc70ad18ae2171bfd1a8edcd21d5b248a9e61ad27a45b81dd34aabbfeee1"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/refund/RefundApplicationService.java",
+      "sha256": "0ae922fc573ad99067e1a69c820ac9a49eb75274e3c62f2f16449d40111a0ebf"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/refund/RefundFactService.java",
+      "sha256": "5e2c7cb515fa6f2c21e21ff2867c6486cbdce60a2f61862cf290fa74421477a1"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/refund/RefundInput.java",
+      "sha256": "79b4540ac6dc77dc9b5790b7571611ce58dbccca2ea1ca8bcbab2c83d92386a1"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/refund/RefundOutboxRepository.java",
+      "sha256": "73e14545957aeeb68aef2a4b95f51c72b5b193915c5bb982b3c60a4c2ca003cd"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/refund/RefundProperties.java",
+      "sha256": "b843dd2e2b469d62ad2f8c0eb29517ed7150bdc500550ceafdcb815c85474eb3"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/refund/RefundRepository.java",
+      "sha256": "ce9152b82225c7263fbf011b2457d4766f1064dc561a3bcdf79a53fcb52e6c9f"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/refund/RefundWorker.java",
+      "sha256": "a6651501748dac1da8d4ea2ccb26b17a8b6b6b0189fb9d7d7b2d245d7adc3a4e"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/refund/RefundWorkerScheduler.java",
+      "sha256": "7cb64a32ce1aa70586bf879180db036d271c61b01365c3a51d8f75d2cd40adfa"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/security/CommerceAccessRepository.java",
+      "sha256": "4a3011fe939d29a239b4a7334d1767e4c061a89b206931605cbe35abc211ef93"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/security/CommerceTokenFilter.java",
+      "sha256": "d9056025b131ed49ea711fe7b5d152b2548118a8b9d5949891c582966cb8c0ba"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/support/UserRateLimiter.java",
+      "sha256": "37ff3aa9ee3e8977fe3001ed078ab94e31dfaa217f8cc4ced2d1b2927f92ffd7"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/test/java/com/astra/system/commerce/AdminRefundWorkbenchIntegrationTest.java",
+      "sha256": "7961684315cf9a4944d2db4e896c8c385401c133d07157f7df1e2cf3b9c48adc"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "docs/commerce/openapi.json",
+      "sha256": "b4d8c1c5fecd879f2b3da9030dbaafc09b51d474cf0aa8087effed5a9edf158d"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "scripts/validate-admin-refunds-evidence.py",
+      "sha256": "f0d9351c76ad0df9aa51d9d0eef1a8a8a18b161006f5c40cd8c6df22808616ef"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "sql/migrations/V20261002_01__commerce_v1.sql",
+      "sha256": "59228edd69e92b62facf443c51a9dcd0b8242edf7f509ff7b90d5c9c35108bd2"
+    },
+    {
+      "repository": "astra-web",
+      "path": "scripts/admin-refunds-contract.mjs",
+      "sha256": "448f2af9faa242f0ac43e047e8feed8803542af24e973d4b8ee1727bcdc6d327"
+    },
+    {
+      "repository": "astra-web",
+      "path": "scripts/admin-refunds-live.mjs",
+      "sha256": "8b42f0a13e8edf353690236892f03c77f789120d04f5aaa5b55ea78d5e1970a6"
+    },
+    {
+      "repository": "astra-web",
+      "path": "src/api/commerce.ts",
+      "sha256": "56eb5eac0c64f580263e35c6316fe5e1f6487d9cecf040f64116fd6bf64b9160"
+    },
+    {
+      "repository": "astra-web",
+      "path": "src/api/http.ts",
+      "sha256": "bd630b8faaed8035145405514078af2063b610a64ed07ddb18c12341eae14fe9"
+    },
+    {
+      "repository": "astra-web",
+      "path": "src/App.vue",
+      "sha256": "cc28af49e1db19a9d2f6fb9c4635c29a4554c13c59f1e2d17c5e28c36bc4bb35"
+    },
+    {
+      "repository": "astra-web",
+      "path": "src/content/navigation.ts",
+      "sha256": "147a59c10eba7876273ddbecd11d62ba53745fe1d2efa1fd16abaa24706fb0e1"
+    },
+    {
+      "repository": "astra-web",
+      "path": "src/lib/account-return.ts",
+      "sha256": "ec64ef62f07b6df75bb06625b4a780d25f66966e8d9b4e358c7bb68334d908cd"
+    },
+    {
+      "repository": "astra-web",
+      "path": "src/lib/admin-refunds.ts",
+      "sha256": "af9d0592e9f9b49693ec1a366c3dcc6ff86be50e50deddddeb889712ac4eb9de"
+    },
+    {
+      "repository": "astra-web",
+      "path": "src/lib/refund-request.ts",
+      "sha256": "e7d95640436f2b3f43b5107fa0bf8e9d3ff0e539b47d7931a00f5d0c49f23230"
+    },
+    {
+      "repository": "astra-web",
+      "path": "src/router/index.ts",
+      "sha256": "06468c7d9934684d23887c28c089e5b79cd5b21247abec518e86fa75ecae4c50"
+    },
+    {
+      "repository": "astra-web",
+      "path": "src/stores/auth.ts",
+      "sha256": "7529347a014a45fc059d23fdefa91f7a06ce28348316cc9a5e59534ff76c384a"
+    },
+    {
+      "repository": "astra-web",
+      "path": "src/views/AccountCommerceView.vue",
+      "sha256": "893d5626f9295dcb5e05bc904338a0d24867225e8235d4ee06fcf9380e31bc9b"
+    },
+    {
+      "repository": "astra-web",
+      "path": "src/views/AdminRefundsView.vue",
+      "sha256": "9b644ade4bcf093e5c1362c0df46b8bcd6161d851f63bfab700b074f822f7ae6"
+    }
+  ]
+}

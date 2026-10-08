@@ -1,0 +1,33 @@
+{
+  "passed": true,
+  "stage": "admin-refund-workbench",
+  "newJUnit": 7,
+  "relatedJUnit": 27,
+  "totalJUnit": 34,
+  "newBrowserChecks": 11,
+  "relatedBrowserChecks": 10,
+  "newHttpSchemaResponses": 208,
+  "frontendChecks": {
+    "typeCheck": true,
+    "relevantEslint": true,
+    "build": true,
+    "adminDecisionContractCases": 11,
+    "refundRequestContractCases": 10,
+    "paymentInitiationContractCases": 9,
+    "paymentRecoveryContractCases": 10
+  },
+  "ownedSchema": "astra_commerce_it_df54a811d6b9",
+  "fixtureCleanupComplete": true,
+  "sourceFiles": 83,
+  "notVerified": [
+    "real auth/login/funds",
+    "production role bootstrap",
+    "daily reconciliation",
+    "membership",
+    "physical devices/Safari",
+    "clean production deployment"
+  ],
+  "relatedHttpSchemaResponses": 179,
+  "totalHttpSchemaResponses": 387,
+  "totalBrowserChecks": 21
+}

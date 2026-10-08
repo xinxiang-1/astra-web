@@ -12,7 +12,7 @@ export function accountReturnPath(value: unknown): string {
     const slug = value.slice('/collections/'.length)
     if (slug.length <= 80 && /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) return value
   }
-  if (value === '/account/orders' || value === '/account/library') return value
+  if (value === '/account/orders' || value === '/account/library' || value === '/admin/refunds') return value
   if (typeof value === 'string' && value.startsWith('/account/orders/')) {
     const id = value.slice('/account/orders/'.length)
     if (isCommerceId(id)) return value

@@ -1,0 +1,2974 @@
+{
+  "ownedRedisPort" : 50723,
+  "cleanupComplete" : true,
+  "passed" : true,
+  "checks" : [ "Strict reason-only input, JWT/owner/state validation; request has original full amount, no channel call/task or entitlement mutation", "Four concurrent same keys and alternate device key converge to one refund; normalized same body recovers; changed same-key reason43001; original reason unchanged", "Started delivery or >7 day order retains quality appeal for human review; foreign refund404; unpaid order cannot manufacture a refund", "Normal users403; current database admin role required; malformed decisions rejected; stale version43008 has no task/audit mutation", "Approve writes state+one task+one audit+command; remains ACTIVE/unrefunded until trusted worker; original approval replay after settlement does not audit/queue twice or downgrade", "Reject leaves money/rights untouched; applicant repeat cannot reopen; authorized reopen uses original ID/no then explicit approval; three auditable transitions, one refund/task", "Actual audit INSERT trigger failure rolls back approval, outbox, idempotency command and version; same-key recovery safely succeeds after repair", "Service rechecks role even without filter; forged JWT nickname/header cannot authorize; concurrent current-version decisions commit one audit, second conflict", "Admin keyset pagination distinct pages, signed actor/state scope, tamper rejection; DTO lacks merchant/provider references and credentials", "Actual browser accepted-loss retries same reason/key; no premature revocation; actual admin HTTP approves; trusted refund worker settles; narrow settled browser reads revoked rights and summary", "31st refund read429/Retry-After; unavailable role table503; actual owned Redis stop503 through service/gateway, no authorization fallback" ],
+  "notVerified" : [ "real channel funds", "production admin bootstrap", "private file bytes", "daily reconciliation", "deployment" ],
+  "testsPassed" : 11,
+  "redisNamespace" : "it-c1b6ce2e098a",
+  "ownedSchema" : "astra_commerce_it_c1b6ce2e098a",
+  "responses" : [ {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555911239630848",
+        "orderNo" : "AST366555911239630848",
+        "skuId" : "189304737000010103",
+        "releaseId" : "189304737000010102",
+        "state" : "PENDING_PAYMENT",
+        "fulfillmentState" : "NONE",
+        "totalAmountCent" : 3900,
+        "totalRefundedCent" : 0,
+        "currency" : "CNY",
+        "item" : {
+          "skuId" : "189304737000010103",
+          "releaseId" : "189304737000010102",
+          "productName" : "中文测试商品0",
+          "productKind" : "TEMPLATE_PACK",
+          "releaseVersion" : "1.0.0",
+          "quantity" : 1,
+          "amountCent" : 3900,
+          "license" : {
+            "code" : "license",
+            "kind" : "LICENSE",
+            "version" : "1.0.0",
+            "sha256" : "c05ab6988ecb2b3fb03eb90a5e990c3428fa981096cfbb743b2b474ed6605d8e",
+            "content" : "测试LICENSE条款，未用于销售"
+          },
+          "assets" : [ {
+            "id" : "189304737000010104",
+            "fileName" : "中文模板.astra",
+            "mimeType" : "application/octet-stream",
+            "sizeBytes" : 1,
+            "sha256" : "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          } ]
+        },
+        "purchaseTerms" : {
+          "code" : "purchase_terms",
+          "kind" : "PURCHASE_TERMS",
+          "version" : "1.0.0",
+          "sha256" : "282cdc36a20e9968ee6d8aa2eaec867b30a7944012917f80cd74813550e9f868",
+          "content" : "测试PURCHASE_TERMS条款，未用于销售"
+        },
+        "refundPolicy" : {
+          "code" : "refund_policy",
+          "kind" : "REFUND_POLICY",
+          "version" : "1.0.0",
+          "sha256" : "aaa404f905a19d9239c6fb6457a17d6838c6795cda46348626e9d2a15e2f40c3",
+          "content" : "测试REFUND_POLICY条款，未用于销售"
+        },
+        "consentAt" : "2026-10-08T12:02:19.500Z",
+        "expiresAt" : "2026-10-08T12:17:19.500Z",
+        "createdAt" : "2026-10-08T12:02:19.500Z"
+      }
+    },
+    "rawBodySha256" : "2350f99358e7515dc7a72c050945e9baa7bea114cf3531069fa7fabaddc01556",
+    "path" : "/api/system/orders",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "dbc5cdff-1b03-4ec6-bca8-d021052aede0",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555911537426432",
+        "orderId" : "366555911239630848",
+        "state" : "INIT",
+        "channel" : "wechat_native",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "expiresAt" : "2026-10-08T12:17:19.500Z",
+        "mock" : true
+      }
+    },
+    "rawBodySha256" : "9a6a143daf6457b560f9fd2f6b56a2a2fed4145cebcbb0c69d179b1710f0c2d2",
+    "path" : "/api/system/orders/366555911239630848/payments",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "30580e7f-f09a-4c9e-8cbc-05926a835b76",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 401,
+    "body" : {
+      "code" : 401,
+      "msg" : "未登录"
+    },
+    "rawBodySha256" : "e847a8f8959931e07840413b176286dc704734dde2a588b8927d6a3bb80292ff",
+    "path" : "/system/orders/366555911239630848/refund-requests",
+    "viaGateway" : false,
+    "headers" : {
+      "requestId" : "2b67f628-b7cb-4fb4-9adf-a34200856054",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 404,
+    "body" : {
+      "code" : 404,
+      "msg" : "订单不存在"
+    },
+    "rawBodySha256" : "d206d70033e80f2df7ce607b6baffbf5b72cbb91b128f00ec7652bc0e171a1af",
+    "path" : "/system/orders/366555911239630848/refund-requests",
+    "viaGateway" : false,
+    "headers" : {
+      "requestId" : "b0ff575a-f693-4844-86ee-efe907ace58a",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 401,
+    "body" : {
+      "code" : 401,
+      "msg" : "登录已失效"
+    },
+    "rawBodySha256" : "434b682b4190b7fc729c72f716486fb3875cba0d49efca029404633238cbe9ae",
+    "path" : "/system/orders/366555911239630848/refund-requests",
+    "viaGateway" : false,
+    "headers" : {
+      "requestId" : "3026bf60-0384-4378-9fc2-54c333eb56dd",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 400,
+    "body" : {
+      "code" : 400,
+      "msg" : "退款参数无效，请填写5至500字原因并确认操作"
+    },
+    "rawBodySha256" : "9d1ddaa39ebc03b39b21c2f5609aad94b1ab0118e7d680e2879ec7a3d39ec4d4",
+    "path" : "/system/orders/366555911239630848/refund-requests",
+    "viaGateway" : false,
+    "headers" : {
+      "requestId" : "35082a42-c176-4341-9f7c-649a8ad320de",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 400,
+    "body" : {
+      "code" : 400,
+      "msg" : "退款参数无效，请填写5至500字原因并确认操作"
+    },
+    "rawBodySha256" : "9d1ddaa39ebc03b39b21c2f5609aad94b1ab0118e7d680e2879ec7a3d39ec4d4",
+    "path" : "/system/orders/366555911239630848/refund-requests",
+    "viaGateway" : false,
+    "headers" : {
+      "requestId" : "6465d30c-4f5c-4036-8fbb-84632fc5c9ae",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 400,
+    "body" : {
+      "code" : 400,
+      "msg" : "退款参数无效，请填写5至500字原因并确认操作"
+    },
+    "rawBodySha256" : "9d1ddaa39ebc03b39b21c2f5609aad94b1ab0118e7d680e2879ec7a3d39ec4d4",
+    "path" : "/system/orders/366555911239630848/refund-requests",
+    "viaGateway" : false,
+    "headers" : {
+      "requestId" : "03715f37-f7b4-4900-a56b-689328246047",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 400,
+    "body" : {
+      "code" : 400,
+      "msg" : "退款参数无效，请填写5至500字原因并确认操作"
+    },
+    "rawBodySha256" : "9d1ddaa39ebc03b39b21c2f5609aad94b1ab0118e7d680e2879ec7a3d39ec4d4",
+    "path" : "/system/orders/366555911239630848/refund-requests",
+    "viaGateway" : false,
+    "headers" : {
+      "requestId" : "27eec5af-f138-4b7b-8e38-de3cb86b4ed3",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 400,
+    "body" : {
+      "code" : 400,
+      "msg" : "退款参数无效，请填写5至500字原因并确认操作"
+    },
+    "rawBodySha256" : "9d1ddaa39ebc03b39b21c2f5609aad94b1ab0118e7d680e2879ec7a3d39ec4d4",
+    "path" : "/system/orders/366555911239630848/refund-requests",
+    "viaGateway" : false,
+    "headers" : {
+      "requestId" : "cef46c35-0b20-44f7-88d8-6ae1d9ed2858",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 400,
+    "body" : {
+      "code" : 400,
+      "msg" : "退款参数无效，请填写5至500字原因并确认操作"
+    },
+    "rawBodySha256" : "9d1ddaa39ebc03b39b21c2f5609aad94b1ab0118e7d680e2879ec7a3d39ec4d4",
+    "path" : "/system/orders/366555911239630848/refund-requests",
+    "viaGateway" : false,
+    "headers" : {
+      "requestId" : "08a0fd37-a57a-4bcb-8b04-bac25f45a34a",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 400,
+    "body" : {
+      "code" : 400,
+      "msg" : "退款参数无效，请填写5至500字原因并确认操作"
+    },
+    "rawBodySha256" : "9d1ddaa39ebc03b39b21c2f5609aad94b1ab0118e7d680e2879ec7a3d39ec4d4",
+    "path" : "/system/orders/366555911239630848/refund-requests",
+    "viaGateway" : false,
+    "headers" : {
+      "requestId" : "45b12155-6b2b-4ff4-b354-62c7abe0b6d4",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 400,
+    "body" : {
+      "code" : 400,
+      "msg" : "请求参数格式无效"
+    },
+    "rawBodySha256" : "bda34d615b4b2b7e08a337a092c21b27d9451480d7a78d16dd19e6df0149e04b",
+    "path" : "/system/orders/366555911239630848/refund-requests",
+    "viaGateway" : false,
+    "headers" : {
+      "requestId" : "32b70781-8177-447c-a267-ad5079cafdd4",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 400,
+    "body" : {
+      "code" : 400,
+      "msg" : "该退款请求不接受查询参数"
+    },
+    "rawBodySha256" : "daa729d8b11eef2d8d655346e123c4d34643f02b5fbe9033c1b6b1030d6d4a8e",
+    "path" : "/system/orders/366555911239630848/refund-requests",
+    "viaGateway" : false,
+    "headers" : {
+      "requestId" : "853b01ba-856c-4f60-b5b5-72f4ebb4c089",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 401,
+    "body" : {
+      "code" : 401,
+      "msg" : "未登录"
+    },
+    "rawBodySha256" : "e847a8f8959931e07840413b176286dc704734dde2a588b8927d6a3bb80292ff",
+    "path" : "/api/system/orders/366555911239630848/refund-requests",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "f39ec4c1-0a92-4084-9938-85ed66de8a9a",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 404,
+    "body" : {
+      "code" : 404,
+      "msg" : "订单不存在"
+    },
+    "rawBodySha256" : "d206d70033e80f2df7ce607b6baffbf5b72cbb91b128f00ec7652bc0e171a1af",
+    "path" : "/api/system/orders/366555911239630848/refund-requests",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "3cbb0821-fd33-47c6-9b9a-62ec45eed7ba",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 401,
+    "body" : {
+      "code" : 401,
+      "msg" : "登录已失效"
+    },
+    "rawBodySha256" : "434b682b4190b7fc729c72f716486fb3875cba0d49efca029404633238cbe9ae",
+    "path" : "/api/system/orders/366555911239630848/refund-requests",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "6d241d77-bae4-4c2d-ba5f-af9fceb2c199",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 400,
+    "body" : {
+      "code" : 400,
+      "msg" : "退款参数无效，请填写5至500字原因并确认操作"
+    },
+    "rawBodySha256" : "9d1ddaa39ebc03b39b21c2f5609aad94b1ab0118e7d680e2879ec7a3d39ec4d4",
+    "path" : "/api/system/orders/366555911239630848/refund-requests",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "0f967009-9a06-4ec4-a9f7-29029c876d92",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 400,
+    "body" : {
+      "code" : 400,
+      "msg" : "退款参数无效，请填写5至500字原因并确认操作"
+    },
+    "rawBodySha256" : "9d1ddaa39ebc03b39b21c2f5609aad94b1ab0118e7d680e2879ec7a3d39ec4d4",
+    "path" : "/api/system/orders/366555911239630848/refund-requests",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "13213321-f424-4836-bebd-8294f49c41b1",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 400,
+    "body" : {
+      "code" : 400,
+      "msg" : "退款参数无效，请填写5至500字原因并确认操作"
+    },
+    "rawBodySha256" : "9d1ddaa39ebc03b39b21c2f5609aad94b1ab0118e7d680e2879ec7a3d39ec4d4",
+    "path" : "/api/system/orders/366555911239630848/refund-requests",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "4ee2579c-025c-4318-b439-e3940dc21f31",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 400,
+    "body" : {
+      "code" : 400,
+      "msg" : "退款参数无效，请填写5至500字原因并确认操作"
+    },
+    "rawBodySha256" : "9d1ddaa39ebc03b39b21c2f5609aad94b1ab0118e7d680e2879ec7a3d39ec4d4",
+    "path" : "/api/system/orders/366555911239630848/refund-requests",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "d3e13bf5-34df-4f2a-bfbf-627a58879f7c",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 400,
+    "body" : {
+      "code" : 400,
+      "msg" : "退款参数无效，请填写5至500字原因并确认操作"
+    },
+    "rawBodySha256" : "9d1ddaa39ebc03b39b21c2f5609aad94b1ab0118e7d680e2879ec7a3d39ec4d4",
+    "path" : "/api/system/orders/366555911239630848/refund-requests",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "1a3c89d4-f6e2-49f2-867d-ddb0783ab0db",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 400,
+    "body" : {
+      "code" : 400,
+      "msg" : "退款参数无效，请填写5至500字原因并确认操作"
+    },
+    "rawBodySha256" : "9d1ddaa39ebc03b39b21c2f5609aad94b1ab0118e7d680e2879ec7a3d39ec4d4",
+    "path" : "/api/system/orders/366555911239630848/refund-requests",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "d887f3cd-817d-4474-bb5e-99e30fc596e5",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 400,
+    "body" : {
+      "code" : 400,
+      "msg" : "退款参数无效，请填写5至500字原因并确认操作"
+    },
+    "rawBodySha256" : "9d1ddaa39ebc03b39b21c2f5609aad94b1ab0118e7d680e2879ec7a3d39ec4d4",
+    "path" : "/api/system/orders/366555911239630848/refund-requests",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "e78c4059-fc56-409e-9818-34b55b2c663f",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 400,
+    "body" : {
+      "code" : 400,
+      "msg" : "请求参数格式无效"
+    },
+    "rawBodySha256" : "bda34d615b4b2b7e08a337a092c21b27d9451480d7a78d16dd19e6df0149e04b",
+    "path" : "/api/system/orders/366555911239630848/refund-requests",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "6c2578c1-8c23-43cc-8b4e-29ae5a5ffa77",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 400,
+    "body" : {
+      "code" : 400,
+      "msg" : "该退款请求不接受查询参数"
+    },
+    "rawBodySha256" : "daa729d8b11eef2d8d655346e123c4d34643f02b5fbe9033c1b6b1030d6d4a8e",
+    "path" : "/api/system/orders/366555911239630848/refund-requests",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "5b9a12ab-30c6-48e4-9c85-c8f85a103aeb",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555914330832896",
+        "orderId" : "366555911239630848",
+        "paymentId" : "366555911537426432",
+        "state" : "REQUESTED",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "reason" : "原文件无法恢复需要核查",
+        "createdAt" : "2026-10-08T12:02:20.255Z",
+        "updatedAt" : "2026-10-08T12:02:20.255Z",
+        "version" : 1
+      }
+    },
+    "rawBodySha256" : "29fcf805fb148010954298ebc885462f470d1c83c7ba969f1dd815e5f150392f",
+    "path" : "/api/system/orders/366555911239630848/refund-requests",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "f8709b08-2422-4f0d-a81a-2917fbad0e1f",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555914523770880",
+        "orderNo" : "AST366555914523770880",
+        "skuId" : "189304737000010103",
+        "releaseId" : "189304737000010102",
+        "state" : "PENDING_PAYMENT",
+        "fulfillmentState" : "NONE",
+        "totalAmountCent" : 3900,
+        "totalRefundedCent" : 0,
+        "currency" : "CNY",
+        "item" : {
+          "skuId" : "189304737000010103",
+          "releaseId" : "189304737000010102",
+          "productName" : "中文测试商品0",
+          "productKind" : "TEMPLATE_PACK",
+          "releaseVersion" : "1.0.0",
+          "quantity" : 1,
+          "amountCent" : 3900,
+          "license" : {
+            "code" : "license",
+            "kind" : "LICENSE",
+            "version" : "1.0.0",
+            "sha256" : "c05ab6988ecb2b3fb03eb90a5e990c3428fa981096cfbb743b2b474ed6605d8e",
+            "content" : "测试LICENSE条款，未用于销售"
+          },
+          "assets" : [ {
+            "id" : "189304737000010104",
+            "fileName" : "中文模板.astra",
+            "mimeType" : "application/octet-stream",
+            "sizeBytes" : 1,
+            "sha256" : "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          } ]
+        },
+        "purchaseTerms" : {
+          "code" : "purchase_terms",
+          "kind" : "PURCHASE_TERMS",
+          "version" : "1.0.0",
+          "sha256" : "282cdc36a20e9968ee6d8aa2eaec867b30a7944012917f80cd74813550e9f868",
+          "content" : "测试PURCHASE_TERMS条款，未用于销售"
+        },
+        "refundPolicy" : {
+          "code" : "refund_policy",
+          "kind" : "REFUND_POLICY",
+          "version" : "1.0.0",
+          "sha256" : "aaa404f905a19d9239c6fb6457a17d6838c6795cda46348626e9d2a15e2f40c3",
+          "content" : "测试REFUND_POLICY条款，未用于销售"
+        },
+        "consentAt" : "2026-10-08T12:02:20.294Z",
+        "expiresAt" : "2026-10-08T12:17:20.294Z",
+        "createdAt" : "2026-10-08T12:02:20.294Z"
+      }
+    },
+    "rawBodySha256" : "7008c5fb460a1afaff837ef1c6ff2fb0832c1c2f759b83e402f999be1c9bf3b5",
+    "path" : "/api/system/orders",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "693287ac-8109-4c44-906a-69421e960efe",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555914825760768",
+        "orderId" : "366555914523770880",
+        "state" : "INIT",
+        "channel" : "wechat_native",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "expiresAt" : "2026-10-08T12:17:20.294Z",
+        "mock" : true
+      }
+    },
+    "rawBodySha256" : "7d125eb90bca7229d95feea1655acc01b25580372fb10b0c6912425b70d6c4ac",
+    "path" : "/api/system/orders/366555914523770880/payments",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "fe07ac40-c2e8-4105-a276-2ef3634bbb5f",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555916075663360",
+        "orderId" : "366555914523770880",
+        "paymentId" : "366555914825760768",
+        "state" : "REQUESTED",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "reason" : "原文件存在质量问题待核查",
+        "createdAt" : "2026-10-08T12:02:20.671Z",
+        "updatedAt" : "2026-10-08T12:02:20.671Z",
+        "version" : 1
+      }
+    },
+    "rawBodySha256" : "af58cbcd9456d69e4eafb9d68ee284267e74bfa19364dc9db9767b5b13bc0c3f",
+    "path" : "/api/system/orders/366555914523770880/refund-requests",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "7fa2fd39-543e-45dd-91cf-8c039646d1fb",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555916075663360",
+        "orderId" : "366555914523770880",
+        "paymentId" : "366555914825760768",
+        "state" : "REQUESTED",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "reason" : "原文件存在质量问题待核查",
+        "createdAt" : "2026-10-08T12:02:20.671Z",
+        "updatedAt" : "2026-10-08T12:02:20.671Z",
+        "version" : 1
+      }
+    },
+    "rawBodySha256" : "af58cbcd9456d69e4eafb9d68ee284267e74bfa19364dc9db9767b5b13bc0c3f",
+    "path" : "/api/system/orders/366555914523770880/refund-requests",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "a27a90c5-76cd-4c31-a2a6-c1d8002b46f3",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555916075663360",
+        "orderId" : "366555914523770880",
+        "paymentId" : "366555914825760768",
+        "state" : "REQUESTED",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "reason" : "原文件存在质量问题待核查",
+        "createdAt" : "2026-10-08T12:02:20.671Z",
+        "updatedAt" : "2026-10-08T12:02:20.671Z",
+        "version" : 1
+      }
+    },
+    "rawBodySha256" : "af58cbcd9456d69e4eafb9d68ee284267e74bfa19364dc9db9767b5b13bc0c3f",
+    "path" : "/api/system/orders/366555914523770880/refund-requests",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "abca79ec-1cfa-424b-85cd-453b7ef3d7b1",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555916075663360",
+        "orderId" : "366555914523770880",
+        "paymentId" : "366555914825760768",
+        "state" : "REQUESTED",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "reason" : "原文件存在质量问题待核查",
+        "createdAt" : "2026-10-08T12:02:20.671Z",
+        "updatedAt" : "2026-10-08T12:02:20.671Z",
+        "version" : 1
+      }
+    },
+    "rawBodySha256" : "af58cbcd9456d69e4eafb9d68ee284267e74bfa19364dc9db9767b5b13bc0c3f",
+    "path" : "/api/system/orders/366555914523770880/refund-requests",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "4e2cb732-3c0c-4977-a94e-3a75d0f02901",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555916075663360",
+        "orderId" : "366555914523770880",
+        "paymentId" : "366555914825760768",
+        "state" : "REQUESTED",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "reason" : "原文件存在质量问题待核查",
+        "createdAt" : "2026-10-08T12:02:20.671Z",
+        "updatedAt" : "2026-10-08T12:02:20.671Z",
+        "version" : 1
+      }
+    },
+    "rawBodySha256" : "af58cbcd9456d69e4eafb9d68ee284267e74bfa19364dc9db9767b5b13bc0c3f",
+    "path" : "/api/system/orders/366555914523770880/refund-requests",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "be2133b8-c898-4d75-9964-fc1611b7f24b",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 409,
+    "body" : {
+      "code" : 43001,
+      "msg" : "幂等键已用于不同退款操作，请恢复原请求"
+    },
+    "rawBodySha256" : "ecb54f6545da1010795e0cc948b08fa9df1012cd76434122953d2f55905415b5",
+    "path" : "/api/system/orders/366555914523770880/refund-requests",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "5ce29ed8-d7eb-4425-af55-21044e8e7ac4",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555916075663360",
+        "orderId" : "366555914523770880",
+        "paymentId" : "366555914825760768",
+        "state" : "REQUESTED",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "reason" : "原文件存在质量问题待核查",
+        "createdAt" : "2026-10-08T12:02:20.671Z",
+        "updatedAt" : "2026-10-08T12:02:20.671Z",
+        "version" : 1
+      }
+    },
+    "rawBodySha256" : "af58cbcd9456d69e4eafb9d68ee284267e74bfa19364dc9db9767b5b13bc0c3f",
+    "path" : "/api/system/orders/366555914523770880/refund-requests",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "aa1dce67-d4ea-4265-a145-5a1998bb88f9",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555916629311488",
+        "orderNo" : "AST366555916629311488",
+        "skuId" : "189304737000010103",
+        "releaseId" : "189304737000010102",
+        "state" : "PENDING_PAYMENT",
+        "fulfillmentState" : "NONE",
+        "totalAmountCent" : 3900,
+        "totalRefundedCent" : 0,
+        "currency" : "CNY",
+        "item" : {
+          "skuId" : "189304737000010103",
+          "releaseId" : "189304737000010102",
+          "productName" : "中文测试商品0",
+          "productKind" : "TEMPLATE_PACK",
+          "releaseVersion" : "1.0.0",
+          "quantity" : 1,
+          "amountCent" : 3900,
+          "license" : {
+            "code" : "license",
+            "kind" : "LICENSE",
+            "version" : "1.0.0",
+            "sha256" : "c05ab6988ecb2b3fb03eb90a5e990c3428fa981096cfbb743b2b474ed6605d8e",
+            "content" : "测试LICENSE条款，未用于销售"
+          },
+          "assets" : [ {
+            "id" : "189304737000010104",
+            "fileName" : "中文模板.astra",
+            "mimeType" : "application/octet-stream",
+            "sizeBytes" : 1,
+            "sha256" : "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          } ]
+        },
+        "purchaseTerms" : {
+          "code" : "purchase_terms",
+          "kind" : "PURCHASE_TERMS",
+          "version" : "1.0.0",
+          "sha256" : "282cdc36a20e9968ee6d8aa2eaec867b30a7944012917f80cd74813550e9f868",
+          "content" : "测试PURCHASE_TERMS条款，未用于销售"
+        },
+        "refundPolicy" : {
+          "code" : "refund_policy",
+          "kind" : "REFUND_POLICY",
+          "version" : "1.0.0",
+          "sha256" : "aaa404f905a19d9239c6fb6457a17d6838c6795cda46348626e9d2a15e2f40c3",
+          "content" : "测试REFUND_POLICY条款，未用于销售"
+        },
+        "consentAt" : "2026-10-08T12:02:20.799Z",
+        "expiresAt" : "2026-10-08T12:17:20.799Z",
+        "createdAt" : "2026-10-08T12:02:20.799Z"
+      }
+    },
+    "rawBodySha256" : "89939781db6fc98f1fe0ceb5036bb350e9d07e89587fca2f443419ddfa5daabf",
+    "path" : "/api/system/orders",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "d5959761-15d7-44cb-b764-07849b62af66",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555916767723520",
+        "orderId" : "366555916629311488",
+        "state" : "INIT",
+        "channel" : "wechat_native",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "expiresAt" : "2026-10-08T12:17:20.799Z",
+        "mock" : true
+      }
+    },
+    "rawBodySha256" : "26da8bbfb102cedb18faa40c4b53cf33e5fffe5c0ee8732934c7a9f9efa8c599",
+    "path" : "/api/system/orders/366555916629311488/payments",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "5e1aaef9-1a16-43e1-bb5c-4d381c6c5a5c",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555917560446976",
+        "orderId" : "366555916629311488",
+        "paymentId" : "366555916767723520",
+        "state" : "REQUESTED",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "reason" : "已领取文件但仍无法恢复需要核查",
+        "createdAt" : "2026-10-08T12:02:21.025Z",
+        "updatedAt" : "2026-10-08T12:02:21.025Z",
+        "version" : 1
+      }
+    },
+    "rawBodySha256" : "ff6d52ad6c49a7df7ff2c7692731b47cc4582c674f0407a2415e518e82ec99fd",
+    "path" : "/api/system/orders/366555916629311488/refund-requests",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "91d39630-bbc9-4e15-839f-c2ff74911c7d",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "GET",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555917560446976",
+        "orderId" : "366555916629311488",
+        "paymentId" : "366555916767723520",
+        "state" : "REQUESTED",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "reason" : "已领取文件但仍无法恢复需要核查",
+        "createdAt" : "2026-10-08T12:02:21.025Z",
+        "updatedAt" : "2026-10-08T12:02:21.025Z",
+        "version" : 1
+      }
+    },
+    "rawBodySha256" : "ff6d52ad6c49a7df7ff2c7692731b47cc4582c674f0407a2415e518e82ec99fd",
+    "path" : "/system/refunds/366555917560446976",
+    "viaGateway" : false,
+    "headers" : {
+      "requestId" : "87c7b589-5c3a-4e0b-8dff-f7c1020ce3cf",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "GET",
+    "status" : 404,
+    "body" : {
+      "code" : 404,
+      "msg" : "退款不存在"
+    },
+    "rawBodySha256" : "f47ba529c277322bd6b8b40a7f4500e59f2876ed9109c371d3d581fbc7d5ba26",
+    "path" : "/system/refunds/366555917560446976",
+    "viaGateway" : false,
+    "headers" : {
+      "requestId" : "22209e41-7d3a-412a-93e8-0544ebb4e952",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "GET",
+    "status" : 401,
+    "body" : {
+      "code" : 401,
+      "msg" : "未登录"
+    },
+    "rawBodySha256" : "e847a8f8959931e07840413b176286dc704734dde2a588b8927d6a3bb80292ff",
+    "path" : "/system/refunds/366555917560446976",
+    "viaGateway" : false,
+    "headers" : {
+      "requestId" : "79ea326f-563b-4165-984f-aa489dd5f8b3",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "GET",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555917560446976",
+        "orderId" : "366555916629311488",
+        "paymentId" : "366555916767723520",
+        "state" : "REQUESTED",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "reason" : "已领取文件但仍无法恢复需要核查",
+        "createdAt" : "2026-10-08T12:02:21.025Z",
+        "updatedAt" : "2026-10-08T12:02:21.025Z",
+        "version" : 1
+      }
+    },
+    "rawBodySha256" : "ff6d52ad6c49a7df7ff2c7692731b47cc4582c674f0407a2415e518e82ec99fd",
+    "path" : "/api/system/refunds/366555917560446976",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "764604d3-9811-47be-bd94-d71e14f92fd1",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "GET",
+    "status" : 404,
+    "body" : {
+      "code" : 404,
+      "msg" : "退款不存在"
+    },
+    "rawBodySha256" : "f47ba529c277322bd6b8b40a7f4500e59f2876ed9109c371d3d581fbc7d5ba26",
+    "path" : "/api/system/refunds/366555917560446976",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "bd3bb041-0cc1-4676-a6cf-2b6a1dde9a49",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "GET",
+    "status" : 401,
+    "body" : {
+      "code" : 401,
+      "msg" : "未登录"
+    },
+    "rawBodySha256" : "e847a8f8959931e07840413b176286dc704734dde2a588b8927d6a3bb80292ff",
+    "path" : "/api/system/refunds/366555917560446976",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "9b056eb6-74ab-4296-b7b1-fe5cd39042f2",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555917988265984",
+        "orderNo" : "AST366555917988265984",
+        "skuId" : "189304737000010203",
+        "releaseId" : "189304737000010202",
+        "state" : "PENDING_PAYMENT",
+        "fulfillmentState" : "NONE",
+        "totalAmountCent" : 3900,
+        "totalRefundedCent" : 0,
+        "currency" : "CNY",
+        "item" : {
+          "skuId" : "189304737000010203",
+          "releaseId" : "189304737000010202",
+          "productName" : "中文测试商品1",
+          "productKind" : "TEMPLATE_PACK",
+          "releaseVersion" : "1.0.0",
+          "quantity" : 1,
+          "amountCent" : 3900,
+          "license" : {
+            "code" : "license",
+            "kind" : "LICENSE",
+            "version" : "1.0.0",
+            "sha256" : "c05ab6988ecb2b3fb03eb90a5e990c3428fa981096cfbb743b2b474ed6605d8e",
+            "content" : "测试LICENSE条款，未用于销售"
+          },
+          "assets" : [ {
+            "id" : "189304737000010204",
+            "fileName" : "中文模板.astra",
+            "mimeType" : "application/octet-stream",
+            "sizeBytes" : 1,
+            "sha256" : "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          } ]
+        },
+        "purchaseTerms" : {
+          "code" : "purchase_terms",
+          "kind" : "PURCHASE_TERMS",
+          "version" : "1.0.0",
+          "sha256" : "282cdc36a20e9968ee6d8aa2eaec867b30a7944012917f80cd74813550e9f868",
+          "content" : "测试PURCHASE_TERMS条款，未用于销售"
+        },
+        "refundPolicy" : {
+          "code" : "refund_policy",
+          "kind" : "REFUND_POLICY",
+          "version" : "1.0.0",
+          "sha256" : "aaa404f905a19d9239c6fb6457a17d6838c6795cda46348626e9d2a15e2f40c3",
+          "content" : "测试REFUND_POLICY条款，未用于销售"
+        },
+        "consentAt" : "2026-10-08T12:02:21.123Z",
+        "expiresAt" : "2026-10-08T12:17:21.123Z",
+        "createdAt" : "2026-10-08T12:02:21.123Z"
+      }
+    },
+    "rawBodySha256" : "c24d166bb1eaee7beb691684bc82cdcaf3428266a042582f6d4b6d51eb798073",
+    "path" : "/api/system/orders",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "1c06bbfd-23b6-47a6-9569-5f312ad3ba2b",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 409,
+    "body" : {
+      "code" : 43005,
+      "msg" : "订单尚未确认付款，不能申请退款"
+    },
+    "rawBodySha256" : "a8f81a1c1a7870af6a029e4d12c839ec6fd90a44d79a820b0089bc42fba2674e",
+    "path" : "/api/system/orders/366555917988265984/refund-requests",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "44185d2b-ba2a-40d2-87ae-ce4aeee04080",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 403,
+    "body" : {
+      "code" : 403,
+      "msg" : "无管理权限"
+    },
+    "rawBodySha256" : "6c72060b7f50dc9909038d802c858918e2c0917bcb0d3d50d2a9eabf2ddd01d3",
+    "path" : "/system/admin/refunds/366555914330832896/decisions",
+    "viaGateway" : false,
+    "headers" : {
+      "requestId" : "c0b9980e-9b7c-4e87-8f15-c17e1d2f90b0",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "GET",
+    "status" : 403,
+    "body" : {
+      "code" : 403,
+      "msg" : "无管理权限"
+    },
+    "rawBodySha256" : "6c72060b7f50dc9909038d802c858918e2c0917bcb0d3d50d2a9eabf2ddd01d3",
+    "path" : "/system/admin/refunds",
+    "viaGateway" : false,
+    "headers" : {
+      "requestId" : "f2adc25c-5467-4ac6-8abd-5d3cb4854e72",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 400,
+    "body" : {
+      "code" : 400,
+      "msg" : "退款参数无效，请填写5至500字原因并确认操作"
+    },
+    "rawBodySha256" : "9d1ddaa39ebc03b39b21c2f5609aad94b1ab0118e7d680e2879ec7a3d39ec4d4",
+    "path" : "/system/admin/refunds/366555914330832896/decisions",
+    "viaGateway" : false,
+    "headers" : {
+      "requestId" : "c94f9512-ee72-4d06-abc7-4f22ce6dd505",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 400,
+    "body" : {
+      "code" : 400,
+      "msg" : "退款参数无效，请填写5至500字原因并确认操作"
+    },
+    "rawBodySha256" : "9d1ddaa39ebc03b39b21c2f5609aad94b1ab0118e7d680e2879ec7a3d39ec4d4",
+    "path" : "/system/admin/refunds/366555914330832896/decisions",
+    "viaGateway" : false,
+    "headers" : {
+      "requestId" : "f876f735-329d-47e1-b8a3-34a88ba351f1",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 400,
+    "body" : {
+      "code" : 400,
+      "msg" : "退款参数无效，请填写5至500字原因并确认操作"
+    },
+    "rawBodySha256" : "9d1ddaa39ebc03b39b21c2f5609aad94b1ab0118e7d680e2879ec7a3d39ec4d4",
+    "path" : "/system/admin/refunds/366555914330832896/decisions",
+    "viaGateway" : false,
+    "headers" : {
+      "requestId" : "40b77daf-90bb-47ef-9591-23f8a28d95df",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 403,
+    "body" : {
+      "code" : 403,
+      "msg" : "无管理权限"
+    },
+    "rawBodySha256" : "6c72060b7f50dc9909038d802c858918e2c0917bcb0d3d50d2a9eabf2ddd01d3",
+    "path" : "/api/system/admin/refunds/366555914330832896/decisions",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "2ad7f14e-e4ae-4f9b-af04-4c056d815b70",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "GET",
+    "status" : 403,
+    "body" : {
+      "code" : 403,
+      "msg" : "无管理权限"
+    },
+    "rawBodySha256" : "6c72060b7f50dc9909038d802c858918e2c0917bcb0d3d50d2a9eabf2ddd01d3",
+    "path" : "/api/system/admin/refunds",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "19e667f2-4def-48e6-b2c1-2193dfab152f",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 400,
+    "body" : {
+      "code" : 400,
+      "msg" : "退款参数无效，请填写5至500字原因并确认操作"
+    },
+    "rawBodySha256" : "9d1ddaa39ebc03b39b21c2f5609aad94b1ab0118e7d680e2879ec7a3d39ec4d4",
+    "path" : "/api/system/admin/refunds/366555914330832896/decisions",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "9f348216-6e26-42d7-89d1-53ec9cd0e39f",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 400,
+    "body" : {
+      "code" : 400,
+      "msg" : "退款参数无效，请填写5至500字原因并确认操作"
+    },
+    "rawBodySha256" : "9d1ddaa39ebc03b39b21c2f5609aad94b1ab0118e7d680e2879ec7a3d39ec4d4",
+    "path" : "/api/system/admin/refunds/366555914330832896/decisions",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "b48e0276-336f-494e-a099-42edcc61207f",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 400,
+    "body" : {
+      "code" : 400,
+      "msg" : "退款参数无效，请填写5至500字原因并确认操作"
+    },
+    "rawBodySha256" : "9d1ddaa39ebc03b39b21c2f5609aad94b1ab0118e7d680e2879ec7a3d39ec4d4",
+    "path" : "/api/system/admin/refunds/366555914330832896/decisions",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "897ab8f7-9070-4125-9db7-f6b8d62cf344",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 409,
+    "body" : {
+      "code" : 43008,
+      "msg" : "退款状态已改变，请刷新后重新审核"
+    },
+    "rawBodySha256" : "289dadfbc55c5044de69a64244c8410a4efdbc93a77441f83c72441561724169",
+    "path" : "/api/system/admin/refunds/366555914330832896/decisions",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "afbb131e-00e4-4d05-8b67-30473bf11d5b",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 403,
+    "body" : {
+      "code" : 403,
+      "msg" : "无管理权限"
+    },
+    "rawBodySha256" : "6c72060b7f50dc9909038d802c858918e2c0917bcb0d3d50d2a9eabf2ddd01d3",
+    "path" : "/api/system/admin/refunds/366555914330832896/decisions",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "661ff738-3bdc-45f1-95e8-ba103f344b93",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555914330832896",
+        "orderId" : "366555911239630848",
+        "paymentId" : "366555911537426432",
+        "state" : "APPROVED",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "reason" : "原文件无法恢复需要核查",
+        "decisionReason" : "已核对原订单与申请说明",
+        "createdAt" : "2026-10-08T12:02:20.255Z",
+        "updatedAt" : "2026-10-08T12:02:21.430Z",
+        "version" : 2
+      }
+    },
+    "rawBodySha256" : "1191395325947e6025c9c5090af4ddc7efa4401d75e8a3e65688a5ec909ac7b0",
+    "path" : "/api/system/admin/refunds/366555914330832896/decisions",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "a49c6aea-0226-4697-966e-5373acd2542f",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555914330832896",
+        "orderId" : "366555911239630848",
+        "paymentId" : "366555911537426432",
+        "state" : "SUCCEEDED",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "reason" : "原文件无法恢复需要核查",
+        "decisionReason" : "已核对原订单与申请说明",
+        "createdAt" : "2026-10-08T12:02:20.255Z",
+        "updatedAt" : "2026-10-08T12:02:21.541Z",
+        "completedAt" : "2026-10-08T12:02:21.479Z",
+        "version" : 3
+      }
+    },
+    "rawBodySha256" : "9503d8319ee769a45b7c5fd0b094134670672b5b77211b62be6ea6e4d8b9fcd9",
+    "path" : "/api/system/admin/refunds/366555914330832896/decisions",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "3eff212d-7d85-4669-bbaf-03919a36390b",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "GET",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555914330832896",
+        "orderId" : "366555911239630848",
+        "paymentId" : "366555911537426432",
+        "state" : "SUCCEEDED",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "reason" : "原文件无法恢复需要核查",
+        "decisionReason" : "已核对原订单与申请说明",
+        "createdAt" : "2026-10-08T12:02:20.255Z",
+        "updatedAt" : "2026-10-08T12:02:21.541Z",
+        "completedAt" : "2026-10-08T12:02:21.479Z",
+        "version" : 3
+      }
+    },
+    "rawBodySha256" : "9503d8319ee769a45b7c5fd0b094134670672b5b77211b62be6ea6e4d8b9fcd9",
+    "path" : "/system/refunds/366555914330832896",
+    "viaGateway" : false,
+    "headers" : {
+      "requestId" : "5bfe4a38-6920-44bb-aa16-176bb51dde44",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "GET",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555914330832896",
+        "orderId" : "366555911239630848",
+        "paymentId" : "366555911537426432",
+        "state" : "SUCCEEDED",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "reason" : "原文件无法恢复需要核查",
+        "decisionReason" : "已核对原订单与申请说明",
+        "createdAt" : "2026-10-08T12:02:20.255Z",
+        "updatedAt" : "2026-10-08T12:02:21.541Z",
+        "completedAt" : "2026-10-08T12:02:21.479Z",
+        "version" : 3
+      }
+    },
+    "rawBodySha256" : "9503d8319ee769a45b7c5fd0b094134670672b5b77211b62be6ea6e4d8b9fcd9",
+    "path" : "/api/system/refunds/366555914330832896",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "9301c653-a508-474e-9435-21a5615aac3f",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 409,
+    "body" : {
+      "code" : 43005,
+      "msg" : "退款已进入其他处理状态，请刷新原记录"
+    },
+    "rawBodySha256" : "3610f50a68917acdee8e06a93c5074fade2266c1bb1118e48e87b1b11290cb28",
+    "path" : "/api/system/admin/refunds/366555914330832896/decisions",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "a4ab0f2a-302e-4757-8d1a-f85304161e93",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555917560446976",
+        "orderId" : "366555916629311488",
+        "paymentId" : "366555916767723520",
+        "state" : "REJECTED",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "reason" : "已领取文件但仍无法恢复需要核查",
+        "decisionReason" : "已核对原订单与申请说明",
+        "createdAt" : "2026-10-08T12:02:21.025Z",
+        "updatedAt" : "2026-10-08T12:02:21.633Z",
+        "version" : 2
+      }
+    },
+    "rawBodySha256" : "c8741f98890526a41c69690d2520fee04f678a7b04a874f08f5f6b3ab0f6619a",
+    "path" : "/api/system/admin/refunds/366555917560446976/decisions",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "573e3a04-b151-46af-bf07-916fff1cf77b",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555917560446976",
+        "orderId" : "366555916629311488",
+        "paymentId" : "366555916767723520",
+        "state" : "REJECTED",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "reason" : "已领取文件但仍无法恢复需要核查",
+        "decisionReason" : "已核对原订单与申请说明",
+        "createdAt" : "2026-10-08T12:02:21.025Z",
+        "updatedAt" : "2026-10-08T12:02:21.633Z",
+        "version" : 2
+      }
+    },
+    "rawBodySha256" : "c8741f98890526a41c69690d2520fee04f678a7b04a874f08f5f6b3ab0f6619a",
+    "path" : "/api/system/orders/366555916629311488/refund-requests",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "873dfa54-db91-44c4-b616-af60432482a0",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 409,
+    "body" : {
+      "code" : 43005,
+      "msg" : "退款已进入其他处理状态，请刷新原记录"
+    },
+    "rawBodySha256" : "3610f50a68917acdee8e06a93c5074fade2266c1bb1118e48e87b1b11290cb28",
+    "path" : "/api/system/admin/refunds/366555917560446976/decisions",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "7ceb5950-20a7-49fd-bb88-9c4404351ec9",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555917560446976",
+        "orderId" : "366555916629311488",
+        "paymentId" : "366555916767723520",
+        "state" : "REQUESTED",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "reason" : "已领取文件但仍无法恢复需要核查",
+        "decisionReason" : "已核对原订单与申请说明",
+        "createdAt" : "2026-10-08T12:02:21.025Z",
+        "updatedAt" : "2026-10-08T12:02:21.730Z",
+        "version" : 3
+      }
+    },
+    "rawBodySha256" : "dec27c2f659b5558cd69833721c9d41ca9c68641e4aaaa41549b804a8304218a",
+    "path" : "/api/system/admin/refunds/366555917560446976/decisions",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "e48cd13c-ceb9-4c89-beee-2c994b014e57",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555917560446976",
+        "orderId" : "366555916629311488",
+        "paymentId" : "366555916767723520",
+        "state" : "APPROVED",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "reason" : "已领取文件但仍无法恢复需要核查",
+        "decisionReason" : "已核对原订单与申请说明",
+        "createdAt" : "2026-10-08T12:02:21.025Z",
+        "updatedAt" : "2026-10-08T12:02:21.762Z",
+        "version" : 4
+      }
+    },
+    "rawBodySha256" : "e4627ccbafdfdf179c34b06cb720e61736293b10cae8a50c78542655eb66fe8e",
+    "path" : "/api/system/admin/refunds/366555917560446976/decisions",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "995f4bc5-1aec-4ef6-abb4-8f3526eeb5ff",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 503,
+    "body" : {
+      "code" : 503,
+      "msg" : "商业服务暂不可用，请稍后重试"
+    },
+    "rawBodySha256" : "5f9b265d6e945f30868d79f4848dc1cad71d19ce6cefedf04546acc2d759a113",
+    "path" : "/api/system/admin/refunds/366555916075663360/decisions",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "1f337ba6-1bb7-4cfd-a209-fbb1ab38e459",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555916075663360",
+        "orderId" : "366555914523770880",
+        "paymentId" : "366555914825760768",
+        "state" : "APPROVED",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "reason" : "原文件存在质量问题待核查",
+        "decisionReason" : "已核对原订单与申请说明",
+        "createdAt" : "2026-10-08T12:02:20.671Z",
+        "updatedAt" : "2026-10-08T12:02:22.119Z",
+        "version" : 2
+      }
+    },
+    "rawBodySha256" : "f76d09b709fb6f1511c47e7dfa5790a0cad3b30f17a3368b3c170ea1844ce456",
+    "path" : "/api/system/admin/refunds/366555916075663360/decisions",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "6d301154-f459-4a22-a055-78077aaff7bb",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555922547474432",
+        "orderNo" : "AST366555922547474432",
+        "skuId" : "189304737000010103",
+        "releaseId" : "189304737000010102",
+        "state" : "PENDING_PAYMENT",
+        "fulfillmentState" : "NONE",
+        "totalAmountCent" : 3900,
+        "totalRefundedCent" : 0,
+        "currency" : "CNY",
+        "item" : {
+          "skuId" : "189304737000010103",
+          "releaseId" : "189304737000010102",
+          "productName" : "中文测试商品0",
+          "productKind" : "TEMPLATE_PACK",
+          "releaseVersion" : "1.0.0",
+          "quantity" : 1,
+          "amountCent" : 3900,
+          "license" : {
+            "code" : "license",
+            "kind" : "LICENSE",
+            "version" : "1.0.0",
+            "sha256" : "c05ab6988ecb2b3fb03eb90a5e990c3428fa981096cfbb743b2b474ed6605d8e",
+            "content" : "测试LICENSE条款，未用于销售"
+          },
+          "assets" : [ {
+            "id" : "189304737000010104",
+            "fileName" : "中文模板.astra",
+            "mimeType" : "application/octet-stream",
+            "sizeBytes" : 1,
+            "sha256" : "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          } ]
+        },
+        "purchaseTerms" : {
+          "code" : "purchase_terms",
+          "kind" : "PURCHASE_TERMS",
+          "version" : "1.0.0",
+          "sha256" : "282cdc36a20e9968ee6d8aa2eaec867b30a7944012917f80cd74813550e9f868",
+          "content" : "测试PURCHASE_TERMS条款，未用于销售"
+        },
+        "refundPolicy" : {
+          "code" : "refund_policy",
+          "kind" : "REFUND_POLICY",
+          "version" : "1.0.0",
+          "sha256" : "aaa404f905a19d9239c6fb6457a17d6838c6795cda46348626e9d2a15e2f40c3",
+          "content" : "测试REFUND_POLICY条款，未用于销售"
+        },
+        "consentAt" : "2026-10-08T12:02:22.210Z",
+        "expiresAt" : "2026-10-08T12:17:22.210Z",
+        "createdAt" : "2026-10-08T12:02:22.210Z"
+      }
+    },
+    "rawBodySha256" : "5abc710ad1b00ae8380fa57029ca336a7562ae76586c1f691b4b288d4a3d91f4",
+    "path" : "/api/system/orders",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "5733adc0-9c70-4326-9d62-56b55604d3d4",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555922652332032",
+        "orderId" : "366555922547474432",
+        "state" : "INIT",
+        "channel" : "wechat_native",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "expiresAt" : "2026-10-08T12:17:22.210Z",
+        "mock" : true
+      }
+    },
+    "rawBodySha256" : "4f5747fb9cee071ad974c6bf21772b9aa197a740f73a93ec605b28f7dcacc213",
+    "path" : "/api/system/orders/366555922547474432/payments",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "eb030bb8-c47d-45e4-9f89-1bd4708b3b57",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555923533135872",
+        "orderId" : "366555922547474432",
+        "paymentId" : "366555922652332032",
+        "state" : "REQUESTED",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "reason" : "并发管理员审核退款申请",
+        "createdAt" : "2026-10-08T12:02:22.450Z",
+        "updatedAt" : "2026-10-08T12:02:22.450Z",
+        "version" : 1
+      }
+    },
+    "rawBodySha256" : "d82a19108521165e5eab9090fa2a83d6d7b347bf5b763b4e7e42b209119f6a53",
+    "path" : "/api/system/orders/366555922547474432/refund-requests",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "4b78bf14-63bf-4187-b1af-8e625b8033e9",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "GET",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "items" : [ {
+          "id" : "366555923533135872",
+          "orderId" : "366555922547474432",
+          "paymentId" : "366555922652332032",
+          "state" : "REJECTED",
+          "amountCent" : 3900,
+          "currency" : "CNY",
+          "reason" : "并发管理员审核退款申请",
+          "decisionReason" : "并发审核确认原申请理由",
+          "createdAt" : "2026-10-08T12:02:22.450Z",
+          "updatedAt" : "2026-10-08T12:02:22.488Z",
+          "version" : 2
+        } ],
+        "nextCursor" : "b3JkZXJzLXYxfGFkbWluLXJlZnVuZHM6QUxMfDIwMjYtMTAtMDhUMTI6MDI6MjIuNDUwWnwzNjY1NTU5MjM1MzMxMzU4NzITFtiUDnUle7VO78kkMK0Gc1qKIHaEF8Fmpw30aVA_ew"
+      }
+    },
+    "rawBodySha256" : "5e1cd7a2ad9fea8aea00b7dbeb56587bfb14c911b2f6a58f5cb3604a6eb21c2f",
+    "path" : "/api/system/admin/refunds",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "6c50b478-b3e5-494d-9915-f72dbf313944",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "GET",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "items" : [ {
+          "id" : "366555917560446976",
+          "orderId" : "366555916629311488",
+          "paymentId" : "366555916767723520",
+          "state" : "SUCCEEDED",
+          "amountCent" : 3900,
+          "currency" : "CNY",
+          "reason" : "已领取文件但仍无法恢复需要核查",
+          "decisionReason" : "已核对原订单与申请说明",
+          "createdAt" : "2026-10-08T12:02:21.025Z",
+          "updatedAt" : "2026-10-08T12:02:21.834Z",
+          "completedAt" : "2026-10-08T12:02:21.810Z",
+          "version" : 5
+        } ],
+        "nextCursor" : "b3JkZXJzLXYxfGFkbWluLXJlZnVuZHM6QUxMfDIwMjYtMTAtMDhUMTI6MDI6MjEuMDI1WnwzNjY1NTU5MTc1NjA0NDY5NzYZiN1FRjYKXp-tJb580ipSrGgIdb1tPlbEDrl1CmoCFw"
+      }
+    },
+    "rawBodySha256" : "48f1b374b6bcbdbcd76b3d4a7dc8a0a860afe6bd16aa0279dc04d4b5ff451283",
+    "path" : "/api/system/admin/refunds",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "7008f7f9-71dc-4354-aafb-139b5281d6e5",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "GET",
+    "status" : 400,
+    "body" : {
+      "code" : 400,
+      "msg" : "订单分页凭证无效，请重新查询"
+    },
+    "rawBodySha256" : "d6a43d17c07c0cbe96cb5daaae1959889eba4b80c88e6cea9c8290ec99e4dd8a",
+    "path" : "/api/system/admin/refunds",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "ff97608d-e9b3-4a8f-ac87-9f928148e018",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "GET",
+    "status" : 400,
+    "body" : {
+      "code" : 400,
+      "msg" : "订单分页凭证无效，请重新查询"
+    },
+    "rawBodySha256" : "d6a43d17c07c0cbe96cb5daaae1959889eba4b80c88e6cea9c8290ec99e4dd8a",
+    "path" : "/api/system/admin/refunds",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "53b3bccf-a789-470f-8a08-41d5d4027f0e",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "GET",
+    "status" : 400,
+    "body" : {
+      "code" : 400,
+      "msg" : "订单分页凭证无效，请重新查询"
+    },
+    "rawBodySha256" : "d6a43d17c07c0cbe96cb5daaae1959889eba4b80c88e6cea9c8290ec99e4dd8a",
+    "path" : "/api/system/admin/refunds",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "c208fabb-4d80-41b9-8081-1ae95abeebdd",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "GET",
+    "status" : 400,
+    "body" : {
+      "code" : 400,
+      "msg" : "退款列表参数无效"
+    },
+    "rawBodySha256" : "db71123d892884f9508cb9fd09b10dc49e49eb6c7d5453fcccd23f85a7a1964a",
+    "path" : "/api/system/admin/refunds",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "59d13b21-78bc-44af-b906-8538d1d1ea92",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555924221001728",
+        "orderNo" : "AST366555924221001728",
+        "skuId" : "189304737000010203",
+        "releaseId" : "189304737000010202",
+        "state" : "PENDING_PAYMENT",
+        "fulfillmentState" : "NONE",
+        "totalAmountCent" : 3900,
+        "totalRefundedCent" : 0,
+        "currency" : "CNY",
+        "item" : {
+          "skuId" : "189304737000010203",
+          "releaseId" : "189304737000010202",
+          "productName" : "中文测试商品1",
+          "productKind" : "TEMPLATE_PACK",
+          "releaseVersion" : "1.0.0",
+          "quantity" : 1,
+          "amountCent" : 3900,
+          "license" : {
+            "code" : "license",
+            "kind" : "LICENSE",
+            "version" : "1.0.0",
+            "sha256" : "c05ab6988ecb2b3fb03eb90a5e990c3428fa981096cfbb743b2b474ed6605d8e",
+            "content" : "测试LICENSE条款，未用于销售"
+          },
+          "assets" : [ {
+            "id" : "189304737000010204",
+            "fileName" : "中文模板.astra",
+            "mimeType" : "application/octet-stream",
+            "sizeBytes" : 1,
+            "sha256" : "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          } ]
+        },
+        "purchaseTerms" : {
+          "code" : "purchase_terms",
+          "kind" : "PURCHASE_TERMS",
+          "version" : "1.0.0",
+          "sha256" : "282cdc36a20e9968ee6d8aa2eaec867b30a7944012917f80cd74813550e9f868",
+          "content" : "测试PURCHASE_TERMS条款，未用于销售"
+        },
+        "refundPolicy" : {
+          "code" : "refund_policy",
+          "kind" : "REFUND_POLICY",
+          "version" : "1.0.0",
+          "sha256" : "aaa404f905a19d9239c6fb6457a17d6838c6795cda46348626e9d2a15e2f40c3",
+          "content" : "测试REFUND_POLICY条款，未用于销售"
+        },
+        "consentAt" : "2026-10-08T12:02:22.609Z",
+        "expiresAt" : "2026-10-08T12:17:22.609Z",
+        "createdAt" : "2026-10-08T12:02:22.609Z"
+      }
+    },
+    "rawBodySha256" : "5f6f780ba5b18d80e670154c3f688ab74ba665af952f4ac87b63fafbe2b048ed",
+    "path" : "/api/system/orders",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "4d307264-17e4-47ef-925d-4e4fe10f41fc",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555924376190976",
+        "orderId" : "366555924221001728",
+        "state" : "INIT",
+        "channel" : "wechat_native",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "expiresAt" : "2026-10-08T12:17:22.609Z",
+        "mock" : true
+      }
+    },
+    "rawBodySha256" : "301bce3ea12a6f3d953b2e79bcc27e58e41496b2da31152ac324845ed8e3c916",
+    "path" : "/api/system/orders/366555924221001728/payments",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "90d3f088-d899-43c3-bcff-947ced35ec6e",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "POST",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555937479196672",
+        "orderId" : "366555924221001728",
+        "paymentId" : "366555924376190976",
+        "state" : "APPROVED",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "reason" : "文件无法恢复希望核查退款",
+        "decisionReason" : "已核对原订单与申请说明",
+        "createdAt" : "2026-10-08T12:02:25.774Z",
+        "updatedAt" : "2026-10-08T12:02:27.833Z",
+        "version" : 2
+      }
+    },
+    "rawBodySha256" : "fa4208aa0c71b3632064a3539d260e49ea73f3af0c97dc0160323ac25f0f4d62",
+    "path" : "/api/system/admin/refunds/366555937479196672/decisions",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "276ddea7-85a9-4623-9202-10dffd08e12f",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "GET",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555914330832896",
+        "orderId" : "366555911239630848",
+        "paymentId" : "366555911537426432",
+        "state" : "SUCCEEDED",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "reason" : "原文件无法恢复需要核查",
+        "decisionReason" : "已核对原订单与申请说明",
+        "createdAt" : "2026-10-08T12:02:20.255Z",
+        "updatedAt" : "2026-10-08T12:02:21.541Z",
+        "completedAt" : "2026-10-08T12:02:21.479Z",
+        "version" : 3
+      }
+    },
+    "rawBodySha256" : "9503d8319ee769a45b7c5fd0b094134670672b5b77211b62be6ea6e4d8b9fcd9",
+    "path" : "/api/system/refunds/366555914330832896",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "05e10143-53c3-4643-a911-2f0462d51d28",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "GET",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555914330832896",
+        "orderId" : "366555911239630848",
+        "paymentId" : "366555911537426432",
+        "state" : "SUCCEEDED",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "reason" : "原文件无法恢复需要核查",
+        "decisionReason" : "已核对原订单与申请说明",
+        "createdAt" : "2026-10-08T12:02:20.255Z",
+        "updatedAt" : "2026-10-08T12:02:21.541Z",
+        "completedAt" : "2026-10-08T12:02:21.479Z",
+        "version" : 3
+      }
+    },
+    "rawBodySha256" : "9503d8319ee769a45b7c5fd0b094134670672b5b77211b62be6ea6e4d8b9fcd9",
+    "path" : "/system/refunds/366555914330832896",
+    "viaGateway" : false,
+    "headers" : {
+      "requestId" : "ee1854f2-b582-4675-bbdb-41ab9aebc5f8",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "GET",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555914330832896",
+        "orderId" : "366555911239630848",
+        "paymentId" : "366555911537426432",
+        "state" : "SUCCEEDED",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "reason" : "原文件无法恢复需要核查",
+        "decisionReason" : "已核对原订单与申请说明",
+        "createdAt" : "2026-10-08T12:02:20.255Z",
+        "updatedAt" : "2026-10-08T12:02:21.541Z",
+        "completedAt" : "2026-10-08T12:02:21.479Z",
+        "version" : 3
+      }
+    },
+    "rawBodySha256" : "9503d8319ee769a45b7c5fd0b094134670672b5b77211b62be6ea6e4d8b9fcd9",
+    "path" : "/api/system/refunds/366555914330832896",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "2dfdd098-5ade-4dbc-8295-45d5a65bcc4d",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "GET",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555914330832896",
+        "orderId" : "366555911239630848",
+        "paymentId" : "366555911537426432",
+        "state" : "SUCCEEDED",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "reason" : "原文件无法恢复需要核查",
+        "decisionReason" : "已核对原订单与申请说明",
+        "createdAt" : "2026-10-08T12:02:20.255Z",
+        "updatedAt" : "2026-10-08T12:02:21.541Z",
+        "completedAt" : "2026-10-08T12:02:21.479Z",
+        "version" : 3
+      }
+    },
+    "rawBodySha256" : "9503d8319ee769a45b7c5fd0b094134670672b5b77211b62be6ea6e4d8b9fcd9",
+    "path" : "/system/refunds/366555914330832896",
+    "viaGateway" : false,
+    "headers" : {
+      "requestId" : "4e762a33-0b50-41e1-886e-1c788b20221d",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "GET",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555914330832896",
+        "orderId" : "366555911239630848",
+        "paymentId" : "366555911537426432",
+        "state" : "SUCCEEDED",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "reason" : "原文件无法恢复需要核查",
+        "decisionReason" : "已核对原订单与申请说明",
+        "createdAt" : "2026-10-08T12:02:20.255Z",
+        "updatedAt" : "2026-10-08T12:02:21.541Z",
+        "completedAt" : "2026-10-08T12:02:21.479Z",
+        "version" : 3
+      }
+    },
+    "rawBodySha256" : "9503d8319ee769a45b7c5fd0b094134670672b5b77211b62be6ea6e4d8b9fcd9",
+    "path" : "/api/system/refunds/366555914330832896",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "177cb667-a124-47c7-84ad-f62da8a7daf9",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "GET",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555914330832896",
+        "orderId" : "366555911239630848",
+        "paymentId" : "366555911537426432",
+        "state" : "SUCCEEDED",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "reason" : "原文件无法恢复需要核查",
+        "decisionReason" : "已核对原订单与申请说明",
+        "createdAt" : "2026-10-08T12:02:20.255Z",
+        "updatedAt" : "2026-10-08T12:02:21.541Z",
+        "completedAt" : "2026-10-08T12:02:21.479Z",
+        "version" : 3
+      }
+    },
+    "rawBodySha256" : "9503d8319ee769a45b7c5fd0b094134670672b5b77211b62be6ea6e4d8b9fcd9",
+    "path" : "/system/refunds/366555914330832896",
+    "viaGateway" : false,
+    "headers" : {
+      "requestId" : "6782bd55-29f2-4f2d-9be5-071c9daaa5f6",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "GET",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555914330832896",
+        "orderId" : "366555911239630848",
+        "paymentId" : "366555911537426432",
+        "state" : "SUCCEEDED",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "reason" : "原文件无法恢复需要核查",
+        "decisionReason" : "已核对原订单与申请说明",
+        "createdAt" : "2026-10-08T12:02:20.255Z",
+        "updatedAt" : "2026-10-08T12:02:21.541Z",
+        "completedAt" : "2026-10-08T12:02:21.479Z",
+        "version" : 3
+      }
+    },
+    "rawBodySha256" : "9503d8319ee769a45b7c5fd0b094134670672b5b77211b62be6ea6e4d8b9fcd9",
+    "path" : "/api/system/refunds/366555914330832896",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "d5126d11-d627-4466-bf4d-8d345fcc6dea",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "GET",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555914330832896",
+        "orderId" : "366555911239630848",
+        "paymentId" : "366555911537426432",
+        "state" : "SUCCEEDED",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "reason" : "原文件无法恢复需要核查",
+        "decisionReason" : "已核对原订单与申请说明",
+        "createdAt" : "2026-10-08T12:02:20.255Z",
+        "updatedAt" : "2026-10-08T12:02:21.541Z",
+        "completedAt" : "2026-10-08T12:02:21.479Z",
+        "version" : 3
+      }
+    },
+    "rawBodySha256" : "9503d8319ee769a45b7c5fd0b094134670672b5b77211b62be6ea6e4d8b9fcd9",
+    "path" : "/system/refunds/366555914330832896",
+    "viaGateway" : false,
+    "headers" : {
+      "requestId" : "668b1bc3-db9c-4ab7-9204-26bf0e09ac15",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "GET",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555914330832896",
+        "orderId" : "366555911239630848",
+        "paymentId" : "366555911537426432",
+        "state" : "SUCCEEDED",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "reason" : "原文件无法恢复需要核查",
+        "decisionReason" : "已核对原订单与申请说明",
+        "createdAt" : "2026-10-08T12:02:20.255Z",
+        "updatedAt" : "2026-10-08T12:02:21.541Z",
+        "completedAt" : "2026-10-08T12:02:21.479Z",
+        "version" : 3
+      }
+    },
+    "rawBodySha256" : "9503d8319ee769a45b7c5fd0b094134670672b5b77211b62be6ea6e4d8b9fcd9",
+    "path" : "/api/system/refunds/366555914330832896",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "68c724c9-ca8c-4bd9-80b5-1168bbc2d0f5",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "GET",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555914330832896",
+        "orderId" : "366555911239630848",
+        "paymentId" : "366555911537426432",
+        "state" : "SUCCEEDED",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "reason" : "原文件无法恢复需要核查",
+        "decisionReason" : "已核对原订单与申请说明",
+        "createdAt" : "2026-10-08T12:02:20.255Z",
+        "updatedAt" : "2026-10-08T12:02:21.541Z",
+        "completedAt" : "2026-10-08T12:02:21.479Z",
+        "version" : 3
+      }
+    },
+    "rawBodySha256" : "9503d8319ee769a45b7c5fd0b094134670672b5b77211b62be6ea6e4d8b9fcd9",
+    "path" : "/system/refunds/366555914330832896",
+    "viaGateway" : false,
+    "headers" : {
+      "requestId" : "b732c822-6b4e-4ed2-9310-7fc89552809b",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "GET",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555914330832896",
+        "orderId" : "366555911239630848",
+        "paymentId" : "366555911537426432",
+        "state" : "SUCCEEDED",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "reason" : "原文件无法恢复需要核查",
+        "decisionReason" : "已核对原订单与申请说明",
+        "createdAt" : "2026-10-08T12:02:20.255Z",
+        "updatedAt" : "2026-10-08T12:02:21.541Z",
+        "completedAt" : "2026-10-08T12:02:21.479Z",
+        "version" : 3
+      }
+    },
+    "rawBodySha256" : "9503d8319ee769a45b7c5fd0b094134670672b5b77211b62be6ea6e4d8b9fcd9",
+    "path" : "/api/system/refunds/366555914330832896",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "a8505b2d-e9d4-445f-b67e-c24d4f28bd1c",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "GET",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555914330832896",
+        "orderId" : "366555911239630848",
+        "paymentId" : "366555911537426432",
+        "state" : "SUCCEEDED",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "reason" : "原文件无法恢复需要核查",
+        "decisionReason" : "已核对原订单与申请说明",
+        "createdAt" : "2026-10-08T12:02:20.255Z",
+        "updatedAt" : "2026-10-08T12:02:21.541Z",
+        "completedAt" : "2026-10-08T12:02:21.479Z",
+        "version" : 3
+      }
+    },
+    "rawBodySha256" : "9503d8319ee769a45b7c5fd0b094134670672b5b77211b62be6ea6e4d8b9fcd9",
+    "path" : "/system/refunds/366555914330832896",
+    "viaGateway" : false,
+    "headers" : {
+      "requestId" : "6129cc02-c88e-4b3c-832e-933d174721d5",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "GET",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555914330832896",
+        "orderId" : "366555911239630848",
+        "paymentId" : "366555911537426432",
+        "state" : "SUCCEEDED",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "reason" : "原文件无法恢复需要核查",
+        "decisionReason" : "已核对原订单与申请说明",
+        "createdAt" : "2026-10-08T12:02:20.255Z",
+        "updatedAt" : "2026-10-08T12:02:21.541Z",
+        "completedAt" : "2026-10-08T12:02:21.479Z",
+        "version" : 3
+      }
+    },
+    "rawBodySha256" : "9503d8319ee769a45b7c5fd0b094134670672b5b77211b62be6ea6e4d8b9fcd9",
+    "path" : "/api/system/refunds/366555914330832896",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "4526626a-6872-416c-89ab-6c4f128b7ace",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "GET",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555914330832896",
+        "orderId" : "366555911239630848",
+        "paymentId" : "366555911537426432",
+        "state" : "SUCCEEDED",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "reason" : "原文件无法恢复需要核查",
+        "decisionReason" : "已核对原订单与申请说明",
+        "createdAt" : "2026-10-08T12:02:20.255Z",
+        "updatedAt" : "2026-10-08T12:02:21.541Z",
+        "completedAt" : "2026-10-08T12:02:21.479Z",
+        "version" : 3
+      }
+    },
+    "rawBodySha256" : "9503d8319ee769a45b7c5fd0b094134670672b5b77211b62be6ea6e4d8b9fcd9",
+    "path" : "/system/refunds/366555914330832896",
+    "viaGateway" : false,
+    "headers" : {
+      "requestId" : "4bba4b22-2e54-40ea-9ffe-0d38042f9a34",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "GET",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555914330832896",
+        "orderId" : "366555911239630848",
+        "paymentId" : "366555911537426432",
+        "state" : "SUCCEEDED",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "reason" : "原文件无法恢复需要核查",
+        "decisionReason" : "已核对原订单与申请说明",
+        "createdAt" : "2026-10-08T12:02:20.255Z",
+        "updatedAt" : "2026-10-08T12:02:21.541Z",
+        "completedAt" : "2026-10-08T12:02:21.479Z",
+        "version" : 3
+      }
+    },
+    "rawBodySha256" : "9503d8319ee769a45b7c5fd0b094134670672b5b77211b62be6ea6e4d8b9fcd9",
+    "path" : "/api/system/refunds/366555914330832896",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "cb05e7e7-cd4a-4dc4-bb91-209feb74a04e",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "GET",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555914330832896",
+        "orderId" : "366555911239630848",
+        "paymentId" : "366555911537426432",
+        "state" : "SUCCEEDED",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "reason" : "原文件无法恢复需要核查",
+        "decisionReason" : "已核对原订单与申请说明",
+        "createdAt" : "2026-10-08T12:02:20.255Z",
+        "updatedAt" : "2026-10-08T12:02:21.541Z",
+        "completedAt" : "2026-10-08T12:02:21.479Z",
+        "version" : 3
+      }
+    },
+    "rawBodySha256" : "9503d8319ee769a45b7c5fd0b094134670672b5b77211b62be6ea6e4d8b9fcd9",
+    "path" : "/system/refunds/366555914330832896",
+    "viaGateway" : false,
+    "headers" : {
+      "requestId" : "fd4f700b-88fa-4363-87ce-76c71d8a1be1",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "GET",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555914330832896",
+        "orderId" : "366555911239630848",
+        "paymentId" : "366555911537426432",
+        "state" : "SUCCEEDED",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "reason" : "原文件无法恢复需要核查",
+        "decisionReason" : "已核对原订单与申请说明",
+        "createdAt" : "2026-10-08T12:02:20.255Z",
+        "updatedAt" : "2026-10-08T12:02:21.541Z",
+        "completedAt" : "2026-10-08T12:02:21.479Z",
+        "version" : 3
+      }
+    },
+    "rawBodySha256" : "9503d8319ee769a45b7c5fd0b094134670672b5b77211b62be6ea6e4d8b9fcd9",
+    "path" : "/api/system/refunds/366555914330832896",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "92574705-bc56-4704-a3de-ea2c39392ba4",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "GET",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555914330832896",
+        "orderId" : "366555911239630848",
+        "paymentId" : "366555911537426432",
+        "state" : "SUCCEEDED",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "reason" : "原文件无法恢复需要核查",
+        "decisionReason" : "已核对原订单与申请说明",
+        "createdAt" : "2026-10-08T12:02:20.255Z",
+        "updatedAt" : "2026-10-08T12:02:21.541Z",
+        "completedAt" : "2026-10-08T12:02:21.479Z",
+        "version" : 3
+      }
+    },
+    "rawBodySha256" : "9503d8319ee769a45b7c5fd0b094134670672b5b77211b62be6ea6e4d8b9fcd9",
+    "path" : "/system/refunds/366555914330832896",
+    "viaGateway" : false,
+    "headers" : {
+      "requestId" : "9712b21b-99c7-4714-a0ba-7df2445d1a0d",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "GET",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555914330832896",
+        "orderId" : "366555911239630848",
+        "paymentId" : "366555911537426432",
+        "state" : "SUCCEEDED",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "reason" : "原文件无法恢复需要核查",
+        "decisionReason" : "已核对原订单与申请说明",
+        "createdAt" : "2026-10-08T12:02:20.255Z",
+        "updatedAt" : "2026-10-08T12:02:21.541Z",
+        "completedAt" : "2026-10-08T12:02:21.479Z",
+        "version" : 3
+      }
+    },
+    "rawBodySha256" : "9503d8319ee769a45b7c5fd0b094134670672b5b77211b62be6ea6e4d8b9fcd9",
+    "path" : "/api/system/refunds/366555914330832896",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "286aec17-c8c4-4e86-bc0d-1ea167dd0fad",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "GET",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555914330832896",
+        "orderId" : "366555911239630848",
+        "paymentId" : "366555911537426432",
+        "state" : "SUCCEEDED",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "reason" : "原文件无法恢复需要核查",
+        "decisionReason" : "已核对原订单与申请说明",
+        "createdAt" : "2026-10-08T12:02:20.255Z",
+        "updatedAt" : "2026-10-08T12:02:21.541Z",
+        "completedAt" : "2026-10-08T12:02:21.479Z",
+        "version" : 3
+      }
+    },
+    "rawBodySha256" : "9503d8319ee769a45b7c5fd0b094134670672b5b77211b62be6ea6e4d8b9fcd9",
+    "path" : "/system/refunds/366555914330832896",
+    "viaGateway" : false,
+    "headers" : {
+      "requestId" : "5fdb4d48-091c-4f40-ae04-148f0f097b9c",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "GET",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555914330832896",
+        "orderId" : "366555911239630848",
+        "paymentId" : "366555911537426432",
+        "state" : "SUCCEEDED",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "reason" : "原文件无法恢复需要核查",
+        "decisionReason" : "已核对原订单与申请说明",
+        "createdAt" : "2026-10-08T12:02:20.255Z",
+        "updatedAt" : "2026-10-08T12:02:21.541Z",
+        "completedAt" : "2026-10-08T12:02:21.479Z",
+        "version" : 3
+      }
+    },
+    "rawBodySha256" : "9503d8319ee769a45b7c5fd0b094134670672b5b77211b62be6ea6e4d8b9fcd9",
+    "path" : "/api/system/refunds/366555914330832896",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "66c111fe-1b07-4bb4-a248-857584d5048d",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "GET",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555914330832896",
+        "orderId" : "366555911239630848",
+        "paymentId" : "366555911537426432",
+        "state" : "SUCCEEDED",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "reason" : "原文件无法恢复需要核查",
+        "decisionReason" : "已核对原订单与申请说明",
+        "createdAt" : "2026-10-08T12:02:20.255Z",
+        "updatedAt" : "2026-10-08T12:02:21.541Z",
+        "completedAt" : "2026-10-08T12:02:21.479Z",
+        "version" : 3
+      }
+    },
+    "rawBodySha256" : "9503d8319ee769a45b7c5fd0b094134670672b5b77211b62be6ea6e4d8b9fcd9",
+    "path" : "/system/refunds/366555914330832896",
+    "viaGateway" : false,
+    "headers" : {
+      "requestId" : "6f1c1121-5a51-4ac7-ae92-04b0795107bc",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "GET",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555914330832896",
+        "orderId" : "366555911239630848",
+        "paymentId" : "366555911537426432",
+        "state" : "SUCCEEDED",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "reason" : "原文件无法恢复需要核查",
+        "decisionReason" : "已核对原订单与申请说明",
+        "createdAt" : "2026-10-08T12:02:20.255Z",
+        "updatedAt" : "2026-10-08T12:02:21.541Z",
+        "completedAt" : "2026-10-08T12:02:21.479Z",
+        "version" : 3
+      }
+    },
+    "rawBodySha256" : "9503d8319ee769a45b7c5fd0b094134670672b5b77211b62be6ea6e4d8b9fcd9",
+    "path" : "/api/system/refunds/366555914330832896",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "503ccace-5379-4701-b542-7e3abcc4441f",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "GET",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555914330832896",
+        "orderId" : "366555911239630848",
+        "paymentId" : "366555911537426432",
+        "state" : "SUCCEEDED",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "reason" : "原文件无法恢复需要核查",
+        "decisionReason" : "已核对原订单与申请说明",
+        "createdAt" : "2026-10-08T12:02:20.255Z",
+        "updatedAt" : "2026-10-08T12:02:21.541Z",
+        "completedAt" : "2026-10-08T12:02:21.479Z",
+        "version" : 3
+      }
+    },
+    "rawBodySha256" : "9503d8319ee769a45b7c5fd0b094134670672b5b77211b62be6ea6e4d8b9fcd9",
+    "path" : "/system/refunds/366555914330832896",
+    "viaGateway" : false,
+    "headers" : {
+      "requestId" : "f0ba965e-2fdc-4287-b725-39854b4a7556",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "GET",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555914330832896",
+        "orderId" : "366555911239630848",
+        "paymentId" : "366555911537426432",
+        "state" : "SUCCEEDED",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "reason" : "原文件无法恢复需要核查",
+        "decisionReason" : "已核对原订单与申请说明",
+        "createdAt" : "2026-10-08T12:02:20.255Z",
+        "updatedAt" : "2026-10-08T12:02:21.541Z",
+        "completedAt" : "2026-10-08T12:02:21.479Z",
+        "version" : 3
+      }
+    },
+    "rawBodySha256" : "9503d8319ee769a45b7c5fd0b094134670672b5b77211b62be6ea6e4d8b9fcd9",
+    "path" : "/api/system/refunds/366555914330832896",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "8c187df3-4f9f-476a-ba40-ba3626297ea4",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "GET",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555914330832896",
+        "orderId" : "366555911239630848",
+        "paymentId" : "366555911537426432",
+        "state" : "SUCCEEDED",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "reason" : "原文件无法恢复需要核查",
+        "decisionReason" : "已核对原订单与申请说明",
+        "createdAt" : "2026-10-08T12:02:20.255Z",
+        "updatedAt" : "2026-10-08T12:02:21.541Z",
+        "completedAt" : "2026-10-08T12:02:21.479Z",
+        "version" : 3
+      }
+    },
+    "rawBodySha256" : "9503d8319ee769a45b7c5fd0b094134670672b5b77211b62be6ea6e4d8b9fcd9",
+    "path" : "/system/refunds/366555914330832896",
+    "viaGateway" : false,
+    "headers" : {
+      "requestId" : "1cc5b209-8a98-4b86-910f-a98870630192",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "GET",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555914330832896",
+        "orderId" : "366555911239630848",
+        "paymentId" : "366555911537426432",
+        "state" : "SUCCEEDED",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "reason" : "原文件无法恢复需要核查",
+        "decisionReason" : "已核对原订单与申请说明",
+        "createdAt" : "2026-10-08T12:02:20.255Z",
+        "updatedAt" : "2026-10-08T12:02:21.541Z",
+        "completedAt" : "2026-10-08T12:02:21.479Z",
+        "version" : 3
+      }
+    },
+    "rawBodySha256" : "9503d8319ee769a45b7c5fd0b094134670672b5b77211b62be6ea6e4d8b9fcd9",
+    "path" : "/api/system/refunds/366555914330832896",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "32cb3782-d976-4ece-888b-51f902d4923b",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "GET",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555914330832896",
+        "orderId" : "366555911239630848",
+        "paymentId" : "366555911537426432",
+        "state" : "SUCCEEDED",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "reason" : "原文件无法恢复需要核查",
+        "decisionReason" : "已核对原订单与申请说明",
+        "createdAt" : "2026-10-08T12:02:20.255Z",
+        "updatedAt" : "2026-10-08T12:02:21.541Z",
+        "completedAt" : "2026-10-08T12:02:21.479Z",
+        "version" : 3
+      }
+    },
+    "rawBodySha256" : "9503d8319ee769a45b7c5fd0b094134670672b5b77211b62be6ea6e4d8b9fcd9",
+    "path" : "/system/refunds/366555914330832896",
+    "viaGateway" : false,
+    "headers" : {
+      "requestId" : "b9e4755c-789f-4ebe-ad2c-366ba1e9952f",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "GET",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555914330832896",
+        "orderId" : "366555911239630848",
+        "paymentId" : "366555911537426432",
+        "state" : "SUCCEEDED",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "reason" : "原文件无法恢复需要核查",
+        "decisionReason" : "已核对原订单与申请说明",
+        "createdAt" : "2026-10-08T12:02:20.255Z",
+        "updatedAt" : "2026-10-08T12:02:21.541Z",
+        "completedAt" : "2026-10-08T12:02:21.479Z",
+        "version" : 3
+      }
+    },
+    "rawBodySha256" : "9503d8319ee769a45b7c5fd0b094134670672b5b77211b62be6ea6e4d8b9fcd9",
+    "path" : "/api/system/refunds/366555914330832896",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "8fe6d579-5711-472f-b900-83a4dbf3ae61",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "GET",
+    "status" : 200,
+    "body" : {
+      "code" : 0,
+      "msg" : "成功",
+      "data" : {
+        "id" : "366555914330832896",
+        "orderId" : "366555911239630848",
+        "paymentId" : "366555911537426432",
+        "state" : "SUCCEEDED",
+        "amountCent" : 3900,
+        "currency" : "CNY",
+        "reason" : "原文件无法恢复需要核查",
+        "decisionReason" : "已核对原订单与申请说明",
+        "createdAt" : "2026-10-08T12:02:20.255Z",
+        "updatedAt" : "2026-10-08T12:02:21.541Z",
+        "completedAt" : "2026-10-08T12:02:21.479Z",
+        "version" : 3
+      }
+    },
+    "rawBodySha256" : "9503d8319ee769a45b7c5fd0b094134670672b5b77211b62be6ea6e4d8b9fcd9",
+    "path" : "/system/refunds/366555914330832896",
+    "viaGateway" : false,
+    "headers" : {
+      "requestId" : "f4acd1dc-c6e0-43c3-8d05-553584bf7988",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "GET",
+    "status" : 429,
+    "body" : {
+      "code" : 429,
+      "msg" : "内容请求过于频繁，请稍后重试"
+    },
+    "rawBodySha256" : "4e077c6ea41d9af81145a954cadacdba74f84cf30991ff48acc70e4bec286aab",
+    "path" : "/api/system/refunds/366555914330832896",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "0eccca20-2e97-4626-86d5-ea3425765d78",
+      "retryAfter" : "60",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "GET",
+    "status" : 503,
+    "body" : {
+      "code" : 503,
+      "msg" : "认证服务暂不可用，请稍后重试"
+    },
+    "rawBodySha256" : "bf0559fe961bc1f571e625240f840082e3fee0c19bc3497ea17307e7b569b2ae",
+    "path" : "/system/admin/refunds",
+    "viaGateway" : false,
+    "headers" : {
+      "requestId" : "e23409b1-6c10-492d-97cf-7f886d9ffd84",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "GET",
+    "status" : 503,
+    "body" : {
+      "code" : 503,
+      "msg" : "认证服务暂不可用，请稍后重试"
+    },
+    "rawBodySha256" : "bf0559fe961bc1f571e625240f840082e3fee0c19bc3497ea17307e7b569b2ae",
+    "path" : "/api/system/admin/refunds",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "c65594ee-806a-44fa-a979-51f58a0b1b5b",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "GET",
+    "status" : 503,
+    "body" : {
+      "code" : 503,
+      "msg" : "认证服务暂不可用，请稍后重试"
+    },
+    "rawBodySha256" : "bf0559fe961bc1f571e625240f840082e3fee0c19bc3497ea17307e7b569b2ae",
+    "path" : "/system/refunds/366555914330832896",
+    "viaGateway" : false,
+    "headers" : {
+      "requestId" : "5faa23da-5d12-4554-9040-73d66f969785",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  }, {
+    "checkoutUrlOmittedAfterLiveValidation" : false,
+    "method" : "GET",
+    "status" : 503,
+    "body" : {
+      "code" : 503,
+      "msg" : "认证服务暂不可用，请稍后重试"
+    },
+    "rawBodySha256" : "bf0559fe961bc1f571e625240f840082e3fee0c19bc3497ea17307e7b569b2ae",
+    "path" : "/api/system/refunds/366555914330832896",
+    "viaGateway" : true,
+    "headers" : {
+      "requestId" : "c4ca7b1c-5e61-406b-aebd-8b650b172499",
+      "retryAfter" : "",
+      "cacheControl" : "no-store"
+    }
+  } ],
+  "browserRequired" : true
+}

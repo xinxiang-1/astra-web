@@ -1,0 +1,32 @@
+[
+  {
+    "run": "R1",
+    "result": "failed test checks",
+    "issues": [
+      "Read-only test assumed a payment version column; no such column exists"
+    ],
+    "fixedBy": "Compare full-table row digests"
+  },
+  {
+    "run": "R2",
+    "result": "failed test checks;26 related JUnit passed",
+    "issues": [
+      "Full rows required LocalDateTime normalization",
+      "Login return URL check unnecessarily assumed percent-encoding"
+    ],
+    "fixedBy": "Canonicalize each field and parse URL parameters"
+  },
+  {
+    "run": "R3",
+    "result": "7 new JUnit/11 browser/208 HTTP passed",
+    "issues": []
+  },
+  {
+    "run": "R4",
+    "result": "Final Chinese UI/title/current build;34 JUnit and21 total browser checks passed",
+    "issues": [
+      "Initial regression command used nonexistent order-recovery-contract.mjs"
+    ],
+    "fixedBy": "Run actual payment-recovery-contract.mjs;10 cases passed"
+  }
+]

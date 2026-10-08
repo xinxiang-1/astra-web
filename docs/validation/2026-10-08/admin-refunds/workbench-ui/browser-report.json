@@ -1,0 +1,1126 @@
+{
+  "passed": true,
+  "scope": "Built frontend + owned gateway/system/MySQL/Redis; trusted mock payment; auth/me explicitly mocked503",
+  "checks": [
+    "Anonymous workbench has no private calls and exact login return route",
+    "Real gateway role403 hides private list/context and actions",
+    "Protected original order/full amount/policy/reason and accurate delivery explanation come from backend context",
+    "Default unchecked review, Unicode reason guard and390px workbench without horizontal overflow",
+    "Accepted rejection response loss and double click recover same key/body; changed text blocked before transport",
+    "Reopen keeps original refund and requires a separate approval with new version",
+    "Real competing admin update yields43008 and discards old approval context",
+    "Final approval reads five audits/one task, leaves granted rights and money unchanged pending trusted settlement",
+    "Decision session persists UUID/body hash only, no JWT or review explanation",
+    "Cross-tab switch to buyer immediately removes admin context/reason/actions and role403 remains enforced",
+    "Buyer account has no operator entry; active DB-role admin discovers entry through real access endpoint"
+  ],
+  "requests": [
+    {
+      "method": "GET",
+      "path": "/api/system/admin/access",
+      "status": 403,
+      "body": {
+        "code": 403,
+        "msg": "无管理权限"
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "c7a80b92-2f36-4e7f-8f95-ba8781694011"
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/access",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "role": "COMMERCE_ADMIN"
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "84714af1-6895-4eb3-a1c8-76da164dcd5e"
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/refunds",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "items": [
+            {
+              "id": "366555780842913792",
+              "orderId": "366555779928555520",
+              "paymentId": "366555780075356160",
+              "state": "REQUESTED",
+              "amountCent": 3900,
+              "currency": "CNY",
+              "reason": "工作台测试质量诉求需退款",
+              "createdAt": "2026-10-08T12:01:48.429Z",
+              "updatedAt": "2026-10-08T12:01:48.429Z",
+              "version": 1
+            },
+            {
+              "id": "366555769191137280",
+              "orderId": "366555767718936576",
+              "paymentId": "366555768121589760",
+              "state": "REQUESTED",
+              "amountCent": 3900,
+              "currency": "CNY",
+              "reason": "原文件存在问题需运营核对",
+              "createdAt": "2026-10-08T12:01:45.650Z",
+              "updatedAt": "2026-10-08T12:01:45.650Z",
+              "version": 1
+            }
+          ]
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "e32aefcc-fa26-4f7e-ae51-f6ef5a716eeb"
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/refunds/366555780842913792",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "refund": {
+            "id": "366555780842913792",
+            "orderId": "366555779928555520",
+            "paymentId": "366555780075356160",
+            "state": "REQUESTED",
+            "amountCent": 3900,
+            "currency": "CNY",
+            "reason": "工作台测试质量诉求需退款",
+            "createdAt": "2026-10-08T12:01:48.429Z",
+            "updatedAt": "2026-10-08T12:01:48.429Z",
+            "version": 1
+          },
+          "order": {
+            "id": "366555779928555520",
+            "orderNo": "AST366555779928555520",
+            "skuId": "189304737000010303",
+            "releaseId": "189304737000010302",
+            "state": "PAID",
+            "fulfillmentState": "GRANTED",
+            "totalAmountCent": 3900,
+            "totalRefundedCent": 0,
+            "currency": "CNY",
+            "item": {
+              "skuId": "189304737000010303",
+              "releaseId": "189304737000010302",
+              "productName": "中文测试商品2",
+              "productKind": "TEMPLATE_PACK",
+              "releaseVersion": "1.0.0",
+              "quantity": 1,
+              "amountCent": 3900,
+              "license": {
+                "code": "license",
+                "kind": "LICENSE",
+                "version": "1.0.0",
+                "sha256": "c05ab6988ecb2b3fb03eb90a5e990c3428fa981096cfbb743b2b474ed6605d8e",
+                "content": "测试LICENSE条款，未用于销售"
+              },
+              "assets": [
+                {
+                  "id": "189304737000010304",
+                  "fileName": "中文模板.astra",
+                  "mimeType": "application/octet-stream",
+                  "sizeBytes": 1,
+                  "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                }
+              ]
+            },
+            "purchaseTerms": {
+              "code": "purchase_terms",
+              "kind": "PURCHASE_TERMS",
+              "version": "1.0.0",
+              "sha256": "282cdc36a20e9968ee6d8aa2eaec867b30a7944012917f80cd74813550e9f868",
+              "content": "测试PURCHASE_TERMS条款，未用于销售"
+            },
+            "refundPolicy": {
+              "code": "refund_policy",
+              "kind": "REFUND_POLICY",
+              "version": "1.0.0",
+              "sha256": "aaa404f905a19d9239c6fb6457a17d6838c6795cda46348626e9d2a15e2f40c3",
+              "content": "测试REFUND_POLICY条款，未用于销售"
+            },
+            "consentAt": "2026-10-08T12:01:48.206Z",
+            "expiresAt": "2026-10-08T12:16:48.206Z",
+            "createdAt": "2026-10-08T12:01:48.206Z",
+            "paidAt": "2026-10-08T12:01:48.333Z",
+            "paymentId": "366555780075356160",
+            "refund": {
+              "id": "366555780842913792",
+              "state": "REQUESTED",
+              "amountCent": 3900
+            }
+          },
+          "buyerAccountEnabled": true,
+          "paymentFactsConsistent": true,
+          "observedAt": "2026-10-08T12:01:51.618Z",
+          "deliveryStarts": [],
+          "deliveryStartsTruncated": false,
+          "audits": [],
+          "auditsTruncated": false,
+          "tasks": []
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "04dbfe4d-1516-4137-b861-8ac49277f691"
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/admin/refunds/366555780842913792/decisions",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "id": "366555780842913792",
+          "orderId": "366555779928555520",
+          "paymentId": "366555780075356160",
+          "state": "REJECTED",
+          "amountCent": 3900,
+          "currency": "CNY",
+          "reason": "工作台测试质量诉求需退款",
+          "decisionReason": "已核对原订单与质量诉求",
+          "createdAt": "2026-10-08T12:01:48.429Z",
+          "updatedAt": "2026-10-08T12:01:52.041Z",
+          "version": 2
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "a87fa357-af0f-4100-b058-75e36d5e9a66"
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/admin/refunds/366555780842913792/decisions",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "id": "366555780842913792",
+          "orderId": "366555779928555520",
+          "paymentId": "366555780075356160",
+          "state": "REJECTED",
+          "amountCent": 3900,
+          "currency": "CNY",
+          "reason": "工作台测试质量诉求需退款",
+          "decisionReason": "已核对原订单与质量诉求",
+          "createdAt": "2026-10-08T12:01:48.429Z",
+          "updatedAt": "2026-10-08T12:01:52.041Z",
+          "version": 2
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "b01853f5-ef6b-4dbb-8b36-f47ddec5b5c0"
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/refunds/366555780842913792",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "refund": {
+            "id": "366555780842913792",
+            "orderId": "366555779928555520",
+            "paymentId": "366555780075356160",
+            "state": "REJECTED",
+            "amountCent": 3900,
+            "currency": "CNY",
+            "reason": "工作台测试质量诉求需退款",
+            "decisionReason": "已核对原订单与质量诉求",
+            "createdAt": "2026-10-08T12:01:48.429Z",
+            "updatedAt": "2026-10-08T12:01:52.041Z",
+            "version": 2
+          },
+          "order": {
+            "id": "366555779928555520",
+            "orderNo": "AST366555779928555520",
+            "skuId": "189304737000010303",
+            "releaseId": "189304737000010302",
+            "state": "PAID",
+            "fulfillmentState": "GRANTED",
+            "totalAmountCent": 3900,
+            "totalRefundedCent": 0,
+            "currency": "CNY",
+            "item": {
+              "skuId": "189304737000010303",
+              "releaseId": "189304737000010302",
+              "productName": "中文测试商品2",
+              "productKind": "TEMPLATE_PACK",
+              "releaseVersion": "1.0.0",
+              "quantity": 1,
+              "amountCent": 3900,
+              "license": {
+                "code": "license",
+                "kind": "LICENSE",
+                "version": "1.0.0",
+                "sha256": "c05ab6988ecb2b3fb03eb90a5e990c3428fa981096cfbb743b2b474ed6605d8e",
+                "content": "测试LICENSE条款，未用于销售"
+              },
+              "assets": [
+                {
+                  "id": "189304737000010304",
+                  "fileName": "中文模板.astra",
+                  "mimeType": "application/octet-stream",
+                  "sizeBytes": 1,
+                  "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                }
+              ]
+            },
+            "purchaseTerms": {
+              "code": "purchase_terms",
+              "kind": "PURCHASE_TERMS",
+              "version": "1.0.0",
+              "sha256": "282cdc36a20e9968ee6d8aa2eaec867b30a7944012917f80cd74813550e9f868",
+              "content": "测试PURCHASE_TERMS条款，未用于销售"
+            },
+            "refundPolicy": {
+              "code": "refund_policy",
+              "kind": "REFUND_POLICY",
+              "version": "1.0.0",
+              "sha256": "aaa404f905a19d9239c6fb6457a17d6838c6795cda46348626e9d2a15e2f40c3",
+              "content": "测试REFUND_POLICY条款，未用于销售"
+            },
+            "consentAt": "2026-10-08T12:01:48.206Z",
+            "expiresAt": "2026-10-08T12:16:48.206Z",
+            "createdAt": "2026-10-08T12:01:48.206Z",
+            "paidAt": "2026-10-08T12:01:48.333Z",
+            "paymentId": "366555780075356160",
+            "refund": {
+              "id": "366555780842913792",
+              "state": "REJECTED",
+              "amountCent": 3900
+            }
+          },
+          "buyerAccountEnabled": true,
+          "paymentFactsConsistent": true,
+          "observedAt": "2026-10-08T12:01:52.889Z",
+          "deliveryStarts": [],
+          "deliveryStartsTruncated": false,
+          "audits": [
+            {
+              "id": "366555795992739840",
+              "actorUserId": "122",
+              "action": "REFUND_REJECT",
+              "reason": "已核对原订单与质量诉求",
+              "traceId": "a87fa357-af0f-4100-b058-75e36d5e9a66",
+              "createdAt": "2026-10-08T12:01:52.041Z"
+            }
+          ],
+          "auditsTruncated": false,
+          "tasks": []
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "531a6564-c646-4d83-941b-90141355a18d"
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/admin/refunds/366555780842913792/decisions",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "id": "366555780842913792",
+          "orderId": "366555779928555520",
+          "paymentId": "366555780075356160",
+          "state": "REQUESTED",
+          "amountCent": 3900,
+          "currency": "CNY",
+          "reason": "工作台测试质量诉求需退款",
+          "decisionReason": "补充材料后重新受理质量申诉",
+          "createdAt": "2026-10-08T12:01:48.429Z",
+          "updatedAt": "2026-10-08T12:01:53.160Z",
+          "version": 3
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "86f731e8-9a10-4358-8b23-2128a6e2554f"
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/refunds/366555780842913792",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "refund": {
+            "id": "366555780842913792",
+            "orderId": "366555779928555520",
+            "paymentId": "366555780075356160",
+            "state": "REQUESTED",
+            "amountCent": 3900,
+            "currency": "CNY",
+            "reason": "工作台测试质量诉求需退款",
+            "decisionReason": "补充材料后重新受理质量申诉",
+            "createdAt": "2026-10-08T12:01:48.429Z",
+            "updatedAt": "2026-10-08T12:01:53.160Z",
+            "version": 3
+          },
+          "order": {
+            "id": "366555779928555520",
+            "orderNo": "AST366555779928555520",
+            "skuId": "189304737000010303",
+            "releaseId": "189304737000010302",
+            "state": "PAID",
+            "fulfillmentState": "GRANTED",
+            "totalAmountCent": 3900,
+            "totalRefundedCent": 0,
+            "currency": "CNY",
+            "item": {
+              "skuId": "189304737000010303",
+              "releaseId": "189304737000010302",
+              "productName": "中文测试商品2",
+              "productKind": "TEMPLATE_PACK",
+              "releaseVersion": "1.0.0",
+              "quantity": 1,
+              "amountCent": 3900,
+              "license": {
+                "code": "license",
+                "kind": "LICENSE",
+                "version": "1.0.0",
+                "sha256": "c05ab6988ecb2b3fb03eb90a5e990c3428fa981096cfbb743b2b474ed6605d8e",
+                "content": "测试LICENSE条款，未用于销售"
+              },
+              "assets": [
+                {
+                  "id": "189304737000010304",
+                  "fileName": "中文模板.astra",
+                  "mimeType": "application/octet-stream",
+                  "sizeBytes": 1,
+                  "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                }
+              ]
+            },
+            "purchaseTerms": {
+              "code": "purchase_terms",
+              "kind": "PURCHASE_TERMS",
+              "version": "1.0.0",
+              "sha256": "282cdc36a20e9968ee6d8aa2eaec867b30a7944012917f80cd74813550e9f868",
+              "content": "测试PURCHASE_TERMS条款，未用于销售"
+            },
+            "refundPolicy": {
+              "code": "refund_policy",
+              "kind": "REFUND_POLICY",
+              "version": "1.0.0",
+              "sha256": "aaa404f905a19d9239c6fb6457a17d6838c6795cda46348626e9d2a15e2f40c3",
+              "content": "测试REFUND_POLICY条款，未用于销售"
+            },
+            "consentAt": "2026-10-08T12:01:48.206Z",
+            "expiresAt": "2026-10-08T12:16:48.206Z",
+            "createdAt": "2026-10-08T12:01:48.206Z",
+            "paidAt": "2026-10-08T12:01:48.333Z",
+            "paymentId": "366555780075356160",
+            "refund": {
+              "id": "366555780842913792",
+              "state": "REQUESTED",
+              "amountCent": 3900
+            }
+          },
+          "buyerAccountEnabled": true,
+          "paymentFactsConsistent": true,
+          "observedAt": "2026-10-08T12:01:53.215Z",
+          "deliveryStarts": [],
+          "deliveryStartsTruncated": false,
+          "audits": [
+            {
+              "id": "366555800686166016",
+              "actorUserId": "122",
+              "action": "REFUND_REOPEN",
+              "reason": "补充材料后重新受理质量申诉",
+              "traceId": "86f731e8-9a10-4358-8b23-2128a6e2554f",
+              "createdAt": "2026-10-08T12:01:53.160Z"
+            },
+            {
+              "id": "366555795992739840",
+              "actorUserId": "122",
+              "action": "REFUND_REJECT",
+              "reason": "已核对原订单与质量诉求",
+              "traceId": "a87fa357-af0f-4100-b058-75e36d5e9a66",
+              "createdAt": "2026-10-08T12:01:52.041Z"
+            }
+          ],
+          "auditsTruncated": false,
+          "tasks": []
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "2dfed93e-f85a-43fb-abc1-44c370d62d9e"
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/admin/refunds/366555780842913792/decisions",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "id": "366555780842913792",
+          "orderId": "366555779928555520",
+          "paymentId": "366555780075356160",
+          "state": "REJECTED",
+          "amountCent": 3900,
+          "currency": "CNY",
+          "reason": "工作台测试质量诉求需退款",
+          "decisionReason": "另一管理员核对后拒绝申请",
+          "createdAt": "2026-10-08T12:01:48.429Z",
+          "updatedAt": "2026-10-08T12:01:53.254Z",
+          "version": 4
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "782aca9e-a285-4b7c-8420-c339e7178f99"
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/admin/refunds/366555780842913792/decisions",
+      "status": 409,
+      "body": {
+        "code": 43008,
+        "msg": "退款状态已改变，请刷新后重新审核"
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "fbefbc18-6b84-4ae8-af7d-d86edea113f3"
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/refunds/366555780842913792",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "refund": {
+            "id": "366555780842913792",
+            "orderId": "366555779928555520",
+            "paymentId": "366555780075356160",
+            "state": "REJECTED",
+            "amountCent": 3900,
+            "currency": "CNY",
+            "reason": "工作台测试质量诉求需退款",
+            "decisionReason": "另一管理员核对后拒绝申请",
+            "createdAt": "2026-10-08T12:01:48.429Z",
+            "updatedAt": "2026-10-08T12:01:53.254Z",
+            "version": 4
+          },
+          "order": {
+            "id": "366555779928555520",
+            "orderNo": "AST366555779928555520",
+            "skuId": "189304737000010303",
+            "releaseId": "189304737000010302",
+            "state": "PAID",
+            "fulfillmentState": "GRANTED",
+            "totalAmountCent": 3900,
+            "totalRefundedCent": 0,
+            "currency": "CNY",
+            "item": {
+              "skuId": "189304737000010303",
+              "releaseId": "189304737000010302",
+              "productName": "中文测试商品2",
+              "productKind": "TEMPLATE_PACK",
+              "releaseVersion": "1.0.0",
+              "quantity": 1,
+              "amountCent": 3900,
+              "license": {
+                "code": "license",
+                "kind": "LICENSE",
+                "version": "1.0.0",
+                "sha256": "c05ab6988ecb2b3fb03eb90a5e990c3428fa981096cfbb743b2b474ed6605d8e",
+                "content": "测试LICENSE条款，未用于销售"
+              },
+              "assets": [
+                {
+                  "id": "189304737000010304",
+                  "fileName": "中文模板.astra",
+                  "mimeType": "application/octet-stream",
+                  "sizeBytes": 1,
+                  "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                }
+              ]
+            },
+            "purchaseTerms": {
+              "code": "purchase_terms",
+              "kind": "PURCHASE_TERMS",
+              "version": "1.0.0",
+              "sha256": "282cdc36a20e9968ee6d8aa2eaec867b30a7944012917f80cd74813550e9f868",
+              "content": "测试PURCHASE_TERMS条款，未用于销售"
+            },
+            "refundPolicy": {
+              "code": "refund_policy",
+              "kind": "REFUND_POLICY",
+              "version": "1.0.0",
+              "sha256": "aaa404f905a19d9239c6fb6457a17d6838c6795cda46348626e9d2a15e2f40c3",
+              "content": "测试REFUND_POLICY条款，未用于销售"
+            },
+            "consentAt": "2026-10-08T12:01:48.206Z",
+            "expiresAt": "2026-10-08T12:16:48.206Z",
+            "createdAt": "2026-10-08T12:01:48.206Z",
+            "paidAt": "2026-10-08T12:01:48.333Z",
+            "paymentId": "366555780075356160",
+            "refund": {
+              "id": "366555780842913792",
+              "state": "REJECTED",
+              "amountCent": 3900
+            }
+          },
+          "buyerAccountEnabled": true,
+          "paymentFactsConsistent": true,
+          "observedAt": "2026-10-08T12:01:53.432Z",
+          "deliveryStarts": [],
+          "deliveryStartsTruncated": false,
+          "audits": [
+            {
+              "id": "366555801076236288",
+              "actorUserId": "125",
+              "action": "REFUND_REJECT",
+              "reason": "另一管理员核对后拒绝申请",
+              "traceId": "782aca9e-a285-4b7c-8420-c339e7178f99",
+              "createdAt": "2026-10-08T12:01:53.254Z"
+            },
+            {
+              "id": "366555800686166016",
+              "actorUserId": "122",
+              "action": "REFUND_REOPEN",
+              "reason": "补充材料后重新受理质量申诉",
+              "traceId": "86f731e8-9a10-4358-8b23-2128a6e2554f",
+              "createdAt": "2026-10-08T12:01:53.160Z"
+            },
+            {
+              "id": "366555795992739840",
+              "actorUserId": "122",
+              "action": "REFUND_REJECT",
+              "reason": "已核对原订单与质量诉求",
+              "traceId": "a87fa357-af0f-4100-b058-75e36d5e9a66",
+              "createdAt": "2026-10-08T12:01:52.041Z"
+            }
+          ],
+          "auditsTruncated": false,
+          "tasks": []
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "ce149113-520c-48c0-9522-01e33a37bcc9"
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/admin/refunds/366555780842913792/decisions",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "id": "366555780842913792",
+          "orderId": "366555779928555520",
+          "paymentId": "366555780075356160",
+          "state": "REQUESTED",
+          "amountCent": 3900,
+          "currency": "CNY",
+          "reason": "工作台测试质量诉求需退款",
+          "decisionReason": "核对补充资料后重新受理",
+          "createdAt": "2026-10-08T12:01:48.429Z",
+          "updatedAt": "2026-10-08T12:01:53.526Z",
+          "version": 5
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "2a0d1cc3-626f-4634-a330-c402387fc6e6"
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/refunds/366555780842913792",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "refund": {
+            "id": "366555780842913792",
+            "orderId": "366555779928555520",
+            "paymentId": "366555780075356160",
+            "state": "REQUESTED",
+            "amountCent": 3900,
+            "currency": "CNY",
+            "reason": "工作台测试质量诉求需退款",
+            "decisionReason": "核对补充资料后重新受理",
+            "createdAt": "2026-10-08T12:01:48.429Z",
+            "updatedAt": "2026-10-08T12:01:53.526Z",
+            "version": 5
+          },
+          "order": {
+            "id": "366555779928555520",
+            "orderNo": "AST366555779928555520",
+            "skuId": "189304737000010303",
+            "releaseId": "189304737000010302",
+            "state": "PAID",
+            "fulfillmentState": "GRANTED",
+            "totalAmountCent": 3900,
+            "totalRefundedCent": 0,
+            "currency": "CNY",
+            "item": {
+              "skuId": "189304737000010303",
+              "releaseId": "189304737000010302",
+              "productName": "中文测试商品2",
+              "productKind": "TEMPLATE_PACK",
+              "releaseVersion": "1.0.0",
+              "quantity": 1,
+              "amountCent": 3900,
+              "license": {
+                "code": "license",
+                "kind": "LICENSE",
+                "version": "1.0.0",
+                "sha256": "c05ab6988ecb2b3fb03eb90a5e990c3428fa981096cfbb743b2b474ed6605d8e",
+                "content": "测试LICENSE条款，未用于销售"
+              },
+              "assets": [
+                {
+                  "id": "189304737000010304",
+                  "fileName": "中文模板.astra",
+                  "mimeType": "application/octet-stream",
+                  "sizeBytes": 1,
+                  "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                }
+              ]
+            },
+            "purchaseTerms": {
+              "code": "purchase_terms",
+              "kind": "PURCHASE_TERMS",
+              "version": "1.0.0",
+              "sha256": "282cdc36a20e9968ee6d8aa2eaec867b30a7944012917f80cd74813550e9f868",
+              "content": "测试PURCHASE_TERMS条款，未用于销售"
+            },
+            "refundPolicy": {
+              "code": "refund_policy",
+              "kind": "REFUND_POLICY",
+              "version": "1.0.0",
+              "sha256": "aaa404f905a19d9239c6fb6457a17d6838c6795cda46348626e9d2a15e2f40c3",
+              "content": "测试REFUND_POLICY条款，未用于销售"
+            },
+            "consentAt": "2026-10-08T12:01:48.206Z",
+            "expiresAt": "2026-10-08T12:16:48.206Z",
+            "createdAt": "2026-10-08T12:01:48.206Z",
+            "paidAt": "2026-10-08T12:01:48.333Z",
+            "paymentId": "366555780075356160",
+            "refund": {
+              "id": "366555780842913792",
+              "state": "REQUESTED",
+              "amountCent": 3900
+            }
+          },
+          "buyerAccountEnabled": true,
+          "paymentFactsConsistent": true,
+          "observedAt": "2026-10-08T12:01:53.580Z",
+          "deliveryStarts": [],
+          "deliveryStartsTruncated": false,
+          "audits": [
+            {
+              "id": "366555802221281280",
+              "actorUserId": "122",
+              "action": "REFUND_REOPEN",
+              "reason": "核对补充资料后重新受理",
+              "traceId": "2a0d1cc3-626f-4634-a330-c402387fc6e6",
+              "createdAt": "2026-10-08T12:01:53.526Z"
+            },
+            {
+              "id": "366555801076236288",
+              "actorUserId": "125",
+              "action": "REFUND_REJECT",
+              "reason": "另一管理员核对后拒绝申请",
+              "traceId": "782aca9e-a285-4b7c-8420-c339e7178f99",
+              "createdAt": "2026-10-08T12:01:53.254Z"
+            },
+            {
+              "id": "366555800686166016",
+              "actorUserId": "122",
+              "action": "REFUND_REOPEN",
+              "reason": "补充材料后重新受理质量申诉",
+              "traceId": "86f731e8-9a10-4358-8b23-2128a6e2554f",
+              "createdAt": "2026-10-08T12:01:53.160Z"
+            },
+            {
+              "id": "366555795992739840",
+              "actorUserId": "122",
+              "action": "REFUND_REJECT",
+              "reason": "已核对原订单与质量诉求",
+              "traceId": "a87fa357-af0f-4100-b058-75e36d5e9a66",
+              "createdAt": "2026-10-08T12:01:52.041Z"
+            }
+          ],
+          "auditsTruncated": false,
+          "tasks": []
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "44104343-d33b-4aaf-a5b3-29bc1378f8ea"
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/admin/refunds/366555780842913792/decisions",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "id": "366555780842913792",
+          "orderId": "366555779928555520",
+          "paymentId": "366555780075356160",
+          "state": "APPROVED",
+          "amountCent": 3900,
+          "currency": "CNY",
+          "reason": "工作台测试质量诉求需退款",
+          "decisionReason": "补充资料确认后批准全额退款",
+          "createdAt": "2026-10-08T12:01:48.429Z",
+          "updatedAt": "2026-10-08T12:01:53.697Z",
+          "version": 6
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "7747cdd4-cdd2-4286-9452-7ccac4268518"
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/refunds/366555780842913792",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "refund": {
+            "id": "366555780842913792",
+            "orderId": "366555779928555520",
+            "paymentId": "366555780075356160",
+            "state": "APPROVED",
+            "amountCent": 3900,
+            "currency": "CNY",
+            "reason": "工作台测试质量诉求需退款",
+            "decisionReason": "补充资料确认后批准全额退款",
+            "createdAt": "2026-10-08T12:01:48.429Z",
+            "updatedAt": "2026-10-08T12:01:53.697Z",
+            "version": 6
+          },
+          "order": {
+            "id": "366555779928555520",
+            "orderNo": "AST366555779928555520",
+            "skuId": "189304737000010303",
+            "releaseId": "189304737000010302",
+            "state": "PAID",
+            "fulfillmentState": "GRANTED",
+            "totalAmountCent": 3900,
+            "totalRefundedCent": 0,
+            "currency": "CNY",
+            "item": {
+              "skuId": "189304737000010303",
+              "releaseId": "189304737000010302",
+              "productName": "中文测试商品2",
+              "productKind": "TEMPLATE_PACK",
+              "releaseVersion": "1.0.0",
+              "quantity": 1,
+              "amountCent": 3900,
+              "license": {
+                "code": "license",
+                "kind": "LICENSE",
+                "version": "1.0.0",
+                "sha256": "c05ab6988ecb2b3fb03eb90a5e990c3428fa981096cfbb743b2b474ed6605d8e",
+                "content": "测试LICENSE条款，未用于销售"
+              },
+              "assets": [
+                {
+                  "id": "189304737000010304",
+                  "fileName": "中文模板.astra",
+                  "mimeType": "application/octet-stream",
+                  "sizeBytes": 1,
+                  "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                }
+              ]
+            },
+            "purchaseTerms": {
+              "code": "purchase_terms",
+              "kind": "PURCHASE_TERMS",
+              "version": "1.0.0",
+              "sha256": "282cdc36a20e9968ee6d8aa2eaec867b30a7944012917f80cd74813550e9f868",
+              "content": "测试PURCHASE_TERMS条款，未用于销售"
+            },
+            "refundPolicy": {
+              "code": "refund_policy",
+              "kind": "REFUND_POLICY",
+              "version": "1.0.0",
+              "sha256": "aaa404f905a19d9239c6fb6457a17d6838c6795cda46348626e9d2a15e2f40c3",
+              "content": "测试REFUND_POLICY条款，未用于销售"
+            },
+            "consentAt": "2026-10-08T12:01:48.206Z",
+            "expiresAt": "2026-10-08T12:16:48.206Z",
+            "createdAt": "2026-10-08T12:01:48.206Z",
+            "paidAt": "2026-10-08T12:01:48.333Z",
+            "paymentId": "366555780075356160",
+            "refund": {
+              "id": "366555780842913792",
+              "state": "APPROVED",
+              "amountCent": 3900
+            }
+          },
+          "buyerAccountEnabled": true,
+          "paymentFactsConsistent": true,
+          "observedAt": "2026-10-08T12:01:53.746Z",
+          "deliveryStarts": [],
+          "deliveryStartsTruncated": false,
+          "audits": [
+            {
+              "id": "366555802946895872",
+              "actorUserId": "122",
+              "action": "REFUND_APPROVE",
+              "reason": "补充资料确认后批准全额退款",
+              "traceId": "7747cdd4-cdd2-4286-9452-7ccac4268518",
+              "createdAt": "2026-10-08T12:01:53.697Z"
+            },
+            {
+              "id": "366555802221281280",
+              "actorUserId": "122",
+              "action": "REFUND_REOPEN",
+              "reason": "核对补充资料后重新受理",
+              "traceId": "2a0d1cc3-626f-4634-a330-c402387fc6e6",
+              "createdAt": "2026-10-08T12:01:53.526Z"
+            },
+            {
+              "id": "366555801076236288",
+              "actorUserId": "125",
+              "action": "REFUND_REJECT",
+              "reason": "另一管理员核对后拒绝申请",
+              "traceId": "782aca9e-a285-4b7c-8420-c339e7178f99",
+              "createdAt": "2026-10-08T12:01:53.254Z"
+            },
+            {
+              "id": "366555800686166016",
+              "actorUserId": "122",
+              "action": "REFUND_REOPEN",
+              "reason": "补充材料后重新受理质量申诉",
+              "traceId": "86f731e8-9a10-4358-8b23-2128a6e2554f",
+              "createdAt": "2026-10-08T12:01:53.160Z"
+            },
+            {
+              "id": "366555795992739840",
+              "actorUserId": "122",
+              "action": "REFUND_REJECT",
+              "reason": "已核对原订单与质量诉求",
+              "traceId": "a87fa357-af0f-4100-b058-75e36d5e9a66",
+              "createdAt": "2026-10-08T12:01:52.041Z"
+            }
+          ],
+          "auditsTruncated": false,
+          "tasks": [
+            {
+              "state": "READY",
+              "attempts": 0,
+              "nextRunAt": "2026-10-08T12:01:53.697Z"
+            }
+          ]
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "a1e75128-ccc8-4bcd-8c7c-faf051df26ae"
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/access",
+      "status": 403,
+      "body": {
+        "code": 403,
+        "msg": "无管理权限"
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "80fef1c5-ece3-4539-815a-b551c5b64da4"
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/access",
+      "status": 403,
+      "body": {
+        "code": 403,
+        "msg": "无管理权限"
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "774c5a3a-0b9d-41e8-851f-49a5f0a3d15c"
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/orders",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "items": [
+            {
+              "id": "366555779928555520",
+              "orderNo": "AST366555779928555520",
+              "skuId": "189304737000010303",
+              "releaseId": "189304737000010302",
+              "state": "PAID",
+              "fulfillmentState": "GRANTED",
+              "totalAmountCent": 3900,
+              "totalRefundedCent": 0,
+              "currency": "CNY",
+              "item": {
+                "skuId": "189304737000010303",
+                "releaseId": "189304737000010302",
+                "productName": "中文测试商品2",
+                "productKind": "TEMPLATE_PACK",
+                "releaseVersion": "1.0.0",
+                "quantity": 1,
+                "amountCent": 3900,
+                "license": {
+                  "code": "license",
+                  "kind": "LICENSE",
+                  "version": "1.0.0",
+                  "sha256": "c05ab6988ecb2b3fb03eb90a5e990c3428fa981096cfbb743b2b474ed6605d8e",
+                  "content": "测试LICENSE条款，未用于销售"
+                },
+                "assets": [
+                  {
+                    "id": "189304737000010304",
+                    "fileName": "中文模板.astra",
+                    "mimeType": "application/octet-stream",
+                    "sizeBytes": 1,
+                    "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                  }
+                ]
+              },
+              "purchaseTerms": {
+                "code": "purchase_terms",
+                "kind": "PURCHASE_TERMS",
+                "version": "1.0.0",
+                "sha256": "282cdc36a20e9968ee6d8aa2eaec867b30a7944012917f80cd74813550e9f868",
+                "content": "测试PURCHASE_TERMS条款，未用于销售"
+              },
+              "refundPolicy": {
+                "code": "refund_policy",
+                "kind": "REFUND_POLICY",
+                "version": "1.0.0",
+                "sha256": "aaa404f905a19d9239c6fb6457a17d6838c6795cda46348626e9d2a15e2f40c3",
+                "content": "测试REFUND_POLICY条款，未用于销售"
+              },
+              "consentAt": "2026-10-08T12:01:48.206Z",
+              "expiresAt": "2026-10-08T12:16:48.206Z",
+              "createdAt": "2026-10-08T12:01:48.206Z",
+              "paidAt": "2026-10-08T12:01:48.333Z",
+              "paymentId": "366555780075356160",
+              "refund": {
+                "id": "366555780842913792",
+                "state": "APPROVED",
+                "amountCent": 3900
+              }
+            }
+          ]
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "aaa93626-b0d3-48eb-a635-80e6c1bb5b69"
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/orders",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "items": []
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "21f888a8-9dbc-400d-a354-89039f4903d4"
+      },
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/access",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "role": "COMMERCE_ADMIN"
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "d034a386-e6e1-44d1-9bcc-dda07cb91193"
+      },
+      "viaGateway": true
+    }
+  ],
+  "injectedFailures": [
+    {
+      "kind": "accepted200-decision-response-lost",
+      "path": "/api/system/admin/refunds/366555780842913792/decisions"
+    }
+  ]
+}

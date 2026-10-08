@@ -173,6 +173,36 @@ export interface CommerceRefund {
 export function fetchOwnedRefund(refundId: string, signal?: AbortSignal) {
   return http<CommerceRefund>(`/system/refunds/${refundId}`, { signal, cache: 'no-store' })
 }
+export interface CommerceRefundContext {
+  refund: CommerceRefund
+  order: CommerceOrder
+  buyerAccountEnabled: boolean
+  paymentFactsConsistent: boolean
+  observedAt: string
+  deliveryStarts: { id: string; assetId: string; startedAt: string }[]
+  deliveryStartsTruncated: boolean
+  audits: { id: string; actorUserId: string; action: string; reason: string; traceId: string; createdAt: string }[]
+  auditsTruncated: boolean
+  tasks: { state: string; attempts: number; lastErrorCode?: string; nextRunAt: string }[]
+}
+export type RefundDecision = 'APPROVE' | 'REJECT' | 'REOPEN'
+export function fetchCommerceAdminAccess(signal?: AbortSignal) {
+  return http<{ role: string }>('/system/admin/access', { signal, cache: 'no-store' })
+}
+export function fetchAdminRefunds(state?: string, cursor?: string, signal?: AbortSignal) {
+  const params = new URLSearchParams({ limit: '20' })
+  if (state) params.set('state', state)
+  if (cursor) params.set('cursor', cursor)
+  return http<CommercePage<CommerceRefund>>(`/system/admin/refunds?${params}`, { signal, cache: 'no-store' })
+}
+export function fetchAdminRefundContext(refundId: string, signal?: AbortSignal) {
+  return http<CommerceRefundContext>(`/system/admin/refunds/${encodeURIComponent(refundId)}`, { signal, cache: 'no-store' })
+}
+export function decideAdminRefund(refundId: string, body: { decision: RefundDecision; expectedVersion: number; reason: string }, key: string, signal: AbortSignal) {
+  return http<CommerceRefund>(`/system/admin/refunds/${encodeURIComponent(refundId)}/decisions`, {
+    method: 'POST', headers: { 'Idempotency-Key': key }, body: JSON.stringify(body), signal, cache: 'no-store',
+  })
+}
 export function requestOrderRefund(orderId: string, reason: string, key: string, signal?: AbortSignal) {
   return http<CommerceRefund>(`/system/orders/${orderId}/refund-requests`, {
     method: 'POST',

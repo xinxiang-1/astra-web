@@ -4,6 +4,7 @@ import { ApiError, getAccessToken } from '@/api/http'
 import {
   fetchOwnedOrders,
   fetchOwnedEntitlements,
+  fetchCommerceAdminAccess,
   type CommerceOrder,
   type CommerceEntitlement,
 } from '@/api/commerce'
@@ -23,6 +24,7 @@ const busy = ref(false)
 const error = ref('')
 const needsLogin = ref(false)
 const loaded = ref(false)
+const adminAvailable = ref(false)
 const transfer = ref('')
 const transferPhase = ref<'reading' | 'saving' | ''>('')
 const transferMessage = ref('')
@@ -78,6 +80,7 @@ async function load(append = false) {
   const attempt = new AbortController()
   controller = attempt
   const token = getAccessToken()
+  adminAvailable.value = false
   error.value = ''
   needsLogin.value = !token
   if (!append) {
@@ -91,6 +94,10 @@ async function load(append = false) {
     return
   }
   busy.value = true
+  void fetchCommerceAdminAccess(attempt.signal).then((access) => {
+    if (!attempt.signal.aborted && getAccessToken() === token)
+      adminAvailable.value = access.role === 'COMMERCE_ADMIN'
+  }).catch(() => { /* Optional entry discovery must not disturb the buyer's orders. */ })
   const collection = props.collection
   try {
     if (collection === 'orders') {
@@ -222,6 +229,7 @@ onBeforeUnmount(() => {
         >
         <RouterLink to="/projects">本地项目 ↗</RouterLink>
         <RouterLink to="/collections">内容合集 ↗</RouterLink>
+        <RouterLink v-if="adminAvailable" to="/admin/refunds">退款工作台 ↗</RouterLink>
       </nav>
       <section :aria-label="title" :aria-busy="busy">
         <div v-if="transfer" class="transfer-status" role="status">

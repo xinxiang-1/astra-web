@@ -1,0 +1,84 @@
+{
+  "passed": true,
+  "tests": 34,
+  "suites": [
+    {
+      "name": "com.astra.system.commerce.AdminRefundWorkbenchIntegrationTest",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "elapsedSeconds": 46.283,
+      "cases": [
+        "originalSnapshotAndBoundedHistoryAreReadOnly",
+        "roleAndAccountAreRecheckedWithoutClientAuthority",
+        "signedGlobalOrderPaginationIsActorStateAndDomainBoundWithoutExpiring",
+        "disabledBuyerAndPaymentAnomalyRemainVisibleWithoutGrantingApproval",
+        "concurrentApprovalAndContextUseCurrentVersionWithoutDeadlock",
+        "actualWorkbenchRecoversLostDecisionAndHandlesStaleAndIdentity",
+        "independentReadQuotasAndInfrastructureFailuresFailClosed"
+      ],
+      "rawXmlSha256": "0adc38d98cb01a43c239c960799c70fa7f39879a62575c5df3c81013eda284bb"
+    },
+    {
+      "name": "com.astra.system.commerce.RefundApplicationIntegrationTest",
+      "tests": 11,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "elapsedSeconds": 32.693,
+      "cases": [
+        "authenticatedStrictRequestIsPendingAndHasNoChannelSideEffect",
+        "concurrentSameAndAlternateKeysRecoverOneRecordAndRejectChangedBody",
+        "deliveredAndOlderPaidOrdersMaySubmitForHumanReview",
+        "adminRoleStrictInputAndExpectedVersionAreServerChecked",
+        "approvalAuditAndTaskAreAtomicAndSuccessOnlyComesFromWorker",
+        "rejectionAndReopeningUseOriginalNumberWithoutChannelCalls",
+        "auditSqlFailureRollsBackApprovalTaskAndCommand",
+        "directServiceGuardAndConcurrentDecisionsCannotBypassRoleOrVersion",
+        "adminPaginationIsRoleActorAndStateBoundAndDoesNotExposeProviderData",
+        "browserLossRetryAndBackendApprovalSettlement",
+        "rateLimitAndDatabaseOrRedisFaultFailClosed"
+      ],
+      "rawXmlSha256": "5a728bbc01bcfed851544fb4812023fb4e4efe81f6683f8601f764b0a3300e5c"
+    },
+    {
+      "name": "com.astra.system.commerce.RefundWorkerIntegrationTest",
+      "tests": 12,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "elapsedSeconds": 47.232,
+      "cases": [
+        "acceptedTimeoutRecoversSameRefundAndRevokesOnlySource",
+        "localSqlFailureRollsBackAllFactsAndRecoversChannelAcceptance",
+        "pendingPollKnownFailureAndLateFailureDoNotInventMoney",
+        "mismatchedFactsNeverRefundOrRevoke",
+        "expiredAndReplacedLeasesCannotApplyAcceptedResult",
+        "parallelWorkersAndDisabledUsersStillRefundExactlyOnce",
+        "unapprovedTasksNeverCallChannelAndUnknownStopsAtBound",
+        "genuineLatePaidOrderAutomaticRefundUsesExistingQueue",
+        "conflictingProviderIdentityOrCompletionCannotMutateSuccess",
+        "transactionBoundaryAndPaymentFlagGateRemainIndependent",
+        "actualJvmCrashAfterAcceptanceRecoversOriginalRefund",
+        "nullAndUnboundNotFoundCannotRecreateAcceptedRefund"
+      ],
+      "rawXmlSha256": "39e82dac07636bcfd7e575e6f5fbe454b87c3b6c5981a19190a27deec42f082a"
+    },
+    {
+      "name": "com.astra.system.commerce.refund.RefundConfigurationTest",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "elapsedSeconds": 0.687,
+      "cases": [
+        "paymentWorkerEnablementDoesNotEnableRefunds",
+        "productionDefaultsNeverScheduleRefunds",
+        "schedulerExistsOnlyForExplicitRefundWorker",
+        "refundRequiresExplicitApprovedEnvironmentAndProvider"
+      ],
+      "rawXmlSha256": "1d2335eb0d3b58fba543b5858bcb11b477be0e048213a5ad31e41b3b9301a531"
+    }
+  ]
+}
