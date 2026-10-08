@@ -1,0 +1,30 @@
+{
+  "buildR1": "Failed: formatted inline multiple-statement Vue event expression; changed to standalone leaveReview function. BuildR2 and final BuildR3 passed.",
+  "liveR1": {
+    "passed": false,
+    "realJUnitPassed": 4,
+    "browserFailed": 1,
+    "cleanupComplete": true,
+    "cause": "Started against previous preview build before new build completed; new component absent."
+  },
+  "liveR2": {
+    "passed": true,
+    "realJUnit": 5,
+    "browserChecks": 10,
+    "scope": "Before server-closed reconfirmation addition"
+  },
+  "liveR3": {
+    "passed": true,
+    "realJUnit": 5,
+    "browserChecks": 11,
+    "httpResponses": 51,
+    "scope": "Final product logic; screenshots full page"
+  },
+  "liveR4": {
+    "passed": true,
+    "realJUnit": 5,
+    "browserChecks": 11,
+    "httpResponses": 51,
+    "scope": "Same product logic; concise component screenshots replace full-page captures"
+  }
+}

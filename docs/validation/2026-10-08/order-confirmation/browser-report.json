@@ -1,0 +1,1205 @@
+{
+  "passed": true,
+  "scope": "Real owned gateway/system/MySQL/Redis; no payments; auth/me mocked503; explicit accepted response loss and stale catalogue injection",
+  "checks": [
+    "Anonymous product viewing makes zero private writes and preserves safe product login return",
+    "Full policy text and backend amount are reviewed before explicit unchecked consent; no writes on entry",
+    "Accepted actual POST response loss leaves the original command available without granting rights",
+    "Same-tab reload and double click recover the exact command with one POST and the original key",
+    "Successful order refresh recovers by GET only and keeps its original detail link",
+    "Actual backend stale offer409 creates no order and requires refresh with fresh consent",
+    "Catalogue refresh and leaving review both reset consent; no inherited checkbox authorization",
+    "Fresh offer2 confirmation creates a separate valid order; 390px view has no horizontal overflow",
+    "Real cross-tab account change clears private order and consent; other owner receives backend404",
+    "Logout returns to login prompt without restoring another account command or writing",
+    "Real backend-closed order is rechecked through GET before explicit new confirmation; consent resets and zero extra POSTs"
+  ],
+  "requests": [
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/capabilities",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "paymentEnabled": false,
+          "paymentChannel": "wechat_native",
+          "supportedCheckoutDevices": [
+            "desktop"
+          ],
+          "creationKitReady": false,
+          "environment": "test",
+          "mockPayment": false,
+          "orderCreationEnabled": true
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "21c97a9d-3624-43b4-a5ca-84e840b81998"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/products/owned-theme-0",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "id": "189304737000010100",
+          "slug": "owned-theme-0",
+          "name": "中文测试商品0",
+          "kind": "TEMPLATE_PACK",
+          "summary": "独占测试商品",
+          "previewUrls": [
+            "https://example.invalid/owned-test.png"
+          ],
+          "skus": [
+            {
+              "id": "189304737000010103",
+              "offerVersion": 1,
+              "amountCent": 3900,
+              "currency": "CNY",
+              "release": {
+                "id": "189304737000010102",
+                "version": "1.0.0",
+                "engineVersion": "2.2.0",
+                "projectSchemaVersion": 1,
+                "license": {
+                  "code": "license",
+                  "kind": "LICENSE",
+                  "version": "1.0.0",
+                  "sha256": "c05ab6988ecb2b3fb03eb90a5e990c3428fa981096cfbb743b2b474ed6605d8e",
+                  "content": "测试LICENSE条款，未用于销售"
+                },
+                "assets": [
+                  {
+                    "id": "189304737000010104",
+                    "fileName": "中文模板.astra",
+                    "mimeType": "application/octet-stream",
+                    "sizeBytes": 1,
+                    "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                  }
+                ],
+                "deliveryContents": [
+                  "仅影子库测试可编辑模板"
+                ]
+              },
+              "purchaseTerms": {
+                "code": "purchase_terms",
+                "kind": "PURCHASE_TERMS",
+                "version": "1.0.0",
+                "sha256": "282cdc36a20e9968ee6d8aa2eaec867b30a7944012917f80cd74813550e9f868",
+                "content": "测试PURCHASE_TERMS条款，未用于销售"
+              },
+              "refundPolicy": {
+                "code": "refund_policy",
+                "kind": "REFUND_POLICY",
+                "version": "1.0.0",
+                "sha256": "aaa404f905a19d9239c6fb6457a17d6838c6795cda46348626e9d2a15e2f40c3",
+                "content": "测试REFUND_POLICY条款，未用于销售"
+              }
+            }
+          ]
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "84180401-4667-475d-ad74-7b9bbb180b27"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/capabilities",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "paymentEnabled": false,
+          "paymentChannel": "wechat_native",
+          "supportedCheckoutDevices": [
+            "desktop"
+          ],
+          "creationKitReady": false,
+          "environment": "test",
+          "mockPayment": false,
+          "orderCreationEnabled": true
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "f6edd2e3-5c9b-4ed0-b319-155f81801713"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/products/owned-theme-0",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "id": "189304737000010100",
+          "slug": "owned-theme-0",
+          "name": "中文测试商品0",
+          "kind": "TEMPLATE_PACK",
+          "summary": "独占测试商品",
+          "previewUrls": [
+            "https://example.invalid/owned-test.png"
+          ],
+          "skus": [
+            {
+              "id": "189304737000010103",
+              "offerVersion": 1,
+              "amountCent": 3900,
+              "currency": "CNY",
+              "release": {
+                "id": "189304737000010102",
+                "version": "1.0.0",
+                "engineVersion": "2.2.0",
+                "projectSchemaVersion": 1,
+                "license": {
+                  "code": "license",
+                  "kind": "LICENSE",
+                  "version": "1.0.0",
+                  "sha256": "c05ab6988ecb2b3fb03eb90a5e990c3428fa981096cfbb743b2b474ed6605d8e",
+                  "content": "测试LICENSE条款，未用于销售"
+                },
+                "assets": [
+                  {
+                    "id": "189304737000010104",
+                    "fileName": "中文模板.astra",
+                    "mimeType": "application/octet-stream",
+                    "sizeBytes": 1,
+                    "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                  }
+                ],
+                "deliveryContents": [
+                  "仅影子库测试可编辑模板"
+                ]
+              },
+              "purchaseTerms": {
+                "code": "purchase_terms",
+                "kind": "PURCHASE_TERMS",
+                "version": "1.0.0",
+                "sha256": "282cdc36a20e9968ee6d8aa2eaec867b30a7944012917f80cd74813550e9f868",
+                "content": "测试PURCHASE_TERMS条款，未用于销售"
+              },
+              "refundPolicy": {
+                "code": "refund_policy",
+                "kind": "REFUND_POLICY",
+                "version": "1.0.0",
+                "sha256": "aaa404f905a19d9239c6fb6457a17d6838c6795cda46348626e9d2a15e2f40c3",
+                "content": "测试REFUND_POLICY条款，未用于销售"
+              }
+            }
+          ]
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "101763a3-7500-4d17-a570-c1ab013621c8"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "id": "366469909238120448",
+          "orderNo": "AST366469909238120448",
+          "skuId": "189304737000010103",
+          "releaseId": "189304737000010102",
+          "state": "PENDING_PAYMENT",
+          "fulfillmentState": "NONE",
+          "totalAmountCent": 3900,
+          "totalRefundedCent": 0,
+          "currency": "CNY",
+          "item": {
+            "skuId": "189304737000010103",
+            "releaseId": "189304737000010102",
+            "productName": "中文测试商品0",
+            "productKind": "TEMPLATE_PACK",
+            "releaseVersion": "1.0.0",
+            "quantity": 1,
+            "amountCent": 3900,
+            "license": {
+              "code": "license",
+              "kind": "LICENSE",
+              "version": "1.0.0",
+              "sha256": "c05ab6988ecb2b3fb03eb90a5e990c3428fa981096cfbb743b2b474ed6605d8e",
+              "content": "测试LICENSE条款，未用于销售"
+            },
+            "assets": [
+              {
+                "id": "189304737000010104",
+                "fileName": "中文模板.astra",
+                "mimeType": "application/octet-stream",
+                "sizeBytes": 1,
+                "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+              }
+            ]
+          },
+          "purchaseTerms": {
+            "code": "purchase_terms",
+            "kind": "PURCHASE_TERMS",
+            "version": "1.0.0",
+            "sha256": "282cdc36a20e9968ee6d8aa2eaec867b30a7944012917f80cd74813550e9f868",
+            "content": "测试PURCHASE_TERMS条款，未用于销售"
+          },
+          "refundPolicy": {
+            "code": "refund_policy",
+            "kind": "REFUND_POLICY",
+            "version": "1.0.0",
+            "sha256": "aaa404f905a19d9239c6fb6457a17d6838c6795cda46348626e9d2a15e2f40c3",
+            "content": "测试REFUND_POLICY条款，未用于销售"
+          },
+          "consentAt": "2026-10-08T06:20:35.032Z",
+          "expiresAt": "2026-10-08T06:35:35.032Z",
+          "createdAt": "2026-10-08T06:20:35.032Z"
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "d46e3f18-92d0-48dd-b741-64c91ede82a3"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/capabilities",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "paymentEnabled": false,
+          "paymentChannel": "wechat_native",
+          "supportedCheckoutDevices": [
+            "desktop"
+          ],
+          "creationKitReady": false,
+          "environment": "test",
+          "mockPayment": false,
+          "orderCreationEnabled": true
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "76d84314-209e-4653-bb70-d8b7f8f68ee7"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/products/owned-theme-0",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "id": "189304737000010100",
+          "slug": "owned-theme-0",
+          "name": "中文测试商品0",
+          "kind": "TEMPLATE_PACK",
+          "summary": "独占测试商品",
+          "previewUrls": [
+            "https://example.invalid/owned-test.png"
+          ],
+          "skus": [
+            {
+              "id": "189304737000010103",
+              "offerVersion": 1,
+              "amountCent": 3900,
+              "currency": "CNY",
+              "release": {
+                "id": "189304737000010102",
+                "version": "1.0.0",
+                "engineVersion": "2.2.0",
+                "projectSchemaVersion": 1,
+                "license": {
+                  "code": "license",
+                  "kind": "LICENSE",
+                  "version": "1.0.0",
+                  "sha256": "c05ab6988ecb2b3fb03eb90a5e990c3428fa981096cfbb743b2b474ed6605d8e",
+                  "content": "测试LICENSE条款，未用于销售"
+                },
+                "assets": [
+                  {
+                    "id": "189304737000010104",
+                    "fileName": "中文模板.astra",
+                    "mimeType": "application/octet-stream",
+                    "sizeBytes": 1,
+                    "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                  }
+                ],
+                "deliveryContents": [
+                  "仅影子库测试可编辑模板"
+                ]
+              },
+              "purchaseTerms": {
+                "code": "purchase_terms",
+                "kind": "PURCHASE_TERMS",
+                "version": "1.0.0",
+                "sha256": "282cdc36a20e9968ee6d8aa2eaec867b30a7944012917f80cd74813550e9f868",
+                "content": "测试PURCHASE_TERMS条款，未用于销售"
+              },
+              "refundPolicy": {
+                "code": "refund_policy",
+                "kind": "REFUND_POLICY",
+                "version": "1.0.0",
+                "sha256": "aaa404f905a19d9239c6fb6457a17d6838c6795cda46348626e9d2a15e2f40c3",
+                "content": "测试REFUND_POLICY条款，未用于销售"
+              }
+            }
+          ]
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "87c0b76d-9c8f-4fcd-891f-5df3073c27c5"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "id": "366469909238120448",
+          "orderNo": "AST366469909238120448",
+          "skuId": "189304737000010103",
+          "releaseId": "189304737000010102",
+          "state": "PENDING_PAYMENT",
+          "fulfillmentState": "NONE",
+          "totalAmountCent": 3900,
+          "totalRefundedCent": 0,
+          "currency": "CNY",
+          "item": {
+            "skuId": "189304737000010103",
+            "releaseId": "189304737000010102",
+            "productName": "中文测试商品0",
+            "productKind": "TEMPLATE_PACK",
+            "releaseVersion": "1.0.0",
+            "quantity": 1,
+            "amountCent": 3900,
+            "license": {
+              "code": "license",
+              "kind": "LICENSE",
+              "version": "1.0.0",
+              "sha256": "c05ab6988ecb2b3fb03eb90a5e990c3428fa981096cfbb743b2b474ed6605d8e",
+              "content": "测试LICENSE条款，未用于销售"
+            },
+            "assets": [
+              {
+                "id": "189304737000010104",
+                "fileName": "中文模板.astra",
+                "mimeType": "application/octet-stream",
+                "sizeBytes": 1,
+                "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+              }
+            ]
+          },
+          "purchaseTerms": {
+            "code": "purchase_terms",
+            "kind": "PURCHASE_TERMS",
+            "version": "1.0.0",
+            "sha256": "282cdc36a20e9968ee6d8aa2eaec867b30a7944012917f80cd74813550e9f868",
+            "content": "测试PURCHASE_TERMS条款，未用于销售"
+          },
+          "refundPolicy": {
+            "code": "refund_policy",
+            "kind": "REFUND_POLICY",
+            "version": "1.0.0",
+            "sha256": "aaa404f905a19d9239c6fb6457a17d6838c6795cda46348626e9d2a15e2f40c3",
+            "content": "测试REFUND_POLICY条款，未用于销售"
+          },
+          "consentAt": "2026-10-08T06:20:35.032Z",
+          "expiresAt": "2026-10-08T06:35:35.032Z",
+          "createdAt": "2026-10-08T06:20:35.032Z"
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "91e9ed5c-dbfb-448e-83b2-b631bbd80f57"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/capabilities",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "paymentEnabled": false,
+          "paymentChannel": "wechat_native",
+          "supportedCheckoutDevices": [
+            "desktop"
+          ],
+          "creationKitReady": false,
+          "environment": "test",
+          "mockPayment": false,
+          "orderCreationEnabled": true
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "d67a91ab-c1be-4cd6-899a-e525f06de5c2"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/products/owned-theme-0",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "id": "189304737000010100",
+          "slug": "owned-theme-0",
+          "name": "中文测试商品0",
+          "kind": "TEMPLATE_PACK",
+          "summary": "独占测试商品",
+          "previewUrls": [
+            "https://example.invalid/owned-test.png"
+          ],
+          "skus": [
+            {
+              "id": "189304737000010103",
+              "offerVersion": 1,
+              "amountCent": 3900,
+              "currency": "CNY",
+              "release": {
+                "id": "189304737000010102",
+                "version": "1.0.0",
+                "engineVersion": "2.2.0",
+                "projectSchemaVersion": 1,
+                "license": {
+                  "code": "license",
+                  "kind": "LICENSE",
+                  "version": "1.0.0",
+                  "sha256": "c05ab6988ecb2b3fb03eb90a5e990c3428fa981096cfbb743b2b474ed6605d8e",
+                  "content": "测试LICENSE条款，未用于销售"
+                },
+                "assets": [
+                  {
+                    "id": "189304737000010104",
+                    "fileName": "中文模板.astra",
+                    "mimeType": "application/octet-stream",
+                    "sizeBytes": 1,
+                    "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                  }
+                ],
+                "deliveryContents": [
+                  "仅影子库测试可编辑模板"
+                ]
+              },
+              "purchaseTerms": {
+                "code": "purchase_terms",
+                "kind": "PURCHASE_TERMS",
+                "version": "1.0.0",
+                "sha256": "282cdc36a20e9968ee6d8aa2eaec867b30a7944012917f80cd74813550e9f868",
+                "content": "测试PURCHASE_TERMS条款，未用于销售"
+              },
+              "refundPolicy": {
+                "code": "refund_policy",
+                "kind": "REFUND_POLICY",
+                "version": "1.0.0",
+                "sha256": "aaa404f905a19d9239c6fb6457a17d6838c6795cda46348626e9d2a15e2f40c3",
+                "content": "测试REFUND_POLICY条款，未用于销售"
+              }
+            }
+          ]
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "8f945c52-e970-4c4b-8eea-4edd93ff0a40"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/orders/366469909238120448",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "id": "366469909238120448",
+          "orderNo": "AST366469909238120448",
+          "skuId": "189304737000010103",
+          "releaseId": "189304737000010102",
+          "state": "PENDING_PAYMENT",
+          "fulfillmentState": "NONE",
+          "totalAmountCent": 3900,
+          "totalRefundedCent": 0,
+          "currency": "CNY",
+          "item": {
+            "skuId": "189304737000010103",
+            "releaseId": "189304737000010102",
+            "productName": "中文测试商品0",
+            "productKind": "TEMPLATE_PACK",
+            "releaseVersion": "1.0.0",
+            "quantity": 1,
+            "amountCent": 3900,
+            "license": {
+              "code": "license",
+              "kind": "LICENSE",
+              "version": "1.0.0",
+              "sha256": "c05ab6988ecb2b3fb03eb90a5e990c3428fa981096cfbb743b2b474ed6605d8e",
+              "content": "测试LICENSE条款，未用于销售"
+            },
+            "assets": [
+              {
+                "id": "189304737000010104",
+                "fileName": "中文模板.astra",
+                "mimeType": "application/octet-stream",
+                "sizeBytes": 1,
+                "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+              }
+            ]
+          },
+          "purchaseTerms": {
+            "code": "purchase_terms",
+            "kind": "PURCHASE_TERMS",
+            "version": "1.0.0",
+            "sha256": "282cdc36a20e9968ee6d8aa2eaec867b30a7944012917f80cd74813550e9f868",
+            "content": "测试PURCHASE_TERMS条款，未用于销售"
+          },
+          "refundPolicy": {
+            "code": "refund_policy",
+            "kind": "REFUND_POLICY",
+            "version": "1.0.0",
+            "sha256": "aaa404f905a19d9239c6fb6457a17d6838c6795cda46348626e9d2a15e2f40c3",
+            "content": "测试REFUND_POLICY条款，未用于销售"
+          },
+          "consentAt": "2026-10-08T06:20:35.032Z",
+          "expiresAt": "2026-10-08T06:35:35.032Z",
+          "createdAt": "2026-10-08T06:20:35.032Z"
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "59adcbed-fff3-451a-bd09-5bdfde06ad8d"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/capabilities",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "paymentEnabled": false,
+          "paymentChannel": "wechat_native",
+          "supportedCheckoutDevices": [
+            "desktop"
+          ],
+          "creationKitReady": false,
+          "environment": "test",
+          "mockPayment": false,
+          "orderCreationEnabled": true
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "c9fdfc62-f62c-4916-a1d3-7819448255ae"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/products/owned-theme-1",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "id": "189304737000010200",
+          "slug": "owned-theme-1",
+          "name": "中文测试商品1",
+          "kind": "TEMPLATE_PACK",
+          "summary": "独占测试商品",
+          "previewUrls": [
+            "https://example.invalid/owned-test.png"
+          ],
+          "skus": [
+            {
+              "id": "189304737000010203",
+              "offerVersion": 2,
+              "amountCent": 3900,
+              "currency": "CNY",
+              "release": {
+                "id": "189304737000010202",
+                "version": "1.0.0",
+                "engineVersion": "2.2.0",
+                "projectSchemaVersion": 1,
+                "license": {
+                  "code": "license",
+                  "kind": "LICENSE",
+                  "version": "1.0.0",
+                  "sha256": "c05ab6988ecb2b3fb03eb90a5e990c3428fa981096cfbb743b2b474ed6605d8e",
+                  "content": "测试LICENSE条款，未用于销售"
+                },
+                "assets": [
+                  {
+                    "id": "189304737000010204",
+                    "fileName": "中文模板.astra",
+                    "mimeType": "application/octet-stream",
+                    "sizeBytes": 1,
+                    "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                  }
+                ],
+                "deliveryContents": [
+                  "仅影子库测试可编辑模板"
+                ]
+              },
+              "purchaseTerms": {
+                "code": "purchase_terms",
+                "kind": "PURCHASE_TERMS",
+                "version": "1.0.0",
+                "sha256": "282cdc36a20e9968ee6d8aa2eaec867b30a7944012917f80cd74813550e9f868",
+                "content": "测试PURCHASE_TERMS条款，未用于销售"
+              },
+              "refundPolicy": {
+                "code": "refund_policy",
+                "kind": "REFUND_POLICY",
+                "version": "1.0.0",
+                "sha256": "aaa404f905a19d9239c6fb6457a17d6838c6795cda46348626e9d2a15e2f40c3",
+                "content": "测试REFUND_POLICY条款，未用于销售"
+              }
+            }
+          ]
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "0ea9f919-f34b-4620-a98b-7cb208013700"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders",
+      "status": 409,
+      "body": {
+        "code": 43002,
+        "msg": "商品或条款版本已改变，请刷新后重新确认"
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "36ff436c-18a9-431d-96f3-f624817544e4"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/capabilities",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "paymentEnabled": false,
+          "paymentChannel": "wechat_native",
+          "supportedCheckoutDevices": [
+            "desktop"
+          ],
+          "creationKitReady": false,
+          "environment": "test",
+          "mockPayment": false,
+          "orderCreationEnabled": true
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "2c51301f-3464-4219-99d9-6ac8fa31ad61"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/products/owned-theme-1",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "id": "189304737000010200",
+          "slug": "owned-theme-1",
+          "name": "中文测试商品1",
+          "kind": "TEMPLATE_PACK",
+          "summary": "独占测试商品",
+          "previewUrls": [
+            "https://example.invalid/owned-test.png"
+          ],
+          "skus": [
+            {
+              "id": "189304737000010203",
+              "offerVersion": 2,
+              "amountCent": 3900,
+              "currency": "CNY",
+              "release": {
+                "id": "189304737000010202",
+                "version": "1.0.0",
+                "engineVersion": "2.2.0",
+                "projectSchemaVersion": 1,
+                "license": {
+                  "code": "license",
+                  "kind": "LICENSE",
+                  "version": "1.0.0",
+                  "sha256": "c05ab6988ecb2b3fb03eb90a5e990c3428fa981096cfbb743b2b474ed6605d8e",
+                  "content": "测试LICENSE条款，未用于销售"
+                },
+                "assets": [
+                  {
+                    "id": "189304737000010204",
+                    "fileName": "中文模板.astra",
+                    "mimeType": "application/octet-stream",
+                    "sizeBytes": 1,
+                    "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                  }
+                ],
+                "deliveryContents": [
+                  "仅影子库测试可编辑模板"
+                ]
+              },
+              "purchaseTerms": {
+                "code": "purchase_terms",
+                "kind": "PURCHASE_TERMS",
+                "version": "1.0.0",
+                "sha256": "282cdc36a20e9968ee6d8aa2eaec867b30a7944012917f80cd74813550e9f868",
+                "content": "测试PURCHASE_TERMS条款，未用于销售"
+              },
+              "refundPolicy": {
+                "code": "refund_policy",
+                "kind": "REFUND_POLICY",
+                "version": "1.0.0",
+                "sha256": "aaa404f905a19d9239c6fb6457a17d6838c6795cda46348626e9d2a15e2f40c3",
+                "content": "测试REFUND_POLICY条款，未用于销售"
+              }
+            }
+          ]
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "5d0d6615-11fc-4df0-87d2-e7b9bc1fc3ce"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "id": "366469920646627328",
+          "orderNo": "AST366469920646627328",
+          "skuId": "189304737000010203",
+          "releaseId": "189304737000010202",
+          "state": "PENDING_PAYMENT",
+          "fulfillmentState": "NONE",
+          "totalAmountCent": 3900,
+          "totalRefundedCent": 0,
+          "currency": "CNY",
+          "item": {
+            "skuId": "189304737000010203",
+            "releaseId": "189304737000010202",
+            "productName": "中文测试商品1",
+            "productKind": "TEMPLATE_PACK",
+            "releaseVersion": "1.0.0",
+            "quantity": 1,
+            "amountCent": 3900,
+            "license": {
+              "code": "license",
+              "kind": "LICENSE",
+              "version": "1.0.0",
+              "sha256": "c05ab6988ecb2b3fb03eb90a5e990c3428fa981096cfbb743b2b474ed6605d8e",
+              "content": "测试LICENSE条款，未用于销售"
+            },
+            "assets": [
+              {
+                "id": "189304737000010204",
+                "fileName": "中文模板.astra",
+                "mimeType": "application/octet-stream",
+                "sizeBytes": 1,
+                "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+              }
+            ]
+          },
+          "purchaseTerms": {
+            "code": "purchase_terms",
+            "kind": "PURCHASE_TERMS",
+            "version": "1.0.0",
+            "sha256": "282cdc36a20e9968ee6d8aa2eaec867b30a7944012917f80cd74813550e9f868",
+            "content": "测试PURCHASE_TERMS条款，未用于销售"
+          },
+          "refundPolicy": {
+            "code": "refund_policy",
+            "kind": "REFUND_POLICY",
+            "version": "1.0.0",
+            "sha256": "aaa404f905a19d9239c6fb6457a17d6838c6795cda46348626e9d2a15e2f40c3",
+            "content": "测试REFUND_POLICY条款，未用于销售"
+          },
+          "consentAt": "2026-10-08T06:20:37.756Z",
+          "expiresAt": "2026-10-08T06:35:37.756Z",
+          "createdAt": "2026-10-08T06:20:37.756Z"
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "a029e101-c60a-4a45-a11c-62fb75fd85ff"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/orders/366469909238120448",
+      "status": 404,
+      "body": {
+        "code": 404,
+        "msg": "订单不存在"
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "990a5b99-26ce-4106-a306-b6b607221aaa"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/capabilities",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "paymentEnabled": false,
+          "paymentChannel": "wechat_native",
+          "supportedCheckoutDevices": [
+            "desktop"
+          ],
+          "creationKitReady": false,
+          "environment": "test",
+          "mockPayment": false,
+          "orderCreationEnabled": true
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "cb52e8fc-06d2-4feb-92c2-a07d85686a65"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/products/owned-theme-0",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "id": "189304737000010100",
+          "slug": "owned-theme-0",
+          "name": "中文测试商品0",
+          "kind": "TEMPLATE_PACK",
+          "summary": "独占测试商品",
+          "previewUrls": [
+            "https://example.invalid/owned-test.png"
+          ],
+          "skus": [
+            {
+              "id": "189304737000010103",
+              "offerVersion": 1,
+              "amountCent": 3900,
+              "currency": "CNY",
+              "release": {
+                "id": "189304737000010102",
+                "version": "1.0.0",
+                "engineVersion": "2.2.0",
+                "projectSchemaVersion": 1,
+                "license": {
+                  "code": "license",
+                  "kind": "LICENSE",
+                  "version": "1.0.0",
+                  "sha256": "c05ab6988ecb2b3fb03eb90a5e990c3428fa981096cfbb743b2b474ed6605d8e",
+                  "content": "测试LICENSE条款，未用于销售"
+                },
+                "assets": [
+                  {
+                    "id": "189304737000010104",
+                    "fileName": "中文模板.astra",
+                    "mimeType": "application/octet-stream",
+                    "sizeBytes": 1,
+                    "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                  }
+                ],
+                "deliveryContents": [
+                  "仅影子库测试可编辑模板"
+                ]
+              },
+              "purchaseTerms": {
+                "code": "purchase_terms",
+                "kind": "PURCHASE_TERMS",
+                "version": "1.0.0",
+                "sha256": "282cdc36a20e9968ee6d8aa2eaec867b30a7944012917f80cd74813550e9f868",
+                "content": "测试PURCHASE_TERMS条款，未用于销售"
+              },
+              "refundPolicy": {
+                "code": "refund_policy",
+                "kind": "REFUND_POLICY",
+                "version": "1.0.0",
+                "sha256": "aaa404f905a19d9239c6fb6457a17d6838c6795cda46348626e9d2a15e2f40c3",
+                "content": "测试REFUND_POLICY条款，未用于销售"
+              }
+            }
+          ]
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "cecbe856-6d5e-49e6-860a-72a549f57a50"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/capabilities",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "paymentEnabled": false,
+          "paymentChannel": "wechat_native",
+          "supportedCheckoutDevices": [
+            "desktop"
+          ],
+          "creationKitReady": false,
+          "environment": "test",
+          "mockPayment": false,
+          "orderCreationEnabled": true
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "29b4ac9d-e38d-467d-a7ab-e1c9d83bb74b"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/products/owned-theme-2",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "id": "189304737000010300",
+          "slug": "owned-theme-2",
+          "name": "中文测试商品2",
+          "kind": "TEMPLATE_PACK",
+          "summary": "独占测试商品",
+          "previewUrls": [
+            "https://example.invalid/owned-test.png"
+          ],
+          "skus": [
+            {
+              "id": "189304737000010303",
+              "offerVersion": 1,
+              "amountCent": 3900,
+              "currency": "CNY",
+              "release": {
+                "id": "189304737000010302",
+                "version": "1.0.0",
+                "engineVersion": "2.2.0",
+                "projectSchemaVersion": 1,
+                "license": {
+                  "code": "license",
+                  "kind": "LICENSE",
+                  "version": "1.0.0",
+                  "sha256": "c05ab6988ecb2b3fb03eb90a5e990c3428fa981096cfbb743b2b474ed6605d8e",
+                  "content": "测试LICENSE条款，未用于销售"
+                },
+                "assets": [
+                  {
+                    "id": "189304737000010304",
+                    "fileName": "中文模板.astra",
+                    "mimeType": "application/octet-stream",
+                    "sizeBytes": 1,
+                    "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                  }
+                ],
+                "deliveryContents": [
+                  "仅影子库测试可编辑模板"
+                ]
+              },
+              "purchaseTerms": {
+                "code": "purchase_terms",
+                "kind": "PURCHASE_TERMS",
+                "version": "1.0.0",
+                "sha256": "282cdc36a20e9968ee6d8aa2eaec867b30a7944012917f80cd74813550e9f868",
+                "content": "测试PURCHASE_TERMS条款，未用于销售"
+              },
+              "refundPolicy": {
+                "code": "refund_policy",
+                "kind": "REFUND_POLICY",
+                "version": "1.0.0",
+                "sha256": "aaa404f905a19d9239c6fb6457a17d6838c6795cda46348626e9d2a15e2f40c3",
+                "content": "测试REFUND_POLICY条款，未用于销售"
+              }
+            }
+          ]
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "9d7bd308-7cb9-4db9-9576-292e60f49479"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/orders/366469893224267776",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "id": "366469893224267776",
+          "orderNo": "AST366469893224267776",
+          "skuId": "189304737000010303",
+          "releaseId": "189304737000010302",
+          "state": "CLOSED",
+          "fulfillmentState": "NONE",
+          "totalAmountCent": 3900,
+          "totalRefundedCent": 0,
+          "currency": "CNY",
+          "item": {
+            "skuId": "189304737000010303",
+            "releaseId": "189304737000010302",
+            "productName": "中文测试商品2",
+            "productKind": "TEMPLATE_PACK",
+            "releaseVersion": "1.0.0",
+            "quantity": 1,
+            "amountCent": 3900,
+            "license": {
+              "code": "license",
+              "kind": "LICENSE",
+              "version": "1.0.0",
+              "sha256": "c05ab6988ecb2b3fb03eb90a5e990c3428fa981096cfbb743b2b474ed6605d8e",
+              "content": "测试LICENSE条款，未用于销售"
+            },
+            "assets": [
+              {
+                "id": "189304737000010304",
+                "fileName": "中文模板.astra",
+                "mimeType": "application/octet-stream",
+                "sizeBytes": 1,
+                "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+              }
+            ]
+          },
+          "purchaseTerms": {
+            "code": "purchase_terms",
+            "kind": "PURCHASE_TERMS",
+            "version": "1.0.0",
+            "sha256": "282cdc36a20e9968ee6d8aa2eaec867b30a7944012917f80cd74813550e9f868",
+            "content": "测试PURCHASE_TERMS条款，未用于销售"
+          },
+          "refundPolicy": {
+            "code": "refund_policy",
+            "kind": "REFUND_POLICY",
+            "version": "1.0.0",
+            "sha256": "aaa404f905a19d9239c6fb6457a17d6838c6795cda46348626e9d2a15e2f40c3",
+            "content": "测试REFUND_POLICY条款，未用于销售"
+          },
+          "consentAt": "2026-10-08T06:20:31.205Z",
+          "expiresAt": "2026-10-08T06:20:30.315Z",
+          "createdAt": "2026-10-08T06:20:31.205Z",
+          "closedAt": "2026-10-08T06:20:31.355Z"
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "7d618863-9f9b-4056-afb2-358c6444010f"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/orders/366469893224267776",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "id": "366469893224267776",
+          "orderNo": "AST366469893224267776",
+          "skuId": "189304737000010303",
+          "releaseId": "189304737000010302",
+          "state": "CLOSED",
+          "fulfillmentState": "NONE",
+          "totalAmountCent": 3900,
+          "totalRefundedCent": 0,
+          "currency": "CNY",
+          "item": {
+            "skuId": "189304737000010303",
+            "releaseId": "189304737000010302",
+            "productName": "中文测试商品2",
+            "productKind": "TEMPLATE_PACK",
+            "releaseVersion": "1.0.0",
+            "quantity": 1,
+            "amountCent": 3900,
+            "license": {
+              "code": "license",
+              "kind": "LICENSE",
+              "version": "1.0.0",
+              "sha256": "c05ab6988ecb2b3fb03eb90a5e990c3428fa981096cfbb743b2b474ed6605d8e",
+              "content": "测试LICENSE条款，未用于销售"
+            },
+            "assets": [
+              {
+                "id": "189304737000010304",
+                "fileName": "中文模板.astra",
+                "mimeType": "application/octet-stream",
+                "sizeBytes": 1,
+                "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+              }
+            ]
+          },
+          "purchaseTerms": {
+            "code": "purchase_terms",
+            "kind": "PURCHASE_TERMS",
+            "version": "1.0.0",
+            "sha256": "282cdc36a20e9968ee6d8aa2eaec867b30a7944012917f80cd74813550e9f868",
+            "content": "测试PURCHASE_TERMS条款，未用于销售"
+          },
+          "refundPolicy": {
+            "code": "refund_policy",
+            "kind": "REFUND_POLICY",
+            "version": "1.0.0",
+            "sha256": "aaa404f905a19d9239c6fb6457a17d6838c6795cda46348626e9d2a15e2f40c3",
+            "content": "测试REFUND_POLICY条款，未用于销售"
+          },
+          "consentAt": "2026-10-08T06:20:31.205Z",
+          "expiresAt": "2026-10-08T06:20:30.315Z",
+          "createdAt": "2026-10-08T06:20:31.205Z",
+          "closedAt": "2026-10-08T06:20:31.355Z"
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "1be70fb5-749e-407d-80ec-07de3a39059e"
+      }
+    }
+  ],
+  "injectedFailures": [
+    {
+      "path": "/api/system/orders",
+      "kind": "accepted200-response-lost"
+    },
+    {
+      "path": "/api/system/catalog/products/owned-theme-1",
+      "kind": "explicit-stale-offerVersion-1-from-real-2"
+    }
+  ]
+}

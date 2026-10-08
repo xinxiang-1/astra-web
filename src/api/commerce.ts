@@ -69,6 +69,7 @@ export interface CommerceEntitlement {
 }
 
 export interface CommerceCapabilities {
+  orderCreationEnabled: boolean
   paymentEnabled: boolean
   paymentChannel: string
   supportedCheckoutDevices: string[]
@@ -124,6 +125,22 @@ export function fetchOwnedOrders(cursor?: string, signal?: AbortSignal) {
 }
 export function fetchOwnedOrder(orderId: string, signal?: AbortSignal) {
   return http<CommerceOrder>(`/system/orders/${orderId}`, { signal, cache: 'no-store' })
+}
+export interface CommerceOrderRequest {
+  skuId: string
+  offerVersion: number
+  termsVersion: string
+  refundPolicyVersion: string
+  licenseVersion: string
+}
+export function createCommerceOrder(body: CommerceOrderRequest, key: string, signal?: AbortSignal) {
+  return http<CommerceOrder>('/system/orders', {
+    method: 'POST',
+    headers: { 'Idempotency-Key': key },
+    body: JSON.stringify(body),
+    signal,
+    cache: 'no-store',
+  })
 }
 export interface CommercePayment {
   id: string

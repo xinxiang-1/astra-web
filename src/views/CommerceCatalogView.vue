@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, ref, watch } from 'vue'
 import ArtFooter from '@/components/ArtFooter.vue'
+import PurchaseConfirmation from '@/components/PurchaseConfirmation.vue'
 import { ApiError } from '@/api/http'
 import {
   fetchCommerceCapabilities,
@@ -29,6 +30,8 @@ const failedImages = ref(new Set<string>())
 let controller: AbortController | undefined
 const saleStatus = computed(() => {
   if (!capabilities.value) return '购买状态暂时无法确认，请稍后刷新。'
+  if (capabilities.value.orderCreationEnabled && capabilities.value.environment !== 'production')
+    return '当前可确认测试订单，真实付款尚未开放。'
   if (!capabilities.value.paymentEnabled) return '购买尚未开放，你可以先了解内容与交付说明。'
   if (capabilities.value.mockPayment) return '当前为测试环境，不提供真实付款。'
   return '购买入口准备中，当前仅展示内容与交付说明。'
@@ -252,7 +255,8 @@ onBeforeUnmount(() => controller?.abort())
               {{ money(selected.amountCent, selected.currency) }}
             </p>
             <p>当前版本价格。交付范围以文件清单和购买条款为准。</p>
-            <button class="art-button" disabled>
+            <a v-if="capabilities?.orderCreationEnabled" class="art-button" href="#confirm-order">核对订单 ↗</a>
+            <button v-else class="art-button" disabled>
               {{
                 !capabilities
                   ? '购买状态待确认'
@@ -268,6 +272,14 @@ onBeforeUnmount(() => controller?.abort())
             <RouterLink to="/templates">先体验免费模板 ↗</RouterLink>
           </aside>
         </div>
+        <PurchaseConfirmation
+          v-if="slug"
+          :slug="slug"
+          :sku="selected"
+          :product-name="product?.name"
+          :product-kind="product?.kind"
+          :capabilities="capabilities"
+        />
         <div class="catalog-bottom">
           <button v-if="cursor && !slug" class="art-button" :disabled="busy" @click="load(true)">
             读取更多

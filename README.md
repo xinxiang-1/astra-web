@@ -1,6 +1,6 @@
 # Astra
 
-2026-10-08最新接续：[订单详情与原付款记录恢复](./docs/plans/order-recovery-2026-10-08.md)通过6真实JUnit、10浏览器及10恢复合同，受理后响应丢失/刷新/重复点击不多支付，状态与授权在后台。前序[内容合集](./docs/plans/catalog-ui-2026-10-08.md)与[已购领取/导入](./docs/plans/purchased-delivery-2026-10-08.md)保留。新付款尚未开放，完整购买/退款/会员及真实收款仍待继续，免费创作保持。
+2026-10-08最新接续：[购买确认与原订单幂等恢复](./docs/plans/order-confirmation-2026-10-08.md)通过5真实JUnit、11浏览器、12命令合同与51HTTP复核；完整条款/显式同意、受理丢响应同键恢复、已知订单只读恢复、后台CLOSED后重新确认通过，金额/授权仍在后台。前序[订单详情与原付款恢复](./docs/plans/order-recovery-2026-10-08.md)、[内容合集](./docs/plans/catalog-ui-2026-10-08.md)、[已购领取/导入](./docs/plans/purchased-delivery-2026-10-08.md)保留。production新订单及新付款关闭，完整购买/退款/会员与真实收款继续，免费创作保持。
 
 2026-10-08最新接续：[产品打磨、前后端商业联调、服务端付费/会员边界及部署办理清单](../astra-cloud/docs/plans/launch-readiness-2026-10-08.md)、[90天推广方案](./docs/plans/growth-playbook-2026-10-08.md)。用户从零逐步推进，当前优先品质与联调，真实收款和会员尚未开放。
 
