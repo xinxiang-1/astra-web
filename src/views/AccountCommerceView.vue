@@ -272,6 +272,7 @@ onBeforeUnmount(() => {
               <strong>{{ money(order.totalAmountCent, order.currency) }}</strong>
             </div>
             <p>订单 {{ order.orderNo }} · 版本 {{ order.item.releaseVersion }}</p>
+            <RouterLink :to="`/account/orders/${order.id}`">查看订单详情 ↗</RouterLink>
             <p>付款：{{ state(order.state) }} · 内容：{{ state(order.fulfillmentState) }}</p>
             <p v-if="order.refund">
               退款：{{ state(order.refund.state) }} ·

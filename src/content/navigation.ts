@@ -17,6 +17,7 @@ export const routeTitles: Record<string, string> = {
   'creation-help': '创作帮助',
   projects: '我的项目',
   'account-orders': '我的订单',
+  'account-order-detail': '订单详情',
   'account-library': '已购内容',
   tools: '创作工具',
   studio: '视觉实验室',

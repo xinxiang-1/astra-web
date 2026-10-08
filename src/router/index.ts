@@ -41,6 +41,12 @@ const router = createRouter({
       props: { collection: 'orders' },
     },
     {
+      path: '/account/orders/:orderId',
+      name: 'account-order-detail',
+      component: () => import('@/views/OrderDetailView.vue'),
+      props: true,
+    },
+    {
       path: '/account/library',
       name: 'account-library',
       component: () => import('@/views/AccountCommerceView.vue'),

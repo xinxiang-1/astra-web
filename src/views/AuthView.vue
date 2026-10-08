@@ -8,6 +8,7 @@ import FxButton from '@/components/ui/FxButton.vue'
 import CaptchaField from '@/components/ui/CaptchaField.vue'
 import { fetchCaptcha } from '@/api/auth'
 import { useAuthStore, type AuthMode } from '@/stores/auth'
+import { accountReturnPath } from '@/lib/account-return'
 
 const props = withDefaults(
   defineProps<{
@@ -20,11 +21,7 @@ const props = withDefaults(
 
 const router = useRouter()
 const route = useRoute()
-const returnTo = computed(() =>
-  route.query.returnTo === '/account/orders' || route.query.returnTo === '/account/library'
-    ? route.query.returnTo
-    : '/',
-)
+const returnTo = computed(() => accountReturnPath(route.query.returnTo))
 const auth = useAuthStore()
 
 const mode = ref<AuthMode>(props.initialMode)

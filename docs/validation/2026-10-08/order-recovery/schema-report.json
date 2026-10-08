@@ -1,0 +1,416 @@
+{
+  "passed": true,
+  "scope": "actual owned order/payment HTTP schema and privacy headers; live checkout validation before omission",
+  "httpResponses": 66,
+  "browserChecks": 10,
+  "checkoutUrlsOmitted": 11,
+  "checks": [
+    {
+      "method": "POST",
+      "path": "/api/system/orders",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366440561005166592/payments",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366440562334760960/payments",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/system/orders/366440561005166592",
+      "status": 200,
+      "viaGateway": false
+    },
+    {
+      "method": "GET",
+      "path": "/system/orders/366440562334760960",
+      "status": 200,
+      "viaGateway": false
+    },
+    {
+      "method": "GET",
+      "path": "/system/orders/366440563693715456",
+      "status": 200,
+      "viaGateway": false
+    },
+    {
+      "method": "GET",
+      "path": "/system/payments/366440561487511552",
+      "status": 200,
+      "viaGateway": false
+    },
+    {
+      "method": "GET",
+      "path": "/system/payments/366440562687082496",
+      "status": 200,
+      "viaGateway": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/orders/366440561005166592",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/orders/366440562334760960",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/orders/366440563693715456",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/payments/366440561487511552",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/payments/366440562687082496",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/system/orders/366440561005166592",
+      "status": 401,
+      "viaGateway": false
+    },
+    {
+      "method": "GET",
+      "path": "/system/orders/366440561005166592",
+      "status": 404,
+      "viaGateway": false
+    },
+    {
+      "method": "GET",
+      "path": "/system/orders/366440561005166592",
+      "status": 401,
+      "viaGateway": false
+    },
+    {
+      "method": "GET",
+      "path": "/system/payments/366440561487511552",
+      "status": 401,
+      "viaGateway": false
+    },
+    {
+      "method": "GET",
+      "path": "/system/payments/366440561487511552",
+      "status": 404,
+      "viaGateway": false
+    },
+    {
+      "method": "GET",
+      "path": "/system/payments/366440561487511552",
+      "status": 401,
+      "viaGateway": false
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders/366440561005166592/payments",
+      "status": 404,
+      "viaGateway": false
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders/366440561005166592/payments",
+      "status": 400,
+      "viaGateway": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/orders/366440561005166592",
+      "status": 401,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/orders/366440561005166592",
+      "status": 404,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/orders/366440561005166592",
+      "status": 401,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/payments/366440561487511552",
+      "status": 401,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/payments/366440561487511552",
+      "status": 404,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/payments/366440561487511552",
+      "status": 401,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366440561005166592/payments",
+      "status": 404,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366440561005166592/payments",
+      "status": 400,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders/366440561005166592/payments",
+      "status": 200,
+      "viaGateway": false
+    },
+    {
+      "method": "GET",
+      "path": "/system/orders/366440561005166592",
+      "status": 200,
+      "viaGateway": false
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders/366440563693715456/payments",
+      "status": 503,
+      "viaGateway": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366440561005166592/payments",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/orders/366440561005166592",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366440563693715456/payments",
+      "status": 503,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366440561005166592/payments",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366440561005166592/payments",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366440561005166592/payments",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366440561005166592/payments",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/system/orders/366440561005166592",
+      "status": 503,
+      "viaGateway": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/orders/366440561005166592",
+      "status": 503,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/orders/366440561005166592",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/orders",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/orders/366440561005166592",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/payments/366440561487511552",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366440561005166592/payments",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/orders/366440561005166592",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/payments/366440561487511552",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366440561005166592/payments",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/orders/366440561005166592",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/payments/366440561487511552",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366440561005166592/payments",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/orders/366440561005166592",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/payments/366440561487511552",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/orders/366440561005166592",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/payments/366440561487511552",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/orders",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/orders/366440562334760960",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/payments/366440562687082496",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/orders/366440563693715456",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/orders/366440561005166592",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/payments/366440561487511552",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/orders/366440561005166592",
+      "status": 404,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/orders/366440561005166592",
+      "status": 401,
+      "viaGateway": true
+    }
+  ],
+  "captureSha256": "d1d3822ea6a51a408128d85a8de5f4e30bfabcece7914e17d7f187ce4d0a9772",
+  "openapiSha256": "aea4063b65dda96d24f9bc32ff455e1194a77285fe4c07f958b2a153290d4c65",
+  "notVerified": [
+    "real funds",
+    "real authentication/login",
+    "complete checkout",
+    "refund consumer/reconciliation",
+    "membership",
+    "actual phone/Safari",
+    "production deployment"
+  ]
+}

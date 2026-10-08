@@ -37,10 +37,23 @@ export interface CommerceOrder {
   totalRefundedCent: number
   currency: string
   createdAt: string
+  consentAt: string
   paidAt?: string | null
+  closedAt?: string | null
+  accessStartedAt?: string | null
   expiresAt: string
   paymentId?: string | null
-  item: { productName: string; releaseVersion: string; assets: CommerceAsset[] }
+  item: {
+    skuId: string
+    releaseId: string
+    productName: string
+    productKind: string
+    releaseVersion: string
+    quantity: number
+    amountCent: number
+    license: CommercePolicy
+    assets: CommerceAsset[]
+  }
   purchaseTerms: CommercePolicy
   refundPolicy: CommercePolicy
   refund?: { id: string; state: string; amountCent: number } | null
@@ -108,6 +121,31 @@ function query(cursor?: string) {
 }
 export function fetchOwnedOrders(cursor?: string, signal?: AbortSignal) {
   return http<CommercePage<CommerceOrder>>(`/system/orders?${query(cursor)}`, { signal })
+}
+export function fetchOwnedOrder(orderId: string, signal?: AbortSignal) {
+  return http<CommerceOrder>(`/system/orders/${orderId}`, { signal, cache: 'no-store' })
+}
+export interface CommercePayment {
+  id: string
+  orderId: string
+  state: string
+  channel: string
+  amountCent: number
+  currency: string
+  expiresAt: string
+  mock: boolean
+}
+export function fetchOwnedPayment(paymentId: string, signal?: AbortSignal) {
+  return http<CommercePayment>(`/system/payments/${paymentId}`, { signal, cache: 'no-store' })
+}
+export function recoverOrderPayment(orderId: string, key: string, signal?: AbortSignal) {
+  return http<CommercePayment>(`/system/orders/${orderId}/payments`, {
+    method: 'POST',
+    headers: { 'Idempotency-Key': key },
+    body: JSON.stringify({ channel: 'wechat_native' }),
+    signal,
+    cache: 'no-store',
+  })
 }
 export function fetchOwnedEntitlements(cursor?: string, signal?: AbortSignal) {
   return http<CommercePage<CommerceEntitlement>>(`/system/entitlements?${query(cursor)}`, {

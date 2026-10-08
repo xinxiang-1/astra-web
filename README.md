@@ -1,6 +1,6 @@
 # Astra
 
-2026-10-08最新接续：[内容合集与版本交付说明](./docs/plans/catalog-ui-2026-10-08.md)已真实联调，价格/文件/许可取后端，购买尚未开放；15真实JUnit及12浏览器检查通过。`/account/orders`与`/account/library`读取本人记录，已购支持[后端票据领取、校验及新项目导入](./docs/plans/purchased-delivery-2026-10-08.md)。完整购买/退款/会员和真实收款仍待继续，免费创作保持。
+2026-10-08最新接续：[订单详情与原付款记录恢复](./docs/plans/order-recovery-2026-10-08.md)通过6真实JUnit、10浏览器及10恢复合同，受理后响应丢失/刷新/重复点击不多支付，状态与授权在后台。前序[内容合集](./docs/plans/catalog-ui-2026-10-08.md)与[已购领取/导入](./docs/plans/purchased-delivery-2026-10-08.md)保留。新付款尚未开放，完整购买/退款/会员及真实收款仍待继续，免费创作保持。
 
 2026-10-08最新接续：[产品打磨、前后端商业联调、服务端付费/会员边界及部署办理清单](../astra-cloud/docs/plans/launch-readiness-2026-10-08.md)、[90天推广方案](./docs/plans/growth-playbook-2026-10-08.md)。用户从零逐步推进，当前优先品质与联调，真实收款和会员尚未开放。
 
