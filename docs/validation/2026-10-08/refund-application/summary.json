@@ -1,0 +1,54 @@
+{
+  "passed": true,
+  "newApplicationJUnitTests": 11,
+  "relatedWorkerAndConfigurationJUnitTests": 16,
+  "browserChecks": 10,
+  "actualHttpSchemaResponses": 137,
+  "relatedWorkerHttpSchemaResponses": 42,
+  "frontendContractChecks": {
+    "refundRequest": 10,
+    "paymentInitiation": 9,
+    "paymentRecovery": 10
+  },
+  "typeCheck": true,
+  "relevantEslint": true,
+  "finalBuild": true,
+  "reactorModulesPassed": 7,
+  "staticContract": {
+    "passed": true,
+    "operations": 25,
+    "tables": 17,
+    "fixtures": 37,
+    "linksChecked": 161
+  },
+  "ownedSchemaDropped": true,
+  "ownedRedisGatewayStopped": true,
+  "productionRolesModified": false,
+  "sourceFiles": 30,
+  "notVerified": [
+    "real funds/merchant SDK",
+    "real auth/login",
+    "admin web workbench/order-delivery context",
+    "production administrator bootstrap",
+    "daily reconciliation",
+    "membership",
+    "phone/Safari art quality",
+    "clean production deployment"
+  ],
+  "verificationLogHashes": [
+    {
+      "path": "../tmp/refund-application-verify-r2.log",
+      "sha256": "3bd4d7d9215100010e8cbf446b61700ae176ca4c89741ccd4793082976c54068"
+    },
+    {
+      "path": "../tmp/refund-application-verify-r4.log",
+      "sha256": "3f91984a36e4f5c62d8e26cc36d1a2a697fdbd649fe4b9d4bf35695a6c94b0c9"
+    },
+    {
+      "path": "../tmp/refund-application-web-build-r4.log",
+      "sha256": "cb8fec4d93bef8342de04ec929b81e81df9668c22862cad0ad8f5ce40c1b18ab"
+    }
+  ],
+  "documentLinksChecked": 164,
+  "credentialLeaks": 0
+}

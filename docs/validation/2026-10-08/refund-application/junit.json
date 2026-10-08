@@ -1,0 +1,64 @@
+{
+  "passed": true,
+  "tests": 27,
+  "suites": [
+    {
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "class": "com.astra.system.commerce.refund.RefundConfigurationTest",
+      "run": "R2",
+      "caseNames": [
+        "paymentWorkerEnablementDoesNotEnableRefunds",
+        "productionDefaultsNeverScheduleRefunds",
+        "schedulerExistsOnlyForExplicitRefundWorker",
+        "refundRequiresExplicitApprovedEnvironmentAndProvider"
+      ]
+    },
+    {
+      "tests": 11,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "class": "com.astra.system.commerce.RefundApplicationIntegrationTest",
+      "run": "R4",
+      "caseNames": [
+        "authenticatedStrictRequestIsPendingAndHasNoChannelSideEffect",
+        "concurrentSameAndAlternateKeysRecoverOneRecordAndRejectChangedBody",
+        "deliveredAndOlderPaidOrdersMaySubmitForHumanReview",
+        "adminRoleStrictInputAndExpectedVersionAreServerChecked",
+        "approvalAuditAndTaskAreAtomicAndSuccessOnlyComesFromWorker",
+        "rejectionAndReopeningUseOriginalNumberWithoutChannelCalls",
+        "auditSqlFailureRollsBackApprovalTaskAndCommand",
+        "directServiceGuardAndConcurrentDecisionsCannotBypassRoleOrVersion",
+        "adminPaginationIsRoleActorAndStateBoundAndDoesNotExposeProviderData",
+        "browserLossRetryAndBackendApprovalSettlement",
+        "rateLimitAndDatabaseOrRedisFaultFailClosed"
+      ]
+    },
+    {
+      "tests": 12,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "class": "com.astra.system.commerce.RefundWorkerIntegrationTest",
+      "run": "R2",
+      "caseNames": [
+        "acceptedTimeoutRecoversSameRefundAndRevokesOnlySource",
+        "localSqlFailureRollsBackAllFactsAndRecoversChannelAcceptance",
+        "pendingPollKnownFailureAndLateFailureDoNotInventMoney",
+        "mismatchedFactsNeverRefundOrRevoke",
+        "expiredAndReplacedLeasesCannotApplyAcceptedResult",
+        "parallelWorkersAndDisabledUsersStillRefundExactlyOnce",
+        "unapprovedTasksNeverCallChannelAndUnknownStopsAtBound",
+        "genuineLatePaidOrderAutomaticRefundUsesExistingQueue",
+        "conflictingProviderIdentityOrCompletionCannotMutateSuccess",
+        "transactionBoundaryAndPaymentFlagGateRemainIndependent",
+        "actualJvmCrashAfterAcceptanceRecoversOriginalRefund",
+        "nullAndUnboundNotFoundCannotRecreateAcceptedRefund"
+      ]
+    }
+  ],
+  "scope": "R4 final application with browser and R2 unchanged worker/configuration regression"
+}

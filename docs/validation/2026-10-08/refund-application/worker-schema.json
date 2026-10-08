@@ -1,0 +1,274 @@
+{
+  "passed": true,
+  "scope": "actual owned refund settlement/source revocation HTTP schema/privacy headers",
+  "sourceFiles": 0,
+  "sourceMode": "worktree",
+  "httpResponses": 42,
+  "browserChecks": 0,
+  "checkoutUrlsOmitted": 0,
+  "checks": [
+    {
+      "method": "POST",
+      "path": "/api/system/orders",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366541208379588608/payments",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366541209658851328/payments",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/system/assets/189304737000010104/download-ticket",
+      "status": 404,
+      "viaGateway": false
+    },
+    {
+      "method": "GET",
+      "path": "/system/assets/189304737000010104/download",
+      "status": 410,
+      "viaGateway": false
+    },
+    {
+      "method": "GET",
+      "path": "/system/orders/366541208379588608",
+      "status": 200,
+      "viaGateway": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010104/download-ticket",
+      "status": 404,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010104/download",
+      "status": 410,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/orders/366541208379588608",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366541213127540736/payments",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366541215346327552/payments",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366541217825161216/payments",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366541219435773952/payments",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366541226821943296/payments",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366541229191725056/payments",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366541231074967552/payments",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366541232522002432/payments",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366541234182946816/payments",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366541235692896256/payments",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366541239564238848/payments",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366541241007079424/payments",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366541242558971904/payments",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366541245029416960/payments",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366541246707138560/payments",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366541350889455616/payments",
+      "status": 200,
+      "viaGateway": true
+    }
+  ],
+  "captureSha256": "006c8f06b9cf0579e6cc29c27735f58f6cc04196144261a779f4c460353a9e77",
+  "openapiSha256": "4d12dcfd402dbb97867b5011ca3accc3959b35746cbec053590249bacb2c026e",
+  "notVerified": [
+    "real funds",
+    "real authentication/login",
+    "admin refund approval API",
+    "daily reconciliation",
+    "membership",
+    "actual phone/Safari",
+    "production deployment"
+  ]
+}

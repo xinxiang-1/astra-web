@@ -1,0 +1,155 @@
+{
+  "hashNormalization": "CRLF to LF",
+  "files": [
+    {
+      "repository": "astra-cloud",
+      "path": "astra-api/src/main/java/com/astra/api/commerce/CommerceRefundDto.java",
+      "sha256": "f421331feaf920707afc4e982147f05d6d7e77a4b69f14bf631a7699ea29fc57"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/refund/RefundApplicationController.java",
+      "sha256": "b1cf51344537a3f2e09d0f541fde6751d498dcfcca07fd98b81b437f2633167d"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/refund/RefundApplicationService.java",
+      "sha256": "0ae922fc573ad99067e1a69c820ac9a49eb75274e3c62f2f16449d40111a0ebf"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/refund/RefundApplicationRepository.java",
+      "sha256": "e4acbc70ad18ae2171bfd1a8edcd21d5b248a9e61ad27a45b81dd34aabbfeee1"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/refund/RefundInput.java",
+      "sha256": "79b4540ac6dc77dc9b5790b7571611ce58dbccca2ea1ca8bcbab2c83d92386a1"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/refund/RefundWorker.java",
+      "sha256": "a6651501748dac1da8d4ea2ccb26b17a8b6b6b0189fb9d7d7b2d245d7adc3a4e"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/refund/RefundRepository.java",
+      "sha256": "ce9152b82225c7263fbf011b2457d4766f1064dc561a3bcdf79a53fcb52e6c9f"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/refund/RefundFactService.java",
+      "sha256": "5e2c7cb515fa6f2c21e21ff2867c6486cbdce60a2f61862cf290fa74421477a1"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/refund/RefundOutboxRepository.java",
+      "sha256": "73e14545957aeeb68aef2a4b95f51c72b5b193915c5bb982b3c60a4c2ca003cd"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/refund/RefundProperties.java",
+      "sha256": "b843dd2e2b469d62ad2f8c0eb29517ed7150bdc500550ceafdcb815c85474eb3"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/security/CommerceTokenFilter.java",
+      "sha256": "d9056025b131ed49ea711fe7b5d152b2548118a8b9d5949891c582966cb8c0ba"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/security/CommerceAccessRepository.java",
+      "sha256": "4a3011fe939d29a239b4a7334d1767e4c061a89b206931605cbe35abc211ef93"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/support/UserRateLimiter.java",
+      "sha256": "35bca1122376793b30ad3e1dead1ea0aa4613808556f3dc5257dd4ab01e3f90d"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/order/OrderService.java",
+      "sha256": "f05562e6ee80eb4d44ebdea47226c296df09406a4f8d9d827496322b248288b5"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/order/OrderRepository.java",
+      "sha256": "2eb4d474d69768fee7d13c563e1b09b82c4d20e92c871c97099a236778185274"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/order/OrderCursor.java",
+      "sha256": "4fada2cbe05564fb164699f85cb7220fc68afca60b52254f4dcd65c648b47817"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/PaymentRepository.java",
+      "sha256": "4cb09b4edfb63cb0ed42b72dc446876e78f6e1559bc16ac733181dcaa99114c2"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/MockPaymentProvider.java",
+      "sha256": "8eb9ecf6dc5e179f9c8cbb11bd22add3563a51185375e3bc8aeb0b6c99bbfa0b"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/delivery/DeliveryAuthorization.java",
+      "sha256": "d818f16829dc384512cc7be7299d6112528dc40061427457ac4c4cdd2cbde9bd"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/test/java/com/astra/system/commerce/RefundApplicationIntegrationTest.java",
+      "sha256": "4b0d7e0cb4838c79544df6386ba4eb262ec86b2c5f0c2ae45b32b5887402d1ad"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "scripts/validate-refund-application-evidence.py",
+      "sha256": "053f42e85e059d1b8ccce710d10c71573f08b1bcabbf60fa354283388a2af8a0"
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "docs/commerce/openapi.json",
+      "sha256": "a2875476b8220418cdb153e405d295a36e00a9968e4dc2a298a9354b5dbb6d53"
+    },
+    {
+      "repository": "astra-web",
+      "path": "src/api/commerce.ts",
+      "sha256": "eaaad40688ed0457c0aabb61ff12a23739e4868290a0281d04a59fa4ed6445c3"
+    },
+    {
+      "repository": "astra-web",
+      "path": "src/api/http.ts",
+      "sha256": "bd630b8faaed8035145405514078af2063b610a64ed07ddb18c12341eae14fe9"
+    },
+    {
+      "repository": "astra-web",
+      "path": "src/lib/refund-request.ts",
+      "sha256": "e7d95640436f2b3f43b5107fa0bf8e9d3ff0e539b47d7931a00f5d0c49f23230"
+    },
+    {
+      "repository": "astra-web",
+      "path": "src/views/OrderDetailView.vue",
+      "sha256": "d3a96bead790d50cdd360896363386678b4abd35365c85194e73083ef1c4ed32"
+    },
+    {
+      "repository": "astra-web",
+      "path": "src/router/index.ts",
+      "sha256": "020d2ec8dd49f5926d113b5ade24e5a15285de173b0b7c03e6f1551a5a695c0f"
+    },
+    {
+      "repository": "astra-web",
+      "path": "src/stores/auth.ts",
+      "sha256": "7529347a014a45fc059d23fdefa91f7a06ce28348316cc9a5e59534ff76c384a"
+    },
+    {
+      "repository": "astra-web",
+      "path": "scripts/refund-request-contract.mjs",
+      "sha256": "7d3488495a5373f474ec350d43260ee40b4fae2f930b1a996a3ca03bae8ea047"
+    },
+    {
+      "repository": "astra-web",
+      "path": "scripts/refund-request-live.mjs",
+      "sha256": "5977a92ba305ca60ec63150aff70b80c95f742b222b6c2dd50a634f3c9a44f33"
+    }
+  ]
+}

@@ -6,13 +6,16 @@ import {
   fetchOwnedOrder,
   fetchOwnedPayment,
   fetchCommerceCapabilities,
+  fetchOwnedRefund,
   type CommerceCapabilities,
   type CommerceOrder,
   type CommercePayment,
+  type CommerceRefund,
 } from '@/api/commerce'
 import { isCommerceId } from '@/lib/account-return'
 import { paymentForOrder, recoverExistingPayment } from '@/lib/payment-recovery'
 import { canInitiateMockPayment, initiateMockPayment } from '@/lib/payment-initiation'
+import { refundForOrder, submitRefundRequest } from '@/lib/refund-request'
 import { formatPurchasedFileSize } from '@/lib/purchased-assets'
 import { useAuthStore } from '@/stores/auth'
 
@@ -23,6 +26,11 @@ const payment = ref<CommercePayment | null>(null)
 const capabilities = ref<CommerceCapabilities | null>(null)
 const confirmingPayment = ref(false)
 const paymentConsent = ref(false)
+const refund = ref<CommerceRefund | null>(null)
+const refundReason = ref('')
+const refundConsent = ref(false)
+const refundBusy = ref(false)
+const refundError = ref('')
 const busy = ref(false)
 const recovering = ref(false)
 const needsLogin = ref(false)
@@ -43,6 +51,7 @@ const canRecover = computed(
     ['INIT', 'PENDING', 'UNKNOWN'].includes(payment.value.state),
 )
 const canInitiate = computed(() => order.value && canInitiateMockPayment(order.value, capabilities.value))
+const canRequestRefund = computed(() => order.value?.state === 'PAID' && order.value.totalRefundedCent === 0 && !order.value.refund && payment.value?.state === 'SUCCEEDED')
 const states: Record<string, string> = {
   PENDING_PAYMENT: '待付款',
   PAID: '已付款',
@@ -87,15 +96,20 @@ function clearPrivate() {
   capabilities.value = null
   confirmingPayment.value = false
   paymentConsent.value = false
+  refund.value = null
+  refundReason.value = ''
+  refundConsent.value = false
 }
 async function load(preserveNotice = false) {
   controller?.abort()
   const attempt = new AbortController()
   controller = attempt
   recovering.value = false
+  refundBusy.value = false
   busy.value = true
   error.value = ''
   paymentError.value = ''
+  refundError.value = ''
   notFound.value = false
   if (!preserveNotice) notice.value = ''
   clearPrivate()
@@ -133,6 +147,17 @@ async function load(preserveNotice = false) {
           clearPrivate()
           needsLogin.value = true
         } else paymentError.value = '付款记录暂时无法读取，请刷新状态。不要重新创建订单或重复付款。'
+      }
+    }
+    if (result.refund && !needsLogin.value) {
+      try {
+        const row = await fetchOwnedRefund(result.refund.id, attempt.signal)
+        if (attempt.signal.aborted || getAccessToken() !== token) return
+        refund.value = refundForOrder(row, result)
+      } catch (cause) {
+        if (attempt.signal.aborted || getAccessToken() !== token) return
+        if (cause instanceof ApiError && cause.status === 401) { clearPrivate(); needsLogin.value = true }
+        else refundError.value = '退款详情暂时无法读取，请刷新原订单；不要重复申请。'
       }
     }
   } catch (cause) {
@@ -191,6 +216,34 @@ async function recover() {
   } finally {
     if (controller === attempt) recovering.value = false
   }
+}
+async function applyRefund() {
+  if (busy.value || recovering.value || refundBusy.value || !canRequestRefund.value || !order.value || !refundConsent.value) return
+  const token = getAccessToken()
+  if (!token || token !== loadedToken) { await load(); return }
+  const original = order.value
+  const attempt = new AbortController()
+  controller?.abort()
+  controller = attempt
+  refundBusy.value = true
+  refundError.value = ''
+  notice.value = ''
+  const reason = refundReason.value
+  refundConsent.value = false
+  try {
+    const result = await submitRefundRequest(original, reason, token, attempt.signal)
+    if (attempt.signal.aborted || getAccessToken() !== token) return
+    notice.value = result.state === 'REQUESTED'
+      ? '退款申请已提交，等待后台审核。申请不代表退款到账。'
+      : '已恢复原退款记录，处理状态以后台记录为准。'
+    await load(true)
+  } catch (cause) {
+    if (attempt.signal.aborted || getAccessToken() !== token) return
+    if (cause instanceof ApiError && cause.status === 401) { clearPrivate(); needsLogin.value = true }
+    else if (cause instanceof ApiError && cause.status === 404) { clearPrivate(); error.value = '当前账户无法读取这笔订单，请从我的订单重新进入。' }
+    else refundError.value = cause instanceof Error && !(cause instanceof ApiError) && !(cause instanceof TypeError) && !(cause instanceof DOMException)
+      ? cause.message : '申请结果暂时无法确认。请先刷新原订单；仍无记录时，用相同原因恢复申请。'
+  } finally { if (controller === attempt) refundBusy.value = false }
 }
 async function initiate() {
   if (busy.value || recovering.value || !canInitiate.value || !order.value || !confirmingPayment.value || !paymentConsent.value) return
@@ -366,13 +419,30 @@ onBeforeUnmount(() => {
         <section class="refund-section" aria-labelledby="refund-heading">
           <h2 id="refund-heading">退款记录</h2>
           <template v-if="order.refund"
-            ><p>
-              {{ states[order.refund.state] ?? '状态待确认' }} ·
+            ><p data-refund-state>
+              {{ states[refund?.state ?? order.refund.state] ?? '状态待确认' }} ·
               {{ money(order.refund.amountCent, order.currency) }}
             </p>
             <p>已完成退款金额：{{ money(order.totalRefundedCent, order.currency) }}</p></template
           >
           <p v-else>尚无退款记录。</p>
+          <template v-if="refund">
+            <p class="refund-text">申请原因：{{ refund.reason }}</p>
+            <p v-if="refund.decisionReason" class="refund-text">审核说明：{{ refund.decisionReason }}</p>
+            <p class="muted">最近更新：{{ date(refund.updatedAt) }}</p>
+            <p v-if="refund.state === 'REJECTED'" class="muted">如需补充材料或申诉，请联系订单支持，由后台重新审核原申请。</p>
+          </template>
+          <p v-if="refundError" role="alert">{{ refundError }}</p>
+          <form v-if="canRequestRefund" class="refund-form" @submit.prevent="applyRefund">
+            <p>申请原订单全额退款：{{ money(order.totalAmountCent, order.currency) }}</p>
+            <p class="muted">申请将由后台审核。已开始领取、文件质量或描述问题仍可说明情况；请勿填写密码、支付密钥或银行卡信息。</p>
+            <details><summary>查看这笔订单的退款说明</summary><p class="policy-copy">{{ order.refundPolicy.content }}</p></details>
+            <label for="refund-reason">退款原因</label>
+            <textarea id="refund-reason" v-model="refundReason" rows="4" maxlength="1000" :disabled="refundBusy" aria-describedby="refund-reason-help" required />
+            <p id="refund-reason-help" class="muted">请填写5至500字。{{ Array.from(refundReason.trim()).length }}/500</p>
+            <label class="payment-consent"><input v-model="refundConsent" type="checkbox" :disabled="refundBusy" />我已阅读该订单退款说明，确认提交全额退款申请。</label>
+            <button class="art-button" type="submit" :disabled="busy || recovering || refundBusy || !refundConsent || Array.from(refundReason.trim()).length < 5 || Array.from(refundReason.trim()).length > 500">{{ refundBusy ? '正在提交申请…' : '提交退款申请' }}</button>
+          </form>
           <p class="muted">退款申请和到账是不同状态，处理结果以后台记录及渠道到账为准。</p>
         </section>
         <section class="order-files" aria-labelledby="order-files-heading">
@@ -525,6 +595,16 @@ article h2,
   white-space: pre-wrap;
   line-height: 1.9;
 }
+.refund-form { display: grid; gap: 12px; margin-block: 20px; }
+.refund-form textarea {
+  width: 100%; box-sizing: border-box; padding: 12px; border: 1px solid var(--border);
+  border-radius: 8px; background: var(--bg); color: var(--text); font: inherit;
+  line-height: 1.7; resize: vertical;
+}
+.refund-form textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.refund-form summary { cursor: pointer; }
+.refund-form .art-button { justify-self: start; }
+.refund-text { white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.8; }
 @media (max-width: 540px) {
   .order-facts {
     grid-template-columns: minmax(0, 1fr);

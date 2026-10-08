@@ -1,0 +1,519 @@
+{
+  "passed": true,
+  "phase": "request",
+  "scope": "Owned gateway/system/MySQL/Redis; trusted mock refunds; auth/me explicitly mocked503",
+  "checks": [
+    "Anonymous page performs no private requests",
+    "Reason minimum and initially unchecked policy consent required",
+    "Actual backend accepted200 response loss retains original form without pretending refund completed",
+    "Lost result and double click recover same UUID/reason, exactly two HTTP attempts and one backend command",
+    "Pending application leaves backend-granted rights available and hides repeated application form",
+    "Session storage contains command UUID/body hash only, no JWT or complaint text",
+    "390px reload restores actual original refund detail without another POST or horizontal overflow",
+    "Cross-tab account switch removes private reason and requests with current identity only"
+  ],
+  "requests": [
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/capabilities",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "paymentEnabled": false,
+          "paymentChannel": "wechat_native",
+          "supportedCheckoutDevices": [
+            "desktop"
+          ],
+          "creationKitReady": false,
+          "environment": "test",
+          "mockPayment": false,
+          "orderCreationEnabled": true,
+          "mockPaymentInitiationEnabled": true
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "02d076b7-9936-4ce2-acfb-fc84668a2a4a"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/orders/366544575113854976",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "id": "366544575113854976",
+          "orderNo": "AST366544575113854976",
+          "skuId": "189304737000010203",
+          "releaseId": "189304737000010202",
+          "state": "PAID",
+          "fulfillmentState": "GRANTED",
+          "totalAmountCent": 3900,
+          "totalRefundedCent": 0,
+          "currency": "CNY",
+          "item": {
+            "skuId": "189304737000010203",
+            "releaseId": "189304737000010202",
+            "productName": "中文测试商品1",
+            "productKind": "TEMPLATE_PACK",
+            "releaseVersion": "1.0.0",
+            "quantity": 1,
+            "amountCent": 3900,
+            "license": {
+              "code": "license",
+              "kind": "LICENSE",
+              "version": "1.0.0",
+              "sha256": "c05ab6988ecb2b3fb03eb90a5e990c3428fa981096cfbb743b2b474ed6605d8e",
+              "content": "测试LICENSE条款，未用于销售"
+            },
+            "assets": [
+              {
+                "id": "189304737000010204",
+                "fileName": "中文模板.astra",
+                "mimeType": "application/octet-stream",
+                "sizeBytes": 1,
+                "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+              }
+            ]
+          },
+          "purchaseTerms": {
+            "code": "purchase_terms",
+            "kind": "PURCHASE_TERMS",
+            "version": "1.0.0",
+            "sha256": "282cdc36a20e9968ee6d8aa2eaec867b30a7944012917f80cd74813550e9f868",
+            "content": "测试PURCHASE_TERMS条款，未用于销售"
+          },
+          "refundPolicy": {
+            "code": "refund_policy",
+            "kind": "REFUND_POLICY",
+            "version": "1.0.0",
+            "sha256": "aaa404f905a19d9239c6fb6457a17d6838c6795cda46348626e9d2a15e2f40c3",
+            "content": "测试REFUND_POLICY条款，未用于销售"
+          },
+          "consentAt": "2026-10-08T11:17:16.769Z",
+          "expiresAt": "2026-10-08T11:32:16.769Z",
+          "createdAt": "2026-10-08T11:17:16.769Z",
+          "paidAt": "2026-10-08T11:17:16.889Z",
+          "paymentId": "366544575252267008"
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "1e630f5f-81d8-43d9-8734-1cbe655ea181"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/payments/366544575252267008",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "id": "366544575252267008",
+          "orderId": "366544575113854976",
+          "state": "SUCCEEDED",
+          "channel": "wechat_native",
+          "amountCent": 3900,
+          "currency": "CNY",
+          "expiresAt": "2026-10-08T11:32:16.769Z",
+          "mock": true
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store, private, no-store",
+        "requestId": "4520408a-603a-4d45-9bf8-6b0d40f17c89"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366544575113854976/refund-requests",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "id": "366544585930964992",
+          "orderId": "366544575113854976",
+          "paymentId": "366544575252267008",
+          "state": "REQUESTED",
+          "amountCent": 3900,
+          "currency": "CNY",
+          "reason": "文件无法恢复希望核查退款",
+          "createdAt": "2026-10-08T11:17:19.355Z",
+          "updatedAt": "2026-10-08T11:17:19.355Z",
+          "version": 1
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "15f501ed-023e-458d-a0e2-78f12260517d"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366544575113854976/refund-requests",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "id": "366544585930964992",
+          "orderId": "366544575113854976",
+          "paymentId": "366544575252267008",
+          "state": "REQUESTED",
+          "amountCent": 3900,
+          "currency": "CNY",
+          "reason": "文件无法恢复希望核查退款",
+          "createdAt": "2026-10-08T11:17:19.355Z",
+          "updatedAt": "2026-10-08T11:17:19.355Z",
+          "version": 1
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "3cb129ab-eb1f-4b60-9fac-5359eaadc1fb"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/capabilities",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "paymentEnabled": false,
+          "paymentChannel": "wechat_native",
+          "supportedCheckoutDevices": [
+            "desktop"
+          ],
+          "creationKitReady": false,
+          "environment": "test",
+          "mockPayment": false,
+          "orderCreationEnabled": true,
+          "mockPaymentInitiationEnabled": true
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "3ced213b-3d91-475b-90af-a8aad5a5fe98"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/orders/366544575113854976",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "id": "366544575113854976",
+          "orderNo": "AST366544575113854976",
+          "skuId": "189304737000010203",
+          "releaseId": "189304737000010202",
+          "state": "PAID",
+          "fulfillmentState": "GRANTED",
+          "totalAmountCent": 3900,
+          "totalRefundedCent": 0,
+          "currency": "CNY",
+          "item": {
+            "skuId": "189304737000010203",
+            "releaseId": "189304737000010202",
+            "productName": "中文测试商品1",
+            "productKind": "TEMPLATE_PACK",
+            "releaseVersion": "1.0.0",
+            "quantity": 1,
+            "amountCent": 3900,
+            "license": {
+              "code": "license",
+              "kind": "LICENSE",
+              "version": "1.0.0",
+              "sha256": "c05ab6988ecb2b3fb03eb90a5e990c3428fa981096cfbb743b2b474ed6605d8e",
+              "content": "测试LICENSE条款，未用于销售"
+            },
+            "assets": [
+              {
+                "id": "189304737000010204",
+                "fileName": "中文模板.astra",
+                "mimeType": "application/octet-stream",
+                "sizeBytes": 1,
+                "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+              }
+            ]
+          },
+          "purchaseTerms": {
+            "code": "purchase_terms",
+            "kind": "PURCHASE_TERMS",
+            "version": "1.0.0",
+            "sha256": "282cdc36a20e9968ee6d8aa2eaec867b30a7944012917f80cd74813550e9f868",
+            "content": "测试PURCHASE_TERMS条款，未用于销售"
+          },
+          "refundPolicy": {
+            "code": "refund_policy",
+            "kind": "REFUND_POLICY",
+            "version": "1.0.0",
+            "sha256": "aaa404f905a19d9239c6fb6457a17d6838c6795cda46348626e9d2a15e2f40c3",
+            "content": "测试REFUND_POLICY条款，未用于销售"
+          },
+          "consentAt": "2026-10-08T11:17:16.769Z",
+          "expiresAt": "2026-10-08T11:32:16.769Z",
+          "createdAt": "2026-10-08T11:17:16.769Z",
+          "paidAt": "2026-10-08T11:17:16.889Z",
+          "paymentId": "366544575252267008",
+          "refund": {
+            "id": "366544585930964992",
+            "state": "REQUESTED",
+            "amountCent": 3900
+          }
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "3c5a46b1-7a87-49b3-a730-752ffc9739af"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/payments/366544575252267008",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "id": "366544575252267008",
+          "orderId": "366544575113854976",
+          "state": "SUCCEEDED",
+          "channel": "wechat_native",
+          "amountCent": 3900,
+          "currency": "CNY",
+          "expiresAt": "2026-10-08T11:32:16.769Z",
+          "mock": true
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store, private, no-store",
+        "requestId": "1f41dde2-1c0a-4ede-8188-f9cf64aa509a"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/refunds/366544585930964992",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "id": "366544585930964992",
+          "orderId": "366544575113854976",
+          "paymentId": "366544575252267008",
+          "state": "REQUESTED",
+          "amountCent": 3900,
+          "currency": "CNY",
+          "reason": "文件无法恢复希望核查退款",
+          "createdAt": "2026-10-08T11:17:19.355Z",
+          "updatedAt": "2026-10-08T11:17:19.355Z",
+          "version": 1
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "4d81f02c-74e0-4611-8582-8d1c352ac41d"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/capabilities",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "paymentEnabled": false,
+          "paymentChannel": "wechat_native",
+          "supportedCheckoutDevices": [
+            "desktop"
+          ],
+          "creationKitReady": false,
+          "environment": "test",
+          "mockPayment": false,
+          "orderCreationEnabled": true,
+          "mockPaymentInitiationEnabled": true
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "588b22ad-34ee-4fa6-b14d-ce157395334e"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/orders/366544575113854976",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "id": "366544575113854976",
+          "orderNo": "AST366544575113854976",
+          "skuId": "189304737000010203",
+          "releaseId": "189304737000010202",
+          "state": "PAID",
+          "fulfillmentState": "GRANTED",
+          "totalAmountCent": 3900,
+          "totalRefundedCent": 0,
+          "currency": "CNY",
+          "item": {
+            "skuId": "189304737000010203",
+            "releaseId": "189304737000010202",
+            "productName": "中文测试商品1",
+            "productKind": "TEMPLATE_PACK",
+            "releaseVersion": "1.0.0",
+            "quantity": 1,
+            "amountCent": 3900,
+            "license": {
+              "code": "license",
+              "kind": "LICENSE",
+              "version": "1.0.0",
+              "sha256": "c05ab6988ecb2b3fb03eb90a5e990c3428fa981096cfbb743b2b474ed6605d8e",
+              "content": "测试LICENSE条款，未用于销售"
+            },
+            "assets": [
+              {
+                "id": "189304737000010204",
+                "fileName": "中文模板.astra",
+                "mimeType": "application/octet-stream",
+                "sizeBytes": 1,
+                "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+              }
+            ]
+          },
+          "purchaseTerms": {
+            "code": "purchase_terms",
+            "kind": "PURCHASE_TERMS",
+            "version": "1.0.0",
+            "sha256": "282cdc36a20e9968ee6d8aa2eaec867b30a7944012917f80cd74813550e9f868",
+            "content": "测试PURCHASE_TERMS条款，未用于销售"
+          },
+          "refundPolicy": {
+            "code": "refund_policy",
+            "kind": "REFUND_POLICY",
+            "version": "1.0.0",
+            "sha256": "aaa404f905a19d9239c6fb6457a17d6838c6795cda46348626e9d2a15e2f40c3",
+            "content": "测试REFUND_POLICY条款，未用于销售"
+          },
+          "consentAt": "2026-10-08T11:17:16.769Z",
+          "expiresAt": "2026-10-08T11:32:16.769Z",
+          "createdAt": "2026-10-08T11:17:16.769Z",
+          "paidAt": "2026-10-08T11:17:16.889Z",
+          "paymentId": "366544575252267008",
+          "refund": {
+            "id": "366544585930964992",
+            "state": "REQUESTED",
+            "amountCent": 3900
+          }
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "1b828017-de1d-4838-a674-88bb30201f20"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/payments/366544575252267008",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "id": "366544575252267008",
+          "orderId": "366544575113854976",
+          "state": "SUCCEEDED",
+          "channel": "wechat_native",
+          "amountCent": 3900,
+          "currency": "CNY",
+          "expiresAt": "2026-10-08T11:32:16.769Z",
+          "mock": true
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store, private, no-store",
+        "requestId": "f7051944-99b9-4c8b-81ad-d5acbf071dff"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/refunds/366544585930964992",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "id": "366544585930964992",
+          "orderId": "366544575113854976",
+          "paymentId": "366544575252267008",
+          "state": "REQUESTED",
+          "amountCent": 3900,
+          "currency": "CNY",
+          "reason": "文件无法恢复希望核查退款",
+          "createdAt": "2026-10-08T11:17:19.355Z",
+          "updatedAt": "2026-10-08T11:17:19.355Z",
+          "version": 1
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "e0545f2f-0136-4e63-802d-07b8293cba4d"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/capabilities",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "成功",
+        "data": {
+          "paymentEnabled": false,
+          "paymentChannel": "wechat_native",
+          "supportedCheckoutDevices": [
+            "desktop"
+          ],
+          "creationKitReady": false,
+          "environment": "test",
+          "mockPayment": false,
+          "orderCreationEnabled": true,
+          "mockPaymentInitiationEnabled": true
+        }
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "f0fef85d-c422-4b33-b169-08f270d45d5c"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/orders/366544575113854976",
+      "status": 404,
+      "body": {
+        "code": 404,
+        "msg": "订单不存在"
+      },
+      "headers": {
+        "cacheControl": "no-store",
+        "requestId": "63fe29e2-2732-4143-b51f-edb9ece86ac2"
+      }
+    }
+  ],
+  "injectedFailures": [
+    {
+      "path": "/api/system/orders/366544575113854976/refund-requests",
+      "kind": "accepted200-refund-response-lost"
+    }
+  ]
+}

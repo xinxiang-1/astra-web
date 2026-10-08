@@ -1,0 +1,844 @@
+{
+  "passed": true,
+  "scope": "actual owned refund request/admin audit/browser HTTP schema/privacy headers",
+  "sourceFiles": 0,
+  "sourceMode": "worktree",
+  "httpResponses": 137,
+  "browserChecks": 10,
+  "checkoutUrlsOmitted": 0,
+  "checks": [
+    {
+      "method": "POST",
+      "path": "/api/system/orders",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366544560089858048/payments",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders/366544560089858048/refund-requests",
+      "status": 401,
+      "viaGateway": false
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders/366544560089858048/refund-requests",
+      "status": 404,
+      "viaGateway": false
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders/366544560089858048/refund-requests",
+      "status": 401,
+      "viaGateway": false
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders/366544560089858048/refund-requests",
+      "status": 400,
+      "viaGateway": false
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders/366544560089858048/refund-requests",
+      "status": 400,
+      "viaGateway": false
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders/366544560089858048/refund-requests",
+      "status": 400,
+      "viaGateway": false
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders/366544560089858048/refund-requests",
+      "status": 400,
+      "viaGateway": false
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders/366544560089858048/refund-requests",
+      "status": 400,
+      "viaGateway": false
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders/366544560089858048/refund-requests",
+      "status": 400,
+      "viaGateway": false
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders/366544560089858048/refund-requests",
+      "status": 400,
+      "viaGateway": false
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders/366544560089858048/refund-requests",
+      "status": 400,
+      "viaGateway": false
+    },
+    {
+      "method": "POST",
+      "path": "/system/orders/366544560089858048/refund-requests",
+      "status": 400,
+      "viaGateway": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366544560089858048/refund-requests",
+      "status": 401,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366544560089858048/refund-requests",
+      "status": 404,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366544560089858048/refund-requests",
+      "status": 401,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366544560089858048/refund-requests",
+      "status": 400,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366544560089858048/refund-requests",
+      "status": 400,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366544560089858048/refund-requests",
+      "status": 400,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366544560089858048/refund-requests",
+      "status": 400,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366544560089858048/refund-requests",
+      "status": 400,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366544560089858048/refund-requests",
+      "status": 400,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366544560089858048/refund-requests",
+      "status": 400,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366544560089858048/refund-requests",
+      "status": 400,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366544560089858048/refund-requests",
+      "status": 400,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366544560089858048/refund-requests",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366544563675987968/payments",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366544563675987968/refund-requests",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366544563675987968/refund-requests",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366544563675987968/refund-requests",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366544563675987968/refund-requests",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366544563675987968/refund-requests",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366544563675987968/refund-requests",
+      "status": 409,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366544563675987968/refund-requests",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366544566083518464/payments",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366544566083518464/refund-requests",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/system/refunds/366544567278895104",
+      "status": 200,
+      "viaGateway": false
+    },
+    {
+      "method": "GET",
+      "path": "/system/refunds/366544567278895104",
+      "status": 404,
+      "viaGateway": false
+    },
+    {
+      "method": "GET",
+      "path": "/system/refunds/366544567278895104",
+      "status": 401,
+      "viaGateway": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/refunds/366544567278895104",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/refunds/366544567278895104",
+      "status": 404,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/refunds/366544567278895104",
+      "status": 401,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366544567996121088/refund-requests",
+      "status": 409,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/system/admin/refunds/366544563399163904/decisions",
+      "status": 403,
+      "viaGateway": false
+    },
+    {
+      "method": "GET",
+      "path": "/system/admin/refunds",
+      "status": 403,
+      "viaGateway": false
+    },
+    {
+      "method": "POST",
+      "path": "/system/admin/refunds/366544563399163904/decisions",
+      "status": 400,
+      "viaGateway": false
+    },
+    {
+      "method": "POST",
+      "path": "/system/admin/refunds/366544563399163904/decisions",
+      "status": 400,
+      "viaGateway": false
+    },
+    {
+      "method": "POST",
+      "path": "/system/admin/refunds/366544563399163904/decisions",
+      "status": 400,
+      "viaGateway": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/admin/refunds/366544563399163904/decisions",
+      "status": 403,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/refunds",
+      "status": 403,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/admin/refunds/366544563399163904/decisions",
+      "status": 400,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/admin/refunds/366544563399163904/decisions",
+      "status": 400,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/admin/refunds/366544563399163904/decisions",
+      "status": 400,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/admin/refunds/366544563399163904/decisions",
+      "status": 409,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/admin/refunds/366544563399163904/decisions",
+      "status": 403,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/admin/refunds/366544563399163904/decisions",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/admin/refunds/366544563399163904/decisions",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/system/refunds/366544563399163904",
+      "status": 200,
+      "viaGateway": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/refunds/366544563399163904",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/admin/refunds/366544563399163904/decisions",
+      "status": 409,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/admin/refunds/366544567278895104/decisions",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366544566083518464/refund-requests",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/admin/refunds/366544567278895104/decisions",
+      "status": 409,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/admin/refunds/366544567278895104/decisions",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/admin/refunds/366544567278895104/decisions",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/admin/refunds/366544564980416512/decisions",
+      "status": 503,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/admin/refunds/366544564980416512/decisions",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366544573557768192/payments",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366544573557768192/refund-requests",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/refunds",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/refunds",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/refunds",
+      "status": 400,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/refunds",
+      "status": 400,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/refunds",
+      "status": 400,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/refunds",
+      "status": 400,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366544575113854976/payments",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/admin/refunds/366544585930964992/decisions",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/refunds/366544563399163904",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/system/refunds/366544563399163904",
+      "status": 200,
+      "viaGateway": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/refunds/366544563399163904",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/system/refunds/366544563399163904",
+      "status": 200,
+      "viaGateway": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/refunds/366544563399163904",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/system/refunds/366544563399163904",
+      "status": 200,
+      "viaGateway": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/refunds/366544563399163904",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/system/refunds/366544563399163904",
+      "status": 200,
+      "viaGateway": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/refunds/366544563399163904",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/system/refunds/366544563399163904",
+      "status": 200,
+      "viaGateway": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/refunds/366544563399163904",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/system/refunds/366544563399163904",
+      "status": 200,
+      "viaGateway": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/refunds/366544563399163904",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/system/refunds/366544563399163904",
+      "status": 200,
+      "viaGateway": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/refunds/366544563399163904",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/system/refunds/366544563399163904",
+      "status": 200,
+      "viaGateway": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/refunds/366544563399163904",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/system/refunds/366544563399163904",
+      "status": 200,
+      "viaGateway": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/refunds/366544563399163904",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/system/refunds/366544563399163904",
+      "status": 200,
+      "viaGateway": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/refunds/366544563399163904",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/system/refunds/366544563399163904",
+      "status": 200,
+      "viaGateway": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/refunds/366544563399163904",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/system/refunds/366544563399163904",
+      "status": 200,
+      "viaGateway": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/refunds/366544563399163904",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/system/refunds/366544563399163904",
+      "status": 200,
+      "viaGateway": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/refunds/366544563399163904",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/system/refunds/366544563399163904",
+      "status": 200,
+      "viaGateway": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/refunds/366544563399163904",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/system/refunds/366544563399163904",
+      "status": 200,
+      "viaGateway": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/refunds/366544563399163904",
+      "status": 429,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/system/admin/refunds",
+      "status": 503,
+      "viaGateway": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/refunds",
+      "status": 503,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/system/refunds/366544563399163904",
+      "status": 503,
+      "viaGateway": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/refunds/366544563399163904",
+      "status": 503,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/capabilities",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/orders/366544575113854976",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/payments/366544575252267008",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366544575113854976/refund-requests",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/orders/366544575113854976/refund-requests",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/capabilities",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/orders/366544575113854976",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/payments/366544575252267008",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/refunds/366544585930964992",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/capabilities",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/orders/366544575113854976",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/payments/366544575252267008",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/refunds/366544585930964992",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/capabilities",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/orders/366544575113854976",
+      "status": 404,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/catalog/capabilities",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/orders/366544575113854976",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/payments/366544575252267008",
+      "status": 200,
+      "viaGateway": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/refunds/366544585930964992",
+      "status": 200,
+      "viaGateway": true
+    }
+  ],
+  "captureSha256": "b0ff25786d5860f27bedf5673d8e12b1269ff36a262bbc9988da2d50ddff9f62",
+  "openapiSha256": "4d12dcfd402dbb97867b5011ca3accc3959b35746cbec053590249bacb2c026e",
+  "notVerified": [
+    "real funds",
+    "real authentication/login",
+    "production admin bootstrap",
+    "daily reconciliation",
+    "membership",
+    "actual phone/Safari",
+    "production deployment"
+  ]
+}

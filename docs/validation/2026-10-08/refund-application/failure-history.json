@@ -1,0 +1,40 @@
+{
+  "runs": [
+    {
+      "run": "R1",
+      "testsPassed": 10,
+      "optionalBrowserSkipped": 1,
+      "failed": 0,
+      "scope": "Backend only, not final browser validation"
+    },
+    {
+      "run": "R2",
+      "testsPassed": 27,
+      "failed": 0,
+      "browserChecks": 10,
+      "schemaResponses": 137
+    },
+    {
+      "run": "R3",
+      "testsPassed": 11,
+      "failed": 0,
+      "purpose": "Add and inspect desktop/390px actual application form screenshots"
+    },
+    {
+      "run": "R4",
+      "testsPassed": 11,
+      "failed": 0,
+      "browserChecks": 10,
+      "schemaResponses": 137,
+      "purpose": "Final UI notice follows actual recovered state, not unconditional REQUESTED; final build and current-source validation"
+    }
+  ],
+  "expectedFaults": [
+    "actual accepted200 response lost",
+    "SQL audit insert trigger failure with full rollback",
+    "owned role table unavailable503",
+    "owned Redis stopped503",
+    "stale version and unauthorized rejection"
+  ],
+  "notProductFailures": "Expected injected faults passed; repeated runs not added to unique test count"
+}

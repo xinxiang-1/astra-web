@@ -156,6 +156,32 @@ export interface CommercePayment {
 export function fetchOwnedPayment(paymentId: string, signal?: AbortSignal) {
   return http<CommercePayment>(`/system/payments/${paymentId}`, { signal, cache: 'no-store' })
 }
+export interface CommerceRefund {
+  id: string
+  orderId: string
+  paymentId: string
+  state: string
+  amountCent: number
+  currency: string
+  reason: string
+  decisionReason?: string
+  createdAt: string
+  updatedAt: string
+  completedAt?: string
+  version: number
+}
+export function fetchOwnedRefund(refundId: string, signal?: AbortSignal) {
+  return http<CommerceRefund>(`/system/refunds/${refundId}`, { signal, cache: 'no-store' })
+}
+export function requestOrderRefund(orderId: string, reason: string, key: string, signal?: AbortSignal) {
+  return http<CommerceRefund>(`/system/orders/${orderId}/refund-requests`, {
+    method: 'POST',
+    headers: { 'Idempotency-Key': key },
+    body: JSON.stringify({ reason }),
+    signal,
+    cache: 'no-store',
+  })
+}
 export function recoverOrderPayment(orderId: string, key: string, signal?: AbortSignal) {
   return http<CommercePayment>(`/system/orders/${orderId}/payments`, {
     method: 'POST',
