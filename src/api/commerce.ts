@@ -69,6 +69,7 @@ export interface CommerceEntitlement {
 }
 
 export interface CommerceCapabilities {
+  mockPaymentInitiationEnabled: boolean
   orderCreationEnabled: boolean
   paymentEnabled: boolean
   paymentChannel: string

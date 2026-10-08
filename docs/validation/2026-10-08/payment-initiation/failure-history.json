@@ -1,0 +1,29 @@
+{
+  "newLiveR1": {
+    "realJUnit": 5,
+    "browserChecks": 12,
+    "runtimePassed": true,
+    "schemaPassed": false,
+    "cause": "Fixture manually exposed staging environment, outside the declared development/test/production enum; removed unsupported fixture state without weakening contract."
+  },
+  "newLiveR2": {
+    "passed": true,
+    "realJUnit": 5,
+    "browserChecks": 12,
+    "httpResponses": 65
+  },
+  "newLiveR3": {
+    "passed": true,
+    "realJUnit": 5,
+    "browserChecks": 12,
+    "httpResponses": 65,
+    "scope": "Final source additionally double-clicks first initiation before accepted response loss"
+  },
+  "recoveryRegressionR1": {
+    "passed": true,
+    "realJUnit": 6,
+    "browserChecks": 10,
+    "httpResponses": 77
+  },
+  "builds": "R1 log completed before old process handle disappeared; final product buildR2 completed with observed exit0. Preview5196 was confirmed absent and restarted as task-owned process."
+}

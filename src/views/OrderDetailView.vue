@@ -5,11 +5,14 @@ import { ApiError, getAccessToken } from '@/api/http'
 import {
   fetchOwnedOrder,
   fetchOwnedPayment,
+  fetchCommerceCapabilities,
+  type CommerceCapabilities,
   type CommerceOrder,
   type CommercePayment,
 } from '@/api/commerce'
 import { isCommerceId } from '@/lib/account-return'
 import { paymentForOrder, recoverExistingPayment } from '@/lib/payment-recovery'
+import { canInitiateMockPayment, initiateMockPayment } from '@/lib/payment-initiation'
 import { formatPurchasedFileSize } from '@/lib/purchased-assets'
 import { useAuthStore } from '@/stores/auth'
 
@@ -17,6 +20,9 @@ const props = defineProps<{ orderId: string }>()
 const auth = useAuthStore()
 const order = ref<CommerceOrder | null>(null)
 const payment = ref<CommercePayment | null>(null)
+const capabilities = ref<CommerceCapabilities | null>(null)
+const confirmingPayment = ref(false)
+const paymentConsent = ref(false)
 const busy = ref(false)
 const recovering = ref(false)
 const needsLogin = ref(false)
@@ -36,6 +42,7 @@ const canRecover = computed(
     payment.value?.channel === 'wechat_native' &&
     ['INIT', 'PENDING', 'UNKNOWN'].includes(payment.value.state),
 )
+const canInitiate = computed(() => order.value && canInitiateMockPayment(order.value, capabilities.value))
 const states: Record<string, string> = {
   PENDING_PAYMENT: '待付款',
   PAID: '已付款',
@@ -77,6 +84,9 @@ function clearPrivate() {
   order.value = null
   payment.value = null
   loadedToken = null
+  capabilities.value = null
+  confirmingPayment.value = false
+  paymentConsent.value = false
 }
 async function load(preserveNotice = false) {
   controller?.abort()
@@ -102,12 +112,16 @@ async function load(preserveNotice = false) {
     return
   }
   try {
-    const result = await fetchOwnedOrder(props.orderId, attempt.signal)
+    const [result, flags] = await Promise.all([
+      fetchOwnedOrder(props.orderId, attempt.signal),
+      fetchCommerceCapabilities(attempt.signal).catch(() => null),
+    ])
     if (attempt.signal.aborted || getAccessToken() !== token) return
     if (result.id !== props.orderId || (result.paymentId && !isCommerceId(result.paymentId)))
       throw new Error('Invalid order binding')
     order.value = result
     loadedToken = token
+    capabilities.value = flags
     if (result.paymentId) {
       try {
         const row = await fetchOwnedPayment(result.paymentId, attempt.signal)
@@ -177,6 +191,48 @@ async function recover() {
   } finally {
     if (controller === attempt) recovering.value = false
   }
+}
+async function initiate() {
+  if (busy.value || recovering.value || !canInitiate.value || !order.value || !confirmingPayment.value || !paymentConsent.value) return
+  const token = getAccessToken()
+  if (!token || token !== loadedToken) { await load(); return }
+  const original = order.value
+  const flags = capabilities.value
+  const attempt = new AbortController()
+  controller?.abort()
+  controller = attempt
+  recovering.value = true
+  paymentConsent.value = false
+  paymentError.value = ''
+  notice.value = ''
+  try {
+    await initiateMockPayment(original, flags, token, attempt.signal)
+    if (attempt.signal.aborted || getAccessToken() !== token) return
+    notice.value = '模拟付款请求已受理，正在核对后台订单状态。'
+    await load(true)
+    if (getAccessToken() === token && order.value?.id === original.id)
+      notice.value = '已核对模拟付款记录。付款与权益状态以后台确认为准。'
+  } catch (cause) {
+    if (attempt.signal.aborted || getAccessToken() !== token) return
+    if (cause instanceof ApiError && cause.status === 401) { clearPrivate(); needsLogin.value = true }
+    else if (cause instanceof ApiError && cause.status === 404) { clearPrivate(); error.value = '当前账户无法读取这笔订单，请从我的订单重新进入。' }
+    else {
+      confirmingPayment.value = false
+      paymentError.value = cause instanceof ApiError && cause.code === 43005
+        ? '后台已拒绝发起付款，请刷新原订单确认关闭状态。'
+        : cause instanceof Error && !(cause instanceof ApiError) && !(cause instanceof TypeError) && !(cause instanceof DOMException)
+          ? cause.message : '付款请求结果暂时无法确认。请先刷新原订单；如已有记录，只恢复原付款记录。'
+    }
+  } finally { if (controller === attempt) recovering.value = false }
+}
+function openPaymentConfirmation() {
+  if (getAccessToken() !== loadedToken) { void load(); return }
+  paymentConsent.value = false
+  confirmingPayment.value = true
+}
+function closePaymentConfirmation() {
+  confirmingPayment.value = false
+  paymentConsent.value = false
 }
 function onStorage(event: StorageEvent) {
   if (event.key === 'astra_access_token' || event.key === null) void load()
@@ -279,6 +335,27 @@ onBeforeUnmount(() => {
             >
               {{ recovering ? '正在恢复…' : '恢复付款记录' }}
             </button>
+          </template>
+          <template v-else-if="canInitiate">
+            <p>这笔订单尚无付款记录。当前仅允许创建模拟记录，不涉及真实资金。</p>
+            <button v-if="!confirmingPayment" class="art-button" :disabled="busy || recovering" @click="openPaymentConfirmation">
+              核对模拟付款请求
+            </button>
+            <form v-else data-payment-confirmation @submit.prevent="initiate">
+              <p>原订单 {{ order.orderNo }} · {{ money(order.totalAmountCent, order.currency) }}</p>
+              <details v-for="entry in [
+                { name: '使用许可', policy: order.item.license },
+                { name: '购买条款', policy: order.purchaseTerms },
+                { name: '退款说明', policy: order.refundPolicy },
+              ]" :key="entry.name" open>
+                <summary>{{ entry.name }} · {{ entry.policy.version }}</summary>
+                <p class="policy-copy">{{ entry.policy.content }}</p>
+              </details>
+              <label class="payment-consent"><input v-model="paymentConsent" type="checkbox" :disabled="busy || recovering" />
+                我已核对原订单金额和以上条款，确认仅创建模拟付款记录。</label>
+              <button class="art-button" type="submit" :disabled="busy || recovering || !paymentConsent">确认创建模拟付款记录</button>
+              <button class="art-button" type="button" :disabled="busy || recovering" @click="closePaymentConfirmation">返回核对</button>
+            </form>
           </template>
           <p v-else-if="!paymentError">这笔订单尚无付款记录。新付款入口尚未开放。</p>
           <button class="art-button" :disabled="busy || recovering" @click="load()">
@@ -417,6 +494,22 @@ article h2,
   border-left: 3px solid var(--accent);
   padding: 8px 16px;
 }
+.payment-consent {
+  display: flex;
+  align-items: start;
+  gap: 12px;
+  margin-block: 20px;
+  line-height: 1.8;
+}
+.payment-consent input {
+  margin-top: 7px;
+  flex-shrink: 0;
+}
+.payment-section details {
+  padding-block: 14px;
+  border-bottom: 1px solid var(--border);
+}
+.payment-section summary { cursor: pointer; }
 .order-files ul {
   padding-left: 20px;
   line-height: 1.9;
