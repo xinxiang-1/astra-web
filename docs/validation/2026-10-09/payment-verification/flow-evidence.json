@@ -1,0 +1,12 @@
+{
+  "checks" : [ "strict body/header/owner and no mock callback route", "6 same-key requests/6 alternate keys, one payment/task; SQL encryption/tamper and full JVM session restore", "accepted timeout uses original query/create count1; atomic grant and duplicate/late-close monotonicity", "real SQL entitlement failure rolls back payment/order/event; same fact retry grants once", "amount mismatch is REVIEW without money/entitlement mutation; correct original fact recovers", "trusted close before late notification: actual paidAt chooses grant or one system refund, no blind NOT_FOUND close", "old closed order/new paid order competition preserves new entitlement and queues one duplicate refund", "late worker fenced after real lease reclaim; JVM halt27 after external acceptance recovers by original query", "NOT_FOUND never closes uncertain order; 8 retries DEAD with visible sanitized error and preserved funds uncertainty", "cross-order transaction/wrong order/expiry/future paidAt facts REVIEW without grant; original correct fact recovers", "explicit scheduler enabled in owned test JVM consumes task; default remains disabled" ],
+  "mockCallbackHttpAdded" : false,
+  "checkoutRedactedInCapture" : true,
+  "passed" : true,
+  "existingDatabaseModified" : false,
+  "realMysql" : true,
+  "systemJvmRestarts" : 3,
+  "simulatedMoneyOnly" : true,
+  "ownedSchemaDropped" : true,
+  "realRedis" : true
+}

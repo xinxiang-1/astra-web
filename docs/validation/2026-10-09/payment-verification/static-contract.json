@@ -1,0 +1,332 @@
+{
+  "scope": "static-development-contract-only",
+  "startedAt": "2026-10-08T18:27:57.732058+00:00",
+  "packages": {
+    "openapi-spec-validator": "0.7.2",
+    "openapi-schema-validator": "0.6.3",
+    "sqlglot": "27.29.0"
+  },
+  "passed": true,
+  "notVerified": [
+    "MySQL execution",
+    "runtime API/JWT/roles",
+    "concurrent transactions",
+    "Redis tickets",
+    "actual payment/refund/reconciliation",
+    "batch studio",
+    "commercial image quality",
+    "deployment"
+  ],
+  "openapi": {
+    "version": "3.0.3",
+    "schemas": 85,
+    "localReferences": 518,
+    "paths": 33,
+    "operations": 36,
+    "exactPublicOperations": 6
+  },
+  "schemaFixtures": [
+    {
+      "name": "create-order-with-policy-versions",
+      "expected": "accept",
+      "passed": true
+    },
+    {
+      "name": "stable-idempotency-key",
+      "expected": "accept",
+      "passed": true
+    },
+    {
+      "name": "snowflake-as-string",
+      "expected": "accept",
+      "passed": true
+    },
+    {
+      "name": "production-disabled",
+      "expected": "accept",
+      "passed": true
+    },
+    {
+      "name": "empty-product-page",
+      "expected": "accept",
+      "passed": true
+    },
+    {
+      "name": "confirmed-payment",
+      "expected": "accept",
+      "passed": true
+    },
+    {
+      "name": "uncertain-payment",
+      "expected": "accept",
+      "passed": true
+    },
+    {
+      "name": "full-refund-request",
+      "expected": "accept",
+      "passed": true
+    },
+    {
+      "name": "optimistic-refund-approval",
+      "expected": "accept",
+      "passed": true
+    },
+    {
+      "name": "reopen-original-refund",
+      "expected": "accept",
+      "passed": true
+    },
+    {
+      "name": "private-consultation",
+      "expected": "accept",
+      "passed": true
+    },
+    {
+      "name": "dependency-error",
+      "expected": "accept",
+      "passed": true
+    },
+    {
+      "name": "asset-ticket-expired",
+      "expected": "accept",
+      "passed": true
+    },
+    {
+      "name": "lead-state-change",
+      "expected": "accept",
+      "passed": true
+    },
+    {
+      "name": "paused-publication",
+      "expected": "accept",
+      "passed": true
+    },
+    {
+      "name": "paid-order-policy-snapshots",
+      "expected": "accept",
+      "passed": true
+    },
+    {
+      "name": "late-payment-review-schema-only",
+      "expected": "accept",
+      "passed": true
+    },
+    {
+      "name": "refunded-order-schema-only",
+      "expected": "accept",
+      "passed": true
+    },
+    {
+      "name": "active-admin-access",
+      "expected": "accept",
+      "passed": true
+    },
+    {
+      "name": "client-price-injection",
+      "expected": "reject",
+      "passed": true
+    },
+    {
+      "name": "client-owner-injection",
+      "expected": "reject",
+      "passed": true
+    },
+    {
+      "name": "number-id-loses-precision",
+      "expected": "reject",
+      "passed": true
+    },
+    {
+      "name": "missing-license-consent",
+      "expected": "reject",
+      "passed": true
+    },
+    {
+      "name": "negative-price",
+      "expected": "reject",
+      "passed": true
+    },
+    {
+      "name": "fractional-cent",
+      "expected": "reject",
+      "passed": true
+    },
+    {
+      "name": "zero-paid-product",
+      "expected": "reject",
+      "passed": true
+    },
+    {
+      "name": "unbounded-price",
+      "expected": "reject",
+      "passed": true
+    },
+    {
+      "name": "non-v4-key",
+      "expected": "reject",
+      "passed": true
+    },
+    {
+      "name": "forged-paid-enum",
+      "expected": "reject",
+      "passed": true
+    },
+    {
+      "name": "partial-refund-injection",
+      "expected": "reject",
+      "passed": true
+    },
+    {
+      "name": "unsupported-payment-channel",
+      "expected": "reject",
+      "passed": true
+    },
+    {
+      "name": "query-forces-paid-state",
+      "expected": "reject",
+      "passed": true
+    },
+    {
+      "name": "unknown-consultation-fields",
+      "expected": "reject",
+      "passed": true
+    },
+    {
+      "name": "unexpected-contact-response",
+      "expected": "reject",
+      "passed": true
+    },
+    {
+      "name": "file-reference-scheme",
+      "expected": "reject",
+      "passed": true
+    },
+    {
+      "name": "bad-date",
+      "expected": "reject",
+      "passed": true
+    },
+    {
+      "name": "error-discloses-data",
+      "expected": "reject",
+      "passed": true
+    },
+    {
+      "name": "expired-ticket-incorrect-business-code",
+      "expected": "reject",
+      "passed": true
+    },
+    {
+      "name": "client-role-never-grants-admin",
+      "expected": "reject",
+      "passed": true
+    }
+  ],
+  "sql": {
+    "dialect": "mysql",
+    "additiveTables": [
+      "commerce_admin_audit",
+      "commerce_admin_role",
+      "commerce_asset",
+      "commerce_asset_access",
+      "commerce_command",
+      "commerce_entitlement",
+      "commerce_lead",
+      "commerce_order",
+      "commerce_order_item",
+      "commerce_outbox",
+      "commerce_payment",
+      "commerce_payment_event",
+      "commerce_policy",
+      "commerce_product",
+      "commerce_refund",
+      "commerce_release",
+      "commerce_sku"
+    ],
+    "statements": 17,
+    "apiEnumPairsChecked": 9,
+    "requiredUniqueKeysChecked": 12,
+    "executedOnMysql": false
+  },
+  "localLinks": {
+    "checked": 181,
+    "broken": 0
+  },
+  "sourceManifest": [
+    {
+      "path": "astra-cloud/docs/commerce/openapi.json",
+      "sizeBytes": 246883,
+      "sha256": "d0f2f4ec70fbf0fa88d470856607e4ba9dd3cbe6227017b0594dec1761de5114"
+    },
+    {
+      "path": "astra-cloud/docs/commerce/contract-examples.json",
+      "sizeBytes": 16062,
+      "sha256": "dd665005a70f300314ec000369fc0f315f5ea35a4925a332299e7bfe8b41b2f7"
+    },
+    {
+      "path": "astra-cloud/docs/commerce/api-contracts.md",
+      "sizeBytes": 17276,
+      "sha256": "110a03b6edfaa23e9667b7d9e6044db3c71d4740cf3443100d717a36128232c5"
+    },
+    {
+      "path": "astra-cloud/docs/commerce/database-design.md",
+      "sizeBytes": 13943,
+      "sha256": "4408cf4a4d87790100011d4fbdadfa62a4a0790cc549eabbffb0dbebe7c511a8"
+    },
+    {
+      "path": "astra-cloud/sql/migrations/V20261002_01__commerce_v1.sql",
+      "sizeBytes": 18528,
+      "sha256": "cc5a957a133ce268bd8532168fb2d7fb2b8ba0a3df945c892aeb25f28128f0b9"
+    },
+    {
+      "path": "astra-cloud/scripts/validate-commerce-contract.py",
+      "sizeBytes": 11314,
+      "sha256": "0c2bcf9bc052ecd38656f3e6fa84f44bbc9b765499358f900809ff02acce3a41"
+    },
+    {
+      "path": "astra-cloud/scripts/commerce-contract-requirements.txt",
+      "sizeBytes": 82,
+      "sha256": "9b5f5bb66cf1f1f35a0e6e604ccfd65f2a0a8fc698cab12b9ea5bfda5687a09a"
+    },
+    {
+      "path": "astra-cloud/docs/plans/commerce-contract-iteration-2026-10-02.md",
+      "sizeBytes": 2737,
+      "sha256": "8c91ba9472add8ba8399e7a3961754b68e52ddc7d159e9c44dd233ab41ef096c"
+    },
+    {
+      "path": "astra-cloud/docs/plans/stage-push-2026-10-02.md",
+      "sizeBytes": 2664,
+      "sha256": "4dd667f0dca237543cd04097c26b870b7eb8fe6505a3a4f786752a2c0efda551"
+    },
+    {
+      "path": "astra-cloud/README.md",
+      "sizeBytes": 14104,
+      "sha256": "837e858926f59ce2d8f4a4742d954a57aa78e5175f842624945354d762617a60"
+    },
+    {
+      "path": "astra-web/docs/plans/prd-commerce.md",
+      "sizeBytes": 19327,
+      "sha256": "d594ccac0c750371889516af1140dee6650e6383114663cab0d4abdc3b6c47a1"
+    },
+    {
+      "path": "astra-web/docs/plans/commerce-contract-iteration-2026-10-02.md",
+      "sizeBytes": 5286,
+      "sha256": "76bb9631fb0b971e1d3fd6d2301f033c83758c856a9f5cfe85879dfc9dc4b48c"
+    },
+    {
+      "path": "astra-web/docs/plans/product-master-plan.md",
+      "sizeBytes": 62533,
+      "sha256": "5bb01b7975d701bd6b4eeb3b623d5a69ad0ae3a5b0d63fc79ad1b4b62fc3d49b"
+    },
+    {
+      "path": "astra-web/docs/plans/stage-delivery-2026-10-01.md",
+      "sizeBytes": 5902,
+      "sha256": "89d0207042b96b7c91cea76c89472473f5dc6da4dacc98ff43f115adba733125"
+    },
+    {
+      "path": "astra-web/README.md",
+      "sizeBytes": 9663,
+      "sha256": "102fed9d16f0287d3e1f723f31481bd319c8a6ab439204bfa50bcf06b35b8776"
+    }
+  ]
+}

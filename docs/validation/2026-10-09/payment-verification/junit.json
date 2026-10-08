@@ -1,0 +1,193 @@
+{
+  "passed": true,
+  "tests": 36,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "suites": [
+    {
+      "tests": 15,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "report": "tmp/payment-verification-junit-r4.xml",
+      "reportSha256": "02b24e730fc4dc136102db814d627ed3bfc937f37cc06eea279be4f7828801d0",
+      "cases": [
+        {
+          "name": "roleAccountAndStrictInputsAreRechecked",
+          "passed": true
+        },
+        {
+          "name": "acceptedCommandIsAtomicAndLostResponseRecoversWithRenewedJwt",
+          "passed": true
+        },
+        {
+          "name": "pendingAndExpiredPaymentOnlyQueryNeverCloseOrCreate",
+          "passed": true
+        },
+        {
+          "name": "trustedSuccessAppliesOriginalFactAndEntitlementOnlyInWorker",
+          "passed": true
+        },
+        {
+          "name": "malformedFactsAndMissingRecordsCannotGrantOrClose",
+          "passed": true
+        },
+        {
+          "name": "timeoutRetriesOriginalTaskAndMissingRecordBudgetIsFinite",
+          "passed": true
+        },
+        {
+          "name": "versionActiveTaskAndDisabledExecutionPreserveOriginalRecovery",
+          "passed": true
+        },
+        {
+          "name": "sameKeyAndDifferentAdministratorsCannotQueueParallelTasks",
+          "passed": true
+        },
+        {
+          "name": "commandOrAuditFailureRollsBackAllQueueWrites",
+          "passed": true
+        },
+        {
+          "name": "financialApplyFailureRollsBackAndOriginalTaskLaterRecovers",
+          "passed": true
+        },
+        {
+          "name": "expiredLeaseTakeoverFencesOldResultAndFundsAreAppliedOnce",
+          "passed": true
+        },
+        {
+          "name": "readQuotaAndCommandLimitRemainIndependentAndRecoveryBypassesNewWriteQuota",
+          "passed": true
+        },
+        {
+          "name": "disabledBuyerAndCrossOrderHistoryCannotChangePaymentBinding",
+          "passed": true
+        },
+        {
+          "name": "realRedisOutageRejectsReadAndQueueThenActuallyRecovers",
+          "passed": true
+        },
+        {
+          "name": "brokenPersistedBindingStopsWithinRetryBudgetWithoutCallingChannel",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "report": "tmp/payment-verification-properties-r4.xml",
+      "reportSha256": "325b9d47085079167e3f3fbfc01eaa09cfa9958c60ec0b4bdbc4d236b1e03a2b",
+      "cases": [
+        {
+          "name": "explicitMockCanQueryWithoutOpeningNormalPaymentWorker",
+          "passed": true
+        },
+        {
+          "name": "workerNeedsIndependentEnablement",
+          "passed": true
+        },
+        {
+          "name": "productionAndMissingProfileCannotExecute",
+          "passed": true
+        },
+        {
+          "name": "disabledByDefaultCannotClaimTasks",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "report": "tmp/payment-configuration-r4.xml",
+      "reportSha256": "103b44aacfd771727599395989386622949ce05d3d4b531228a8c14a8cd319a8",
+      "cases": [
+        {
+          "name": "malformedCryptoProviderAndTimeoutConfigurationCannotStart",
+          "passed": true
+        },
+        {
+          "name": "productionDefaultsLoadOnlyDisabledProvider",
+          "passed": true
+        },
+        {
+          "name": "productionRejectsMockEvenWhenDisabledOrProfileOnly",
+          "passed": true
+        },
+        {
+          "name": "explicitTestMockProfileLoadsOneGuardedProvider",
+          "passed": true
+        },
+        {
+          "name": "enabledMockWithoutProfileAndUnimplementedRealProviderAreRejected",
+          "passed": true
+        },
+        {
+          "name": "enabledWorkerWithoutProviderCannotStart",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "tests": 11,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "report": "astra-modules/astra-system/target/surefire-reports/TEST-com.astra.system.commerce.PaymentFlowIntegrationTest.xml",
+      "reportSha256": "9dba784bd1c7cde035b48b35f4984d93d59df0d3bc2006dbe9d78aeb8d172ea4",
+      "cases": [
+        {
+          "name": "strictProtectedPaymentHttpAndNoChannelAction",
+          "passed": true
+        },
+        {
+          "name": "realConcurrentCreationReturnsOneFixedPaymentAndDurableEncryptedSession",
+          "passed": true
+        },
+        {
+          "name": "acceptedTimeoutQueriesOriginalNumberAndAtomicGrantSurvivesDuplicateOrClosedFact",
+          "passed": true
+        },
+        {
+          "name": "entitlementInsertFailureRollsBackMoneyEventAndOrderThenSameFactRecovers",
+          "passed": true
+        },
+        {
+          "name": "mismatchedAmountCannotGrantAndCorrectFactRecoversWithReviewEvidence",
+          "passed": true
+        },
+        {
+          "name": "closeThenInTimePaidFactGrantsButActualLatePaymentQueuesSingleRefund",
+          "passed": true
+        },
+        {
+          "name": "oldClosedOrderPaidAfterNewPurchaseDoesNotCreateSecondEntitlement",
+          "passed": true
+        },
+        {
+          "name": "expiredLeaseFencesLateWorkerAndActualCrashRecoversAcceptedOperation",
+          "passed": true
+        },
+        {
+          "name": "unknownNotFoundNeverMeansClosedAndEightUnresolvedAttemptsRemainVisible",
+          "passed": true
+        },
+        {
+          "name": "crossOrderTransactionAndWrongOrderExpiryOrFuturePaidTimeNeverGrant",
+          "passed": true
+        },
+        {
+          "name": "actualScheduledWorkerProcessesNewPaymentWithoutPublicTestRoutes",
+          "passed": true
+        }
+      ]
+    }
+  ]
+}

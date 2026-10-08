@@ -1,0 +1,51 @@
+{
+  "passed": true,
+  "testsPassed": 15,
+  "actualResponsesValidated": 153,
+  "direct": 59,
+  "gateway": 94,
+  "statuses": [
+    200,
+    400,
+    401,
+    403,
+    404,
+    409,
+    429,
+    503
+  ],
+  "newOperations": 4,
+  "cleanupComplete": true,
+  "rawEvidence": "tmp/payment-verification-it-d9e8f0b29d81/http-evidence.json",
+  "rawSha256": "78b1e49b3bf4cb3c9e340d74da6140688fb6913f6eb3445e82d54ccf5008281a",
+  "sources": {
+    "astra-api/src/main/java/com/astra/api/commerce/CommercePaymentVerificationDto.java": "53ef4b03c9b18c7dfa2efedb8c0b779c8f635974b3f2e572f40377a0acb09ec9",
+    "astra-modules/astra-system/src/main/java/com/astra/system/commerce/admin/PaymentVerificationAdminController.java": "1f55e8c8faeede84ded98557b7e9066d5c059d19e717fa981cb0db270eda7e87",
+    "astra-modules/astra-system/src/main/java/com/astra/system/commerce/admin/PaymentVerificationAdminService.java": "c75ecd80f17bf36f8f1f9937b6920dc67990ca2b51ba9b5484275e8f1fdc0076",
+    "astra-modules/astra-system/src/main/java/com/astra/system/commerce/admin/PaymentVerificationInput.java": "4edad91d6088fcf34ce261c78744f4a7826d826026d45d1a4e8db8e0dd672150",
+    "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/MockPaymentProvider.java": "44f0fed89f77aee29249f4f31ef343c125c225215cd5b96bf4d615d7646ae575",
+    "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/PaymentFactService.java": "384aad669ad65726f2a251f38b211dda08b901768f6eda4bef2c2dadc4c27ce1",
+    "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/PaymentOutboxRepository.java": "56839a53f2414734f149fd25e3bfb31601745206afa55a19e80f51f390c3b2de",
+    "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/PaymentProviderExecutor.java": "7f15eb26ab0d4bf96d10a2b76c28338c110e23f00841f341b7988cbc369d8aa4",
+    "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/PaymentRepository.java": "da8e73354a572c9f230892a8eae70d4eaba6c56c06daad6e4ef2775745067627",
+    "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/PaymentVerificationProperties.java": "bf041708beebd8a9d2c71df00370973d29e3921fd5e17c77746ee4a94cd0f91f",
+    "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/PaymentVerificationRepository.java": "b5eaf33e860ed54b4866675af886cf0d71cc7ab4704a8b4464fbc60ebdacd4dd",
+    "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/PaymentVerificationScheduler.java": "2d61be12e80ac4d53e8c298e1b44d7f43c62d9f469f41494f0b529e38b4760d7",
+    "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/PaymentVerificationWorker.java": "2bc508c6209d8376de8b3f9c0e1ccbf1a95b92fcf04a24051570a7194ce45c1b",
+    "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/PaymentWorker.java": "1f7342d62b6b1f390f85d1cda6eb7889dbaa2959d294a7fdc509344f6fa0e583",
+    "astra-modules/astra-system/src/main/java/com/astra/system/commerce/support/UserRateLimiter.java": "fa149cb6c13855153555e0ee13738ec9f1d6654428db11a21a9529cd9fb77092",
+    "astra-modules/astra-system/src/test/java/com/astra/system/commerce/payment/PaymentVerificationPropertiesTest.java": "7ece08d1f2ac666d005222b6a666c89b5aa839a94971001027619b549c13696f",
+    "astra-modules/astra-system/src/test/java/com/astra/system/commerce/PaymentVerificationIntegrationTest.java": "ee402daa700ea4231c6524ff5d28fb8e2d6dd80cb0899501d88ed4d0f75dd130",
+    "docs/commerce/openapi.json": "d0f2f4ec70fbf0fa88d470856607e4ba9dd3cbe6227017b0594dec1761de5114",
+    "scripts/validate-payment-verification-evidence.py": "c4941fb3b5f21b11fc33f839130918ffe4e6e55646d5c760fd7bf7aa72db0dda",
+    "scripts/validate-reconciliation-admin-evidence.py": "0e520b2ee0d23f060a06fcf29933e9cbe123d921e3bcb1124a5f6896a7ad0494",
+    "sql/migrations/V20261009_01__commerce_payment_verification.sql": "1339f5a5fea07aa797ec6b67a7bbcce5d9d808c3767668b127df5ccdd8298803"
+  },
+  "notVerified": [
+    "real channel funds",
+    "payment verification UI",
+    "refund anomaly query",
+    "production deployment",
+    "entire commercial goal"
+  ]
+}

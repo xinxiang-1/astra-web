@@ -1,0 +1,536 @@
+{
+  "passed": true,
+  "actualResponsesValidated": 75,
+  "captureSha256": "9d0e961c73665fffbe9eb7aef7ac6c2687c7810fece55ed74ca41d8096e2e397",
+  "openapiSha256": "d0f2f4ec70fbf0fa88d470856607e4ba9dd3cbe6227017b0594dec1761de5114",
+  "redactedCheckoutFieldsOmittedForSchema": 4,
+  "intentionallyAbsentMockCallback401Or404Probes": 2,
+  "scope": "response body schemas; original checkout URLs redacted, full response headers not captured; absent mock callback route401/404 uses generic Error; no claim of real channel URL verification",
+  "checks": [
+    {
+      "path": "/system/orders",
+      "method": "POST",
+      "status": 200,
+      "viaGateway": false,
+      "schema": "OrderResult"
+    },
+    {
+      "path": "/system/orders/{orderId}/payments",
+      "method": "POST",
+      "status": 401,
+      "viaGateway": false,
+      "schema": "Error"
+    },
+    {
+      "path": "/system/orders/{orderId}/payments",
+      "method": "POST",
+      "status": 404,
+      "viaGateway": false,
+      "schema": "Error"
+    },
+    {
+      "path": "/system/payments/{paymentId}",
+      "method": "GET",
+      "status": 404,
+      "viaGateway": false,
+      "schema": "Error"
+    },
+    {
+      "path": "/system/payments/{paymentId}",
+      "method": "GET",
+      "status": 401,
+      "viaGateway": false,
+      "schema": "Error"
+    },
+    {
+      "path": "/system/orders/{orderId}/payments",
+      "method": "POST",
+      "status": 400,
+      "viaGateway": false,
+      "schema": "Error"
+    },
+    {
+      "path": "/system/orders/{orderId}/payments",
+      "method": "POST",
+      "status": 400,
+      "viaGateway": false,
+      "schema": "Error"
+    },
+    {
+      "path": "/system/orders/{orderId}/payments",
+      "method": "POST",
+      "status": 400,
+      "viaGateway": false,
+      "schema": "Error"
+    },
+    {
+      "path": "/system/orders/{orderId}/payments",
+      "method": "POST",
+      "status": 400,
+      "viaGateway": false,
+      "schema": "Error"
+    },
+    {
+      "path": "/system/orders/{orderId}/payments",
+      "method": "POST",
+      "status": 400,
+      "viaGateway": false,
+      "schema": "Error"
+    },
+    {
+      "path": "/system/orders/{orderId}/payments",
+      "method": "POST",
+      "status": 400,
+      "viaGateway": false,
+      "schema": "Error"
+    },
+    {
+      "path": "/system/orders/{orderId}/payments",
+      "method": "POST",
+      "status": 400,
+      "viaGateway": false,
+      "schema": "Error"
+    },
+    {
+      "path": "/system/orders/{orderId}/payments",
+      "method": "POST",
+      "status": 400,
+      "viaGateway": false,
+      "schema": "Error"
+    },
+    {
+      "path": "/system/orders/{orderId}/payments",
+      "method": "POST",
+      "status": 400,
+      "viaGateway": false,
+      "schema": "Error"
+    },
+    {
+      "path": "/system/orders/{orderId}/payments",
+      "method": "POST",
+      "status": 400,
+      "viaGateway": false,
+      "schema": "Error"
+    },
+    {
+      "path": "/system/payments/callbacks/mock",
+      "method": "POST",
+      "status": 401,
+      "viaGateway": false,
+      "schema": "Error"
+    },
+    {
+      "path": "/system/orders/{orderId}/payments",
+      "method": "POST",
+      "status": 401,
+      "viaGateway": true,
+      "schema": "Error"
+    },
+    {
+      "path": "/system/orders/{orderId}/payments",
+      "method": "POST",
+      "status": 404,
+      "viaGateway": true,
+      "schema": "Error"
+    },
+    {
+      "path": "/system/payments/{paymentId}",
+      "method": "GET",
+      "status": 404,
+      "viaGateway": true,
+      "schema": "Error"
+    },
+    {
+      "path": "/system/payments/{paymentId}",
+      "method": "GET",
+      "status": 401,
+      "viaGateway": true,
+      "schema": "Error"
+    },
+    {
+      "path": "/system/orders/{orderId}/payments",
+      "method": "POST",
+      "status": 400,
+      "viaGateway": true,
+      "schema": "Error"
+    },
+    {
+      "path": "/system/orders/{orderId}/payments",
+      "method": "POST",
+      "status": 400,
+      "viaGateway": true,
+      "schema": "Error"
+    },
+    {
+      "path": "/system/orders/{orderId}/payments",
+      "method": "POST",
+      "status": 400,
+      "viaGateway": true,
+      "schema": "Error"
+    },
+    {
+      "path": "/system/orders/{orderId}/payments",
+      "method": "POST",
+      "status": 400,
+      "viaGateway": true,
+      "schema": "Error"
+    },
+    {
+      "path": "/system/orders/{orderId}/payments",
+      "method": "POST",
+      "status": 400,
+      "viaGateway": true,
+      "schema": "Error"
+    },
+    {
+      "path": "/system/orders/{orderId}/payments",
+      "method": "POST",
+      "status": 400,
+      "viaGateway": true,
+      "schema": "Error"
+    },
+    {
+      "path": "/system/orders/{orderId}/payments",
+      "method": "POST",
+      "status": 400,
+      "viaGateway": true,
+      "schema": "Error"
+    },
+    {
+      "path": "/system/orders/{orderId}/payments",
+      "method": "POST",
+      "status": 400,
+      "viaGateway": true,
+      "schema": "Error"
+    },
+    {
+      "path": "/system/orders/{orderId}/payments",
+      "method": "POST",
+      "status": 400,
+      "viaGateway": true,
+      "schema": "Error"
+    },
+    {
+      "path": "/system/orders/{orderId}/payments",
+      "method": "POST",
+      "status": 400,
+      "viaGateway": true,
+      "schema": "Error"
+    },
+    {
+      "path": "/system/payments/callbacks/mock",
+      "method": "POST",
+      "status": 401,
+      "viaGateway": true,
+      "schema": "Error"
+    },
+    {
+      "path": "/system/orders",
+      "method": "POST",
+      "status": 200,
+      "viaGateway": false,
+      "schema": "OrderResult"
+    },
+    {
+      "path": "/system/orders/{orderId}/payments",
+      "method": "POST",
+      "status": 200,
+      "viaGateway": false,
+      "schema": "PaymentResult"
+    },
+    {
+      "path": "/system/orders/{orderId}/payments",
+      "method": "POST",
+      "status": 200,
+      "viaGateway": false,
+      "schema": "PaymentResult"
+    },
+    {
+      "path": "/system/orders/{orderId}/payments",
+      "method": "POST",
+      "status": 200,
+      "viaGateway": false,
+      "schema": "PaymentResult"
+    },
+    {
+      "path": "/system/orders/{orderId}/payments",
+      "method": "POST",
+      "status": 200,
+      "viaGateway": true,
+      "schema": "PaymentResult"
+    },
+    {
+      "path": "/system/orders/{orderId}/payments",
+      "method": "POST",
+      "status": 200,
+      "viaGateway": true,
+      "schema": "PaymentResult"
+    },
+    {
+      "path": "/system/orders/{orderId}/payments",
+      "method": "POST",
+      "status": 200,
+      "viaGateway": true,
+      "schema": "PaymentResult"
+    },
+    {
+      "path": "/system/orders/{orderId}/payments",
+      "method": "POST",
+      "status": 200,
+      "viaGateway": true,
+      "schema": "PaymentResult"
+    },
+    {
+      "path": "/system/orders/{orderId}/payments",
+      "method": "POST",
+      "status": 200,
+      "viaGateway": false,
+      "schema": "PaymentResult"
+    },
+    {
+      "path": "/system/orders/{orderId}/payments",
+      "method": "POST",
+      "status": 200,
+      "viaGateway": true,
+      "schema": "PaymentResult"
+    },
+    {
+      "path": "/system/orders/{orderId}/payments",
+      "method": "POST",
+      "status": 200,
+      "viaGateway": false,
+      "schema": "PaymentResult"
+    },
+    {
+      "path": "/system/orders/{orderId}/payments",
+      "method": "POST",
+      "status": 200,
+      "viaGateway": true,
+      "schema": "PaymentResult"
+    },
+    {
+      "path": "/system/orders/{orderId}/payments",
+      "method": "POST",
+      "status": 200,
+      "viaGateway": false,
+      "schema": "PaymentResult"
+    },
+    {
+      "path": "/system/payments/{paymentId}",
+      "method": "GET",
+      "status": 200,
+      "viaGateway": true,
+      "schema": "PaymentResult"
+    },
+    {
+      "path": "/system/payments/{paymentId}",
+      "method": "GET",
+      "status": 200,
+      "viaGateway": false,
+      "schema": "PaymentResult"
+    },
+    {
+      "path": "/system/payments/{paymentId}",
+      "method": "GET",
+      "status": 503,
+      "viaGateway": true,
+      "schema": "Error"
+    },
+    {
+      "path": "/system/payments/{paymentId}",
+      "method": "GET",
+      "status": 200,
+      "viaGateway": true,
+      "schema": "PaymentResult"
+    },
+    {
+      "path": "/system/orders",
+      "method": "POST",
+      "status": 200,
+      "viaGateway": false,
+      "schema": "OrderResult"
+    },
+    {
+      "path": "/system/orders/{orderId}/payments",
+      "method": "POST",
+      "status": 200,
+      "viaGateway": false,
+      "schema": "PaymentResult"
+    },
+    {
+      "path": "/system/orders",
+      "method": "POST",
+      "status": 200,
+      "viaGateway": false,
+      "schema": "OrderResult"
+    },
+    {
+      "path": "/system/orders/{orderId}/payments",
+      "method": "POST",
+      "status": 200,
+      "viaGateway": true,
+      "schema": "PaymentResult"
+    },
+    {
+      "path": "/system/orders",
+      "method": "POST",
+      "status": 200,
+      "viaGateway": false,
+      "schema": "OrderResult"
+    },
+    {
+      "path": "/system/orders/{orderId}/payments",
+      "method": "POST",
+      "status": 200,
+      "viaGateway": false,
+      "schema": "PaymentResult"
+    },
+    {
+      "path": "/system/orders",
+      "method": "POST",
+      "status": 200,
+      "viaGateway": false,
+      "schema": "OrderResult"
+    },
+    {
+      "path": "/system/orders/{orderId}/payments",
+      "method": "POST",
+      "status": 200,
+      "viaGateway": false,
+      "schema": "PaymentResult"
+    },
+    {
+      "path": "/system/orders",
+      "method": "POST",
+      "status": 200,
+      "viaGateway": false,
+      "schema": "OrderResult"
+    },
+    {
+      "path": "/system/orders/{orderId}/payments",
+      "method": "POST",
+      "status": 200,
+      "viaGateway": false,
+      "schema": "PaymentResult"
+    },
+    {
+      "path": "/system/orders",
+      "method": "POST",
+      "status": 200,
+      "viaGateway": false,
+      "schema": "OrderResult"
+    },
+    {
+      "path": "/system/orders/{orderId}/payments",
+      "method": "POST",
+      "status": 200,
+      "viaGateway": true,
+      "schema": "PaymentResult"
+    },
+    {
+      "path": "/system/orders",
+      "method": "POST",
+      "status": 200,
+      "viaGateway": false,
+      "schema": "OrderResult"
+    },
+    {
+      "path": "/system/orders/{orderId}/payments",
+      "method": "POST",
+      "status": 200,
+      "viaGateway": false,
+      "schema": "PaymentResult"
+    },
+    {
+      "path": "/system/orders",
+      "method": "POST",
+      "status": 200,
+      "viaGateway": false,
+      "schema": "OrderResult"
+    },
+    {
+      "path": "/system/orders/{orderId}/payments",
+      "method": "POST",
+      "status": 200,
+      "viaGateway": false,
+      "schema": "PaymentResult"
+    },
+    {
+      "path": "/system/orders",
+      "method": "POST",
+      "status": 200,
+      "viaGateway": false,
+      "schema": "OrderResult"
+    },
+    {
+      "path": "/system/orders/{orderId}/payments",
+      "method": "POST",
+      "status": 200,
+      "viaGateway": true,
+      "schema": "PaymentResult"
+    },
+    {
+      "path": "/system/orders",
+      "method": "POST",
+      "status": 200,
+      "viaGateway": false,
+      "schema": "OrderResult"
+    },
+    {
+      "path": "/system/orders/{orderId}/payments",
+      "method": "POST",
+      "status": 200,
+      "viaGateway": false,
+      "schema": "PaymentResult"
+    },
+    {
+      "path": "/system/orders",
+      "method": "POST",
+      "status": 200,
+      "viaGateway": false,
+      "schema": "OrderResult"
+    },
+    {
+      "path": "/system/orders/{orderId}/payments",
+      "method": "POST",
+      "status": 200,
+      "viaGateway": false,
+      "schema": "PaymentResult"
+    },
+    {
+      "path": "/system/orders",
+      "method": "POST",
+      "status": 200,
+      "viaGateway": false,
+      "schema": "OrderResult"
+    },
+    {
+      "path": "/system/orders/{orderId}/payments",
+      "method": "POST",
+      "status": 200,
+      "viaGateway": true,
+      "schema": "PaymentResult"
+    },
+    {
+      "path": "/system/orders",
+      "method": "POST",
+      "status": 200,
+      "viaGateway": false,
+      "schema": "OrderResult"
+    },
+    {
+      "path": "/system/orders/{orderId}/payments",
+      "method": "POST",
+      "status": 200,
+      "viaGateway": true,
+      "schema": "PaymentResult"
+    },
+    {
+      "path": "/system/payments/{paymentId}",
+      "method": "GET",
+      "status": 200,
+      "viaGateway": true,
+      "schema": "PaymentResult"
+    }
+  ]
+}

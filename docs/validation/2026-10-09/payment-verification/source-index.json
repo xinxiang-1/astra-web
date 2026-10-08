@@ -1,0 +1,212 @@
+{
+  "passed": true,
+  "scope": "final verified source bytes and staged Git source; CRLF normalization permitted; fingerprints recorded after final run; frontend documentation only",
+  "repos": {
+    "astra-cloud": {
+      "baseCommit": "ef820a78e9a1df816e27afd8dea6ef70e84792fb",
+      "sources": [
+        {
+          "path": "astra-api/src/main/java/com/astra/api/commerce/CommercePaymentVerificationDto.java",
+          "worktreeSha256": "53ef4b03c9b18c7dfa2efedb8c0b779c8f635974b3f2e572f40377a0acb09ec9",
+          "indexSha256": "53ef4b03c9b18c7dfa2efedb8c0b779c8f635974b3f2e572f40377a0acb09ec9",
+          "gitBlob": "c053c3666b6f19ae7e8a43f96c8e2d9217107267",
+          "lineEndingNormalizationOnly": false
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/admin/PaymentVerificationAdminController.java",
+          "worktreeSha256": "1f55e8c8faeede84ded98557b7e9066d5c059d19e717fa981cb0db270eda7e87",
+          "indexSha256": "1f55e8c8faeede84ded98557b7e9066d5c059d19e717fa981cb0db270eda7e87",
+          "gitBlob": "e13c60edd67ae09e20e4e662a812a81089046d16",
+          "lineEndingNormalizationOnly": false
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/admin/PaymentVerificationAdminService.java",
+          "worktreeSha256": "c75ecd80f17bf36f8f1f9937b6920dc67990ca2b51ba9b5484275e8f1fdc0076",
+          "indexSha256": "c75ecd80f17bf36f8f1f9937b6920dc67990ca2b51ba9b5484275e8f1fdc0076",
+          "gitBlob": "a396373e569d2dcc8201d2052ab9eb41019f7d18",
+          "lineEndingNormalizationOnly": false
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/admin/PaymentVerificationInput.java",
+          "worktreeSha256": "4edad91d6088fcf34ce261c78744f4a7826d826026d45d1a4e8db8e0dd672150",
+          "indexSha256": "4edad91d6088fcf34ce261c78744f4a7826d826026d45d1a4e8db8e0dd672150",
+          "gitBlob": "0299dea69cc075b400abb649d3a24404ba644412",
+          "lineEndingNormalizationOnly": false
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/config/CommerceProperties.java",
+          "worktreeSha256": "1944b8ce68d5b2d3db4c574d0c7937aec1394c3cb3c2f22e2679259aa8c495e3",
+          "indexSha256": "7195b6052d293754a85559c9e5d66d22914fc0d6b626cc7bc09f723798ab39c9",
+          "gitBlob": "8ade6a3d5a9df1f15bb2ece2109d4b772113909a",
+          "lineEndingNormalizationOnly": true
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/CheckoutCipher.java",
+          "worktreeSha256": "96d4ac805278c1c56e1858bc55be3fc38e234bdb05b6b3f999f59e0e76365195",
+          "indexSha256": "bbe696a60262ab7f45b9096862f8704b40e210c7d6fd2a3bf69038568f6972dd",
+          "gitBlob": "e82fa14358df208f994831e2a9bdc61c8a28d4d4",
+          "lineEndingNormalizationOnly": true
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/MockPaymentProvider.java",
+          "worktreeSha256": "44f0fed89f77aee29249f4f31ef343c125c225215cd5b96bf4d615d7646ae575",
+          "indexSha256": "0b9172acd7e7c2f5e9557241c715d9ba1a60a1aa1b68955966bd1f5ba0ec3137",
+          "gitBlob": "97e31201db46ca589cbda0d169951173e01fe34f",
+          "lineEndingNormalizationOnly": true
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/PaymentConfiguration.java",
+          "worktreeSha256": "7a0f1f5a24847070d49e7479cbe6b44808135e0175ff5428003b111e00b01515",
+          "indexSha256": "35db6e9a308ffe15e01fd53fa868ca15e9c81389a99554eed2d7e840dea579ac",
+          "gitBlob": "5f8d1e89b88043b5e191e56f33698dbafef8160e",
+          "lineEndingNormalizationOnly": true
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/PaymentFactService.java",
+          "worktreeSha256": "384aad669ad65726f2a251f38b211dda08b901768f6eda4bef2c2dadc4c27ce1",
+          "indexSha256": "807df4270332916f54405ae99fea71ace26a0ba5b5ebf047020ab58c7be7f9ac",
+          "gitBlob": "cd30b9d015d4380bf23b1e681813c4cbb4433687",
+          "lineEndingNormalizationOnly": true
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/PaymentOutboxRepository.java",
+          "worktreeSha256": "56839a53f2414734f149fd25e3bfb31601745206afa55a19e80f51f390c3b2de",
+          "indexSha256": "3cf23e30b13131b33c682992f3c1f8d735c8b37c6cdf6dcb19577eb504b770df",
+          "gitBlob": "0a1fba92767fde0dcf5609de1612f8511a304a7b",
+          "lineEndingNormalizationOnly": true
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/PaymentProperties.java",
+          "worktreeSha256": "4df6355904a2e0a438af64dcd740761f3d0258df3238d6ddcd1c6511b0c27048",
+          "indexSha256": "6d5f4d40840f7e013ba59d9198983f16236aade7c04ae79865d14737f886c681",
+          "gitBlob": "74dfdef8b02f8cc93eb989318b34d0e25fe26f61",
+          "lineEndingNormalizationOnly": true
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/PaymentProviderExecutor.java",
+          "worktreeSha256": "7f15eb26ab0d4bf96d10a2b76c28338c110e23f00841f341b7988cbc369d8aa4",
+          "indexSha256": "bcbd6069124edd98fb49d8d686ffe03a73529f10b7e6de490131ab3c60b834fc",
+          "gitBlob": "85f5377306e8bbf1798ba14c256d037807fb23ee",
+          "lineEndingNormalizationOnly": true
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/PaymentRepository.java",
+          "worktreeSha256": "da8e73354a572c9f230892a8eae70d4eaba6c56c06daad6e4ef2775745067627",
+          "indexSha256": "4cb09b4edfb63cb0ed42b72dc446876e78f6e1559bc16ac733181dcaa99114c2",
+          "gitBlob": "8e7fe731581fcd2665728f5c9c1c0b83e53e5309",
+          "lineEndingNormalizationOnly": true
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/PaymentVerificationProperties.java",
+          "worktreeSha256": "bf041708beebd8a9d2c71df00370973d29e3921fd5e17c77746ee4a94cd0f91f",
+          "indexSha256": "bf041708beebd8a9d2c71df00370973d29e3921fd5e17c77746ee4a94cd0f91f",
+          "gitBlob": "f91639f42729b01485567c84fa895b5974c6978c",
+          "lineEndingNormalizationOnly": false
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/PaymentVerificationRepository.java",
+          "worktreeSha256": "b5eaf33e860ed54b4866675af886cf0d71cc7ab4704a8b4464fbc60ebdacd4dd",
+          "indexSha256": "b5eaf33e860ed54b4866675af886cf0d71cc7ab4704a8b4464fbc60ebdacd4dd",
+          "gitBlob": "9b9a2c7d94b41638a931639187dd1ef93279fb55",
+          "lineEndingNormalizationOnly": false
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/PaymentVerificationScheduler.java",
+          "worktreeSha256": "2d61be12e80ac4d53e8c298e1b44d7f43c62d9f469f41494f0b529e38b4760d7",
+          "indexSha256": "2d61be12e80ac4d53e8c298e1b44d7f43c62d9f469f41494f0b529e38b4760d7",
+          "gitBlob": "f11a2abc38ba9a086903173e023af348c0a552cf",
+          "lineEndingNormalizationOnly": false
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/PaymentVerificationWorker.java",
+          "worktreeSha256": "2bc508c6209d8376de8b3f9c0e1ccbf1a95b92fcf04a24051570a7194ce45c1b",
+          "indexSha256": "2bc508c6209d8376de8b3f9c0e1ccbf1a95b92fcf04a24051570a7194ce45c1b",
+          "gitBlob": "df816f78984a865c8cb79882280041d1eabc621a",
+          "lineEndingNormalizationOnly": false
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/PaymentWorker.java",
+          "worktreeSha256": "1f7342d62b6b1f390f85d1cda6eb7889dbaa2959d294a7fdc509344f6fa0e583",
+          "indexSha256": "48cd10cd184e02fddb42d8195a494b0d0d028ec853be554f8bdd72501c4e1b95",
+          "gitBlob": "91c7eb1fac582151c1cff6b7be4474bd254fb217",
+          "lineEndingNormalizationOnly": true
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/support/UserRateLimiter.java",
+          "worktreeSha256": "fa149cb6c13855153555e0ee13738ec9f1d6654428db11a21a9529cd9fb77092",
+          "indexSha256": "95db11320e3b0c0d0a286cdf696128ae833bf8fa55aa0b4a44135abd970cbd46",
+          "gitBlob": "bf9253997eedd525237dc5439ef8132df119f3c1",
+          "lineEndingNormalizationOnly": true
+        },
+        {
+          "path": "astra-modules/astra-system/src/test/java/com/astra/system/commerce/PaymentFlowIntegrationTest.java",
+          "worktreeSha256": "51895b4a289ec950138c49d1d642dcf6dfffa6a480ede5eab73842a9bf6e430e",
+          "indexSha256": "9a23b58bbbc2d8cbeb801854b3b51b4d8dc35a6663cf28fa7a17ae7eeaa7af50",
+          "gitBlob": "25b41301f0a90864f6ebe5ee55c521b6db421249",
+          "lineEndingNormalizationOnly": true
+        },
+        {
+          "path": "astra-modules/astra-system/src/test/java/com/astra/system/commerce/PaymentVerificationIntegrationTest.java",
+          "worktreeSha256": "ee402daa700ea4231c6524ff5d28fb8e2d6dd80cb0899501d88ed4d0f75dd130",
+          "indexSha256": "4006455d53662d69093e7632a77ae1bbed394f9c2ddecb367de5967be305e6ab",
+          "gitBlob": "8ab8e72c58adcbf329dd4bec8d93f94691561c50",
+          "lineEndingNormalizationOnly": true
+        },
+        {
+          "path": "astra-modules/astra-system/src/test/java/com/astra/system/commerce/payment/PaymentConfigurationTest.java",
+          "worktreeSha256": "5224dfadf4f729a3ce33256341c51c692f06dc77678b762f98e1889e317ba533",
+          "indexSha256": "d32cbc61dbdf9b093f769b0b98fb652a444595324c2a949ac4d74ed9b5a6b884",
+          "gitBlob": "1a9206101b0d981bb150f0e75534ec55cf860093",
+          "lineEndingNormalizationOnly": true
+        },
+        {
+          "path": "astra-modules/astra-system/src/test/java/com/astra/system/commerce/payment/PaymentFlowProbeMain.java",
+          "worktreeSha256": "0e75bf60225477cd3b0d1389de1a8ec7b61aaae6473b6e317f3ea71abfb1efe3",
+          "indexSha256": "f02ce2777126d110557f39e7f85cf98f6bf4197e694557625380bf8bf8cc993f",
+          "gitBlob": "493705a763718702a7a5d3534f0b01c6aed8be7a",
+          "lineEndingNormalizationOnly": true
+        },
+        {
+          "path": "astra-modules/astra-system/src/test/java/com/astra/system/commerce/payment/PaymentVerificationPropertiesTest.java",
+          "worktreeSha256": "7ece08d1f2ac666d005222b6a666c89b5aa839a94971001027619b549c13696f",
+          "indexSha256": "7ece08d1f2ac666d005222b6a666c89b5aa839a94971001027619b549c13696f",
+          "gitBlob": "d0f95664054309fba802335a1996b153617a5ff4",
+          "lineEndingNormalizationOnly": false
+        },
+        {
+          "path": "docs/commerce/openapi.json",
+          "worktreeSha256": "d0f2f4ec70fbf0fa88d470856607e4ba9dd3cbe6227017b0594dec1761de5114",
+          "indexSha256": "e4df956a5952bddda106f675af97e089047435531dece072a859f131bf089a05",
+          "gitBlob": "59a1903ba9084e13d4f16fafaf23755e9209981c",
+          "lineEndingNormalizationOnly": true
+        },
+        {
+          "path": "scripts/validate-payment-verification-evidence.py",
+          "worktreeSha256": "c4941fb3b5f21b11fc33f839130918ffe4e6e55646d5c760fd7bf7aa72db0dda",
+          "indexSha256": "c4941fb3b5f21b11fc33f839130918ffe4e6e55646d5c760fd7bf7aa72db0dda",
+          "gitBlob": "0265bda4d559f10aa8d895d09ac64f89c36b148d",
+          "lineEndingNormalizationOnly": false
+        },
+        {
+          "path": "scripts/validate-reconciliation-admin-evidence.py",
+          "worktreeSha256": "0e520b2ee0d23f060a06fcf29933e9cbe123d921e3bcb1124a5f6896a7ad0494",
+          "indexSha256": "0e520b2ee0d23f060a06fcf29933e9cbe123d921e3bcb1124a5f6896a7ad0494",
+          "gitBlob": "51817cc106270a1efe9743bb0c58e0427658c2c3",
+          "lineEndingNormalizationOnly": false
+        },
+        {
+          "path": "sql/migrations/V20261009_01__commerce_payment_verification.sql",
+          "worktreeSha256": "1339f5a5fea07aa797ec6b67a7bbcce5d9d808c3767668b127df5ccdd8298803",
+          "indexSha256": "1339f5a5fea07aa797ec6b67a7bbcce5d9d808c3767668b127df5ccdd8298803",
+          "gitBlob": "2649fddfcda61dcd87dd9c7980cb13d5afbcd3a3",
+          "lineEndingNormalizationOnly": false
+        }
+      ]
+    },
+    "astra-web": {
+      "baseCommit": "bccfa5c89dda05355989c282a7cbbe04bbb40451",
+      "productSourceChanged": false,
+      "sources": []
+    }
+  }
+}

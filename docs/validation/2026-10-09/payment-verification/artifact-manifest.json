@@ -1,0 +1,58 @@
+{
+  "passed": true,
+  "scope": "all stage archive files except this manifest; both repository copies retain exact bytes",
+  "files": {
+    "document-links.json": {
+      "sha256": "6cdc0ce0d7885b65c79c3e4a8e8509c9f6667bdbd687128e06c5084a318c5910",
+      "sizeBytes": 61008
+    },
+    "failure-history.json": {
+      "sha256": "cc07365f3735826fb12611c0561d68cfac18ccbb228eca2579cf8bdd65101a81",
+      "sizeBytes": 7128
+    },
+    "flow-evidence.json": {
+      "sha256": "955066cc0b082ed4c4c1a6aa7384354e41aef96b7f3abb6660910081268262a5",
+      "sizeBytes": 1413
+    },
+    "flow-http-evidence.json": {
+      "sha256": "9d0e961c73665fffbe9eb7aef7ac6c2687c7810fece55ed74ca41d8096e2e397",
+      "sizeBytes": 55277
+    },
+    "flow-schema.json": {
+      "sha256": "c0c09423db82c636c0f2d250460679d0a7cc14286cc5cd88dfaa53de213c14db",
+      "sizeBytes": 13035
+    },
+    "http-evidence.json": {
+      "sha256": "78b1e49b3bf4cb3c9e340d74da6140688fb6913f6eb3445e82d54ccf5008281a",
+      "sizeBytes": 180960
+    },
+    "http-schema.json": {
+      "sha256": "4ec65b20701ad13e4080f5ae9b1dbfea56f724f685220bcf830a8e83bb316ca3",
+      "sizeBytes": 4176
+    },
+    "junit.json": {
+      "sha256": "04bd3bc2a6ff2c87cca9c0b3128cde67caaa8f6b6498f0d3fdc75beed458b71f",
+      "sizeBytes": 5893
+    },
+    "README.md": {
+      "sha256": "8af6e3fb4cfc39a2dfd12be53b0bd0f8d4c557142237fd1d3400fb6fb2a30a20",
+      "sizeBytes": 3040
+    },
+    "source-index.json": {
+      "sha256": "a8f9ce1ab47a4e5c2ac8f20ffef3e364a18a638db7ecb3e52ff3bc27bb25a98b",
+      "sizeBytes": 12912
+    },
+    "sql-analysis.json": {
+      "sha256": "5f285f6868ad5b8edde5ae58044d5dffbca2d76221b906e7248b081f01942b92",
+      "sizeBytes": 1410
+    },
+    "static-contract.json": {
+      "sha256": "651c5ddbad6928bb089fb3880286fce3310526343225b2cf7275b9f84fac9a65",
+      "sizeBytes": 8446
+    },
+    "summary.json": {
+      "sha256": "db1e238a1f116b627ca52542ccb203ba64468d7bf2fb653214f650f87bd210e2",
+      "sizeBytes": 2264
+    }
+  }
+}

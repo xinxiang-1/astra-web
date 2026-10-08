@@ -1,0 +1,207 @@
+{
+  "earlierRunsNotAddedToFinalCount": true,
+  "runs": [
+    {
+      "tests": 12,
+      "failures": 4,
+      "errors": 1,
+      "skipped": 0,
+      "report": "tmp/payment-verification-junit-r1.xml",
+      "reportSha256": "9fb4d4175f923284ef346e37fddd5f3a4ce2cc2a8b64b443b5e57836ad120983",
+      "cases": [
+        {
+          "name": "roleAccountAndStrictInputsAreRechecked",
+          "passed": true
+        },
+        {
+          "name": "acceptedCommandIsAtomicAndLostResponseRecoversWithRenewedJwt",
+          "passed": false
+        },
+        {
+          "name": "pendingAndExpiredPaymentOnlyQueryNeverCloseOrCreate",
+          "passed": true
+        },
+        {
+          "name": "trustedSuccessAppliesOriginalFactAndEntitlementOnlyInWorker",
+          "passed": true
+        },
+        {
+          "name": "malformedFactsAndMissingRecordsCannotGrantOrClose",
+          "passed": true
+        },
+        {
+          "name": "timeoutRetriesOriginalTaskAndMissingRecordBudgetIsFinite",
+          "passed": false
+        },
+        {
+          "name": "versionActiveTaskAndDisabledExecutionPreserveOriginalRecovery",
+          "passed": false
+        },
+        {
+          "name": "sameKeyAndDifferentAdministratorsCannotQueueParallelTasks",
+          "passed": false
+        },
+        {
+          "name": "commandOrAuditFailureRollsBackAllQueueWrites",
+          "passed": false
+        },
+        {
+          "name": "financialApplyFailureRollsBackAndOriginalTaskLaterRecovers",
+          "passed": true
+        },
+        {
+          "name": "expiredLeaseTakeoverFencesOldResultAndFundsAreAppliedOnce",
+          "passed": true
+        },
+        {
+          "name": "readQuotaAndCommandLimitRemainIndependentAndRecoveryBypassesNewWriteQuota",
+          "passed": true
+        }
+      ],
+      "findingAndFix": "Fixture counted CREATE_PAYMENT commands; spy getter during stubbing invoked real query. Fixed fixture scope and merchant read order."
+    },
+    {
+      "tests": 13,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 0,
+      "report": "tmp/payment-verification-junit-r2.xml",
+      "reportSha256": "719172a78dc9e5c5bb436bb5686e079757f6c39c53a395e9028799db0d8ec732",
+      "cases": [
+        {
+          "name": "roleAccountAndStrictInputsAreRechecked",
+          "passed": true
+        },
+        {
+          "name": "acceptedCommandIsAtomicAndLostResponseRecoversWithRenewedJwt",
+          "passed": true
+        },
+        {
+          "name": "pendingAndExpiredPaymentOnlyQueryNeverCloseOrCreate",
+          "passed": true
+        },
+        {
+          "name": "trustedSuccessAppliesOriginalFactAndEntitlementOnlyInWorker",
+          "passed": true
+        },
+        {
+          "name": "malformedFactsAndMissingRecordsCannotGrantOrClose",
+          "passed": true
+        },
+        {
+          "name": "timeoutRetriesOriginalTaskAndMissingRecordBudgetIsFinite",
+          "passed": true
+        },
+        {
+          "name": "versionActiveTaskAndDisabledExecutionPreserveOriginalRecovery",
+          "passed": true
+        },
+        {
+          "name": "sameKeyAndDifferentAdministratorsCannotQueueParallelTasks",
+          "passed": true
+        },
+        {
+          "name": "commandOrAuditFailureRollsBackAllQueueWrites",
+          "passed": true
+        },
+        {
+          "name": "financialApplyFailureRollsBackAndOriginalTaskLaterRecovers",
+          "passed": true
+        },
+        {
+          "name": "expiredLeaseTakeoverFencesOldResultAndFundsAreAppliedOnce",
+          "passed": true
+        },
+        {
+          "name": "readQuotaAndCommandLimitRemainIndependentAndRecoveryBypassesNewWriteQuota",
+          "passed": true
+        },
+        {
+          "name": "disabledBuyerAndCrossOrderHistoryCannotChangePaymentBinding",
+          "passed": false
+        }
+      ],
+      "findingAndFix": "Fixture expected422 for43006; existing exception handler correctly returns409. Fixed expectation."
+    },
+    {
+      "tests": 14,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "report": "tmp/payment-verification-junit-r3.xml",
+      "reportSha256": "33abb1c2fd68999f383359e345bca1e8d7186775fa197aaf92150d36436eb399",
+      "cases": [
+        {
+          "name": "roleAccountAndStrictInputsAreRechecked",
+          "passed": true
+        },
+        {
+          "name": "acceptedCommandIsAtomicAndLostResponseRecoversWithRenewedJwt",
+          "passed": true
+        },
+        {
+          "name": "pendingAndExpiredPaymentOnlyQueryNeverCloseOrCreate",
+          "passed": true
+        },
+        {
+          "name": "trustedSuccessAppliesOriginalFactAndEntitlementOnlyInWorker",
+          "passed": true
+        },
+        {
+          "name": "malformedFactsAndMissingRecordsCannotGrantOrClose",
+          "passed": true
+        },
+        {
+          "name": "timeoutRetriesOriginalTaskAndMissingRecordBudgetIsFinite",
+          "passed": true
+        },
+        {
+          "name": "versionActiveTaskAndDisabledExecutionPreserveOriginalRecovery",
+          "passed": true
+        },
+        {
+          "name": "sameKeyAndDifferentAdministratorsCannotQueueParallelTasks",
+          "passed": true
+        },
+        {
+          "name": "commandOrAuditFailureRollsBackAllQueueWrites",
+          "passed": true
+        },
+        {
+          "name": "financialApplyFailureRollsBackAndOriginalTaskLaterRecovers",
+          "passed": true
+        },
+        {
+          "name": "expiredLeaseTakeoverFencesOldResultAndFundsAreAppliedOnce",
+          "passed": true
+        },
+        {
+          "name": "readQuotaAndCommandLimitRemainIndependentAndRecoveryBypassesNewWriteQuota",
+          "passed": true
+        },
+        {
+          "name": "disabledBuyerAndCrossOrderHistoryCannotChangePaymentBinding",
+          "passed": true
+        },
+        {
+          "name": "realRedisOutageRejectsReadAndQueueThenActuallyRecovers",
+          "passed": true
+        }
+      ],
+      "findingAndFix": "14 tests passed; subsequent review found broken binding would wait for leases without finite failure. Added RESOURCE_MISSING retry and independent15th test."
+    }
+  ],
+  "additionalFailures": [
+    {
+      "phase": "first HTTP evidence validation",
+      "error": "ModuleNotFoundError: hyphenated helper filename cannot be imported as underscored module",
+      "fix": "Use explicit run_path to load existing shared validator; final actual153 responses validated."
+    },
+    {
+      "phase": "regression evidence assembly",
+      "error": "Assumed all captures were published paths, then wrongly required404-only and used nonexistent ApiError schema for intentionally absent mock callback probes.",
+      "fix": "Check the original live test and published Error schema: exact absent POST path,401 or404 with matching body code; validate generic Error. No new mock callback route added."
+    }
+  ],
+  "finalRun": "payment-verification-it-d9e8f0b29d81"
+}

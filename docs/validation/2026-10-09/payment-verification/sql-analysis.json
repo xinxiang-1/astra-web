@@ -1,0 +1,44 @@
+{
+  "scope": "new CREATE TABLE AST, migration-set inventory and actual isolated execution; ALTER DROP CHECK fallback explicitly excluded from full AST claim",
+  "completeMigrationTableCount": 22,
+  "completeMigrationTables": [
+    "commerce_policy",
+    "commerce_product",
+    "commerce_release",
+    "commerce_sku",
+    "commerce_asset",
+    "commerce_order",
+    "commerce_order_item",
+    "commerce_payment",
+    "commerce_refund",
+    "commerce_payment_event",
+    "commerce_entitlement",
+    "commerce_asset_access",
+    "commerce_admin_role",
+    "commerce_lead",
+    "commerce_admin_audit",
+    "commerce_command",
+    "commerce_outbox",
+    "commerce_reconcile_day",
+    "commerce_reconcile_job",
+    "commerce_reconcile_issue",
+    "commerce_reconcile_attempt",
+    "commerce_payment_verification"
+  ],
+  "verificationIntegrationCommerceTableCount": 18,
+  "verificationIntegrationExecutedBaseAndNewMigration": true,
+  "existingDatabaseMigrated": false,
+  "newMigrationSha256": "1339f5a5fea07aa797ec6b67a7bbcce5d9d808c3767668b127df5ccdd8298803",
+  "astNodeTypes": [
+    "Alter",
+    "Create"
+  ],
+  "alterContainsParserFallback": true,
+  "createTableFullyParsed": true,
+  "realMysqlVersion": "8.0.39",
+  "notVerified": [
+    "complete22-table production/staging migration",
+    "backup and restore",
+    "ALTER CHECK clause complete SQL AST coverage"
+  ]
+}

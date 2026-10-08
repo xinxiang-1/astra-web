@@ -1,0 +1,73 @@
+{
+  "passed": true,
+  "stage": "payment-verification-2026-10-09",
+  "finalRun": "payment-verification-it-d9e8f0b29d81",
+  "regressionRun": "payment-flow-it-cc9a034e4d08",
+  "junit": {
+    "tests": 36,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "responseSchemas": {
+    "verification": 153,
+    "verificationDirect": 59,
+    "verificationGateway": 94,
+    "flowRegression": 75,
+    "total": 228
+  },
+  "openapi": {
+    "operations": 36,
+    "schemas": 85,
+    "changedExistingOperations": [
+      [
+        "/system/admin/orders/{orderId}/reconcile",
+        "post"
+      ]
+    ],
+    "changedExistingSchemas": [
+      "ReconcileRequest",
+      "ReconcileJob"
+    ],
+    "otherExistingDefinitionsUnchanged": true
+  },
+  "checks": {
+    "verification": {
+      "exitCode": 0,
+      "path": "tmp/payment-verification-r4.log",
+      "sha256": "aaf2ca6526d5b0ea6c20edc5a8c4cf2213d3790befee5909b80c5d12d07e67f1"
+    },
+    "regression": {
+      "exitCode": 0,
+      "path": "tmp/payment-verification-flow-regression-r1.log",
+      "sha256": "cfd6ecb51cb81d79ae51eb28bfd2d15a16b265e2994052304de0b3988382a8ec"
+    },
+    "build": {
+      "exitCode": 0,
+      "path": "tmp/payment-verification-build-final.log",
+      "sha256": "80668a10451546cab4dfeb70ea2038848e8fb3edad1473bd332350d6b97f070d"
+    }
+  },
+  "backendBuildUsesSkipTests": true,
+  "frontendProductChanged": false,
+  "frontendTestsRerun": false,
+  "verificationOwnedFixtureCleanupComplete": true,
+  "flowOwnedFixtureCleanupComplete": true,
+  "mockAndInjectedScope": [
+    "persisted mock payment provider; real HTTP/SQL/permissions",
+    "no-op verification scheduler; real worker",
+    "injected timeout, mismatched amount and slow query",
+    "real owned Redis outage/restart; bounded actual GET recovery",
+    "original payment regression:3 owned JVM restarts; existing Redis not stopped"
+  ],
+  "notVerified": [
+    "new payment verification UI/browser integration",
+    "refund anomaly query",
+    "real payment SDK/funds",
+    "full production authentication",
+    "backend membership",
+    "signature/media/all-site commercial quality",
+    "complete deploy/backup/monitoring",
+    "entire commercial goal"
+  ]
+}
