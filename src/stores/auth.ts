@@ -71,18 +71,25 @@ export const useAuthStore = defineStore('auth', () => {
 
   function beginSessionRequest(signal?: AbortSignal) {
     invalidateSessionRequests()
-    const generation = revision.value, token = getAccessToken()
+    const generation = revision.value,
+      token = getAccessToken()
     if (token !== observedToken) user.value = null
     observedToken = token
     const controller = new AbortController()
     sessionController = controller
     const combined = signal ? AbortSignal.any([signal, controller.signal]) : controller.signal
-    return { controller, signal: combined, token,
-      current: () => revision.value === generation && getAccessToken() === token && !combined.aborted }
+    return {
+      controller,
+      signal: combined,
+      token,
+      current: () =>
+        revision.value === generation && getAccessToken() === token && !combined.aborted,
+    }
   }
 
   async function withPending<T>(fn: () => Promise<T>, opts?: { signal?: AbortSignal }): Promise<T> {
-    const owner = Symbol(), generation = revision.value
+    const owner = Symbol(),
+      generation = revision.value
     pendingOwner = owner
     pending.value = true
     lastMessage.value = ''
@@ -135,35 +142,56 @@ export const useAuthStore = defineStore('auth', () => {
     captcha: authApi.CaptchaFields,
     signal?: AbortSignal,
   ) {
-    return authenticate((s) => authApi.loginByPassword(account, password, captcha, s),
-      (name) => `欢迎回来，${name}`, '登录成功', signal)
+    return authenticate(
+      (s) => authApi.loginByPassword(account, password, captcha, s),
+      (name) => `欢迎回来，${name}`,
+      '登录成功',
+      signal,
+    )
   }
 
   function loginByPhone(phone: string, code: string, signal?: AbortSignal) {
-    return authenticate((s) => authApi.loginByPhone(phone, code, s),
-      (name) => `欢迎回来，${name}`, '登录成功', signal)
+    return authenticate(
+      (s) => authApi.loginByPhone(phone, code, s),
+      (name) => `欢迎回来，${name}`,
+      '登录成功',
+      signal,
+    )
   }
 
   function loginByEmail(email: string, code: string, signal?: AbortSignal) {
-    return authenticate((s) => authApi.loginByEmail(email, code, s),
-      (name) => `欢迎回来，${name}`, '登录成功', signal)
+    return authenticate(
+      (s) => authApi.loginByEmail(email, code, s),
+      (name) => `欢迎回来，${name}`,
+      '登录成功',
+      signal,
+    )
   }
 
   function register(
     name: string,
     email: string,
     password: string,
+    emailCode: string,
     captcha: authApi.CaptchaFields,
-    phone?: string,
     signal?: AbortSignal,
   ) {
-    return authenticate((s) => authApi.register({
-          nickname: name,
-          email,
-          password,
-          phone: phone || undefined,
-          ...captcha,
-        }, s), () => '注册成功，已自动登录', '注册成功', signal)
+    return authenticate(
+      (s) =>
+        authApi.register(
+          {
+            nickname: name,
+            email,
+            password,
+            emailCode,
+            ...captcha,
+          },
+          s,
+        ),
+      () => '注册成功，已自动登录',
+      '注册成功',
+      signal,
+    )
   }
 
   async function sendLoginSms(phone: string, captcha: authApi.CaptchaFields) {
@@ -177,15 +205,30 @@ export const useAuthStore = defineStore('auth', () => {
     }
   }
 
-  async function sendLoginEmail(email: string, captcha: authApi.CaptchaFields) {
+  async function requestEmailCode(
+    email: string,
+    scene: 'login' | 'register',
+    captcha: authApi.CaptchaFields,
+    signal?: AbortSignal,
+  ): Promise<{ ok: boolean; code?: number }> {
+    const generation = revision.value,
+      token = getAccessToken()
     try {
-      const msg = await withPending(() => authApi.sendEmailCode(email, 'login', captcha))
+      const msg = await withPending(() => authApi.sendEmailCode(email, scene, captcha, signal), {
+        signal,
+      })
+      if (signal?.aborted || revision.value !== generation || getAccessToken() !== token)
+        return { ok: false }
       lastMessage.value = msg || '验证码已发送至邮箱'
       tipOk(lastMessage.value)
-      return true
-    } catch {
-      return false
+      return { ok: true }
+    } catch (err) {
+      return { ok: false, code: err instanceof ApiError ? err.code : undefined }
     }
+  }
+
+  async function sendLoginEmail(email: string, captcha: authApi.CaptchaFields) {
+    return (await requestEmailCode(email, 'login', captcha)).ok
   }
 
   async function requestPasswordReset(account: string, captcha: authApi.CaptchaFields) {
@@ -225,8 +268,12 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   function loginWithWechat(ticket: string, signal?: AbortSignal) {
-    return authenticate((s) => authApi.confirmWechat(ticket, s),
-      (name) => `微信登录成功，欢迎 ${name}`, '微信登录成功', signal)
+    return authenticate(
+      (s) => authApi.confirmWechat(ticket, s),
+      (name) => `微信登录成功，欢迎 ${name}`,
+      '微信登录成功',
+      signal,
+    )
   }
 
   async function restoreSession() {
@@ -293,6 +340,7 @@ export const useAuthStore = defineStore('auth', () => {
     register,
     sendLoginSms,
     sendLoginEmail,
+    requestEmailCode,
     requestPasswordReset,
     resetPassword,
     startWechatSession,

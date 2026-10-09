@@ -61,10 +61,12 @@ export function sendEmailCode(
   email: string,
   scene: 'login' | 'reset' | 'register',
   captcha: CaptchaFields,
+  signal?: AbortSignal,
 ) {
   return http<string>('/auth/email/send', {
     method: 'POST',
     body: JSON.stringify({ email, scene, ...captcha }),
+    signal,
   })
 }
 
@@ -76,14 +78,17 @@ export function loginByEmail(email: string, code: string, signal?: AbortSignal) 
   })
 }
 
-export function register(payload: {
-  nickname: string
-  email: string
-  password: string
-  phone?: string
-  captchaId: string
-  captchaCode: string
-}, signal?: AbortSignal) {
+export function register(
+  payload: {
+    nickname: string
+    email: string
+    password: string
+    emailCode: string
+    captchaId: string
+    captchaCode: string
+  },
+  signal?: AbortSignal,
+) {
   return http<TokenPayload>('/auth/register', {
     method: 'POST',
     body: JSON.stringify(payload),
@@ -138,6 +143,7 @@ export function fetchMe(signal?: AbortSignal) {
 
 export function logout(accessToken: string) {
   return http<void>('/auth/logout', {
-    method: 'POST', headers: { Authorization: `Bearer ${accessToken}` },
+    method: 'POST',
+    headers: { Authorization: `Bearer ${accessToken}` },
   })
 }

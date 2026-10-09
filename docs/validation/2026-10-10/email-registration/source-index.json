@@ -1,0 +1,62 @@
+{
+  "files": [
+    {
+      "path": "astra-web/docs/plans/email-registration-2026-10-10.md",
+      "sha256": "f99c885657e1c9ac73f4b4ae20a8e52147c334b3ffccc35c5c2617680722237c"
+    },
+    {
+      "path": "astra-web/docs/plans/product-master-plan.md",
+      "sha256": "58915c81dccb740697fc78d594f421084f9cd1fd52d009d01d0cd22b482b1400"
+    },
+    {
+      "path": "astra-cloud/docs/plans/email-registration-2026-10-10.md",
+      "sha256": "1f78319f0cd3800c416b529ce87cb8335345d213a7776d238bff6467f1006ce1"
+    },
+    {
+      "path": "astra-cloud/docs/plans/launch-readiness-2026-10-08.md",
+      "sha256": "852edc34b5b7fd3b5a4ef785a3092f3bca32d7766d0ec7558734f8e2fdf953b0"
+    },
+    {
+      "path": "astra-cloud/docs/auth/email-registration-runtime.md",
+      "sha256": "290200c217509938fcc296fd20d1d9762f8c02b86a982cf0e240a8f4b1a9b134"
+    },
+    {
+      "path": "astra-cloud/docs/auth/openapi.json",
+      "sha256": "7bfb4c46fff6fdc0cdd548e90650d72ea750fc24568544b75e311dd5f0f6ada8"
+    },
+    {
+      "path": "astra-web/docs/validation/2026-10-10/email-registration/README.md",
+      "sha256": "c305e887ae684ee526eea743ebeab7f81ef4b2c17327afba63c44fb1ef304b96"
+    },
+    {
+      "path": "astra-cloud/docs/validation/2026-10-10/email-registration/README.md",
+      "sha256": "4a5491f6a98aca4a7b17754c01a7b38ccb23a64391d60783d0ebb19a816d4c92"
+    }
+  ],
+  "rawLocalEvidence": [
+    {
+      "path": "tmp/email-registration-live-r2.log",
+      "sha256": "0e030e32f6b953a58cadd9b6a6f9cf3d80e16c1ff9002d4bf25d364b1dbb87e6"
+    },
+    {
+      "path": "tmp/email-registration-web-build-r1.log",
+      "sha256": "d8d30d5c66c44fd19d76e8ac16a37133018d552f81a25608cccecd38b248bcba"
+    },
+    {
+      "path": "tmp/email-registration-type-final.log",
+      "sha256": "0a7d40c8ea67ee87b4bcdc91418a201a96bc30f3286185c82d8888ec96c6d6fb"
+    },
+    {
+      "path": "tmp/email-registration-lint-final.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tmp/email-registration-http-final.log",
+      "sha256": "904fd549c2f31fa59e1425c276aa6c4864356b37097cd553a0970957d3848aaa"
+    },
+    {
+      "path": "tmp/email-registration-session-final.log",
+      "sha256": "684b2207d607b44f1ab15998ebf3a946b97e94c9be312112207d47861d75bafa"
+    }
+  ]
+}

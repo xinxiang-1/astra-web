@@ -1,0 +1,39 @@
+{
+  "passed": false,
+  "scope": "Production frontend transported to owned real auth/gateway/system and TLS SMTP inbox; no API success mocks or real funds",
+  "browser": "154.0.4258.62",
+  "mobile": false,
+  "checks": [
+    "Register requires mailbox proof before HTTP submission and exposes no unverified phone field",
+    "Register scene sends through real TLS SMTP; owned inbox holds a six-digit proof and resend is disabled",
+    "Register layout fits desktop or touch viewport in both themes; screenshots contain no OTP or plaintext password"
+  ],
+  "requests": [
+    {
+      "path": "/api/auth/email/send",
+      "method": "POST",
+      "httpStatus": 200,
+      "businessCode": 0
+    },
+    {
+      "path": "/api/auth/register",
+      "method": "POST",
+      "httpStatus": 200,
+      "businessCode": 0
+    },
+    {
+      "path": "/api/system/admin/access",
+      "method": "GET",
+      "httpStatus": 403,
+      "businessCode": 403
+    },
+    {
+      "path": "/api/system/orders",
+      "method": "GET",
+      "httpStatus": 200,
+      "businessCode": 0
+    }
+  ],
+  "errors": [],
+  "failure": "locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByText('还没有订单。', { exact: true }) to be visible\u001b[22m\n"
+}

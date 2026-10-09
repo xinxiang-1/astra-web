@@ -1,0 +1,107 @@
+{
+  "scope": "Exact working-tree source bytes; unrelated dirty files excluded",
+  "files": [
+    {
+      "repository": "astra-web",
+      "path": "src/api/auth.ts",
+      "sha256": "ec9701a54a91487cc19f57049a3154a74cc6d1cddcd43955bdea634a7b8639e0",
+      "bytes": 3489
+    },
+    {
+      "repository": "astra-web",
+      "path": "src/stores/auth.ts",
+      "sha256": "862d2371af408a6cda3299aaf37ab22a4056236bd5f0ca6b6ba073bcc481abca",
+      "bytes": 9983
+    },
+    {
+      "repository": "astra-web",
+      "path": "src/views/AuthView.vue",
+      "sha256": "6d874955630a3212ecdfff8cb15aba7481d08d0cd06be03ec8f708f592f238f8",
+      "bytes": 40686
+    },
+    {
+      "repository": "astra-web",
+      "path": "scripts/auth-identity-contract.mjs",
+      "sha256": "29790c2b7c1dbcdb3cba47ecd69d123c6905be0f3de35ad93dfb73f355bb8910",
+      "bytes": 7549
+    },
+    {
+      "repository": "astra-web",
+      "path": "scripts/auth-registration-live.mjs",
+      "sha256": "3374baa4dae6ffeb10fe9a631c7f980004156cb2f8a5c98df3a7997d25f755c6",
+      "bytes": 9497
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-api/src/main/java/com/astra/api/auth/dto/RegisterRequest.java",
+      "sha256": "4b0490c552c9ef96c304d155157c19ab5396704914ea382a79e1cdf42ac1bee9",
+      "bytes": 1351
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-api/src/main/java/com/astra/api/auth/dto/EmailLoginRequest.java",
+      "sha256": "243df5541326cd35bdba5db13dad240d8533f26589d5ade8042a388055aee949",
+      "bytes": 609
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-api/src/main/java/com/astra/api/auth/dto/EmailCodeSendRequest.java",
+      "sha256": "a719cd6aa9a38dbed14a564833a7ee37b496b77e572a21fca7e8e74f4fead1d0",
+      "bytes": 881
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-auth/src/main/java/com/astra/auth/service/EmailCodeService.java",
+      "sha256": "a827065b3ab0a46d4b3b8302fa68b614d47acf7614feceb2666cc7dd566ff722",
+      "bytes": 6473
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-auth/src/main/java/com/astra/auth/service/impl/AuthServiceImpl.java",
+      "sha256": "96e575894833e14c16ea60c582fe126748cf0adb5dafa238cace7ceee854e8bd",
+      "bytes": 26423
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-auth/src/main/java/com/astra/auth/config/AuthProperties.java",
+      "sha256": "b98157abfb97af5023915ff84f02295f2f646223552c179fd34c459d2adb8fce",
+      "bytes": 3237
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-auth/src/main/java/com/astra/auth/config/MailSenderConfig.java",
+      "sha256": "3ea412f9425e9ac5a3bd346fc0cdba57d7b273316b25591dd909b1be86f5be1e",
+      "bytes": 2053
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-auth/src/main/java/com/astra/auth/adapter/mail/MockEmailSender.java",
+      "sha256": "c21c2eddcd72e8bb8141c066521d48fba2fc349cdc516dd2cd2b304847ac335a",
+      "bytes": 559
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-auth/src/main/java/com/astra/auth/adapter/mail/SmtpEmailSender.java",
+      "sha256": "7698979745f987141a7039a43ff7d9c8e6e7eeb5470a7295f011f44893aab765",
+      "bytes": 2533
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-auth/src/test/java/com/astra/auth/integration/OwnedAuthFixture.java",
+      "sha256": "6f940e2acc80ebcf123d1980dc929f31fc07115deab19e8fedd3b4a9e9b9c888",
+      "bytes": 14056
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-auth/src/test/java/com/astra/auth/integration/AuthRegistrationIntegrationTest.java",
+      "sha256": "5100dd87702f6092dfbbe2dcab602d9233a6574e9db48e79d357a4061b012da0",
+      "bytes": 27974
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "sql/migrations/V20261010_01__auth_v1.sql",
+      "sha256": "23fb2c86d94ca3195d3319d8c4252d0dd94249352923290dfb0ef8e350b8cf62",
+      "bytes": 3067
+    }
+  ]
+}

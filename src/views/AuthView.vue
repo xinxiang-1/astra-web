@@ -35,6 +35,19 @@ const phoneLoginEnabled = false
 const emailLoginEnabled = true
 const smsCooldown = ref(0)
 let smsTimer: number | undefined
+const sendingEmail = ref(false)
+const emailClock = ref(Date.now())
+const emailDeadlines = reactive(new Map<string, number>())
+const emailCooldown = computed(() =>
+  Math.max(
+    0,
+    Math.ceil(
+      ((emailDeadlines.get(form.email.trim().toLowerCase()) || 0) - emailClock.value) / 1000,
+    ),
+  ),
+)
+let emailTimer: number | undefined
+let emailController: AbortController | null = null
 
 const wechatTicket = ref('')
 const wechatStatus = ref<'waiting' | 'scanned' | 'confirmed' | 'expired'>('waiting')
@@ -71,6 +84,7 @@ watch(
   () => props.initialMode,
   (value) => {
     formController?.abort()
+    cancelEmailRequest()
     mode.value = value
     error.value = ''
     resetSent.value = false
@@ -82,6 +96,8 @@ watch(
   mode,
   (value) => {
     formController?.abort()
+    cancelEmailRequest()
+    form.code = ''
     if (value === 'wechat') startWechatSession()
     else {
       stopWechatSession()
@@ -96,6 +112,7 @@ watch(
 
 watch(loginTab, () => {
   formController?.abort()
+  cancelEmailRequest()
   form.code = ''
   form.captchaCode = ''
   // 切到邮箱验证码时放开图形码门槛，保证首次「获取验证码」一定打接口
@@ -107,6 +124,38 @@ watch(loginTab, () => {
     void refreshCaptcha()
   }
 })
+
+watch(
+  () => form.email,
+  () => {
+    cancelEmailRequest()
+    form.code = ''
+    auth.lastMessage = ''
+    error.value = ''
+  },
+)
+
+function cancelEmailRequest() {
+  emailController?.abort()
+  emailController = null
+  sendingEmail.value = false
+}
+
+function startEmailCooldown(email: string, seconds = 60) {
+  emailClock.value = Date.now()
+  emailDeadlines.set(email.trim().toLowerCase(), emailClock.value + seconds * 1000)
+  if (emailTimer !== undefined) return
+  emailTimer = window.setInterval(() => {
+    emailClock.value = Date.now()
+    for (const [address, deadline] of emailDeadlines) {
+      if (deadline <= emailClock.value) emailDeadlines.delete(address)
+    }
+    if (!emailDeadlines.size && emailTimer !== undefined) {
+      window.clearInterval(emailTimer)
+      emailTimer = undefined
+    }
+  }, 1000)
+}
 
 async function enableCaptcha() {
   showCaptcha.value = true
@@ -160,6 +209,8 @@ function stopSmsCooldown() {
 
 onBeforeUnmount(() => {
   formController?.abort()
+  cancelEmailRequest()
+  if (emailTimer !== undefined) window.clearInterval(emailTimer)
   stopWechatSession()
   stopSmsCooldown()
 })
@@ -259,10 +310,14 @@ function switchMode(next: AuthMode) {
 
 async function startWechatSession() {
   stopWechatSession()
-  const controller = new AbortController(), generation = auth.sessionRevision
+  const controller = new AbortController(),
+    generation = auth.sessionRevision
   wechatController = controller
-  const current = () => wechatController === controller && !controller.signal.aborted &&
-    mode.value === 'wechat' && auth.sessionRevision === generation
+  const current = () =>
+    wechatController === controller &&
+    !controller.signal.aborted &&
+    mode.value === 'wechat' &&
+    auth.sessionRevision === generation
   wechatStatus.value = 'waiting'
   try {
     const session = await auth.startWechatSession(controller.signal)
@@ -288,8 +343,11 @@ async function startWechatSession() {
 function scheduleWechatPoll(controller: AbortController, generation: number) {
   stopWechatPoll()
   wechatPollTimer = window.setTimeout(async () => {
-    const current = () => wechatController === controller && !controller.signal.aborted &&
-      mode.value === 'wechat' && auth.sessionRevision === generation
+    const current = () =>
+      wechatController === controller &&
+      !controller.signal.aborted &&
+      mode.value === 'wechat' &&
+      auth.sessionRevision === generation
     if (!current() || !wechatTicket.value || wechatStatus.value === 'expired') return
     try {
       const session = await auth.pollWechatSession(wechatTicket.value, controller.signal)
@@ -376,7 +434,7 @@ function validate(): string | null {
 
   if (mode.value === 'login' && loginTab.value === 'email') {
     if (!isEmail(form.email.trim())) return '请输入有效邮箱'
-    if (!/^\d{4,8}$/.test(form.code.trim())) return '请输入验证码'
+    if (!/^\d{6}$/.test(form.code.trim())) return '请输入 6 位邮箱验证码'
     return null
   }
 
@@ -411,7 +469,10 @@ function validate(): string | null {
   if (form.password.length < 6) return '密码至少 6 位'
   if (mode.value === 'register') {
     if (!form.name.trim()) return '请填写昵称'
-    if (form.phone.trim() && !isPhone(form.phone.trim())) return '手机号格式不正确'
+    if (form.name.trim().length > 64) return '昵称最多 64 位'
+    if (form.email.trim().length > 128) return '邮箱过长'
+    if (!/^\d{6}$/.test(form.code.trim())) return '请输入 6 位邮箱验证码'
+    if (new TextEncoder().encode(form.password).length > 72) return '密码过长，请缩短后重试'
     if (form.password !== form.confirm) return '两次密码不一致'
     if (!form.agree) return '请先同意服务条款'
   }
@@ -425,6 +486,7 @@ function requireCaptchaCode(): string | null {
 }
 
 async function onSendEmailCode() {
+  if (mode.value !== 'register' && !(mode.value === 'login' && loginTab.value === 'email')) return
   error.value = ''
   const email = form.email.trim()
   if (!email) {
@@ -437,8 +499,13 @@ async function onSendEmailCode() {
     ElMessage.warning(error.value)
     return
   }
-  if (smsCooldown.value > 0) {
-    ElMessage.warning(`请 ${smsCooldown.value} 秒后再获取`)
+  if (email.length > 128) {
+    error.value = '邮箱过长'
+    ElMessage.warning(error.value)
+    return
+  }
+  if (emailCooldown.value > 0) {
+    ElMessage.warning(`请 ${emailCooldown.value} 秒后再获取`)
     return
   }
   if (auth.pending) return
@@ -457,13 +524,31 @@ async function onSendEmailCode() {
     }
   }
 
-  const ok = await auth.sendLoginEmail(email, captchaPayload())
-  if (ok) {
-    startSmsCooldown(60)
+  const controller = new AbortController()
+  emailController = controller
+  sendingEmail.value = true
+  const generation = auth.sessionRevision
+  const result = await auth.requestEmailCode(
+    email,
+    mode.value === 'register' ? 'register' : 'login',
+    captchaPayload(),
+    controller.signal,
+  )
+  if (
+    controller.signal.aborted ||
+    emailController !== controller ||
+    auth.sessionRevision !== generation
+  )
+    return
+  emailController = null
+  sendingEmail.value = false
+  if (result.ok) {
+    startEmailCooldown(email)
     if (showCaptcha.value) void refreshCaptcha()
   } else {
     error.value = auth.lastMessage || '发送失败'
-    await enableCaptcha()
+    if (result.code === 429) startEmailCooldown(email)
+    else await enableCaptcha()
   }
 }
 
@@ -494,6 +579,7 @@ async function onSendSms() {
 }
 
 async function onSubmit() {
+  if (auth.pending) return
   error.value = ''
   const invalid = validate()
   if (invalid) {
@@ -542,8 +628,8 @@ async function onSubmit() {
       form.name.trim(),
       form.email.trim(),
       form.password,
+      form.code.trim(),
       captchaPayload(),
-      form.phone.trim() || undefined,
       controller.signal,
     )
   }
@@ -693,16 +779,22 @@ async function onSubmit() {
                   name="code"
                   inputmode="numeric"
                   autocomplete="one-time-code"
-                  maxlength="8"
+                  maxlength="6"
                   placeholder="邮箱收到的 6 位码"
                 />
                 <button
                   type="button"
                   class="sms-btn"
-                  :disabled="auth.pending || smsCooldown > 0"
+                  :disabled="auth.pending || emailCooldown > 0"
                   @click.stop.prevent="onSendEmailCode"
                 >
-                  {{ smsCooldown > 0 ? `${smsCooldown}s` : '获取验证码' }}
+                  {{
+                    sendingEmail
+                      ? '发送中…'
+                      : emailCooldown > 0
+                        ? `${emailCooldown} 秒后重发`
+                        : '获取验证码'
+                  }}
                 </button>
               </div>
             </label>
@@ -780,14 +872,32 @@ async function onSubmit() {
             </label>
 
             <label v-if="mode === 'register'" class="field">
-              <span>手机号（可选）</span>
-              <input
-                v-model="form.phone"
-                type="tel"
-                name="phone"
-                autocomplete="tel"
-                placeholder="可用于验证码登录"
-              />
+              <span>邮箱验证码</span>
+              <div class="code-row">
+                <input
+                  v-model="form.code"
+                  type="text"
+                  name="emailCode"
+                  inputmode="numeric"
+                  autocomplete="one-time-code"
+                  maxlength="6"
+                  placeholder="邮箱收到的 6 位码"
+                />
+                <button
+                  type="button"
+                  class="sms-btn"
+                  :disabled="auth.pending || emailCooldown > 0"
+                  @click.stop.prevent="onSendEmailCode"
+                >
+                  {{
+                    sendingEmail
+                      ? '发送中…'
+                      : emailCooldown > 0
+                        ? `${emailCooldown} 秒后重发`
+                        : '获取验证码'
+                  }}
+                </button>
+              </div>
             </label>
 
             <template v-if="mode === 'forgot' && resetSent">

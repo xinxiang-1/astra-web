@@ -1,0 +1,26 @@
+{
+  "passed": false,
+  "historyOnly": true,
+  "attempts": [
+    {
+      "attempt": "compile-r1",
+      "failure": "Unquoted dotted Maven -D argument split by PowerShell",
+      "fix": "Quote each -D argument; original10 auth tests passed after correction"
+    },
+    {
+      "attempt": "integration-r1",
+      "testsPassed": 7,
+      "cleanupComplete": true,
+      "failure": "Exact empty-order text ignored the child free-template link; real register and order API had succeeded",
+      "fix": "Match the scoped paragraph with the complete empty-state text; add redacted notices and guard AfterAll logs in final passed flag"
+    },
+    {
+      "attempt": "integration-r2",
+      "passed": true,
+      "testsPassed": 8,
+      "logsVerified": true,
+      "cleanupComplete": true,
+      "ownedSchema": "astra_auth_it_f799369c5703"
+    }
+  ]
+}

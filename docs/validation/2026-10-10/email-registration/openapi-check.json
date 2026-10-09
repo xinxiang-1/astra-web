@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "scope": "OpenAPI3.1 structural validation only; actual HTTP bodies are not retained or retrospectively schema-validated",
+  "contract": "astra-cloud/docs/auth/openapi.json",
+  "sha256": "7bfb4c46fff6fdc0cdd548e90650d72ea750fc24568544b75e311dd5f0f6ada8",
+  "paths": 3
+}

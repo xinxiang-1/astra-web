@@ -1,0 +1,25 @@
+{
+  "scope": "Local tested production build artifacts; not production deployment",
+  "files": [
+    {
+      "path": "astra-web/dist/index.html",
+      "sha256": "6e4cf5c8fa48f71b034f26a01a0b20e3ed3660f12f200ed5e13e810c73dfaf14",
+      "bytes": 2643
+    },
+    {
+      "path": "astra-cloud/astra-modules/astra-auth/target/astra-auth-1.0.0-SNAPSHOT.jar",
+      "sha256": "9c6c3e74d18735a0785323687b1e57305d979f6720b1a8de2de3d9f66a58c2aa",
+      "bytes": 114814482
+    },
+    {
+      "path": "astra-cloud/astra-modules/astra-system/target/astra-system-1.0.0-SNAPSHOT.jar",
+      "sha256": "ec5782a7547b654e645239e1befa9c93751f05c9356c897d21b551a8b9e792bc",
+      "bytes": 114409509
+    },
+    {
+      "path": "astra-cloud/astra-gateway/target/astra-gateway-1.0.0-SNAPSHOT.jar",
+      "sha256": "588cbe80f3e2b18d7e83d06587ca8d82150d44472fe19409e5bcc27f36a09109",
+      "bytes": 101528639
+    }
+  ]
+}

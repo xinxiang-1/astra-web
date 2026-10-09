@@ -1,0 +1,54 @@
+{
+  "date": "2026-10-10",
+  "stage": "email-proof-v2",
+  "passed": true,
+  "junitTestsPassed": 38,
+  "liveBrowsers": [
+    {
+      "channel": "msedge",
+      "checksPassed": 7,
+      "requests": 11,
+      "browserVersion": "154.0.4258.62",
+      "touchEmulated": false
+    },
+    {
+      "channel": "chrome",
+      "checksPassed": 7,
+      "requests": 9,
+      "browserVersion": "157.0.8081.0",
+      "touchEmulated": false
+    },
+    {
+      "channel": "mobile",
+      "checksPassed": 7,
+      "requests": 11,
+      "browserVersion": "154.0.4258.62",
+      "touchEmulated": true
+    }
+  ],
+  "frontend": {
+    "typeCheckExit": 0,
+    "targetedEslintExit": 0,
+    "buildExit": 0,
+    "identityControlledCases": 18,
+    "httpControlledRequests": 8,
+    "storeControlledCases": 7,
+    "designDetectorFindings": 0,
+    "screenshotsInspected": true
+  },
+  "proof": "Actual auth-issued JWT, MySQL, owned Redis and local TLS SMTP; route.fetch transports to actual gateway without success response mocks",
+  "logsVerified": true,
+  "cleanupComplete": true,
+  "ownedSchema": "astra_auth_it_f799369c5703",
+  "notVerified": [
+    "external SMTP delivery/reputation",
+    "legacy password reset",
+    "full purchase/delivery with real authentication",
+    "real merchant funds",
+    "membership/quota",
+    "production deployment",
+    "Redis Cluster",
+    "physical mobile",
+    "Linux fixture paths"
+  ]
+}

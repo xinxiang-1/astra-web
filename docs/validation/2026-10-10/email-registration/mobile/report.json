@@ -1,0 +1,84 @@
+{
+  "passed": true,
+  "scope": "Production frontend transported to owned real auth/gateway/system and TLS SMTP inbox; no API success mocks or real funds",
+  "browser": "154.0.4258.62",
+  "mobile": true,
+  "checks": [
+    "Register requires mailbox proof before HTTP submission and exposes no unverified phone field",
+    "Register scene sends through real TLS SMTP; owned inbox holds a six-digit proof and resend is disabled",
+    "Register layout fits desktop or touch viewport in both themes; screenshots contain no OTP or plaintext password",
+    "Real registration returns an auth-issued token and navigates to the backend-owned order list",
+    "Production App restores the actual verified account through auth/me after reload",
+    "Backend logout invalidates restore; frontend clears the revoked token and shows login requirement",
+    "Changing mailbox aborts a real delayed send response; it cannot attach message, proof or cooldown to the new address"
+  ],
+  "requests": [
+    {
+      "path": "/api/auth/email/send",
+      "method": "POST",
+      "httpStatus": 200,
+      "businessCode": 0
+    },
+    {
+      "path": "/api/auth/register",
+      "method": "POST",
+      "httpStatus": 200,
+      "businessCode": 0
+    },
+    {
+      "path": "/api/system/admin/access",
+      "method": "GET",
+      "httpStatus": 403,
+      "businessCode": 403
+    },
+    {
+      "path": "/api/system/orders",
+      "method": "GET",
+      "httpStatus": 200,
+      "businessCode": 0
+    },
+    {
+      "path": "/api/auth/me",
+      "method": "GET",
+      "httpStatus": 200,
+      "businessCode": 0
+    },
+    {
+      "path": "/api/system/admin/access",
+      "method": "GET",
+      "httpStatus": 403,
+      "businessCode": 403
+    },
+    {
+      "path": "/api/system/orders",
+      "method": "GET",
+      "httpStatus": 200,
+      "businessCode": 0
+    },
+    {
+      "path": "/api/system/admin/access",
+      "method": "GET",
+      "httpStatus": 403,
+      "businessCode": 403
+    },
+    {
+      "path": "/api/system/orders",
+      "method": "GET",
+      "httpStatus": 200,
+      "businessCode": 0
+    },
+    {
+      "path": "/api/auth/me",
+      "method": "GET",
+      "httpStatus": 401,
+      "businessCode": 401
+    },
+    {
+      "path": "/api/auth/email/send",
+      "method": "POST",
+      "httpStatus": 200,
+      "businessCode": 0
+    }
+  ],
+  "errors": []
+}

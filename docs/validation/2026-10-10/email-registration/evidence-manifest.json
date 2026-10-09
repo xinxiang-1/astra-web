@@ -1,0 +1,105 @@
+{
+  "files": [
+    {
+      "path": "build-artifacts.json",
+      "sha256": "8ed3a5329d68599bb41f5ee353ac8516965d5618de708caffeb9498c470050bc",
+      "bytes": 921
+    },
+    {
+      "path": "chrome/register-dark.png",
+      "sha256": "b4f6e59b26395f1c1c225e87ae68f8aff20954001769f30bae0b59949ae25b54",
+      "bytes": 963261
+    },
+    {
+      "path": "chrome/register-light.png",
+      "sha256": "99390c0c1ee74d5caf9e9f7c0d47abae39ea623150bb81065db4c094d97fc760",
+      "bytes": 972097
+    },
+    {
+      "path": "chrome/report.json",
+      "sha256": "de4a9c7a0e1715a9552476f795da7b2786c322f4cfc4b93fe04bb92340d061c3",
+      "bytes": 2178
+    },
+    {
+      "path": "document-links.json",
+      "sha256": "41d326a52dd8d925108d5b5751807a00fcd171bdd21de2aec4e4a4eae8ee3ccf",
+      "bytes": 24927
+    },
+    {
+      "path": "failure-history.json",
+      "sha256": "cc5bea72fc9d9ebb1f9482c4c2d71ce86b02f6b316442cebc04b7aef769211ee",
+      "bytes": 867
+    },
+    {
+      "path": "failures/first-edge-report.json",
+      "sha256": "f80f4ae15029980b54eb91014d1a4049c91f0f285df2b163ca56741751db720f",
+      "bytes": 1295
+    },
+    {
+      "path": "identity-report.json",
+      "sha256": "1ce859fc6435071e22b647494e49ed04ede796fc1e779ebcbf69d7e95938c0a7",
+      "bytes": 1478
+    },
+    {
+      "path": "junit-summary.json",
+      "sha256": "de277f93af0f275bb16ec761259603e28c76dd4956ae08fcd8f3d972f151bddb",
+      "bytes": 756
+    },
+    {
+      "path": "mobile/register-dark.png",
+      "sha256": "173c97a047e8dc1ca90c7a1d60514d918ceb22c15a4675c0444cd444f6ebea8f",
+      "bytes": 177449
+    },
+    {
+      "path": "mobile/register-light.png",
+      "sha256": "4ba8f66f2002d635a569233d5846ac9685829196098a54680d21d4c92fd0cb07",
+      "bytes": 179507
+    },
+    {
+      "path": "mobile/report.json",
+      "sha256": "d7628f5918046f00ee1840274a2453b09e55e6c8f16d9667ec751d03aad2ac05",
+      "bytes": 2440
+    },
+    {
+      "path": "msedge/register-dark.png",
+      "sha256": "6a65e34da2453b462797e7145ab0f02a4b4cef92ad61120f0836f3ab864f57d7",
+      "bytes": 965318
+    },
+    {
+      "path": "msedge/register-light.png",
+      "sha256": "1f7d6cfe32eb047aee7ddb5a7f007ca5a4d5648e2942a4f97351d2d172b3b1b1",
+      "bytes": 972518
+    },
+    {
+      "path": "msedge/report.json",
+      "sha256": "d654fe69ad0290d2bbc84fbac57d65c88bb32bf69a1d190fbda5f3ffaa66eeee",
+      "bytes": 2441
+    },
+    {
+      "path": "openapi-check.json",
+      "sha256": "1178abbc37d844cf3056d97fe1e34c5ee6a221e632e7be33acbc7a91416f2c1d",
+      "bytes": 299
+    },
+    {
+      "path": "README.md",
+      "sha256": "c305e887ae684ee526eea743ebeab7f81ef4b2c17327afba63c44fb1ef304b96",
+      "bytes": 1247
+    },
+    {
+      "path": "source-index.json",
+      "sha256": "c347066dd53867d8a1eae32c1f9e0b29a1345b048cbd09b773d0eb4e05dd5b61",
+      "bytes": 2351
+    },
+    {
+      "path": "source-manifest.json",
+      "sha256": "41e15f86014a91cb75b6fa2e4ac4ff1c2fd2ba2078e568ff4fa9f427e3597a67",
+      "bytes": 4152
+    },
+    {
+      "path": "summary.json",
+      "sha256": "9179bea06561c6acf4534e93139bfb3b2ec7d7052b2a9e8fda63d23e5ad91633",
+      "bytes": 1451
+    }
+  ],
+  "selfExcluded": true
+}
