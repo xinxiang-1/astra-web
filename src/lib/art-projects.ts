@@ -254,11 +254,39 @@ function saveSignatureInTransaction(
     existing = store.index('signatureHash').get(entry.signatureHash)
   existing.onsuccess = () => {
     try {
-      const saved = { ...entry, id: existing.result?.id ?? entry.id }
-      const { file, ...summary } = saved
-      tx.objectStore(SIGNATURES).put({ ...summary, file })
-      store.put(summary)
-      done(summary)
+      const original = existing.result as CreativeProjectSummary | undefined
+      const save = () => {
+        const saved = { ...entry, ...original }
+        const { file, ...summary } = saved
+        tx.objectStore(SIGNATURES).put({ ...summary, file })
+        store.put(summary)
+        done(summary)
+      }
+      if (!original) {
+        save()
+        return
+      }
+      const payload = tx.objectStore(SIGNATURES).get(original.id)
+      payload.onsuccess = () => {
+        try {
+          const saved = payload.result as SavedSignatureProject | undefined
+          if (saved) {
+            if (saved.signatureHash !== entry.signatureHash || !(saved.file instanceof Blob))
+              throw new Error('本地签名记录不一致')
+            // The same immutable version keeps its local name, dates, thumbnail and original File.
+            done(original)
+          } else {
+            // A valid backup can restore a missing payload without replacing its indexed history.
+            save()
+          }
+        } catch {
+          try {
+            tx.abort()
+          } catch {
+            /* Already cancelled. */
+          }
+        }
+      }
     } catch {
       try {
         tx.abort()

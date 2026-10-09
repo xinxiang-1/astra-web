@@ -5,7 +5,7 @@ import { openSignatureSection } from './signature-ui-helpers.mjs'
 const base = process.env.ASTRA_PREVIEW_URL || 'http://127.0.0.1:4210'
 const channel = process.env.ASTRA_BROWSER_CHANNEL || 'msedge'
 const mobile = process.env.ASTRA_CREATIVE_MOBILE === '1'
-const out = `test-results/workflow-package-ui-${channel}${mobile ? '-mobile' : ''}`
+const out = process.env.ASTRA_CONTRACT_OUTPUT || `test-results/workflow-package-ui-${channel}${mobile ? '-mobile' : ''}`
 const fixture = process.env.ASTRA_WORKFLOW_FIXTURE || `test-results/workflow-package-core-${channel}/source.astra-signature`
 await mkdir(out, { recursive: true })
 const browser = await chromium.launch({ channel, headless: true })

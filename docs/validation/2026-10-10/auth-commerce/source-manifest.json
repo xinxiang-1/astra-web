@@ -1,0 +1,149 @@
+{
+  "scope": "Exact owned working-tree source bytes; unrelated dirty excluded",
+  "files": [
+    {
+      "repository": "astra-web",
+      "path": "src/lib/art-projects.ts",
+      "sha256": "d4812babc995064a349bed75f5c4ab56e8d5a1ac6cb7ef26544c422578b685e4",
+      "bytes": 14379
+    },
+    {
+      "repository": "astra-web",
+      "path": "scripts/auth-commerce-live.mjs",
+      "sha256": "c5dba93fa1acdb22d8dc942f75948e647f2dd8c3e9e20959e8ef521694964935",
+      "bytes": 16823
+    },
+    {
+      "repository": "astra-web",
+      "path": "scripts/creative-index-contract.mjs",
+      "sha256": "c2be946d220af42c035fb5d4a30f9bf6cecf539691ab419653633116cde168b6",
+      "bytes": 13737
+    },
+    {
+      "repository": "astra-web",
+      "path": "scripts/creative-workflow-package-contract.mjs",
+      "sha256": "4c72015626f66917154db79fbf7045331ae67ca87c8fc55fdde2d2444946948e",
+      "bytes": 21295
+    },
+    {
+      "repository": "astra-web",
+      "path": "scripts/creative-workflow-package-ui.mjs",
+      "sha256": "9453289b98b1a5426f050def1a9d5c114be5cffde43b5b46c4d2893e467a31fb",
+      "bytes": 13001
+    },
+    {
+      "repository": "astra-web",
+      "path": ".agents/skills/astra-web-validation/SKILL.md",
+      "sha256": "2b98c4318a7dd846bc94b2425409058ac045bd827f8a6833226efeb551d3ada5",
+      "bytes": 3370
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-common/src/main/java/com/astra/common/security/LoginUser.java",
+      "sha256": "b8f292cf6f4a5e6a768399210709aaa8b7aa9a73838986428c489b1e9a25c6d3",
+      "bytes": 597
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-auth/src/main/java/com/astra/auth/config/AuthTokenFilter.java",
+      "sha256": "461351826391e26afc8d7e6a3d514ccb214becf1b8ebb0cd68d18dd470c971fa",
+      "bytes": 4542
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/catalog/CatalogService.java",
+      "sha256": "15dfc785837d2912f62a0592aecbd330c70744e7186327352a26e1ee6236bcf1",
+      "bytes": 7751
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/config/CommerceProperties.java",
+      "sha256": "a085953ba47edb224e3756200a917763f2afa0592da4b354add61679d53f26e8",
+      "bytes": 1835
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/delivery/DeliveryAuthorization.java",
+      "sha256": "835d1c1b31ce89dc0f8e17bc1f819681d690160ecbf2b8fcf5bf315f91742acc",
+      "bytes": 5246
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/delivery/DeliveryRepository.java",
+      "sha256": "18e3b7677fe9556ce214ce4c8d67017c8d4a3b33eac67cab74c1fd647371c343",
+      "bytes": 4832
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/delivery/DeliveryService.java",
+      "sha256": "0f9d031c2c02f3e051fe67201ebad4eb2f7192465d86920c182f62c1bd44d099",
+      "bytes": 1867
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/delivery/DownloadTicketStore.java",
+      "sha256": "b422da573eaf9fa714a0d7427331c61361274c9aa12b67732c27d01e564a80fd",
+      "bytes": 4237
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/order/OrderService.java",
+      "sha256": "7b0996c010918b288d52844e98b8734b1191f48509d419815a5f23c23ee8454b",
+      "bytes": 11132
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/security/CommerceTokenFilter.java",
+      "sha256": "6a9ca0ecf293ccc3d654d1cd556b8fa48e48db12c092b31bdc41ee07f4ff2a67",
+      "bytes": 4941
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/test/java/com/astra/system/commerce/CommerceCatalogIntegrationTest.java",
+      "sha256": "8bff04d954b3cf1e94f610b2fba0ca83f7d8380f396be4787b072910057e6cec",
+      "bytes": 57834
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/test/java/com/astra/system/commerce/DeliveryIntegrationTest.java",
+      "sha256": "fdd4a1b12ba57886fe2b50723b9d019015b61f856c00a2c730d2a804672af733",
+      "bytes": 54918
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/test/java/com/astra/system/commerce/RefundWorkerIntegrationTest.java",
+      "sha256": "e04600900452c4ca33d38eb2b1ad84573a81356109fe0bfb2efe03490f9fe33b",
+      "bytes": 45569
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/test/java/com/astra/system/commerce/delivery/DownloadTicketStoreTest.java",
+      "sha256": "453a4a2254ba79484ad7b61615047946af0b3144ebb71b2c28ca28e51ac70ab2",
+      "bytes": 5555
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-auth/src/test/java/com/astra/auth/integration/AuthCommerceIntegrationTest.java",
+      "sha256": "c97cfc77ed65969164ed5fdd461379f42b830dd21065551fccdd08859a3a7dd4",
+      "bytes": 32116
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "scripts/validate-delivery-evidence.py",
+      "sha256": "627b096a55138a87d2e02fc70e13f7df420ae5de2531d24b0e8ce7521e07ec40",
+      "bytes": 10335
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "scripts/validate-commerce-catalog-evidence.py",
+      "sha256": "b9b6cba267892e4052c0aee8da2765264b7bba340fc709f01cda49ba22119006",
+      "bytes": 6315
+    },
+    {
+      "repository": "astra-cloud",
+      "path": ".agents/skills/astra-cloud-validation/SKILL.md",
+      "sha256": "011f493f9079d1595b8144fef5794027708c5482b6e64c86007f771f37f0aac4",
+      "bytes": 3744
+    }
+  ]
+}

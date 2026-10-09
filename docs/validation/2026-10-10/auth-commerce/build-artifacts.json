@@ -1,0 +1,25 @@
+{
+  "scope": "Local tested production artifacts, not deployed; test fixture/control classes absent from production JARs",
+  "files": [
+    {
+      "path": "astra-web/dist/index.html",
+      "sha256": "fcda09f72764b77a0e120cd1aeab8a766765f2e6568a7a3cfd88a34171b5ed8a",
+      "bytes": 2643
+    },
+    {
+      "path": "astra-cloud/astra-modules/astra-auth/target/astra-auth-1.0.0-SNAPSHOT.jar",
+      "sha256": "f5886f6487d8fa8855567a82afded02841cb85fcbb85e570852427b61dc2156d",
+      "bytes": 114818273
+    },
+    {
+      "path": "astra-cloud/astra-modules/astra-system/target/astra-system-1.0.0-SNAPSHOT.jar",
+      "sha256": "5f5d177bac510aa67a0e4605a767068e928f52484286321d9c1240ff99cc6278",
+      "bytes": 114411364
+    },
+    {
+      "path": "astra-cloud/astra-gateway/target/astra-gateway-1.0.0-SNAPSHOT.jar",
+      "sha256": "0f8cb1cd30a01ecf1651de3f7ea64a7664df123a510b31d596315258c731f308",
+      "bytes": 101529263
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "stage": "auth-commerce-session-v2",
+  "passed": true,
+  "junitPassed": 94,
+  "junitSkipped": 1,
+  "authIntegration": 5,
+  "catalogIntegration": 14,
+  "deliveryIntegration": 15,
+  "browserChecks": 72,
+  "browserVariants": [
+    {
+      "kind": "auth",
+      "variant": "msedge",
+      "checks": 12,
+      "browser": "154.0.4258.62",
+      "mobile": false
+    },
+    {
+      "kind": "auth",
+      "variant": "chrome",
+      "checks": 12,
+      "browser": "157.0.8081.0",
+      "mobile": false
+    },
+    {
+      "kind": "auth",
+      "variant": "mobile",
+      "checks": 12,
+      "browser": "154.0.4258.62",
+      "mobile": true
+    },
+    {
+      "kind": "baseline-delivery",
+      "variant": "msedge",
+      "checks": 12,
+      "browser": "154.0.4258.62",
+      "mobile": false
+    },
+    {
+      "kind": "baseline-delivery",
+      "variant": "chrome",
+      "checks": 12,
+      "browser": "157.0.8081.0",
+      "mobile": false
+    },
+    {
+      "kind": "baseline-delivery",
+      "variant": "mobile",
+      "checks": 12,
+      "browser": "154.0.4258.62",
+      "mobile": true
+    }
+  ],
+  "frontend": {
+    "typeCheckExit": 0,
+    "eslintExit": 0,
+    "buildExit": 0,
+    "indexCases": 12,
+    "packageCoreCases": 21,
+    "packageUiCases": 9
+  },
+  "logsVerified": true,
+  "cleanupComplete": true,
+  "ownedSchema": "astra_auth_it_31df0488ed4b",
+  "notVerified": [
+    "external SMTP/provider reputation",
+    "real merchant funds",
+    "physical mobile",
+    "production rollout",
+    "membership/quota",
+    "cloud object storage",
+    "all login/reset interleavings",
+    "commercial asset/aesthetic acceptance",
+    "Linux/staging",
+    "single-session logout or natural JWT expiry instantly revoking standalone ticket"
+  ]
+}

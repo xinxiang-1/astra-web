@@ -1,0 +1,70 @@
+{
+  "archiveCorrections": [
+    "First archive expected two skips from interim notes; final JUnit XML proves only one catalog browser conditional skip, delivery has none; corrected totals to95=94passed+1skipped"
+  ],
+  "historyOnly": true,
+  "attempts": [
+    {
+      "attempt": "r1",
+      "passed": false,
+      "phase": "testCompile",
+      "reason": "Two existing refund fixture issue callers lacked explicit authVersion",
+      "fix": "Supply the known fixture version0; refund suite compiled, not executed"
+    },
+    {
+      "attempt": "r2",
+      "passed": false,
+      "authTestsPassed": 4,
+      "logsVerified": true,
+      "cleanupComplete": true,
+      "reason": "Actual browser purchase stopped at disabled CREATION_KIT capability before order HTTP",
+      "fix": "Default-off backend capability and raw new-order gate; correct preview fixture extension"
+    },
+    {
+      "attempt": "r3",
+      "passed": false,
+      "authNotStarted": true,
+      "reason": "Existing baseline expected v1 ticket and unimplemented admin order route404",
+      "fix": "Assert session-v2 binding and actual admin200 empty page; ordinary buyer remains403"
+    },
+    {
+      "attempt": "r4",
+      "passed": false,
+      "catalogPassed": 14,
+      "deliveryPassed": 15,
+      "authTestsPassed": 4,
+      "logsVerified": true,
+      "cleanupComplete": true,
+      "reason": "Repeat workflow import rewrote existing signature updatedAt and File.lastModified",
+      "fix": "Reuse complete immutable original, preserve metadata; restore missing original, reject inconsistent record"
+    },
+    {
+      "attempt": "r5",
+      "passed": true,
+      "deliveryPassed": 15,
+      "authTestsPassed": 5,
+      "logsVerified": true,
+      "cleanupComplete": true
+    }
+  ],
+  "rawLocalReports": [
+    {
+      "path": "astra-cloud/tmp/auth-registration-it-387202b9cb0b/auth-commerce-report.json",
+      "sha256": "c79b73aafa17cac68a077c6e9490a7c042679ea30d852af9b20bc691e88af042",
+      "bytes": 11895,
+      "archived": false
+    },
+    {
+      "path": "astra-cloud/tmp/auth-registration-it-880f262d23d0/auth-commerce-report.json",
+      "sha256": "a5cb8171b237559dc33c50180ac156ce77f5bffad367dd4b3eb8c86a2128b77f",
+      "bytes": 11895,
+      "archived": false
+    },
+    {
+      "path": "astra-cloud/tmp/auth-registration-it-880f262d23d0/commerce-msedge/report.json",
+      "sha256": "56c050baca75347a19dd199e4fbe7fe05c7f22e5df60a6c498d017a507c15093",
+      "bytes": 14352,
+      "archived": false
+    }
+  ]
+}

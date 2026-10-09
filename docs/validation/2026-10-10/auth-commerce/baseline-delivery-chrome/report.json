@@ -1,0 +1,148 @@
+{
+  "scope": "Actual isolated MySQL/Redis/gateway/private files; trusted mock payment; auth/me simulated503; engineering workflow fixture",
+  "browser": "157.0.8081.0",
+  "mobile": false,
+  "checks": [
+    "authorized-workflow-download-exact-bytes-and-no-project-write",
+    "workflow-import-saves-both-originals-and-index-atomically-preserving-unrelated-project",
+    "repeat-claim-deduplicates-workflow-version",
+    "separate-signature-import-reuses-identical-original",
+    "authorized-signature-download-exact-bytes-and-no-project-write",
+    "authentic-transport-with-invalid-nested-package-does-not-write",
+    "corrupt-transport-fails-before-package-parse",
+    "actual-three-store-transaction-rolls-back-on-quota-error",
+    "cancel-during-strict-file-read-disposes-candidate-and-does-not-write",
+    "identity-change-during-parse-cannot-save-or-show-old-user-result",
+    "stale-owner-interface-cannot-grant-another-user-download",
+    "both-themes-and-desktop-or-touch-controls-fit-without-ticket-storage"
+  ],
+  "requests": [
+    {
+      "method": "GET",
+      "path": "/api/system/admin/access",
+      "status": 403
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010304/download-ticket",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010304/download",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010304/download-ticket",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010304/download",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010304/download-ticket",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010304/download",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010305/download-ticket",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010305/download",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010305/download-ticket",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010305/download",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010404/download-ticket",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010404/download",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010304/download-ticket",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010304/download",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010304/download-ticket",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010304/download",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010304/download-ticket",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010304/download",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010304/download-ticket",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010304/download",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010304/download-ticket",
+      "status": 404
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/access",
+      "status": 403
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements",
+      "status": 200
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

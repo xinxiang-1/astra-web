@@ -1,0 +1,102 @@
+{
+  "documents": [
+    {
+      "path": "astra-web/docs/plans/auth-commerce-2026-10-10.md",
+      "sha256": "c326b804feab01dbac607e15327dc8e37c82e55e9fd3a021b10f46c052f8d317"
+    },
+    {
+      "path": "astra-web/docs/plans/product-master-plan.md",
+      "sha256": "fbe0711a03f83314255992be8bec6392eaf7ccd1c63da010c4e78abc387c391f"
+    },
+    {
+      "path": "astra-web/docs/development/agent-skills.md",
+      "sha256": "1bf139bd8b47ac802e31820f561a09d9b6a3efc12b21a7896e4bd2b75f099808"
+    },
+    {
+      "path": "astra-cloud/docs/plans/auth-commerce-2026-10-10.md",
+      "sha256": "1dc50611fe268abbe8bfa309cbf6de4e0aea3c0b32c7da9a567b52d9bddb805a"
+    },
+    {
+      "path": "astra-cloud/docs/plans/launch-readiness-2026-10-08.md",
+      "sha256": "c3bee243302e71e03e5ea59be6ab4cc7ca74b3854f7b42ce620152d417c474c9"
+    },
+    {
+      "path": "astra-cloud/docs/commerce/auth-commerce-runtime.md",
+      "sha256": "0346f66b6426308affd0c5467ff24a9a01c055d36ec5ca111dc244ce4f14acf0"
+    },
+    {
+      "path": "astra-cloud/docs/commerce/private-delivery-runtime.md",
+      "sha256": "24ca8d3822e774e2f50f301468a2da4d0720afeed2c3b30a0e6b1e9efaf08fd8"
+    },
+    {
+      "path": "astra-cloud/docs/auth/password-reset-runtime.md",
+      "sha256": "2346869008a8f89d7599e8a390903725fd63f6a84dbbebfd951fe0d88232117b"
+    },
+    {
+      "path": "astra-cloud/README.md",
+      "sha256": "665da8e2210d0726bdbe0873fcf0281b03377a3e1b9ccc9a30555d2526928a0a"
+    },
+    {
+      "path": "astra-web/docs/validation/2026-10-10/auth-commerce/README.md",
+      "sha256": "4d76e857e24bdc24ada214eebd48ffaed8dc9da5fc4115f0c0f5ba3b3e764b6d"
+    },
+    {
+      "path": "astra-cloud/docs/validation/2026-10-10/auth-commerce/README.md",
+      "sha256": "08416b0bd0704d64d6768c1e3f8a0e1fc44a35acdc0486e6319413b50a089b76"
+    },
+    {
+      "path": "astra-web/.agents/skills/astra-web-validation/SKILL.md",
+      "sha256": "2b98c4318a7dd846bc94b2425409058ac045bd827f8a6833226efeb551d3ada5"
+    },
+    {
+      "path": "astra-cloud/.agents/skills/astra-cloud-validation/SKILL.md",
+      "sha256": "011f493f9079d1595b8144fef5794027708c5482b6e64c86007f771f37f0aac4"
+    }
+  ],
+  "rawLocalLogs": [
+    {
+      "path": "tmp/auth-commerce-unit-r1.log",
+      "sha256": "a1d1de1490bba57315f490d94bf766d017c6b1e314964af7dc7796b31a5e806e"
+    },
+    {
+      "path": "tmp/auth-commerce-live-r2.log",
+      "sha256": "e546b52455179515e3cdacc674f20b0e43ac2398941250768694b2663c8b32e2"
+    },
+    {
+      "path": "tmp/auth-commerce-live-r3.log",
+      "sha256": "7beb67116fa1b53c4b626c18fe406e7de44b22c7dee96f8117add7ee15452904"
+    },
+    {
+      "path": "tmp/auth-commerce-live-r4.log",
+      "sha256": "1c873861f61b7558a92071667c079fd16a961b0aeea6375efac62717c71bd4fe"
+    },
+    {
+      "path": "tmp/auth-commerce-live-r5.log",
+      "sha256": "45e14e735e90b08969f974e27594fc216babb3f28edf1f17dff6f86208c78ac8"
+    },
+    {
+      "path": "tmp/auth-commerce-web-type-r2.log",
+      "sha256": "0a7d40c8ea67ee87b4bcdc91418a201a96bc30f3286185c82d8888ec96c6d6fb"
+    },
+    {
+      "path": "tmp/auth-commerce-web-lint-r2.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tmp/auth-commerce-web-build-r2.log",
+      "sha256": "0eaf506c7f0ac7c5ad30423d937847cf6801eef819792457608408a1ea60c46b"
+    },
+    {
+      "path": "tmp/auth-commerce-index-r2.log",
+      "sha256": "4448cb4af795dcfa187ca63384c48665d6cdd412f91fa289f96979e51f1bbfb9"
+    },
+    {
+      "path": "tmp/auth-commerce-package-core-r2.log",
+      "sha256": "6ed7e02cfc9fd549997aa21edc7dececc2e58609f496226c5c98912c024e2426"
+    },
+    {
+      "path": "tmp/auth-commerce-package-ui-r2.log",
+      "sha256": "ea48872a16f355de84ba3818464aeed8660e211c3a799c909327f6d6579dc05c"
+    }
+  ]
+}

@@ -3,7 +3,7 @@ import { chromium } from 'playwright'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 const base = process.env.ASTRA_DEV_URL || 'http://localhost:5173'
 const channel = process.env.ASTRA_BROWSER_CHANNEL || 'msedge'
-const out = `test-results/creative-index-${channel}`
+const out = process.env.ASTRA_CONTRACT_OUTPUT || `test-results/creative-index-${channel}`
 await mkdir(out, { recursive: true })
 const fixture = (
   await readFile('docs/validation/2026-10-09/creative-workflow/source.astra-signature')
@@ -75,8 +75,9 @@ try {
         engineVersion: pack.SIGNATURE_PROJECT_ENGINE,
       }
       const saved = await api.saveSignatureProject(input)
+      const firstOriginal = await api.getSignatureProject(saved.id)
       const concurrent = await Promise.all(
-        Array.from({ length: 4 }, () => api.saveSignatureProject(input)),
+        Array.from({ length: 4 }, () => api.saveSignatureProject({ ...input, name: '重复领取不得覆盖名称' })),
       )
       check(
         concurrent.every((p) => p.id === saved.id) &&
@@ -85,10 +86,13 @@ try {
       )
       const restored = await api.getSignatureProject(saved.id)
       check(
-        restored.file.size === file.size && restored.signatureHash === saved.signatureHash,
+        restored.file.size === file.size && restored.signatureHash === saved.signatureHash &&
+          restored.file.lastModified === firstOriginal.file.lastModified &&
+          restored.updatedAt === firstOriginal.updatedAt && restored.name === firstOriginal.name &&
+          restored.thumbnail === firstOriginal.thumbnail && concurrent.every((entry) => entry.updatedAt === saved.updatedAt),
         'signature bytes/hash lost',
       )
-      cases.push('same-snapshot-and-concurrent-saves-deduplicate')
+      cases.push('same-snapshot-and-concurrent-saves-preserve-original-and-metadata')
       const second = await pack.createSignatureProject({
         ...scene.project,
         portraitName: '签名第二版',

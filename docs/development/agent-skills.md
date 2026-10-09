@@ -44,6 +44,10 @@ cd E:/project/astra/astra-web
 
 [浏览器入口](../../scripts/agent-playwright.ps1)固定 `@playwright/cli@0.1.22`，在 Windows 使用 `npx.cmd`，以参数数组传入并隔离会话。官方 Bash wrapper 在本机没有 Bash 可用，不能直接照搬；适配器与官方 CLI 使用同一工具。调试证据保存到 `output/playwright/`，以最新快照的 ref 操作，完成后仅关闭本次会话。
 
+## 后续使用验证
+
+2026-10-10，[真实认证购买与工作流阶段](../plans/auth-commerce-2026-10-10.md)实际使用前后端验证技能，完成真实密码登录、后台订单/付款worker、私有领取/导入、密码重置及旧票据拒绝。两技能已补资源拥有明确的夹具入口；`-VerifyOnly` 再次通过，四官方包hash与三工作区链接正确，技能quick_validate通过。本段接续后续结果，以下保留最初安装阶段的验证范围。官方包固定来源与hash没有修改，安全/威胁建模技能仍按明确任务启用。
+
 ## 本阶段验证与限制
 
 - 七个 `SKILL.md` 通过官方 quick_validate；四官方包38文件 hash 与清单一致；三工作区链接目标正确，重复配置/只验证通过。

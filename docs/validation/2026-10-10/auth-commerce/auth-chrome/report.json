@@ -1,0 +1,485 @@
+{
+  "passed": true,
+  "scope": "Actual auth password login/gateway/system/MySQL/Redis/TLS SMTP/private files; only the isolated external merchant ledger is simulated; no success API mocks",
+  "browser": "157.0.8081.0",
+  "mobile": false,
+  "checks": [
+    "Anonymous product is read-only; actual password login and auth/me restore the verified buyer",
+    "Backend price and three frozen policies precede explicit consent and exactly one actual order POST",
+    "Explicit mock-only consent creates one payment record through the real authenticated API",
+    "The scheduled backend worker verifies the isolated merchant fact and grants the purchase before library access",
+    "Real-auth private workflow delivery has exact hash and extension and does not write a local project",
+    "Workflow import atomically links both originals while preserving the free project and deduplicating a repeated claim",
+    "Private signature download matches the original hash and separate import reuses the already saved original",
+    "Desktop or touch controls fit both themes, screenshots contain no credentials, and tickets are not persisted in local storage",
+    "Actual mailbox reset revokes the old auth-issued JWT and its previously issued standalone download ticket",
+    "Real auth/me401 clears the old frontend session; new-password login restores retained paid rights and leaves saved local projects intact",
+    "A second real login cannot read the buyer order or claim its asset; the current account library contains no paid items",
+    "Actual logout blacklists only the departing session; backend rejects it and the buyer remains authorized"
+  ],
+  "requests": [
+    {
+      "source": "browser",
+      "method": "GET",
+      "path": "/api/system/catalog/capabilities",
+      "status": 200,
+      "businessCode": 0
+    },
+    {
+      "source": "browser",
+      "method": "GET",
+      "path": "/api/system/catalog/products/auth-workflow",
+      "status": 200,
+      "businessCode": 0
+    },
+    {
+      "source": "browser",
+      "method": "POST",
+      "path": "/api/auth/login/password",
+      "status": 200,
+      "businessCode": 0
+    },
+    {
+      "source": "browser",
+      "method": "GET",
+      "path": "/api/system/admin/access",
+      "status": 403,
+      "businessCode": 403
+    },
+    {
+      "source": "browser",
+      "method": "GET",
+      "path": "/api/system/orders",
+      "status": 200,
+      "businessCode": 0
+    },
+    {
+      "source": "browser",
+      "method": "GET",
+      "path": "/api/auth/me",
+      "status": 200,
+      "businessCode": 0
+    },
+    {
+      "source": "browser",
+      "method": "GET",
+      "path": "/api/system/admin/access",
+      "status": 403,
+      "businessCode": 403
+    },
+    {
+      "source": "browser",
+      "method": "GET",
+      "path": "/api/system/orders",
+      "status": 200,
+      "businessCode": 0
+    },
+    {
+      "source": "browser",
+      "method": "GET",
+      "path": "/api/system/admin/access",
+      "status": 403,
+      "businessCode": 403
+    },
+    {
+      "source": "browser",
+      "method": "GET",
+      "path": "/api/system/orders",
+      "status": 200,
+      "businessCode": 0
+    },
+    {
+      "source": "browser",
+      "method": "GET",
+      "path": "/api/auth/me",
+      "status": 200,
+      "businessCode": 0
+    },
+    {
+      "source": "browser",
+      "method": "GET",
+      "path": "/api/auth/me",
+      "status": 200,
+      "businessCode": 0
+    },
+    {
+      "source": "browser",
+      "method": "GET",
+      "path": "/api/system/catalog/capabilities",
+      "status": 200,
+      "businessCode": 0
+    },
+    {
+      "source": "browser",
+      "method": "GET",
+      "path": "/api/system/catalog/products/auth-workflow",
+      "status": 200,
+      "businessCode": 0
+    },
+    {
+      "source": "browser",
+      "method": "POST",
+      "path": "/api/system/orders",
+      "status": 200,
+      "businessCode": 0
+    },
+    {
+      "source": "browser",
+      "method": "GET",
+      "path": "/api/system/catalog/capabilities",
+      "status": 200,
+      "businessCode": 0
+    },
+    {
+      "source": "browser",
+      "method": "GET",
+      "path": "/api/system/orders/367034177234796544",
+      "status": 200,
+      "businessCode": 0
+    },
+    {
+      "source": "browser",
+      "method": "POST",
+      "path": "/api/system/orders/367034177234796544/payments",
+      "status": 200,
+      "businessCode": 0
+    },
+    {
+      "source": "browser",
+      "method": "GET",
+      "path": "/api/system/catalog/capabilities",
+      "status": 200,
+      "businessCode": 0
+    },
+    {
+      "source": "browser",
+      "method": "GET",
+      "path": "/api/system/orders/367034177234796544",
+      "status": 200,
+      "businessCode": 0
+    },
+    {
+      "source": "browser",
+      "method": "GET",
+      "path": "/api/system/payments/367034178673442816",
+      "status": 200,
+      "businessCode": 0
+    },
+    {
+      "source": "browser",
+      "method": "GET",
+      "path": "/api/system/catalog/capabilities",
+      "status": 200,
+      "businessCode": 0
+    },
+    {
+      "source": "browser",
+      "method": "GET",
+      "path": "/api/system/orders/367034177234796544",
+      "status": 200,
+      "businessCode": 0
+    },
+    {
+      "source": "browser",
+      "method": "GET",
+      "path": "/api/system/payments/367034178673442816",
+      "status": 200,
+      "businessCode": 0
+    },
+    {
+      "source": "browser",
+      "method": "GET",
+      "path": "/api/system/admin/access",
+      "status": 403,
+      "businessCode": 403
+    },
+    {
+      "source": "browser",
+      "method": "GET",
+      "path": "/api/system/entitlements",
+      "status": 200,
+      "businessCode": 0
+    },
+    {
+      "source": "browser",
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010304/download-ticket",
+      "status": 200,
+      "businessCode": 0
+    },
+    {
+      "source": "browser",
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010304/download",
+      "status": 200,
+      "sha256": "2651dc564d7a8e1baa2cfbaf0fcdedda14b515640739eaae24d514227ccc3c05"
+    },
+    {
+      "source": "browser",
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010304/download-ticket",
+      "status": 200,
+      "businessCode": 0
+    },
+    {
+      "source": "browser",
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010304/download",
+      "status": 200,
+      "sha256": "2651dc564d7a8e1baa2cfbaf0fcdedda14b515640739eaae24d514227ccc3c05"
+    },
+    {
+      "source": "browser",
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010304/download-ticket",
+      "status": 200,
+      "businessCode": 0
+    },
+    {
+      "source": "browser",
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010304/download",
+      "status": 200,
+      "sha256": "2651dc564d7a8e1baa2cfbaf0fcdedda14b515640739eaae24d514227ccc3c05"
+    },
+    {
+      "source": "browser",
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010305/download-ticket",
+      "status": 200,
+      "businessCode": 0
+    },
+    {
+      "source": "browser",
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010305/download",
+      "status": 200,
+      "sha256": "44eb699ae4288f11be2bdaef2017ede1d41ab46518532ff22e6f23c07a724071"
+    },
+    {
+      "source": "browser",
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010305/download-ticket",
+      "status": 200,
+      "businessCode": 0
+    },
+    {
+      "source": "browser",
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010305/download",
+      "status": 200,
+      "sha256": "44eb699ae4288f11be2bdaef2017ede1d41ab46518532ff22e6f23c07a724071"
+    },
+    {
+      "source": "test-actor",
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010304/download-ticket",
+      "status": 200,
+      "businessCode": 0
+    },
+    {
+      "source": "test-actor",
+      "method": "POST",
+      "path": "/api/auth/password/forgot",
+      "status": 200,
+      "businessCode": 0
+    },
+    {
+      "source": "test-actor",
+      "method": "POST",
+      "path": "/api/auth/password/reset",
+      "status": 200,
+      "businessCode": 0
+    },
+    {
+      "source": "test-actor",
+      "method": "GET",
+      "path": "/api/auth/me",
+      "status": 401,
+      "businessCode": 401
+    },
+    {
+      "source": "test-actor",
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010304/download",
+      "status": 410,
+      "businessCode": 44001
+    },
+    {
+      "source": "browser",
+      "method": "GET",
+      "path": "/api/auth/me",
+      "status": 401,
+      "businessCode": 401
+    },
+    {
+      "source": "browser",
+      "method": "POST",
+      "path": "/api/auth/login/password",
+      "status": 200,
+      "businessCode": 0
+    },
+    {
+      "source": "browser",
+      "method": "GET",
+      "path": "/api/system/admin/access",
+      "status": 403,
+      "businessCode": 403
+    },
+    {
+      "source": "browser",
+      "method": "GET",
+      "path": "/api/system/orders",
+      "status": 200,
+      "businessCode": 0
+    },
+    {
+      "source": "browser",
+      "method": "GET",
+      "path": "/api/auth/me",
+      "status": 200,
+      "businessCode": 0
+    },
+    {
+      "source": "browser",
+      "method": "GET",
+      "path": "/api/system/admin/access",
+      "status": 403,
+      "businessCode": 403
+    },
+    {
+      "source": "browser",
+      "method": "GET",
+      "path": "/api/system/admin/access",
+      "status": 403,
+      "businessCode": 403
+    },
+    {
+      "source": "browser",
+      "method": "GET",
+      "path": "/api/system/entitlements",
+      "status": 200,
+      "businessCode": 0
+    },
+    {
+      "source": "browser",
+      "method": "GET",
+      "path": "/api/system/entitlements",
+      "status": 200,
+      "businessCode": 0
+    },
+    {
+      "source": "browser",
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010304/download-ticket",
+      "status": 200,
+      "businessCode": 0
+    },
+    {
+      "source": "browser",
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010304/download",
+      "status": 200,
+      "sha256": "2651dc564d7a8e1baa2cfbaf0fcdedda14b515640739eaae24d514227ccc3c05"
+    },
+    {
+      "source": "browser",
+      "method": "GET",
+      "path": "/api/auth/me",
+      "status": 200,
+      "businessCode": 0
+    },
+    {
+      "source": "browser",
+      "method": "POST",
+      "path": "/api/auth/login/password",
+      "status": 200,
+      "businessCode": 0
+    },
+    {
+      "source": "browser",
+      "method": "GET",
+      "path": "/api/system/admin/access",
+      "status": 403,
+      "businessCode": 403
+    },
+    {
+      "source": "browser",
+      "method": "GET",
+      "path": "/api/system/orders",
+      "status": 200,
+      "businessCode": 0
+    },
+    {
+      "source": "test-actor",
+      "method": "GET",
+      "path": "/api/system/orders/367034177234796544",
+      "status": 404,
+      "businessCode": 404
+    },
+    {
+      "source": "test-actor",
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010304/download-ticket",
+      "status": 404,
+      "businessCode": 404
+    },
+    {
+      "source": "browser",
+      "method": "GET",
+      "path": "/api/auth/me",
+      "status": 200,
+      "businessCode": 0
+    },
+    {
+      "source": "browser",
+      "method": "GET",
+      "path": "/api/system/admin/access",
+      "status": 403,
+      "businessCode": 403
+    },
+    {
+      "source": "browser",
+      "method": "GET",
+      "path": "/api/system/entitlements",
+      "status": 200,
+      "businessCode": 0
+    },
+    {
+      "source": "browser",
+      "method": "GET",
+      "path": "/api/system/admin/access",
+      "status": 403,
+      "businessCode": 403
+    },
+    {
+      "source": "browser",
+      "method": "GET",
+      "path": "/api/system/entitlements",
+      "status": 200,
+      "businessCode": 0
+    },
+    {
+      "source": "browser",
+      "method": "POST",
+      "path": "/api/auth/logout",
+      "status": 200,
+      "businessCode": 0
+    },
+    {
+      "source": "test-actor",
+      "method": "GET",
+      "path": "/api/system/orders",
+      "status": 401,
+      "businessCode": 401
+    },
+    {
+      "source": "test-actor",
+      "method": "GET",
+      "path": "/api/system/orders",
+      "status": 200,
+      "businessCode": 0
+    }
+  ],
+  "errors": []
+}

@@ -13,6 +13,7 @@ Choose checks for the changed behavior; do not run the entire contract catalog b
 - Identity changes: `scripts/auth-http-contract.mjs`, `auth-session-contract.mjs`, `auth-identity-contract.mjs`, and `auth-identity-ui.mjs` cover different layers. Inspect their environment inputs before running them; identity Store contracts need a Vite dev server, UI checks use the applicable production preview.
 - Local workflow/import changes: existing `test:workflow-package-core`, `test:workflow-package-ui`, and `test:creative-ui` scripts. Inspect output settings to avoid overwriting earlier evidence.
 - Purchased signature/workflow changes: read `docs/plans/purchased-workflow-2026-10-09.md`. The backend-owned fixture starts `scripts/purchased-workflow-live.mjs`; never supply invented tokens or call this standalone against a shared database. Fixture payment is mock and auth/me is simulated503 in this baseline.
+- Actual auth-to-purchase/workflow changes: read `docs/plans/auth-commerce-2026-10-10.md` and the linked runtime contract. The backend-owned `AuthCommerceIntegrationTest` starts `scripts/auth-commerce-live.mjs` with real password login and auth/me, explicit order/payment consent, private bytes/import and reset/foreign-owner checks. Transport uses real gateway responses; only its owned external merchant ledger is mock. Prepare the current production preview, do not fabricate tokens or run the script against shared services.
 
 For exploratory browser debugging read the installed `playwright` skill, then use the Windows adapter:
 

@@ -1,0 +1,102 @@
+{
+  "passed": 94,
+  "tests": 95,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 1,
+  "scope": "Unique suites: unchanged60 units from prior passing runs, catalogue14 final r4, delivery15/auth-commerce5 final r5; no repeated-run accumulation",
+  "suites": [
+    {
+      "suite": "com.astra.common.security.JwtSupportTest",
+      "timestamp": null,
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 4,
+      "skippedCases": []
+    },
+    {
+      "suite": "com.astra.gateway.filter.JwtAuthGlobalFilterTest",
+      "timestamp": null,
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 9,
+      "skippedCases": []
+    },
+    {
+      "suite": "com.astra.gateway.error.GatewayErrorHandlerTest",
+      "timestamp": null,
+      "tests": 20,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 20,
+      "skippedCases": []
+    },
+    {
+      "suite": "com.astra.system.commerce.security.CommerceTokenFilterTest",
+      "timestamp": null,
+      "tests": 11,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 11,
+      "skippedCases": []
+    },
+    {
+      "suite": "com.astra.system.commerce.delivery.DownloadTicketStoreTest",
+      "timestamp": null,
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 7,
+      "skippedCases": []
+    },
+    {
+      "suite": "com.astra.auth.config.AuthTokenFilterTest",
+      "timestamp": null,
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 9,
+      "skippedCases": []
+    },
+    {
+      "suite": "com.astra.system.commerce.CommerceCatalogIntegrationTest",
+      "timestamp": null,
+      "tests": 15,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 1,
+      "passed": 14,
+      "skippedCases": [
+        "browserReadsRealCatalogVersionsAndDisabledCheckout"
+      ]
+    },
+    {
+      "suite": "com.astra.system.commerce.DeliveryIntegrationTest",
+      "timestamp": null,
+      "tests": 15,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 15,
+      "skippedCases": []
+    },
+    {
+      "suite": "com.astra.auth.integration.AuthCommerceIntegrationTest",
+      "timestamp": null,
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 5,
+      "skippedCases": []
+    }
+  ]
+}

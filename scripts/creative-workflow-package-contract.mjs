@@ -3,7 +3,7 @@ import { chromium } from 'playwright'
 import { readFile, writeFile, mkdir } from 'node:fs/promises'
 const base = process.env.ASTRA_DEV_URL || 'http://localhost:5173'
 const channel = process.env.ASTRA_BROWSER_CHANNEL || 'msedge'
-const out = `test-results/workflow-package-core-${channel}`
+const out = process.env.ASTRA_CONTRACT_OUTPUT || `test-results/workflow-package-core-${channel}`
 await mkdir(out, { recursive: true })
 const fixture = (
   await readFile('docs/validation/2026-10-09/creative-workflow/source.astra-signature')
