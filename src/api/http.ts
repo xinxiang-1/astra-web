@@ -4,15 +4,15 @@ export interface ApiResult<T> {
   data: T
 }
 
-const TOKEN_KEY = 'astra_access_token'
+export const ACCESS_TOKEN_KEY = 'astra_access_token'
 
 export function getAccessToken(): string | null {
-  return localStorage.getItem(TOKEN_KEY)
+  return localStorage.getItem(ACCESS_TOKEN_KEY)
 }
 
 export function setAccessToken(token: string | null) {
-  if (token) localStorage.setItem(TOKEN_KEY, token)
-  else localStorage.removeItem(TOKEN_KEY)
+  if (token) localStorage.setItem(ACCESS_TOKEN_KEY, token)
+  else localStorage.removeItem(ACCESS_TOKEN_KEY)
 }
 
 export class ApiError extends Error {
@@ -36,7 +36,7 @@ export async function http<T>(
     headers.set('Content-Type', 'application/json')
   }
   const token = getAccessToken()
-  if (token) headers.set('Authorization', `Bearer ${token}`)
+  if (token && !headers.has('Authorization')) headers.set('Authorization', `Bearer ${token}`)
 
   const res = await fetch(`/api${path}`, {
     ...options,

@@ -1,0 +1,78 @@
+{
+  "browser": "157.0.8081.0",
+  "scope": "Real browser Pinia/store/API/http, controlled deferred fetch; no real authentication or payments",
+  "rows": [
+    {
+      "case": "late-restore-success",
+      "passed": true
+    },
+    {
+      "case": "late-restore-http401",
+      "passed": true
+    },
+    {
+      "case": "late-restore-business401",
+      "passed": true
+    },
+    {
+      "case": "late-logout-200",
+      "passed": true
+    },
+    {
+      "case": "late-logout-503",
+      "passed": true
+    },
+    {
+      "case": "latest-password",
+      "passed": true
+    },
+    {
+      "case": "cancel-password",
+      "passed": true
+    },
+    {
+      "case": "latest-phone",
+      "passed": true
+    },
+    {
+      "case": "cancel-phone",
+      "passed": true
+    },
+    {
+      "case": "latest-email",
+      "passed": true
+    },
+    {
+      "case": "cancel-email",
+      "passed": true
+    },
+    {
+      "case": "latest-register",
+      "passed": true
+    },
+    {
+      "case": "cancel-register",
+      "passed": true
+    },
+    {
+      "case": "latest-wechat-mock",
+      "passed": true
+    },
+    {
+      "case": "cancel-wechat-mock",
+      "passed": true
+    },
+    {
+      "case": "background-during-login",
+      "passed": true
+    },
+    {
+      "case": "concurrent-restores",
+      "passed": true
+    },
+    {
+      "case": "storage-rotate-and-clear",
+      "passed": true
+    }
+  ]
+}

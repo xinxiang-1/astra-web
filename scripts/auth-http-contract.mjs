@@ -45,9 +45,15 @@ try {
   const pending = http('/system/orders', { method: 'POST', body: '{}', signal: controller.signal })
   controller.abort()
   await assert.rejects(pending, (error) => error.name === 'AbortError')
-  assert.equal(requests, 7, 'no automatic read or write retries')
+  globalThis.fetch = async (_url, options) => {
+    requests++
+    assert.equal(options.headers.get('Authorization'), 'Bearer original-logout-token')
+    return Response.json({ code: 0, data: null })
+  }
+  await http('/auth/logout', { method: 'POST', headers: { Authorization: 'Bearer original-logout-token' } })
+  assert.equal(requests, 8, 'no automatic read or write retries')
   assert.equal(getAccessToken(), 'contract-token')
-  console.log('Auth HTTP contract: 7 requests passed; status/code preserved, cancellation and token retention verified.')
+  console.log('Auth HTTP contract: 8 requests passed; status/code, cancellation, token retention and explicit logout token verified.')
 } finally {
   globalThis.fetch = originalFetch
   if (originalStorage) globalThis.localStorage = originalStorage

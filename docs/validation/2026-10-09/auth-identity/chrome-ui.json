@@ -1,0 +1,10 @@
+{
+  "browser": "157.0.8081.0",
+  "cases": [
+    "tab-change-aborts-login-and-late-navigation",
+    "leave-wechat-aborts-poll-and-rejects-confirmation",
+    "production-storage-token-and-clear-cross-tab"
+  ],
+  "errors": [],
+  "scope": "Production App/AuthView/two-tab storage with controlled API responses; no real OAuth/payment"
+}

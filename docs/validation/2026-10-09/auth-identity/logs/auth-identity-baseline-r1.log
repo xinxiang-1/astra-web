@@ -1,0 +1,15 @@
+17:10:45 [vite] (client) Re-optimizing dependencies because vite config has changed
+17:10:53 [vite] (client) [optimizer] scanning dependencies...
+file:///E:/project/astra/astra-web/node_modules/element-plus/es/components/message/src/method.mjs:13
+	if (!normalized.appendTo) normalized.appendTo = document.body;
+	                                                ^
+
+ReferenceError: document is not defined
+    at normalizeAppendTo (file:///E:/project/astra/astra-web/node_modules/element-plus/es/components/message/src/method.mjs:13:50)
+    at normalizeOptions (file:///E:/project/astra/astra-web/node_modules/element-plus/es/components/message/src/method.mjs:37:2)
+    at message.<computed> [as warning] (file:///E:/project/astra/astra-web/node_modules/element-plus/es/components/message/src/method.mjs:105:7)
+    at tipWarn (E:/project/astra/astra-web/src/stores/auth.ts:41:34)
+    at Proxy.logout (E:/project/astra/astra-web/src/stores/auth.ts:201:4)
+    at async file:///E:/project/astra/astra-web/tmp/auth-identity-baseline.mjs:21:5
+
+Node.js v24.12.0

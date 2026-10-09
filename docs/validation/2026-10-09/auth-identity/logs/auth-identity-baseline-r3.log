@@ -1,0 +1,1 @@
+{"reproduced":true,"rows":[{"kind":"restore-success","immediatelyCleared":false,"retainedNewToken":true,"finalUser":"A"},{"kind":"restore-401","immediatelyCleared":false,"retainedNewToken":false,"finalUser":null},{"kind":"logout","immediatelyCleared":false,"retainedNewToken":false,"finalUser":null}]}

@@ -40,17 +40,20 @@ export function loginByPassword(
   account: string,
   password: string,
   captcha: CaptchaFields,
+  signal?: AbortSignal,
 ) {
   return http<TokenPayload>('/auth/login/password', {
     method: 'POST',
     body: JSON.stringify({ account, password, ...captcha }),
+    signal,
   })
 }
 
-export function loginByPhone(phone: string, code: string) {
+export function loginByPhone(phone: string, code: string, signal?: AbortSignal) {
   return http<TokenPayload>('/auth/login/phone', {
     method: 'POST',
     body: JSON.stringify({ phone, code }),
+    signal,
   })
 }
 
@@ -65,10 +68,11 @@ export function sendEmailCode(
   })
 }
 
-export function loginByEmail(email: string, code: string) {
+export function loginByEmail(email: string, code: string, signal?: AbortSignal) {
   return http<TokenPayload>('/auth/login/email', {
     method: 'POST',
     body: JSON.stringify({ email, code }),
+    signal,
   })
 }
 
@@ -79,10 +83,11 @@ export function register(payload: {
   phone?: string
   captchaId: string
   captchaCode: string
-}) {
+}, signal?: AbortSignal) {
   return http<TokenPayload>('/auth/register', {
     method: 'POST',
     body: JSON.stringify(payload),
+    signal,
   })
 }
 
@@ -111,25 +116,28 @@ export function resetPassword(account: string, code: string, newPassword: string
   })
 }
 
-export function createWechatSession() {
-  return http<WechatSession>('/auth/wechat/session', { method: 'POST' })
+export function createWechatSession(signal?: AbortSignal) {
+  return http<WechatSession>('/auth/wechat/session', { method: 'POST', signal })
 }
 
-export function pollWechatSession(ticket: string) {
-  return http<WechatSession>(`/auth/wechat/session/${encodeURIComponent(ticket)}`)
+export function pollWechatSession(ticket: string, signal?: AbortSignal) {
+  return http<WechatSession>(`/auth/wechat/session/${encodeURIComponent(ticket)}`, { signal })
 }
 
-export function confirmWechat(ticket: string) {
+export function confirmWechat(ticket: string, signal?: AbortSignal) {
   return http<TokenPayload>('/auth/wechat/confirm', {
     method: 'POST',
     body: JSON.stringify({ ticket }),
+    signal,
   })
 }
 
-export function fetchMe() {
-  return http<AuthUserProfile>('/auth/me')
+export function fetchMe(signal?: AbortSignal) {
+  return http<AuthUserProfile>('/auth/me', { signal, cache: 'no-store' })
 }
 
-export function logout() {
-  return http<void>('/auth/logout', { method: 'POST' })
+export function logout(accessToken: string) {
+  return http<void>('/auth/logout', {
+    method: 'POST', headers: { Authorization: `Bearer ${accessToken}` },
+  })
 }

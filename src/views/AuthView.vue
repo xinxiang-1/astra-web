@@ -40,6 +40,8 @@ const wechatTicket = ref('')
 const wechatStatus = ref<'waiting' | 'scanned' | 'confirmed' | 'expired'>('waiting')
 let wechatPollTimer: number | undefined
 let wechatExpireTimer: number | undefined
+let wechatController: AbortController | null = null
+let formController: AbortController | null = null
 
 const form = reactive({
   name: '',
@@ -68,6 +70,7 @@ const modePath: Record<AuthMode, string> = {
 watch(
   () => props.initialMode,
   (value) => {
+    formController?.abort()
     mode.value = value
     error.value = ''
     resetSent.value = false
@@ -78,6 +81,7 @@ watch(
 watch(
   mode,
   (value) => {
+    formController?.abort()
     if (value === 'wechat') startWechatSession()
     else {
       stopWechatSession()
@@ -91,6 +95,7 @@ watch(
 )
 
 watch(loginTab, () => {
+  formController?.abort()
   form.code = ''
   form.captchaCode = ''
   // 切到邮箱验证码时放开图形码门槛，保证首次「获取验证码」一定打接口
@@ -154,6 +159,7 @@ function stopSmsCooldown() {
 }
 
 onBeforeUnmount(() => {
+  formController?.abort()
   stopWechatSession()
   stopSmsCooldown()
 })
@@ -253,31 +259,41 @@ function switchMode(next: AuthMode) {
 
 async function startWechatSession() {
   stopWechatSession()
+  const controller = new AbortController(), generation = auth.sessionRevision
+  wechatController = controller
+  const current = () => wechatController === controller && !controller.signal.aborted &&
+    mode.value === 'wechat' && auth.sessionRevision === generation
   wechatStatus.value = 'waiting'
   try {
-    const session = await auth.startWechatSession()
+    const session = await auth.startWechatSession(controller.signal)
+    if (!current()) return
     wechatTicket.value = session.ticket
     wechatStatus.value = (session.status as typeof wechatStatus.value) || 'waiting'
     const ttl = (session.expireSeconds || 120) * 1000
     wechatExpireTimer = window.setTimeout(() => {
       wechatStatus.value = 'expired'
+      controller.abort()
       stopWechatPoll()
       ElMessage.warning('二维码已过期，请刷新')
     }, ttl)
-    scheduleWechatPoll()
+    scheduleWechatPoll(controller, generation)
   } catch (err) {
+    if (!current()) return
     error.value = err instanceof Error ? err.message : '无法创建微信会话'
     wechatStatus.value = 'expired'
     ElMessage.error(error.value)
   }
 }
 
-function scheduleWechatPoll() {
+function scheduleWechatPoll(controller: AbortController, generation: number) {
   stopWechatPoll()
   wechatPollTimer = window.setTimeout(async () => {
-    if (!wechatTicket.value || wechatStatus.value === 'expired') return
+    const current = () => wechatController === controller && !controller.signal.aborted &&
+      mode.value === 'wechat' && auth.sessionRevision === generation
+    if (!current() || !wechatTicket.value || wechatStatus.value === 'expired') return
     try {
-      const session = await auth.pollWechatSession(wechatTicket.value)
+      const session = await auth.pollWechatSession(wechatTicket.value, controller.signal)
+      if (!current()) return
       wechatStatus.value = session.status as typeof wechatStatus.value
       if (session.status === 'confirmed' && session.token) {
         auth.acceptToken(session.token)
@@ -287,10 +303,10 @@ function scheduleWechatPoll() {
         return
       }
       if (session.status !== 'expired' && session.status !== 'confirmed') {
-        scheduleWechatPoll()
+        scheduleWechatPoll(controller, generation)
       }
     } catch {
-      scheduleWechatPoll()
+      if (current()) scheduleWechatPoll(controller, generation)
     }
   }, 1500)
 }
@@ -303,6 +319,8 @@ function stopWechatPoll() {
 }
 
 function stopWechatSession() {
+  wechatController?.abort()
+  wechatController = null
   stopWechatPoll()
   if (wechatExpireTimer !== undefined) {
     window.clearTimeout(wechatExpireTimer)
@@ -323,7 +341,15 @@ async function confirmWechatScan() {
   }
   wechatStatus.value = 'scanned'
   error.value = ''
-  const ok = await auth.loginWithWechat(wechatTicket.value)
+  const ticket = wechatTicket.value
+  stopWechatSession()
+  formController?.abort()
+  const controller = new AbortController()
+  formController = controller
+  const request = auth.loginWithWechat(ticket, controller.signal)
+  const generation = auth.sessionRevision
+  const ok = await request
+  if (controller.signal.aborted || auth.sessionRevision !== generation) return
   if (ok) await router.push(returnTo.value)
 }
 
@@ -501,23 +527,30 @@ async function onSubmit() {
     return
   }
 
-  let ok = false
+  formController?.abort()
+  const controller = new AbortController()
+  formController = controller
+  let request: Promise<boolean>
   if (mode.value === 'login' && loginTab.value === 'email') {
-    ok = await auth.loginByEmail(form.email.trim(), form.code.trim())
+    request = auth.loginByEmail(form.email.trim(), form.code.trim(), controller.signal)
   } else if (mode.value === 'login' && loginTab.value === 'phone') {
-    ok = await auth.loginByPhone(form.phone.trim(), form.code.trim())
+    request = auth.loginByPhone(form.phone.trim(), form.code.trim(), controller.signal)
   } else if (mode.value === 'login') {
-    ok = await auth.login(form.email.trim(), form.password, captchaPayload())
+    request = auth.login(form.email.trim(), form.password, captchaPayload(), controller.signal)
   } else {
-    ok = await auth.register(
+    request = auth.register(
       form.name.trim(),
       form.email.trim(),
       form.password,
       captchaPayload(),
       form.phone.trim() || undefined,
+      controller.signal,
     )
   }
 
+  const generation = auth.sessionRevision
+  const ok = await request
+  if (controller.signal.aborted || auth.sessionRevision !== generation) return
   if (ok) await router.push(returnTo.value)
   else {
     error.value = auth.lastMessage || '操作失败'

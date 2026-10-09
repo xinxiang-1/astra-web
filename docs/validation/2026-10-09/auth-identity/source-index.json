@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-09",
+  "baseline": "ec5ff9964a7798e009fd8de55a03cb2261304530",
+  "sources": {
+    "src/api/http.ts": "9cae55e4f1831775b123c5110ebf4eea86d04288582bf1430d0ba480c1b65838",
+    "src/api/auth.ts": "f1480ef6aa21a089d029cbee29cf3aa64b3d8e509623609cb474d70e16e43cc7",
+    "src/stores/auth.ts": "b9bcbdf9da4b11fe99b44476c5b5cb73c15087411f0f1e4d9e53fab37766b1a3",
+    "src/App.vue": "cc1e46cbc81d2872f3b02f449c451ef5cf383c86fe19d88be4e5b7797f35090a",
+    "src/views/AuthView.vue": "405c5333a18c2dcc8f8829c53ed654a7eafa2956628ff6bc5efd54c47ececd9a",
+    "scripts/auth-http-contract.mjs": "e0ce41b6f12e2db42977b21f110efe2a23e80ee9c3f9804c372915f7973f2969",
+    "scripts/auth-identity-contract.mjs": "9891b87dd7920f173ed9c4eb41d6f02bfe11694d122efe97e758ec8a18a34d66",
+    "scripts/auth-identity-ui.mjs": "bee9284b302cc858199ca51d033d940306c092f6098358c496b87952ab5caece"
+  },
+  "build": "creative-build-r2.log",
+  "scope": "Build includes concurrent creative product changes, independently committed; hashes bind exact auth sources"
+}

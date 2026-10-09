@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, nextTick, onMounted, ref, watch } from 'vue'
+import { computed, nextTick, onBeforeMount, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { RouterView, useRoute } from 'vue-router'
 import { ElConfigProvider } from 'element-plus'
 import ArtHeader from '@/components/ArtHeader.vue'
@@ -8,6 +8,7 @@ import { authRouteNames, studioRouteNames, toolRouteNames } from '@/content/cata
 import { routeTitles } from '@/content/navigation'
 import { useAuthStore } from '@/stores/auth'
 import { useThemeStore } from '@/stores/theme'
+import { ACCESS_TOKEN_KEY } from '@/api/http'
 
 const route = useRoute(),
   auth = useAuthStore()
@@ -46,9 +47,15 @@ watch(
     focusMain()
   },
 )
+function synchronizeSession(event: StorageEvent) {
+  if (event.storageArea === localStorage && (event.key === ACCESS_TOKEN_KEY || event.key === null))
+    void auth.synchronizeSession()
+}
 onMounted(() => {
-  void auth.restoreSession()
+  window.addEventListener('storage', synchronizeSession)
 })
+onBeforeMount(() => { void auth.restoreSession() })
+onBeforeUnmount(() => window.removeEventListener('storage', synchronizeSession))
 </script>
 
 <template>
