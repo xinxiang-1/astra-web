@@ -7,30 +7,22 @@ import {
   deleteCreativeProject,
   getArtProject,
   getSignatureProject,
-  saveSignatureProject,
-  saveArtProject,
-  importCreativeWorkflow,
   type CreativeProjectSummary,
 } from '@/lib/art-projects'
 import {
-  readSignatureProject,
   signatureProjectFilename,
   SIGNATURE_PROJECT_ACCEPT,
-  SIGNATURE_PROJECT_ENGINE,
 } from '@/lib/signature-portrait/project'
-import { exportSignaturePng } from '@/lib/signature-portrait/png-export'
-import { signatureProjectThumbnail } from '@/lib/signature-project-thumbnail'
+import { importCreativePackage } from '@/lib/import-creative-package'
 import {
   CREATIVE_WORKFLOW_ACCEPT,
   createCreativeWorkflowPackage,
   creativeWorkflowFilename,
-  readCreativeWorkflowPackage,
 } from '@/lib/creative-workflow-package'
 import {
   ART_PROJECT_PACKAGE_ACCEPT,
   artProjectPackageFilename,
   createArtProjectPackage,
-  readArtProjectPackage,
 } from '@/lib/art-project-package'
 import { triggerDownload } from '@/lib/ascii'
 const projects = ref<CreativeProjectSummary[]>([])
@@ -127,70 +119,7 @@ async function importPackage(event: Event) {
   const controller = new AbortController()
   transferController = controller
   try {
-    let notice: string
-    if (file.name.toLowerCase().endsWith(CREATIVE_WORKFLOW_ACCEPT)) {
-      transferStatus.value = '正在校验签名原作与字符派生…'
-      const restored = await readCreativeWorkflowPackage(file, controller.signal)
-      try {
-        const thumbnail = await signatureProjectThumbnail(
-          await exportSignaturePng(restored.signature, {
-            longEdge: 420,
-            signal: {
-              get cancelled() {
-                return controller.signal.aborted
-              },
-            },
-          }),
-          controller.signal,
-        )
-        if (disposed || controller.signal.aborted) return
-        const saved = await importCreativeWorkflow(
-          {
-            file: restored.signatureFile,
-            name: restored.project.origin!.name,
-            thumbnail,
-            engineVersion: SIGNATURE_PROJECT_ENGINE,
-          },
-          restored.project,
-          restored.workflowKey,
-          controller.signal,
-        )
-        notice = saved.reused
-          ? '此工作流版本已导入，签名原作与字符派生保持完整。'
-          : '工作流已导入，签名原作与字符派生已一起保存；本地已有改动会保留。字符字体可能随设备变化。'
-      } finally {
-        restored.dispose()
-      }
-    } else if (file.name.toLowerCase().endsWith(SIGNATURE_PROJECT_ACCEPT)) {
-      const restored = await readSignatureProject(file, { signal: controller.signal })
-      try {
-        const scene = restored.project
-        const thumbnail = await signatureProjectThumbnail(
-          await exportSignaturePng(scene, {
-            longEdge: 420,
-            signal: {
-              get cancelled() {
-                return controller.signal.aborted
-              },
-            },
-          }),
-          controller.signal,
-        )
-        if (disposed) return
-        await saveSignatureProject(
-          { file, name: scene.portraitName, thumbnail, engineVersion: SIGNATURE_PROJECT_ENGINE },
-          controller.signal,
-        )
-        notice = '签名原作已保存到我的项目，可继续编辑。相同版本不会重复添加。'
-      } finally {
-        restored.dispose()
-      }
-    } else {
-      const imported = await readArtProjectPackage(file)
-      if (disposed || controller.signal.aborted) return
-      await saveArtProject(imported.project, controller.signal)
-      notice = imported.notice
-    }
+    const notice = await importCreativePackage(file, { signal: controller.signal })
     if (disposed || controller.signal.aborted || transferController !== controller) return
     filter.value = '全部'
     search.value = ''

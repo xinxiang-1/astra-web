@@ -1,0 +1,81 @@
+{
+  "scope": "Owned real MySQL/Redis/gateway/filesystem delivery; trusted mock settlement; auth/me mocked503; free original package copied only as private test fixture",
+  "checks": [
+    "Actual private gateway download has exact source bytes; downloading does not modify projects",
+    "Validated actual .astra import creates a new ID and preserves existing source/settings/thumbnail",
+    "Altered private response fails SHA256 before import and leaves projects unchanged",
+    "Authentic but unsupported .astra payload is rejected without changing existing projects",
+    "Canceling in-flight private download creates no project and restores controls",
+    "Mobile file actions are visible without horizontal overflow",
+    "Stale owner UI cannot grant another real user a ticket; backend rejects the request"
+  ],
+  "requests": [
+    {
+      "method": "GET",
+      "path": "/api/system/admin/access",
+      "status": 403
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/entitlements",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010304/download-ticket",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010304/download",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010304/download-ticket",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010304/download",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010304/download-ticket",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010304/download",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010104/download-ticket",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010104/download",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010304/download-ticket",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/assets/189304737000010304/download",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/system/assets/189304737000010304/download-ticket",
+      "status": 404
+    }
+  ],
+  "passed": true,
+  "sourceSha256": "738100d51a28b725e2333a549f5dc67b2c3735dc539c95213f08393a49ed5127"
+}

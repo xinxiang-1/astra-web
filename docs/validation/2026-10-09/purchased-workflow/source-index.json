@@ -1,0 +1,473 @@
+{
+  "scope": "Owned purchased workflow stage; artifact bytes exact in staging; source differences limited to CRLF",
+  "parents": {
+    "astra-web": "9a50b43c3f157aea8816eabcace999a91dc6cb6e",
+    "astra-cloud": "77286942f906e27def8a6102ed53f63a75ee0773"
+  },
+  "sources": [
+    {
+      "repo": "astra-web",
+      "path": "src/lib/import-creative-package.ts",
+      "worktreeSha256": "58f709f26e0838ad7c5d5c9cbc0e7ff2108c13d1cb86139e2699d3475df1771d",
+      "stagedSha256": "58f709f26e0838ad7c5d5c9cbc0e7ff2108c13d1cb86139e2699d3475df1771d",
+      "stagedBytes": 3644,
+      "scope": "changed-source-or-doc"
+    },
+    {
+      "repo": "astra-web",
+      "path": "src/views/AccountCommerceView.vue",
+      "worktreeSha256": "c5843391d8debac29fc5c2ee2b09758aa02ac3bf529842325385f9195908844f",
+      "stagedSha256": "c5843391d8debac29fc5c2ee2b09758aa02ac3bf529842325385f9195908844f",
+      "stagedBytes": 14920,
+      "scope": "changed-source-or-doc"
+    },
+    {
+      "repo": "astra-web",
+      "path": "src/views/ProjectsView.vue",
+      "worktreeSha256": "210a400ab406ab240210f78cba3f095c43d31be287592dd1e4f80bb698154489",
+      "stagedSha256": "210a400ab406ab240210f78cba3f095c43d31be287592dd1e4f80bb698154489",
+      "stagedBytes": 17477,
+      "scope": "changed-source-or-doc"
+    },
+    {
+      "repo": "astra-web",
+      "path": "scripts/purchased-workflow-live.mjs",
+      "worktreeSha256": "8240ced371284ef4fd3e7f101182d14baca7aa15123839999175a3c07ffeeff4",
+      "stagedSha256": "8240ced371284ef4fd3e7f101182d14baca7aa15123839999175a3c07ffeeff4",
+      "stagedBytes": 11737,
+      "scope": "changed-source-or-doc"
+    },
+    {
+      "repo": "astra-web",
+      "path": "scripts/purchased-delivery-live.mjs",
+      "worktreeSha256": "aabb83f0c9e49171ac983edf50bcbaa484f582ac699e322abb3e7e81c8919354",
+      "stagedSha256": "aabb83f0c9e49171ac983edf50bcbaa484f582ac699e322abb3e7e81c8919354",
+      "stagedBytes": 8015,
+      "scope": "changed-source-or-doc"
+    },
+    {
+      "repo": "astra-web",
+      "path": "docs/plans/purchased-workflow-2026-10-09.md",
+      "worktreeSha256": "539f974b38bea554f96e97542c2794ce486aa00f2a98cffc26853f7e88db6979",
+      "stagedSha256": "539f974b38bea554f96e97542c2794ce486aa00f2a98cffc26853f7e88db6979",
+      "stagedBytes": 4758,
+      "scope": "changed-source-or-doc"
+    },
+    {
+      "repo": "astra-web",
+      "path": "docs/plans/product-master-plan.md",
+      "worktreeSha256": "54cc95011803245e166bbda35594341483299a38995b4e762d635a51a52ebb27",
+      "stagedSha256": "54cc95011803245e166bbda35594341483299a38995b4e762d635a51a52ebb27",
+      "stagedBytes": 68277,
+      "scope": "changed-source-or-doc"
+    },
+    {
+      "repo": "astra-web",
+      "path": "docs/plans/creative-ecosystem-2026-10-09.md",
+      "worktreeSha256": "5fdf21f0c42daf976913f22943e1aa43c0af803a7f1ccf613759f476277a9975",
+      "stagedSha256": "5fdf21f0c42daf976913f22943e1aa43c0af803a7f1ccf613759f476277a9975",
+      "stagedBytes": 10878,
+      "scope": "changed-source-or-doc"
+    },
+    {
+      "repo": "astra-web",
+      "path": "src/lib/art-projects.ts",
+      "worktreeSha256": "1ecff60dfd2c5e93affd9f5062de2fa4f3efffd85979b95d68cc0a859be81297",
+      "stagedSha256": "1ecff60dfd2c5e93affd9f5062de2fa4f3efffd85979b95d68cc0a859be81297",
+      "stagedBytes": 13432,
+      "scope": "unchanged-dependency"
+    },
+    {
+      "repo": "astra-web",
+      "path": "src/lib/creative-workflow-package.ts",
+      "worktreeSha256": "4ccd0f632af4451856b93baf2b63edfdb2f171aeffc5bb7f016d87563f87caeb",
+      "stagedSha256": "4ccd0f632af4451856b93baf2b63edfdb2f171aeffc5bb7f016d87563f87caeb",
+      "stagedBytes": 8007,
+      "scope": "unchanged-dependency"
+    },
+    {
+      "repo": "astra-web",
+      "path": "src/lib/art-project-package.ts",
+      "worktreeSha256": "b5844a738faeb0df02d45914655f363eeaff20791f4576741c815be2cdbb3f4b",
+      "stagedSha256": "b5844a738faeb0df02d45914655f363eeaff20791f4576741c815be2cdbb3f4b",
+      "stagedBytes": 16914,
+      "scope": "unchanged-dependency"
+    },
+    {
+      "repo": "astra-web",
+      "path": "src/lib/purchased-assets.ts",
+      "worktreeSha256": "7c3846f59b7e6af846f46fd7ac7a10fd1b9efe7cd2f31e56d44410539ebe8809",
+      "stagedSha256": "7c3846f59b7e6af846f46fd7ac7a10fd1b9efe7cd2f31e56d44410539ebe8809",
+      "stagedBytes": 4635,
+      "scope": "unchanged-dependency"
+    },
+    {
+      "repo": "astra-web",
+      "path": "src/lib/signature-portrait/project.ts",
+      "worktreeSha256": "775fc6aba5da2a0aa8ead5b4d7efd185e7bc5c537f7fad937667b01005a2aef0",
+      "stagedSha256": "775fc6aba5da2a0aa8ead5b4d7efd185e7bc5c537f7fad937667b01005a2aef0",
+      "stagedBytes": 18142,
+      "scope": "unchanged-dependency"
+    },
+    {
+      "repo": "astra-web",
+      "path": "src/lib/signature-project-thumbnail.ts",
+      "worktreeSha256": "1ef952c17ee9449182476b474a41f1e37be8129c6c04b9c24e6f53bd1257f8e1",
+      "stagedSha256": "1ef952c17ee9449182476b474a41f1e37be8129c6c04b9c24e6f53bd1257f8e1",
+      "stagedBytes": 1007,
+      "scope": "unchanged-dependency"
+    },
+    {
+      "repo": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/delivery/DeliveryController.java",
+      "worktreeSha256": "c46400aa79cdcf04c92982235f9c34716a7490342577906865e66416ceb9060c",
+      "stagedSha256": "c46400aa79cdcf04c92982235f9c34716a7490342577906865e66416ceb9060c",
+      "stagedBytes": 3372,
+      "scope": "changed-source-or-doc"
+    },
+    {
+      "repo": "astra-cloud",
+      "path": "astra-modules/astra-system/src/test/java/com/astra/system/commerce/DeliveryIntegrationTest.java",
+      "worktreeSha256": "08efb9e767e56ff12c437042af741efcc01ebb439ce3f78140a4c6ed42bc1f94",
+      "stagedSha256": "08efb9e767e56ff12c437042af741efcc01ebb439ce3f78140a4c6ed42bc1f94",
+      "stagedBytes": 52472,
+      "scope": "changed-source-or-doc"
+    },
+    {
+      "repo": "astra-cloud",
+      "path": "scripts/validate-delivery-evidence.py",
+      "worktreeSha256": "435dc7ebeca3cea2843f26e229cce6d74a2d28f12340f2702144042a05611ee2",
+      "stagedSha256": "435dc7ebeca3cea2843f26e229cce6d74a2d28f12340f2702144042a05611ee2",
+      "stagedBytes": 9909,
+      "scope": "changed-source-or-doc"
+    },
+    {
+      "repo": "astra-cloud",
+      "path": "docs/commerce/openapi.json",
+      "worktreeSha256": "4b7f0d7f11d41722ae27c30b7271986fe65c419d27e83dfc4b863324f197a634",
+      "stagedSha256": "792047c1d4793fb5d416b2a04dcba9f63679973d8dd6300f6a0a04da134478da",
+      "stagedBytes": 266836,
+      "scope": "changed-source-or-doc"
+    },
+    {
+      "repo": "astra-cloud",
+      "path": "docs/commerce/private-delivery-runtime.md",
+      "worktreeSha256": "5379447684c9208c27f88cfa918889b024e346ef832897d9645bc3ea45755189",
+      "stagedSha256": "5379447684c9208c27f88cfa918889b024e346ef832897d9645bc3ea45755189",
+      "stagedBytes": 5679,
+      "scope": "changed-source-or-doc"
+    },
+    {
+      "repo": "astra-cloud",
+      "path": "docs/plans/purchased-workflow-2026-10-09.md",
+      "worktreeSha256": "9974a72170227525868c9bd4d614d8e874d74885fca6d2071cbdc5d4b3c8d4bc",
+      "stagedSha256": "9974a72170227525868c9bd4d614d8e874d74885fca6d2071cbdc5d4b3c8d4bc",
+      "stagedBytes": 3002,
+      "scope": "changed-source-or-doc"
+    },
+    {
+      "repo": "astra-cloud",
+      "path": "docs/plans/launch-readiness-2026-10-08.md",
+      "worktreeSha256": "661d1373ba675917bccd64c956222185684e4afdac1d2b21dff862765fe71336",
+      "stagedSha256": "be8712ff671d1bb6b179cb786a9c61a77b55ebbdc9ddce4491c2ef762f67fc26",
+      "stagedBytes": 23512,
+      "scope": "changed-source-or-doc"
+    },
+    {
+      "repo": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/delivery/DeliveryAuthorization.java",
+      "worktreeSha256": "d818f16829dc384512cc7be7299d6112528dc40061427457ac4c4cdd2cbde9bd",
+      "stagedSha256": "d818f16829dc384512cc7be7299d6112528dc40061427457ac4c4cdd2cbde9bd",
+      "stagedBytes": 5120,
+      "scope": "unchanged-dependency"
+    },
+    {
+      "repo": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/delivery/PrivateAssetStorage.java",
+      "worktreeSha256": "8f539d9f4281ede33dcd345b0cc59f5b2aff8f7bb836a6666a69f45acbc9ed0a",
+      "stagedSha256": "8f539d9f4281ede33dcd345b0cc59f5b2aff8f7bb836a6666a69f45acbc9ed0a",
+      "stagedBytes": 7694,
+      "scope": "unchanged-dependency"
+    },
+    {
+      "repo": "astra-cloud",
+      "path": "sql/migrations/V20261002_01__commerce_v1.sql",
+      "worktreeSha256": "59228edd69e92b62facf443c51a9dcd0b8242edf7f509ff7b90d5c9c35108bd2",
+      "stagedSha256": "59228edd69e92b62facf443c51a9dcd0b8242edf7f509ff7b90d5c9c35108bd2",
+      "stagedBytes": 18189,
+      "scope": "unchanged-dependency"
+    }
+  ],
+  "evidence": [
+    {
+      "repo": "astra-web",
+      "path": "docs/validation/2026-10-09/purchased-workflow/.gitattributes",
+      "bytes": 41,
+      "sha256": "898fc2da01b20487ea0b1e7243ca918ee7538eaeb39a3f080b7d01193074e161"
+    },
+    {
+      "repo": "astra-web",
+      "path": "docs/validation/2026-10-09/purchased-workflow/chrome/library-dark.png",
+      "bytes": 150735,
+      "sha256": "b97d8afc7c11fe5c351981e8c8d02727932918de4bbb481bc15a2faaa342b09e"
+    },
+    {
+      "repo": "astra-web",
+      "path": "docs/validation/2026-10-09/purchased-workflow/chrome/library-light.png",
+      "bytes": 148933,
+      "sha256": "eaac26f0b41e1caea48cd67c6020e995ae29ab69ad6803cdad2b7b27dab07dc5"
+    },
+    {
+      "repo": "astra-web",
+      "path": "docs/validation/2026-10-09/purchased-workflow/chrome/received.astra-signature",
+      "bytes": 137440,
+      "sha256": "44eb699ae4288f11be2bdaef2017ede1d41ab46518532ff22e6f23c07a724071"
+    },
+    {
+      "repo": "astra-web",
+      "path": "docs/validation/2026-10-09/purchased-workflow/chrome/received.astra-workflow",
+      "bytes": 143882,
+      "sha256": "2651dc564d7a8e1baa2cfbaf0fcdedda14b515640739eaae24d514227ccc3c05"
+    },
+    {
+      "repo": "astra-web",
+      "path": "docs/validation/2026-10-09/purchased-workflow/chrome/report.json",
+      "bytes": 4077,
+      "sha256": "142eb32b0b2136983de74eb7fb11a9b9241c8932c4448c196545ef4db9f74421"
+    },
+    {
+      "repo": "astra-web",
+      "path": "docs/validation/2026-10-09/purchased-workflow/design-detector.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "repo": "astra-web",
+      "path": "docs/validation/2026-10-09/purchased-workflow/legacy-report.json",
+      "bytes": 2507,
+      "sha256": "5c129458510e367c18aa5c94299abce5bae4101df85306ced4247bdb68019710"
+    },
+    {
+      "repo": "astra-web",
+      "path": "docs/validation/2026-10-09/purchased-workflow/local-ui-regression.json",
+      "bytes": 671,
+      "sha256": "8fcdb6cf8009a96b5dffb1464796ff1b734192f3d3ef6a05246d876f7c6406c6"
+    },
+    {
+      "repo": "astra-web",
+      "path": "docs/validation/2026-10-09/purchased-workflow/logs/build.log",
+      "bytes": 17881,
+      "sha256": "81eb3ca75604620fe0fc2027ffe7c470d582b02b2833a6cc6be2eb29a6a2d068"
+    },
+    {
+      "repo": "astra-web",
+      "path": "docs/validation/2026-10-09/purchased-workflow/logs/eslint.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "repo": "astra-web",
+      "path": "docs/validation/2026-10-09/purchased-workflow/logs/local-ui.log",
+      "bytes": 603,
+      "sha256": "ea48872a16f355de84ba3818464aeed8660e211c3a799c909327f6d6579dc05c"
+    },
+    {
+      "repo": "astra-web",
+      "path": "docs/validation/2026-10-09/purchased-workflow/logs/transport.log",
+      "bytes": 164,
+      "sha256": "f32e49aa5d84a963b7f21d55beba4aac0ae881a5aabb9594097634fcc80cb93a"
+    },
+    {
+      "repo": "astra-web",
+      "path": "docs/validation/2026-10-09/purchased-workflow/logs/types.log",
+      "bytes": 77,
+      "sha256": "0a7d40c8ea67ee87b4bcdc91418a201a96bc30f3286185c82d8888ec96c6d6fb"
+    },
+    {
+      "repo": "astra-web",
+      "path": "docs/validation/2026-10-09/purchased-workflow/mobile/library-dark.png",
+      "bytes": 127005,
+      "sha256": "8ec11f0d424dad4aa4614ad2f1bacb21b3ea2ed8948a70a20adcf205e38b858b"
+    },
+    {
+      "repo": "astra-web",
+      "path": "docs/validation/2026-10-09/purchased-workflow/mobile/library-light.png",
+      "bytes": 125766,
+      "sha256": "45f9ab4e883c56f0cac394cdc563e0b8975378fb9a6f720c08c2f017150a14ad"
+    },
+    {
+      "repo": "astra-web",
+      "path": "docs/validation/2026-10-09/purchased-workflow/mobile/received.astra-signature",
+      "bytes": 137440,
+      "sha256": "44eb699ae4288f11be2bdaef2017ede1d41ab46518532ff22e6f23c07a724071"
+    },
+    {
+      "repo": "astra-web",
+      "path": "docs/validation/2026-10-09/purchased-workflow/mobile/received.astra-workflow",
+      "bytes": 143882,
+      "sha256": "2651dc564d7a8e1baa2cfbaf0fcdedda14b515640739eaae24d514227ccc3c05"
+    },
+    {
+      "repo": "astra-web",
+      "path": "docs/validation/2026-10-09/purchased-workflow/mobile/report.json",
+      "bytes": 4077,
+      "sha256": "38e1860c855cb5e3d21f6ada2d259d7d033f6b319d7c31f632e74ed9a30608b7"
+    },
+    {
+      "repo": "astra-web",
+      "path": "docs/validation/2026-10-09/purchased-workflow/msedge/library-dark.png",
+      "bytes": 150735,
+      "sha256": "b97d8afc7c11fe5c351981e8c8d02727932918de4bbb481bc15a2faaa342b09e"
+    },
+    {
+      "repo": "astra-web",
+      "path": "docs/validation/2026-10-09/purchased-workflow/msedge/library-light.png",
+      "bytes": 148933,
+      "sha256": "eaac26f0b41e1caea48cd67c6020e995ae29ab69ad6803cdad2b7b27dab07dc5"
+    },
+    {
+      "repo": "astra-web",
+      "path": "docs/validation/2026-10-09/purchased-workflow/msedge/received.astra-signature",
+      "bytes": 137440,
+      "sha256": "44eb699ae4288f11be2bdaef2017ede1d41ab46518532ff22e6f23c07a724071"
+    },
+    {
+      "repo": "astra-web",
+      "path": "docs/validation/2026-10-09/purchased-workflow/msedge/received.astra-workflow",
+      "bytes": 143882,
+      "sha256": "2651dc564d7a8e1baa2cfbaf0fcdedda14b515640739eaae24d514227ccc3c05"
+    },
+    {
+      "repo": "astra-web",
+      "path": "docs/validation/2026-10-09/purchased-workflow/msedge/report.json",
+      "bytes": 4078,
+      "sha256": "37159f259a232d6d11bc491e4af8d37a638b76295f9d41fd4e3f17290d8790fa"
+    },
+    {
+      "repo": "astra-web",
+      "path": "docs/validation/2026-10-09/purchased-workflow/README.md",
+      "bytes": 2633,
+      "sha256": "576fa5696d122db949a18f160f3d32a3233b9602fded21a0b9487d52b29bcf5f"
+    },
+    {
+      "repo": "astra-cloud",
+      "path": "docs/validation/2026-10-09/purchased-workflow/.gitattributes",
+      "bytes": 41,
+      "sha256": "898fc2da01b20487ea0b1e7243ca918ee7538eaeb39a3f080b7d01193074e161"
+    },
+    {
+      "repo": "astra-cloud",
+      "path": "docs/validation/2026-10-09/purchased-workflow/legacy-http.json",
+      "bytes": 225588,
+      "sha256": "2b7b810f333d2a5ff4c632c041a27ba33296ca71bb959d6fd7b37872af72e66b"
+    },
+    {
+      "repo": "astra-cloud",
+      "path": "docs/validation/2026-10-09/purchased-workflow/legacy-schema.json",
+      "bytes": 48249,
+      "sha256": "3dd3c0477d13145f2f8aec57ea7b62c35540e61768154cc94729ddcc3f5df2b5"
+    },
+    {
+      "repo": "astra-cloud",
+      "path": "docs/validation/2026-10-09/purchased-workflow/logs/legacy-verify.log",
+      "bytes": 1558,
+      "sha256": "fa7e00c4c9d371cdb49e8cc22c5f8e46ed0c3bfdf783bc197e79025cdcb6a491"
+    },
+    {
+      "repo": "astra-cloud",
+      "path": "docs/validation/2026-10-09/purchased-workflow/logs/workflow-verify.log",
+      "bytes": 1744,
+      "sha256": "8af0768320d6345c9c50570d4b4b8997b0f61e463f2fbe2243a1cf6fcaa62705"
+    },
+    {
+      "repo": "astra-cloud",
+      "path": "docs/validation/2026-10-09/purchased-workflow/README.md",
+      "bytes": 1763,
+      "sha256": "a49e82e375bee7b3be057e05948ed18a024929e8caf3c0e2a70bc35a51cca945"
+    },
+    {
+      "repo": "astra-cloud",
+      "path": "docs/validation/2026-10-09/purchased-workflow/static-contract.json",
+      "bytes": 8575,
+      "sha256": "8d47b9a9dbf1efb034eb0d9fa5a61b518bd24d92a785c671145fd19df2fc1800"
+    },
+    {
+      "repo": "astra-cloud",
+      "path": "docs/validation/2026-10-09/purchased-workflow/workflow-http.json",
+      "bytes": 213619,
+      "sha256": "0c43dd77bf6ed3eaf23669ef78d47076b8b24bfc48fcd98aa80979aa38bb8760"
+    },
+    {
+      "repo": "astra-cloud",
+      "path": "docs/validation/2026-10-09/purchased-workflow/workflow-schema.json",
+      "bytes": 43823,
+      "sha256": "3ff159ce5f07da66fd9b46bb5fe856e5399a09a7f42cac4d13dbd6735120ac37"
+    }
+  ],
+  "staging": {
+    "astra-web": [
+      "docs/plans/creative-ecosystem-2026-10-09.md",
+      "docs/plans/product-master-plan.md",
+      "docs/plans/purchased-workflow-2026-10-09.md",
+      "docs/validation/2026-10-09/purchased-workflow/.gitattributes",
+      "docs/validation/2026-10-09/purchased-workflow/README.md",
+      "docs/validation/2026-10-09/purchased-workflow/chrome/library-dark.png",
+      "docs/validation/2026-10-09/purchased-workflow/chrome/library-light.png",
+      "docs/validation/2026-10-09/purchased-workflow/chrome/received.astra-signature",
+      "docs/validation/2026-10-09/purchased-workflow/chrome/received.astra-workflow",
+      "docs/validation/2026-10-09/purchased-workflow/chrome/report.json",
+      "docs/validation/2026-10-09/purchased-workflow/design-detector.json",
+      "docs/validation/2026-10-09/purchased-workflow/legacy-report.json",
+      "docs/validation/2026-10-09/purchased-workflow/local-ui-regression.json",
+      "docs/validation/2026-10-09/purchased-workflow/logs/build.log",
+      "docs/validation/2026-10-09/purchased-workflow/logs/eslint.log",
+      "docs/validation/2026-10-09/purchased-workflow/logs/local-ui.log",
+      "docs/validation/2026-10-09/purchased-workflow/logs/transport.log",
+      "docs/validation/2026-10-09/purchased-workflow/logs/types.log",
+      "docs/validation/2026-10-09/purchased-workflow/mobile/library-dark.png",
+      "docs/validation/2026-10-09/purchased-workflow/mobile/library-light.png",
+      "docs/validation/2026-10-09/purchased-workflow/mobile/received.astra-signature",
+      "docs/validation/2026-10-09/purchased-workflow/mobile/received.astra-workflow",
+      "docs/validation/2026-10-09/purchased-workflow/mobile/report.json",
+      "docs/validation/2026-10-09/purchased-workflow/msedge/library-dark.png",
+      "docs/validation/2026-10-09/purchased-workflow/msedge/library-light.png",
+      "docs/validation/2026-10-09/purchased-workflow/msedge/received.astra-signature",
+      "docs/validation/2026-10-09/purchased-workflow/msedge/received.astra-workflow",
+      "docs/validation/2026-10-09/purchased-workflow/msedge/report.json",
+      "scripts/purchased-delivery-live.mjs",
+      "scripts/purchased-workflow-live.mjs",
+      "src/lib/import-creative-package.ts",
+      "src/views/AccountCommerceView.vue",
+      "src/views/ProjectsView.vue"
+    ],
+    "astra-cloud": [
+      "astra-modules/astra-system/src/main/java/com/astra/system/commerce/delivery/DeliveryController.java",
+      "astra-modules/astra-system/src/test/java/com/astra/system/commerce/DeliveryIntegrationTest.java",
+      "docs/commerce/openapi.json",
+      "docs/commerce/private-delivery-runtime.md",
+      "docs/plans/launch-readiness-2026-10-08.md",
+      "docs/plans/purchased-workflow-2026-10-09.md",
+      "docs/validation/2026-10-09/purchased-workflow/.gitattributes",
+      "docs/validation/2026-10-09/purchased-workflow/README.md",
+      "docs/validation/2026-10-09/purchased-workflow/legacy-http.json",
+      "docs/validation/2026-10-09/purchased-workflow/legacy-schema.json",
+      "docs/validation/2026-10-09/purchased-workflow/logs/legacy-verify.log",
+      "docs/validation/2026-10-09/purchased-workflow/logs/workflow-verify.log",
+      "docs/validation/2026-10-09/purchased-workflow/static-contract.json",
+      "docs/validation/2026-10-09/purchased-workflow/workflow-http.json",
+      "docs/validation/2026-10-09/purchased-workflow/workflow-schema.json",
+      "scripts/validate-delivery-evidence.py"
+    ]
+  },
+  "linksChecked": 27,
+  "notVerified": [
+    "real authentication",
+    "real payment channel funds",
+    "membership/quota",
+    "production deployment",
+    "real devices/Safari",
+    "commercial material quality",
+    "256MiB browser performance"
+  ],
+  "note": "Index excludes itself. Product verification preceded only test-script whitespace formatting; node syntax check then passed."
+}

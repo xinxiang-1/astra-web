@@ -30,7 +30,7 @@ const fixtureAsset = '189304737000010304'
 async function projects(page) {
   return page.evaluate(async () => {
     const rows = await new Promise((resolve, reject) => {
-      const request = indexedDB.open('astra-art-projects', 1)
+      const request = indexedDB.open('astra-art-projects', 2)
       request.onsuccess = () => {
         const db = request.result,
           tx = db.transaction('projects'),

@@ -10,8 +10,7 @@ import {
 } from '@/api/commerce'
 import ArtFooter from '@/components/ArtFooter.vue'
 import { fetchPurchasedAsset, formatPurchasedFileSize } from '@/lib/purchased-assets'
-import { readArtProjectPackage, assertArtProjectEngineCompatible } from '@/lib/art-project-package'
-import { saveArtProject } from '@/lib/art-projects'
+import { creativePackageImportLabel, importCreativePackage } from '@/lib/import-creative-package'
 import type { CommerceAsset } from '@/api/commerce'
 import { useAuthStore } from '@/stores/auth'
 
@@ -153,22 +152,25 @@ async function receiveAsset(file: CommerceAsset, action: 'download' | 'import') 
   total.value = file.sizeBytes
   try {
     const binary = await fetchPurchasedAsset(file, attempt.signal, (count, size) => {
-      received.value = count
-      total.value = size
+      if (transferController === attempt && !attempt.signal.aborted && getAccessToken() === token) {
+        received.value = count
+        total.value = size
+      }
     })
     if (attempt.signal.aborted || getAccessToken() !== token) return
     if (action === 'import') {
-      const result = await readArtProjectPackage(binary)
-      assertArtProjectEngineCompatible(result.project)
-      if (attempt.signal.aborted || getAccessToken() !== token) return
-      transferPhase.value = 'saving'
-      try {
-        await saveArtProject(result.project)
-      } catch {
-        throw new Error('浏览器未能保存项目，请检查存储空间或先下载作品包备份。')
-      }
+      const notice = await importCreativePackage(binary, {
+        signal: attempt.signal,
+        beforeSave: () => {
+          if (transferController !== attempt || getAccessToken() !== token) {
+            attempt.abort()
+            attempt.signal.throwIfAborted()
+          }
+          transferPhase.value = 'saving'
+        },
+      })
       if (getAccessToken() === token && !attempt.signal.aborted)
-        transferMessage.value = result.notice
+        transferMessage.value = notice
     } else {
       if (lastObjectUrl) URL.revokeObjectURL(lastObjectUrl)
       lastObjectUrl = URL.createObjectURL(binary)
@@ -316,12 +318,12 @@ onBeforeUnmount(() => {
                     下载文件
                   </button>
                   <button
-                    v-if="file.fileName.toLowerCase().endsWith('.astra')"
+                    v-if="creativePackageImportLabel(file.fileName)"
                     class="art-button"
                     :disabled="item.state !== 'ACTIVE' || busy || Boolean(transfer)"
                     @click="receiveAsset(file, 'import')"
                   >
-                    导入为新项目
+                    {{ creativePackageImportLabel(file.fileName) }}
                   </button>
                 </div>
               </li>
