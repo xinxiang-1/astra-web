@@ -1,0 +1,63 @@
+{
+  "passed": true,
+  "scope": "Existing public DM Sans font hosted on same origin, original style preserved; not entire commercial completion",
+  "assets": {
+    "files": 4,
+    "bytes": 137824,
+    "originalFontBytesUnchanged": true,
+    "OFLRetained": true,
+    "originalFaceRules": 8
+  },
+  "browsers": {
+    "font-edge": {
+      "browser": "154.0.4258.62",
+      "pixelCases": 64,
+      "routeCases": 16,
+      "pageErrors": []
+    },
+    "font-chrome": {
+      "browser": "154.0.8037.98",
+      "pixelCases": 64,
+      "routeCases": 16,
+      "pageErrors": []
+    },
+    "shell-edge": {
+      "browser": "154.0.4258.62",
+      "pixelCases": 0,
+      "routeCases": 88,
+      "pageErrors": []
+    },
+    "shell-chrome": {
+      "browser": "154.0.8037.98",
+      "pixelCases": 0,
+      "routeCases": 88,
+      "pageErrors": []
+    }
+  },
+  "additional": {
+    "startup": [
+      "startup-edge.json",
+      "startup-chrome.json"
+    ],
+    "baseFontAssetsOnly": [
+      "base-edge.json",
+      "base-chrome.json"
+    ],
+    "lazyPreviewDecode": "home-scroll-probe.json"
+  },
+  "checks": {
+    "typeCheck": "passed",
+    "eslint": "passed",
+    "rootBuild": "passed with existing warnings",
+    "baseBuild": "passed with existing warnings",
+    "backend": "docs only; no backend tests"
+  },
+  "limits": [
+    "No overall weak-network speed/CLS/FPS/peak memory measured",
+    "No entire-site subdirectory routing certification",
+    "Chinese fonts still system fallback",
+    "No actual phones/Safari/print/commercial aesthetic acceptance",
+    "No entire portrait/video or six-direction completion"
+  ],
+  "overallGoal": "active"
+}

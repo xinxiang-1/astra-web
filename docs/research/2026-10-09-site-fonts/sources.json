@@ -1,0 +1,140 @@
+{
+  "retrievedAt": "2026-10-09T03:08:50.623149+00:00",
+  "cssUrl": "https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap",
+  "cssSha256": "760a447fdb9bac176c4e6e0678f8c3ef681468d6c0a701232bbf498819ddc5a9",
+  "cssUserAgent": "Chrome/154 Windows desktop",
+  "fontFiles": [
+    {
+      "url": "https://fonts.gstatic.com/s/dmsans/v17/rP2Wp2ywxg089UriCZaSExdy3sGt9zz86GPwyKK58VXh.woff2",
+      "file": "rP2Wp2ywxg089UriCZaSExdy3sGt9zz86GPwyKK58VXh.woff2",
+      "bytes": 15344,
+      "sha256": "2a32f58c4865640d84d60e6bade92c9345d8ad70376e6bdae4c0553d2f5b6f31",
+      "metadata": {
+        "0": "Copyright 2014 The DM Sans Project Authors (https://github.com/googlefonts/dm-fonts)",
+        "1": "DM Sans 9pt",
+        "2": "Italic",
+        "5": "Version 4.004;gftools[0.9.30]",
+        "13": null,
+        "14": "https://scripts.sil.org/OFL"
+      },
+      "axes": {
+        "opsz": [
+          9.0,
+          9.0,
+          40.0
+        ]
+      },
+      "unicodeMappings": 149
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/dmsans/v17/rP2Wp2ywxg089UriCZaSExdy3sGt9zz86GPwyKy58Q.woff2",
+      "file": "rP2Wp2ywxg089UriCZaSExdy3sGt9zz86GPwyKy58Q.woff2",
+      "bytes": 28464,
+      "sha256": "71f3c9851c5a94ad14308d00b15ea2ec207b65ba80a0e9a43d45b2ee9ea631bd",
+      "metadata": {
+        "0": "Copyright 2014 The DM Sans Project Authors (https://github.com/googlefonts/dm-fonts)",
+        "1": "DM Sans 9pt",
+        "2": "Italic",
+        "5": "Version 4.004;gftools[0.9.30]",
+        "13": null,
+        "14": "https://scripts.sil.org/OFL"
+      },
+      "axes": {
+        "opsz": [
+          9.0,
+          9.0,
+          40.0
+        ]
+      },
+      "unicodeMappings": 222
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/dmsans/v17/rP2Hp2ywxg089UriCZ2IHSeH.woff2",
+      "file": "rP2Hp2ywxg089UriCZ2IHSeH.woff2",
+      "bytes": 31292,
+      "sha256": "5d18d31d23ada61ebee1d589b11d5da30db9e158f589d5e35221ba2b1a45de54",
+      "metadata": {
+        "0": "Copyright 2014 The DM Sans Project Authors (https://github.com/googlefonts/dm-fonts)",
+        "1": "DM Sans 9pt",
+        "2": "Regular",
+        "5": "Version 4.004;gftools[0.9.30]",
+        "13": null,
+        "14": "https://scripts.sil.org/OFL"
+      },
+      "axes": {
+        "opsz": [
+          9.0,
+          9.0,
+          40.0
+        ],
+        "wght": [
+          100.0,
+          400.0,
+          1000.0
+        ]
+      },
+      "unicodeMappings": 149
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/dmsans/v17/rP2Hp2ywxg089UriCZOIHQ.woff2",
+      "file": "rP2Hp2ywxg089UriCZOIHQ.woff2",
+      "bytes": 62724,
+      "sha256": "ca72d2bcea8f4daa783dbdfa2d9b46068c3ce38168e05918fb867aa453b4f890",
+      "metadata": {
+        "0": "Copyright 2014 The DM Sans Project Authors (https://github.com/googlefonts/dm-fonts)",
+        "1": "DM Sans 9pt",
+        "2": "Regular",
+        "5": "Version 4.004;gftools[0.9.30]",
+        "13": null,
+        "14": "https://scripts.sil.org/OFL"
+      },
+      "axes": {
+        "opsz": [
+          9.0,
+          9.0,
+          40.0
+        ],
+        "wght": [
+          100.0,
+          400.0,
+          1000.0
+        ]
+      },
+      "unicodeMappings": 222
+    }
+  ],
+  "license": {
+    "sourceUrl": "https://api.github.com/repos/google/fonts/git/blobs/4430b85ac62998e2edb914360f9ebdfe43f4deaa",
+    "googleFontsCommit": "5e8a3ba899557829a76cfdac30fa512bda91d7ca",
+    "upstreamGitBlobSha": "4430b85ac62998e2edb914360f9ebdfe43f4deaa",
+    "sha256": "9af36190332437f5ecd09974de43c1f7c77a310a996cdd8ceb25628b458840e1",
+    "bytes": 4482
+  },
+  "passed": true,
+  "localFiles": [
+    {
+      "file": "dm-sans-italic-latin-ext-v17-2a32f58c.woff2",
+      "url": "https://fonts.gstatic.com/s/dmsans/v17/rP2Wp2ywxg089UriCZaSExdy3sGt9zz86GPwyKK58VXh.woff2",
+      "bytes": 15344,
+      "sha256": "2a32f58c4865640d84d60e6bade92c9345d8ad70376e6bdae4c0553d2f5b6f31"
+    },
+    {
+      "file": "dm-sans-italic-latin-v17-71f3c985.woff2",
+      "url": "https://fonts.gstatic.com/s/dmsans/v17/rP2Wp2ywxg089UriCZaSExdy3sGt9zz86GPwyKy58Q.woff2",
+      "bytes": 28464,
+      "sha256": "71f3c9851c5a94ad14308d00b15ea2ec207b65ba80a0e9a43d45b2ee9ea631bd"
+    },
+    {
+      "file": "dm-sans-normal-latin-ext-v17-5d18d31d.woff2",
+      "url": "https://fonts.gstatic.com/s/dmsans/v17/rP2Hp2ywxg089UriCZ2IHSeH.woff2",
+      "bytes": 31292,
+      "sha256": "5d18d31d23ada61ebee1d589b11d5da30db9e158f589d5e35221ba2b1a45de54"
+    },
+    {
+      "file": "dm-sans-normal-latin-v17-ca72d2bc.woff2",
+      "url": "https://fonts.gstatic.com/s/dmsans/v17/rP2Hp2ywxg089UriCZOIHQ.woff2",
+      "bytes": 62724,
+      "sha256": "ca72d2bcea8f4daa783dbdfa2d9b46068c3ce38168e05918fb867aa453b4f890"
+    }
+  ]
+}

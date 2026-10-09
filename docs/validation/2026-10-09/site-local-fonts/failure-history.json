@@ -1,0 +1,20 @@
+{
+  "failures": [
+    {
+      "source": "test-results/site-local-font-shell-edge-r1/failure.json",
+      "result": "failed",
+      "reason": "Historical test expected fixed dark header despite prior dual-theme implementation; corrected explicit light/dark and 92% immersive contract"
+    },
+    {
+      "source": "test-results/site-local-font-edge-r1.log",
+      "result": "failed before browser",
+      "reason": "Windows CRLF vs captured LF and comment matching; only line endings normalized, declarations and RGBA/width remain strict",
+      "excerpt": "node:internal/modules/run_main:107\n    triggerUncaughtException(\n    ^\n\nAssertionError [ERR_ASSERTION]: Style, weight, display and Unicode declarations unchanged\n+ actual - expected\n\n+ '/* Exact DM Sans v17 web fonts; source and OFL: public/fonts/brand/SOURCES.md. */\\r\\n' +\n+   '/* latin-ext */\\r\\n' +\n+   '@font-face {\\r\\n' +\n+   \"  font-family: 'DM Sans';\\r\\n\" +\n+   '  font-style: italic;\\r\\n' +\n+   '  font-weight: 400;\\r\\n' +\n+   '  font-display: swap;\\r\\n' +\n+   \"  src: url(https://fonts.gstatic.com/s/dmsans/v17/rP2Wp2ywxg089UriCZaSExdy3sGt9zz86GPwyKK58VXh.woff2) format('woff2');\\r\\n\" +\n+   '  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2"
+    }
+  ],
+  "supersededPassedStartup": [
+    "test-results/site-local-font-startup-edge-r1.json",
+    "test-results/site-local-font-startup-chrome-r1.json"
+  ],
+  "supersededReason": "Final R2 adds visible, nonempty editor header assertion; earlier passes not counted"
+}

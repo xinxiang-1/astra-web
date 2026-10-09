@@ -1,0 +1,769 @@
+{
+  "passed": true,
+  "browser": "154.0.4258.62",
+  "assets": [
+    {
+      "file": "dm-sans-italic-latin-ext-v17-2a32f58c.woff2",
+      "bytes": 15344,
+      "sha256": "2a32f58c4865640d84d60e6bade92c9345d8ad70376e6bdae4c0553d2f5b6f31",
+      "status": 200,
+      "mime": "font/woff2"
+    },
+    {
+      "file": "dm-sans-italic-latin-v17-71f3c985.woff2",
+      "bytes": 28464,
+      "sha256": "71f3c9851c5a94ad14308d00b15ea2ec207b65ba80a0e9a43d45b2ee9ea631bd",
+      "status": 200,
+      "mime": "font/woff2"
+    },
+    {
+      "file": "dm-sans-normal-latin-ext-v17-5d18d31d.woff2",
+      "bytes": 31292,
+      "sha256": "5d18d31d23ada61ebee1d589b11d5da30db9e158f589d5e35221ba2b1a45de54",
+      "status": 200,
+      "mime": "font/woff2"
+    },
+    {
+      "file": "dm-sans-normal-latin-v17-ca72d2bc.woff2",
+      "bytes": 62724,
+      "sha256": "ca72d2bcea8f4daa783dbdfa2d9b46068c3ce38168e05918fb867aa453b4f890",
+      "status": 200,
+      "mime": "font/woff2"
+    }
+  ],
+  "pixels": [
+    {
+      "style": "normal",
+      "weight": 400,
+      "size": 12,
+      "text": "Astra 0123456789",
+      "width": 101.43588256835938,
+      "differingBytes": 0,
+      "rgbaSha256": "7e12a644e9fe9c466202a1ba241f9d9f4a3f049d6ce9aeeb332d7b4708f21598"
+    },
+    {
+      "style": "normal",
+      "weight": 400,
+      "size": 12,
+      "text": "Ångström Łódź Œuvre",
+      "width": 125.32789611816406,
+      "differingBytes": 0,
+      "rgbaSha256": "46558ee543b68e3fb665bbfd2cfd44d0622827d13c4969157ac4e3f5956d75f9"
+    },
+    {
+      "style": "normal",
+      "weight": 400,
+      "size": 12,
+      "text": "Light → Dark — zoom +",
+      "width": 128.5798797607422,
+      "differingBytes": 0,
+      "rgbaSha256": "d629df45573583b7e26df41849fafa83f639daa6af1e79dbf5155147428875e2"
+    },
+    {
+      "style": "normal",
+      "weight": 400,
+      "size": 12,
+      "text": "名字画 Astra 16K",
+      "width": 90.49192810058594,
+      "differingBytes": 0,
+      "rgbaSha256": "b3b189e64a6cabfb030839c9eb0032c1fdc52ba5369a0862ab19eb3677601f47"
+    },
+    {
+      "style": "normal",
+      "weight": 400,
+      "size": 16,
+      "text": "Astra 0123456789",
+      "width": 134.73587036132812,
+      "differingBytes": 0,
+      "rgbaSha256": "2aa3cf086fed487dc23db87bba318554b3c262c4c758a550baec5c00f76824c5"
+    },
+    {
+      "style": "normal",
+      "weight": 400,
+      "size": 16,
+      "text": "Ångström Łódź Œuvre",
+      "width": 166.25587463378906,
+      "differingBytes": 0,
+      "rgbaSha256": "8617b41326bc1d89f2ff9b3196ecd3aa2849a3622dcd703fa43c67e7b144e0ac"
+    },
+    {
+      "style": "normal",
+      "weight": 400,
+      "size": 16,
+      "text": "Light → Dark — zoom +",
+      "width": 170.89585876464844,
+      "differingBytes": 0,
+      "rgbaSha256": "0745813dce04e5f074b7c74a0c9f568bc12a13af2ab13e75b9fe1883d87aac2b"
+    },
+    {
+      "style": "normal",
+      "weight": 400,
+      "size": 16,
+      "text": "名字画 Astra 16K",
+      "width": 120.03193664550781,
+      "differingBytes": 0,
+      "rgbaSha256": "4f93782674502be1288ba773540344fdbb37bfb9d3c88a6e59c0ea1155fd100a"
+    },
+    {
+      "style": "normal",
+      "weight": 400,
+      "size": 32,
+      "text": "Astra 0123456789",
+      "width": 257.5359191894531,
+      "differingBytes": 0,
+      "rgbaSha256": "643341c29642a4f7e9644a0e249f0c37d29ad1d158a9b63ef4a2306bb58825b1"
+    },
+    {
+      "style": "normal",
+      "weight": 400,
+      "size": 32,
+      "text": "Ångström Łódź Œuvre",
+      "width": 317.5998840332031,
+      "differingBytes": 0,
+      "rgbaSha256": "df9d654a2ac9dc04da0627426b3571d3e88e3feb028aad0287e9f276da5e928c"
+    },
+    {
+      "style": "normal",
+      "weight": 400,
+      "size": 32,
+      "text": "Light → Dark — zoom +",
+      "width": 327.27984619140625,
+      "differingBytes": 0,
+      "rgbaSha256": "d39b22013e201d7af893c58b4dd1426f64cd83cbb36a3aa111ef035542f44b7e"
+    },
+    {
+      "style": "normal",
+      "weight": 400,
+      "size": 32,
+      "text": "名字画 Astra 16K",
+      "width": 230.78395080566406,
+      "differingBytes": 0,
+      "rgbaSha256": "cf5093f54704c0be5bd2e8f975d78b83e9e1a6e59496361ed0e6e59dbb8da8ee"
+    },
+    {
+      "style": "normal",
+      "weight": 400,
+      "size": 72,
+      "text": "Astra 0123456789",
+      "width": 553.4638671875,
+      "differingBytes": 0,
+      "rgbaSha256": "8e2e5f5a0f39d8b13eaa81a0b22464e85863b0ccd1aac02349cf32dfca2c616b"
+    },
+    {
+      "style": "normal",
+      "weight": 400,
+      "size": 72,
+      "text": "Ångström Łódź Œuvre",
+      "width": 682.559814453125,
+      "differingBytes": 0,
+      "rgbaSha256": "147c48c786070ccda7256bcf53348c95f4661f80a53ad7ff7a6c0fc7d2132763"
+    },
+    {
+      "style": "normal",
+      "weight": 400,
+      "size": 72,
+      "text": "Light → Dark — zoom +",
+      "width": 704.3758544921875,
+      "differingBytes": 0,
+      "rgbaSha256": "a70c4bbb303e8bdf034d4b6a3365f78bf6c3bb31b9f19732c2a3e8fc01b543e6"
+    },
+    {
+      "style": "normal",
+      "weight": 400,
+      "size": 72,
+      "text": "名字画 Astra 16K",
+      "width": 499.7519226074219,
+      "differingBytes": 0,
+      "rgbaSha256": "6d9404d7a055bbc1c758ba28b3da0b5df8cb9cf5e7c4f173e7c455151ccc8e5c"
+    },
+    {
+      "style": "normal",
+      "weight": 500,
+      "size": 12,
+      "text": "Astra 0123456789",
+      "width": 102.93309020996094,
+      "differingBytes": 0,
+      "rgbaSha256": "497d027db2d19e3d280f7b2ceaa67418f8c79b7742c4ace7417f28ff1c9b09d1"
+    },
+    {
+      "style": "normal",
+      "weight": 500,
+      "size": 12,
+      "text": "Ångström Łódź Œuvre",
+      "width": 127.28617858886719,
+      "differingBytes": 0,
+      "rgbaSha256": "595862339b0349926ea11a8ba27d00cf552a954ec4fb1565b7f413dbb162beec"
+    },
+    {
+      "style": "normal",
+      "weight": 500,
+      "size": 12,
+      "text": "Light → Dark — zoom +",
+      "width": 130.12782287597656,
+      "differingBytes": 0,
+      "rgbaSha256": "731299909b1ca74fb4130c675b061fac0a9bfb900d796cc9d1a86779d9635b73"
+    },
+    {
+      "style": "normal",
+      "weight": 500,
+      "size": 12,
+      "text": "名字画 Astra 16K",
+      "width": 91.56239318847656,
+      "differingBytes": 0,
+      "rgbaSha256": "08ddef83a4377003907f36b9f43afe98dec04eb28da4bedbd4cbedf66457cb71"
+    },
+    {
+      "style": "normal",
+      "weight": 500,
+      "size": 16,
+      "text": "Astra 0123456789",
+      "width": 136.63616943359375,
+      "differingBytes": 0,
+      "rgbaSha256": "629d9bea5222ed00e42b0a6426257a00d7734e31bd99998e24faaefde346e069"
+    },
+    {
+      "style": "normal",
+      "weight": 500,
+      "size": 16,
+      "text": "Ångström Łódź Œuvre",
+      "width": 168.85098266601562,
+      "differingBytes": 0,
+      "rgbaSha256": "13b20acc78c530108fa3f127c6c2ee64b1dc56b0a14a652c8b48e1ca48f25724"
+    },
+    {
+      "style": "normal",
+      "weight": 500,
+      "size": 16,
+      "text": "Light → Dark — zoom +",
+      "width": 172.8318634033203,
+      "differingBytes": 0,
+      "rgbaSha256": "f4afae9c7665fbf86f5c8232b5d930d8d1880f8c3b106a90dec42937ed76ce42"
+    },
+    {
+      "style": "normal",
+      "weight": 500,
+      "size": 16,
+      "text": "名字画 Astra 16K",
+      "width": 121.36322021484375,
+      "differingBytes": 0,
+      "rgbaSha256": "d3981d55449fd6cafcf67bb98f0b565990b3ffde8062f90065f6b2a291d02581"
+    },
+    {
+      "style": "normal",
+      "weight": 500,
+      "size": 32,
+      "text": "Astra 0123456789",
+      "width": 261.676025390625,
+      "differingBytes": 0,
+      "rgbaSha256": "cf655d9ce7ee873c33b95c4d5d3558606e8f0c2217701928cf32689f6355ae2e"
+    },
+    {
+      "style": "normal",
+      "weight": 500,
+      "size": 32,
+      "text": "Ångström Łódź Œuvre",
+      "width": 323.14215087890625,
+      "differingBytes": 0,
+      "rgbaSha256": "9894003cf23a3ce8613c2db0e7828d960eb5c70eb4019bfbd488b2ff955351cf"
+    },
+    {
+      "style": "normal",
+      "weight": 500,
+      "size": 32,
+      "text": "Light → Dark — zoom +",
+      "width": 331.8999938964844,
+      "differingBytes": 0,
+      "rgbaSha256": "4b249fb762266eec5528fed69187ae0767583366565396ccba7ad593a20c84ae"
+    },
+    {
+      "style": "normal",
+      "weight": 500,
+      "size": 32,
+      "text": "名字画 Astra 16K",
+      "width": 233.89456176757812,
+      "differingBytes": 0,
+      "rgbaSha256": "65c9d7cce1b7f9186c447404179953023df9b1ab9aa09576b4e3c404b64c7227"
+    },
+    {
+      "style": "normal",
+      "weight": 500,
+      "size": 72,
+      "text": "Astra 0123456789",
+      "width": 564.47900390625,
+      "differingBytes": 0,
+      "rgbaSha256": "d7ad649ff172ea8201fc42dc6c41ee7eeee3d7b9cbcc13fedd6ab096caa2a515"
+    },
+    {
+      "style": "normal",
+      "weight": 500,
+      "size": 72,
+      "text": "Ångström Łódź Œuvre",
+      "width": 696.5418701171875,
+      "differingBytes": 0,
+      "rgbaSha256": "67d07b7e7212fe61047f1554962e92f19ce79e5b08b16e3bef8f445cddf3de35"
+    },
+    {
+      "style": "normal",
+      "weight": 500,
+      "size": 72,
+      "text": "Light → Dark — zoom +",
+      "width": 717.2465209960938,
+      "differingBytes": 0,
+      "rgbaSha256": "4338b3e632e88c7506a2c43495d4e91132f5873a3f047c6359b43bdb19db0994"
+    },
+    {
+      "style": "normal",
+      "weight": 500,
+      "size": 72,
+      "text": "名字画 Astra 16K",
+      "width": 508.2628173828125,
+      "differingBytes": 0,
+      "rgbaSha256": "47445a5e0513d5fd0b4d48c10f0a63c786fac960a48cd54ecb284ac793d43465"
+    },
+    {
+      "style": "normal",
+      "weight": 600,
+      "size": 12,
+      "text": "Astra 0123456789",
+      "width": 104.84967041015625,
+      "differingBytes": 0,
+      "rgbaSha256": "d3253b59b9e99b3abd583ba763fca9695cf83bb56fdee6c13b22ec0232c02035"
+    },
+    {
+      "style": "normal",
+      "weight": 600,
+      "size": 12,
+      "text": "Ångström Łódź Œuvre",
+      "width": 129.80015563964844,
+      "differingBytes": 0,
+      "rgbaSha256": "5b7317321b44917f66cc16b013afb4e0679c8b4a2f97d1fb9856b2013c29a510"
+    },
+    {
+      "style": "normal",
+      "weight": 600,
+      "size": 12,
+      "text": "Light → Dark — zoom +",
+      "width": 132.05987548828125,
+      "differingBytes": 0,
+      "rgbaSha256": "adf29cd07871c09dd75dda77b354c8cdb0648f72c7e4bd47188c96f7ed40e4a6"
+    },
+    {
+      "style": "normal",
+      "weight": 600,
+      "size": 12,
+      "text": "名字画 Astra 16K",
+      "width": 92.87953186035156,
+      "differingBytes": 0,
+      "rgbaSha256": "3322a788b9e09549932d821f1401295868f3797e59d34d14b6c30c0192c1fdb6"
+    },
+    {
+      "style": "normal",
+      "weight": 600,
+      "size": 16,
+      "text": "Astra 0123456789",
+      "width": 138.9516143798828,
+      "differingBytes": 0,
+      "rgbaSha256": "b4074f7a03560a2563c036de33912980ed5af16aedfca9e1c084429258086df1"
+    },
+    {
+      "style": "normal",
+      "weight": 600,
+      "size": 16,
+      "text": "Ångström Łódź Œuvre",
+      "width": 172.02691650390625,
+      "differingBytes": 0,
+      "rgbaSha256": "0e874af7b8a45a3f6a9589823fd1200907fce3e72bbe95873e1fa2269515e4d4"
+    },
+    {
+      "style": "normal",
+      "weight": 600,
+      "size": 16,
+      "text": "Light → Dark — zoom +",
+      "width": 175.35984802246094,
+      "differingBytes": 0,
+      "rgbaSha256": "ebf5ba1dc7b15836129008cf5ad87e3340f56849826ec423c3e635b9d4423262"
+    },
+    {
+      "style": "normal",
+      "weight": 600,
+      "size": 16,
+      "text": "名字画 Astra 16K",
+      "width": 122.99139404296875,
+      "differingBytes": 0,
+      "rgbaSha256": "23727b75edfae4a210e7058fea3e704b3a35d4d42eb1cc95c3a087a42c5b1361"
+    },
+    {
+      "style": "normal",
+      "weight": 600,
+      "size": 32,
+      "text": "Astra 0123456789",
+      "width": 266.88323974609375,
+      "differingBytes": 0,
+      "rgbaSha256": "3dc36a6d895ea448d5887545c98e38a12fb4283057f18510c2da9cbea0a994fc"
+    },
+    {
+      "style": "normal",
+      "weight": 600,
+      "size": 32,
+      "text": "Ångström Łódź Œuvre",
+      "width": 330.10198974609375,
+      "differingBytes": 0,
+      "rgbaSha256": "922678477167fd9fb58ea4b2660f0e85a275ca77d3f2be12d1250326b27a8b28"
+    },
+    {
+      "style": "normal",
+      "weight": 600,
+      "size": 32,
+      "text": "Light → Dark — zoom +",
+      "width": 338.003173828125,
+      "differingBytes": 0,
+      "rgbaSha256": "88cc3be38e37e4b4275df92cc6e30922d78ec4b34f3e6e700f928b92bac82010"
+    },
+    {
+      "style": "normal",
+      "weight": 600,
+      "size": 32,
+      "text": "名字画 Astra 16K",
+      "width": 237.85482788085938,
+      "differingBytes": 0,
+      "rgbaSha256": "0c26fb9ac95f9d6f4084630073b98036cb34979482ad7bbb67232270c9997f01"
+    },
+    {
+      "style": "normal",
+      "weight": 600,
+      "size": 72,
+      "text": "Astra 0123456789",
+      "width": 577.9241333007812,
+      "differingBytes": 0,
+      "rgbaSha256": "52faeba498d7d29a04d037bcc1619cbe27ebc6525d97266a29832c7f584aa5ee"
+    },
+    {
+      "style": "normal",
+      "weight": 600,
+      "size": 72,
+      "text": "Ångström Łódź Œuvre",
+      "width": 713.8576049804688,
+      "differingBytes": 0,
+      "rgbaSha256": "7d72e7f26db855f85648f2d52f1885c0f9b6d71f42900ef97a953e8257e29cb0"
+    },
+    {
+      "style": "normal",
+      "weight": 600,
+      "size": 72,
+      "text": "Light → Dark — zoom +",
+      "width": 733.4067993164062,
+      "differingBytes": 0,
+      "rgbaSha256": "ea8f5f65c97b64ceb0172639834dccbcf13908872c86bfc2ae8a439f83b1222c"
+    },
+    {
+      "style": "normal",
+      "weight": 600,
+      "size": 72,
+      "text": "名字画 Astra 16K",
+      "width": 518.9014892578125,
+      "differingBytes": 0,
+      "rgbaSha256": "910c6bf572ff6edab9ce5e44f04d2bf08a67d98c062a4bd9a2804c08cf70c80c"
+    },
+    {
+      "style": "italic",
+      "weight": 400,
+      "size": 12,
+      "text": "Astra 0123456789",
+      "width": 102.03350830078125,
+      "differingBytes": 0,
+      "rgbaSha256": "c7e6b091ef8f64345fe2745e9a7ad7fba910987405b6d553465118ed14d1815d"
+    },
+    {
+      "style": "italic",
+      "weight": 400,
+      "size": 12,
+      "text": "Ångström Łódź Œuvre",
+      "width": 126.0706787109375,
+      "differingBytes": 0,
+      "rgbaSha256": "cc09369d13d19f1d3e093adf1e3c50c8711974aede649795ce2820b0acc8470d"
+    },
+    {
+      "style": "italic",
+      "weight": 400,
+      "size": 12,
+      "text": "Light → Dark — zoom +",
+      "width": 128.98785400390625,
+      "differingBytes": 0,
+      "rgbaSha256": "56fc577020b4abfc5b5c1b926dc8f61907736a1b432b30f360ecdf9243be33f3"
+    },
+    {
+      "style": "italic",
+      "weight": 400,
+      "size": 12,
+      "text": "名字画 Astra 16K",
+      "width": 90.82192993164062,
+      "differingBytes": 0,
+      "rgbaSha256": "fdc9c64e868e431bdafc35e173dbbe97650a203eb9611067cfd52911e89ff386"
+    },
+    {
+      "style": "italic",
+      "weight": 400,
+      "size": 16,
+      "text": "Astra 0123456789",
+      "width": 135.39505004882812,
+      "differingBytes": 0,
+      "rgbaSha256": "6f6292bb2fcc76d2331093bf4a97246ef12d4e5bacac337ce238da0fb0e30bfa"
+    },
+    {
+      "style": "italic",
+      "weight": 400,
+      "size": 16,
+      "text": "Ångström Łódź Œuvre",
+      "width": 167.17747497558594,
+      "differingBytes": 0,
+      "rgbaSha256": "d50429ee2afcf351a0c0425ee169adcd88bd75f974a181ee6b7e4748a2d7f6f8"
+    },
+    {
+      "style": "italic",
+      "weight": 400,
+      "size": 16,
+      "text": "Light → Dark — zoom +",
+      "width": 172.14385986328125,
+      "differingBytes": 0,
+      "rgbaSha256": "2e0e28392a1c72a11d7b85a6c416d63ceea9c323313d28f25c52ae29e163c2ab"
+    },
+    {
+      "style": "italic",
+      "weight": 400,
+      "size": 16,
+      "text": "名字画 Astra 16K",
+      "width": 120.52792358398438,
+      "differingBytes": 0,
+      "rgbaSha256": "e887587c6bc6e8c33e8a751c64d85644e5eececdbc73b05d5f6453c8971efa1e"
+    },
+    {
+      "style": "italic",
+      "weight": 400,
+      "size": 32,
+      "text": "Astra 0123456789",
+      "width": 258.94384765625,
+      "differingBytes": 0,
+      "rgbaSha256": "fa64fe91dd5946bb0b312f89dd7cb46abc59664e16519914bda61da6a14a6dd2"
+    },
+    {
+      "style": "italic",
+      "weight": 400,
+      "size": 32,
+      "text": "Ångström Łódź Œuvre",
+      "width": 319.9998779296875,
+      "differingBytes": 0,
+      "rgbaSha256": "c30f8d04601d6061aa58f906c4ca1d1e9f2327fe4d9e228cffd167efc7879043"
+    },
+    {
+      "style": "italic",
+      "weight": 400,
+      "size": 32,
+      "text": "Light → Dark — zoom +",
+      "width": 327.93585205078125,
+      "differingBytes": 0,
+      "rgbaSha256": "2b6ccc79159c44245fb53e589e5c5d0920fcdb4ef5dac7b2ac04e39ea0da5d15"
+    },
+    {
+      "style": "italic",
+      "weight": 400,
+      "size": 32,
+      "text": "名字画 Astra 16K",
+      "width": 231.74391174316406,
+      "differingBytes": 0,
+      "rgbaSha256": "22c24d5989f8bb6e833c67cd1d495c86756960ec9c7e671aa0cf725128b43b49"
+    },
+    {
+      "style": "italic",
+      "weight": 400,
+      "size": 72,
+      "text": "Astra 0123456789",
+      "width": 557.3518676757812,
+      "differingBytes": 0,
+      "rgbaSha256": "ea009ed5d317d319af65c5de8a6bcff5b4a3a6a2b7fb7592820684422acada3e"
+    },
+    {
+      "style": "italic",
+      "weight": 400,
+      "size": 72,
+      "text": "Ångström Łódź Œuvre",
+      "width": 689.7598876953125,
+      "differingBytes": 0,
+      "rgbaSha256": "0513f3a0c103c1f71dda52b44682c99a66fda4f9534f5c4dd32a8d7e7defd4f9"
+    },
+    {
+      "style": "italic",
+      "weight": 400,
+      "size": 72,
+      "text": "Light → Dark — zoom +",
+      "width": 700.703857421875,
+      "differingBytes": 0,
+      "rgbaSha256": "cd3f3382e788586580db54eb89c0656351feff76c9df5da25c4110b394ffb128"
+    },
+    {
+      "style": "italic",
+      "weight": 400,
+      "size": 72,
+      "text": "名字画 Astra 16K",
+      "width": 501.7679138183594,
+      "differingBytes": 0,
+      "rgbaSha256": "fced236b2d8f9bf7eb9c7e98fc3f957aa2aebb325617da36f76d45af3fbd5081"
+    }
+  ],
+  "routes": [
+    {
+      "route": "/tools",
+      "theme": "light",
+      "width": 1440,
+      "fontLoaded": true,
+      "bodyFamily": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+      "scrollWidth": 1440
+    },
+    {
+      "route": "/signature-portrait",
+      "theme": "light",
+      "width": 1440,
+      "fontLoaded": true,
+      "bodyFamily": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+      "scrollWidth": 1440
+    },
+    {
+      "route": "/login",
+      "theme": "light",
+      "width": 1440,
+      "fontLoaded": true,
+      "bodyFamily": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+      "scrollWidth": 1440
+    },
+    {
+      "route": "/ascii-art",
+      "theme": "light",
+      "width": 1440,
+      "fontLoaded": true,
+      "bodyFamily": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+      "scrollWidth": 1440
+    },
+    {
+      "route": "/tools",
+      "theme": "dark",
+      "width": 1440,
+      "fontLoaded": true,
+      "bodyFamily": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+      "scrollWidth": 1440
+    },
+    {
+      "route": "/signature-portrait",
+      "theme": "dark",
+      "width": 1440,
+      "fontLoaded": true,
+      "bodyFamily": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+      "scrollWidth": 1440
+    },
+    {
+      "route": "/login",
+      "theme": "dark",
+      "width": 1440,
+      "fontLoaded": true,
+      "bodyFamily": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+      "scrollWidth": 1440
+    },
+    {
+      "route": "/ascii-art",
+      "theme": "dark",
+      "width": 1440,
+      "fontLoaded": true,
+      "bodyFamily": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+      "scrollWidth": 1440
+    },
+    {
+      "route": "/tools",
+      "theme": "light",
+      "width": 390,
+      "fontLoaded": true,
+      "bodyFamily": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+      "scrollWidth": 390
+    },
+    {
+      "route": "/signature-portrait",
+      "theme": "light",
+      "width": 390,
+      "fontLoaded": true,
+      "bodyFamily": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+      "scrollWidth": 390
+    },
+    {
+      "route": "/login",
+      "theme": "light",
+      "width": 390,
+      "fontLoaded": true,
+      "bodyFamily": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+      "scrollWidth": 390
+    },
+    {
+      "route": "/ascii-art",
+      "theme": "light",
+      "width": 390,
+      "fontLoaded": true,
+      "bodyFamily": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+      "scrollWidth": 390
+    },
+    {
+      "route": "/tools",
+      "theme": "dark",
+      "width": 390,
+      "fontLoaded": true,
+      "bodyFamily": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+      "scrollWidth": 390
+    },
+    {
+      "route": "/signature-portrait",
+      "theme": "dark",
+      "width": 390,
+      "fontLoaded": true,
+      "bodyFamily": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+      "scrollWidth": 390
+    },
+    {
+      "route": "/login",
+      "theme": "dark",
+      "width": 390,
+      "fontLoaded": true,
+      "bodyFamily": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+      "scrollWidth": 390
+    },
+    {
+      "route": "/ascii-art",
+      "theme": "dark",
+      "width": 390,
+      "fontLoaded": true,
+      "bodyFamily": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+      "scrollWidth": 390
+    }
+  ],
+  "failures": [
+    {
+      "case": "brand-font-404",
+      "editorOperable": true,
+      "separateSignatureFontLoaded": true
+    }
+  ],
+  "errors": [],
+  "noExternalFontRequests": true,
+  "localFontRequests": [
+    "http://127.0.0.1:4198/fonts/brand/dm-sans-normal-latin-v17-ca72d2bc.woff2",
+    "http://127.0.0.1:4198/fonts/brand/dm-sans-normal-latin-v17-ca72d2bc.woff2",
+    "http://127.0.0.1:4198/fonts/brand/dm-sans-normal-latin-v17-ca72d2bc.woff2",
+    "http://127.0.0.1:4198/fonts/brand/dm-sans-normal-latin-v17-ca72d2bc.woff2",
+    "http://127.0.0.1:4198/fonts/brand/dm-sans-normal-latin-v17-ca72d2bc.woff2",
+    "http://127.0.0.1:4198/fonts/brand/dm-sans-normal-latin-v17-ca72d2bc.woff2",
+    "http://127.0.0.1:4198/fonts/brand/dm-sans-normal-latin-v17-ca72d2bc.woff2",
+    "http://127.0.0.1:4198/fonts/brand/dm-sans-normal-latin-v17-ca72d2bc.woff2",
+    "http://127.0.0.1:4198/fonts/brand/dm-sans-normal-latin-v17-ca72d2bc.woff2",
+    "http://127.0.0.1:4198/fonts/brand/dm-sans-normal-latin-v17-ca72d2bc.woff2",
+    "http://127.0.0.1:4198/fonts/brand/dm-sans-normal-latin-v17-ca72d2bc.woff2",
+    "http://127.0.0.1:4198/fonts/brand/dm-sans-normal-latin-v17-ca72d2bc.woff2",
+    "http://127.0.0.1:4198/fonts/brand/dm-sans-normal-latin-v17-ca72d2bc.woff2",
+    "http://127.0.0.1:4198/fonts/brand/dm-sans-normal-latin-v17-ca72d2bc.woff2",
+    "http://127.0.0.1:4198/fonts/brand/dm-sans-normal-latin-v17-ca72d2bc.woff2",
+    "http://127.0.0.1:4198/fonts/brand/dm-sans-normal-latin-v17-ca72d2bc.woff2"
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "browser": "154.0.4258.62",
+  "routes": [
+    {
+      "route": "/",
+      "theme": "light",
+      "width": 1440,
+      "title": "把照片变成由文字组成的作品 · Astra",
+      "scrollWidth": 1440,
+      "body": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(245, 243, 239)"
+      },
+      "heading": {
+        "font": "Georgia, \"Noto Serif SC\", \"Songti SC\", STSong, SimSun, serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      "header": {
+        "font": "\"DM Sans\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "color": "rgb(21, 25, 24)",
+        "background": "rgb(245, 243, 239)"
+      },
+      "headerCount": 1,
+      "headerBox": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 76
+      },
+      "effectPanelBox": null,
+      "rootTheme": "light",
+      "sharedFooter": 1,
+      "focusTarget": "-1"
+    }
+  ],
+  "navigation": {},
+  "controls": {},
+  "errors": [],
+  "scope": "routes-and-navigation",
+  "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n+ actual - expected\n\n+ 'rgb(245, 243, 239)'\n- 'rgb(17, 22, 21)'\n       ^\n\n    at file:///D:/my/project/astra/astra-web/scripts/site-shell-contract.mjs:122:18"
+}

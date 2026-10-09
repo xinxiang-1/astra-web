@@ -1,0 +1,191 @@
+vite v8.3.0 building client environment for production...
+transforming...
+[plugin rolldown:vite-resolve] Module "stream" has been externalized for browser compatibility, imported by "D:/my/project/astra/astra-web/node_modules/jszip/lib/readable-stream-browser.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
+✓ 2568 modules transformed.
+rendering chunks...
+computing gzip size...
+test-results/site-local-font-base-dist/assets/cutout.worker-auexTVCK.js                       2.09 kB
+test-results/site-local-font-base-dist/index.html                                             2.73 kB │ gzip:   0.95 kB
+test-results/site-local-font-base-dist/assets/wash-style.worker-Dp_9Ho4T.js                   3.15 kB
+test-results/site-local-font-base-dist/assets/layout.worker-vVaspecW.js                      12.03 kB
+test-results/site-local-font-base-dist/assets/raster.worker-BKlvidN1.js                      37.69 kB
+test-results/site-local-font-base-dist/assets/frame-render.worker-aEUkIqaz.js                46.59 kB
+test-results/site-local-font-base-dist/assets/worker-C5LZNsKY.mjs                            54.95 kB
+test-results/site-local-font-base-dist/assets/pptx.worker-CtaL8LO_.js                       580.59 kB
+test-results/site-local-font-base-dist/assets/ppt-native-Cz5DBbag.wasm                    1,557.72 kB │ gzip: 631.02 kB
+test-results/site-local-font-base-dist/assets/ppt-font-cjk-DxgKpThH.otf                  16,437.36 kB
+test-results/site-local-font-base-dist/assets/AdminNavigation-DTC2Ix_P.css                    0.47 kB │ gzip:   0.26 kB
+test-results/site-local-font-base-dist/assets/AstraLogo-wWzhdtVH.css                          0.51 kB │ gzip:   0.24 kB
+test-results/site-local-font-base-dist/assets/FilePreviewView-DoFChz9x.css                    1.45 kB │ gzip:   0.60 kB
+test-results/site-local-font-base-dist/assets/AccountCommerceView-C-mHeYQS.css                1.70 kB │ gzip:   0.62 kB
+test-results/site-local-font-base-dist/assets/FileUploadView-CdUcCKNa.css                     1.78 kB │ gzip:   0.72 kB
+test-results/site-local-font-base-dist/assets/UiSelect-BlFlgW8p.css                           1.90 kB │ gzip:   0.66 kB
+test-results/site-local-font-base-dist/assets/AdminRefundsView-r2p3K6SE.css                   2.69 kB │ gzip:   0.91 kB
+test-results/site-local-font-base-dist/assets/OrderDetailView-CFdA0PBw.css                    3.03 kB │ gzip:   0.88 kB
+test-results/site-local-font-base-dist/assets/GalleryView-msm35mVu.css                        3.31 kB │ gzip:   1.02 kB
+test-results/site-local-font-base-dist/assets/AsciiLoopView-DXoyb7yW.css                      3.38 kB │ gzip:   1.05 kB
+test-results/site-local-font-base-dist/assets/AsciiLiveView-CkX_Y3aF.css                      3.50 kB │ gzip:   1.13 kB
+test-results/site-local-font-base-dist/assets/CreationHelpView-ocowWPyF.css                   3.59 kB │ gzip:   1.03 kB
+test-results/site-local-font-base-dist/assets/ArtEngineView-DCswrtWQ.css                      3.63 kB │ gzip:   1.01 kB
+test-results/site-local-font-base-dist/assets/AdminPaymentVerificationView-B1oA4Lf2.css       3.69 kB │ gzip:   1.13 kB
+test-results/site-local-font-base-dist/assets/AdminRefundVerificationView-DU2cOBbc.css        3.69 kB │ gzip:   1.13 kB
+test-results/site-local-font-base-dist/assets/ProjectsView-B_UkPIBV.css                       4.04 kB │ gzip:   1.02 kB
+test-results/site-local-font-base-dist/assets/AdminReconciliationsView-D9y5FMHW.css           5.09 kB │ gzip:   1.38 kB
+test-results/site-local-font-base-dist/assets/CommerceCatalogView-D5G2Sch2.css                5.09 kB │ gzip:   1.35 kB
+test-results/site-local-font-base-dist/assets/TemplatesView-Ba9YuRkW.css                      9.24 kB │ gzip:   2.20 kB
+test-results/site-local-font-base-dist/assets/SignaturePortraitView-Dy_QnHsq.css             17.01 kB │ gzip:   4.02 kB
+test-results/site-local-font-base-dist/assets/index-JYeCn525.css                            455.96 kB │ gzip:  65.78 kB
+test-results/site-local-font-base-dist/assets/optionalCapabilities-CAskuR14.js                0.06 kB │ gzip:   0.06 kB
+test-results/site-local-font-base-dist/assets/layout-compute-CPj42Re6.js                      0.09 kB │ gzip:   0.11 kB
+test-results/site-local-font-base-dist/assets/config-BdNOF4nK.js                              0.38 kB │ gzip:   0.28 kB
+test-results/site-local-font-base-dist/assets/filePreview-D6kUjMQW.js                         0.46 kB │ gzip:   0.31 kB
+test-results/site-local-font-base-dist/assets/UiSelect-DS1nS_Pa.js                            0.51 kB │ gzip:   0.36 kB
+test-results/site-local-font-base-dist/assets/diff-BhdZizse.js                                0.58 kB │ gzip:   0.30 kB
+test-results/site-local-font-base-dist/assets/AdminNavigation-A38KB8Xv.js                     0.58 kB │ gzip:   0.42 kB
+test-results/site-local-font-base-dist/assets/json-PmyKWHmm.js                                0.58 kB │ gzip:   0.41 kB
+test-results/site-local-font-base-dist/assets/theme-DcRwkv-p.js                               0.66 kB │ gzip:   0.38 kB
+test-results/site-local-font-base-dist/assets/protobuf-DGOW1qT8.js                            0.67 kB │ gzip:   0.44 kB
+test-results/site-local-font-base-dist/assets/graphql-BHHhacaR.js                             0.70 kB │ gzip:   0.46 kB
+test-results/site-local-font-base-dist/assets/http-DdjbPXam.js                                0.80 kB │ gzip:   0.42 kB
+test-results/site-local-font-base-dist/assets/useApi-BPuI6ZR9-C2FYcPR3.js                     0.86 kB │ gzip:   0.47 kB
+test-results/site-local-font-base-dist/assets/thumbnail-C2upo7F1.js                           0.90 kB │ gzip:   0.49 kB
+test-results/site-local-font-base-dist/assets/ini-B1CroMsf.js                                 0.92 kB │ gzip:   0.53 kB
+test-results/site-local-font-base-dist/assets/layout-worker-client-Cg58yOwx.js                1.12 kB │ gzip:   0.63 kB
+test-results/site-local-font-base-dist/assets/ArtIcon-CG3Ar7nj.js                             1.16 kB │ gzip:   0.73 kB
+test-results/site-local-font-base-dist/assets/rolldown-runtime-C0FnF6B9.js                    1.29 kB │ gzip:   0.71 kB
+test-results/site-local-font-base-dist/assets/go-CYstVVJV.js                                  1.44 kB │ gzip:   0.71 kB
+test-results/site-local-font-base-dist/assets/AstraLogo-C1W6rZeh.js                           1.49 kB │ gzip:   0.73 kB
+test-results/site-local-font-base-dist/assets/objectSpread2-BADuQQie.js                       1.59 kB │ gzip:   0.71 kB
+test-results/site-local-font-base-dist/assets/yaml-DjOhhVLG.js                                1.83 kB │ gzip:   0.82 kB
+test-results/site-local-font-base-dist/assets/xml-COl5yFSC.js                                 1.86 kB │ gzip:   0.76 kB
+test-results/site-local-font-base-dist/assets/commerce-tLXNOqxA.js                            2.02 kB │ gzip:   0.59 kB
+test-results/site-local-font-base-dist/assets/markdown-D6FrnlqJ.js                            2.08 kB │ gzip:   0.90 kB
+test-results/site-local-font-base-dist/assets/refund-request-7HdbzOkf.js                      2.15 kB │ gzip:   1.29 kB
+test-results/site-local-font-base-dist/assets/optics-CiPHtAaQ.js                              2.55 kB │ gzip:   1.34 kB
+test-results/site-local-font-base-dist/assets/purchased-assets-Bz58RrJB.js                    2.64 kB │ gzip:   1.47 kB
+test-results/site-local-font-base-dist/assets/FileUploadView-BWNtG3fo.js                      2.69 kB │ gzip:   1.47 kB
+test-results/site-local-font-base-dist/assets/rust-BIKPVoi6.js                                2.72 kB │ gzip:   1.44 kB
+test-results/site-local-font-base-dist/assets/java-Dde-Wnb4.js                                2.72 kB │ gzip:   1.21 kB
+test-results/site-local-font-base-dist/assets/Straight-CMAhchvx.js                            2.75 kB │ gzip:   0.85 kB
+test-results/site-local-font-base-dist/assets/generate-XLueoPn1.js                            2.77 kB │ gzip:   1.38 kB
+test-results/site-local-font-base-dist/assets/bash-LmRjUKlR.js                                2.83 kB │ gzip:   1.56 kB
+test-results/site-local-font-base-dist/assets/GalleryView-B6vlpjPV.js                         2.96 kB │ gzip:   1.65 kB
+test-results/site-local-font-base-dist/assets/python-gHmu6VPG.js                              3.31 kB │ gzip:   1.48 kB
+test-results/site-local-font-base-dist/assets/kotlin-DgSK8bu-.js                              3.32 kB │ gzip:   1.40 kB
+test-results/site-local-font-base-dist/assets/latex-ifxXhTOO.js                               3.40 kB │ gzip:   1.50 kB
+test-results/site-local-font-base-dist/assets/auto-quality-Dwopmppu.js                        3.44 kB │ gzip:   1.60 kB
+test-results/site-local-font-base-dist/assets/html-DMHsu9wD.js                                3.76 kB │ gzip:   1.71 kB
+test-results/site-local-font-base-dist/assets/ruby-BGpZ3p4_.js                                3.78 kB │ gzip:   1.71 kB
+test-results/site-local-font-base-dist/assets/csharp-yYt0Ikks.js                              3.88 kB │ gzip:   1.59 kB
+test-results/site-local-font-base-dist/assets/printMask-A-0eATiv.js                           4.43 kB │ gzip:   1.83 kB
+test-results/site-local-font-base-dist/assets/Thin-HhMUwehN.js                                4.58 kB │ gzip:   1.17 kB
+test-results/site-local-font-base-dist/assets/file-viewer-wordperfect-Cry2BfEp.js             4.62 kB │ gzip:   2.00 kB
+test-results/site-local-font-base-dist/assets/performance-DhOhyhm_.js                         5.04 kB │ gzip:   2.28 kB
+test-results/site-local-font-base-dist/assets/types-DIBOYU83.js                               5.27 kB │ gzip:   2.26 kB
+test-results/site-local-font-base-dist/assets/patch-BXLtZFMS.js                               5.30 kB │ gzip:   1.97 kB
+test-results/site-local-font-base-dist/assets/sql-DWRKyvJ-.js                                 5.56 kB │ gzip:   2.40 kB
+test-results/site-local-font-base-dist/assets/cpp-N2d8M7Nc.js                                 5.58 kB │ gzip:   2.52 kB
+test-results/site-local-font-base-dist/assets/ProjectsView-Coi1b8wv.js                        5.81 kB │ gzip:   2.84 kB
+test-results/site-local-font-base-dist/assets/pinia-BIJkjYPD.js                               5.94 kB │ gzip:   2.81 kB
+test-results/site-local-font-base-dist/assets/php-DuZl5e-L.js                                 6.10 kB │ gzip:   2.52 kB
+test-results/site-local-font-base-dist/assets/admin-payment-verification-DDZ-zyI6.js          6.12 kB │ gzip:   2.93 kB
+test-results/site-local-font-base-dist/assets/javascript-8AmHuH5O.js                          6.35 kB │ gzip:   2.61 kB
+test-results/site-local-font-base-dist/assets/CreationHelpView-ClsMQIiB.js                    6.62 kB │ gzip:   3.18 kB
+test-results/site-local-font-base-dist/assets/ArtEngineView-D8ZyzXKe.js                       6.73 kB │ gzip:   3.43 kB
+test-results/site-local-font-base-dist/assets/lib-CKGr6KXy.js                                 6.81 kB │ gzip:   2.46 kB
+test-results/site-local-font-base-dist/assets/image-CewEWZ4Z.js                               6.85 kB │ gzip:   2.76 kB
+test-results/site-local-font-base-dist/assets/Stop-BUPFux6Q.js                                6.93 kB │ gzip:   1.50 kB
+test-results/site-local-font-base-dist/assets/image-DgQdNvCe.js                               7.15 kB │ gzip:   2.84 kB
+test-results/site-local-font-base-dist/assets/gpu-Cd83IPEi.js                                 7.35 kB │ gzip:   2.78 kB
+test-results/site-local-font-base-dist/assets/typescript-CxkPLmSc.js                          7.60 kB │ gzip:   3.08 kB
+test-results/site-local-font-base-dist/assets/dist-C8uk5rWX.js                                7.75 kB │ gzip:   3.64 kB
+test-results/site-local-font-base-dist/assets/Doom-D5VrnIkI.js                                7.80 kB │ gzip:   1.87 kB
+test-results/site-local-font-base-dist/assets/3-D-z9RIgIA_.js                                 7.96 kB │ gzip:   1.51 kB
+test-results/site-local-font-base-dist/assets/swift-BTn9__hL.js                               8.07 kB │ gzip:   3.56 kB
+test-results/site-local-font-base-dist/assets/Star Wars-CPkJiyCH.js                           8.43 kB │ gzip:   1.59 kB
+test-results/site-local-font-base-dist/assets/Wavy-DQpJOSMy.js                                8.52 kB │ gzip:   2.24 kB
+test-results/site-local-font-base-dist/assets/AccountCommerceView-CuWy63O9.js                 9.03 kB │ gzip:   3.94 kB
+test-results/site-local-font-base-dist/assets/Mini-DMCihK14.js                                9.24 kB │ gzip:   2.31 kB
+test-results/site-local-font-base-dist/assets/print-mask-D1xr9y-i.js                         10.34 kB │ gzip:   3.56 kB
+test-results/site-local-font-base-dist/assets/print-mask-9qksjxcg.js                         10.44 kB │ gzip:   3.61 kB
+test-results/site-local-font-base-dist/assets/TemplatesView-NK-hNza6.js                      11.20 kB │ gzip:   5.34 kB
+test-results/site-local-font-base-dist/assets/code-xhad-DE-.js                               12.03 kB │ gzip:   4.63 kB
+test-results/site-local-font-base-dist/assets/css-D8M8GYaw.js                                12.03 kB │ gzip:   4.30 kB
+test-results/site-local-font-base-dist/assets/Small-eHRy8uKc.js                              12.57 kB │ gzip:   2.99 kB
+test-results/site-local-font-base-dist/assets/Speed-C-p9nzPY.js                              13.24 kB │ gzip:   2.88 kB
+test-results/site-local-font-base-dist/assets/AdminPaymentVerificationView-BBVktZRZ.js       13.46 kB │ gzip:   5.47 kB
+test-results/site-local-font-base-dist/assets/gitBundle-Bn3cCp6Y.js                          13.56 kB │ gzip:   5.07 kB
+test-results/site-local-font-base-dist/assets/Shadow-Dn3xZ73c.js                             13.83 kB │ gzip:   3.03 kB
+test-results/site-local-font-base-dist/assets/AdminRefundsView-1yCH--PW.js                   14.29 kB │ gzip:   6.04 kB
+test-results/site-local-font-base-dist/assets/draws-DQXqkjYZ.js                              14.37 kB │ gzip:   4.03 kB
+test-results/site-local-font-base-dist/assets/AsciiLoopView-BsDuo4lQ.js                      14.89 kB │ gzip:   7.06 kB
+test-results/site-local-font-base-dist/assets/AsciiLiveView-BZbqHuhX.js                      14.98 kB │ gzip:   6.30 kB
+test-results/site-local-font-base-dist/assets/Univers-uFzEYQS3.js                            15.62 kB │ gzip:   2.75 kB
+test-results/site-local-font-base-dist/assets/Digital-l4la9nNg.js                            15.66 kB │ gzip:   2.36 kB
+test-results/site-local-font-base-dist/assets/Script-C-jK8E3x.js                             15.68 kB │ gzip:   3.28 kB
+test-results/site-local-font-base-dist/assets/Slant-BCct-Uae.js                              15.76 kB │ gzip:   3.48 kB
+test-results/site-local-font-base-dist/assets/runtime-dom.esm-bundler-CdZal-I_.js            16.35 kB │ gzip:   6.88 kB
+test-results/site-local-font-base-dist/assets/OrderDetailView-C8_JjHre.js                    18.87 kB │ gzip:   6.67 kB
+test-results/site-local-font-base-dist/assets/export-BbrT8uFD.js                             19.20 kB │ gzip:   5.05 kB
+test-results/site-local-font-base-dist/assets/CommerceCatalogView-BVdTKQ_T.js                19.25 kB │ gzip:   7.38 kB
+test-results/site-local-font-base-dist/assets/ppt-BxMcXB2U.js                                20.03 kB │ gzip:   7.02 kB
+test-results/site-local-font-base-dist/assets/core-DJ8kCfK7.js                               20.40 kB │ gzip:   8.05 kB
+test-results/site-local-font-base-dist/assets/AdminRefundVerificationView-9A_6g5mn.js        20.92 kB │ gzip:   7.93 kB
+test-results/site-local-font-base-dist/assets/largeText-64pankJ4.js                          21.00 kB │ gzip:   7.08 kB
+test-results/site-local-font-base-dist/assets/Bubble-DukrC0qB.js                             21.14 kB │ gzip:   2.43 kB
+test-results/site-local-font-base-dist/assets/vue-router-CLghez2X.js                         22.61 kB │ gzip:   9.03 kB
+test-results/site-local-font-base-dist/assets/renderer-DPJnG3v8.js                           22.75 kB │ gzip:   4.76 kB
+test-results/site-local-font-base-dist/assets/Block-C_inuWia.js                              24.46 kB │ gzip:   3.12 kB
+test-results/site-local-font-base-dist/assets/AdminReconciliationsView-Cce8obY9.js           25.53 kB │ gzip:   9.45 kB
+test-results/site-local-font-base-dist/assets/Big-DCNzhKR0.js                                26.92 kB │ gzip:   5.25 kB
+test-results/site-local-font-base-dist/assets/state-CTX1woqT.js                              27.03 kB │ gzip:  10.02 kB
+test-results/site-local-font-base-dist/assets/renderer-Eou1Io44.js                           28.39 kB │ gzip:   7.43 kB
+test-results/site-local-font-base-dist/assets/Lean-Llc6KkbN.js                               28.62 kB │ gzip:   3.89 kB
+test-results/site-local-font-base-dist/assets/Standard-Bmc1rRgB.js                           29.16 kB │ gzip:   5.35 kB
+test-results/site-local-font-base-dist/assets/Banner-D972lUyM.js                             31.92 kB │ gzip:   4.91 kB
+test-results/site-local-font-base-dist/assets/renderer-CVnVKIb0.js                           32.44 kB │ gzip:  11.69 kB
+test-results/site-local-font-base-dist/assets/file-viewer-word-CjZ-MRS3.js                   35.71 kB │ gzip:  11.47 kB
+test-results/site-local-font-base-dist/assets/graphql-dGhhPjsb.js                            44.55 kB │ gzip:  12.01 kB
+test-results/site-local-font-base-dist/assets/export2-B2VBbss9.js                            47.02 kB │ gzip:  15.63 kB
+test-results/site-local-font-base-dist/assets/wireframe-BsXdLrLl.js                          48.00 kB │ gzip:  11.84 kB
+test-results/site-local-font-base-dist/assets/markdown-Bi4CKkKF.js                           52.82 kB │ gzip:  16.36 kB
+test-results/site-local-font-base-dist/assets/dark-D2YIm4S7.js                               55.10 kB │ gzip:  17.84 kB
+test-results/site-local-font-base-dist/assets/art-engine-BEX27-xs.js                         57.21 kB │ gzip:  21.55 kB
+test-results/site-local-font-base-dist/assets/renderer-BYDoez_c.js                           61.80 kB │ gzip:  15.67 kB
+test-results/site-local-font-base-dist/assets/_plugin-vue_export-helper-CQupvBJ6.js          65.81 kB │ gzip:  25.79 kB
+test-results/site-local-font-base-dist/assets/auth-DcOCaEdt.js                               74.75 kB │ gzip:  26.34 kB
+test-results/site-local-font-base-dist/assets/standalone-6z5x8CWe.js                         80.99 kB │ gzip:  26.73 kB
+test-results/site-local-font-base-dist/assets/UTIF-9StoZ7Vu.js                               83.54 kB │ gzip:  29.32 kB
+test-results/site-local-font-base-dist/assets/light-DbdIIvgf.js                              91.15 kB │ gzip:  24.50 kB
+test-results/site-local-font-base-dist/assets/file-viewer-presentation-Cg4S0kzV.js           97.43 kB │ gzip:  33.04 kB
+test-results/site-local-font-base-dist/assets/file-viewer-preset-office-B0A-aPJN.js         124.67 kB │ gzip:  41.51 kB
+test-results/site-local-font-base-dist/assets/yaml-B434Lvdz.js                              141.23 kB │ gzip:  43.06 kB
+test-results/site-local-font-base-dist/assets/postcss-Dx6hD3Qr.js                           154.88 kB │ gzip:  42.69 kB
+test-results/site-local-font-base-dist/assets/html-CWWRy502.js                              159.35 kB │ gzip:  50.53 kB
+test-results/site-local-font-base-dist/assets/dist-DJ2-DBsm.js                              178.30 kB │ gzip:  56.01 kB
+test-results/site-local-font-base-dist/assets/plugin-DGiWtVdV.js                            178.85 kB │ gzip:  47.78 kB
+test-results/site-local-font-base-dist/assets/SignaturePortraitView-BE0xVKca.js             199.21 kB │ gzip:  65.19 kB
+test-results/site-local-font-base-dist/assets/estree-Xrv_8tLF.js                            210.31 kB │ gzip:  61.31 kB
+test-results/site-local-font-base-dist/assets/index.es-caXUuBgk.js                          249.35 kB │ gzip:  67.08 kB
+test-results/site-local-font-base-dist/assets/markdown-CVx6rGKi.js                          272.01 kB │ gzip:  91.84 kB
+test-results/site-local-font-base-dist/assets/docx-preview-DXwlxb1m.js                      272.76 kB │ gzip:  77.28 kB
+test-results/site-local-font-base-dist/assets/FilePreviewView-DFZg-6RV.js                   303.62 kB │ gzip:  84.68 kB
+test-results/site-local-font-base-dist/assets/babel-BhKfSXia.js                             316.20 kB │ gzip:  82.40 kB
+test-results/site-local-font-base-dist/assets/file-viewer-ofd-DjFz3f_5.js                   363.55 kB │ gzip:  87.95 kB
+test-results/site-local-font-base-dist/assets/file-viewer-spreadsheet-BjR9pL0p.js           608.79 kB │ gzip: 208.24 kB
+test-results/site-local-font-base-dist/assets/file-viewer-pdf-Dlq4SlP6.js                   740.36 kB │ gzip: 223.33 kB
+test-results/site-local-font-base-dist/assets/file-viewer-hangul-DUh_UbA1.js                816.56 kB │ gzip: 253.28 kB
+test-results/site-local-font-base-dist/assets/typescript-Bd5mH5IK.js                        891.08 kB │ gzip: 209.12 kB
+test-results/site-local-font-base-dist/assets/pdf.worker-uwkpcqY8.js                      1,056.56 kB │ gzip: 311.46 kB
+test-results/site-local-font-base-dist/assets/index-HcfeTfdC.js                           1,258.65 kB │ gzip: 395.56 kB
+test-results/site-local-font-base-dist/assets/file-viewer-iwork-D-7gN1vP.js               4,156.80 kB │ gzip: 597.07 kB
+
+[INEFFECTIVE_DYNAMIC_IMPORT] src/lib/signature-portrait/layout-compute.ts is dynamically imported by src/lib/signature-portrait/layout.ts but also statically imported by src/lib/signature-portrait/layout.ts, dynamic import will not move module into another chunk.
+
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 3.29s
+[file-viewer:vite-plugin] Copied 18/18 renderer assets to D:\my\project\astra\astra-web\test-results\site-local-font-base-dist

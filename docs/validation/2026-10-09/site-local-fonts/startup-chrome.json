@@ -1,0 +1,13 @@
+{
+  "base": "http://127.0.0.1:4198",
+  "scope": "Local brand font delayed; editor mounts with readable fallback, then exact font loads. Not real-device FPS certification.",
+  "externalRequests": 0,
+  "pendingLocalFonts": 1,
+  "domReady": true,
+  "appReady": true,
+  "fallbackHeaderVisible": true,
+  "fontReady": true,
+  "passed": true,
+  "errors": [],
+  "elapsedMs": 798
+}

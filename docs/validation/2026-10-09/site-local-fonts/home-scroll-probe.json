@@ -1,0 +1,54 @@
+{
+  "passed": true,
+  "scope": "Mobile offscreen gallery previews become decoded after scrolling",
+  "rows": [
+    {
+      "channel": "msedge",
+      "index": 0,
+      "src": "/artwork/collection-20261005/mountain-characters.webp",
+      "width": 1122,
+      "height": 1402,
+      "complete": true
+    },
+    {
+      "channel": "msedge",
+      "index": 1,
+      "src": "/artwork/collection-20261005/architecture-characters.webp",
+      "width": 1122,
+      "height": 1402,
+      "complete": true
+    },
+    {
+      "channel": "msedge",
+      "index": 2,
+      "src": "/artwork/collection-20261005/cosmos-characters.webp",
+      "width": 1122,
+      "height": 1402,
+      "complete": true
+    },
+    {
+      "channel": "chrome",
+      "index": 0,
+      "src": "/artwork/collection-20261005/mountain-characters.webp",
+      "width": 1122,
+      "height": 1402,
+      "complete": true
+    },
+    {
+      "channel": "chrome",
+      "index": 1,
+      "src": "/artwork/collection-20261005/architecture-characters.webp",
+      "width": 1122,
+      "height": 1402,
+      "complete": true
+    },
+    {
+      "channel": "chrome",
+      "index": 2,
+      "src": "/artwork/collection-20261005/cosmos-characters.webp",
+      "width": 1122,
+      "height": 1402,
+      "complete": true
+    }
+  ]
+}

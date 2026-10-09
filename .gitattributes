@@ -1,4 +1,9 @@
 * text=auto eol=lf
+public/fonts/brand/OFL.txt -text -diff
+docs/research/2026-10-09-site-fonts/sources.json -text whitespace=cr-at-eol
+docs/research/2026-10-09-site-fonts/google-original.css -text
+docs/validation/2026-10-09/site-local-fonts/** -text whitespace=cr-at-eol
+docs/validation/2026-10-09/site-local-fonts/**/*.log -diff
 docs/validation/2026-10-09/signature-font-web/** -text whitespace=cr-at-eol
 docs/validation/2026-10-09/signature-font-web/**/*.log -diff
 # Preserve downloaded historical vector bytes and the recorded provenance SHA256.

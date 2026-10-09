@@ -1,0 +1,38 @@
+{
+  "passed": true,
+  "browser": "154.0.4258.62",
+  "scope": "Subdirectory compiled CSS and font assets only; not entire-site subdirectory routing",
+  "css": [
+    "/font-proof/assets/AstraLogo-wWzhdtVH.css",
+    "/font-proof/assets/index-JYeCn525.css"
+  ],
+  "fonts": [
+    "/font-proof/fonts/brand/dm-sans-normal-latin-v17-ca72d2bc.woff2",
+    "/font-proof/fonts/brand/dm-sans-normal-latin-ext-v17-5d18d31d.woff2",
+    "/font-proof/fonts/brand/dm-sans-italic-latin-ext-v17-2a32f58c.woff2",
+    "/font-proof/fonts/brand/dm-sans-italic-latin-v17-71f3c985.woff2"
+  ],
+  "errors": [],
+  "loaded": [
+    {
+      "specification": "400 16px \"DM Sans\"",
+      "count": 2,
+      "loaded": true
+    },
+    {
+      "specification": "500 16px \"DM Sans\"",
+      "count": 2,
+      "loaded": true
+    },
+    {
+      "specification": "600 16px \"DM Sans\"",
+      "count": 2,
+      "loaded": true
+    },
+    {
+      "specification": "italic 400 16px \"DM Sans\"",
+      "count": 2,
+      "loaded": true
+    }
+  ]
+}

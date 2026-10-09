@@ -1,0 +1,76 @@
+{
+  "reviewedCount": 14,
+  "scope": "Development visual review, not real-device/printed/commercial aesthetic acceptance",
+  "images": [
+    {
+      "path": "font-edge/tools-light-1440.png",
+      "reviewed": true,
+      "result": "Readable themed text/controls with no visible horizontal clipping"
+    },
+    {
+      "path": "font-edge/tools-dark-1440.png",
+      "reviewed": true,
+      "result": "Readable themed text/controls with no visible horizontal clipping"
+    },
+    {
+      "path": "font-edge/tools-light-390.png",
+      "reviewed": true,
+      "result": "Readable themed text/controls with no visible horizontal clipping"
+    },
+    {
+      "path": "font-edge/tools-dark-390.png",
+      "reviewed": true,
+      "result": "Readable themed text/controls with no visible horizontal clipping"
+    },
+    {
+      "path": "font-chrome/tools-light-1440.png",
+      "reviewed": true,
+      "result": "Readable themed text/controls with no visible horizontal clipping"
+    },
+    {
+      "path": "font-chrome/tools-dark-1440.png",
+      "reviewed": true,
+      "result": "Readable themed text/controls with no visible horizontal clipping"
+    },
+    {
+      "path": "font-chrome/tools-light-390.png",
+      "reviewed": true,
+      "result": "Readable themed text/controls with no visible horizontal clipping"
+    },
+    {
+      "path": "font-chrome/tools-dark-390.png",
+      "reviewed": true,
+      "result": "Readable themed text/controls with no visible horizontal clipping"
+    },
+    {
+      "path": "shell-edge/home-light-1440.png",
+      "reviewed": true,
+      "result": "Readable themed text/controls and coherent layout; offscreen mobile gallery lazy previews verified separately after scrolling"
+    },
+    {
+      "path": "shell-chrome/home-dark-390.png",
+      "reviewed": true,
+      "result": "Readable themed text/controls and coherent layout; offscreen mobile gallery lazy previews verified separately after scrolling"
+    },
+    {
+      "path": "shell-edge/login-light-1440.png",
+      "reviewed": true,
+      "result": "Readable themed text/controls with no visible horizontal clipping"
+    },
+    {
+      "path": "shell-chrome/login-dark-390.png",
+      "reviewed": true,
+      "result": "Readable themed text/controls with no visible horizontal clipping"
+    },
+    {
+      "path": "shell-edge/signature-portrait-light-1440.png",
+      "reviewed": true,
+      "result": "Readable themed text/controls with no visible horizontal clipping"
+    },
+    {
+      "path": "shell-chrome/signature-portrait-dark-390.png",
+      "reviewed": true,
+      "result": "Readable themed text/controls with no visible horizontal clipping"
+    }
+  ]
+}

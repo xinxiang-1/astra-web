@@ -1,0 +1,296 @@
+{
+  "baseSha": "62c09d07052fec0993e4f252bb0c2b6c5febf328",
+  "changedSources": [
+    {
+      "path": "src/main.ts",
+      "bytes": 490,
+      "worktreeSha256": "fa6f914d484f84bb8b3173a10fececd3da6db4f21fcab5325de07eb22e2f5ae3"
+    },
+    {
+      "path": "index.html",
+      "bytes": 853,
+      "worktreeSha256": "c35ac13562a2c555aa4b02980ad5c35b5e8d3577e31c62996ccfcf465ad89fba"
+    },
+    {
+      "path": "src/styles/brand-fonts.css",
+      "bytes": 3387,
+      "worktreeSha256": "07f478f47c061e4157518d3eb8f760807f620d04f6a178b6cbdfe65d918059ab"
+    },
+    {
+      "path": "scripts/acquire-site-fonts.py",
+      "bytes": 3837,
+      "worktreeSha256": "7505000393e4d35093bc5fdd41a73984874ce7cd32ed22826a598a0cfd7ef90b"
+    },
+    {
+      "path": "scripts/brand-font-startup-contract.mjs",
+      "bytes": 2638,
+      "worktreeSha256": "3431269740b28205ef49b41f2223bdbf69833d8ecfe364e9fd455c9b81a5364c"
+    },
+    {
+      "path": "scripts/site-local-font-contract.mjs",
+      "bytes": 7643,
+      "worktreeSha256": "3f118fc19507c15564017bc48d3e22b8baffafa27e750b2f9d5c9293af0a547b"
+    },
+    {
+      "path": "scripts/site-font-base-contract.mjs",
+      "bytes": 2304,
+      "worktreeSha256": "5aa2e00bf2ee6ceb3cbd0b5a66575c85e798cd3dd2e53bf150b5398d98291b92"
+    },
+    {
+      "path": "scripts/site-shell-contract.mjs",
+      "bytes": 12979,
+      "worktreeSha256": "fe874f20039d4971852751e5ee68e92ea9ee251e52b5503c8b3e3e6325bdf109"
+    }
+  ],
+  "fontAssets": [
+    {
+      "path": "public/fonts/brand/dm-sans-italic-latin-ext-v17-2a32f58c.woff2",
+      "bytes": 15344,
+      "worktreeSha256": "2a32f58c4865640d84d60e6bade92c9345d8ad70376e6bdae4c0553d2f5b6f31",
+      "rootAndBaseBuildBytesEqual": true
+    },
+    {
+      "path": "public/fonts/brand/dm-sans-italic-latin-v17-71f3c985.woff2",
+      "bytes": 28464,
+      "worktreeSha256": "71f3c9851c5a94ad14308d00b15ea2ec207b65ba80a0e9a43d45b2ee9ea631bd",
+      "rootAndBaseBuildBytesEqual": true
+    },
+    {
+      "path": "public/fonts/brand/dm-sans-normal-latin-ext-v17-5d18d31d.woff2",
+      "bytes": 31292,
+      "worktreeSha256": "5d18d31d23ada61ebee1d589b11d5da30db9e158f589d5e35221ba2b1a45de54",
+      "rootAndBaseBuildBytesEqual": true
+    },
+    {
+      "path": "public/fonts/brand/dm-sans-normal-latin-v17-ca72d2bc.woff2",
+      "bytes": 62724,
+      "worktreeSha256": "ca72d2bcea8f4daa783dbdfa2d9b46068c3ce38168e05918fb867aa453b4f890",
+      "rootAndBaseBuildBytesEqual": true
+    }
+  ],
+  "license": {
+    "path": "public/fonts/brand/OFL.txt",
+    "bytes": 4482,
+    "worktreeSha256": "9af36190332437f5ecd09974de43c1f7c77a310a996cdd8ceb25628b458840e1"
+  },
+  "originalCss": {
+    "path": "docs/research/2026-10-09-site-fonts/google-original.css",
+    "bytes": 3384,
+    "worktreeSha256": "760a447fdb9bac176c4e6e0678f8c3ef681468d6c0a701232bbf498819ddc5a9"
+  },
+  "unchangedProtectedAndSignatureSources": [
+    {
+      "path": "src/views/ArtHomeView.vue",
+      "bytes": 20727,
+      "worktreeSha256": "80ffa2cbd65cfad27f6c53b7e659d74a8aaa2a3c0f72b7c2c105be715a6bd24d",
+      "unchangedFromHead": true,
+      "gitBlob": "8ab88da893492a508b375ccd1383b6867545cd59"
+    },
+    {
+      "path": "src/components/CharacterArtwork.vue",
+      "bytes": 9774,
+      "worktreeSha256": "99da7635979b98f70aa622887bcf775047114529b4130de201cebf40d0ab2858",
+      "unchangedFromHead": true,
+      "gitBlob": "74e2aa40a948cff8eb8f2c9c9f99c102350e1c71"
+    },
+    {
+      "path": "src/lib/ascii/studio-preview.ts",
+      "bytes": 12855,
+      "worktreeSha256": "87ef73fd4261872b1a6bc3d66fd2a05498bc73fa047294b4934174ede9af1a07",
+      "unchangedFromHead": true,
+      "gitBlob": "bd62d61bf6b892659b643441cc82bbf7ecef60d1"
+    },
+    {
+      "path": "src/components/ui/FxButton.vue",
+      "bytes": 2824,
+      "worktreeSha256": "eeac05cd3ac2f5d287761cb3482d110f3a3346f7e80e45bcad534911e0cc79d1",
+      "unchangedFromHead": true,
+      "gitBlob": "eceed29a26fe0419a82091231ac8a7f8cbf853a3"
+    },
+    {
+      "path": "src/styles/tokens.css",
+      "bytes": 3751,
+      "worktreeSha256": "dd45b7611ca47a51740f0986bc3585d148a0908b1900ae3ecbd1ff918b254007",
+      "unchangedFromHead": true,
+      "gitBlob": "1d10a464764834972bcc9d33b650480987bb2e73"
+    },
+    {
+      "path": "src/styles/art-system.css",
+      "bytes": 7971,
+      "worktreeSha256": "5da4a6c36e56331d8257ba0ed01764203097d25e0696e9021e3591a3c37431db",
+      "unchangedFromHead": true,
+      "gitBlob": "757b9d5fd588ef407040d1fd5c595312b30b0d74"
+    },
+    {
+      "path": "src/lib/signature-portrait/fonts.ts",
+      "bytes": 8227,
+      "worktreeSha256": "84a9724ded9cc17ebea2830c23db53781c45b72619a0531b32a14af233692312",
+      "unchangedFromHead": true,
+      "gitBlob": "c8af27b157388d9999170bef356079f5faed2b86"
+    },
+    {
+      "path": "src/lib/signature-portrait/font-web.ts",
+      "bytes": 1887,
+      "worktreeSha256": "6deb09993daadb81e3b01d3d3a2356c8282abcfb4df54e9b816ec8e6ceb928a0",
+      "unchangedFromHead": true,
+      "gitBlob": "cc565be29a53db7ea1335cbac1553dcb3a2a75b5"
+    },
+    {
+      "path": "src/lib/signature-portrait/project.ts",
+      "bytes": 18009,
+      "worktreeSha256": "250e57f8a616edd4f00c57f035a7b25ee5a45a66cba1d58834a0a5c8d8c3d633",
+      "unchangedFromHead": true,
+      "gitBlob": "0d2a455e88bf8c86fadf0b1407dda67dd4cbbe14"
+    },
+    {
+      "path": "public/fonts/signature/liujianmaocao-OFL.txt",
+      "bytes": 4406,
+      "worktreeSha256": "ff56684b0212481e7c3886c26d5a655de9b211c8119e5ccc756138a97b066acc",
+      "unchangedFromHead": true,
+      "gitBlob": "39751fc29a1f782e5726d7a3a7e3c648c186f536"
+    },
+    {
+      "path": "public/fonts/signature/LiuJianMaoCao-Regular.ttf",
+      "bytes": 4951804,
+      "worktreeSha256": "cab396b91a5b7c0b4005a35891180d06e6751f5ac261fe680aec65c1ae209033",
+      "unchangedFromHead": true,
+      "gitBlob": "f380deef04a5ee6d5af2c6fba60d1613d831c1aa"
+    },
+    {
+      "path": "public/fonts/signature/LiuJianMaoCao-Regular.woff2",
+      "bytes": 2369212,
+      "worktreeSha256": "fde0c78ba491adbe9fc2d6cd5e40934819b4bb9d7f39e78217728a1e6c2a934e",
+      "unchangedFromHead": true,
+      "gitBlob": "9640aee940b47d99b188bb2aa6bc53d60b0ec657"
+    },
+    {
+      "path": "public/fonts/signature/longcang-OFL.txt",
+      "bytes": 4390,
+      "worktreeSha256": "603546b7219a94bb59bf8294458194a5010119486354092b66a09a3fd61aeacc",
+      "unchangedFromHead": true,
+      "gitBlob": "06a1757ca2ae5ff689aac4b410fffa98cd73dad0"
+    },
+    {
+      "path": "public/fonts/signature/LongCang-Regular.ttf",
+      "bytes": 5162508,
+      "worktreeSha256": "e5bf2c3f24ef2327c6f136d8f73e2f9dfdf44896fdbeb35a9515f44777bb91bc",
+      "unchangedFromHead": true,
+      "gitBlob": "363bb08696fe4d3827bd36d3d2fbc028d1205161"
+    },
+    {
+      "path": "public/fonts/signature/LongCang-Regular.woff2",
+      "bytes": 2974052,
+      "worktreeSha256": "4e0bd65ee2f67d848e4dca5d64eace3f5f7df8d33dda6582a08d84a598c4a23a",
+      "unchangedFromHead": true,
+      "gitBlob": "cd0f618c5ff5037c586350dc45885a23015307d9"
+    },
+    {
+      "path": "public/fonts/signature/mashanzheng-OFL.txt",
+      "bytes": 4397,
+      "worktreeSha256": "d7bdb1cee215b689e23c2f95672a6084c790542170648267a55114103d756a08",
+      "unchangedFromHead": true,
+      "gitBlob": "9e252e1997092670936a7f1d38560973d919f6b0"
+    },
+    {
+      "path": "public/fonts/signature/MaShanZheng-Regular.ttf",
+      "bytes": 5857936,
+      "worktreeSha256": "6d2546bb189c732a8ca29af9e22457b152387d158aa459e4ac2ce1e51788b7fb",
+      "unchangedFromHead": true,
+      "gitBlob": "11bbfb9867d70612158229d037e7a5f622bd0e38"
+    },
+    {
+      "path": "public/fonts/signature/MaShanZheng-Regular.woff2",
+      "bytes": 3279386,
+      "worktreeSha256": "fc7a43be592c1226a3311389106b1016170cab33927ea08e314debfed89b1b1a",
+      "unchangedFromHead": true,
+      "gitBlob": "581144060d54ac8c248a4f3f96935de020d4368f"
+    },
+    {
+      "path": "public/fonts/signature/zcoolkuaile-OFL.txt",
+      "bytes": 4398,
+      "worktreeSha256": "538078469839b4a2e7ad22bef4ebe41681a4e53749bb2a072144024f1d6d703d",
+      "unchangedFromHead": true,
+      "gitBlob": "fe1432fe7e56b24842d855a8ddbde0911a844d7f"
+    },
+    {
+      "path": "public/fonts/signature/ZCOOLKuaiLe-Regular.ttf",
+      "bytes": 1514968,
+      "worktreeSha256": "812a6fc1fe54b6d73a419245c32dfeba8aa33104d5be90d1cf6af082007cb71d",
+      "unchangedFromHead": true,
+      "gitBlob": "3cf6cd927ee910d46875de173efdaac4330e84ac"
+    },
+    {
+      "path": "public/fonts/signature/ZCOOLKuaiLe-Regular.woff2",
+      "bytes": 900972,
+      "worktreeSha256": "fd5dcfc6e77a8af1806eec54580d87cd717b60b178ca7b368bc078f602ed222d",
+      "unchangedFromHead": true,
+      "gitBlob": "cf684fbcf2a006c28088e4f0044fbef1597e6c6d"
+    },
+    {
+      "path": "public/fonts/signature/zcoolxiaowei-OFL.txt",
+      "bytes": 4400,
+      "worktreeSha256": "a094514ca57cf8f9c5e8d8d1adab5d8cd3a377297ff016f9df2c05b3ecd77f0a",
+      "unchangedFromHead": true,
+      "gitBlob": "8e5184b269289a6adda77caa05defe3acc309651"
+    },
+    {
+      "path": "public/fonts/signature/ZCOOLXiaoWei-Regular.ttf",
+      "bytes": 6313808,
+      "worktreeSha256": "a42b620140f493db42f741351dfbf343c0936d58588ee8004b8b2a218d997ff1",
+      "unchangedFromHead": true,
+      "gitBlob": "2d8731a231f2e6625b32d96b87f84852e24f9d82"
+    },
+    {
+      "path": "public/fonts/signature/ZCOOLXiaoWei-Regular.woff2",
+      "bytes": 2662062,
+      "worktreeSha256": "d183bed8c6af769fbbb1f5d1d648d54b565a3cbbb3655aced65aa0d166ed6880",
+      "unchangedFromHead": true,
+      "gitBlob": "f2c3a543b40e75dfff7a986ffb0df2365672a250"
+    },
+    {
+      "path": "public/fonts/signature/zhimangxing-OFL.txt",
+      "bytes": 4397,
+      "worktreeSha256": "10947328199e369a3e6b4a67e8e5507ed99d5bbb264a1f156415aa9b665e4d15",
+      "unchangedFromHead": true,
+      "gitBlob": "8e1e6c70cd7fad5b34f6337c694fed96b5e38884"
+    },
+    {
+      "path": "public/fonts/signature/ZhiMangXing-Regular.ttf",
+      "bytes": 4063532,
+      "worktreeSha256": "644e0cae9b40f0b10ab729a01bd32032e3973bac22be3dccae01bf6ae7fde969",
+      "unchangedFromHead": true,
+      "gitBlob": "d037d1f00395175de01de33e62957c30a008a1b1"
+    },
+    {
+      "path": "public/fonts/signature/ZhiMangXing-Regular.woff2",
+      "bytes": 2329292,
+      "worktreeSha256": "9cc72a3b46bfb556a17fff2a14b2bc4501ddb10dc223690a99aacda3adcbf12b",
+      "unchangedFromHead": true,
+      "gitBlob": "14f68620553fd539d13e91182c87fb02d0001993"
+    }
+  ],
+  "builds": [
+    {
+      "directory": "dist",
+      "cssBundles": [
+        {
+          "path": "dist/assets/index-DNniDUqs.css",
+          "sha256": "3704e8165897ada3a550ee76a62bd6909b200c5c50368604ca0c398febf31320",
+          "bytes": 455874
+        }
+      ],
+      "indexSha256": "a7d89020e1f4ba1c12e34b4af44cfd9c81f5a0bf02ed18a42792b112aeb0b2c2"
+    },
+    {
+      "directory": "test-results/site-local-font-base-dist",
+      "cssBundles": [
+        {
+          "path": "test-results/site-local-font-base-dist/assets/index-JYeCn525.css",
+          "sha256": "2804dbcdfd9544c887fa2a30f88e59c6ca75c5e040cd0c9aaa9f44f33b15fb4f",
+          "bytes": 455962
+        }
+      ],
+      "indexSha256": "0187c4a7b37e7161c1bc1b383e4c4adaca478b4b2bce45003b95712d73b8062d"
+    }
+  ]
+}

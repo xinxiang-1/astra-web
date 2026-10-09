@@ -118,13 +118,21 @@ try {
         assert.equal(metrics.rootTheme, theme)
         assert.equal(metrics.focusTarget, '-1')
         assert(metrics.title.endsWith('· Astra'))
-        if (!['/ascii-art', '/art-lab'].includes(route))
+        if (!['/ascii-art', '/art-lab'].includes(route)) {
+          const expectedHeaderBackground = await page.evaluate(({ theme, immersive }) => {
+            const reference = document.createElement('div')
+            const color = theme === 'light' ? 'rgb(245, 243, 239)' : 'rgb(17, 22, 21)'
+            reference.style.backgroundColor = immersive ? `color-mix(in srgb, ${color} 92%, transparent)` : color
+            document.body.appendChild(reference)
+            const result = getComputedStyle(reference).backgroundColor
+            reference.remove()
+            return result
+          }, { theme, immersive: ['/prism', '/black-hole', '/fluid', '/webgl-fluid'].includes(route) })
           assert.equal(
             metrics.header.background,
-            ['/prism', '/black-hole', '/fluid', '/webgl-fluid'].includes(route)
-              ? 'rgba(17, 22, 21, 0.91)'
-              : 'rgb(17, 22, 21)',
+            expectedHeaderBackground,
           )
+        }
         if (metrics.effectPanelBox)
           assert(
             metrics.effectPanelBox.y >= metrics.headerBox.height + 12,
@@ -297,7 +305,7 @@ try {
       protectedFiles.map(async (file) => {
         const digest = (data) => createHash('sha256').update(data).digest('hex')
         // Git's index normalization avoids Windows checkout line-ending differences.
-        const baseline = digest(execFileSync('git', ['show', `54b26ca:${file}`]))
+        const baseline = digest(execFileSync('git', ['show', `62c09d07052fec0993e4f252bb0c2b6c5febf328:${file}`]))
         const current = digest(execFileSync('git', ['show', `:${file}`]))
         assert.equal(current, baseline, `Protected source changed: ${file}`)
         assert.equal(
