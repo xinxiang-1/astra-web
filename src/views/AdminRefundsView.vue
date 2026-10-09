@@ -125,7 +125,7 @@ onBeforeUnmount(() => { controller?.abort(); window.removeEventListener('storage
             <div class="queue-header"><h2>审核详情</h2><button class="art-button" :disabled="busy" @click="select(detail.refund.id)">重新核对</button></div>
             <p :data-refund-state="detail.refund.state">{{ state(detail.refund.state) }} · 版本 {{ detail.refund.version }}</p>
             <p>申请 {{ detail.refund.id }} · 核对时间 {{ date(detail.observedAt) }}</p>
-            <h3>{{ detail.order.item.productName }}</h3><p>订单 {{ detail.order.orderNo }} · 内容版本 {{ detail.order.item.releaseVersion }}</p>
+            <h3>{{ detail.order.item.productName }}</h3><p>订单 {{ detail.order.orderNo }} · 内容版本 {{ detail.order.item.releaseVersion }}</p><RouterLink :to="`/admin/orders/${detail.order.id}/verification`" class="art-button">核查原支付</RouterLink>
             <dl><div><dt>原订单金额 / 申请退款</dt><dd>{{ money(detail.order.totalAmountCent) }} / {{ money(detail.refund.amountCent) }}</dd></div><div><dt>已退金额</dt><dd>{{ money(detail.order.totalRefundedCent) }}</dd></div><div><dt>付款时间</dt><dd>{{ detail.order.paidAt ? date(detail.order.paidAt) : '待确认' }}</dd></div><div><dt>付款 / 交付状态</dt><dd>{{ factLabels[detail.order.state] ?? '待确认' }} / {{ factLabels[detail.order.fulfillmentState] ?? '待确认' }}</dd></div></dl>
             <p class="complaint">申请原因：{{ detail.refund.reason }}</p><p v-if="detail.refund.decisionReason">审核说明：{{ detail.refund.decisionReason }}</p>
             <p v-if="!detail.buyerAccountEnabled" class="warning">购买账户当前不可用，仍须核查其原交易与售后诉求。</p><p v-if="!detail.paymentFactsConsistent" class="warning">原订单与支付事实存在异常，暂停此处审批，先核查交易来源。</p>

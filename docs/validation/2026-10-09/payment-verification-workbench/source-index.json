@@ -1,0 +1,303 @@
+{
+  "passed": true,
+  "scope": "Final source hashes and Git-normalized staged sources; build537 hashes remain in original schema report",
+  "repos": {
+    "astra-cloud": {
+      "baseCommit": "dbf30b4384a51811152775c6f226a9d453186304",
+      "sources": [
+        {
+          "path": "astra-api/src/main/java/com/astra/api/commerce/CommercePaymentVerificationDto.java",
+          "worktreeSha256": "53ef4b03c9b18c7dfa2efedb8c0b779c8f635974b3f2e572f40377a0acb09ec9",
+          "indexSha256": "53ef4b03c9b18c7dfa2efedb8c0b779c8f635974b3f2e572f40377a0acb09ec9",
+          "gitBlob": "c053c3666b6f19ae7e8a43f96c8e2d9217107267",
+          "lineEndingNormalizationOnly": false,
+          "boundToFinalSchemaReport": true
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/admin/PaymentVerificationAdminController.java",
+          "worktreeSha256": "1f55e8c8faeede84ded98557b7e9066d5c059d19e717fa981cb0db270eda7e87",
+          "indexSha256": "1f55e8c8faeede84ded98557b7e9066d5c059d19e717fa981cb0db270eda7e87",
+          "gitBlob": "e13c60edd67ae09e20e4e662a812a81089046d16",
+          "lineEndingNormalizationOnly": false,
+          "boundToFinalSchemaReport": true
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/admin/PaymentVerificationAdminService.java",
+          "worktreeSha256": "c75ecd80f17bf36f8f1f9937b6920dc67990ca2b51ba9b5484275e8f1fdc0076",
+          "indexSha256": "c75ecd80f17bf36f8f1f9937b6920dc67990ca2b51ba9b5484275e8f1fdc0076",
+          "gitBlob": "a396373e569d2dcc8201d2052ab9eb41019f7d18",
+          "lineEndingNormalizationOnly": false,
+          "boundToFinalSchemaReport": true
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/admin/PaymentVerificationInput.java",
+          "worktreeSha256": "4edad91d6088fcf34ce261c78744f4a7826d826026d45d1a4e8db8e0dd672150",
+          "indexSha256": "4edad91d6088fcf34ce261c78744f4a7826d826026d45d1a4e8db8e0dd672150",
+          "gitBlob": "0299dea69cc075b400abb649d3a24404ba644412",
+          "lineEndingNormalizationOnly": false,
+          "boundToFinalSchemaReport": true
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/MockPaymentProvider.java",
+          "worktreeSha256": "44f0fed89f77aee29249f4f31ef343c125c225215cd5b96bf4d615d7646ae575",
+          "indexSha256": "0b9172acd7e7c2f5e9557241c715d9ba1a60a1aa1b68955966bd1f5ba0ec3137",
+          "gitBlob": "97e31201db46ca589cbda0d169951173e01fe34f",
+          "lineEndingNormalizationOnly": true,
+          "boundToFinalSchemaReport": true
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/PaymentConfiguration.java",
+          "worktreeSha256": "7a0f1f5a24847070d49e7479cbe6b44808135e0175ff5428003b111e00b01515",
+          "indexSha256": "35db6e9a308ffe15e01fd53fa868ca15e9c81389a99554eed2d7e840dea579ac",
+          "gitBlob": "5f8d1e89b88043b5e191e56f33698dbafef8160e",
+          "lineEndingNormalizationOnly": true,
+          "boundToFinalSchemaReport": false
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/PaymentFactService.java",
+          "worktreeSha256": "384aad669ad65726f2a251f38b211dda08b901768f6eda4bef2c2dadc4c27ce1",
+          "indexSha256": "807df4270332916f54405ae99fea71ace26a0ba5b5ebf047020ab58c7be7f9ac",
+          "gitBlob": "cd30b9d015d4380bf23b1e681813c4cbb4433687",
+          "lineEndingNormalizationOnly": true,
+          "boundToFinalSchemaReport": true
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/PaymentOutboxRepository.java",
+          "worktreeSha256": "56839a53f2414734f149fd25e3bfb31601745206afa55a19e80f51f390c3b2de",
+          "indexSha256": "3cf23e30b13131b33c682992f3c1f8d735c8b37c6cdf6dcb19577eb504b770df",
+          "gitBlob": "0a1fba92767fde0dcf5609de1612f8511a304a7b",
+          "lineEndingNormalizationOnly": true,
+          "boundToFinalSchemaReport": true
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/PaymentProperties.java",
+          "worktreeSha256": "4df6355904a2e0a438af64dcd740761f3d0258df3238d6ddcd1c6511b0c27048",
+          "indexSha256": "6d5f4d40840f7e013ba59d9198983f16236aade7c04ae79865d14737f886c681",
+          "gitBlob": "74dfdef8b02f8cc93eb989318b34d0e25fe26f61",
+          "lineEndingNormalizationOnly": true,
+          "boundToFinalSchemaReport": false
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/PaymentProviderExecutor.java",
+          "worktreeSha256": "7f15eb26ab0d4bf96d10a2b76c28338c110e23f00841f341b7988cbc369d8aa4",
+          "indexSha256": "bcbd6069124edd98fb49d8d686ffe03a73529f10b7e6de490131ab3c60b834fc",
+          "gitBlob": "85f5377306e8bbf1798ba14c256d037807fb23ee",
+          "lineEndingNormalizationOnly": true,
+          "boundToFinalSchemaReport": true
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/PaymentRepository.java",
+          "worktreeSha256": "da8e73354a572c9f230892a8eae70d4eaba6c56c06daad6e4ef2775745067627",
+          "indexSha256": "4cb09b4edfb63cb0ed42b72dc446876e78f6e1559bc16ac733181dcaa99114c2",
+          "gitBlob": "8e7fe731581fcd2665728f5c9c1c0b83e53e5309",
+          "lineEndingNormalizationOnly": true,
+          "boundToFinalSchemaReport": true
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/PaymentVerificationProperties.java",
+          "worktreeSha256": "bf041708beebd8a9d2c71df00370973d29e3921fd5e17c77746ee4a94cd0f91f",
+          "indexSha256": "bf041708beebd8a9d2c71df00370973d29e3921fd5e17c77746ee4a94cd0f91f",
+          "gitBlob": "f91639f42729b01485567c84fa895b5974c6978c",
+          "lineEndingNormalizationOnly": false,
+          "boundToFinalSchemaReport": true
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/PaymentVerificationRepository.java",
+          "worktreeSha256": "b5eaf33e860ed54b4866675af886cf0d71cc7ab4704a8b4464fbc60ebdacd4dd",
+          "indexSha256": "b5eaf33e860ed54b4866675af886cf0d71cc7ab4704a8b4464fbc60ebdacd4dd",
+          "gitBlob": "9b9a2c7d94b41638a931639187dd1ef93279fb55",
+          "lineEndingNormalizationOnly": false,
+          "boundToFinalSchemaReport": true
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/PaymentVerificationScheduler.java",
+          "worktreeSha256": "2d61be12e80ac4d53e8c298e1b44d7f43c62d9f469f41494f0b529e38b4760d7",
+          "indexSha256": "2d61be12e80ac4d53e8c298e1b44d7f43c62d9f469f41494f0b529e38b4760d7",
+          "gitBlob": "f11a2abc38ba9a086903173e023af348c0a552cf",
+          "lineEndingNormalizationOnly": false,
+          "boundToFinalSchemaReport": true
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/PaymentVerificationWorker.java",
+          "worktreeSha256": "2bc508c6209d8376de8b3f9c0e1ccbf1a95b92fcf04a24051570a7194ce45c1b",
+          "indexSha256": "2bc508c6209d8376de8b3f9c0e1ccbf1a95b92fcf04a24051570a7194ce45c1b",
+          "gitBlob": "df816f78984a865c8cb79882280041d1eabc621a",
+          "lineEndingNormalizationOnly": false,
+          "boundToFinalSchemaReport": true
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/PaymentWorker.java",
+          "worktreeSha256": "1f7342d62b6b1f390f85d1cda6eb7889dbaa2959d294a7fdc509344f6fa0e583",
+          "indexSha256": "48cd10cd184e02fddb42d8195a494b0d0d028ec853be554f8bdd72501c4e1b95",
+          "gitBlob": "91c7eb1fac582151c1cff6b7be4474bd254fb217",
+          "lineEndingNormalizationOnly": true,
+          "boundToFinalSchemaReport": true
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/support/UserRateLimiter.java",
+          "worktreeSha256": "fa149cb6c13855153555e0ee13738ec9f1d6654428db11a21a9529cd9fb77092",
+          "indexSha256": "95db11320e3b0c0d0a286cdf696128ae833bf8fa55aa0b4a44135abd970cbd46",
+          "gitBlob": "bf9253997eedd525237dc5439ef8132df119f3c1",
+          "lineEndingNormalizationOnly": true,
+          "boundToFinalSchemaReport": true
+        },
+        {
+          "path": "astra-modules/astra-system/src/test/java/com/astra/system/commerce/PaymentVerificationIntegrationTest.java",
+          "worktreeSha256": "2e2603ec8829b9ddc55731fb4e9d5f19e997d87727174035b3b085cf8a361f18",
+          "indexSha256": "ea14766274a44785ba7f93729284369f4a1a9b1f30dc1958184e1f1657b71673",
+          "gitBlob": "ad9264d0acdbe2c88b899b4d69c45bfa1edcb6f7",
+          "lineEndingNormalizationOnly": true,
+          "boundToFinalSchemaReport": true
+        },
+        {
+          "path": "astra-modules/astra-system/src/test/java/com/astra/system/commerce/payment/PaymentConfigurationTest.java",
+          "worktreeSha256": "5224dfadf4f729a3ce33256341c51c692f06dc77678b762f98e1889e317ba533",
+          "indexSha256": "d32cbc61dbdf9b093f769b0b98fb652a444595324c2a949ac4d74ed9b5a6b884",
+          "gitBlob": "1a9206101b0d981bb150f0e75534ec55cf860093",
+          "lineEndingNormalizationOnly": true,
+          "boundToFinalSchemaReport": false
+        },
+        {
+          "path": "astra-modules/astra-system/src/test/java/com/astra/system/commerce/payment/PaymentVerificationPropertiesTest.java",
+          "worktreeSha256": "7ece08d1f2ac666d005222b6a666c89b5aa839a94971001027619b549c13696f",
+          "indexSha256": "7ece08d1f2ac666d005222b6a666c89b5aa839a94971001027619b549c13696f",
+          "gitBlob": "d0f95664054309fba802335a1996b153617a5ff4",
+          "lineEndingNormalizationOnly": false,
+          "boundToFinalSchemaReport": true
+        },
+        {
+          "path": "docs/commerce/openapi.json",
+          "worktreeSha256": "d0f2f4ec70fbf0fa88d470856607e4ba9dd3cbe6227017b0594dec1761de5114",
+          "indexSha256": "e4df956a5952bddda106f675af97e089047435531dece072a859f131bf089a05",
+          "gitBlob": "59a1903ba9084e13d4f16fafaf23755e9209981c",
+          "lineEndingNormalizationOnly": true,
+          "boundToFinalSchemaReport": true
+        },
+        {
+          "path": "scripts/validate-payment-verification-evidence.py",
+          "worktreeSha256": "d86d14c2b117e2e4e62a264b281adec67abb42ed11ff5d3818ae97a802be7263",
+          "indexSha256": "d86d14c2b117e2e4e62a264b281adec67abb42ed11ff5d3818ae97a802be7263",
+          "gitBlob": "ed71808b345ea8ef783d74025e884d0a79a29ba7",
+          "lineEndingNormalizationOnly": false,
+          "boundToFinalSchemaReport": true
+        },
+        {
+          "path": "scripts/validate-reconciliation-admin-evidence.py",
+          "worktreeSha256": "0e520b2ee0d23f060a06fcf29933e9cbe123d921e3bcb1124a5f6896a7ad0494",
+          "indexSha256": "0e520b2ee0d23f060a06fcf29933e9cbe123d921e3bcb1124a5f6896a7ad0494",
+          "gitBlob": "51817cc106270a1efe9743bb0c58e0427658c2c3",
+          "lineEndingNormalizationOnly": false,
+          "boundToFinalSchemaReport": true
+        },
+        {
+          "path": "sql/migrations/V20261009_01__commerce_payment_verification.sql",
+          "worktreeSha256": "1339f5a5fea07aa797ec6b67a7bbcce5d9d808c3767668b127df5ccdd8298803",
+          "indexSha256": "1339f5a5fea07aa797ec6b67a7bbcce5d9d808c3767668b127df5ccdd8298803",
+          "gitBlob": "2649fddfcda61dcd87dd9c7980cb13d5afbcd3a3",
+          "lineEndingNormalizationOnly": false,
+          "boundToFinalSchemaReport": true
+        }
+      ]
+    },
+    "astra-web": {
+      "baseCommit": "936338241ba6f8cd7a8092bea54c13b76c2eabbd",
+      "sources": [
+        {
+          "path": "scripts/admin-payment-verification-contract.mjs",
+          "worktreeSha256": "cea8a943ca64a574c75c13873c405eb9260a5b776a18f18d490a760a313fb613",
+          "indexSha256": "cea8a943ca64a574c75c13873c405eb9260a5b776a18f18d490a760a313fb613",
+          "gitBlob": "a936a36788a4f335f2bf40ba2216867bef6eab04",
+          "lineEndingNormalizationOnly": false,
+          "boundToFinalSchemaReport": true
+        },
+        {
+          "path": "scripts/admin-payment-verification-live.mjs",
+          "worktreeSha256": "69e2901863ff2bd17f6bdbc5481b7747a3295a48d3c584e3fa9bfea237736d4b",
+          "indexSha256": "69e2901863ff2bd17f6bdbc5481b7747a3295a48d3c584e3fa9bfea237736d4b",
+          "gitBlob": "4343b482741ee11d51c1f46d6606ffc3dcb609e0",
+          "lineEndingNormalizationOnly": false,
+          "boundToFinalSchemaReport": true
+        },
+        {
+          "path": "src/api/payment-verification.ts",
+          "worktreeSha256": "933ca85d521da853a99da1ab5d2927a13f9dbca2f3e3e658aacc7e38d7ca8992",
+          "indexSha256": "933ca85d521da853a99da1ab5d2927a13f9dbca2f3e3e658aacc7e38d7ca8992",
+          "gitBlob": "aafc42bbae70d4d995da7bd9a45a3a24fd2be279",
+          "lineEndingNormalizationOnly": false,
+          "boundToFinalSchemaReport": true
+        },
+        {
+          "path": "src/components/commerce/AdminNavigation.vue",
+          "worktreeSha256": "8d9ae971a0bec09b360d86e6d643baa89fce2aaf401658cb71f2efe157ec3401",
+          "indexSha256": "8d9ae971a0bec09b360d86e6d643baa89fce2aaf401658cb71f2efe157ec3401",
+          "gitBlob": "05ac330ea7ce63aeed27d4fe32f9cdd683d94569",
+          "lineEndingNormalizationOnly": false,
+          "boundToFinalSchemaReport": true
+        },
+        {
+          "path": "src/content/navigation.ts",
+          "worktreeSha256": "c86ab25116d7626f3140810a8f0b9e26b27b1ee15d11028aabc26206f22bddf9",
+          "indexSha256": "c86ab25116d7626f3140810a8f0b9e26b27b1ee15d11028aabc26206f22bddf9",
+          "gitBlob": "ed84510f1b43272aab0a468ac61993760959e40a",
+          "lineEndingNormalizationOnly": false,
+          "boundToFinalSchemaReport": true
+        },
+        {
+          "path": "src/lib/account-return.ts",
+          "worktreeSha256": "e69f87c26204597de5be49553d102ca6e32395cac0eba1d769f161179e4c4f54",
+          "indexSha256": "e69f87c26204597de5be49553d102ca6e32395cac0eba1d769f161179e4c4f54",
+          "gitBlob": "5a830d95af1c96a083391dbdc45a1b1127022ded",
+          "lineEndingNormalizationOnly": false,
+          "boundToFinalSchemaReport": true
+        },
+        {
+          "path": "src/lib/admin-payment-verification.ts",
+          "worktreeSha256": "6610cd909ff146725615f8b24042c5d2e541d24a1b68f811dad0762f8869ffe3",
+          "indexSha256": "6610cd909ff146725615f8b24042c5d2e541d24a1b68f811dad0762f8869ffe3",
+          "gitBlob": "2a602f57130414acc1108af9e6f7c3ceba2fede8",
+          "lineEndingNormalizationOnly": false,
+          "boundToFinalSchemaReport": true
+        },
+        {
+          "path": "src/router/index.ts",
+          "worktreeSha256": "ddba3ddd8b31efa8c98476ac9dd8f11a500b70264d691bf92b02976711159869",
+          "indexSha256": "ddba3ddd8b31efa8c98476ac9dd8f11a500b70264d691bf92b02976711159869",
+          "gitBlob": "905117dc5061c08e72dfe5b39d1e9452679ccd22",
+          "lineEndingNormalizationOnly": false,
+          "boundToFinalSchemaReport": true
+        },
+        {
+          "path": "src/views/AdminPaymentVerificationView.vue",
+          "worktreeSha256": "2164c4375171a1ea4f2508daeac6cfcce0cb4a41cdf6da09e57c3e58fa629923",
+          "indexSha256": "2164c4375171a1ea4f2508daeac6cfcce0cb4a41cdf6da09e57c3e58fa629923",
+          "gitBlob": "ffe50b7f675befdff1dfdeff984d64f8cc10bf6e",
+          "lineEndingNormalizationOnly": false,
+          "boundToFinalSchemaReport": true
+        },
+        {
+          "path": "src/views/AdminReconciliationsView.vue",
+          "worktreeSha256": "22b9730dbee76936b5daae1421a50692e6de262fda9053ba8c9ae384911efb21",
+          "indexSha256": "22b9730dbee76936b5daae1421a50692e6de262fda9053ba8c9ae384911efb21",
+          "gitBlob": "5b257b7cb3548d1549a75f10d34cfe1b20be98cc",
+          "lineEndingNormalizationOnly": false,
+          "boundToFinalSchemaReport": true
+        },
+        {
+          "path": "src/views/AdminRefundsView.vue",
+          "worktreeSha256": "ea46437b138aec5cd91b21435fed9bc6a31a4395ed0e84e76711690b911a8c4f",
+          "indexSha256": "ea46437b138aec5cd91b21435fed9bc6a31a4395ed0e84e76711690b911a8c4f",
+          "gitBlob": "9d13fccb63fd19a6c3a9ede2e3342c4a35d6aacc",
+          "lineEndingNormalizationOnly": false,
+          "boundToFinalSchemaReport": true
+        }
+      ]
+    }
+  },
+  "protectedFrontendSourcesUnchanged": [
+    "src/views/ArtHomeView.vue",
+    "src/components/CharacterArtwork.vue",
+    "src/lib/ascii/studio-preview.ts",
+    "src/components/ui/FxButton.vue"
+  ],
+  "frontendBuildFilesVerified": 537
+}

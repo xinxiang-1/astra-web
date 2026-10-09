@@ -36,6 +36,7 @@ const router = createRouter({
     { path: '/projects', name: 'projects', component: () => import('@/views/ProjectsView.vue') },
     { path: '/admin/refunds', name: 'admin-refunds', component: () => import('@/views/AdminRefundsView.vue') },
     { path: '/admin/reconciliations', name: 'admin-reconciliations', component: () => import('@/views/AdminReconciliationsView.vue') },
+    { path: '/admin/orders/:orderId/verification', name: 'admin-payment-verification', component: () => import('@/views/AdminPaymentVerificationView.vue'), props: true },
     {
       path: '/account/orders',
       name: 'account-orders',

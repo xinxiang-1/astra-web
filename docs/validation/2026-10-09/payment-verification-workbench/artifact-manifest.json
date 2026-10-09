@@ -1,0 +1,78 @@
+{
+  "passed": true,
+  "scope": "All archive files excluding this manifest; copies and Git retain exact original bytes",
+  "files": {
+    "document-links.json": {
+      "sha256": "e95b9f6e7ed6dda26edd342d9c85d6567ddcfa516176e050fb5680c91aee00a4",
+      "sizeBytes": 63486
+    },
+    "failure-history.json": {
+      "sha256": "ad15b27eba7093967fb59f22988569a73068a1b30db507ad246e60134095fb65",
+      "sizeBytes": 3976
+    },
+    "http-evidence.json": {
+      "sha256": "ec64213c381ac58b4431de231747e0383835bb2bde4f8cc37e9d7c5fb4848c92",
+      "sizeBytes": 211334
+    },
+    "http-schema.json": {
+      "sha256": "61bb52f1508e03fae5cc9434236e1d481aef967bef7be8095a6c90c9c58b291c",
+      "sizeBytes": 72161
+    },
+    "junit.json": {
+      "sha256": "15271f06077eade6371acdf1d09848fff7ea07bd05e27a71e19167709ee643a1",
+      "sizeBytes": 4132
+    },
+    "README.md": {
+      "sha256": "687d0fb87c1d0ad058aadfdb1ee1541739867742bd596dce2a0d143c4c3640d6",
+      "sizeBytes": 2736
+    },
+    "source-index.json": {
+      "sha256": "6e09beebbc58ee1d9c3b11025590780b1bf95cae20df05034b2406e6d1de3d47",
+      "sizeBytes": 16806
+    },
+    "static-contract.json": {
+      "sha256": "8e4cda2ff0c1495708aba253c40fb5ceb5801681f7ecbfb0db9a82a4e6615b12",
+      "sizeBytes": 8447
+    },
+    "summary.json": {
+      "sha256": "e3d1028162054cc27f1e45b7a276df6ae310834a295d2f003d106020aaffcde5",
+      "sizeBytes": 5686
+    },
+    "verification-ui/browser-report.json": {
+      "sha256": "c63ae7c436163e8df3d34433d15306f03c66108789da8ddd315bda5156cf3735",
+      "sizeBytes": 245568
+    },
+    "verification-ui/verification-chrome-dark-mobile.png": {
+      "sha256": "deee38a702b0c3b03cb118548f373164117b765dcf66a518ff6b6df730b22cfd",
+      "sizeBytes": 143457
+    },
+    "verification-ui/verification-chrome-light-mobile.png": {
+      "sha256": "d70e11a520490fe75b9dcae971b1a4b198bd8e453c0ab1372b99de3c9a86610d",
+      "sizeBytes": 141037
+    },
+    "verification-ui/verification-edge-dark-desktop.png": {
+      "sha256": "86a5f63353835ed7434a3ace4633ca10ba03e32051e87230453d8c0e6d9f244f",
+      "sizeBytes": 154883
+    },
+    "verification-ui/verification-edge-dark-form.png": {
+      "sha256": "0235fc3a6b1cb35ca215807405c15df0ffbce5402b23262fb00fdb3708ad18e5",
+      "sizeBytes": 20742
+    },
+    "verification-ui/verification-edge-dark-mobile.png": {
+      "sha256": "ca32d35dfd781196cc265f947ca8b4cb72612569f770ce634d119c04c1659d52",
+      "sizeBytes": 136903
+    },
+    "verification-ui/verification-edge-light-desktop.png": {
+      "sha256": "ce433ae447b86b1b2499bc5ece5d112606ce474cbba5b3892075fbfef48bcf60",
+      "sizeBytes": 152929
+    },
+    "verification-ui/verification-edge-light-form.png": {
+      "sha256": "ce7927d003c3320e07d0fac89db36873d47d745990a7235c490d2513830e9079",
+      "sizeBytes": 20444
+    },
+    "verification-ui/verification-edge-light-mobile.png": {
+      "sha256": "f0557ce2c1d53bbd30c870f56b1728070c9e4b1d22b95992c96bf10f3731b293",
+      "sizeBytes": 135091
+    }
+  }
+}

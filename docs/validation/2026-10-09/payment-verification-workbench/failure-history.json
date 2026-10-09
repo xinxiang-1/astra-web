@@ -1,0 +1,111 @@
+{
+  "earlierRunsNotAddedToFinalCount": true,
+  "findings": [
+    {
+      "phase": "First type-check",
+      "evidence": {
+        "repo": "astra-web",
+        "path": "test-results/payment-verification-ui-types-r1.log",
+        "sha256": "b589c58b7c02909676589f0324a9dc85ff54ff56e117d370e0a3521f03343fa1",
+        "sizeBytes": 299
+      },
+      "failure": "String.isWellFormed unavailable in current TypeScript target",
+      "fix": "Unicode-mode unpaired-surrogate validation; supplementary-plane characters remain valid; no compiler-target upgrade"
+    },
+    {
+      "phase": "Concurrent pending-intent review",
+      "failure": "Reading session intent before async hash could produce two original UUIDs",
+      "fix": "Re-read after hash; remove storage only when original UUID matches; subsequently verified by actual concurrent command test",
+      "preFixTestPassClaimed": false
+    },
+    {
+      "phase": "R1 passed tests, manual screenshot review",
+      "evidence": {
+        "repo": "astra-cloud",
+        "path": "tmp/payment-verification-ui-r1.log",
+        "sha256": "0ea5921618733ba38f36de9f8c41b3db3206e6656116152c14d5d98e911945fc",
+        "sizeBytes": 23012
+      },
+      "junit": {
+        "tests": 16,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "report": "tmp/payment-verification-ui-junit-r1.xml",
+        "reportSha256": "1fe0b26c97e3f988ff390fd8f0d9fb7553c179decaf1ecc20dd69a3b19abfe58",
+        "cases": [
+          {
+            "name": "roleAccountAndStrictInputsAreRechecked",
+            "passed": true
+          },
+          {
+            "name": "acceptedCommandIsAtomicAndLostResponseRecoversWithRenewedJwt",
+            "passed": true
+          },
+          {
+            "name": "pendingAndExpiredPaymentOnlyQueryNeverCloseOrCreate",
+            "passed": true
+          },
+          {
+            "name": "trustedSuccessAppliesOriginalFactAndEntitlementOnlyInWorker",
+            "passed": true
+          },
+          {
+            "name": "malformedFactsAndMissingRecordsCannotGrantOrClose",
+            "passed": true
+          },
+          {
+            "name": "timeoutRetriesOriginalTaskAndMissingRecordBudgetIsFinite",
+            "passed": true
+          },
+          {
+            "name": "versionActiveTaskAndDisabledExecutionPreserveOriginalRecovery",
+            "passed": true
+          },
+          {
+            "name": "sameKeyAndDifferentAdministratorsCannotQueueParallelTasks",
+            "passed": true
+          },
+          {
+            "name": "commandOrAuditFailureRollsBackAllQueueWrites",
+            "passed": true
+          },
+          {
+            "name": "financialApplyFailureRollsBackAndOriginalTaskLaterRecovers",
+            "passed": true
+          },
+          {
+            "name": "expiredLeaseTakeoverFencesOldResultAndFundsAreAppliedOnce",
+            "passed": true
+          },
+          {
+            "name": "readQuotaAndCommandLimitRemainIndependentAndRecoveryBypassesNewWriteQuota",
+            "passed": true
+          },
+          {
+            "name": "disabledBuyerAndCrossOrderHistoryCannotChangePaymentBinding",
+            "passed": true
+          },
+          {
+            "name": "realRedisOutageRejectsReadAndQueueThenActuallyRecovers",
+            "passed": true
+          },
+          {
+            "name": "brokenPersistedBindingStopsWithinRetryBudgetWithoutCallingChannel",
+            "passed": true
+          },
+          {
+            "name": "actualPageRecoversOriginalQueriesAndUsesTrustedWorkerFacts",
+            "passed": true
+          }
+        ]
+      },
+      "httpSchemaSha256": "7ec472b12671f732c6b8d777e3db278320a165631e8381ee7cec919a8ab16023",
+      "browserChecks": 18,
+      "finding": "Mobile query form entry was too far below the context",
+      "fix": "Add top query action/focus assertion; rebuild and rerun finalR2",
+      "countedAsFinalEvidence": false
+    }
+  ],
+  "finalRun": "payment-verification-it-bd7e43c1aeaa"
+}

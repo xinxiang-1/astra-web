@@ -1,0 +1,175 @@
+{
+  "passed": true,
+  "stage": "payment-verification-workbench-2026-10-09",
+  "finalRun": "payment-verification-it-bd7e43c1aeaa",
+  "junit": {
+    "tests": 26,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "browserChecks": 18,
+  "commandContracts": {
+    "verification": 17,
+    "existingReconciliation": 13,
+    "total": 30
+  },
+  "responseSchemas": {
+    "backend": 181,
+    "direct": 80,
+    "gateway": 101,
+    "browser": 28,
+    "total": 209,
+    "statuses": [
+      200,
+      400,
+      401,
+      403,
+      404,
+      409,
+      429,
+      503
+    ]
+  },
+  "checks": {
+    "backendIntegration": {
+      "repo": "astra-cloud",
+      "path": "tmp/payment-verification-ui-r2.log",
+      "sha256": "31630db5fa127e1e45e5193963dcba8fede407b80c5634b20e010c08a710dc06",
+      "sizeBytes": 22336
+    },
+    "backendReactorPackage": {
+      "repo": "astra-cloud",
+      "path": "tmp/payment-verification-ui-build-final.log",
+      "sha256": "b5f65223d1b4857330b6eae1ec590d5031cd54bc63ff1040bdb9fdd800af9d02",
+      "sizeBytes": 9136,
+      "skipTests": true
+    },
+    "frontendTypes": {
+      "repo": "astra-web",
+      "path": "test-results/payment-verification-ui-types-r4.log",
+      "sha256": "0a7d40c8ea67ee87b4bcdc91418a201a96bc30f3286185c82d8888ec96c6d6fb",
+      "sizeBytes": 77
+    },
+    "frontendEslint": {
+      "repo": "astra-web",
+      "path": "test-results/payment-verification-ui-eslint-r4.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sizeBytes": 0,
+      "completionEvidence": "Observed successful tool exit in final validation; empty log is not an independent success proof"
+    },
+    "frontendBuild": {
+      "repo": "astra-web",
+      "path": "test-results/payment-verification-ui-build-r2.log",
+      "sha256": "f845fd7c1be53918c30431cfd941cdeff7646666f0e7bf99bbed1f3b96021f16",
+      "sizeBytes": 16458
+    },
+    "verificationCommand": {
+      "repo": "astra-web",
+      "path": "test-results/payment-verification-ui-contract-r2.log",
+      "sha256": "296b3a49290fd30c2f52ab2e694e10ef91fb9f5742691afe6cf5e4cbfafd54a1",
+      "sizeBytes": 92
+    },
+    "reconciliationCommand": {
+      "repo": "astra-web",
+      "path": "test-results/payment-verification-ui-reconciliation-contract-r1.log",
+      "sha256": "18cca2aea7acd7e9f9be2a5104a01aa1fca715c124708cb248116b62eab6f446",
+      "sizeBytes": 87
+    }
+  },
+  "frontendBuildFilesVerified": 537,
+  "screenshots": {
+    "count": 8,
+    "manualInspectionCompleted": true,
+    "pageErrors": []
+  },
+  "sql": {
+    "completeMigrationTableCount": 22,
+    "tables": [
+      "commerce_policy",
+      "commerce_product",
+      "commerce_release",
+      "commerce_sku",
+      "commerce_asset",
+      "commerce_order",
+      "commerce_order_item",
+      "commerce_payment",
+      "commerce_refund",
+      "commerce_payment_event",
+      "commerce_entitlement",
+      "commerce_asset_access",
+      "commerce_admin_role",
+      "commerce_lead",
+      "commerce_admin_audit",
+      "commerce_command",
+      "commerce_outbox",
+      "commerce_reconcile_day",
+      "commerce_reconcile_job",
+      "commerce_reconcile_issue",
+      "commerce_reconcile_attempt",
+      "commerce_payment_verification"
+    ],
+    "actualIsolatedExecutionProvenByFinalIntegration": true,
+    "mockTableCountedSeparately": true,
+    "mainDatabaseMigrated": false,
+    "offlineContractAstOnlyCoversBase17Tables": true,
+    "migrations": {
+      "V20261002_01__commerce_v1.sql": "cc5a957a133ce268bd8532168fb2d7fb2b8ba0a3df945c892aeb25f28128f0b9",
+      "V20261008_01__commerce_statement_indexes.sql": "f2e83772a79eaf189fe100e724283ef9f590186fc0d9bf4259d8b512ca8c0c7e",
+      "V20261008_02__commerce_daily_reconciliation.sql": "69b3cb039f7e2eb6c3602c4ccf1c6531a96f4c1090415db3da000c8d2e17b498",
+      "V20261009_01__commerce_payment_verification.sql": "1339f5a5fea07aa797ec6b67a7bbcce5d9d808c3767668b127df5ccdd8298803"
+    }
+  },
+  "browserFinancialInvariants": {
+    "priorQueries": 21,
+    "newQueries": 3,
+    "finalVerificationRows": 24,
+    "finalCommands": 24,
+    "moneyEvents": 1,
+    "sourceEntitlements": 1,
+    "refunds": 0,
+    "orderState": "PAID",
+    "contradictoryClosedQueryAttempts": 8
+  },
+  "fixtureCleanupComplete": true,
+  "earlierRunsAddedToCount": false,
+  "previous11PaymentFlowTestsRerun": false,
+  "mockAndInjectedScope": [
+    "Persisted mock payment provider; actual system/gateway/MySQL/owned Redis/worker/SQL/role checks",
+    "No-op verification scheduler; actual worker coordination",
+    "Fixture JWT and database roles; auth/me explicitly simulated503, not production authentication",
+    "Actual owned Redis outage/recovery retained in original15 regression cases"
+  ],
+  "browserInjectedFailures": [
+    {
+      "kind": "before-acceptance-POST-network-loss",
+      "path": "/api/system/admin/orders/366660278018052096/reconcile"
+    },
+    {
+      "kind": "accepted200-query-response-lost",
+      "path": "/api/system/admin/orders/366660278018052096/reconcile"
+    },
+    {
+      "kind": "read503",
+      "path": "/api/system/admin/orders/366660278018052096/reconcile"
+    }
+  ],
+  "browserDelayedResponses": [
+    "Same-component order switch",
+    "Cross-tab account switch"
+  ],
+  "knownBuildWarnings": [
+    "Existing chunk size >500kB",
+    "Existing layout-compute dynamic/static import"
+  ],
+  "notVerified": [
+    "real channel funds",
+    "refund anomaly query",
+    "production deployment",
+    "entire commercial goal",
+    "production authentication; auth/me explicitly simulated503 in owned browser fixture",
+    "backend membership",
+    "clean deployment/backup/monitoring",
+    "signature/media/all-site commercial quality"
+  ]
+}

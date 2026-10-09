@@ -1,0 +1,144 @@
+{
+  "passed": true,
+  "tests": 26,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "scope": "Final R2 only; safe testcase summary, no JVM environment properties or XML archived",
+  "suites": [
+    {
+      "tests": 16,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "report": "tmp/payment-verification-ui-junit-r2.xml",
+      "reportSha256": "71d2f9a2f6d67ef60bd8b24cb942a3dd20f5d00b5263a599074f7d82704986b1",
+      "cases": [
+        {
+          "name": "roleAccountAndStrictInputsAreRechecked",
+          "passed": true
+        },
+        {
+          "name": "acceptedCommandIsAtomicAndLostResponseRecoversWithRenewedJwt",
+          "passed": true
+        },
+        {
+          "name": "pendingAndExpiredPaymentOnlyQueryNeverCloseOrCreate",
+          "passed": true
+        },
+        {
+          "name": "trustedSuccessAppliesOriginalFactAndEntitlementOnlyInWorker",
+          "passed": true
+        },
+        {
+          "name": "malformedFactsAndMissingRecordsCannotGrantOrClose",
+          "passed": true
+        },
+        {
+          "name": "timeoutRetriesOriginalTaskAndMissingRecordBudgetIsFinite",
+          "passed": true
+        },
+        {
+          "name": "versionActiveTaskAndDisabledExecutionPreserveOriginalRecovery",
+          "passed": true
+        },
+        {
+          "name": "sameKeyAndDifferentAdministratorsCannotQueueParallelTasks",
+          "passed": true
+        },
+        {
+          "name": "commandOrAuditFailureRollsBackAllQueueWrites",
+          "passed": true
+        },
+        {
+          "name": "financialApplyFailureRollsBackAndOriginalTaskLaterRecovers",
+          "passed": true
+        },
+        {
+          "name": "expiredLeaseTakeoverFencesOldResultAndFundsAreAppliedOnce",
+          "passed": true
+        },
+        {
+          "name": "readQuotaAndCommandLimitRemainIndependentAndRecoveryBypassesNewWriteQuota",
+          "passed": true
+        },
+        {
+          "name": "disabledBuyerAndCrossOrderHistoryCannotChangePaymentBinding",
+          "passed": true
+        },
+        {
+          "name": "realRedisOutageRejectsReadAndQueueThenActuallyRecovers",
+          "passed": true
+        },
+        {
+          "name": "brokenPersistedBindingStopsWithinRetryBudgetWithoutCallingChannel",
+          "passed": true
+        },
+        {
+          "name": "actualPageRecoversOriginalQueriesAndUsesTrustedWorkerFacts",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "report": "tmp/payment-verification-ui-properties-r2.xml",
+      "reportSha256": "47e532b431121b5a8458137259e57419ac735f7b06afa3561e5af3a839924db9",
+      "cases": [
+        {
+          "name": "explicitMockCanQueryWithoutOpeningNormalPaymentWorker",
+          "passed": true
+        },
+        {
+          "name": "workerNeedsIndependentEnablement",
+          "passed": true
+        },
+        {
+          "name": "productionAndMissingProfileCannotExecute",
+          "passed": true
+        },
+        {
+          "name": "disabledByDefaultCannotClaimTasks",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "report": "tmp/payment-verification-ui-configuration-r2.xml",
+      "reportSha256": "2a64d957f90a9db843233f56108d96675461ad456461d93befba497ef06709dc",
+      "cases": [
+        {
+          "name": "malformedCryptoProviderAndTimeoutConfigurationCannotStart",
+          "passed": true
+        },
+        {
+          "name": "productionDefaultsLoadOnlyDisabledProvider",
+          "passed": true
+        },
+        {
+          "name": "productionRejectsMockEvenWhenDisabledOrProfileOnly",
+          "passed": true
+        },
+        {
+          "name": "explicitTestMockProfileLoadsOneGuardedProvider",
+          "passed": true
+        },
+        {
+          "name": "enabledMockWithoutProfileAndUnimplementedRealProviderAreRejected",
+          "passed": true
+        },
+        {
+          "name": "enabledWorkerWithoutProviderCannotStart",
+          "passed": true
+        }
+      ]
+    }
+  ]
+}
