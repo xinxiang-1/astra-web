@@ -1,0 +1,104 @@
+{
+  "earlierRunsNotAddedToFinalCount": true,
+  "finalRun": "refund-verification-it-55680f11cde0",
+  "findings": [
+    {
+      "phase": "R1 browser",
+      "junit": {
+        "tests": 16,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 0,
+        "report": "tmp/refund-verification-ui-junit-r1.xml",
+        "reportSha256": "9ef698f20a76646093723f52cc3a819010361519cbcac1b8c045236178c208f7",
+        "cases": [
+          {
+            "name": "strictInputRoleAccountAndDirectServiceAreRechecked",
+            "passed": true
+          },
+          {
+            "name": "acceptedResponseLossRenewedJwtAndSameKeyRecoverOneAtomicCommand",
+            "passed": true
+          },
+          {
+            "name": "unapprovedRejectedStaleVersionActiveTaskAndDisabledExecutionCannotQueue",
+            "passed": true
+          },
+          {
+            "name": "pendingObservationCompletesQueryWithoutCreatingRefundOrRevokingRights",
+            "passed": true
+          },
+          {
+            "name": "trustedSuccessRevokesOnlyOriginalSourceOnceAndContradictoryFailureCannotReverseIt",
+            "passed": true
+          },
+          {
+            "name": "trustedFailedRefundPreservesRightsAndLaterVerifiedSuccessCorrectsOriginalOnce",
+            "passed": true
+          },
+          {
+            "name": "malformedAmountsParentAndTimeCannotWriteMoneyOrRights",
+            "passed": true
+          },
+          {
+            "name": "timeoutAndMissingRefundStopWithinEightAttemptsWithoutCreateFallback",
+            "passed": true
+          },
+          {
+            "name": "auditAndCommandSqlFailureRollBackAllAcceptedQueryWrites",
+            "passed": true
+          },
+          {
+            "name": "financialEventFailureRollsBackRefundMoneyAndRevocationThenOriginalQueryRecovers",
+            "passed": true
+          },
+          {
+            "name": "expiredLeaseTakeoverFencesOldResultAndAppliesOneRefundFact",
+            "passed": true
+          },
+          {
+            "name": "concurrentAdministratorsCannotQueueParallelTasksAndBrokenBindingHasFiniteBudget",
+            "passed": true
+          },
+          {
+            "name": "boundedHistoryReadQuotaWriteQuotaAndDisabledBuyerStillAllowOriginalRecovery",
+            "passed": true
+          },
+          {
+            "name": "realRedisAndRoleStorageFailureRejectReadsThenActuallyRecover",
+            "passed": true
+          },
+          {
+            "name": "bindingChangeDuringRemoteQueryCannotApplyTheOldOriginalFact",
+            "passed": true
+          },
+          {
+            "name": "actualRefundPageRecoversOriginalQueryAndKeepsMoneyAndRightsBound",
+            "passed": false
+          }
+        ]
+      },
+      "browserReportSha256": "b106ce28b167705ddd8ed52de78fa2e1beb262ec80234a82819d7486dac197f2",
+      "failure": "Script waited for approved refund without changing default REQUESTED list filter; real API returned requested records",
+      "fix": "Select APPROVED in actual UI before entering original detail; final R2 re-executes complete browser and backend suite"
+    },
+    {
+      "phase": "First existing reconciliation command",
+      "evidence": {
+        "repo": "astra-web",
+        "path": "test-results/refund-verification-ui-reconciliation-contract-r1.log",
+        "sha256": "d091c69a2451e2c7545cb7115a46a8ae50dc5af0084933ddfd5704efa3fb897d",
+        "sizeBytes": 787
+      },
+      "failure": "Singular script filename did not exist; product contract was not run",
+      "fix": "Actual plural admin-reconciliations-contract.mjs executed; final13 passed"
+    },
+    {
+      "phase": "Response verifier source review",
+      "fix": "Include shared HTTP/auth/commerce/refund/verification dependencies in final frontend hashes",
+      "productSourcesChanged": false,
+      "productTestsRerunRequired": false,
+      "evidenceVerificationRerunAgainstSameFinalRun": true
+    }
+  ]
+}

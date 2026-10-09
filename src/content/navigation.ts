@@ -22,6 +22,7 @@ export const routeTitles: Record<string, string> = {
   'admin-refunds': '退款工作台',
   'admin-reconciliations': '每日对账',
   'admin-payment-verification': '原支付核查',
+  'admin-refund-verification': '原退款核查',
   tools: '创作工具',
   studio: '视觉实验室',
   'ascii-art': '字符画工作台',

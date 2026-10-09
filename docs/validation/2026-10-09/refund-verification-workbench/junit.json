@@ -1,0 +1,196 @@
+{
+  "passed": true,
+  "tests": 34,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "scope": "Final R2 only; safe testcase summary; no JVM environment properties/XML archived",
+  "suites": [
+    {
+      "tests": 16,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "report": "tmp/refund-verification-ui-RefundVerificationIntegrationTest-r2.xml",
+      "reportSha256": "484b13b670d93344e45c5518070243c4aae346ad55b71da7ac5fb88f0d566561",
+      "cases": [
+        {
+          "name": "strictInputRoleAccountAndDirectServiceAreRechecked",
+          "passed": true
+        },
+        {
+          "name": "acceptedResponseLossRenewedJwtAndSameKeyRecoverOneAtomicCommand",
+          "passed": true
+        },
+        {
+          "name": "unapprovedRejectedStaleVersionActiveTaskAndDisabledExecutionCannotQueue",
+          "passed": true
+        },
+        {
+          "name": "pendingObservationCompletesQueryWithoutCreatingRefundOrRevokingRights",
+          "passed": true
+        },
+        {
+          "name": "trustedSuccessRevokesOnlyOriginalSourceOnceAndContradictoryFailureCannotReverseIt",
+          "passed": true
+        },
+        {
+          "name": "trustedFailedRefundPreservesRightsAndLaterVerifiedSuccessCorrectsOriginalOnce",
+          "passed": true
+        },
+        {
+          "name": "malformedAmountsParentAndTimeCannotWriteMoneyOrRights",
+          "passed": true
+        },
+        {
+          "name": "timeoutAndMissingRefundStopWithinEightAttemptsWithoutCreateFallback",
+          "passed": true
+        },
+        {
+          "name": "auditAndCommandSqlFailureRollBackAllAcceptedQueryWrites",
+          "passed": true
+        },
+        {
+          "name": "financialEventFailureRollsBackRefundMoneyAndRevocationThenOriginalQueryRecovers",
+          "passed": true
+        },
+        {
+          "name": "expiredLeaseTakeoverFencesOldResultAndAppliesOneRefundFact",
+          "passed": true
+        },
+        {
+          "name": "concurrentAdministratorsCannotQueueParallelTasksAndBrokenBindingHasFiniteBudget",
+          "passed": true
+        },
+        {
+          "name": "boundedHistoryReadQuotaWriteQuotaAndDisabledBuyerStillAllowOriginalRecovery",
+          "passed": true
+        },
+        {
+          "name": "realRedisAndRoleStorageFailureRejectReadsThenActuallyRecover",
+          "passed": true
+        },
+        {
+          "name": "bindingChangeDuringRemoteQueryCannotApplyTheOldOriginalFact",
+          "passed": true
+        },
+        {
+          "name": "actualRefundPageRecoversOriginalQueryAndKeepsMoneyAndRightsBound",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "report": "tmp/refund-verification-ui-refund.RefundVerificationPropertiesTest-r2.xml",
+      "reportSha256": "67f6d58666cbd9939d1a55c08e1ee1e6507f6e25d3b91e4dc43192de3b69ae1e",
+      "cases": [
+        {
+          "name": "explicitMockCanQueryWithoutOpeningNormalRefundWorker",
+          "passed": true
+        },
+        {
+          "name": "workerNeedsIndependentEnablement",
+          "passed": true
+        },
+        {
+          "name": "productionAndMissingProfileCannotExecute",
+          "passed": true
+        },
+        {
+          "name": "disabledByDefaultCannotClaimTasks",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "report": "tmp/refund-verification-ui-refund.RefundVerificationConfigurationTest-r2.xml",
+      "reportSha256": "8a53a6161d9a72a8f1ef777fce0cbd746a4a70eb4749a2714a222bc5ab91d1fe",
+      "cases": [
+        {
+          "name": "invalidOptInOrProductionIsRejected",
+          "passed": true
+        },
+        {
+          "name": "productionDefaultHasNoQueryScheduler",
+          "passed": true
+        },
+        {
+          "name": "explicitQuerySchedulerDoesNotEnableRefundCreation",
+          "passed": true
+        },
+        {
+          "name": "normalRefundEnablementCannotEnableVerification",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "report": "tmp/refund-verification-ui-refund.RefundConfigurationTest-r2.xml",
+      "reportSha256": "7aa469b34eb86e02c174e241b3cc9f2ceceb448c28aceaff0bf40d06b560a2f6",
+      "cases": [
+        {
+          "name": "paymentWorkerEnablementDoesNotEnableRefunds",
+          "passed": true
+        },
+        {
+          "name": "productionDefaultsNeverScheduleRefunds",
+          "passed": true
+        },
+        {
+          "name": "schedulerExistsOnlyForExplicitRefundWorker",
+          "passed": true
+        },
+        {
+          "name": "refundRequiresExplicitApprovedEnvironmentAndProvider",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "report": "tmp/refund-verification-ui-payment.PaymentConfigurationTest-r2.xml",
+      "reportSha256": "f39208f174bef2f3e5af3b8dcaff54aae861296a35decdf1774392895147b47f",
+      "cases": [
+        {
+          "name": "malformedCryptoProviderAndTimeoutConfigurationCannotStart",
+          "passed": true
+        },
+        {
+          "name": "productionDefaultsLoadOnlyDisabledProvider",
+          "passed": true
+        },
+        {
+          "name": "productionRejectsMockEvenWhenDisabledOrProfileOnly",
+          "passed": true
+        },
+        {
+          "name": "explicitTestMockProfileLoadsOneGuardedProvider",
+          "passed": true
+        },
+        {
+          "name": "enabledMockWithoutProfileAndUnimplementedRealProviderAreRejected",
+          "passed": true
+        },
+        {
+          "name": "enabledWorkerWithoutProviderCannotStart",
+          "passed": true
+        }
+      ]
+    }
+  ]
+}

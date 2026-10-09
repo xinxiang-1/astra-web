@@ -1,0 +1,78 @@
+{
+  "passed": true,
+  "scope": "All archive files excluding manifest; exact original bytes",
+  "files": {
+    "document-links.json": {
+      "sha256": "e2241f16bc7643fe567402366173bab68a942931139a9e3e2f9f312e25458cab",
+      "sizeBytes": 45972
+    },
+    "failure-history.json": {
+      "sha256": "9a6984ac6744ddd6ec439a93db544ed63db642f2f63b47cf18f71daa314cf55a",
+      "sizeBytes": 3912
+    },
+    "http-evidence.json": {
+      "sha256": "d02403ddf331dc90f76ce0ae62ccd4e34044600fb0dde9b54ecbdbe57bdc7484",
+      "sizeBytes": 270903
+    },
+    "http-schema.json": {
+      "sha256": "ddd8c50010dada5ef7e4d84d1894c0630b9474f96354d3252207b091f3b4c982",
+      "sizeBytes": 74488
+    },
+    "junit.json": {
+      "sha256": "142d489420acbe9e9ff1afb460dd2a5e1a40c6a56767f413e50c05e0a2affd3f",
+      "sizeBytes": 5836
+    },
+    "README.md": {
+      "sha256": "f582dd7ae0a567c7b393ea0fb7531d1d0be6221393b3d19ee72cc643ebd29eec",
+      "sizeBytes": 2559
+    },
+    "source-index.json": {
+      "sha256": "28e0da3920d3db4257bb8e554ce763e86920d32a897714006304d05d2b0a1148",
+      "sizeBytes": 19106
+    },
+    "static-contract.json": {
+      "sha256": "6a47608286a5ab04ef04b33ec770b72eb2d9afc7156605e435585cb8f12e8561",
+      "sizeBytes": 8575
+    },
+    "summary.json": {
+      "sha256": "9dcc08d6ac29e10505ce22bc5db03e3c978a68898256d8bd323aa2d96eb42adc",
+      "sizeBytes": 6949
+    },
+    "verification-ui/browser-report.json": {
+      "sha256": "42697a61e6c3d1ccb7076495c35fcfc701ed2605cd47bbeee6c9868f99a01b08",
+      "sizeBytes": 325059
+    },
+    "verification-ui/refund-verification-chrome-dark-mobile.png": {
+      "sha256": "32e4e677e67a7adc00ce41cd85f9fdb6b9d1ff1d97461efde971b06f657b57ee",
+      "sizeBytes": 164122
+    },
+    "verification-ui/refund-verification-chrome-light-mobile.png": {
+      "sha256": "630c2315a45b183182c0d90777eb4353d651123da8463bc0ff3225a6435e8d8a",
+      "sizeBytes": 161301
+    },
+    "verification-ui/refund-verification-edge-dark-desktop.png": {
+      "sha256": "8c550a40210ee65e8129a0a838b68b042474aa8cd7437784e071b4278330595c",
+      "sizeBytes": 176096
+    },
+    "verification-ui/refund-verification-edge-dark-form.png": {
+      "sha256": "4e924e3def3608bc3e184cdccceea0cb42481d60fcbc293260612e529b969e9e",
+      "sizeBytes": 21482
+    },
+    "verification-ui/refund-verification-edge-dark-mobile.png": {
+      "sha256": "6cdbc2706ba9bd2a99093bb1f63dc71cf202b85c2ea7927d00e8adc8af024499",
+      "sizeBytes": 157931
+    },
+    "verification-ui/refund-verification-edge-light-desktop.png": {
+      "sha256": "3efee5f8e55d500cb4e0a5252213b8909ded275f97a5fafb3060cac6077586f9",
+      "sizeBytes": 173993
+    },
+    "verification-ui/refund-verification-edge-light-form.png": {
+      "sha256": "240be83278eb42a56fae3f910b2d0166bcd040dbb25388e08414baeaf60cc1a1",
+      "sizeBytes": 21090
+    },
+    "verification-ui/refund-verification-edge-light-mobile.png": {
+      "sha256": "1896d27e5881c976a860e94234bfba64b804d4a5976b83404b82c04e71733115",
+      "sizeBytes": 155938
+    }
+  }
+}

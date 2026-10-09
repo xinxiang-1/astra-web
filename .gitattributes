@@ -7,3 +7,5 @@ docs/validation/2026-10-09/payment-verification/*.json -text whitespace=cr-at-eo
 docs/validation/2026-10-09/payment-verification-workbench/*.json -text whitespace=cr-at-eol
 docs/validation/2026-10-09/payment-verification-workbench/verification-ui/*.json -text whitespace=cr-at-eol
 docs/validation/2026-10-09/refund-verification/*.json -text whitespace=cr-at-eol
+docs/validation/2026-10-09/refund-verification-workbench/*.json -text whitespace=cr-at-eol
+docs/validation/2026-10-09/refund-verification-workbench/verification-ui/*.json -text whitespace=cr-at-eol

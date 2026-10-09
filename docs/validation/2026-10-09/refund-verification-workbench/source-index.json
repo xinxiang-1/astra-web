@@ -1,0 +1,337 @@
+{
+  "passed": true,
+  "repos": {
+    "astra-cloud": {
+      "baseCommit": "d4efc65341d15eb79db4ef9b350e1427d096c055",
+      "sources": [
+        {
+          "path": "astra-api/src/main/java/com/astra/api/commerce/CommerceRefundVerificationDto.java",
+          "worktreeSha256": "bd9d575ab1bacadabf509d469e1422785225e20b2fc07380a137f889da717c96",
+          "indexSha256": "bd9d575ab1bacadabf509d469e1422785225e20b2fc07380a137f889da717c96",
+          "gitBlob": "89aaa95a773cc2505b555d303ba30cae7a210a0e",
+          "lineEndingNormalizationOnly": false
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/admin/RefundVerificationAdminController.java",
+          "worktreeSha256": "e10e2ca0059a58b4a805f12b3e4225bfdf70d32b1a4d8ce3843aabdd824d5818",
+          "indexSha256": "8dbfd6c1a108de3ba198efb964fe99885a695a0e65719afdb4ca289323ee4445",
+          "gitBlob": "57a7fcede80f4baef515640cce66642b01ca1d8e",
+          "lineEndingNormalizationOnly": true
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/admin/RefundVerificationAdminService.java",
+          "worktreeSha256": "f6b92650043d1807744f5bb074e6e7478a46ea10636206422d2f46fb8f1fe7c9",
+          "indexSha256": "f6b92650043d1807744f5bb074e6e7478a46ea10636206422d2f46fb8f1fe7c9",
+          "gitBlob": "e310175ff17353b8cae661d8437eec38e79f63fb",
+          "lineEndingNormalizationOnly": false
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/admin/RefundVerificationInput.java",
+          "worktreeSha256": "414cbd5c2a9f7fbf795c5bde639a22e57b516dfc0526cd8854fa4a148c0feea8",
+          "indexSha256": "1e1f776be6cff3d516e3b2e34fd611917063684fb5ccf8c39d94ff885fa0dfe0",
+          "gitBlob": "116092424359a6d26724e56a2d9cff209be00729",
+          "lineEndingNormalizationOnly": true
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/MockPaymentProvider.java",
+          "worktreeSha256": "44f0fed89f77aee29249f4f31ef343c125c225215cd5b96bf4d615d7646ae575",
+          "indexSha256": "0b9172acd7e7c2f5e9557241c715d9ba1a60a1aa1b68955966bd1f5ba0ec3137",
+          "gitBlob": "97e31201db46ca589cbda0d169951173e01fe34f",
+          "lineEndingNormalizationOnly": true
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/PaymentProperties.java",
+          "worktreeSha256": "4df6355904a2e0a438af64dcd740761f3d0258df3238d6ddcd1c6511b0c27048",
+          "indexSha256": "6d5f4d40840f7e013ba59d9198983f16236aade7c04ae79865d14737f886c681",
+          "gitBlob": "74dfdef8b02f8cc93eb989318b34d0e25fe26f61",
+          "lineEndingNormalizationOnly": true
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/PaymentProviderExecutor.java",
+          "worktreeSha256": "7f15eb26ab0d4bf96d10a2b76c28338c110e23f00841f341b7988cbc369d8aa4",
+          "indexSha256": "bcbd6069124edd98fb49d8d686ffe03a73529f10b7e6de490131ab3c60b834fc",
+          "gitBlob": "85f5377306e8bbf1798ba14c256d037807fb23ee",
+          "lineEndingNormalizationOnly": true
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/payment/PaymentRepository.java",
+          "worktreeSha256": "da8e73354a572c9f230892a8eae70d4eaba6c56c06daad6e4ef2775745067627",
+          "indexSha256": "4cb09b4edfb63cb0ed42b72dc446876e78f6e1559bc16ac733181dcaa99114c2",
+          "gitBlob": "8e7fe731581fcd2665728f5c9c1c0b83e53e5309",
+          "lineEndingNormalizationOnly": true
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/refund/RefundFactService.java",
+          "worktreeSha256": "85bf5ecab890a30ee6cf35462e8da856bb9bf66c68c11c11bfbdd5df5396da30",
+          "indexSha256": "5e2c7cb515fa6f2c21e21ff2867c6486cbdce60a2f61862cf290fa74421477a1",
+          "gitBlob": "38a40267909d47cec8e21c90d2145d491184c424",
+          "lineEndingNormalizationOnly": true
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/refund/RefundOutboxRepository.java",
+          "worktreeSha256": "40a012aa8428a65f3e91d314072862920bb58471111443b219f9888b6c9d7303",
+          "indexSha256": "c2d8112dc5f979be265f12637fcdd14f93ddecabc0c20e060d8484babbc6614c",
+          "gitBlob": "4d33fad23435658b4e987b6dd81d2c60a17e3c63",
+          "lineEndingNormalizationOnly": true
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/refund/RefundRepository.java",
+          "worktreeSha256": "e28b7cf5a0b7ff2416e2d5eedf4d3e731935fbe02bfb09af1a89982ecdfe8a58",
+          "indexSha256": "ce9152b82225c7263fbf011b2457d4766f1064dc561a3bcdf79a53fcb52e6c9f",
+          "gitBlob": "43cae38b9e1e5c4e9355e5a7f31980ee50e64601",
+          "lineEndingNormalizationOnly": true
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/refund/RefundVerificationProperties.java",
+          "worktreeSha256": "8d83cd724ff73a7ec0f7f6900e7eca2af7d7a5014b47e007304770bc17ca6a08",
+          "indexSha256": "8d83cd724ff73a7ec0f7f6900e7eca2af7d7a5014b47e007304770bc17ca6a08",
+          "gitBlob": "0fc3494d4370956ff83e9cabf5311a059b430a47",
+          "lineEndingNormalizationOnly": false
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/refund/RefundVerificationRepository.java",
+          "worktreeSha256": "c5f670f6ed88f15be28d11f6ea6a18f61661755b28352ae7981ff2bfb32980d5",
+          "indexSha256": "c5f670f6ed88f15be28d11f6ea6a18f61661755b28352ae7981ff2bfb32980d5",
+          "gitBlob": "edfe01b2bba7443b1851cf59089eced0343762d1",
+          "lineEndingNormalizationOnly": false
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/refund/RefundVerificationScheduler.java",
+          "worktreeSha256": "decdf33b0463f00371931645eff21478e66975d60f0dca5791f34fd52070c6ea",
+          "indexSha256": "decdf33b0463f00371931645eff21478e66975d60f0dca5791f34fd52070c6ea",
+          "gitBlob": "b9ee678302a7f167ffc3fde188812716d38917d8",
+          "lineEndingNormalizationOnly": false
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/refund/RefundVerificationWorker.java",
+          "worktreeSha256": "cbc470938d0bea69cfa6d2608b521340af6879747a77be453565a0c55eec0c9a",
+          "indexSha256": "cbc470938d0bea69cfa6d2608b521340af6879747a77be453565a0c55eec0c9a",
+          "gitBlob": "1e13abf1bc8b870b03773214068c7db9fde984f5",
+          "lineEndingNormalizationOnly": false
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/refund/RefundWorker.java",
+          "worktreeSha256": "16761219b52b85824cd40db503718586fcf75df4533cc469ea66db1674d41841",
+          "indexSha256": "a6651501748dac1da8d4ea2ccb26b17a8b6b6b0189fb9d7d7b2d245d7adc3a4e",
+          "gitBlob": "d44863471e91b874114fcefdb44e397ee9261255",
+          "lineEndingNormalizationOnly": true
+        },
+        {
+          "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/support/UserRateLimiter.java",
+          "worktreeSha256": "fe26af0de3846d4a5de5d19009569584c0f2842ca25ba8858b7dc532b52027f7",
+          "indexSha256": "ffa5966ca81b390f795a53adb6bfba7417a3497623135a0979309fb60b74ebed",
+          "gitBlob": "5383525be4cfe9f87326585001edb77e3ee7c91a",
+          "lineEndingNormalizationOnly": true
+        },
+        {
+          "path": "astra-modules/astra-system/src/test/java/com/astra/system/commerce/RefundVerificationIntegrationTest.java",
+          "worktreeSha256": "49d1d711313c5d236980b81b9064e8a617c88e8813fe5d36d912812a55c98a19",
+          "indexSha256": "a39aa79a6cd55d238e2790a75442db1ca7a4ada80e86e05d77ab7cdbeb7a3db7",
+          "gitBlob": "b017a3b13cdd72451af50160ddd922675c24ffb6",
+          "lineEndingNormalizationOnly": true
+        },
+        {
+          "path": "astra-modules/astra-system/src/test/java/com/astra/system/commerce/RefundWorkerIntegrationTest.java",
+          "worktreeSha256": "881f9b9ef089c3e87cfa6762f0b15650a37e6e4bc4e544f70530782cfeef0e6c",
+          "indexSha256": "1e3c7641f2cb64ff7d10293097aca6122bbcb8b25d702c3a28ff74a10366b023",
+          "gitBlob": "f97959eeaf8b177d4b61fd058610b905f9ca94e2",
+          "lineEndingNormalizationOnly": true
+        },
+        {
+          "path": "astra-modules/astra-system/src/test/java/com/astra/system/commerce/payment/PaymentConfigurationTest.java",
+          "worktreeSha256": "5224dfadf4f729a3ce33256341c51c692f06dc77678b762f98e1889e317ba533",
+          "indexSha256": "d32cbc61dbdf9b093f769b0b98fb652a444595324c2a949ac4d74ed9b5a6b884",
+          "gitBlob": "1a9206101b0d981bb150f0e75534ec55cf860093",
+          "lineEndingNormalizationOnly": true
+        },
+        {
+          "path": "astra-modules/astra-system/src/test/java/com/astra/system/commerce/refund/RefundConfigurationTest.java",
+          "worktreeSha256": "b6ddbfcf87ee39c6b769a505abd2bebcb7dfe9a9ab07c274f8e9df00214eb269",
+          "indexSha256": "d29768300adec059323e7efe5cb4942a8fc6200e2794a7525ff953a4bf0e2d6d",
+          "gitBlob": "ddb37dd3cc5e94de798a408b572a82ceb2a75cae",
+          "lineEndingNormalizationOnly": true
+        },
+        {
+          "path": "astra-modules/astra-system/src/test/java/com/astra/system/commerce/refund/RefundVerificationConfigurationTest.java",
+          "worktreeSha256": "63263322a014a57406ba3561e6469715719de309f76d630ab537c9503e40dcdb",
+          "indexSha256": "63263322a014a57406ba3561e6469715719de309f76d630ab537c9503e40dcdb",
+          "gitBlob": "6617d63b5ea04b5162844909845b2208c3f1f9e3",
+          "lineEndingNormalizationOnly": false
+        },
+        {
+          "path": "astra-modules/astra-system/src/test/java/com/astra/system/commerce/refund/RefundVerificationPropertiesTest.java",
+          "worktreeSha256": "ba942e196fe76958a88e0d4c5df886e1afd04c80a95c78c2b8831301151f47fb",
+          "indexSha256": "7d627d238867617bf49532b020ea75320488eedd1f185382c0f0fec8d85ac8df",
+          "gitBlob": "8432095d9d7c7d2bac2a7ff00ff3524b82fd247c",
+          "lineEndingNormalizationOnly": true
+        },
+        {
+          "path": "astra-modules/astra-system/src/test/java/com/astra/system/commerce/refund/RefundWorkerProbeMain.java",
+          "worktreeSha256": "46b80f2c9724f87e5ac4e340120b3d13d88f821ecbb969014febcd37bd4640f0",
+          "indexSha256": "ff8fb9f0fd656a3038c3b4f2ac06a70a680a93d69b1d6b0f9e887d11f56a182b",
+          "gitBlob": "86c127ae149b6c740d4a7cb45ff93bf5c3c94467",
+          "lineEndingNormalizationOnly": true
+        },
+        {
+          "path": "docs/commerce/openapi.json",
+          "worktreeSha256": "d9ac802bddd37f25f63e74ab3228d1fd17fda8dce66606cefa0edb5106f48039",
+          "indexSha256": "a0cd4b6c7ac89c807c744aeacb6a0a43b14ce47ec4ada03dc1106401b3427e43",
+          "gitBlob": "83d3dd4eab7d3bd21a6334117da7612998bf5e43",
+          "lineEndingNormalizationOnly": true
+        },
+        {
+          "path": "scripts/validate-reconciliation-admin-evidence.py",
+          "worktreeSha256": "0e520b2ee0d23f060a06fcf29933e9cbe123d921e3bcb1124a5f6896a7ad0494",
+          "indexSha256": "0e520b2ee0d23f060a06fcf29933e9cbe123d921e3bcb1124a5f6896a7ad0494",
+          "gitBlob": "51817cc106270a1efe9743bb0c58e0427658c2c3",
+          "lineEndingNormalizationOnly": false
+        },
+        {
+          "path": "scripts/validate-refund-verification-evidence.py",
+          "worktreeSha256": "31ea793b6b47684f937b1ae48c9cbead006cb5906af25bd5fbcac9edc77a416e",
+          "indexSha256": "31ea793b6b47684f937b1ae48c9cbead006cb5906af25bd5fbcac9edc77a416e",
+          "gitBlob": "69a631aa6773d1e186eae5b860d8864822e5c456",
+          "lineEndingNormalizationOnly": false
+        },
+        {
+          "path": "sql/migrations/V20261009_02__commerce_refund_verification.sql",
+          "worktreeSha256": "9c3ca0ba8fa24d5c6405d892312f5c3b79b75c3c643922c70f7d34c45ae1e67c",
+          "indexSha256": "9c3ca0ba8fa24d5c6405d892312f5c3b79b75c3c643922c70f7d34c45ae1e67c",
+          "gitBlob": "95278a87c6aa169a73400652f4ddcd76aef84d0b",
+          "lineEndingNormalizationOnly": false
+        }
+      ]
+    },
+    "astra-web": {
+      "baseCommit": "52dd28197cdc53e28610ac758fb089fbbcb058ba",
+      "sources": [
+        {
+          "path": "scripts/admin-refund-verification-contract.mjs",
+          "worktreeSha256": "86d9e0f987f32fb49670122a35577c2fe67242832cc24b0902a75a50e73a12bd",
+          "indexSha256": "622cc251b9d6fff35f0f1342d64aefc1802ef4c4c792f2a394f54b2ebfc12917",
+          "gitBlob": "b1b6a9dd5a6c0d534f9bb59ae826f2dc50ffcd69",
+          "lineEndingNormalizationOnly": true
+        },
+        {
+          "path": "scripts/admin-refund-verification-live.mjs",
+          "worktreeSha256": "9c428f9ac5f2022fe74d9ecf80de028721432bcb2082ad765bbe3a3d73e4b106",
+          "indexSha256": "ccc0b248dc8ffc5978fad81ca5c25bb8b532fdff0d10a8e2e2380178fcf5ea84",
+          "gitBlob": "446e6bc735432e5d3dc6d9586d6ca78520a330c3",
+          "lineEndingNormalizationOnly": true
+        },
+        {
+          "path": "src/api/commerce.ts",
+          "worktreeSha256": "56eb5eac0c64f580263e35c6316fe5e1f6487d9cecf040f64116fd6bf64b9160",
+          "indexSha256": "56eb5eac0c64f580263e35c6316fe5e1f6487d9cecf040f64116fd6bf64b9160",
+          "gitBlob": "390d6bebc9b5e3318f78980fdf283879f613f78c",
+          "lineEndingNormalizationOnly": false
+        },
+        {
+          "path": "src/api/http.ts",
+          "worktreeSha256": "bd630b8faaed8035145405514078af2063b610a64ed07ddb18c12341eae14fe9",
+          "indexSha256": "bd630b8faaed8035145405514078af2063b610a64ed07ddb18c12341eae14fe9",
+          "gitBlob": "3cddfc8601192f1ff068526cc1063c791db5908e",
+          "lineEndingNormalizationOnly": false
+        },
+        {
+          "path": "src/api/refund-verification.ts",
+          "worktreeSha256": "19a5cb523f82d97c5ecbfc6f98780d8ec0a37601496b2ff6d7c553101a8e83bc",
+          "indexSha256": "19a5cb523f82d97c5ecbfc6f98780d8ec0a37601496b2ff6d7c553101a8e83bc",
+          "gitBlob": "e90c957002969293449ca3cc98276fee85b1bd22",
+          "lineEndingNormalizationOnly": false
+        },
+        {
+          "path": "src/components/commerce/AdminNavigation.vue",
+          "worktreeSha256": "8d9ae971a0bec09b360d86e6d643baa89fce2aaf401658cb71f2efe157ec3401",
+          "indexSha256": "8d9ae971a0bec09b360d86e6d643baa89fce2aaf401658cb71f2efe157ec3401",
+          "gitBlob": "05ac330ea7ce63aeed27d4fe32f9cdd683d94569",
+          "lineEndingNormalizationOnly": false
+        },
+        {
+          "path": "src/components/ui/RenderFeedback.vue",
+          "worktreeSha256": "abcd74a1f646bb94396a862f64f9d0035187ffb11f4f979432c6191ad497cfcb",
+          "indexSha256": "abcd74a1f646bb94396a862f64f9d0035187ffb11f4f979432c6191ad497cfcb",
+          "gitBlob": "6e5fa2971216063b30023eb018cb259806d2fcf2",
+          "lineEndingNormalizationOnly": false
+        },
+        {
+          "path": "src/content/navigation.ts",
+          "worktreeSha256": "6603b330816acf57c426b02128053f154ec2593888d3af60389fbf73d30b5304",
+          "indexSha256": "6603b330816acf57c426b02128053f154ec2593888d3af60389fbf73d30b5304",
+          "gitBlob": "fbcf42836835ba02e9c3db4789cb4cf63ee13c4d",
+          "lineEndingNormalizationOnly": false
+        },
+        {
+          "path": "src/lib/account-return.ts",
+          "worktreeSha256": "8685e0ebae755f5409f5e2d4824f1a14cd959eeac8fc45a47fa8cfb2cc6ea6d7",
+          "indexSha256": "8685e0ebae755f5409f5e2d4824f1a14cd959eeac8fc45a47fa8cfb2cc6ea6d7",
+          "gitBlob": "a3fa95fd7c35df6c4e922f9361deefe578bfd566",
+          "lineEndingNormalizationOnly": false
+        },
+        {
+          "path": "src/lib/admin-payment-verification.ts",
+          "worktreeSha256": "6610cd909ff146725615f8b24042c5d2e541d24a1b68f811dad0762f8869ffe3",
+          "indexSha256": "6610cd909ff146725615f8b24042c5d2e541d24a1b68f811dad0762f8869ffe3",
+          "gitBlob": "2a602f57130414acc1108af9e6f7c3ceba2fede8",
+          "lineEndingNormalizationOnly": false
+        },
+        {
+          "path": "src/lib/admin-refund-verification.ts",
+          "worktreeSha256": "a166ca91771711281b73787a0959be7b41a057d5aef7fe65e473d3ca9c779025",
+          "indexSha256": "a166ca91771711281b73787a0959be7b41a057d5aef7fe65e473d3ca9c779025",
+          "gitBlob": "3766ffde3dee7c6ad0f9f94ccfe5e75105365e6d",
+          "lineEndingNormalizationOnly": false
+        },
+        {
+          "path": "src/lib/refund-request.ts",
+          "worktreeSha256": "e7d95640436f2b3f43b5107fa0bf8e9d3ff0e539b47d7931a00f5d0c49f23230",
+          "indexSha256": "e7d95640436f2b3f43b5107fa0bf8e9d3ff0e539b47d7931a00f5d0c49f23230",
+          "gitBlob": "762fa271453efe0c2f064070efffe5e6c5eae059",
+          "lineEndingNormalizationOnly": false
+        },
+        {
+          "path": "src/router/index.ts",
+          "worktreeSha256": "51a19cef8ad46c13a2b45fae8b120ab4c518597d0bdf0af1cf8ff35c0bf875d6",
+          "indexSha256": "51a19cef8ad46c13a2b45fae8b120ab4c518597d0bdf0af1cf8ff35c0bf875d6",
+          "gitBlob": "01a50f7f48553c60fb32dbc10c90623c00f84656",
+          "lineEndingNormalizationOnly": false
+        },
+        {
+          "path": "src/stores/auth.ts",
+          "worktreeSha256": "7529347a014a45fc059d23fdefa91f7a06ce28348316cc9a5e59534ff76c384a",
+          "indexSha256": "7529347a014a45fc059d23fdefa91f7a06ce28348316cc9a5e59534ff76c384a",
+          "gitBlob": "bc6d6d127c6717563dca5c6eaedf7d31f718896f",
+          "lineEndingNormalizationOnly": false
+        },
+        {
+          "path": "src/views/AdminReconciliationsView.vue",
+          "worktreeSha256": "c549c35b0004735089b29cff3cb00157aced4160c1ed321d8fe5cc6a47d7c4a9",
+          "indexSha256": "289ff69b2aafd6b451aadaba7edc07528739eff98975a51c70b6a75fc555a00b",
+          "gitBlob": "cdffe5f333dddb0ecadffd125cd44ec4e9fb1232",
+          "lineEndingNormalizationOnly": true
+        },
+        {
+          "path": "src/views/AdminRefundVerificationView.vue",
+          "worktreeSha256": "508842866cc1fc38e6fbbddaf016f4fe7531553abe300fbde84548e3b0e738de",
+          "indexSha256": "ffc641979392b4cfc1fc03226bf7104be808edf4a0a5876b6924be2e31a21411",
+          "gitBlob": "1e158b3d8de37295928431b84775ffd8432bb1c3",
+          "lineEndingNormalizationOnly": true
+        },
+        {
+          "path": "src/views/AdminRefundsView.vue",
+          "worktreeSha256": "91e7bd63a521f0e3cfdb21e42fea7b79a6eac4ade7d3d9a7467f305755e32edd",
+          "indexSha256": "cf8a4ae025956a95991664a1a2a1655b7d76cb8105565c308ffee382427dac75",
+          "gitBlob": "e450853b5e12a47c278ed28ced57e7f920bfd27f",
+          "lineEndingNormalizationOnly": true
+        }
+      ]
+    }
+  },
+  "frontendBuildFilesVerified": 540,
+  "protectedFrontendSourcesUnchanged": [
+    "src/views/ArtHomeView.vue",
+    "src/components/CharacterArtwork.vue",
+    "src/lib/ascii/studio-preview.ts",
+    "src/components/ui/FxButton.vue"
+  ]
+}
