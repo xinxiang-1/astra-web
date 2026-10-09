@@ -105,6 +105,8 @@ const importedScenes = new Set<Awaited<ReturnType<typeof readSignatureProject>>>
 const restoredLayoutOptions = shallowRef<SignatureLayoutOptions>({})
 const hasResult = ref(false)
 const generatedResult = shallowRef<SignatureProject | null>(null)
+/** Normalized UI snapshot at the last commit; imported files may omit defaults. */
+const generatedControlOptions = shallowRef<SignatureLayoutOptions | null>(null)
 const placementCount = ref(0)
 /** Canvas2D 回退用的概览栅格 */
 let lastOverview: HTMLCanvasElement | null = null
@@ -157,6 +159,7 @@ let comparePointerId: number | null = null
 const error = ref('')
 const pending = ref(false)
 const renderBusy = ref(false)
+const inkRenderBusy = ref(false)
 const pngBusy = ref(false)
 const pngBackend = ref<'worker' | 'canvas' | null>(null)
 const ultraLongSide = ref<8192 | 16384>(8192)
@@ -195,7 +198,7 @@ const inkControlsBusy = computed(
     pngBusy.value ||
     bankSaving.value ||
     generatingVariants.value ||
-    (pending.value && !renderBusy.value),
+    (pending.value && (!renderBusy.value || !inkRenderBusy.value)),
 )
 const colorWashStrength = ref(0)
 const washStyle = ref<'source' | SignatureWashStyle>('source')
@@ -302,15 +305,25 @@ function currentLayoutOptions(): SignatureLayoutOptions {
   }
 }
 
-const resultSettingsChanged = computed(() => {
+const inkOptionKeys = ['inkColorMode', 'ink', 'colorMode', 'colorize', 'toneGain'] as const
+function comparableLayoutOptions(source: SignatureLayoutOptions) {
+  const options = { ...source }
+  for (const key of inkOptionKeys) delete options[key]
+  return options
+}
+function hasUnappliedSettings(layoutOnly = false) {
   const result = generatedResult.value
+  const options = generatedControlOptions.value ?? result?.options
+  const compare = layoutOnly ? comparableLayoutOptions : (value: SignatureLayoutOptions) => value
   return Boolean(
-    result &&
-    (JSON.stringify(currentLayoutOptions()) !== JSON.stringify(result.options) ||
+    result && options &&
+    (JSON.stringify(compare(currentLayoutOptions())) !== JSON.stringify(compare(options)) ||
       portrait.value !== result.portrait ||
       stamps.value.map((s) => s.id).join(',') !== result.stamps.map((s) => s.id).join(',')),
   )
-})
+}
+const resultSettingsChanged = computed(() => hasUnappliedSettings())
+const layoutSettingsChanged = computed(() => hasUnappliedSettings(true))
 const resultBackground = computed(
   () => generatedResult.value?.options.background ?? previewBg.value,
 )
@@ -628,6 +641,7 @@ function clearResultStage() {
   }
   hasResult.value = false
   generatedResult.value = null
+  generatedControlOptions.value = null
   placementCount.value = 0
   lastOverview = null
   lastPlacements = []
@@ -1412,8 +1426,16 @@ function cancelRender() {
 }
 
 async function renderNow() {
+  if (inkUpdateTimer) clearTimeout(inkUpdateTimer)
+  inkUpdateTimer = null
+  await renderArtwork(false)
+}
+
+async function renderArtwork(inkOnly: boolean) {
   error.value = ''
-  projectNotice.value = ''
+  if (!inkOnly) projectNotice.value = ''
+  const previous = generatedResult.value
+  if (inkOnly && !previous) return
   if (!portrait.value || !portraitFile.value) {
     error.value = '请先上传画像照片'
     return
@@ -1426,14 +1448,34 @@ async function renderNow() {
   paintSignal.cancelled = true
   paintSignal = { cancelled: false }
   const signal = paintSignal
-  const result = {
-    portrait: portrait.value,
-    portraitFile: portraitFile.value,
-    portraitName: portraitName.value,
-    stamps: stamps.value.map((stamp) => ({ ...stamp })),
-    options: currentLayoutOptions(),
+  const controls = currentLayoutOptions()
+  const inkOptions = {
+    inkColorMode: controls.inkColorMode,
+    ink: controls.ink,
+    colorMode: controls.colorMode,
+    colorize: controls.colorize,
+    toneGain: controls.toneGain,
   }
+  const result = inkOnly && previous
+    ? {
+        portrait: previous.portrait,
+        portraitFile: previous.portraitFile,
+        portraitName: previous.portraitName,
+        stamps: previous.stamps.map((stamp) => ({ ...stamp })),
+        options: { ...previous.options, ...inkOptions },
+      }
+    : {
+        portrait: portrait.value,
+        portraitFile: portraitFile.value,
+        portraitName: portraitName.value,
+        stamps: stamps.value.map((stamp) => ({ ...stamp })),
+        options: controls,
+      }
+  const appliedControls = inkOnly && previous
+    ? { ...(generatedControlOptions.value ?? previous.options), ...inkOptions }
+    : controls
   pending.value = renderBusy.value = true
+  inkRenderBusy.value = inkOnly
   progressStage.value = '准备中'
   progressRatio.value = 0
   let overview: HTMLCanvasElement | null = null
@@ -1535,7 +1577,16 @@ async function renderNow() {
         )
     }
     if (stale()) return
-    const cssW = getFitWidth(width),
+    // Capture the current camera at commit, so gestures made during rendering survive.
+    const camera = inkOnly && generatedResult.value === previous && width === layoutW && height === layoutH
+      ? {
+          scale: viewScale.value,
+          compare: comparePct.value,
+          left: previewHost.value?.scrollLeft ?? 0,
+          top: previewHost.value?.scrollTop ?? 0,
+        }
+      : null
+    const cssW = Math.max(1, Math.round(getFitWidth(width) * (camera?.scale ?? 1))),
       cssH = Math.max(1, Math.round((height * cssW) / width))
     if (overview) display = createOverviewDisplay(overview, cssW, cssH)
     // Only a complete candidate replaces the visible artwork and export snapshot.
@@ -1545,13 +1596,14 @@ async function renderNow() {
     disposeRasterWorker()
     if (lastOverview) lastOverview.width = lastOverview.height = 1
     generatedResult.value = scene
+    generatedControlOptions.value = appliedControls
     lastPlacements = placements
     layoutW = width
     layoutH = height
     placementCount.value = placements.length
     hasResult.value = true
-    comparePct.value = 52
-    viewScale.value = 1
+    comparePct.value = camera?.compare ?? 52
+    viewScale.value = camera?.scale ?? 1
     stageW.value = cssW
     stageH.value = cssH
     lastOverview = overview
@@ -1570,8 +1622,13 @@ async function renderNow() {
     progressStage.value = '完成'
     progressRatio.value = 1
     await nextTick()
+    if (stale()) return
+    if (camera && previewHost.value) {
+      previewHost.value.scrollLeft = camera.left
+      previewHost.value.scrollTop = camera.top
+    }
     applyStageDisplaySize()
-    previewHost.value?.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+    if (!inkOnly) previewHost.value?.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
   } catch (e) {
     if (stale() || (e instanceof Error && e.message === '已取消')) return
     error.value = e instanceof Error ? e.message : '渲染失败'
@@ -1583,6 +1640,7 @@ async function renderNow() {
     releaseUnusedImportedScenes()
     if (seq === renderSeq) {
       pending.value = renderBusy.value = false
+      inkRenderBusy.value = false
       progressStage.value = ''
       progressRatio.value = 0
     }
@@ -1759,6 +1817,7 @@ async function onProjectChange(event: Event) {
     bankEntries.value = []
     restoreProjectControls(scene.options)
     generatedResult.value = scene
+    generatedControlOptions.value = currentLayoutOptions()
     lastPlacements = scene.placements
     layoutW = scene.width
     layoutH = scene.height
@@ -2091,7 +2150,7 @@ watch([inkColorMode, inkColorHex, toneGain, colorMode], () => {
   if (!canRender.value || !hasResult.value || inkControlsBusy.value) return
   inkUpdateTimer = setTimeout(() => {
     inkUpdateTimer = null
-    if (!viewDisposed && !inkControlsBusy.value) void renderNow()
+    if (!viewDisposed && !inkControlsBusy.value) void renderArtwork(true)
   }, 250)
 })
 watch(projectBusy, (busy) => {
@@ -2199,7 +2258,7 @@ watch(projectBusy, (busy) => {
       <p v-if="error" class="error" role="alert">{{ error }}</p>
       <p v-if="projectNotice" class="hint" role="status">{{ projectNotice }}</p>
       <p
-        v-if="resultSettingsChanged && !pending"
+        v-if="layoutSettingsChanged && (!pending || inkRenderBusy)"
         class="hint result-settings-changed"
         role="status"
       >
@@ -2603,7 +2662,7 @@ watch(projectBusy, (busy) => {
                 <UiSelect
                   v-model="colorMode"
                   aria-label="彩墨风格"
-                  :disabled="!colorize || signatureSurface === 'night'"
+                  :disabled="inkControlsBusy || !colorize || signatureSurface === 'night'"
                 >
                   <option value="ink">墨色层次 · 原效果</option>
                   <option value="source">原图彩墨 · 保留照片颜色</option>
@@ -2839,7 +2898,7 @@ watch(projectBusy, (busy) => {
       <section class="preview panel">
         <div class="preview-head">
           <h2>预览</h2>
-          <span v-if="pending" class="meta">
+          <span v-if="pending && !inkRenderBusy" class="meta">
             {{ progressStage || '生成中' }}
             <template v-if="progressRatio"> · {{ Math.round(progressRatio * 100) }}% </template>
             · {{ pngBusy ? '导出完成后将自动下载' : '正在准备作品' }}
@@ -2869,7 +2928,7 @@ watch(projectBusy, (busy) => {
           }}）：照片生成的彩绘底色＋完整签名。SVG保留签名矢量路径，同时嵌入底色图像。
         </p>
         <RenderFeedback
-          v-if="(pending && !pngBusy && !portraitBusy) || generatingVariants || sharpPainting"
+          v-if="(pending && !inkRenderBusy && !pngBusy && !portraitBusy) || generatingVariants"
           :title="
             sharpPainting && (!pending || portraitBusy)
               ? '正在精绘局部笔迹'
@@ -2955,6 +3014,12 @@ watch(projectBusy, (busy) => {
           :style="{ background: hasResult ? resultBackground : 'var(--bg-elevated)' }"
           @wheel.prevent="onStageWheel"
         >
+          <RenderFeedback
+            v-if="sharpPainting"
+            class="sharp-progress"
+            title="正在精绘局部笔迹"
+            detail="可以继续缩放或拖动，当前完整作品会保留。"
+          />
           <div v-if="!hasResult" class="empty-preview">
             <span class="empty-preview-mark" aria-hidden="true">Aa</span>
             <strong>{{ pending ? '正在织出你的画像' : '让名字成为一幅画' }}</strong>
@@ -2999,6 +3064,16 @@ watch(projectBusy, (busy) => {
 </template>
 
 <style scoped>
+.sharp-progress {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  right: 0.75rem;
+  z-index: 6;
+  margin: 0;
+  pointer-events: none;
+}
+
 .page {
   --display: var(--font-display);
   --body: var(--font-body);
@@ -3401,6 +3476,7 @@ h2 {
 }
 
 .stage {
+  position: relative;
   min-height: 360px;
   max-height: min(70vh, 820px);
   display: grid;

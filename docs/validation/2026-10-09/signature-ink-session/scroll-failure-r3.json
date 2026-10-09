@@ -1,0 +1,40 @@
+{
+  "base": "http://127.0.0.1:4210",
+  "browser": "154.0.4258.62",
+  "mobile": false,
+  "baseline": false,
+  "cases": [
+    {
+      "name": "ink-update-keeps-zoom-pan-and-comparison",
+      "pass": false,
+      "before": {
+        "width": "2560px",
+        "height": "2048px",
+        "left": 180,
+        "top": 110,
+        "pageY": 2262,
+        "compare": "67"
+      },
+      "after": {
+        "width": "2560px",
+        "height": "2048px",
+        "left": 180,
+        "top": 110,
+        "pageY": 2233,
+        "compare": "67"
+      }
+    },
+    {
+      "name": "ink-update-keeps-other-layout-drafts",
+      "pass": true,
+      "originalDensity": 0.7,
+      "renderedDensity": 0.7
+    },
+    {
+      "name": "custom-colour-applied-to-current-work",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "failure": "AssertionError [ERR_ASSERTION]: [{\"name\":\"ink-update-keeps-zoom-pan-and-comparison\",\"pass\":false,\"before\":{\"width\":\"2560px\",\"height\":\"2048px\",\"left\":180,\"top\":110,\"pageY\":2262,\"compare\":\"67\"},\"after\":{\"width\":\"2560px\",\"height\":\"2048px\",\"left\":180,\"top\":110,\"pageY\":2233,\"compare\":\"67\"}},{\"name\":\"ink-update-keeps-other-layout-drafts\",\"pass\":true,\"originalDensity\":0.7,\"renderedDensity\":0.7},{\"name\":\"custom-colour-applied-to-current-work\",\"pass\":true}]"
+}

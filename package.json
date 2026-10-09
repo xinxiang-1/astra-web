@@ -9,6 +9,7 @@
     "preview": "vite preview",
     "test:creative-core": "node scripts/creative-core-contract.mjs",
     "test:creative-ui": "node scripts/creative-workflow-ui.mjs",
+    "test:signature-ink-session": "node scripts/signature-ink-session-ui.mjs",
     "test:creative-smoke": "node scripts/creative-smoke-contract.mjs",
     "test:creative-smoke-dev": "node scripts/creative-smoke-dev.mjs",
     "test:creative-workflow": "node scripts/creative-workflow-suite.mjs",

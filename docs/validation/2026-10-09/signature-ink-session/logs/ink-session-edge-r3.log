@@ -1,0 +1,17 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: [{"name":"ink-update-keeps-zoom-pan-and-comparison","pass":false,"before":{"width":"2560px","height":"2048px","left":180,"top":110,"pageY":2262,"compare":"67"},"after":{"width":"2560px","height":"2048px","left":180,"top":110,"pageY":2233,"compare":"67"}},{"name":"ink-update-keeps-other-layout-drafts","pass":true,"originalDensity":0.7,"renderedDensity":0.7},{"name":"custom-colour-applied-to-current-work","pass":true}]
+    at file:///E:/project/astra/astra-web/scripts/signature-ink-session-ui.mjs:112:5
+    at runNextTicks (node:internal/process/task_queues:64:5)
+    at process.processImmediate (node:internal/timers:472:9) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.12.0

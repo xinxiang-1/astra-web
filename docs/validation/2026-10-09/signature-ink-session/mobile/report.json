@@ -1,0 +1,118 @@
+{
+  "base": "http://127.0.0.1:4210",
+  "browser": "154.0.4258.62",
+  "mobile": true,
+  "baseline": false,
+  "cases": [
+    {
+      "name": "ink-update-keeps-zoom-pan-and-comparison",
+      "pass": true,
+      "before": {
+        "width": "2560px",
+        "height": "2048px",
+        "left": 180,
+        "top": 110,
+        "pageY": 1469,
+        "screenTop": 524.421875,
+        "screenLeft": 33.796875,
+        "compare": "67"
+      },
+      "after": {
+        "width": "2560px",
+        "height": "2048px",
+        "left": 180,
+        "top": 110,
+        "pageY": 1469,
+        "screenTop": 524.421875,
+        "screenLeft": 33.796875,
+        "compare": "67"
+      }
+    },
+    {
+      "name": "ink-update-keeps-other-layout-drafts",
+      "pass": true,
+      "originalDensity": 0.7,
+      "renderedDensity": 0.7
+    },
+    {
+      "name": "custom-colour-applied-to-current-work",
+      "pass": true
+    },
+    {
+      "name": "latest-concentration-keeps-draft-and-view",
+      "pass": true
+    },
+    {
+      "name": "camera-edits-during-render-survive-commit",
+      "pass": true,
+      "during": {
+        "width": "2048px",
+        "height": "1638px",
+        "left": 210,
+        "top": 140,
+        "pageY": 1539,
+        "screenTop": 506.421875,
+        "screenLeft": 33.796875,
+        "compare": "61"
+      },
+      "resumed": {
+        "width": "2048px",
+        "height": "1638px",
+        "left": 210,
+        "top": 140,
+        "pageY": 1487,
+        "screenTop": 506.421875,
+        "screenLeft": 33.796875,
+        "compare": "61"
+      }
+    },
+    {
+      "name": "cancelled-ink-keeps-complete-work-and-camera",
+      "pass": true
+    },
+    {
+      "name": "source-colour-keeps-draft",
+      "pass": true
+    },
+    {
+      "name": "explicit-generation-applies-layout-draft",
+      "pass": true,
+      "density": 8.5,
+      "view": {
+        "width": "304px",
+        "height": "243px",
+        "left": 0,
+        "top": 0,
+        "pageY": 3075,
+        "screenTop": -1178.703125,
+        "screenLeft": 33.796875,
+        "compare": "52"
+      }
+    },
+    {
+      "name": "ink-only-change-does-not-show-layout-draft-or-scroll-page",
+      "pass": true,
+      "cleanBefore": {
+        "width": "304px",
+        "height": "243px",
+        "left": 0,
+        "top": 0,
+        "pageY": 3075,
+        "screenTop": -1178.703125,
+        "screenLeft": 33.796875,
+        "compare": "52"
+      },
+      "cleanAfter": {
+        "width": "304px",
+        "height": "243px",
+        "left": 0,
+        "top": 0,
+        "pageY": 3075,
+        "screenTop": -1178.703125,
+        "screenLeft": 33.796875,
+        "compare": "52"
+      }
+    }
+  ],
+  "errors": []
+}

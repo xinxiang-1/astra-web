@@ -1,0 +1,321 @@
+{
+  "date": "2026-10-09",
+  "frontendParent": "e64f9e4dd9855bd60af4f4157ae9c464010e10bd",
+  "backendParent": "3359156c6a29bbe87a74b0246aab94ed79d88b51",
+  "sources": [
+    {
+      "file": "package.json",
+      "bytes": 8698,
+      "sha256": "79c60f2c19e4886e146d7106536555ec9500684d15e18fed168845909a00be57",
+      "gitIndexSha256": "79c60f2c19e4886e146d7106536555ec9500684d15e18fed168845909a00be57"
+    },
+    {
+      "file": "src/views/SignaturePortraitView.vue",
+      "bytes": 122568,
+      "sha256": "bda391c5fbee67a786292a14c5b984db0ce2a6b06b964cc9126d6549fdc470cf",
+      "gitIndexSha256": "bda391c5fbee67a786292a14c5b984db0ce2a6b06b964cc9126d6549fdc470cf"
+    },
+    {
+      "file": "scripts/signature-ink-session-ui.mjs",
+      "bytes": 10198,
+      "sha256": "d9417376075f687ce24350195085bca73d3b26a29163586554042225b3fdbb38",
+      "gitIndexSha256": "d9417376075f687ce24350195085bca73d3b26a29163586554042225b3fdbb38"
+    },
+    {
+      "file": "docs/plans/signature-ink-session-2026-10-09.md",
+      "bytes": 4612,
+      "sha256": "23fc70e36d27d18bbfb808c9308a704a2e270217df9c7babe7ed709fd05f60a4",
+      "gitIndexSha256": "23fc70e36d27d18bbfb808c9308a704a2e270217df9c7babe7ed709fd05f60a4"
+    },
+    {
+      "file": "docs/plans/creative-ecosystem-2026-10-09.md",
+      "bytes": 9877,
+      "sha256": "6e0e68d31f479997bdc1388a67071bb6c49f9110cf4489f22a4eb998b5c66e83",
+      "gitIndexSha256": "6e0e68d31f479997bdc1388a67071bb6c49f9110cf4489f22a4eb998b5c66e83"
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "bytes": 67027,
+      "sha256": "88bc609395e39050c3513f1e00197d34e1305c1b0a606ad5af33d5bf922a6953",
+      "gitIndexSha256": "88bc609395e39050c3513f1e00197d34e1305c1b0a606ad5af33d5bf922a6953"
+    },
+    {
+      "file": "docs/plans/signature-portrait.md",
+      "bytes": 11660,
+      "sha256": "28d1c24b1ef152df10c83fd07449f5a258b59e0f1e5153c2480d322e18e2d888",
+      "gitIndexSha256": "28d1c24b1ef152df10c83fd07449f5a258b59e0f1e5153c2480d322e18e2d888"
+    }
+  ],
+  "evidence": [
+    {
+      "file": "docs/validation/2026-10-09/signature-ink-session/.gitattributes",
+      "bytes": 17,
+      "sha256": "e34dfc770c4134767b196cb2b64de704c438d4edd8ce88d8d7c0bc88dcb6e2bd",
+      "gitIndexSha256": "e34dfc770c4134767b196cb2b64de704c438d4edd8ce88d8d7c0bc88dcb6e2bd"
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-ink-session/baseline.json",
+      "bytes": 798,
+      "sha256": "903efae6afb3dbca09a739af932d0b09ccfac7044fa2c7840e58dccaccccfc87",
+      "gitIndexSha256": "903efae6afb3dbca09a739af932d0b09ccfac7044fa2c7840e58dccaccccfc87"
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-ink-session/chrome/applied.json",
+      "bytes": 75492,
+      "sha256": "84bcce28490fc9ad7316c7d2210f113b29282c563dd7a4a53a14ccbec371091b",
+      "gitIndexSha256": "84bcce28490fc9ad7316c7d2210f113b29282c563dd7a4a53a14ccbec371091b"
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-ink-session/chrome/camera.json",
+      "bytes": 5951,
+      "sha256": "2e165dadcbd281c0449b0cc1bd8f6d2966b7887f1ef2b37fb91a51241930f590",
+      "gitIndexSha256": "2e165dadcbd281c0449b0cc1bd8f6d2966b7887f1ef2b37fb91a51241930f590"
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-ink-session/chrome/cancelled.json",
+      "bytes": 5951,
+      "sha256": "2e165dadcbd281c0449b0cc1bd8f6d2966b7887f1ef2b37fb91a51241930f590",
+      "gitIndexSha256": "2e165dadcbd281c0449b0cc1bd8f6d2966b7887f1ef2b37fb91a51241930f590"
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-ink-session/chrome/coloured.json",
+      "bytes": 5961,
+      "sha256": "7bf291f4e9fa122e34df080d8631832c2fbeb92c79566e95cc97c7621d8f2a41",
+      "gitIndexSha256": "7bf291f4e9fa122e34df080d8631832c2fbeb92c79566e95cc97c7621d8f2a41"
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-ink-session/chrome/light.json",
+      "bytes": 5961,
+      "sha256": "22144cb5e9461ab512a09a1927b17fe9a3d3c80476855d86024c5096edb8bd3c",
+      "gitIndexSha256": "22144cb5e9461ab512a09a1927b17fe9a3d3c80476855d86024c5096edb8bd3c"
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-ink-session/chrome/original.json",
+      "bytes": 5912,
+      "sha256": "d24714fe8c00acca27b810efa7425892c48256e2e33161ee1068a1e05a028bad",
+      "gitIndexSha256": "d24714fe8c00acca27b810efa7425892c48256e2e33161ee1068a1e05a028bad"
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-ink-session/chrome/preview.png",
+      "bytes": 57938,
+      "sha256": "457467141d1df441c0fb86f4afdf191c9e244bfb8b500cac138c25595c147132",
+      "gitIndexSha256": "457467141d1df441c0fb86f4afdf191c9e244bfb8b500cac138c25595c147132"
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-ink-session/chrome/report.json",
+      "bytes": 2667,
+      "sha256": "1aee8ed92d880c1fb8a6d8cf214ca209ab270e5d1de7650ffd23253b02b67fa3",
+      "gitIndexSha256": "1aee8ed92d880c1fb8a6d8cf214ca209ab270e5d1de7650ffd23253b02b67fa3"
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-ink-session/chrome/source.json",
+      "bytes": 5892,
+      "sha256": "56f003fb38f5c344a1d75f837af7c47332111e4c89e8664c1455551de234f154",
+      "gitIndexSha256": "56f003fb38f5c344a1d75f837af7c47332111e4c89e8664c1455551de234f154"
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-ink-session/creative-regression.json",
+      "bytes": 519,
+      "sha256": "8abe436f235a076251c38246abb5ef5c5fa4c45afdc9c47879bca7c4280ddb94",
+      "gitIndexSha256": "8abe436f235a076251c38246abb5ef5c5fa4c45afdc9c47879bca7c4280ddb94"
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-ink-session/detector-intermediate.json",
+      "bytes": 4,
+      "sha256": "a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f",
+      "gitIndexSha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-ink-session/edge/applied.json",
+      "bytes": 75492,
+      "sha256": "84bcce28490fc9ad7316c7d2210f113b29282c563dd7a4a53a14ccbec371091b",
+      "gitIndexSha256": "84bcce28490fc9ad7316c7d2210f113b29282c563dd7a4a53a14ccbec371091b"
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-ink-session/edge/camera.json",
+      "bytes": 5951,
+      "sha256": "2e165dadcbd281c0449b0cc1bd8f6d2966b7887f1ef2b37fb91a51241930f590",
+      "gitIndexSha256": "2e165dadcbd281c0449b0cc1bd8f6d2966b7887f1ef2b37fb91a51241930f590"
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-ink-session/edge/cancelled.json",
+      "bytes": 5951,
+      "sha256": "2e165dadcbd281c0449b0cc1bd8f6d2966b7887f1ef2b37fb91a51241930f590",
+      "gitIndexSha256": "2e165dadcbd281c0449b0cc1bd8f6d2966b7887f1ef2b37fb91a51241930f590"
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-ink-session/edge/coloured.json",
+      "bytes": 5961,
+      "sha256": "7bf291f4e9fa122e34df080d8631832c2fbeb92c79566e95cc97c7621d8f2a41",
+      "gitIndexSha256": "7bf291f4e9fa122e34df080d8631832c2fbeb92c79566e95cc97c7621d8f2a41"
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-ink-session/edge/light.json",
+      "bytes": 5961,
+      "sha256": "22144cb5e9461ab512a09a1927b17fe9a3d3c80476855d86024c5096edb8bd3c",
+      "gitIndexSha256": "22144cb5e9461ab512a09a1927b17fe9a3d3c80476855d86024c5096edb8bd3c"
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-ink-session/edge/original.json",
+      "bytes": 5912,
+      "sha256": "d24714fe8c00acca27b810efa7425892c48256e2e33161ee1068a1e05a028bad",
+      "gitIndexSha256": "d24714fe8c00acca27b810efa7425892c48256e2e33161ee1068a1e05a028bad"
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-ink-session/edge/preview.png",
+      "bytes": 57938,
+      "sha256": "457467141d1df441c0fb86f4afdf191c9e244bfb8b500cac138c25595c147132",
+      "gitIndexSha256": "457467141d1df441c0fb86f4afdf191c9e244bfb8b500cac138c25595c147132"
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-ink-session/edge/report.json",
+      "bytes": 2668,
+      "sha256": "50957f27c24c10ca16ac863d2a2ac61f378254713537e6a3c67cb343988cb8ab",
+      "gitIndexSha256": "50957f27c24c10ca16ac863d2a2ac61f378254713537e6a3c67cb343988cb8ab"
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-ink-session/edge/source.json",
+      "bytes": 5892,
+      "sha256": "56f003fb38f5c344a1d75f837af7c47332111e4c89e8664c1455551de234f154",
+      "gitIndexSha256": "56f003fb38f5c344a1d75f837af7c47332111e4c89e8664c1455551de234f154"
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-ink-session/logs/ink-session-baseline.log",
+      "bytes": 527,
+      "sha256": "fb1c278d2e680d8d8302587fb1dd49ece935d2fdcc380a2ff400fd163c19c107",
+      "gitIndexSha256": "fb1c278d2e680d8d8302587fb1dd49ece935d2fdcc380a2ff400fd163c19c107"
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-ink-session/logs/ink-session-build-r5.log",
+      "bytes": 17703,
+      "sha256": "7dae146a7bac910088da8bd5966a193e9834f554891a2715b9f3d3756925445e",
+      "gitIndexSha256": "7dae146a7bac910088da8bd5966a193e9834f554891a2715b9f3d3756925445e"
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-ink-session/logs/ink-session-chrome-r5.log",
+      "bytes": 1717,
+      "sha256": "0b587509b2229d3c9faa93f3079a1e26bcbb299e200084a5c00998b52a51e0d4",
+      "gitIndexSha256": "0b587509b2229d3c9faa93f3079a1e26bcbb299e200084a5c00998b52a51e0d4"
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-ink-session/logs/ink-session-creative-r5.log",
+      "bytes": 430,
+      "sha256": "02ad711c5527a4226601e365bac5c1101260604ce442f885db5767dcccfefb3d",
+      "gitIndexSha256": "02ad711c5527a4226601e365bac5c1101260604ce442f885db5767dcccfefb3d"
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-ink-session/logs/ink-session-edge-r3.log",
+      "bytes": 893,
+      "sha256": "6b6c9f11c888bc8dafea4d2e9967738922814c2427697ab6a600e3416086ecc2",
+      "gitIndexSha256": "6b6c9f11c888bc8dafea4d2e9967738922814c2427697ab6a600e3416086ecc2"
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-ink-session/logs/ink-session-edge-r5.log",
+      "bytes": 1718,
+      "sha256": "3d28a4a7d6fa8fe6d3430c86467dd35152644c3efaf2866f5296fa0e41a71bc6",
+      "gitIndexSha256": "3d28a4a7d6fa8fe6d3430c86467dd35152644c3efaf2866f5296fa0e41a71bc6"
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-ink-session/logs/ink-session-eslint-r5.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gitIndexSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-ink-session/logs/ink-session-mobile-r1.log",
+      "bytes": 1048,
+      "sha256": "534786f45d1588e578cf847b877de7e09d25fabd2b4305719a1a8d9dca2b41dd",
+      "gitIndexSha256": "534786f45d1588e578cf847b877de7e09d25fabd2b4305719a1a8d9dca2b41dd"
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-ink-session/logs/ink-session-mobile-r5.log",
+      "bytes": 1730,
+      "sha256": "27fcf9c7acd7834716009ab9dc05cf89775351dd52958986169f2b57bf79669b",
+      "gitIndexSha256": "27fcf9c7acd7834716009ab9dc05cf89775351dd52958986169f2b57bf79669b"
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-ink-session/logs/ink-session-types-r5.log",
+      "bytes": 77,
+      "sha256": "0a7d40c8ea67ee87b4bcdc91418a201a96bc30f3286185c82d8888ec96c6d6fb",
+      "gitIndexSha256": "0a7d40c8ea67ee87b4bcdc91418a201a96bc30f3286185c82d8888ec96c6d6fb"
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-ink-session/mobile/applied.json",
+      "bytes": 75492,
+      "sha256": "84bcce28490fc9ad7316c7d2210f113b29282c563dd7a4a53a14ccbec371091b",
+      "gitIndexSha256": "84bcce28490fc9ad7316c7d2210f113b29282c563dd7a4a53a14ccbec371091b"
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-ink-session/mobile/camera.json",
+      "bytes": 5951,
+      "sha256": "2e165dadcbd281c0449b0cc1bd8f6d2966b7887f1ef2b37fb91a51241930f590",
+      "gitIndexSha256": "2e165dadcbd281c0449b0cc1bd8f6d2966b7887f1ef2b37fb91a51241930f590"
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-ink-session/mobile/cancelled.json",
+      "bytes": 5951,
+      "sha256": "2e165dadcbd281c0449b0cc1bd8f6d2966b7887f1ef2b37fb91a51241930f590",
+      "gitIndexSha256": "2e165dadcbd281c0449b0cc1bd8f6d2966b7887f1ef2b37fb91a51241930f590"
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-ink-session/mobile/coloured.json",
+      "bytes": 5961,
+      "sha256": "7bf291f4e9fa122e34df080d8631832c2fbeb92c79566e95cc97c7621d8f2a41",
+      "gitIndexSha256": "7bf291f4e9fa122e34df080d8631832c2fbeb92c79566e95cc97c7621d8f2a41"
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-ink-session/mobile/light.json",
+      "bytes": 5961,
+      "sha256": "22144cb5e9461ab512a09a1927b17fe9a3d3c80476855d86024c5096edb8bd3c",
+      "gitIndexSha256": "22144cb5e9461ab512a09a1927b17fe9a3d3c80476855d86024c5096edb8bd3c"
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-ink-session/mobile/original.json",
+      "bytes": 5912,
+      "sha256": "d24714fe8c00acca27b810efa7425892c48256e2e33161ee1068a1e05a028bad",
+      "gitIndexSha256": "d24714fe8c00acca27b810efa7425892c48256e2e33161ee1068a1e05a028bad"
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-ink-session/mobile/preview.png",
+      "bytes": 51112,
+      "sha256": "455bde27a6eda124c20e2a7621420d457b93f20dc94b96d7a602f35147259da8",
+      "gitIndexSha256": "455bde27a6eda124c20e2a7621420d457b93f20dc94b96d7a602f35147259da8"
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-ink-session/mobile/report.json",
+      "bytes": 2680,
+      "sha256": "b769e89940b15a32b3afeb3d39920bac44d3f6d0e0b1c986735fe7f1fbe0c1e6",
+      "gitIndexSha256": "b769e89940b15a32b3afeb3d39920bac44d3f6d0e0b1c986735fe7f1fbe0c1e6"
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-ink-session/mobile/source.json",
+      "bytes": 5892,
+      "sha256": "56f003fb38f5c344a1d75f837af7c47332111e4c89e8664c1455551de234f154",
+      "gitIndexSha256": "56f003fb38f5c344a1d75f837af7c47332111e4c89e8664c1455551de234f154"
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-ink-session/mobile-failure-r1.json",
+      "bytes": 2093,
+      "sha256": "a905fee9a7d42b81793315e1948d1f3c1654c33126edba6b76f339c69a171dbd",
+      "gitIndexSha256": "a905fee9a7d42b81793315e1948d1f3c1654c33126edba6b76f339c69a171dbd"
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-ink-session/README.md",
+      "bytes": 2310,
+      "sha256": "9c3014a019287c8b426afdcc1e772bb239dfd681ac2728be6d12a08736a8c55d",
+      "gitIndexSha256": "9c3014a019287c8b426afdcc1e772bb239dfd681ac2728be6d12a08736a8c55d"
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-ink-session/scroll-failure-r3.json",
+      "bytes": 1335,
+      "sha256": "7e6d99e9172f7ae82fd8cb458dabed8f900d841cbf913bbb77bf060677e1baa8",
+      "gitIndexSha256": "7e6d99e9172f7ae82fd8cb458dabed8f900d841cbf913bbb77bf060677e1baa8"
+    }
+  ],
+  "scope": "Final r5 production build; 9 cases each Edge/Chrome/touch. Unrelated dirty preserved. Detector intermediate only.",
+  "indexVerification": {
+    "files": 52,
+    "rawLogs": 10,
+    "note": "Each staged blob checked; raw logs identical, text CRLF normalization recorded separately."
+  }
+}
