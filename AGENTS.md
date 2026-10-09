@@ -2,6 +2,14 @@
 
 本文件适用于整个前端仓库。用户的后续明确指令优先。
 
+## 开发技能
+
+- 改动前端行为及页面验收时使用 `.agents/skills/astra-web-validation/SKILL.md`；界面设计按需使用已安装的 `impeccable`，真实浏览器调试使用 `playwright`。
+- 字符画参数、算法或性能的可复现实验使用 `.agents/skills/ascii-engine-optimizer/SKILL.md`。普通 UI 修改不启动优化循环，实验留在 sandbox，正式默认值遵守 Studio 保护范围及用户授权。
+- 明确的 Vue/TypeScript 安全审查使用 `security-best-practices`；明确的登录、交易或交付威胁建模使用 `security-threat-model`。Java 检查使用 Spring 官方资料及后端合同，不能把前端技能当作 Java 审计覆盖。
+- 桌面截图请求或浏览器截图无法覆盖的问题使用 `screenshot`；普通页面证据优先用浏览器截图。技能说明先阅读，按任务选择，不为纯文档修改运行全部产品测试。
+- 安装来源、Windows 入口、复现与验证见 [技能配置](docs/development/agent-skills.md)。当前技能阶段不接入额外收费服务。
+
 ## Studio 特效底座
 
 - 开发作品 hover、动效或展示效果前，阅读 [Studio 特效标准](docs/plans/studio-effects-standard.md) 和其中链接的最新阶段记录；该文档是路线与验收标准的统一来源。

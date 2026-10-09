@@ -1,0 +1,27 @@
+{
+  "scope": "synthetic protocol utilities only; no art-engine optimization",
+  "checks": [
+    {
+      "script": "validate-manifest.mjs",
+      "exitCode": 0,
+      "expectedSuccess": true,
+      "stdout": "{\n  \"valid\": true,\n  \"dataset_version\": \"skill-smoke-v1\",\n  \"fixtures\": 3,\n  \"sources\": 3,\n  \"splits\": {\n    \"train\": 1,\n    \"dev\": 1,\n    \"holdout\": 1\n  }\n}\n",
+      "stderr": ""
+    },
+    {
+      "script": "validate-manifest.mjs",
+      "exitCode": 1,
+      "expectedSuccess": false,
+      "stdout": "",
+      "stderr": "INVALID: source_id source-train crosses train/dev\n"
+    },
+    {
+      "script": "select-pareto.mjs",
+      "exitCode": 0,
+      "expectedSuccess": true,
+      "stdout": "{\n  \"objectives\": {\n    \"quality\": \"max\",\n    \"ms\": \"min\"\n  },\n  \"eligible_count\": 4,\n  \"frontier_count\": 3,\n  \"frontier\": [\n    {\n      \"id\": \"quality\",\n      \"eligible\": true,\n      \"scores\": {\n        \"quality\": 0.95,\n        \"ms\": 25\n      }\n    },\n    {\n      \"id\": \"balanced\",\n      \"eligible\": true,\n      \"scores\": {\n        \"quality\": 0.9,\n        \"ms\": 12\n      }\n    },\n    {\n      \"id\": \"fast\",\n      \"eligible\": true,\n      \"scores\": {\n        \"quality\": 0.8,\n        \"ms\": 6\n      }\n    }\n  ]\n}\n",
+      "stderr": ""
+    }
+  ],
+  "originalSkillCopyUnchanged": true
+}

@@ -1,0 +1,38 @@
+- generic [ref=e3]:
+  - link "跳到主要内容" [ref=e4] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=e5]:
+    - link "Astra 首页" [ref=e6] [cursor=pointer]:
+      - /url: /
+    - generic [ref=e18]:
+      - button "切换到亮色" [active] [ref=e67] [cursor=pointer]
+      - link "返回首页" [ref=e22] [cursor=pointer]:
+        - /url: /
+  - main [ref=e25]:
+    - generic [ref=e29]:
+      - generic [ref=e30]:
+        - paragraph [ref=e31]: YOUR CREATIVE SPACE
+        - heading "欢迎回来" [level=1] [ref=e32]
+        - paragraph [ref=e33]: 登录后继续探索特效与创作
+      - generic [ref=e34]:
+        - tablist [ref=e35]:
+          - tab "密码" [ref=e36] [cursor=pointer]
+          - tab "邮箱" [selected] [ref=e37] [cursor=pointer]
+        - generic [ref=e59]:
+          - generic [ref=e60]: 邮箱
+          - textbox "邮箱" [ref=e61]:
+            - /placeholder: 你的邮箱
+            - text: skill-check@example.invalid
+        - generic [ref=e62]:
+          - generic [ref=e63]: 验证码
+          - generic [ref=e64]:
+            - textbox "验证码 获取验证码" [ref=e65]:
+              - /placeholder: 邮箱收到的 6 位码
+            - button "获取验证码" [ref=e66] [cursor=pointer]
+        - button "继续" [ref=e48] [cursor=pointer]
+        - generic [ref=e50]:
+          - generic [ref=e51]: 其他方式
+          - button "微信扫码登录" [ref=e53] [cursor=pointer]
+      - paragraph [ref=e57]:
+        - text: 还没有账号？
+        - button "注册" [ref=e58] [cursor=pointer]

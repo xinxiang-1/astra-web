@@ -1,0 +1,42 @@
+{
+  "scope": "skill CLI invocation against existing production preview; no auth requests submitted",
+  "date": "2026-10-10",
+  "cliVersion": "0.1.22",
+  "nodeVersion": "24.12.0",
+  "browserChannel": "msedge",
+  "url": "http://127.0.0.1:4210/login",
+  "session": "astra-skills-20261010",
+  "observed": [
+    "opened login title and initial snapshot",
+    "filled public fake email through latest textbox ref",
+    "clicked email tab; retained email in new snapshot",
+    "captured light desktop screenshot",
+    "clicked dark theme via current ref",
+    "resized to 390x844 and captured dark screenshot",
+    "console reported 0 messages, 0 errors and 0 warnings",
+    "closed owned browser session"
+  ],
+  "screenshots": [
+    {
+      "file": "login-light.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "b1d3e5eaac09824a0349eec328680e7f4b3cc5721fd0b984fee1254e4623e694",
+      "visuallyInspected": true
+    },
+    {
+      "file": "login-dark-mobile.png",
+      "width": 390,
+      "height": 844,
+      "sha256": "d568e7bbb05e1c29bfead15abbbbe95262ae036f62a78838288760aeda1c0fbc",
+      "visuallyInspected": true
+    }
+  ],
+  "notVerified": [
+    "real login or registration",
+    "email delivery",
+    "touch emulation or physical mobile device",
+    "desktop screenshot helper runtime",
+    "product full regression"
+  ]
+}

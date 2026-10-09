@@ -1,0 +1,6 @@
+interface:
+  display_name: "ASCII Engine Optimizer"
+  short_description: "评估、对比并优化 Astra 字符画引擎参数"
+  default_prompt: "Use $ascii-engine-optimizer to run a reproducible optimization study for the Astra character-art engine."
+policy:
+  allow_implicit_invocation: true

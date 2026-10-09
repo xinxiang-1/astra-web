@@ -1,0 +1,233 @@
+{
+  "schemaVersion": 1,
+  "recordedOn": "2026-10-10",
+  "source": {
+    "repo": "openai/skills",
+    "commit": "49f948faa9258a0c61caceaf225e179651397431",
+    "url": "https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.curated"
+  },
+  "playwrightCli": {
+    "package": "@playwright/cli",
+    "version": "0.1.22"
+  },
+  "packages": [
+    {
+      "name": "playwright",
+      "sourcePath": "skills/.curated/playwright",
+      "licenseFile": "LICENSE.txt",
+      "files": [
+        {
+          "path": "agents/openai.yaml",
+          "sizeBytes": 313,
+          "sha256": "ddda43720fc566fffa45264be8f17f7745a3cee28d5245d41d3b963bc9967230"
+        },
+        {
+          "path": "assets/playwright-small.svg",
+          "sizeBytes": 828,
+          "sha256": "f1d213c0f76735d8272c3d3e9fbf71fe7b894e2d1588907044c780f2c33a9732"
+        },
+        {
+          "path": "assets/playwright.png",
+          "sizeBytes": 1730,
+          "sha256": "521669f088c838196c6c852ccc9abdd7234d8f37fc9a8a7a9af7db2d50193381"
+        },
+        {
+          "path": "LICENSE.txt",
+          "sizeBytes": 11552,
+          "sha256": "9a7110fc2d2f964038e5dc49128f908f29f47a574c961cba16085914e879cbda"
+        },
+        {
+          "path": "NOTICE.txt",
+          "sizeBytes": 403,
+          "sha256": "417d5d3372914ecfd9fe102ac1d7dc2119253209f9718d6c222f616876c1904b"
+        },
+        {
+          "path": "references/cli.md",
+          "sizeBytes": 1863,
+          "sha256": "7c069a8206ba20b9ddbdc42436b04de30bb3aa4a825ba98680757ee62e954900"
+        },
+        {
+          "path": "references/workflows.md",
+          "sizeBytes": 1864,
+          "sha256": "a2b5835a00ebee3906c146adf7f764f7718ea3f89a8702d86eaa135dfe0fc8c2"
+        },
+        {
+          "path": "scripts/playwright_cli.sh",
+          "sizeBytes": 526,
+          "sha256": "aa3fdff5d0e4556177f4dfd5f04117e772aa54f94b6a2e34b6c0edf629c6b9b5"
+        },
+        {
+          "path": "SKILL.md",
+          "sizeBytes": 3771,
+          "sha256": "0ffaabcc8e0990627c4725f18bf1c7955534a796c1c199e872909de2013ce6a8"
+        }
+      ]
+    },
+    {
+      "name": "screenshot",
+      "sourcePath": "skills/.curated/screenshot",
+      "licenseFile": "LICENSE.txt",
+      "files": [
+        {
+          "path": "agents/openai.yaml",
+          "sizeBytes": 273,
+          "sha256": "f29638eb930e27d44846474620b0d817b4b77fb5d09caf27db269463ae45cfa8"
+        },
+        {
+          "path": "assets/screenshot-small.svg",
+          "sizeBytes": 1019,
+          "sha256": "b0ff24097dfcd889504fab312a0e20d1d79dde0745268647a8cc2471b4baf794"
+        },
+        {
+          "path": "assets/screenshot.png",
+          "sizeBytes": 860,
+          "sha256": "4ff96a476f2a2ac4ca7b626f9d4b78a7aa8cce0219e0688c5f15355513b61b5b"
+        },
+        {
+          "path": "LICENSE.txt",
+          "sizeBytes": 10776,
+          "sha256": "4dd13869245e356246a5b770723247bbb80a8f07a181d1d3d873a1734297cdb9"
+        },
+        {
+          "path": "scripts/ensure_macos_permissions.sh",
+          "sizeBytes": 1702,
+          "sha256": "9aa750f1e9592519d6c18b966fd65c1d4108c25bd3471ce625dfafd784856d7f"
+        },
+        {
+          "path": "scripts/macos_display_info.swift",
+          "sizeBytes": 482,
+          "sha256": "0969cfef9c9890c82cae5ad75a6cd40fd56d33b28f27347642ef5e837f18b042"
+        },
+        {
+          "path": "scripts/macos_permissions.swift",
+          "sizeBytes": 929,
+          "sha256": "cf110651350e50d600268f0a1a892ac8d662505474b4455cdfde2ac5b5f4aca6"
+        },
+        {
+          "path": "scripts/macos_window_info.swift",
+          "sizeBytes": 3595,
+          "sha256": "c7faff7913d6072284b7ef1e5d26c524ab861ad32afc0c066f24ba95ae3f3597"
+        },
+        {
+          "path": "scripts/take_screenshot.ps1",
+          "sizeBytes": 4947,
+          "sha256": "a31a2242e41fd1c5471651afbcced660f98fbc884f11e531218348f700a3f826"
+        },
+        {
+          "path": "scripts/take_screenshot.py",
+          "sizeBytes": 19659,
+          "sha256": "56eeabe2dac5d23915b9a0fb57a07431fad2d310c5444f60f71f09299899232b"
+        },
+        {
+          "path": "SKILL.md",
+          "sizeBytes": 7754,
+          "sha256": "081935a6a163277537d46365f49d6b4a3cb40b4748347e7e88759c5927fa8cf5"
+        }
+      ]
+    },
+    {
+      "name": "security-best-practices",
+      "sourcePath": "skills/.curated/security-best-practices",
+      "licenseFile": "LICENSE.txt",
+      "files": [
+        {
+          "path": "agents/openai.yaml",
+          "sizeBytes": 237,
+          "sha256": "6e9c6f2edce448eb2b589f81ad6e3f722665021785513bcbfd0bf7b86b529171"
+        },
+        {
+          "path": "LICENSE.txt",
+          "sizeBytes": 10776,
+          "sha256": "4dd13869245e356246a5b770723247bbb80a8f07a181d1d3d873a1734297cdb9"
+        },
+        {
+          "path": "references/golang-general-backend-security.md",
+          "sizeBytes": 38659,
+          "sha256": "a73c47c34497b120672d48411fe51dc90d426a571801a0b3f649e2ce4ec658b4"
+        },
+        {
+          "path": "references/javascript-express-web-server-security.md",
+          "sizeBytes": 49357,
+          "sha256": "427835cbb5be7ba96172ea6ca9af80ddd4419c833e9ebf870996740c80d8406c"
+        },
+        {
+          "path": "references/javascript-general-web-frontend-security.md",
+          "sizeBytes": 38638,
+          "sha256": "3a7bc7b3f6e7ff043db9dbaa8933894d7a19d987d0607e4ddae5d70184a63d63"
+        },
+        {
+          "path": "references/javascript-jquery-web-frontend-security.md",
+          "sizeBytes": 33581,
+          "sha256": "bcbad2fa6c2a02709e47e889e70102c76886bf36bc798624d27db570eccf40da"
+        },
+        {
+          "path": "references/javascript-typescript-nextjs-web-server-security.md",
+          "sizeBytes": 43423,
+          "sha256": "71c773f7a97ce60c853adfa100b3d88b3b7bc4c6b8acaef1432ffabd923ee182"
+        },
+        {
+          "path": "references/javascript-typescript-react-web-frontend-security.md",
+          "sizeBytes": 41686,
+          "sha256": "d3030c0f24bddb56b9bbb91bbec1ee49eb7778bce4d3e0297b2641b2fc6b0d9c"
+        },
+        {
+          "path": "references/javascript-typescript-vue-web-frontend-security.md",
+          "sizeBytes": 31445,
+          "sha256": "77c6a747f9f17e3df03aad0fcb20d99ac7898001b81aef8b80908e45ac14a688"
+        },
+        {
+          "path": "references/python-django-web-server-security.md",
+          "sizeBytes": 38661,
+          "sha256": "4fb69b5d45f10e588d1a8c35cdc5f59e18910f6b46a93e2d342d90f286f8dfd2"
+        },
+        {
+          "path": "references/python-fastapi-web-server-security.md",
+          "sizeBytes": 44926,
+          "sha256": "7383c7f4fc271190b05e562ada7e825982a2c76b6c79a9f95a1da7687b65a616"
+        },
+        {
+          "path": "references/python-flask-web-server-security.md",
+          "sizeBytes": 31748,
+          "sha256": "9606d69190c04c167fdeac57e61297547a57b0542fd89dede36f355970446929"
+        },
+        {
+          "path": "SKILL.md",
+          "sizeBytes": 8612,
+          "sha256": "7b3dae1ffc5434d890f3c65c8f552af52d0307fab3b35dec13013c9ca3844c4f"
+        }
+      ]
+    },
+    {
+      "name": "security-threat-model",
+      "sourcePath": "skills/.curated/security-threat-model",
+      "licenseFile": "LICENSE.txt",
+      "files": [
+        {
+          "path": "agents/openai.yaml",
+          "sizeBytes": 254,
+          "sha256": "3319b59736312abceca614e341c0e59cae47263e3b58a22b2b5ddf1e5fc8c227"
+        },
+        {
+          "path": "LICENSE.txt",
+          "sizeBytes": 10776,
+          "sha256": "4dd13869245e356246a5b770723247bbb80a8f07a181d1d3d873a1734297cdb9"
+        },
+        {
+          "path": "references/prompt-template.md",
+          "sizeBytes": 12642,
+          "sha256": "81a59aa3fb3ac3a739d6a26ab38e4015965f215581ee54becef21a2b121ec29b"
+        },
+        {
+          "path": "references/security-controls-and-assets.md",
+          "sizeBytes": 1680,
+          "sha256": "d536cfa9acad2523dc39134bcf33b9566c29dd9a57b407cbc9901637230c6b98"
+        },
+        {
+          "path": "SKILL.md",
+          "sizeBytes": 5561,
+          "sha256": "1283c0dd62a8104d9edda4583569b5d8510b4ddaa45120687c999250fd96bad2"
+        }
+      ]
+    }
+  ]
+}

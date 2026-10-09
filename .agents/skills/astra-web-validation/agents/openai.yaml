@@ -1,0 +1,6 @@
+interface:
+  display_name: "Astra Web Validation"
+  short_description: "Validate Astra frontend contracts and browser flows"
+  default_prompt: "Use $astra-web-validation to verify the current Astra frontend change with relevant contracts and browser evidence."
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,19 @@
+{
+  "checks": [
+    {
+      "case": "missing",
+      "exitCode": 1,
+      "expectedError": "Skill not installed: playwright",
+      "matched": true
+    },
+    {
+      "case": "drift",
+      "exitCode": 1,
+      "expectedError": "Skill differs from lock: playwright/SKILL.md",
+      "matched": true
+    }
+  ],
+  "changedFilePreserved": true,
+  "scope": "VerifyOnly refusal paths in owned temp directories",
+  "corrected": "explicit UTF-8 subprocess decoding after initial Windows GBK reader failure"
+}

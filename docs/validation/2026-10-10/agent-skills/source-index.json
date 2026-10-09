@@ -1,0 +1,173 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-10",
+  "scope": "developer skills/configuration only",
+  "files": [
+    {
+      "path": "astra-cloud/.agents/skills/astra-cloud-validation/agents/openai.yaml",
+      "sizeBytes": 307,
+      "sha256": "76de770b727e8c25b1389648d5bea000feb5940cf10a62dee111396b20a123f3"
+    },
+    {
+      "path": "astra-cloud/.agents/skills/astra-cloud-validation/SKILL.md",
+      "sizeBytes": 2990,
+      "sha256": "6de942bdc7c9e81e4ea7c56d2b7245b6441536df92244cef0a6711a96e4b496d"
+    },
+    {
+      "path": "astra-cloud/AGENTS.md",
+      "sizeBytes": 1304,
+      "sha256": "f07919e52c935b3752e99efb6d72d0b6b0105fadcfe837cf569a05643cb30e8e"
+    },
+    {
+      "path": "astra-cloud/docs/plans/agent-skills-2026-10-10.md",
+      "sizeBytes": 1480,
+      "sha256": "0ecdd57ef8a7b3ed4d917019fd287c198976debc29b198b4a48542991cadde4a"
+    },
+    {
+      "path": "astra-cloud/docs/plans/launch-readiness-2026-10-08.md",
+      "sizeBytes": 23966,
+      "sha256": "a14e24d5e093f60094f22102c58f90aa4bf27dc90599bcb9600b17a1a17eb143"
+    },
+    {
+      "path": "astra-web/.agents/skills/ascii-engine-optimizer/agents/openai.yaml",
+      "sizeBytes": 295,
+      "sha256": "b66d881ace63ecdc446088e8d0c826cd1bf0cb7d2299069b564692e86beac2b9"
+    },
+    {
+      "path": "astra-web/.agents/skills/ascii-engine-optimizer/references/benchmark-policy.md",
+      "sizeBytes": 1612,
+      "sha256": "9200185ab0040eb0c55d0f9224b76bec942b0e8e30d11c3a35efe8a228f1babc"
+    },
+    {
+      "path": "astra-web/.agents/skills/ascii-engine-optimizer/references/experiment-schema.md",
+      "sizeBytes": 2216,
+      "sha256": "771338d59734e44ad33efcf385dc0ac7755d0968fcdf441db4b4a2e5d99fe36a"
+    },
+    {
+      "path": "astra-web/.agents/skills/ascii-engine-optimizer/references/judge-protocol.md",
+      "sizeBytes": 1631,
+      "sha256": "21e6b43ed1c7bafa812563ffd398b0c0c8226784ce9ad854c68be072dbd1f2b5"
+    },
+    {
+      "path": "astra-web/.agents/skills/ascii-engine-optimizer/references/optimization-modes.md",
+      "sizeBytes": 1898,
+      "sha256": "5fa4620477721bf38ad9ad0c0e7ba85f852679d25e558514effe74633bef8d74"
+    },
+    {
+      "path": "astra-web/.agents/skills/ascii-engine-optimizer/references/reward-design.md",
+      "sizeBytes": 1973,
+      "sha256": "fd1ae54cd46384c98ad263b2450f41a25f889f31ba18bf53a2bbdb0f153861c6"
+    },
+    {
+      "path": "astra-web/.agents/skills/ascii-engine-optimizer/scripts/select-pareto.mjs",
+      "sizeBytes": 1984,
+      "sha256": "f05298a28f3e13135ea97459a4413de814141e439a87c1512436be825a9599bd"
+    },
+    {
+      "path": "astra-web/.agents/skills/ascii-engine-optimizer/scripts/validate-manifest.mjs",
+      "sizeBytes": 2763,
+      "sha256": "f2bff4161084506928aafc804b55bc0b9763aab1d544f6f1c0816c3b2e84815a"
+    },
+    {
+      "path": "astra-web/.agents/skills/ascii-engine-optimizer/SKILL.md",
+      "sizeBytes": 5336,
+      "sha256": "cb6303a4b37528b36db2b0d6d7b2bee30016056d6c029a58892f09ab866aa2bf"
+    },
+    {
+      "path": "astra-web/.agents/skills/astra-web-validation/agents/openai.yaml",
+      "sizeBytes": 303,
+      "sha256": "bdcac8f04959825d360316c0dc7adb2e860a75776253e680451e3a19ef4ef0ff"
+    },
+    {
+      "path": "astra-web/.agents/skills/astra-web-validation/SKILL.md",
+      "sizeBytes": 2841,
+      "sha256": "a59a2679060799a4b84699549f85dd293e673ed63498328671432e0e58ef039a"
+    },
+    {
+      "path": "astra-web/.gitignore",
+      "sizeBytes": 549,
+      "sha256": "4a6b3e8e912e31d7f570a9ee5d2a0a913be70b72ba58e52e4e4121b816263100"
+    },
+    {
+      "path": "astra-web/AGENTS.md",
+      "sizeBytes": 3464,
+      "sha256": "222a6958101f86a222e3f017f672215b8bbd7f01f0745edfa97ba8761d89c74a"
+    },
+    {
+      "path": "astra-web/docs/development/agent-skills.lock.json",
+      "sizeBytes": 8409,
+      "sha256": "1eec370e997ee7f7a3f841097f9e35db8e0e6c829e2e60a2db9afbbd88e93470"
+    },
+    {
+      "path": "astra-web/docs/development/agent-skills.md",
+      "sizeBytes": 6687,
+      "sha256": "5d5bc09de828227d027873c4a128d102159e496058c18653b6886e3e2b9ad19e"
+    },
+    {
+      "path": "astra-web/docs/plans/agent-skills-2026-10-10.md",
+      "sizeBytes": 1242,
+      "sha256": "df0b5920be0b59052619dd9421669cf339eeb55a1810633d599394654c737d31"
+    },
+    {
+      "path": "astra-web/docs/plans/product-master-plan.md",
+      "sizeBytes": 68641,
+      "sha256": "fe3e50938b03fc0d49b494209f16709c824aab6896ce6ef1be12d593cbacd3aa"
+    },
+    {
+      "path": "astra-web/docs/validation/2026-10-10/agent-skills/browser-smoke.json",
+      "sizeBytes": 1383,
+      "sha256": "b4202952ac11b43ace122cf20caaa601a34d5efbe32ad817c4a3200f9af19ec1"
+    },
+    {
+      "path": "astra-web/docs/validation/2026-10-10/agent-skills/config-smoke.json",
+      "sizeBytes": 520,
+      "sha256": "e71e27d91e033a71c5a8c86ea91fc1f0d126ba52d9b791ded7bd59c7093f3615"
+    },
+    {
+      "path": "astra-web/docs/validation/2026-10-10/agent-skills/login-dark-mobile.png",
+      "sizeBytes": 226844,
+      "sha256": "d568e7bbb05e1c29bfead15abbbbe95262ae036f62a78838288760aeda1c0fbc"
+    },
+    {
+      "path": "astra-web/docs/validation/2026-10-10/agent-skills/login-dark.yml",
+      "sizeBytes": 1566,
+      "sha256": "b0fd39ef3b50c71f56c69490e17b6f782d66940f06b8d8a363ffb354ac51a5c1"
+    },
+    {
+      "path": "astra-web/docs/validation/2026-10-10/agent-skills/login-email.yml",
+      "sizeBytes": 1566,
+      "sha256": "0329b028fd952caeb1a75c24d948193d8763adebd7f29a62b5f2cb18b3486395"
+    },
+    {
+      "path": "astra-web/docs/validation/2026-10-10/agent-skills/login-initial.yml",
+      "sizeBytes": 1569,
+      "sha256": "a2427e7f95cde8611def77e11e71c4d75d14845dfefaea13fe2780e917e41968"
+    },
+    {
+      "path": "astra-web/docs/validation/2026-10-10/agent-skills/login-light.png",
+      "sizeBytes": 720144,
+      "sha256": "b1d3e5eaac09824a0349eec328680e7f4b3cc5721fd0b984fee1254e4623e694"
+    },
+    {
+      "path": "astra-web/docs/validation/2026-10-10/agent-skills/optimizer-smoke.json",
+      "sizeBytes": 1427,
+      "sha256": "16360735919134ddf21314eaa649c56d434e56bf5a8a02a0d154ec921a6c106f"
+    },
+    {
+      "path": "astra-web/docs/validation/2026-10-10/agent-skills/README.md",
+      "sizeBytes": 2435,
+      "sha256": "9225961318721f0720ca7fd33e23a2dcd21526854b3e1bf137dd854bc89d59ca"
+    },
+    {
+      "path": "astra-web/scripts/agent-playwright.ps1",
+      "sizeBytes": 724,
+      "sha256": "d3180eeb2ffde43a41924c7aa7cdd282caa382ec6726a9e666848e8c2d68b43d"
+    },
+    {
+      "path": "astra-web/scripts/configure-agent-skills.ps1",
+      "sizeBytes": 4031,
+      "sha256": "bc0bbb8ddfce64265bfb0471fa6bb3a0fa944eb2a03a2f2a81f38b20e5fae2f0"
+    }
+  ],
+  "localLinksChecked": 139
+}
