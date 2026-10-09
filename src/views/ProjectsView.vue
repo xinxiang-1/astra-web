@@ -1,13 +1,24 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import ArtIcon from '@/components/ui/ArtIcon.vue'
 import ArtFooter from '@/components/ArtFooter.vue'
 import {
-  listArtProjects,
-  deleteArtProject,
+  listCreativeProjects,
+  deleteCreativeProject,
+  getArtProject,
+  getSignatureProject,
+  saveSignatureProject,
   saveArtProject,
-  type ArtProject,
+  type CreativeProjectSummary,
 } from '@/lib/art-projects'
+import {
+  readSignatureProject,
+  signatureProjectFilename,
+  SIGNATURE_PROJECT_ACCEPT,
+  SIGNATURE_PROJECT_ENGINE,
+} from '@/lib/signature-portrait/project'
+import { exportSignaturePng } from '@/lib/signature-portrait/png-export'
+import { signatureProjectThumbnail } from '@/lib/signature-project-thumbnail'
 import {
   ART_PROJECT_PACKAGE_ACCEPT,
   artProjectPackageFilename,
@@ -15,7 +26,10 @@ import {
   readArtProjectPackage,
 } from '@/lib/art-project-package'
 import { triggerDownload } from '@/lib/ascii'
-const projects = ref<ArtProject[]>([])
+const projects = ref<CreativeProjectSummary[]>([])
+let disposed = false
+let refreshGeneration = 0
+let transferController: AbortController | null = null
 const loading = ref(true)
 const error = ref('')
 const filter = ref('全部')
@@ -28,33 +42,56 @@ const transferStatus = ref('')
 const shown = computed(() =>
   projects.value.filter(
     (p) =>
-      (filter.value === '全部' || p.kind === (filter.value === '图片' ? 'image' : 'video')) &&
+      (filter.value === '全部' ||
+        p.kind ===
+          ({ 图片: 'image', 视频: 'video', 签名: 'signature' } as Record<string, string>)[
+            filter.value
+          ]) &&
       p.name.includes(search.value.trim()),
   ),
 )
 async function refresh() {
+  const generation = ++refreshGeneration
   error.value = ''
   try {
-    projects.value = await listArtProjects()
-  } catch {
-    error.value = '无法读取本地项目，请检查浏览器存储权限后重试。'
+    const list = await listCreativeProjects()
+    if (!disposed && generation === refreshGeneration) projects.value = list
+  } catch (cause) {
+    if (!disposed && generation === refreshGeneration)
+      error.value =
+        cause instanceof Error ? cause.message : '无法读取本地项目，请检查浏览器存储权限后重试。'
   } finally {
-    loading.value = false
+    if (!disposed && generation === refreshGeneration) loading.value = false
   }
 }
-async function downloadPackage(project: ArtProject) {
+async function downloadPackage(project: CreativeProjectSummary) {
   if (transferring.value) return
   transferring.value = project.id
   error.value = ''
   transferStatus.value = '正在打包原始素材…'
+  const controller = new AbortController()
+  transferController = controller
   try {
-    const blob = await createArtProjectPackage(project)
-    triggerDownload(blob, artProjectPackageFilename(project.name))
+    const source =
+      project.kind === 'signature'
+        ? await getSignatureProject(project.id, controller.signal)
+        : await getArtProject(project.id)
+    if (!source) throw new Error('此作品已移除，请刷新项目列表。')
+    const blob = 'file' in source ? source.file : await createArtProjectPackage(source)
+    if (disposed || controller.signal.aborted) return
+    triggerDownload(
+      blob,
+      project.kind === 'signature'
+        ? signatureProjectFilename(project.name)
+        : artProjectPackageFilename(project.name),
+    )
     transferStatus.value = '作品包已生成。请保留下载文件，用于备份或换设备继续创作。'
   } catch (cause) {
+    if (disposed || controller.signal.aborted) return
     transferStatus.value = ''
     error.value = cause instanceof Error ? cause.message : '作品包下载失败，请重试。'
   } finally {
+    if (transferController === controller) transferController = null
     transferring.value = ''
   }
 }
@@ -66,28 +103,57 @@ async function importPackage(event: Event) {
   transferring.value = 'import'
   error.value = ''
   transferStatus.value = '正在校验作品包与原始素材…'
+  const controller = new AbortController()
+  transferController = controller
   try {
-    const { project, notice } = await readArtProjectPackage(file)
-    try {
-      await saveArtProject(project)
-    } catch {
-      throw new Error('浏览器未能保存作品包，存储空间可能不足。请保留备份文件后重试。')
+    let notice: string
+    if (file.name.toLowerCase().endsWith(SIGNATURE_PROJECT_ACCEPT)) {
+      const restored = await readSignatureProject(file, { signal: controller.signal })
+      try {
+        const scene = restored.project
+        const thumbnail = await signatureProjectThumbnail(
+          await exportSignaturePng(scene, {
+            longEdge: 420,
+            signal: {
+              get cancelled() {
+                return controller.signal.aborted
+              },
+            },
+          }),
+          controller.signal,
+        )
+        if (disposed) return
+        await saveSignatureProject(
+          { file, name: scene.portraitName, thumbnail, engineVersion: SIGNATURE_PROJECT_ENGINE },
+          controller.signal,
+        )
+        notice = '签名原作已保存到我的项目，可继续编辑。相同版本不会重复添加。'
+      } finally {
+        restored.dispose()
+      }
+    } else {
+      const imported = await readArtProjectPackage(file)
+      if (disposed || controller.signal.aborted) return
+      await saveArtProject(imported.project, controller.signal)
+      notice = imported.notice
     }
     filter.value = '全部'
     search.value = ''
     await refresh()
     transferStatus.value = notice
   } catch (cause) {
+    if (disposed || controller.signal.aborted) return
     transferStatus.value = ''
     error.value = cause instanceof Error ? cause.message : '无法导入作品包，请重试。'
   } finally {
+    if (transferController === controller) transferController = null
     transferring.value = ''
   }
 }
 async function remove(id: string) {
   busy.value = true
   try {
-    await deleteArtProject(id)
+    await deleteCreativeProject(id)
     removing.value = ''
     await refresh()
   } catch {
@@ -97,6 +163,20 @@ async function remove(id: string) {
   }
 }
 onMounted(refresh)
+onBeforeUnmount(() => {
+  disposed = true
+  transferController?.abort()
+})
+function availableOrigin(project: CreativeProjectSummary) {
+  const origin = project.origin
+  return (
+    origin &&
+    projects.value.some(
+      (p) =>
+        p.kind === 'signature' && p.id === origin.projectId && p.signatureHash === origin.sha256,
+    )
+  )
+}
 </script>
 <template>
   <div class="art-page">
@@ -123,13 +203,14 @@ onMounted(refresh)
             type="file"
             class="package-file-input"
             hidden
-            :accept="ART_PROJECT_PACKAGE_ACCEPT"
+            :accept="`${ART_PROJECT_PACKAGE_ACCEPT},${SIGNATURE_PROJECT_ACCEPT}`"
             aria-label="导入 Astra 作品包"
             @change="importPackage"
           />
           <RouterLink to="/ascii-art" class="art-button primary"
             ><ArtIcon name="plus" :size="18" /> 新建作品</RouterLink
           >
+          <RouterLink to="/signature-portrait" class="art-button">签名画像</RouterLink>
         </div>
       </header>
       <div class="local-notice">
@@ -142,7 +223,7 @@ onMounted(refresh)
       <div class="projects-tools">
         <div>
           <button
-            v-for="item in ['全部', '图片', '视频']"
+            v-for="item in ['全部', '图片', '视频', '签名']"
             :key="item"
             class="art-chip"
             :class="{ active: filter === item }"
@@ -171,13 +252,26 @@ onMounted(refresh)
           <span class="art-eyebrow">CREATE SOMETHING YOURS</span></RouterLink
         >
         <article v-for="project in shown" :key="project.id" class="art-card project-card">
-          <RouterLink :to="`/ascii-art?project=${project.id}`" class="project-open"
+          <RouterLink
+            :to="
+              project.kind === 'signature'
+                ? { name: 'signature-portrait', query: { signature: project.id } }
+                : { name: 'ascii-art', query: { project: project.id } }
+            "
+            class="project-open"
             ><img :src="project.thumbnail" :alt="project.name" />
             <div class="art-card-info">
               <div>
                 <h3>{{ project.name }}</h3>
                 <p>
-                  {{ project.kind === 'image' ? '图片' : '视频' }} ·
+                  {{
+                    project.kind === 'signature'
+                      ? '签名原作'
+                      : project.kind === 'image'
+                        ? '图片'
+                        : '视频'
+                  }}
+                  ·
                   {{
                     new Date(project.updatedAt).toLocaleString('zh-CN', {
                       month: 'long',
@@ -190,9 +284,19 @@ onMounted(refresh)
               </div>
               <ArtIcon :size="16" /></div
           ></RouterLink>
+          <p v-if="project.origin" class="project-origin">
+            <RouterLink
+              v-if="availableOrigin(project)"
+              :to="{ name: 'signature-portrait', query: { signature: project.origin.projectId } }"
+              >打开签名原作 · {{ project.origin.name }}</RouterLink
+            >
+            <span v-else>签名来源 · {{ project.origin.name }}（原作未保存在此浏览器）</span>
+          </p>
           <div class="project-actions">
             <template v-if="removing === project.id"
-              ><span>删除本地项目？</span
+              ><span>{{
+                project.kind === 'signature' ? '删除原作？已有派生作品保留。' : '删除本地项目？'
+              }}</span>
               ><button :disabled="busy" @click="remove(project.id)">确认删除</button
               ><button :disabled="busy" @click="removing = ''">取消</button></template
             ><template v-else
@@ -208,7 +312,7 @@ onMounted(refresh)
       </div>
       <div v-if="!loading && !shown.length" class="projects-empty">
         <h2>{{ projects.length ? '没有匹配的项目' : '你的作品，会在这里慢慢积累。' }}</h2>
-        <p>在编辑器中点击“保存项目”，即可保留素材和全部调整，随时回来继续创作。</p>
+        <p>在字符编辑器中保存项目，或在签名页点击“保存到我的项目”，即可随时回来继续创作。</p>
         <RouterLink to="/gallery" class="art-link"
           >去作品库找一点灵感 <ArtIcon :size="17"
         /></RouterLink>
@@ -218,6 +322,16 @@ onMounted(refresh)
   </div>
 </template>
 <style scoped>
+.project-origin {
+  margin: 0;
+  padding: 0 14px 12px;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+  color: var(--text-muted);
+}
+.project-origin a {
+  color: var(--accent);
+}
 .projects-main {
   padding-top: 60px;
   padding-bottom: 70px;
@@ -285,6 +399,7 @@ onMounted(refresh)
 }
 .projects-tools > div {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
 }
 .projects-tools label {

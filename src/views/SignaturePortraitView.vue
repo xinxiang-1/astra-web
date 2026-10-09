@@ -1,9 +1,14 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, shallowRef, watch } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { ART_RECIPES } from '@/lib/art-recipes'
 import { signatureArtProject } from '@/lib/signature-art-workflow'
-import { saveArtProject } from '@/lib/art-projects'
+import {
+  getSignatureProject,
+  saveSignatureProject,
+  saveSignatureDerivative,
+} from '@/lib/art-projects'
+import { signatureProjectThumbnail } from '@/lib/signature-project-thumbnail'
 
 import FxButton from '@/components/ui/FxButton.vue'
 import UiInput from '@/components/ui/UiInput.vue'
@@ -67,6 +72,7 @@ import {
   readSignatureProject,
   signatureProjectFilename,
   SIGNATURE_PROJECT_ACCEPT,
+  SIGNATURE_PROJECT_ENGINE,
   type SignatureProject,
 } from '@/lib/signature-portrait/project'
 import {
@@ -76,6 +82,8 @@ import {
 
 const theme = useThemeStore()
 const router = useRouter()
+const route = useRoute()
+const localSignatureId = ref('')
 const workflowRecipe = ref('fluid-reveal')
 const workflowProjectId = ref('')
 const workflowBusy = ref(false)
@@ -316,7 +324,8 @@ function hasUnappliedSettings(layoutOnly = false) {
   const options = generatedControlOptions.value ?? result?.options
   const compare = layoutOnly ? comparableLayoutOptions : (value: SignatureLayoutOptions) => value
   return Boolean(
-    result && options &&
+    result &&
+    options &&
     (JSON.stringify(compare(currentLayoutOptions())) !== JSON.stringify(compare(options)) ||
       portrait.value !== result.portrait ||
       stamps.value.map((s) => s.id).join(',') !== result.stamps.map((s) => s.id).join(',')),
@@ -1177,7 +1186,20 @@ onMounted(async () => {
   } catch {
     /* IndexedDB 不可用时仍可手写即时作画 */
   }
+  if (
+    !viewDisposed &&
+    !projectBusy.value &&
+    !hasResult.value &&
+    typeof route.query.signature === 'string'
+  )
+    await openLocalSignature(route.query.signature)
 })
+watch(
+  () => route.query.signature,
+  (id) => {
+    if (typeof id === 'string') void openLocalSignature(id)
+  },
+)
 
 function onPreviewScroll() {
   if (viewScale.value > 1.05) scheduleSharpViewportPaint()
@@ -1456,24 +1478,26 @@ async function renderArtwork(inkOnly: boolean) {
     colorize: controls.colorize,
     toneGain: controls.toneGain,
   }
-  const result = inkOnly && previous
-    ? {
-        portrait: previous.portrait,
-        portraitFile: previous.portraitFile,
-        portraitName: previous.portraitName,
-        stamps: previous.stamps.map((stamp) => ({ ...stamp })),
-        options: { ...previous.options, ...inkOptions },
-      }
-    : {
-        portrait: portrait.value,
-        portraitFile: portraitFile.value,
-        portraitName: portraitName.value,
-        stamps: stamps.value.map((stamp) => ({ ...stamp })),
-        options: controls,
-      }
-  const appliedControls = inkOnly && previous
-    ? { ...(generatedControlOptions.value ?? previous.options), ...inkOptions }
-    : controls
+  const result =
+    inkOnly && previous
+      ? {
+          portrait: previous.portrait,
+          portraitFile: previous.portraitFile,
+          portraitName: previous.portraitName,
+          stamps: previous.stamps.map((stamp) => ({ ...stamp })),
+          options: { ...previous.options, ...inkOptions },
+        }
+      : {
+          portrait: portrait.value,
+          portraitFile: portraitFile.value,
+          portraitName: portraitName.value,
+          stamps: stamps.value.map((stamp) => ({ ...stamp })),
+          options: controls,
+        }
+  const appliedControls =
+    inkOnly && previous
+      ? { ...(generatedControlOptions.value ?? previous.options), ...inkOptions }
+      : controls
   pending.value = renderBusy.value = true
   inkRenderBusy.value = inkOnly
   progressStage.value = '准备中'
@@ -1578,14 +1602,15 @@ async function renderArtwork(inkOnly: boolean) {
     }
     if (stale()) return
     // Capture the current camera at commit, so gestures made during rendering survive.
-    const camera = inkOnly && generatedResult.value === previous && width === layoutW && height === layoutH
-      ? {
-          scale: viewScale.value,
-          compare: comparePct.value,
-          left: previewHost.value?.scrollLeft ?? 0,
-          top: previewHost.value?.scrollTop ?? 0,
-        }
-      : null
+    const camera =
+      inkOnly && generatedResult.value === previous && width === layoutW && height === layoutH
+        ? {
+            scale: viewScale.value,
+            compare: comparePct.value,
+            left: previewHost.value?.scrollLeft ?? 0,
+            top: previewHost.value?.scrollTop ?? 0,
+          }
+        : null
     const cssW = Math.max(1, Math.round(getFitWidth(width) * (camera?.scale ?? 1))),
       cssH = Math.max(1, Math.round((height * cssW) / width))
     if (overview) display = createOverviewDisplay(overview, cssW, cssH)
@@ -1670,11 +1695,56 @@ async function downloadProject() {
   } catch (e) {
     if (!controller.signal.aborted) error.value = e instanceof Error ? e.message : '作品保存失败'
   } finally {
-    if (projectController === controller) projectController = null
-    projectBusy.value = false
-    pending.value = false
-    progressStage.value = ''
-    progressRatio.value = 0
+    if (projectController === controller) {
+      projectController = null
+      projectBusy.value = false
+      pending.value = false
+      progressStage.value = ''
+      progressRatio.value = 0
+    }
+  }
+}
+
+async function saveLocalSignature() {
+  const scene = generatedResult.value
+  if (!scene || bankBusy.value) return
+  const controller = new AbortController()
+  projectController = controller
+  pending.value = projectBusy.value = true
+  error.value = ''
+  try {
+    progressStage.value = '保存签名原作'
+    const file = await createSignatureProject(scene, { signal: controller.signal })
+    const thumbnail = await signatureProjectThumbnail(
+      await exportSignaturePng(scene, {
+        longEdge: 420,
+        signal: {
+          get cancelled() {
+            return controller.signal.aborted
+          },
+        },
+      }),
+      controller.signal,
+    )
+    if (viewDisposed) return
+    const stored = await saveSignatureProject(
+      { file, name: scene.portraitName, thumbnail, engineVersion: SIGNATURE_PROJECT_ENGINE },
+      controller.signal,
+    )
+    if (!viewDisposed && !controller.signal.aborted) {
+      localSignatureId.value = stored.id
+      projectNotice.value = '签名原作已保存到我的项目。更改后再次保存会保留新版本。'
+    }
+  } catch (cause) {
+    if (!viewDisposed && !controller.signal.aborted)
+      error.value = cause instanceof Error ? cause.message : '保存失败，请先下载作品文件备份。'
+  } finally {
+    if (projectController === controller) {
+      projectController = null
+      projectBusy.value = pending.value = false
+      progressStage.value = ''
+      progressRatio.value = 0
+    }
   }
 }
 
@@ -1733,12 +1803,55 @@ async function onProjectChange(event: Event) {
     input.value = ''
     return
   }
+  input.value = ''
+  await restoreSignatureFile(file)
+}
+
+async function openLocalSignature(id: string) {
+  if (pngBusy.value || bankSaving.value || generatingVariants.value) {
+    projectNotice.value = '当前操作正在完成，请完成后重新打开项目。'
+    return
+  }
+  projectController?.abort()
+  const controller = new AbortController()
+  projectController = controller
+  ++renderSeq
+  paintSignal.cancelled = true
+  renderBusy.value = inkRenderBusy.value = false
+  pending.value = projectBusy.value = true
+  error.value = ''
+  progressStage.value = '打开本地签名原作'
+  try {
+    const stored = await getSignatureProject(id, controller.signal)
+    if (controller.signal.aborted || viewDisposed || projectController !== controller) return
+    if (!stored) throw new Error('此签名原作已移除，可从作品文件备份恢复。')
+    await restoreSignatureFile(stored.file, id, controller)
+  } catch (cause) {
+    if (!controller.signal.aborted && !viewDisposed && projectController === controller)
+      error.value = cause instanceof Error ? cause.message : '本地作品无法打开。'
+  } finally {
+    if (projectController === controller) {
+      projectController = null
+      pending.value = projectBusy.value = false
+      progressStage.value = ''
+      progressRatio.value = 0
+    }
+  }
+}
+
+async function restoreSignatureFile(file: Blob, localId = '', provided?: AbortController) {
+  if (projectController !== provided) projectController?.abort()
   error.value = ''
   projectNotice.value = ''
   pending.value = true
   projectBusy.value = true
-  const controller = new AbortController()
+  const controller = provided ?? new AbortController()
   projectController = controller
+  const stale = () =>
+    controller.signal.aborted ||
+    viewDisposed ||
+    projectController !== controller ||
+    Boolean(localId && route.query.signature !== localId)
   let candidate: Awaited<ReturnType<typeof readSignatureProject>> | null = null
   let overview: HTMLCanvasElement | null = null
   let display: HTMLCanvasElement | null = null
@@ -1790,7 +1903,7 @@ async function onProjectChange(event: Event) {
         },
       },
     )
-    if (controller.signal.aborted || viewDisposed) return
+    if (stale()) return
     // Prepare a usable display before replacing any inputs or generated artwork.
     const cssW = getFitWidth(scene.width)
     const cssH = Math.max(1, Math.round((scene.height * cssW) / scene.width))
@@ -1817,6 +1930,7 @@ async function onProjectChange(event: Event) {
     bankEntries.value = []
     restoreProjectControls(scene.options)
     generatedResult.value = scene
+    localSignatureId.value = localId
     generatedControlOptions.value = currentLayoutOptions()
     lastPlacements = scene.placements
     layoutW = scene.width
@@ -1849,7 +1963,7 @@ async function onProjectChange(event: Event) {
     releaseUnusedImportedScenes()
     projectNotice.value = '作品已恢复，可继续调整并保存。原设备的名字库保持原样。'
   } catch (e) {
-    if (!controller.signal.aborted) error.value = e instanceof Error ? e.message : '作品打开失败'
+    if (!stale()) error.value = e instanceof Error ? e.message : '作品打开失败'
   } finally {
     candidate?.dispose()
     if (overview) {
@@ -1860,12 +1974,13 @@ async function onProjectChange(event: Event) {
       display.width = 1
       display.height = 1
     }
-    if (projectController === controller) projectController = null
-    projectBusy.value = false
-    pending.value = false
-    input.value = ''
-    progressStage.value = ''
-    progressRatio.value = 0
+    if (projectController === controller) {
+      projectController = null
+      projectBusy.value = false
+      pending.value = false
+      progressStage.value = ''
+      progressRatio.value = 0
+    }
   }
 }
 
@@ -2031,7 +2146,15 @@ async function continueAsCharacterArt() {
   const scene = generatedResult.value
   if (!scene || pending.value || resultSettingsChanged.value) return
   const recipe = workflowRecipe.value
-  const signal = { cancelled: false }
+  const controller = new AbortController()
+  const signal = {
+    get cancelled() {
+      return controller.signal.aborted
+    },
+    set cancelled(value: boolean) {
+      if (value) controller.abort()
+    },
+  }
   pngSignal = signal
   pending.value = pngBusy.value = workflowBusy.value = true
   error.value = ''
@@ -2040,8 +2163,6 @@ async function continueAsCharacterArt() {
   const check = () => {
     if (signal.cancelled || viewDisposed) throw new Error('已取消')
   }
-  let thumbnailCanvas: HTMLCanvasElement | null = null
-  let sourceUrl = ''
   try {
     const blob = await exportSignaturePng(scene, {
       signal,
@@ -2056,38 +2177,38 @@ async function continueAsCharacterArt() {
       },
     })
     check()
-    sourceUrl = URL.createObjectURL(blob)
-    const image = new Image()
-    image.src = sourceUrl
-    await image.decode()
+    const thumbnail = await signatureProjectThumbnail(blob, controller.signal)
     check()
-    const size = fitSignatureRaster(image.naturalWidth, image.naturalHeight, 420)
-    thumbnailCanvas = document.createElement('canvas')
-    thumbnailCanvas.width = size.width
-    thumbnailCanvas.height = size.height
-    const context = thumbnailCanvas.getContext('2d')
-    if (!context) throw new Error('无法准备作品缩略图')
-    context.drawImage(image, 0, 0, size.width, size.height)
     const project = signatureArtProject(
       new File([blob], 'signature-art.png', { type: 'image/png' }),
-      thumbnailCanvas.toDataURL('image/jpeg', 0.85),
+      thumbnail,
       scene.portraitName,
       scene.options.background ?? '#f5f3ef',
       recipe,
     )
+    progressStage.value = '保存签名原作与动态字符项目'
+    const original = await createSignatureProject(scene, { signal: controller.signal })
     check()
-    progressStage.value = '保存动态字符项目'
-    await saveArtProject(project)
+    const saved = await saveSignatureDerivative(
+      {
+        file: original,
+        name: scene.portraitName,
+        thumbnail,
+        engineVersion: SIGNATURE_PROJECT_ENGINE,
+      },
+      project,
+      recipe,
+      controller.signal,
+    )
     if (!viewDisposed) {
-      workflowProjectId.value = project.id
-      projectNotice.value = '动态字符项目已保存到此浏览器，可在新标签页打开；当前签名作品保留。'
+      workflowProjectId.value = saved.project.id
+      localSignatureId.value = saved.signature.id
+      projectNotice.value = '签名原作与动态字符项目已保存到我的项目，可在新标签页继续创作。'
     }
   } catch (cause) {
     if (!signal.cancelled && !viewDisposed)
       error.value = cause instanceof Error ? cause.message : '创作项目准备失败'
   } finally {
-    if (sourceUrl) URL.revokeObjectURL(sourceUrl)
-    if (thumbnailCanvas) thumbnailCanvas.width = thumbnailCanvas.height = 1
     if (pngSignal === signal) pngSignal = null
     pending.value = pngBusy.value = workflowBusy.value = false
     pngBackend.value = null
@@ -2226,6 +2347,8 @@ watch(projectBusy, (busy) => {
           打开作品文件 </FxButton
         ><FxButton type="button" :disabled="!hasResult || bankBusy" @click="downloadProject">
           保存作品文件 </FxButton
+        ><FxButton type="button" :disabled="!hasResult || bankBusy" @click="saveLocalSignature">
+          保存到我的项目 </FxButton
         ><input
           ref="projectInput"
           class="sr-only"
@@ -2236,6 +2359,7 @@ watch(projectBusy, (busy) => {
           >取消文件操作</FxButton
         >
       </div>
+      <RouterLink v-if="localSignatureId" to="/projects" class="hint">查看我的项目</RouterLink>
       <SignatureUltraExport
         v-model:long-side="ultraLongSide"
         v-model:ink-mode="ultraInkMode"

@@ -1,0 +1,12 @@
+{
+  "base": "http://127.0.0.1:4210",
+  "browser": "154.0.4258.62",
+  "mobile": true,
+  "cases": [
+    "local-save-and-identical-snapshot-deduplication",
+    "signature-filter-card-restore-and-backup-import",
+    "changed-snapshot-keeps-reopenable-old-version"
+  ],
+  "errors": [],
+  "failure": "TimeoutError: locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByText('已保存到此浏览器', { exact: true }).first() to be visible\u001b[22m\n\u001b[2m    62 × locator resolved to hidden <span role=\"status\" data-v-96969ab3=\"\" class=\"save-status\">已保存到此浏览器</span>\u001b[22m\n"
+}

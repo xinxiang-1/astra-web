@@ -12,6 +12,7 @@ import UnsavedChangesDialog from '@/components/UnsavedChangesDialog.vue'
 import { prepareArtSource, type PreparedArtSource } from '@/lib/art-media-source'
 import { artworkPresets, findArtworkPreset, type ArtworkPreset } from '@/content/artwork'
 import { getArtProject, saveArtProject } from '@/lib/art-projects'
+import { readProjectOrigin, type SignatureProjectOrigin } from '@/lib/art-project-origin'
 import { ART_RECIPES, artRecipeSettings } from '@/lib/art-recipes'
 import {
   assertArtProjectEngineCompatible,
@@ -105,6 +106,7 @@ const ACCEPT = MEDIA_ACCEPT
 const route = useRoute()
 const projectTitle = ref('未命名作品')
 const projectId = ref('')
+const projectOrigin = ref<SignatureProjectOrigin>()
 const projectStatus = ref('仅保存在此浏览器')
 const savingProject = ref(false)
 const packingProject = ref(false)
@@ -1829,6 +1831,7 @@ async function loadFile(file: File | undefined) {
       previewUrl.value = candidate.url
     }
     sourceFile = file
+    projectOrigin.value = undefined
     sourceRevision.value++
     committed = true
     imageAspect.value = candidate.frame.width / candidate.frame.height
@@ -2971,6 +2974,7 @@ async function saveProject() {
       updatedAt: Date.now(),
       thumbnail: makeThumbnail(),
       settings: JSON.parse(captured).settings,
+      origin: projectOrigin.value,
       engineVersion: editorEngine.value === 'calibrated' ? ART_ENGINE_VERSION : 'legacy-1',
     })
     if (capturedRevision !== sourceRevision.value) return false
@@ -3023,6 +3027,7 @@ async function clearArtwork() {
   if (!(await requestLeave('清空'))) return
   resetAll()
   projectId.value = ''
+  projectOrigin.value = undefined
   projectTitle.value = '未命名作品'
   savedSnapshot.value = ''
   projectStatus.value = '仅保存在此浏览器'
@@ -3049,6 +3054,7 @@ async function downloadProjectPackage() {
       updatedAt: Date.now(),
       thumbnail: makeThumbnail(),
       settings: captured.settings,
+      origin: projectOrigin.value,
       engineVersion: editorEngine.value === 'calibrated' ? ART_ENGINE_VERSION : 'legacy-1',
     })
     triggerDownload(blob, artProjectPackageFilename(captured.name))
@@ -3154,6 +3160,7 @@ async function loadRouteProject() {
         videoCurrentTime.value = clipStart.value
       }
       projectId.value = project.id
+      projectOrigin.value = readProjectOrigin(project.origin)
       projectTitle.value = project.name
       await nextTick()
       await runConvert({ fitZoom: true })
@@ -3175,6 +3182,7 @@ watch(
     if (route.name !== 'ascii-art') return
     resetAll()
     projectId.value = ''
+    projectOrigin.value = undefined
     savedSnapshot.value = ''
     projectTitle.value = '未命名作品'
     await loadRouteProject()

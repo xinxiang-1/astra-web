@@ -1,5 +1,6 @@
 import { ART_ENGINE_VERSION } from './art-engine'
 import type { ArtProject } from './art-projects'
+import { readProjectOrigin, type SignatureProjectOrigin } from './art-project-origin'
 
 export const ART_PROJECT_PACKAGE_ACCEPT = '.astra'
 export const ART_PROJECT_SOURCE_LIMIT = 64 * 1024 * 1024
@@ -15,7 +16,7 @@ export interface ArtProjectPackageManifest {
   format: 'astra-project'
   version: 1
   exportedAt: number
-  project: { name: string; settings: Settings }
+  project: { name: string; settings: Settings; origin?: SignatureProjectOrigin }
   engine: { id: 'calibrated' | 'legacy'; version: string | null }
   source: Asset
   thumbnail: { type: string; size: number; sha256: string }
@@ -311,7 +312,11 @@ export async function createArtProjectPackage(project: ArtProject): Promise<Blob
     format: 'astra-project',
     version: 1,
     exportedAt: Date.now(),
-    project: { name: text(project.name, 60, '项目名称'), settings },
+    project: {
+      name: text(project.name, 60, '项目名称'),
+      settings,
+      ...(project.origin ? { origin: readProjectOrigin(project.origin) } : {}),
+    },
     engine: {
       id: settings.editorEngine === 'calibrated' ? 'calibrated' : 'legacy',
       version: project.engineVersion ?? null,
@@ -357,6 +362,7 @@ export async function readArtProjectPackage(
   number(manifest.exportedAt, 0, Number.MAX_SAFE_INTEGER, '导出日期', true)
   const info = record(manifest.project, '项目'),
     settings = settingsOf(info.settings)
+  const origin = readProjectOrigin(info.origin)
   const name = text(info.name, 60, '项目名称'),
     engine = record(manifest.engine, '效果引擎')
   const expectedEngine = settings.editorEngine === 'calibrated' ? 'calibrated' : 'legacy'
@@ -410,6 +416,7 @@ export async function readArtProjectPackage(
       }),
       thumbnail: await dataUrl(thumbnail),
       settings,
+      ...(origin ? { origin } : {}),
       ...(engineVersion ? { engineVersion } : {}),
     },
     notice: engineVersion

@@ -1,0 +1,20 @@
+{
+  "base": "http://127.0.0.1:4210",
+  "browser": "157.0.8081.0",
+  "mobile": false,
+  "cases": [
+    "local-save-and-identical-snapshot-deduplication",
+    "signature-filter-card-restore-and-backup-import",
+    "changed-snapshot-keeps-reopenable-old-version",
+    "atomic-derivative-and-origin-survive-editor-save",
+    "project-list-opens-exact-signature-origin",
+    "portable-art-package-keeps-origin-and-shows-missing-original",
+    "cancelled-replacement-keeps-previous-complete-scene",
+    "cancelled-local-read-and-malformed-file-preserve-complete-scene",
+    "late-unmounted-read-cannot-replace-newly-opened-version",
+    "delete-original-keeps-derivative-openable-and-exportable",
+    "new-source-clears-signature-provenance",
+    "project-list-both-themes-and-responsive-control-bounds"
+  ],
+  "errors": []
+}
