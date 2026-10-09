@@ -1,0 +1,1611 @@
+{
+  "passed": true,
+  "browser": "157.0.8081.0",
+  "fonts": [
+    {
+      "id": "mashanzheng",
+      "family": "Astra Signature Ma Shan Zheng",
+      "unicodeCodepointsCompared": 1114112,
+      "pixelCases": [
+        {
+          "name": "李云舟",
+          "style": 0,
+          "width": 61,
+          "height": 25,
+          "rgbaSha256": "2c1c6a95a13d219b53edcade83b55f5fae2ad61bab6d96e814d7431a68f03435",
+          "differingBytes": 0
+        },
+        {
+          "name": "李云舟",
+          "style": 1,
+          "width": 212,
+          "height": 77,
+          "rgbaSha256": "33294f01d7ade41f7b410e78daecf82f673fdf457af199619565da4f13b8ea71",
+          "differingBytes": 0
+        },
+        {
+          "name": "李云舟",
+          "style": 2,
+          "width": 420,
+          "height": 145,
+          "rgbaSha256": "864177591d7348458f16e5c52543493f0f62d70c2db006e466a6fe5963a52cac",
+          "differingBytes": 0
+        },
+        {
+          "name": "李云舟",
+          "style": 3,
+          "width": 232,
+          "height": 124,
+          "rgbaSha256": "4d9490e0ffb45f010c86bc68840d4d246717561b22e26435e86a2a3dec0723c4",
+          "differingBytes": 0
+        },
+        {
+          "name": "李云舟",
+          "style": 4,
+          "width": 153,
+          "height": 96,
+          "rgbaSha256": "d8af87ab6090c2b9cff0f123219232fb4921e6a7a29228f83e25bb3de835022b",
+          "differingBytes": 0
+        },
+        {
+          "name": "张思雨",
+          "style": 0,
+          "width": 60,
+          "height": 25,
+          "rgbaSha256": "ee92a1f1a10563a4f9d65251162af416690edf18f1f24e0972f3b9c87df23dcb",
+          "differingBytes": 0
+        },
+        {
+          "name": "张思雨",
+          "style": 1,
+          "width": 211,
+          "height": 73,
+          "rgbaSha256": "43fbce812b74861965b92295a3869577faa8d398a020f096c72fc17e52fe41d3",
+          "differingBytes": 0
+        },
+        {
+          "name": "张思雨",
+          "style": 2,
+          "width": 420,
+          "height": 139,
+          "rgbaSha256": "26f1f31cf8cdb34d759ab43645e143a598e2edffa52c61e42f25b1a31874ce4e",
+          "differingBytes": 0
+        },
+        {
+          "name": "张思雨",
+          "style": 3,
+          "width": 235,
+          "height": 125,
+          "rgbaSha256": "12f8a215d0fe177aa1fb997bec028e05ec0906331ac910541c4c1cd237c68930",
+          "differingBytes": 0
+        },
+        {
+          "name": "张思雨",
+          "style": 4,
+          "width": 154,
+          "height": 93,
+          "rgbaSha256": "eb5ef2b06a1b8330b62b8c8068e40aedd7b24faeadbfae6b39236f36d81f01db",
+          "differingBytes": 0
+        },
+        {
+          "name": "林晓晚",
+          "style": 0,
+          "width": 64,
+          "height": 25,
+          "rgbaSha256": "67b240f031c0244295b99ca295761d48602443ff1b4d1bd4116ce8b1fc9400fb",
+          "differingBytes": 0
+        },
+        {
+          "name": "林晓晚",
+          "style": 1,
+          "width": 224,
+          "height": 73,
+          "rgbaSha256": "0801199ac8536d93080deb1b9e00ae2890b0ade9ac879eb1dfd6fabde8e3c33d",
+          "differingBytes": 0
+        },
+        {
+          "name": "林晓晚",
+          "style": 2,
+          "width": 420,
+          "height": 131,
+          "rgbaSha256": "458c5d3a8907a888da7ad69c3d7ede1f524009ced3cadbd7cf9368e1d89ed955",
+          "differingBytes": 0
+        },
+        {
+          "name": "林晓晚",
+          "style": 3,
+          "width": 245,
+          "height": 129,
+          "rgbaSha256": "1609f846bd052cc047c8388c95948033903655920e2ebe10826899dd49dd80c6",
+          "differingBytes": 0
+        },
+        {
+          "name": "林晓晚",
+          "style": 4,
+          "width": 162,
+          "height": 95,
+          "rgbaSha256": "3dfe62b02fbec581d44791947867c9ff85d0605b627a1418f28eae9ba97bd75c",
+          "differingBytes": 0
+        },
+        {
+          "name": "Astra",
+          "style": 0,
+          "width": 46,
+          "height": 23,
+          "rgbaSha256": "9d5650d7b6f1d6b567a1c11dc56efac900817cb013fc2d4f39f97125c0b08de4",
+          "differingBytes": 0
+        },
+        {
+          "name": "Astra",
+          "style": 1,
+          "width": 153,
+          "height": 65,
+          "rgbaSha256": "df2000d5bcfea8b35f8b18f0b4f358e0635f197706738063c9dde07ce3154799",
+          "differingBytes": 0
+        },
+        {
+          "name": "Astra",
+          "style": 2,
+          "width": 420,
+          "height": 169,
+          "rgbaSha256": "fde83fc09709a313b6a4e02b4ec6aaa2c7a24624f60361a0eb34191fe55a8a7d",
+          "differingBytes": 0
+        },
+        {
+          "name": "Astra",
+          "style": 3,
+          "width": 170,
+          "height": 94,
+          "rgbaSha256": "c04ce767c7f7f973c75e3e9e79c2185771caf4827fcf55972c99054d03bcc6ec",
+          "differingBytes": 0
+        },
+        {
+          "name": "Astra",
+          "style": 4,
+          "width": 112,
+          "height": 66,
+          "rgbaSha256": "c6d4949caf32e4e7df16d55641edfd08bbd40c9a92da986d285b33818ff51a5f",
+          "differingBytes": 0
+        },
+        {
+          "name": "李云舟 Astra",
+          "style": 0,
+          "width": 101,
+          "height": 25,
+          "rgbaSha256": "e59f5699456618e3fe7e48cb9a408281eea4c8c26e3caf148a1609c02491d398",
+          "differingBytes": 0
+        },
+        {
+          "name": "李云舟 Astra",
+          "style": 1,
+          "width": 373,
+          "height": 77,
+          "rgbaSha256": "a8f56764a140620f6f614cc6e4c386a2ba39de13757254f87c6fff9801b30900",
+          "differingBytes": 0
+        },
+        {
+          "name": "李云舟 Astra",
+          "style": 2,
+          "width": 419,
+          "height": 84,
+          "rgbaSha256": "462870355f32a86e5ae5447634f7f4a6c15130847a823bd801574d5300891cac",
+          "differingBytes": 0
+        },
+        {
+          "name": "李云舟 Astra",
+          "style": 3,
+          "width": 411,
+          "height": 174,
+          "rgbaSha256": "7fcb555fb0b71a16c4c0ba013ccf711e097e97f3a156f4a09d7b843e7086d4cf",
+          "differingBytes": 0
+        },
+        {
+          "name": "李云舟 Astra",
+          "style": 4,
+          "width": 268,
+          "height": 118,
+          "rgbaSha256": "8bb64917a10b8046d422a1333c166a8d2257ecb79c11d6c296197c0b19ead246",
+          "differingBytes": 0
+        },
+        {
+          "name": "Alexander Montgomery",
+          "style": 0,
+          "width": 141,
+          "height": 29,
+          "rgbaSha256": "43846113bac5f776de044abc7f93fd2a4b9b10d9d8748635cc668d2bcf5e345e",
+          "differingBytes": 0
+        },
+        {
+          "name": "Alexander Montgomery",
+          "style": 1,
+          "width": 420,
+          "height": 71,
+          "rgbaSha256": "d9a9cfee47565ba0fe5e938bf4f0fc32ef6ce8d32f517b7c31395d414b949140",
+          "differingBytes": 0
+        },
+        {
+          "name": "Alexander Montgomery",
+          "style": 2,
+          "width": 420,
+          "height": 70,
+          "rgbaSha256": "cc23611b072839f4377be9d8372c7cb24c8f67dfa63e95ec18697e997d7cd2ca",
+          "differingBytes": 0
+        },
+        {
+          "name": "Alexander Montgomery",
+          "style": 3,
+          "width": 420,
+          "height": 173,
+          "rgbaSha256": "241f50ccff46c7a00a5141cb23b278808645fdfafceb6ed9dceaa498b0f03bb2",
+          "differingBytes": 0
+        },
+        {
+          "name": "Alexander Montgomery",
+          "style": 4,
+          "width": 378,
+          "height": 146,
+          "rgbaSha256": "300fa206eb4c613e4a0d41010b7406ee51a99d8485b826dff3841e205598295a",
+          "differingBytes": 0
+        }
+      ],
+      "sourceBytes": 5857936,
+      "webBytes": 3279386
+    },
+    {
+      "id": "longcang",
+      "family": "Astra Signature Long Cang",
+      "unicodeCodepointsCompared": 1114112,
+      "pixelCases": [
+        {
+          "name": "李云舟",
+          "style": 0,
+          "width": 62,
+          "height": 25,
+          "rgbaSha256": "435ca0c2712f83267125b438635f8c7967b45365b176a351c78ac00a1a33b3ab",
+          "differingBytes": 0
+        },
+        {
+          "name": "李云舟",
+          "style": 1,
+          "width": 222,
+          "height": 76,
+          "rgbaSha256": "4c285feeef8fabf5c5db22e203a483985935c55139838afe7cc192c07efcf3f3",
+          "differingBytes": 0
+        },
+        {
+          "name": "李云舟",
+          "style": 2,
+          "width": 419,
+          "height": 138,
+          "rgbaSha256": "f2244d7a94d0c99b633b9c0a55fb44ad308e5443d1ff0cc84bc1d088d0185e79",
+          "differingBytes": 0
+        },
+        {
+          "name": "李云舟",
+          "style": 3,
+          "width": 246,
+          "height": 123,
+          "rgbaSha256": "55f4cd534871b543bcd3c35e432438a31741c8fc2a293b0d06e8ea2ad8c99131",
+          "differingBytes": 0
+        },
+        {
+          "name": "李云舟",
+          "style": 4,
+          "width": 156,
+          "height": 93,
+          "rgbaSha256": "d9af2ffeff5a1687b4d88af9af03314b5e8f097c1fe8d9a77db2ae83db7b87ec",
+          "differingBytes": 0
+        },
+        {
+          "name": "张思雨",
+          "style": 0,
+          "width": 61,
+          "height": 23,
+          "rgbaSha256": "caafae828bbff3c622d071e64586eef9be141eeeaebe03521ca09c84c4d167cb",
+          "differingBytes": 0
+        },
+        {
+          "name": "张思雨",
+          "style": 1,
+          "width": 213,
+          "height": 63,
+          "rgbaSha256": "832eefc85958aea05481527d4b5627d9d7cae7a59349d2a408dd43f1cc33822e",
+          "differingBytes": 0
+        },
+        {
+          "name": "张思雨",
+          "style": 2,
+          "width": 420,
+          "height": 117,
+          "rgbaSha256": "e4c72e8100f00ecab2b9f201e076d25c2c962004a1e5d5c3a844740cf9da0dc7",
+          "differingBytes": 0
+        },
+        {
+          "name": "张思雨",
+          "style": 3,
+          "width": 238,
+          "height": 110,
+          "rgbaSha256": "4bd1482b733184e146fd2694d941510528b7c3796a3a5d1de59d4172807008e5",
+          "differingBytes": 0
+        },
+        {
+          "name": "张思雨",
+          "style": 4,
+          "width": 153,
+          "height": 86,
+          "rgbaSha256": "370640e702259d960f75029826e645cb8ee406dd3c1e4e158b2fd40ab321f1d2",
+          "differingBytes": 0
+        },
+        {
+          "name": "林晓晚",
+          "style": 0,
+          "width": 64,
+          "height": 24,
+          "rgbaSha256": "f48d72df9337456cbac0f72924698824345c97a9f7212bdf4733ee3d06ee5624",
+          "differingBytes": 0
+        },
+        {
+          "name": "林晓晚",
+          "style": 1,
+          "width": 226,
+          "height": 71,
+          "rgbaSha256": "4d920136fbc2681a5faaae2a3f78441ec15d0314e9aa86b54e82831500a44a53",
+          "differingBytes": 0
+        },
+        {
+          "name": "林晓晚",
+          "style": 2,
+          "width": 420,
+          "height": 125,
+          "rgbaSha256": "a5fb5c7c2f347f2f3e5eb2b63074345c47689bfa19f58bc387b2c9c3e433645d",
+          "differingBytes": 0
+        },
+        {
+          "name": "林晓晚",
+          "style": 3,
+          "width": 248,
+          "height": 122,
+          "rgbaSha256": "9784152381d412438b34424c1f930d47ab0991be28b0c0eb10f6308bdd684f9b",
+          "differingBytes": 0
+        },
+        {
+          "name": "林晓晚",
+          "style": 4,
+          "width": 164,
+          "height": 92,
+          "rgbaSha256": "2266fc7326a772ef3f809f06ce029bf351f46abdeb1549f0e1bf086437a28f35",
+          "differingBytes": 0
+        },
+        {
+          "name": "Astra",
+          "style": 0,
+          "width": 44,
+          "height": 19,
+          "rgbaSha256": "ecec78b502bdc97926e4d781fe06e50445e72278d7c41c05a17d983af1254f89",
+          "differingBytes": 0
+        },
+        {
+          "name": "Astra",
+          "style": 1,
+          "width": 145,
+          "height": 46,
+          "rgbaSha256": "6153adda5cbc654c372f7020e8d72cb5bfe17195c4df130fbd9ad1e9aff5e6d8",
+          "differingBytes": 0
+        },
+        {
+          "name": "Astra",
+          "style": 2,
+          "width": 420,
+          "height": 121,
+          "rgbaSha256": "4f504370dd5913cc98066c2c11d24e7b1115864b258fc87235cada4ce5de5fe4",
+          "differingBytes": 0
+        },
+        {
+          "name": "Astra",
+          "style": 3,
+          "width": 160,
+          "height": 81,
+          "rgbaSha256": "0e8bf7fa12b2168ff45eec37e9d647e44cb6a0201fd213f2770d6d6143e6e922",
+          "differingBytes": 0
+        },
+        {
+          "name": "Astra",
+          "style": 4,
+          "width": 105,
+          "height": 58,
+          "rgbaSha256": "d5858d5087d16207c01cf362c20a21f7b36b088e87472fe549bbb78fac1409c5",
+          "differingBytes": 0
+        },
+        {
+          "name": "李云舟 Astra",
+          "style": 0,
+          "width": 107,
+          "height": 25,
+          "rgbaSha256": "d8237cd8b77246daa7dff0eddbd05a71640824bbea0679224c05997035240537",
+          "differingBytes": 0
+        },
+        {
+          "name": "李云舟 Astra",
+          "style": 1,
+          "width": 399,
+          "height": 76,
+          "rgbaSha256": "39aa77eb8d751ac62dc4cfc0fc8eb6d1c9ad8b8552c1c2a3da7a3f347c3b33c0",
+          "differingBytes": 0
+        },
+        {
+          "name": "李云舟 Astra",
+          "style": 2,
+          "width": 419,
+          "height": 79,
+          "rgbaSha256": "896518e461b68e771079714e69761e0d4f18d8a8391e8b47b01659df7a586066",
+          "differingBytes": 0
+        },
+        {
+          "name": "李云舟 Astra",
+          "style": 3,
+          "width": 420,
+          "height": 169,
+          "rgbaSha256": "62b11bcc88d072cf7be0c33aecca90948a1fb9769290f5187637f704580eaeb1",
+          "differingBytes": 0
+        },
+        {
+          "name": "李云舟 Astra",
+          "style": 4,
+          "width": 283,
+          "height": 121,
+          "rgbaSha256": "704739082763bc9c6cc837cf7a99c3dc72fad79d94e1e220dff989faaab8d082",
+          "differingBytes": 0
+        },
+        {
+          "name": "Alexander Montgomery",
+          "style": 0,
+          "width": 162,
+          "height": 23,
+          "rgbaSha256": "2cf4f1642de7a876ed15c76fdf2c031f157889d26cef8b471833cd8243fdd032",
+          "differingBytes": 0
+        },
+        {
+          "name": "Alexander Montgomery",
+          "style": 1,
+          "width": 420,
+          "height": 46,
+          "rgbaSha256": "38e1c9b63d263cfa62f4e10ffc12ffac0c0a6312ec588da795ca0e5118597400",
+          "differingBytes": 0
+        },
+        {
+          "name": "Alexander Montgomery",
+          "style": 2,
+          "width": 420,
+          "height": 45,
+          "rgbaSha256": "a85f361edfcf4fcd2b281bc87401d4a30c797df42de9dd0b78552ac3c171209f",
+          "differingBytes": 0
+        },
+        {
+          "name": "Alexander Montgomery",
+          "style": 3,
+          "width": 420,
+          "height": 153,
+          "rgbaSha256": "12733f3d9b0a250418c5bd714155911defb42b3277160ce96483677c438f2c56",
+          "differingBytes": 0
+        },
+        {
+          "name": "Alexander Montgomery",
+          "style": 4,
+          "width": 420,
+          "height": 155,
+          "rgbaSha256": "3a94ff62554f334d0827c51404198a0c4a39df7ad7766cc1d4200b419a9bdcb2",
+          "differingBytes": 0
+        }
+      ],
+      "sourceBytes": 5162508,
+      "webBytes": 2974052
+    },
+    {
+      "id": "zhimangxing",
+      "family": "Astra Signature Zhi Mang Xing",
+      "unicodeCodepointsCompared": 1114112,
+      "pixelCases": [
+        {
+          "name": "李云舟",
+          "style": 0,
+          "width": 56,
+          "height": 24,
+          "rgbaSha256": "34e2a87ce9334a8b4f0a1e21cbd9293b1002ef89aab808f7e84a94a1d2dfc3f5",
+          "differingBytes": 0
+        },
+        {
+          "name": "李云舟",
+          "style": 1,
+          "width": 190,
+          "height": 71,
+          "rgbaSha256": "da7ae38403ae7a62ddefb003986332450deefba6bff4f2e0f7c187f5baf2ad3f",
+          "differingBytes": 0
+        },
+        {
+          "name": "李云舟",
+          "style": 2,
+          "width": 420,
+          "height": 148,
+          "rgbaSha256": "2057f246a98a03becb1697a84e3e847103b2dc2ce91355f9a5d2ba25ddadb745",
+          "differingBytes": 0
+        },
+        {
+          "name": "李云舟",
+          "style": 3,
+          "width": 211,
+          "height": 115,
+          "rgbaSha256": "81750d9cb2bbc911e11694e6e5e72ec2f9c4483b440fbeec709161690dcf0a94",
+          "differingBytes": 0
+        },
+        {
+          "name": "李云舟",
+          "style": 4,
+          "width": 136,
+          "height": 85,
+          "rgbaSha256": "8d6e834bea815b8386f5dda568d840bdaae88186c5ab2e12ca889ba6a4c1ad54",
+          "differingBytes": 0
+        },
+        {
+          "name": "张思雨",
+          "style": 0,
+          "width": 56,
+          "height": 24,
+          "rgbaSha256": "f67acc651ea16962be55a89c3b440bc5f33387195e33b1e86087fc0393462a5a",
+          "differingBytes": 0
+        },
+        {
+          "name": "张思雨",
+          "style": 1,
+          "width": 192,
+          "height": 69,
+          "rgbaSha256": "230ae5f85c7b63349fed0fef141c8cd589ad407b298352745fbf18f86c00bfd5",
+          "differingBytes": 0
+        },
+        {
+          "name": "张思雨",
+          "style": 2,
+          "width": 420,
+          "height": 144,
+          "rgbaSha256": "8f694b18a9a0323d7ae07dcc098bf97abd0fc57b1a3c462a4eddd89cf446a7a7",
+          "differingBytes": 0
+        },
+        {
+          "name": "张思雨",
+          "style": 3,
+          "width": 208,
+          "height": 110,
+          "rgbaSha256": "c48ee220349526b1804e5cc0ebfee7e27830bc2d9b77997244f406e6e236dba3",
+          "differingBytes": 0
+        },
+        {
+          "name": "张思雨",
+          "style": 4,
+          "width": 143,
+          "height": 89,
+          "rgbaSha256": "59f54255cf7e47f272ae1107ce5d9ca5778408963f339686893bfdf5f0363d67",
+          "differingBytes": 0
+        },
+        {
+          "name": "林晓晚",
+          "style": 0,
+          "width": 57,
+          "height": 24,
+          "rgbaSha256": "463a375b300c0e3cb3926594dac5fb333d0f00cfaa483b2edbadf25188e8423d",
+          "differingBytes": 0
+        },
+        {
+          "name": "林晓晚",
+          "style": 1,
+          "width": 198,
+          "height": 70,
+          "rgbaSha256": "3c43764233ccb671e348b941b782313dece774a524c3fc7c00af8b71fffe8164",
+          "differingBytes": 0
+        },
+        {
+          "name": "林晓晚",
+          "style": 2,
+          "width": 420,
+          "height": 141,
+          "rgbaSha256": "135f60ed4c2bb673b2493867e973801e8cdc0632cdc78f1a881b746d7eecfb2b",
+          "differingBytes": 0
+        },
+        {
+          "name": "林晓晚",
+          "style": 3,
+          "width": 214,
+          "height": 117,
+          "rgbaSha256": "22c0e83a47df008edbb36b76c5c95e1ae2e038633bbccfd7a75e25bddb63f16d",
+          "differingBytes": 0
+        },
+        {
+          "name": "林晓晚",
+          "style": 4,
+          "width": 147,
+          "height": 89,
+          "rgbaSha256": "5ef9bed04766c2e915f5d79fab8ca918537043f228863b594ace58bb68a27cdc",
+          "differingBytes": 0
+        },
+        {
+          "name": "Astra",
+          "style": 0,
+          "width": 46,
+          "height": 23,
+          "rgbaSha256": "e7818eab362a541fe7320bd30b72401ef4272a4be2d9386cbac0755213b9055b",
+          "differingBytes": 0
+        },
+        {
+          "name": "Astra",
+          "style": 1,
+          "width": 153,
+          "height": 65,
+          "rgbaSha256": "139a868b3f72f0341910db80311416692ec8efc2d18633abcf8410e52b880a68",
+          "differingBytes": 0
+        },
+        {
+          "name": "Astra",
+          "style": 2,
+          "width": 420,
+          "height": 168,
+          "rgbaSha256": "cd96f6c89f277f21ecdd4100b050e0030c79cbb61e4741b85a4d4a0b91a3a4b1",
+          "differingBytes": 0
+        },
+        {
+          "name": "Astra",
+          "style": 3,
+          "width": 170,
+          "height": 94,
+          "rgbaSha256": "d81e9ed7dffbec695f4223f075e8f9a3ec5663131c3807c37dbf99901c94d659",
+          "differingBytes": 0
+        },
+        {
+          "name": "Astra",
+          "style": 4,
+          "width": 112,
+          "height": 66,
+          "rgbaSha256": "449253049851ae5311496ab5af9d6e3615b2a7cf3388d9b0ed7d651bb842db11",
+          "differingBytes": 0
+        },
+        {
+          "name": "李云舟 Astra",
+          "style": 0,
+          "width": 95,
+          "height": 24,
+          "rgbaSha256": "b586f0e1b5bd250ac205429fdf0c7bb4f6d50d0f2108b342b92c6768de0cba39",
+          "differingBytes": 0
+        },
+        {
+          "name": "李云舟 Astra",
+          "style": 1,
+          "width": 349,
+          "height": 71,
+          "rgbaSha256": "a3fedf014c2d9f8231a5ffaa2dca4fd34774e09c5adcf1faa6ed9d4416080627",
+          "differingBytes": 0
+        },
+        {
+          "name": "李云舟 Astra",
+          "style": 2,
+          "width": 420,
+          "height": 82,
+          "rgbaSha256": "cc9494478fe07a951708f8bf04d4663509094e81d5bff8cd984980da3ae8e5fa",
+          "differingBytes": 0
+        },
+        {
+          "name": "李云舟 Astra",
+          "style": 3,
+          "width": 386,
+          "height": 168,
+          "rgbaSha256": "f78801af10e1fc3d35e3afcea5ce7afcb19e1608d1ca2f1985aa18ddc7621dc0",
+          "differingBytes": 0
+        },
+        {
+          "name": "李云舟 Astra",
+          "style": 4,
+          "width": 250,
+          "height": 107,
+          "rgbaSha256": "ceba9859e63e8fe179752f87de5389000b0f9aee89f5684438117dffb9950a6a",
+          "differingBytes": 0
+        },
+        {
+          "name": "Alexander Montgomery",
+          "style": 0,
+          "width": 141,
+          "height": 29,
+          "rgbaSha256": "de7bfd48749e13632977d410e9eb9ca4bf766fcaab4255f3a7117e014dc4dbe6",
+          "differingBytes": 0
+        },
+        {
+          "name": "Alexander Montgomery",
+          "style": 1,
+          "width": 420,
+          "height": 70,
+          "rgbaSha256": "7c7191a08be248a67a30aa49997ef4df435a3685d80dd3160f46e5b65957f16e",
+          "differingBytes": 0
+        },
+        {
+          "name": "Alexander Montgomery",
+          "style": 2,
+          "width": 420,
+          "height": 70,
+          "rgbaSha256": "9a6e6d5a3dac6587b1016513a2862ebd81f91e68623731298a36695e88c7378a",
+          "differingBytes": 0
+        },
+        {
+          "name": "Alexander Montgomery",
+          "style": 3,
+          "width": 420,
+          "height": 174,
+          "rgbaSha256": "021941a01af737c159b9c2e3e3dd5d6e3a8464c429c90ba65051a0653b2cf491",
+          "differingBytes": 0
+        },
+        {
+          "name": "Alexander Montgomery",
+          "style": 4,
+          "width": 378,
+          "height": 145,
+          "rgbaSha256": "b39f5fc317770620b4856a0529e6b7d743e3a9e8c24440f212747e040473f87d",
+          "differingBytes": 0
+        }
+      ],
+      "sourceBytes": 4063532,
+      "webBytes": 2329292
+    },
+    {
+      "id": "liujianmaocao",
+      "family": "Astra Signature Liu Jian Mao Cao",
+      "unicodeCodepointsCompared": 1114112,
+      "pixelCases": [
+        {
+          "name": "李云舟",
+          "style": 0,
+          "width": 57,
+          "height": 28,
+          "rgbaSha256": "175e8a7837859b774fb0f1f8470c11134e893bb48e4468e40a4a8dcca6668971",
+          "differingBytes": 0
+        },
+        {
+          "name": "李云舟",
+          "style": 1,
+          "width": 199,
+          "height": 82,
+          "rgbaSha256": "590c9a7f433a92d45dd414755674c1ebfd550d3745f6365f0f98dfd38eba3695",
+          "differingBytes": 0
+        },
+        {
+          "name": "李云舟",
+          "style": 2,
+          "width": 420,
+          "height": 168,
+          "rgbaSha256": "48195983d62eca9fc02cedefaf7ca5f69a7f809f311145ab989cca3d606279e6",
+          "differingBytes": 0
+        },
+        {
+          "name": "李云舟",
+          "style": 3,
+          "width": 215,
+          "height": 125,
+          "rgbaSha256": "eb1962fb37db8478e21e7237349ebf3f2ad21db56fc7f7ea8d543b18bfa92854",
+          "differingBytes": 0
+        },
+        {
+          "name": "李云舟",
+          "style": 4,
+          "width": 146,
+          "height": 101,
+          "rgbaSha256": "a3afeb490112a4d7edcc5820593d73ae6dc050c86b059e69a1b679f6195f14c7",
+          "differingBytes": 0
+        },
+        {
+          "name": "张思雨",
+          "style": 0,
+          "width": 62,
+          "height": 26,
+          "rgbaSha256": "d7172ac6ec9c5d34c7ec25e395bbf4bfea5109c88cb3e515d2e675d243c8c538",
+          "differingBytes": 0
+        },
+        {
+          "name": "张思雨",
+          "style": 1,
+          "width": 216,
+          "height": 76,
+          "rgbaSha256": "9067449f9b277d9c462e32fac1c28a034ad89a1a64ca432890f9d81b3bdca6d0",
+          "differingBytes": 0
+        },
+        {
+          "name": "张思雨",
+          "style": 2,
+          "width": 419,
+          "height": 140,
+          "rgbaSha256": "fef04f15a70c39517e274e0a08609c44d86dc2e5b79b8ba00ad97320240dc66c",
+          "differingBytes": 0
+        },
+        {
+          "name": "张思雨",
+          "style": 3,
+          "width": 234,
+          "height": 120,
+          "rgbaSha256": "dd37ce55f3ba78957087fd5f757930f529af3c35b1bfc8de9e92209bf1d8dcc8",
+          "differingBytes": 0
+        },
+        {
+          "name": "张思雨",
+          "style": 4,
+          "width": 160,
+          "height": 92,
+          "rgbaSha256": "59a9680700dbed7fb8949e0349cb9e9e50fd045f65a17af945a9840e5c1035c7",
+          "differingBytes": 0
+        },
+        {
+          "name": "林晓晚",
+          "style": 0,
+          "width": 61,
+          "height": 26,
+          "rgbaSha256": "b1025f5c4ffc87fa7743c19fcbf44ac03cc18e44bb2a312388063c19ab67b733",
+          "differingBytes": 0
+        },
+        {
+          "name": "林晓晚",
+          "style": 1,
+          "width": 216,
+          "height": 78,
+          "rgbaSha256": "744a48d27cef7fba0228653f83e760b0d7fb82c5d31b844c8c726e2f6e3a3747",
+          "differingBytes": 0
+        },
+        {
+          "name": "林晓晚",
+          "style": 2,
+          "width": 420,
+          "height": 146,
+          "rgbaSha256": "5aebc179dcae27d8596b35cc88575a4b01b483c62676a8af894e4119081f2e7f",
+          "differingBytes": 0
+        },
+        {
+          "name": "林晓晚",
+          "style": 3,
+          "width": 235,
+          "height": 133,
+          "rgbaSha256": "e85ca4a3ac3bdce41ff0d38450aba933e05f5ae03379080d807c93790d20a9a6",
+          "differingBytes": 0
+        },
+        {
+          "name": "林晓晚",
+          "style": 4,
+          "width": 161,
+          "height": 97,
+          "rgbaSha256": "77d6180c5413bc8330cb4953d0327ee1af3cc4af629de4d0e1d5354cc761b2cb",
+          "differingBytes": 0
+        },
+        {
+          "name": "Astra",
+          "style": 0,
+          "width": 48,
+          "height": 25,
+          "rgbaSha256": "e5a8df775a0eca072ed3c1b00770ed9cb01108a18d47be1b685a52d3b250b7f6",
+          "differingBytes": 0
+        },
+        {
+          "name": "Astra",
+          "style": 1,
+          "width": 160,
+          "height": 75,
+          "rgbaSha256": "7cbb66195cf75c1848211b2f11b9eeba13c839e362c266938e18866126ee32ad",
+          "differingBytes": 0
+        },
+        {
+          "name": "Astra",
+          "style": 2,
+          "width": 420,
+          "height": 186,
+          "rgbaSha256": "19a6a2be42dc61fe30f9a9f95601d71b9b7f5fa23fdc4b8f501c161afbd1fc7f",
+          "differingBytes": 0
+        },
+        {
+          "name": "Astra",
+          "style": 3,
+          "width": 179,
+          "height": 96,
+          "rgbaSha256": "25af8c46ed11e3789fe00bfddcc555028dd16e936803d0ee51c731fb141b2a47",
+          "differingBytes": 0
+        },
+        {
+          "name": "Astra",
+          "style": 4,
+          "width": 116,
+          "height": 72,
+          "rgbaSha256": "a3af36a5cf1e5c8c32fcc623dc7bbc0df1a5612b3e651b4de0eb8c3500ce6814",
+          "differingBytes": 0
+        },
+        {
+          "name": "李云舟 Astra",
+          "style": 0,
+          "width": 107,
+          "height": 28,
+          "rgbaSha256": "1b86500dca9fbb5a99ca5cd7a6ee014f8bf9a94603e6d8aa2a76dca366035e5a",
+          "differingBytes": 0
+        },
+        {
+          "name": "李云舟 Astra",
+          "style": 1,
+          "width": 396,
+          "height": 82,
+          "rgbaSha256": "ae1ded115563796bc667616c21a30cb07410fb66dfa7e7be325af1ab3b660099",
+          "differingBytes": 0
+        },
+        {
+          "name": "李云舟 Astra",
+          "style": 2,
+          "width": 420,
+          "height": 86,
+          "rgbaSha256": "b9a1c52d9708e8a2d2c711fe6a7ff6cc85717eaec1cde193f2d3b30aa5364afa",
+          "differingBytes": 0
+        },
+        {
+          "name": "李云舟 Astra",
+          "style": 3,
+          "width": 420,
+          "height": 180,
+          "rgbaSha256": "874b11332b6302ea02684766b4a3c9da84e75906c440a9749554e84668156927",
+          "differingBytes": 0
+        },
+        {
+          "name": "李云舟 Astra",
+          "style": 4,
+          "width": 286,
+          "height": 127,
+          "rgbaSha256": "9a7b8c8a3827e518ea3ea712bbe572cc001d37e867e2d42d4b1b2cd1750a0282",
+          "differingBytes": 0
+        },
+        {
+          "name": "Alexander Montgomery",
+          "style": 0,
+          "width": 168,
+          "height": 28,
+          "rgbaSha256": "e6e99632dd6069e314983d83b283feff08008e8756e67edb2bcac467c6338a0c",
+          "differingBytes": 0
+        },
+        {
+          "name": "Alexander Montgomery",
+          "style": 1,
+          "width": 420,
+          "height": 58,
+          "rgbaSha256": "bf39e51e4be5c27f06e31fae93e9cdeef770ce256846c07a83adc78a3ff1251f",
+          "differingBytes": 0
+        },
+        {
+          "name": "Alexander Montgomery",
+          "style": 2,
+          "width": 420,
+          "height": 58,
+          "rgbaSha256": "aaf700379926974d7d8da0265df7b5c383cd0aab0a49c8bf5abaf663ee1ab88e",
+          "differingBytes": 0
+        },
+        {
+          "name": "Alexander Montgomery",
+          "style": 3,
+          "width": 420,
+          "height": 165,
+          "rgbaSha256": "88ec1e6b0da131754963ab4432d7d12cb91501bc9cd9648f4fbc5a06322e3da1",
+          "differingBytes": 0
+        },
+        {
+          "name": "Alexander Montgomery",
+          "style": 4,
+          "width": 420,
+          "height": 154,
+          "rgbaSha256": "92c621ed4e217737ec2ad64dd7c2fc893ef20d21492cb3bf7ded69622b89b841",
+          "differingBytes": 0
+        }
+      ],
+      "sourceBytes": 4951804,
+      "webBytes": 2369212
+    },
+    {
+      "id": "zcoolxiaowei",
+      "family": "Astra Signature ZCOOL XiaoWei",
+      "unicodeCodepointsCompared": 1114112,
+      "pixelCases": [
+        {
+          "name": "李云舟",
+          "style": 0,
+          "width": 62,
+          "height": 25,
+          "rgbaSha256": "00dc7fd8e1323adf7a73fa6aac01e497752a0a2235893e17f4fb9906b3077377",
+          "differingBytes": 0
+        },
+        {
+          "name": "李云舟",
+          "style": 1,
+          "width": 216,
+          "height": 74,
+          "rgbaSha256": "2e886cb8e3e5f3987d316d1295dc087f0b89807afb6bb3594bfd6706276a0c34",
+          "differingBytes": 0
+        },
+        {
+          "name": "李云舟",
+          "style": 2,
+          "width": 420,
+          "height": 137,
+          "rgbaSha256": "a454fe98e87720c2aba6e2cd1bab7e8dd7d3e1262200dfb7e8b3f00e9f1ee124",
+          "differingBytes": 0
+        },
+        {
+          "name": "李云舟",
+          "style": 3,
+          "width": 240,
+          "height": 123,
+          "rgbaSha256": "1ccd1d4fea616d4245bb57bf349b120829594f8a46207ae0fe10d1abf6f579a2",
+          "differingBytes": 0
+        },
+        {
+          "name": "李云舟",
+          "style": 4,
+          "width": 159,
+          "height": 95,
+          "rgbaSha256": "c0fe68642b98474b366539290998d90c1d366a17c9fa875c59ee0455ffe86021",
+          "differingBytes": 0
+        },
+        {
+          "name": "张思雨",
+          "style": 0,
+          "width": 63,
+          "height": 25,
+          "rgbaSha256": "8a47158a26b8047b26227b974bdf62983544b1785eefd391a6d38d921756bc37",
+          "differingBytes": 0
+        },
+        {
+          "name": "张思雨",
+          "style": 1,
+          "width": 221,
+          "height": 70,
+          "rgbaSha256": "f7b094c1ef0ca74c18428561fdfa85c940f1cb85393c046016e38f303ca82a88",
+          "differingBytes": 0
+        },
+        {
+          "name": "张思雨",
+          "style": 2,
+          "width": 419,
+          "height": 128,
+          "rgbaSha256": "5f392d8b81c3f95a29c817555f0b71d105541560a61b9d4aa0fd8ff0af654400",
+          "differingBytes": 0
+        },
+        {
+          "name": "张思雨",
+          "style": 3,
+          "width": 245,
+          "height": 129,
+          "rgbaSha256": "bbad56cd54eb1ec3955649a38e3d6768ad8fc06997a8254a93e71993f6ab3364",
+          "differingBytes": 0
+        },
+        {
+          "name": "张思雨",
+          "style": 4,
+          "width": 164,
+          "height": 99,
+          "rgbaSha256": "1ec9801476edffb52506a8ec32a397dd6fe404e87dbd5ef3485c09b1aae6e239",
+          "differingBytes": 0
+        },
+        {
+          "name": "林晓晚",
+          "style": 0,
+          "width": 61,
+          "height": 25,
+          "rgbaSha256": "3d0eea994b919938100f3987cede3dc2dfc4d2829d0f8a4093fd52743827403d",
+          "differingBytes": 0
+        },
+        {
+          "name": "林晓晚",
+          "style": 1,
+          "width": 214,
+          "height": 73,
+          "rgbaSha256": "e9ad953694539771cc53395382ccf75199927b4b78e0dc678e202832f061ae39",
+          "differingBytes": 0
+        },
+        {
+          "name": "林晓晚",
+          "style": 2,
+          "width": 419,
+          "height": 137,
+          "rgbaSha256": "f7add8127134ffd512a0da3fe31530f6fd8eeaf6c185c42536edb4fd3556a65f",
+          "differingBytes": 0
+        },
+        {
+          "name": "林晓晚",
+          "style": 3,
+          "width": 236,
+          "height": 129,
+          "rgbaSha256": "ec61b604f8035659721714c536082a739ba0902893d36a8b8701db9e1ff12ee3",
+          "differingBytes": 0
+        },
+        {
+          "name": "林晓晚",
+          "style": 4,
+          "width": 162,
+          "height": 98,
+          "rgbaSha256": "703e3df11fedc326a2ac24dbd3ff7d714bbd71c3595363b3afc61c4d35d530dc",
+          "differingBytes": 0
+        },
+        {
+          "name": "Astra",
+          "style": 0,
+          "width": 51,
+          "height": 21,
+          "rgbaSha256": "4498cb05b9efa33d2655dc70372feb906156128e6320161b90c5e94eb937f003",
+          "differingBytes": 0
+        },
+        {
+          "name": "Astra",
+          "style": 1,
+          "width": 170,
+          "height": 58,
+          "rgbaSha256": "53ca15c40d9d63708b967e838d792ab97d5543ba980b62abe12c95f4c6635597",
+          "differingBytes": 0
+        },
+        {
+          "name": "Astra",
+          "style": 2,
+          "width": 420,
+          "height": 133,
+          "rgbaSha256": "c681d879273976ac28232d63338610902a4d0dee5c7ffb03632c27eec11711ac",
+          "differingBytes": 0
+        },
+        {
+          "name": "Astra",
+          "style": 3,
+          "width": 193,
+          "height": 102,
+          "rgbaSha256": "98e248199e52976007a50d7c2edefb3adc8fc468184e0dd5caf7647dd1db1493",
+          "differingBytes": 0
+        },
+        {
+          "name": "Astra",
+          "style": 4,
+          "width": 122,
+          "height": 70,
+          "rgbaSha256": "7fbc62b88a2e51d30a8976e63c08bc9483901c7c6e2b06ebf85995ac70e0785a",
+          "differingBytes": 0
+        },
+        {
+          "name": "李云舟 Astra",
+          "style": 0,
+          "width": 108,
+          "height": 25,
+          "rgbaSha256": "6ea0987c576f60b165a7b29d2193fa27d7e8ca11d8ef9a77647a4547889fc555",
+          "differingBytes": 0
+        },
+        {
+          "name": "李云舟 Astra",
+          "style": 1,
+          "width": 401,
+          "height": 74,
+          "rgbaSha256": "cd0f52da4c4458ad8aa7dfa039958a93c5b63087d1eae1ef503f7475fe40785f",
+          "differingBytes": 0
+        },
+        {
+          "name": "李云舟 Astra",
+          "style": 2,
+          "width": 420,
+          "height": 76,
+          "rgbaSha256": "bcf865cb649fae9e44919993a4b1306c1c1acaa3fb229a51fd8de63641a8fb23",
+          "differingBytes": 0
+        },
+        {
+          "name": "李云舟 Astra",
+          "style": 3,
+          "width": 420,
+          "height": 178,
+          "rgbaSha256": "e684599af9dcd6ecae4c186591d9f71c77d9d6aab9c6749e19f7c47a3c013c19",
+          "differingBytes": 0
+        },
+        {
+          "name": "李云舟 Astra",
+          "style": 4,
+          "width": 293,
+          "height": 121,
+          "rgbaSha256": "bf2e6fb3ab4d4bd4c8652224e325f4e2e152c04fea5c202ea20cac5aad1714d5",
+          "differingBytes": 0
+        },
+        {
+          "name": "Alexander Montgomery",
+          "style": 0,
+          "width": 189,
+          "height": 24,
+          "rgbaSha256": "70182b708cba0a0a84d82ddccba69db34d732e5952174658ed4dce91e99671f7",
+          "differingBytes": 0
+        },
+        {
+          "name": "Alexander Montgomery",
+          "style": 1,
+          "width": 420,
+          "height": 44,
+          "rgbaSha256": "dd87fc1b85143d6b570a0920ea40b4b2ad0f5ee75a04cee59497d5062ee3f4e8",
+          "differingBytes": 0
+        },
+        {
+          "name": "Alexander Montgomery",
+          "style": 2,
+          "width": 420,
+          "height": 43,
+          "rgbaSha256": "485f312b0ddf700d509f34273359e4f9eaf3f82a3d76f45207802841bf8b399f",
+          "differingBytes": 0
+        },
+        {
+          "name": "Alexander Montgomery",
+          "style": 3,
+          "width": 420,
+          "height": 155,
+          "rgbaSha256": "3aa3bc4abf736d3e2a65cf8af9561a3113a05371a21a591e8edb44fe5788078a",
+          "differingBytes": 0
+        },
+        {
+          "name": "Alexander Montgomery",
+          "style": 4,
+          "width": 420,
+          "height": 158,
+          "rgbaSha256": "4293093f74b39e1b1048882e25b0868e44c863f607f95f07957470ae356d62eb",
+          "differingBytes": 0
+        }
+      ],
+      "sourceBytes": 6313808,
+      "webBytes": 2662062
+    },
+    {
+      "id": "zcoolkuaile",
+      "family": "Astra Signature ZCOOL KuaiLe",
+      "unicodeCodepointsCompared": 1114112,
+      "pixelCases": [
+        {
+          "name": "李云舟",
+          "style": 0,
+          "width": 58,
+          "height": 25,
+          "rgbaSha256": "85b02a536af0357ff879b97b46879830e4dd999fac4403729fa909b9819fb13e",
+          "differingBytes": 0
+        },
+        {
+          "name": "李云舟",
+          "style": 1,
+          "width": 202,
+          "height": 72,
+          "rgbaSha256": "7069e3b322d62a74db9e4624da03d5da9aa4ef9c123ba8cdef0f2ef24f8097f5",
+          "differingBytes": 0
+        },
+        {
+          "name": "李云舟",
+          "style": 2,
+          "width": 420,
+          "height": 142,
+          "rgbaSha256": "f5934ffc96fa9874607bbba027f8b73c5da7d839dd3cfc3775f1b6a25d42cdf5",
+          "differingBytes": 0
+        },
+        {
+          "name": "李云舟",
+          "style": 3,
+          "width": 225,
+          "height": 117,
+          "rgbaSha256": "569ff1c707d28195f2c2b7aac63cb16a10044e9fa72700ef67165b9d47f35eed",
+          "differingBytes": 0
+        },
+        {
+          "name": "李云舟",
+          "style": 4,
+          "width": 148,
+          "height": 89,
+          "rgbaSha256": "4ce2ba8628774d570ebed355c4adc7ed92dca5dc3d6b151228173333ac5fb835",
+          "differingBytes": 0
+        },
+        {
+          "name": "张思雨",
+          "style": 0,
+          "width": 59,
+          "height": 25,
+          "rgbaSha256": "08f20778f66a47306d4cb1f011ff4f04b679b5991ce315df6cef17387c9dd460",
+          "differingBytes": 0
+        },
+        {
+          "name": "张思雨",
+          "style": 1,
+          "width": 202,
+          "height": 70,
+          "rgbaSha256": "8501d2cb741758330e05cc92185c0a0d3b97f0e8d37b2349159339e8b2f7c15e",
+          "differingBytes": 0
+        },
+        {
+          "name": "张思雨",
+          "style": 2,
+          "width": 420,
+          "height": 138,
+          "rgbaSha256": "62136e2ab0e131df4be8541f62227317f7159207c65572282193f01d1c036b4e",
+          "differingBytes": 0
+        },
+        {
+          "name": "张思雨",
+          "style": 3,
+          "width": 226,
+          "height": 126,
+          "rgbaSha256": "e4e85ccca4b5239d5409c9969f6f91efe471f8fb34c6343b7c10146966f79474",
+          "differingBytes": 0
+        },
+        {
+          "name": "张思雨",
+          "style": 4,
+          "width": 154,
+          "height": 95,
+          "rgbaSha256": "d23f086530f5d61230cf6e84f794954efcc99a010ff9d16ec115e895c9829279",
+          "differingBytes": 0
+        },
+        {
+          "name": "林晓晚",
+          "style": 0,
+          "width": 59,
+          "height": 25,
+          "rgbaSha256": "21e6e57054d0dc0b54f078a502976c06c4b5e2a9dcde059e5a3cebb3007ed4b9",
+          "differingBytes": 0
+        },
+        {
+          "name": "林晓晚",
+          "style": 1,
+          "width": 206,
+          "height": 72,
+          "rgbaSha256": "02822dc7f3cffd8ef50582e238e1557764f46c192027572a1a7138b70fbecc0b",
+          "differingBytes": 0
+        },
+        {
+          "name": "林晓晚",
+          "style": 2,
+          "width": 420,
+          "height": 141,
+          "rgbaSha256": "75468d57836f450e479eca4a25e9e3c185e9586faeed5e23de98305e506a3b45",
+          "differingBytes": 0
+        },
+        {
+          "name": "林晓晚",
+          "style": 3,
+          "width": 231,
+          "height": 127,
+          "rgbaSha256": "fcc2ebcd34bdf2005ba4dde659a7bfa84fa59fb16fd8f26efa0444bba848a48a",
+          "differingBytes": 0
+        },
+        {
+          "name": "林晓晚",
+          "style": 4,
+          "width": 151,
+          "height": 95,
+          "rgbaSha256": "0f28d7e159e331ad5ba74ca913eab53ec49c91c3190ba315071d28dbbb21ab94",
+          "differingBytes": 0
+        },
+        {
+          "name": "Astra",
+          "style": 0,
+          "width": 64,
+          "height": 23,
+          "rgbaSha256": "e9fbacb70af25808382071a0f1b857256c53e8364d39246cf0a5d1c1505a319d",
+          "differingBytes": 0
+        },
+        {
+          "name": "Astra",
+          "style": 1,
+          "width": 224,
+          "height": 64,
+          "rgbaSha256": "9faf8cc66175d7943b76768db4c5106bdde7e5e69d218ef8262b9e91ff4ea7fc",
+          "differingBytes": 0
+        },
+        {
+          "name": "Astra",
+          "style": 2,
+          "width": 420,
+          "height": 115,
+          "rgbaSha256": "3dc34838a7bc4e7542c371f2b3d316b1953985f7fc4c9743e5f7a2b167aa4a7b",
+          "differingBytes": 0
+        },
+        {
+          "name": "Astra",
+          "style": 3,
+          "width": 248,
+          "height": 124,
+          "rgbaSha256": "d347a4a6d8d12fb992dd75709c1b66c0d102199d91218dd716efd3efff9d0621",
+          "differingBytes": 0
+        },
+        {
+          "name": "Astra",
+          "style": 4,
+          "width": 161,
+          "height": 87,
+          "rgbaSha256": "5384ac5bf0ed90424fd1a60f5fafb6db7084bd74cc79908fc91cc99f58c5f7fc",
+          "differingBytes": 0
+        },
+        {
+          "name": "李云舟 Astra",
+          "style": 0,
+          "width": 117,
+          "height": 25,
+          "rgbaSha256": "f417252fd956d3e0c4aec5d75ccc96337168ee521dbf537263e5334b50729ec2",
+          "differingBytes": 0
+        },
+        {
+          "name": "李云舟 Astra",
+          "style": 1,
+          "width": 420,
+          "height": 69,
+          "rgbaSha256": "80c87372ca9605193cc12ae25824ea65db56c1854a7d6ae09fa4de359506fb51",
+          "differingBytes": 0
+        },
+        {
+          "name": "李云舟 Astra",
+          "style": 2,
+          "width": 419,
+          "height": 68,
+          "rgbaSha256": "be9895932c8026cedb58259a150f79c2298fd7cc31dba54073fddca750cf43ad",
+          "differingBytes": 0
+        },
+        {
+          "name": "李云舟 Astra",
+          "style": 3,
+          "width": 420,
+          "height": 173,
+          "rgbaSha256": "3c5a7002b8c28895f0ed563c73ee634d79bd3dd3d99d5c6a6d78a261622db0d2",
+          "differingBytes": 0
+        },
+        {
+          "name": "李云舟 Astra",
+          "style": 4,
+          "width": 317,
+          "height": 132,
+          "rgbaSha256": "c6b660dca7fc9f0063e360c64e9cc052fb5cc24df5713fd891c81ce47db7a4de",
+          "differingBytes": 0
+        },
+        {
+          "name": "Alexander Montgomery",
+          "style": 0,
+          "width": 213,
+          "height": 24,
+          "rgbaSha256": "311d25235e5676be733c8c691fb21c2e00e58084597164827639bd8989b56948",
+          "differingBytes": 0
+        },
+        {
+          "name": "Alexander Montgomery",
+          "style": 1,
+          "width": 420,
+          "height": 38,
+          "rgbaSha256": "ca379400f7b060be0223b9a5d47f4182d9c7d887b288db573b021eedc516b28f",
+          "differingBytes": 0
+        },
+        {
+          "name": "Alexander Montgomery",
+          "style": 2,
+          "width": 420,
+          "height": 37,
+          "rgbaSha256": "c2dfdb8c9d0eb421a199128b85b9da640baa9cf451733ef6d32ac9f51df727c4",
+          "differingBytes": 0
+        },
+        {
+          "name": "Alexander Montgomery",
+          "style": 3,
+          "width": 420,
+          "height": 149,
+          "rgbaSha256": "227c5cbc6c2c438d7224158e3705efc9d1496a0e6c2650be3e54f5463a99f8c0",
+          "differingBytes": 0
+        },
+        {
+          "name": "Alexander Montgomery",
+          "style": 4,
+          "width": 420,
+          "height": 157,
+          "rgbaSha256": "04becdd9d4994b4bdcfe6f9bdfeaa5c9a56a894ed52605409e52101d511d492b",
+          "differingBytes": 0
+        }
+      ],
+      "sourceBytes": 1514968,
+      "webBytes": 900972
+    }
+  ],
+  "failures": [
+    {
+      "fault": "http503",
+      "message": "书写字体加载失败，请重试；现有名字库会保留",
+      "retry": true
+    },
+    {
+      "fault": "same-size-checksum",
+      "message": "书写字体校验失败，请刷新后重试",
+      "retry": true
+    },
+    {
+      "fault": "truncated",
+      "message": "书写字体文件不完整，请重试",
+      "retry": true
+    },
+    {
+      "fault": "canceled-concurrent-caller",
+      "requests": 1,
+      "canceled": {
+        "name": "AbortError",
+        "elapsed": 30.700000002980232
+      },
+      "kept": "Astra Signature Long Cang",
+      "missing": "这款字体不支持“𠮷·”，请换字体或手写名字"
+    }
+  ],
+  "readerRejections": [
+    "short-header",
+    "invalid-magic",
+    "incorrect-length",
+    "misaligned-private-data",
+    "missing-private-data",
+    "private-data-overflow",
+    "unknown-cmap-marker",
+    "invalid-cmap-version",
+    "out-of-bounds-cmap-subtable"
+  ],
+  "weakNetwork": [
+    {
+      "format": "canonical-ttf",
+      "downloadBytesPerSecond": 524288,
+      "latencyMs": 80,
+      "cacheDisabled": true,
+      "elapsedMs": 11475.800000011921,
+      "bodyBytes": 5857936,
+      "decodedBodyBytes": 5857936,
+      "transferBytes": 5858236,
+      "contentEncodingAlreadyApplied": false,
+      "frames": 695,
+      "rafP95": 16.800000000000182,
+      "rafMax": 16.900000000000546,
+      "mainThreadLongTasks": []
+    },
+    {
+      "format": "woff2",
+      "downloadBytesPerSecond": 524288,
+      "latencyMs": 80,
+      "cacheDisabled": true,
+      "elapsedMs": 6528.300000011921,
+      "bodyBytes": 3279386,
+      "decodedBodyBytes": 3279386,
+      "transferBytes": 3279686,
+      "contentEncodingAlreadyApplied": false,
+      "frames": 394,
+      "rafP95": 16.800000000000182,
+      "rafMax": 83.5,
+      "mainThreadLongTasks": [
+        91
+      ]
+    }
+  ],
+  "ui": {
+    "retryConfirmed": true,
+    "sixFontSwitches": true,
+    "onlyWoff2AndPinnedManifests": true,
+    "noCanonicalTtf": true,
+    "delayedFontMs": 450,
+    "fontRequests": [
+      "/fonts/signature/cjk/mashanzheng/manifest-ad131cde6be5.json",
+      "/fonts/signature/cjk/mashanzheng/manifest-ad131cde6be5.json",
+      "/fonts/signature/cjk/mashanzheng/5f00-a5692e16bf72.woff2",
+      "/fonts/signature/cjk/mashanzheng/4e00-f369415aa95e.woff2",
+      "/fonts/signature/cjk/mashanzheng/6700-624e362e5dc1.woff2",
+      "/fonts/signature/cjk/mashanzheng/8200-b33e239b001d.woff2",
+      "/fonts/signature/cjk/longcang/manifest-c58c046d967c.json",
+      "/fonts/signature/cjk/longcang/6700-44f9f676f359.woff2",
+      "/fonts/signature/cjk/longcang/4e00-03f49a01e5c2.woff2",
+      "/fonts/signature/cjk/longcang/8200-6937f1fd88bd.woff2",
+      "/fonts/signature/cjk/zhimangxing/manifest-bb692a3bf61c.json",
+      "/fonts/signature/cjk/zhimangxing/6700-8198e079137a.woff2",
+      "/fonts/signature/cjk/zhimangxing/4e00-0c794b867325.woff2",
+      "/fonts/signature/cjk/zhimangxing/8200-767119c388ab.woff2",
+      "/fonts/signature/cjk/liujianmaocao/manifest-d4d54a26a9fb.json",
+      "/fonts/signature/cjk/liujianmaocao/6700-7a30841f07dc.woff2",
+      "/fonts/signature/cjk/liujianmaocao/4e00-f5fc94e0b4e9.woff2",
+      "/fonts/signature/cjk/liujianmaocao/8200-74656d1b6496.woff2",
+      "/fonts/signature/cjk/zcoolxiaowei/manifest-e48a51ff8218.json",
+      "/fonts/signature/cjk/zcoolxiaowei/6700-5b7b7cd7e5d9.woff2",
+      "/fonts/signature/cjk/zcoolxiaowei/4e00-0132e9dd924e.woff2",
+      "/fonts/signature/cjk/zcoolxiaowei/8200-2a1ae50eb47c.woff2",
+      "/fonts/signature/cjk/zcoolkuaile/manifest-04c55c5f1425.json",
+      "/fonts/signature/cjk/zcoolkuaile/6700-d8f481c43925.woff2",
+      "/fonts/signature/cjk/zcoolkuaile/4e00-a5ea5a9c2007.woff2",
+      "/fonts/signature/cjk/zcoolkuaile/8200-9366f6b7aa18.woff2"
+    ],
+    "bothThemes": true,
+    "mobileWidth": 390
+  },
+  "errors": [],
+  "weakNetworkImprovement": 0.4311246274765036
+}

@@ -1,0 +1,61 @@
+{
+  "method": "Developer inspection with native view_image of the real Playwright screenshots",
+  "reviewed": [
+    {
+      "path": "subsets-edge/six-cjk-fonts-lossless.png",
+      "findings": "六款原笔迹正向，两个中文样张完整；像素零差见对应原报告。"
+    },
+    {
+      "path": "subsets-edge/cjk-subsets-light-desktop.png",
+      "findings": "名字、font family预览、加载后的控件在亮/暗桌面或390px中完整，未见横向溢出。"
+    },
+    {
+      "path": "subsets-edge/cjk-subsets-light-mobile.png",
+      "findings": "名字、font family预览、加载后的控件在亮/暗桌面或390px中完整，未见横向溢出。"
+    },
+    {
+      "path": "subsets-edge/cjk-subsets-dark-desktop.png",
+      "findings": "名字、font family预览、加载后的控件在亮/暗桌面或390px中完整，未见横向溢出。"
+    },
+    {
+      "path": "subsets-edge/cjk-subsets-dark-mobile.png",
+      "findings": "名字、font family预览、加载后的控件在亮/暗桌面或390px中完整，未见横向溢出。"
+    },
+    {
+      "path": "subsets-chrome/six-cjk-fonts-lossless.png",
+      "findings": "六款原笔迹正向，两个中文样张完整；像素零差见对应原报告。"
+    },
+    {
+      "path": "subsets-chrome/cjk-subsets-light-desktop.png",
+      "findings": "名字、font family预览、加载后的控件在亮/暗桌面或390px中完整，未见横向溢出。"
+    },
+    {
+      "path": "subsets-chrome/cjk-subsets-light-mobile.png",
+      "findings": "名字、font family预览、加载后的控件在亮/暗桌面或390px中完整，未见横向溢出。"
+    },
+    {
+      "path": "subsets-chrome/cjk-subsets-dark-desktop.png",
+      "findings": "名字、font family预览、加载后的控件在亮/暗桌面或390px中完整，未见横向溢出。"
+    },
+    {
+      "path": "subsets-chrome/cjk-subsets-dark-mobile.png",
+      "findings": "名字、font family预览、加载后的控件在亮/暗桌面或390px中完整，未见横向溢出。"
+    },
+    {
+      "path": "cutout-edge/cutout-desktop.png",
+      "findings": "公开历史签名的控制阴影样张，原稿与透明笔迹、框选、力度及确认控件可见。"
+    },
+    {
+      "path": "cutout-edge/cutout-light-mobile.png",
+      "findings": "390px亮色滚动弹窗，原稿和完整透明预览无横向溢出；底部动作需弹窗滚动。"
+    },
+    {
+      "path": "cutout-chrome/cutout-dark-mobile.png",
+      "findings": "390px暗色滚动弹窗，完整笔迹与框选输入清晰；底部动作需弹窗滚动。"
+    }
+  ],
+  "limitations": [
+    "Desktop screenshots and emulated viewport; no physical device, printing or user aesthetic approval",
+    "Controlled cutout fixtures do not establish quality for arbitrary real photos"
+  ]
+}

@@ -1,0 +1,160 @@
+{
+  "browser": "157.0.8081.0",
+  "errors": [],
+  "cases": [
+    {
+      "case": "six-font-generation-project-and-six-cutouts",
+      "rows": [
+        {
+          "font": "mashanzheng",
+          "name": "李云舟",
+          "count": 8,
+          "hash": "7387230f4aff651bacf809b3afafffc4d1c2b6a647def129c3ac4711be54c8da"
+        },
+        {
+          "font": "mashanzheng",
+          "name": "张思雨 Astra",
+          "count": 8,
+          "hash": "2ddfd73cc9eb4171777b6cdee269e3f8d843f200da05187e76535a1cdd2c2052"
+        },
+        {
+          "font": "longcang",
+          "name": "李云舟",
+          "count": 8,
+          "hash": "9c577a8206d2c79793483626bf4dea92dd14414f99c443f8cc54d140622bdf69"
+        },
+        {
+          "font": "longcang",
+          "name": "张思雨 Astra",
+          "count": 8,
+          "hash": "eb6f3e8a41fb08aeef1d5d91935de6184c0738ea381ce3e10c440e02ffcb9825"
+        },
+        {
+          "font": "zhimangxing",
+          "name": "李云舟",
+          "count": 8,
+          "hash": "b40ead730b3fa8173019d5647c44d3170e9c158cda9d433d1567d90a9fe53ed0"
+        },
+        {
+          "font": "zhimangxing",
+          "name": "张思雨 Astra",
+          "count": 8,
+          "hash": "984685946058e15754b373789f6d3430d3596ba593ef1a9774d6f9032c60bf56"
+        },
+        {
+          "font": "liujianmaocao",
+          "name": "李云舟",
+          "count": 8,
+          "hash": "9692b9b5916c5ec35b997f2ec7de94fd2ce3c4955f57c129feb00f51e81cea80"
+        },
+        {
+          "font": "liujianmaocao",
+          "name": "张思雨 Astra",
+          "count": 8,
+          "hash": "e4734f7ae96bd3f42a45582cc0e897235f6c38a9429e60b0de4cc77714b30450"
+        },
+        {
+          "font": "zcoolxiaowei",
+          "name": "李云舟",
+          "count": 8,
+          "hash": "53c6eeb382097cddeca72ba7be3bf4120bd4067e2a557253a2de08980cdd043b"
+        },
+        {
+          "font": "zcoolxiaowei",
+          "name": "张思雨 Astra",
+          "count": 8,
+          "hash": "8fe6123f913d1a3e6ef9c69c7069f0807b747ed66b728ed2499cf4e1220a114e"
+        },
+        {
+          "font": "zcoolkuaile",
+          "name": "李云舟",
+          "count": 8,
+          "hash": "34a6a42f104b40e6ab2f89a9eb092e8ce767b71086adbcf9f64808d94bf1ce9c"
+        },
+        {
+          "font": "zcoolkuaile",
+          "name": "张思雨 Astra",
+          "count": 8,
+          "hash": "88132c985a0888350879c370dd5870ce6f38ff2d05451a9b4b722888221a13ab"
+        }
+      ],
+      "samples": [
+        {
+          "kind": "paper",
+          "polarity": "dark",
+          "solid": 14248,
+          "kept": 14248,
+          "residue": 0,
+          "maxAlpha": 255,
+          "width": 856,
+          "height": 146
+        },
+        {
+          "kind": "shadow",
+          "polarity": "dark",
+          "solid": 14248,
+          "kept": 14248,
+          "residue": 0,
+          "maxAlpha": 255,
+          "width": 856,
+          "height": 146
+        },
+        {
+          "kind": "blue",
+          "polarity": "dark",
+          "solid": 14248,
+          "kept": 14248,
+          "residue": 0,
+          "maxAlpha": 255,
+          "width": 856,
+          "height": 146
+        },
+        {
+          "kind": "light",
+          "polarity": "light",
+          "solid": 14248,
+          "kept": 14248,
+          "residue": 0,
+          "maxAlpha": 255,
+          "width": 856,
+          "height": 146
+        },
+        {
+          "kind": "transparent",
+          "polarity": "dark",
+          "solid": 14248,
+          "kept": 14248,
+          "residue": 0,
+          "maxAlpha": 255,
+          "width": 856,
+          "height": 146
+        },
+        {
+          "kind": "partial-alpha",
+          "polarity": "dark",
+          "solid": 14248,
+          "kept": 14248,
+          "residue": 0,
+          "maxAlpha": 128,
+          "width": 856,
+          "height": 146
+        }
+      ],
+      "packedBytes": 2339045
+    },
+    {
+      "case": "six-font-live-preview-and-bank-generation",
+      "url": "http://127.0.0.1:4210"
+    },
+    {
+      "case": "confirm-cutout-before-use-and-adjust"
+    },
+    {
+      "case": "batch-cancel-no-partial-commit"
+    },
+    {
+      "case": "two-themes-390px-no-dialog-overflow"
+    }
+  ],
+  "passed": true
+}

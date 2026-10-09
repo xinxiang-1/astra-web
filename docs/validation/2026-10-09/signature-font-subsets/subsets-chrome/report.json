@@ -1,0 +1,2949 @@
+{
+  "passed": true,
+  "browser": "157.0.8081.0",
+  "phase": "all",
+  "fonts": [
+    {
+      "id": "mashanzheng",
+      "family": "Astra Signature Ma Shan Zheng",
+      "cjkCodepointsCompared": 20992,
+      "supportedMappings": 6763,
+      "missing": "丂",
+      "missingRejectedBeforeShards": true,
+      "shardRequests": 13,
+      "pixelCases": [
+        {
+          "scope": "cjk-shards",
+          "name": "李云舟",
+          "style": 0,
+          "width": 61,
+          "height": 25,
+          "rgbaSha256": "2c1c6a95a13d219b53edcade83b55f5fae2ad61bab6d96e814d7431a68f03435",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "李云舟",
+          "style": 1,
+          "width": 212,
+          "height": 77,
+          "rgbaSha256": "33294f01d7ade41f7b410e78daecf82f673fdf457af199619565da4f13b8ea71",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "李云舟",
+          "style": 2,
+          "width": 420,
+          "height": 145,
+          "rgbaSha256": "864177591d7348458f16e5c52543493f0f62d70c2db006e466a6fe5963a52cac",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "李云舟",
+          "style": 3,
+          "width": 232,
+          "height": 124,
+          "rgbaSha256": "4d9490e0ffb45f010c86bc68840d4d246717561b22e26435e86a2a3dec0723c4",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "李云舟",
+          "style": 4,
+          "width": 153,
+          "height": 96,
+          "rgbaSha256": "d8af87ab6090c2b9cff0f123219232fb4921e6a7a29228f83e25bb3de835022b",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "张思雨",
+          "style": 0,
+          "width": 60,
+          "height": 25,
+          "rgbaSha256": "ee92a1f1a10563a4f9d65251162af416690edf18f1f24e0972f3b9c87df23dcb",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "张思雨",
+          "style": 1,
+          "width": 211,
+          "height": 73,
+          "rgbaSha256": "43fbce812b74861965b92295a3869577faa8d398a020f096c72fc17e52fe41d3",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "张思雨",
+          "style": 2,
+          "width": 420,
+          "height": 139,
+          "rgbaSha256": "26f1f31cf8cdb34d759ab43645e143a598e2edffa52c61e42f25b1a31874ce4e",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "张思雨",
+          "style": 3,
+          "width": 235,
+          "height": 125,
+          "rgbaSha256": "12f8a215d0fe177aa1fb997bec028e05ec0906331ac910541c4c1cd237c68930",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "张思雨",
+          "style": 4,
+          "width": 154,
+          "height": 93,
+          "rgbaSha256": "eb5ef2b06a1b8330b62b8c8068e40aedd7b24faeadbfae6b39236f36d81f01db",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "林晓晚",
+          "style": 0,
+          "width": 64,
+          "height": 25,
+          "rgbaSha256": "67b240f031c0244295b99ca295761d48602443ff1b4d1bd4116ce8b1fc9400fb",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "林晓晚",
+          "style": 1,
+          "width": 224,
+          "height": 73,
+          "rgbaSha256": "0801199ac8536d93080deb1b9e00ae2890b0ade9ac879eb1dfd6fabde8e3c33d",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "林晓晚",
+          "style": 2,
+          "width": 420,
+          "height": 131,
+          "rgbaSha256": "458c5d3a8907a888da7ad69c3d7ede1f524009ced3cadbd7cf9368e1d89ed955",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "林晓晚",
+          "style": 3,
+          "width": 245,
+          "height": 129,
+          "rgbaSha256": "1609f846bd052cc047c8388c95948033903655920e2ebe10826899dd49dd80c6",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "林晓晚",
+          "style": 4,
+          "width": 162,
+          "height": 95,
+          "rgbaSha256": "3dfe62b02fbec581d44791947867c9ff85d0605b627a1418f28eae9ba97bd75c",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "欧阳修",
+          "style": 0,
+          "width": 63,
+          "height": 25,
+          "rgbaSha256": "56b6181872c75ee945b8a22fb7d418c36bb7a02c93ba4acc786a530760ea0702",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "欧阳修",
+          "style": 1,
+          "width": 221,
+          "height": 71,
+          "rgbaSha256": "c04f89c80adea37f0ebc592674459fa60996fcfda5c10c3005759185875b3eb0",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "欧阳修",
+          "style": 2,
+          "width": 420,
+          "height": 129,
+          "rgbaSha256": "9c0d903e421eee178a39f061732f7071a8fadbd02beb3e783aac34ddaf453e2a",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "欧阳修",
+          "style": 3,
+          "width": 247,
+          "height": 115,
+          "rgbaSha256": "df2bbaffa82ad3d0e38402537440d2135a7e4ee09da8952f92f9ac8b99a12042",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "欧阳修",
+          "style": 4,
+          "width": 159,
+          "height": 97,
+          "rgbaSha256": "12220a4be04808381d22230b5991d6385421be3ce5236218745937de8fb2e708",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "一丁七",
+          "style": 0,
+          "width": 62,
+          "height": 23,
+          "rgbaSha256": "39687053516df08ae0308753e339af99936a8aee3c135c5253fd61305db3107e",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "一丁七",
+          "style": 1,
+          "width": 216,
+          "height": 67,
+          "rgbaSha256": "60fa712dee9e7ade64296202c48f73256e021f131b8ef0dfd4cbd4f402b202e2",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "一丁七",
+          "style": 2,
+          "width": 420,
+          "height": 124,
+          "rgbaSha256": "f96b75408359f60a7f67ca37b2d1dd23c809f1057327c03246fb3eecee70e6fd",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "一丁七",
+          "style": 3,
+          "width": 240,
+          "height": 98,
+          "rgbaSha256": "26c2d58c576023c9529a3d3f23878e74db28df9ab1a5f077071e3496060d4359",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "一丁七",
+          "style": 4,
+          "width": 154,
+          "height": 70,
+          "rgbaSha256": "dd4b3a55bbf26bb670f8c437fbabc59b31cd31f4111ab75cd72cda885c77888a",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "左右天地",
+          "style": 0,
+          "width": 81,
+          "height": 24,
+          "rgbaSha256": "2116d7da26b0c44ba0d1a1ee43d851d1e8052c433878f4fc563d4dea367c9b6d",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "左右天地",
+          "style": 1,
+          "width": 291,
+          "height": 70,
+          "rgbaSha256": "fcb30923e74d79e74eb1201b9ccd8f5be892d9fa7009cb0509856f5de74afb87",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "左右天地",
+          "style": 2,
+          "width": 420,
+          "height": 97,
+          "rgbaSha256": "5da61434b4133df9ca9baf79285caf6d772ab9653ea7b99e8a8fe751fd48edde",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "左右天地",
+          "style": 3,
+          "width": 322,
+          "height": 145,
+          "rgbaSha256": "abe67fd07bd260071e1ebfe4196b32caf2a793bf49b0f226648e69631478d489",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "左右天地",
+          "style": 4,
+          "width": 207,
+          "height": 111,
+          "rgbaSha256": "21bce59e78f4eb68302334d674453aa2ef8aafa90f594b5611c5e3bcc9482467",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "AV ff fi",
+          "style": 0,
+          "width": 63,
+          "height": 29,
+          "rgbaSha256": "ab62b6473593837a764a986b2f48357aa2704ce5dee086cea29ebf16d9529804",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "AV ff fi",
+          "style": 1,
+          "width": 218,
+          "height": 91,
+          "rgbaSha256": "fea639fe8b288ee19e1be8c1571f033d9815cddc856629afe91abeb350656100",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "AV ff fi",
+          "style": 2,
+          "width": 420,
+          "height": 169,
+          "rgbaSha256": "f7a7d10f5fc45bd01140b896dae59479a7f76f4962ec0856bd8efe235e32d749",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "AV ff fi",
+          "style": 3,
+          "width": 248,
+          "height": 133,
+          "rgbaSha256": "a1432a3178baf6e42c87adc0d1976e294341c40f7250e18d220ad721fd129f30",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "AV ff fi",
+          "style": 4,
+          "width": 157,
+          "height": 97,
+          "rgbaSha256": "f853b544691b25546f4848a44829d961a714321c8bc3f8d728c2cdccd9f8fcc2",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "李云舟 Astra",
+          "style": 0,
+          "width": 101,
+          "height": 25,
+          "rgbaSha256": "e59f5699456618e3fe7e48cb9a408281eea4c8c26e3caf148a1609c02491d398",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "李云舟 Astra",
+          "style": 1,
+          "width": 373,
+          "height": 77,
+          "rgbaSha256": "a8f56764a140620f6f614cc6e4c386a2ba39de13757254f87c6fff9801b30900",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "李云舟 Astra",
+          "style": 2,
+          "width": 419,
+          "height": 84,
+          "rgbaSha256": "462870355f32a86e5ae5447634f7f4a6c15130847a823bd801574d5300891cac",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "李云舟 Astra",
+          "style": 3,
+          "width": 411,
+          "height": 174,
+          "rgbaSha256": "7fcb555fb0b71a16c4c0ba013ccf711e097e97f3a156f4a09d7b843e7086d4cf",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "李云舟 Astra",
+          "style": 4,
+          "width": 268,
+          "height": 118,
+          "rgbaSha256": "8bb64917a10b8046d422a1333c166a8d2257ecb79c11d6c296197c0b19ead246",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "Alexander Montgomery",
+          "style": 0,
+          "width": 141,
+          "height": 29,
+          "rgbaSha256": "43846113bac5f776de044abc7f93fd2a4b9b10d9d8748635cc668d2bcf5e345e",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "Alexander Montgomery",
+          "style": 1,
+          "width": 420,
+          "height": 71,
+          "rgbaSha256": "d9a9cfee47565ba0fe5e938bf4f0fc32ef6ce8d32f517b7c31395d414b949140",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "Alexander Montgomery",
+          "style": 2,
+          "width": 420,
+          "height": 70,
+          "rgbaSha256": "cc23611b072839f4377be9d8372c7cb24c8f67dfa63e95ec18697e997d7cd2ca",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "Alexander Montgomery",
+          "style": 3,
+          "width": 420,
+          "height": 173,
+          "rgbaSha256": "241f50ccff46c7a00a5141cb23b278808645fdfafceb6ed9dceaa498b0f03bb2",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "Alexander Montgomery",
+          "style": 4,
+          "width": 378,
+          "height": 146,
+          "rgbaSha256": "300fa206eb4c613e4a0d41010b7406ee51a99d8485b826dff3841e205598295a",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-font-reused-for-cjk",
+          "name": "陈明华",
+          "style": 0,
+          "width": 60,
+          "height": 25,
+          "rgbaSha256": "beac8171643f5e94599480fa769a893f977d6901e19455168012dda357f1a226",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-font-reused-for-cjk",
+          "name": "陈明华",
+          "style": 1,
+          "width": 209,
+          "height": 75,
+          "rgbaSha256": "13ba70858bca7cd312bd3aba0df325e3c195087fafc6898f2ac7e144ad95c95b",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-font-reused-for-cjk",
+          "name": "陈明华",
+          "style": 2,
+          "width": 420,
+          "height": 143,
+          "rgbaSha256": "6f8bca6998c5f0bf5cedbc6376060a274284caf2e62d1844f6b48f7f30d7ffe2",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-font-reused-for-cjk",
+          "name": "陈明华",
+          "style": 3,
+          "width": 233,
+          "height": 119,
+          "rgbaSha256": "ae517400ed7b28b365afad868406cc3711ffa41de97af7424162de5a7beedcf0",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-font-reused-for-cjk",
+          "name": "陈明华",
+          "style": 4,
+          "width": 156,
+          "height": 98,
+          "rgbaSha256": "7bf252d4e61f3c2b48c88f894a32877bffcf51ab3a4e3556acaacc059ec0eb37",
+          "differingBytes": 0
+        }
+      ]
+    },
+    {
+      "id": "longcang",
+      "family": "Astra Signature Long Cang",
+      "cjkCodepointsCompared": 20992,
+      "supportedMappings": 6763,
+      "missing": "丂",
+      "missingRejectedBeforeShards": true,
+      "shardRequests": 13,
+      "pixelCases": [
+        {
+          "scope": "cjk-shards",
+          "name": "李云舟",
+          "style": 0,
+          "width": 62,
+          "height": 25,
+          "rgbaSha256": "435ca0c2712f83267125b438635f8c7967b45365b176a351c78ac00a1a33b3ab",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "李云舟",
+          "style": 1,
+          "width": 222,
+          "height": 76,
+          "rgbaSha256": "4c285feeef8fabf5c5db22e203a483985935c55139838afe7cc192c07efcf3f3",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "李云舟",
+          "style": 2,
+          "width": 419,
+          "height": 138,
+          "rgbaSha256": "f2244d7a94d0c99b633b9c0a55fb44ad308e5443d1ff0cc84bc1d088d0185e79",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "李云舟",
+          "style": 3,
+          "width": 246,
+          "height": 123,
+          "rgbaSha256": "55f4cd534871b543bcd3c35e432438a31741c8fc2a293b0d06e8ea2ad8c99131",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "李云舟",
+          "style": 4,
+          "width": 156,
+          "height": 93,
+          "rgbaSha256": "d9af2ffeff5a1687b4d88af9af03314b5e8f097c1fe8d9a77db2ae83db7b87ec",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "张思雨",
+          "style": 0,
+          "width": 61,
+          "height": 23,
+          "rgbaSha256": "caafae828bbff3c622d071e64586eef9be141eeeaebe03521ca09c84c4d167cb",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "张思雨",
+          "style": 1,
+          "width": 213,
+          "height": 63,
+          "rgbaSha256": "832eefc85958aea05481527d4b5627d9d7cae7a59349d2a408dd43f1cc33822e",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "张思雨",
+          "style": 2,
+          "width": 420,
+          "height": 117,
+          "rgbaSha256": "e4c72e8100f00ecab2b9f201e076d25c2c962004a1e5d5c3a844740cf9da0dc7",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "张思雨",
+          "style": 3,
+          "width": 238,
+          "height": 110,
+          "rgbaSha256": "4bd1482b733184e146fd2694d941510528b7c3796a3a5d1de59d4172807008e5",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "张思雨",
+          "style": 4,
+          "width": 153,
+          "height": 86,
+          "rgbaSha256": "370640e702259d960f75029826e645cb8ee406dd3c1e4e158b2fd40ab321f1d2",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "林晓晚",
+          "style": 0,
+          "width": 64,
+          "height": 24,
+          "rgbaSha256": "f48d72df9337456cbac0f72924698824345c97a9f7212bdf4733ee3d06ee5624",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "林晓晚",
+          "style": 1,
+          "width": 226,
+          "height": 71,
+          "rgbaSha256": "4d920136fbc2681a5faaae2a3f78441ec15d0314e9aa86b54e82831500a44a53",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "林晓晚",
+          "style": 2,
+          "width": 420,
+          "height": 125,
+          "rgbaSha256": "a5fb5c7c2f347f2f3e5eb2b63074345c47689bfa19f58bc387b2c9c3e433645d",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "林晓晚",
+          "style": 3,
+          "width": 248,
+          "height": 122,
+          "rgbaSha256": "9784152381d412438b34424c1f930d47ab0991be28b0c0eb10f6308bdd684f9b",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "林晓晚",
+          "style": 4,
+          "width": 164,
+          "height": 92,
+          "rgbaSha256": "2266fc7326a772ef3f809f06ce029bf351f46abdeb1549f0e1bf086437a28f35",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "欧阳修",
+          "style": 0,
+          "width": 63,
+          "height": 23,
+          "rgbaSha256": "5f9ca721d66aa6d5684eb4f6f2a216b87d2be394f2d5c53ff085a5504aa9e3dc",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "欧阳修",
+          "style": 1,
+          "width": 223,
+          "height": 68,
+          "rgbaSha256": "1011f1276a9da6d5adcd154aab6223412de74854c606b5d0ca02eee5a6779a62",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "欧阳修",
+          "style": 2,
+          "width": 420,
+          "height": 122,
+          "rgbaSha256": "9b6c0f74503900f818141a284d21edee6289d41c9259ad5a8fdc1680586cf450",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "欧阳修",
+          "style": 3,
+          "width": 245,
+          "height": 111,
+          "rgbaSha256": "b78553867903e67c0e2119795c3a909be8360bdf6a66470ea5f745312ac10314",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "欧阳修",
+          "style": 4,
+          "width": 163,
+          "height": 92,
+          "rgbaSha256": "afc1550af01d2dbe878666259b5389990f575a840398a9e5ef8eb9bb11a86d9f",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "一丁七",
+          "style": 0,
+          "width": 62,
+          "height": 19,
+          "rgbaSha256": "0078b70584b89063c53193be22b39359a583fff00b9c6372d4b3e3b055153ffa",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "一丁七",
+          "style": 1,
+          "width": 216,
+          "height": 47,
+          "rgbaSha256": "8be2ddc493306e16a57e76d709b2d46da1eec519bbe117d97b73e73ac794ce4b",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "一丁七",
+          "style": 2,
+          "width": 420,
+          "height": 83,
+          "rgbaSha256": "52233cdb4e5e42676913507c07a1386e514e392e6d820a1be38157236214f9c5",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "一丁七",
+          "style": 3,
+          "width": 239,
+          "height": 92,
+          "rgbaSha256": "42678fe5db6309e2ca397be83619246416f3519e53896c6243024f63cc61179a",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "一丁七",
+          "style": 4,
+          "width": 156,
+          "height": 62,
+          "rgbaSha256": "1ed2154c187018617fcd8521522b5a63ca2c6be05f21b53b93783cefdd929d5a",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "左右天地",
+          "style": 0,
+          "width": 80,
+          "height": 25,
+          "rgbaSha256": "be3e60f7f13558051587a0ef12b856c7184e88b8ad7bd7d24e2c7266791df505",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "左右天地",
+          "style": 1,
+          "width": 289,
+          "height": 71,
+          "rgbaSha256": "e2fa94f3839a01ab3af398432682b6addfb9534c192d4cdf918708b44ba5a220",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "左右天地",
+          "style": 2,
+          "width": 420,
+          "height": 100,
+          "rgbaSha256": "069ca526f2a043cb31f49750fbf82ff757d923b93f24e6721cd143c2717dc17c",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "左右天地",
+          "style": 3,
+          "width": 322,
+          "height": 136,
+          "rgbaSha256": "5406cf46ad05641b88ea3c6714b24408e818bd7579f8895a209405eb3c4b9bf5",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "左右天地",
+          "style": 4,
+          "width": 204,
+          "height": 105,
+          "rgbaSha256": "677dfdbd832069b9a2a934ad34186f37aed211eee5411b51edecb407592b2c9f",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "AV ff fi",
+          "style": 0,
+          "width": 64,
+          "height": 18,
+          "rgbaSha256": "4fa38679268518b7ced67f4a47c5314a132c69d4d9864f794165063b885e5525",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "AV ff fi",
+          "style": 1,
+          "width": 224,
+          "height": 48,
+          "rgbaSha256": "dbdac06a9174bc8202ef02191e4b5842e97f5befe339ee579cfe1b5b74fbc235",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "AV ff fi",
+          "style": 2,
+          "width": 420,
+          "height": 81,
+          "rgbaSha256": "eb91c9b038c758833ac0bddcf5c645f83f99e1421bcc95689d89ab42338533bf",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "AV ff fi",
+          "style": 3,
+          "width": 254,
+          "height": 107,
+          "rgbaSha256": "2c030da936e94d2e93db221a88ddd86cc9b526b4e3a04f60eca757c9c4810e45",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "AV ff fi",
+          "style": 4,
+          "width": 159,
+          "height": 86,
+          "rgbaSha256": "b72311c245358e1e2f70b720bdd6294299573cdaab388ba14d46050315fac679",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "李云舟 Astra",
+          "style": 0,
+          "width": 107,
+          "height": 25,
+          "rgbaSha256": "d8237cd8b77246daa7dff0eddbd05a71640824bbea0679224c05997035240537",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "李云舟 Astra",
+          "style": 1,
+          "width": 399,
+          "height": 76,
+          "rgbaSha256": "39aa77eb8d751ac62dc4cfc0fc8eb6d1c9ad8b8552c1c2a3da7a3f347c3b33c0",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "李云舟 Astra",
+          "style": 2,
+          "width": 419,
+          "height": 79,
+          "rgbaSha256": "896518e461b68e771079714e69761e0d4f18d8a8391e8b47b01659df7a586066",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "李云舟 Astra",
+          "style": 3,
+          "width": 420,
+          "height": 169,
+          "rgbaSha256": "62b11bcc88d072cf7be0c33aecca90948a1fb9769290f5187637f704580eaeb1",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "李云舟 Astra",
+          "style": 4,
+          "width": 283,
+          "height": 121,
+          "rgbaSha256": "704739082763bc9c6cc837cf7a99c3dc72fad79d94e1e220dff989faaab8d082",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "Alexander Montgomery",
+          "style": 0,
+          "width": 162,
+          "height": 23,
+          "rgbaSha256": "2cf4f1642de7a876ed15c76fdf2c031f157889d26cef8b471833cd8243fdd032",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "Alexander Montgomery",
+          "style": 1,
+          "width": 420,
+          "height": 46,
+          "rgbaSha256": "38e1c9b63d263cfa62f4e10ffc12ffac0c0a6312ec588da795ca0e5118597400",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "Alexander Montgomery",
+          "style": 2,
+          "width": 420,
+          "height": 45,
+          "rgbaSha256": "a85f361edfcf4fcd2b281bc87401d4a30c797df42de9dd0b78552ac3c171209f",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "Alexander Montgomery",
+          "style": 3,
+          "width": 420,
+          "height": 153,
+          "rgbaSha256": "12733f3d9b0a250418c5bd714155911defb42b3277160ce96483677c438f2c56",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "Alexander Montgomery",
+          "style": 4,
+          "width": 420,
+          "height": 155,
+          "rgbaSha256": "3a94ff62554f334d0827c51404198a0c4a39df7ad7766cc1d4200b419a9bdcb2",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-font-reused-for-cjk",
+          "name": "陈明华",
+          "style": 0,
+          "width": 62,
+          "height": 25,
+          "rgbaSha256": "3661c92ae66236ee5b8d30bd0336f16b1bacf81ebf5ded8d83b06025916a2f0b",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-font-reused-for-cjk",
+          "name": "陈明华",
+          "style": 1,
+          "width": 218,
+          "height": 71,
+          "rgbaSha256": "8cb17d4bc0aea6fe812df55d647be9f3de1a360da8707284c6f21819bb8ebd7f",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-font-reused-for-cjk",
+          "name": "陈明华",
+          "style": 2,
+          "width": 420,
+          "height": 132,
+          "rgbaSha256": "a564f1ea2641ea3e72d4b6d5a8e0edae9f9ddd87e1093f9a722fdc551a1eef79",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-font-reused-for-cjk",
+          "name": "陈明华",
+          "style": 3,
+          "width": 239,
+          "height": 114,
+          "rgbaSha256": "b85f7b2ab30bf9a5170af2f69f70ed7a57bc4c0f4cb0f079f22bb5c23e9da973",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-font-reused-for-cjk",
+          "name": "陈明华",
+          "style": 4,
+          "width": 160,
+          "height": 94,
+          "rgbaSha256": "7347740dd75110c5ac002ab4bccb5842a517b3c3984d0ba6c2e4c0848f68323b",
+          "differingBytes": 0
+        }
+      ]
+    },
+    {
+      "id": "zhimangxing",
+      "family": "Astra Signature Zhi Mang Xing",
+      "cjkCodepointsCompared": 20992,
+      "supportedMappings": 6763,
+      "missing": "丂",
+      "missingRejectedBeforeShards": true,
+      "shardRequests": 13,
+      "pixelCases": [
+        {
+          "scope": "cjk-shards",
+          "name": "李云舟",
+          "style": 0,
+          "width": 56,
+          "height": 24,
+          "rgbaSha256": "34e2a87ce9334a8b4f0a1e21cbd9293b1002ef89aab808f7e84a94a1d2dfc3f5",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "李云舟",
+          "style": 1,
+          "width": 190,
+          "height": 71,
+          "rgbaSha256": "da7ae38403ae7a62ddefb003986332450deefba6bff4f2e0f7c187f5baf2ad3f",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "李云舟",
+          "style": 2,
+          "width": 420,
+          "height": 148,
+          "rgbaSha256": "2057f246a98a03becb1697a84e3e847103b2dc2ce91355f9a5d2ba25ddadb745",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "李云舟",
+          "style": 3,
+          "width": 211,
+          "height": 115,
+          "rgbaSha256": "81750d9cb2bbc911e11694e6e5e72ec2f9c4483b440fbeec709161690dcf0a94",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "李云舟",
+          "style": 4,
+          "width": 136,
+          "height": 85,
+          "rgbaSha256": "8d6e834bea815b8386f5dda568d840bdaae88186c5ab2e12ca889ba6a4c1ad54",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "张思雨",
+          "style": 0,
+          "width": 56,
+          "height": 24,
+          "rgbaSha256": "f67acc651ea16962be55a89c3b440bc5f33387195e33b1e86087fc0393462a5a",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "张思雨",
+          "style": 1,
+          "width": 192,
+          "height": 69,
+          "rgbaSha256": "230ae5f85c7b63349fed0fef141c8cd589ad407b298352745fbf18f86c00bfd5",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "张思雨",
+          "style": 2,
+          "width": 420,
+          "height": 144,
+          "rgbaSha256": "8f694b18a9a0323d7ae07dcc098bf97abd0fc57b1a3c462a4eddd89cf446a7a7",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "张思雨",
+          "style": 3,
+          "width": 208,
+          "height": 110,
+          "rgbaSha256": "c48ee220349526b1804e5cc0ebfee7e27830bc2d9b77997244f406e6e236dba3",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "张思雨",
+          "style": 4,
+          "width": 143,
+          "height": 89,
+          "rgbaSha256": "59f54255cf7e47f272ae1107ce5d9ca5778408963f339686893bfdf5f0363d67",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "林晓晚",
+          "style": 0,
+          "width": 57,
+          "height": 24,
+          "rgbaSha256": "463a375b300c0e3cb3926594dac5fb333d0f00cfaa483b2edbadf25188e8423d",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "林晓晚",
+          "style": 1,
+          "width": 198,
+          "height": 70,
+          "rgbaSha256": "3c43764233ccb671e348b941b782313dece774a524c3fc7c00af8b71fffe8164",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "林晓晚",
+          "style": 2,
+          "width": 420,
+          "height": 141,
+          "rgbaSha256": "135f60ed4c2bb673b2493867e973801e8cdc0632cdc78f1a881b746d7eecfb2b",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "林晓晚",
+          "style": 3,
+          "width": 214,
+          "height": 117,
+          "rgbaSha256": "22c0e83a47df008edbb36b76c5c95e1ae2e038633bbccfd7a75e25bddb63f16d",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "林晓晚",
+          "style": 4,
+          "width": 147,
+          "height": 89,
+          "rgbaSha256": "5ef9bed04766c2e915f5d79fab8ca918537043f228863b594ace58bb68a27cdc",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "欧阳修",
+          "style": 0,
+          "width": 56,
+          "height": 22,
+          "rgbaSha256": "84b7c24813f79d9c7869660cf78d48bc720e712d012ffde713eec2a8a74205b6",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "欧阳修",
+          "style": 1,
+          "width": 189,
+          "height": 61,
+          "rgbaSha256": "f0d595d4c9238b939979bfd6c1f8c84e7adf516e935bdb164fd56217568f3ccd",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "欧阳修",
+          "style": 2,
+          "width": 420,
+          "height": 128,
+          "rgbaSha256": "8705441331807ea4bdfd3c9388bf628a7a8cf789da291799a5707948486d67a0",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "欧阳修",
+          "style": 3,
+          "width": 208,
+          "height": 106,
+          "rgbaSha256": "baf202a2f113a09348c394827dc81fa3d5647b92ba7bab26c42b0bc446658b92",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "欧阳修",
+          "style": 4,
+          "width": 142,
+          "height": 83,
+          "rgbaSha256": "4ddaecbffdd8746972fef7bd85efe0aab8b2857f352ead972689058853edacf9",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "一丁七",
+          "style": 0,
+          "width": 55,
+          "height": 19,
+          "rgbaSha256": "2f0cafd9c9fdf75e34965ad6a21b1034ba9c4c0e4d2cd5f49bea9c51b3082d89",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "一丁七",
+          "style": 1,
+          "width": 189,
+          "height": 51,
+          "rgbaSha256": "e2a6caffef8de810bbfbf567803a7c93e8da11fa73fc2e5e76e2b71a6f7e16b3",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "一丁七",
+          "style": 2,
+          "width": 420,
+          "height": 103,
+          "rgbaSha256": "7c777517bccbdcc5b3baa3acde9aa630e4e797014de0e13360104d5487fb686a",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "一丁七",
+          "style": 3,
+          "width": 210,
+          "height": 80,
+          "rgbaSha256": "f3a1da01574dd6ac8bf65ab90dd671b9079ef4a12b252ee86b78895b87f7cf0b",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "一丁七",
+          "style": 4,
+          "width": 138,
+          "height": 62,
+          "rgbaSha256": "35e7c914027253125c54d0dae232fbf67a64eecc7a36e9083743f4c62939fa11",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "左右天地",
+          "style": 0,
+          "width": 74,
+          "height": 24,
+          "rgbaSha256": "2471509922a7c93452a240501ca90412fa230aeae023ced78d08b29e4c7e5688",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "左右天地",
+          "style": 1,
+          "width": 266,
+          "height": 69,
+          "rgbaSha256": "1af44b6a2818d608e5ad6cb6f754e7540faecb7dbf1b7f6547c8f5cadc673ff1",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "左右天地",
+          "style": 2,
+          "width": 420,
+          "height": 103,
+          "rgbaSha256": "68764616465e047230328b845f08eebddfc673c782533e858b6f0b24b13ea4ad",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "左右天地",
+          "style": 3,
+          "width": 297,
+          "height": 125,
+          "rgbaSha256": "c25b89d6c981a7408a16ce823f9e31de8ef91ed628d06bf0ff07f80e0d4c62d8",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "左右天地",
+          "style": 4,
+          "width": 188,
+          "height": 99,
+          "rgbaSha256": "f256a9b121a8e42ca18f2472ceb0158ba13966439f5a474e183d1efa5684b31f",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "AV ff fi",
+          "style": 0,
+          "width": 62,
+          "height": 30,
+          "rgbaSha256": "15a9fcb91c55fb34a52b2fd087bd7c3e04d0199cd11db727947289cc192f8222",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "AV ff fi",
+          "style": 1,
+          "width": 217,
+          "height": 91,
+          "rgbaSha256": "791c2c7192c9f67a15ed77145dca5bb9c889b9ff2459fad2c8dbfca2c4a7c382",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "AV ff fi",
+          "style": 2,
+          "width": 419,
+          "height": 170,
+          "rgbaSha256": "4ef0aed4db6f06a89be794a8326c3fe18715f7d5e045d04ed71e8fdd1fcefee7",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "AV ff fi",
+          "style": 3,
+          "width": 246,
+          "height": 132,
+          "rgbaSha256": "408636241ce66f3992115070a0d18845fb1566f3898ccd529f7fe4e5da59b3f9",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "AV ff fi",
+          "style": 4,
+          "width": 156,
+          "height": 97,
+          "rgbaSha256": "d24613ef97c693241b812a9fd40c9d18c25129017154ff0943a2e9c23a176e27",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "李云舟 Astra",
+          "style": 0,
+          "width": 95,
+          "height": 24,
+          "rgbaSha256": "b586f0e1b5bd250ac205429fdf0c7bb4f6d50d0f2108b342b92c6768de0cba39",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "李云舟 Astra",
+          "style": 1,
+          "width": 349,
+          "height": 71,
+          "rgbaSha256": "a3fedf014c2d9f8231a5ffaa2dca4fd34774e09c5adcf1faa6ed9d4416080627",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "李云舟 Astra",
+          "style": 2,
+          "width": 420,
+          "height": 82,
+          "rgbaSha256": "cc9494478fe07a951708f8bf04d4663509094e81d5bff8cd984980da3ae8e5fa",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "李云舟 Astra",
+          "style": 3,
+          "width": 386,
+          "height": 168,
+          "rgbaSha256": "f78801af10e1fc3d35e3afcea5ce7afcb19e1608d1ca2f1985aa18ddc7621dc0",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "李云舟 Astra",
+          "style": 4,
+          "width": 250,
+          "height": 107,
+          "rgbaSha256": "ceba9859e63e8fe179752f87de5389000b0f9aee89f5684438117dffb9950a6a",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "Alexander Montgomery",
+          "style": 0,
+          "width": 141,
+          "height": 29,
+          "rgbaSha256": "de7bfd48749e13632977d410e9eb9ca4bf766fcaab4255f3a7117e014dc4dbe6",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "Alexander Montgomery",
+          "style": 1,
+          "width": 420,
+          "height": 70,
+          "rgbaSha256": "7c7191a08be248a67a30aa49997ef4df435a3685d80dd3160f46e5b65957f16e",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "Alexander Montgomery",
+          "style": 2,
+          "width": 420,
+          "height": 70,
+          "rgbaSha256": "9a6e6d5a3dac6587b1016513a2862ebd81f91e68623731298a36695e88c7378a",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "Alexander Montgomery",
+          "style": 3,
+          "width": 420,
+          "height": 174,
+          "rgbaSha256": "021941a01af737c159b9c2e3e3dd5d6e3a8464c429c90ba65051a0653b2cf491",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "Alexander Montgomery",
+          "style": 4,
+          "width": 378,
+          "height": 145,
+          "rgbaSha256": "b39f5fc317770620b4856a0529e6b7d743e3a9e8c24440f212747e040473f87d",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-font-reused-for-cjk",
+          "name": "陈明华",
+          "style": 0,
+          "width": 56,
+          "height": 25,
+          "rgbaSha256": "d6c8c9e3a316489f80499dc8047201b1676d7153b0e614abd5506e67fe040855",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-font-reused-for-cjk",
+          "name": "陈明华",
+          "style": 1,
+          "width": 190,
+          "height": 75,
+          "rgbaSha256": "f78094e0b8e311a1a1833ee84a531186a1eefc3701fa135adbe6cfcaf7c88ac2",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-font-reused-for-cjk",
+          "name": "陈明华",
+          "style": 2,
+          "width": 420,
+          "height": 157,
+          "rgbaSha256": "05b485e3e53a08e5511cfa21dff5c3f052f7f00b430d6af32e10791b0e49e291",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-font-reused-for-cjk",
+          "name": "陈明华",
+          "style": 3,
+          "width": 206,
+          "height": 112,
+          "rgbaSha256": "98bbfa5d29a25193f1a65cadbaf7a690d376ae94b5bd47ceef62284d87edf8c3",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-font-reused-for-cjk",
+          "name": "陈明华",
+          "style": 4,
+          "width": 141,
+          "height": 92,
+          "rgbaSha256": "9b9fb0ef24045f0ddc6b2d8401cc91622678bac19f5fbf1dbe05ce4d6740c9ed",
+          "differingBytes": 0
+        }
+      ]
+    },
+    {
+      "id": "liujianmaocao",
+      "family": "Astra Signature Liu Jian Mao Cao",
+      "cjkCodepointsCompared": 20992,
+      "supportedMappings": 6763,
+      "missing": "丂",
+      "missingRejectedBeforeShards": true,
+      "shardRequests": 13,
+      "pixelCases": [
+        {
+          "scope": "cjk-shards",
+          "name": "李云舟",
+          "style": 0,
+          "width": 57,
+          "height": 28,
+          "rgbaSha256": "175e8a7837859b774fb0f1f8470c11134e893bb48e4468e40a4a8dcca6668971",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "李云舟",
+          "style": 1,
+          "width": 199,
+          "height": 82,
+          "rgbaSha256": "590c9a7f433a92d45dd414755674c1ebfd550d3745f6365f0f98dfd38eba3695",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "李云舟",
+          "style": 2,
+          "width": 420,
+          "height": 168,
+          "rgbaSha256": "48195983d62eca9fc02cedefaf7ca5f69a7f809f311145ab989cca3d606279e6",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "李云舟",
+          "style": 3,
+          "width": 215,
+          "height": 125,
+          "rgbaSha256": "eb1962fb37db8478e21e7237349ebf3f2ad21db56fc7f7ea8d543b18bfa92854",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "李云舟",
+          "style": 4,
+          "width": 146,
+          "height": 101,
+          "rgbaSha256": "a3afeb490112a4d7edcc5820593d73ae6dc050c86b059e69a1b679f6195f14c7",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "张思雨",
+          "style": 0,
+          "width": 62,
+          "height": 26,
+          "rgbaSha256": "d7172ac6ec9c5d34c7ec25e395bbf4bfea5109c88cb3e515d2e675d243c8c538",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "张思雨",
+          "style": 1,
+          "width": 216,
+          "height": 76,
+          "rgbaSha256": "9067449f9b277d9c462e32fac1c28a034ad89a1a64ca432890f9d81b3bdca6d0",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "张思雨",
+          "style": 2,
+          "width": 419,
+          "height": 140,
+          "rgbaSha256": "fef04f15a70c39517e274e0a08609c44d86dc2e5b79b8ba00ad97320240dc66c",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "张思雨",
+          "style": 3,
+          "width": 234,
+          "height": 120,
+          "rgbaSha256": "dd37ce55f3ba78957087fd5f757930f529af3c35b1bfc8de9e92209bf1d8dcc8",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "张思雨",
+          "style": 4,
+          "width": 160,
+          "height": 92,
+          "rgbaSha256": "59a9680700dbed7fb8949e0349cb9e9e50fd045f65a17af945a9840e5c1035c7",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "林晓晚",
+          "style": 0,
+          "width": 61,
+          "height": 26,
+          "rgbaSha256": "b1025f5c4ffc87fa7743c19fcbf44ac03cc18e44bb2a312388063c19ab67b733",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "林晓晚",
+          "style": 1,
+          "width": 216,
+          "height": 78,
+          "rgbaSha256": "744a48d27cef7fba0228653f83e760b0d7fb82c5d31b844c8c726e2f6e3a3747",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "林晓晚",
+          "style": 2,
+          "width": 420,
+          "height": 146,
+          "rgbaSha256": "5aebc179dcae27d8596b35cc88575a4b01b483c62676a8af894e4119081f2e7f",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "林晓晚",
+          "style": 3,
+          "width": 235,
+          "height": 133,
+          "rgbaSha256": "e85ca4a3ac3bdce41ff0d38450aba933e05f5ae03379080d807c93790d20a9a6",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "林晓晚",
+          "style": 4,
+          "width": 161,
+          "height": 97,
+          "rgbaSha256": "77d6180c5413bc8330cb4953d0327ee1af3cc4af629de4d0e1d5354cc761b2cb",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "欧阳修",
+          "style": 0,
+          "width": 60,
+          "height": 26,
+          "rgbaSha256": "e2ac637c0997863eceeb09aa36c96fec351823843cafece0310344af89b5b4c3",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "欧阳修",
+          "style": 1,
+          "width": 210,
+          "height": 78,
+          "rgbaSha256": "9326107891e76e56c60d254a243fb4609fbafbdf8b03dcb1aeda643ddb9a643d",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "欧阳修",
+          "style": 2,
+          "width": 420,
+          "height": 150,
+          "rgbaSha256": "ae5a53b623f40712c1f0430eaa33efb7e6e3cb320c82ccb8b57e8ded2262bdf9",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "欧阳修",
+          "style": 3,
+          "width": 230,
+          "height": 131,
+          "rgbaSha256": "adaaba682971d0d38e74903be5890c06de7be0258c0c6fa1f7077b184307cff7",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "欧阳修",
+          "style": 4,
+          "width": 160,
+          "height": 103,
+          "rgbaSha256": "16431937b3cdc9f70ee5838504c6ec733c2e5b8b65b727aa2a7d9cba2a02d2cd",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "一丁七",
+          "style": 0,
+          "width": 61,
+          "height": 24,
+          "rgbaSha256": "4553e23dfa688ff628b35ea2ee2b3e33516ce65ce9bdfa63f84a0846206bdfac",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "一丁七",
+          "style": 1,
+          "width": 213,
+          "height": 73,
+          "rgbaSha256": "e391212db79e6294dccc01491c3bb46773ca9325f3e7b18a0884a9e3452ac94b",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "一丁七",
+          "style": 2,
+          "width": 420,
+          "height": 138,
+          "rgbaSha256": "97f3ca8574cf601819fd96b227661de8602da88203dedd95cb65160b8312c893",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "一丁七",
+          "style": 3,
+          "width": 233,
+          "height": 99,
+          "rgbaSha256": "79293c89f0b53be329bc01a53b7c1a1c1f6e944c8f8387f77f01ec29dc7206b5",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "一丁七",
+          "style": 4,
+          "width": 156,
+          "height": 69,
+          "rgbaSha256": "2dd018f40243af79334d70add85e2784f040d6259b390d103efaa56215102e40",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "左右天地",
+          "style": 0,
+          "width": 78,
+          "height": 25,
+          "rgbaSha256": "da664f62a047357e8ab2c3dcf8b6059ee5c5a0346678e7cf5eafc20e4163346a",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "左右天地",
+          "style": 1,
+          "width": 281,
+          "height": 74,
+          "rgbaSha256": "cd19311f41102b418d748bb402b40ad3ebb107c6307077b994b2fd79a4f4e9a9",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "左右天地",
+          "style": 2,
+          "width": 420,
+          "height": 105,
+          "rgbaSha256": "b6a31658a9db9368ce0ecdbd90c09ba83add202d3a17c5b22470008f5ce9be92",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "左右天地",
+          "style": 3,
+          "width": 309,
+          "height": 152,
+          "rgbaSha256": "38bdd02dc89b913d3905d2952dfe8d2d99559e40af36aa774acb665b1871d13b",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "左右天地",
+          "style": 4,
+          "width": 208,
+          "height": 107,
+          "rgbaSha256": "fb73474d0f658c8e45cfdc8c1624b5466cb5042356eba182ce8d40e010a7455c",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "AV ff fi",
+          "style": 0,
+          "width": 72,
+          "height": 25,
+          "rgbaSha256": "d2a588aef2756c25424f56f3bb022244dae3ba97a2910790dc4793938fa2f40d",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "AV ff fi",
+          "style": 1,
+          "width": 256,
+          "height": 75,
+          "rgbaSha256": "a8a65560fe60c1a318c6074b783de2834fd4527aafa5c1787755026aea9bdab1",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "AV ff fi",
+          "style": 2,
+          "width": 420,
+          "height": 117,
+          "rgbaSha256": "a753fa7fad1fa1edcd32a9c340247625293676a65014cc6e8e3997a51f84a33e",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "AV ff fi",
+          "style": 3,
+          "width": 286,
+          "height": 136,
+          "rgbaSha256": "51175aa2bf65e81d966ee0faf2b68b66b3746f0aa1f0753a7cbf0f03ca979a2c",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "AV ff fi",
+          "style": 4,
+          "width": 185,
+          "height": 101,
+          "rgbaSha256": "6839a2bb8e279f6aff08a7e4b185cdfbd2acf2a6c7e788bb70f37b0f53188d76",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "李云舟 Astra",
+          "style": 0,
+          "width": 107,
+          "height": 28,
+          "rgbaSha256": "1b86500dca9fbb5a99ca5cd7a6ee014f8bf9a94603e6d8aa2a76dca366035e5a",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "李云舟 Astra",
+          "style": 1,
+          "width": 396,
+          "height": 82,
+          "rgbaSha256": "ae1ded115563796bc667616c21a30cb07410fb66dfa7e7be325af1ab3b660099",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "李云舟 Astra",
+          "style": 2,
+          "width": 420,
+          "height": 86,
+          "rgbaSha256": "b9a1c52d9708e8a2d2c711fe6a7ff6cc85717eaec1cde193f2d3b30aa5364afa",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "李云舟 Astra",
+          "style": 3,
+          "width": 420,
+          "height": 180,
+          "rgbaSha256": "874b11332b6302ea02684766b4a3c9da84e75906c440a9749554e84668156927",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "李云舟 Astra",
+          "style": 4,
+          "width": 286,
+          "height": 127,
+          "rgbaSha256": "9a7b8c8a3827e518ea3ea712bbe572cc001d37e867e2d42d4b1b2cd1750a0282",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "Alexander Montgomery",
+          "style": 0,
+          "width": 168,
+          "height": 28,
+          "rgbaSha256": "e6e99632dd6069e314983d83b283feff08008e8756e67edb2bcac467c6338a0c",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "Alexander Montgomery",
+          "style": 1,
+          "width": 420,
+          "height": 58,
+          "rgbaSha256": "bf39e51e4be5c27f06e31fae93e9cdeef770ce256846c07a83adc78a3ff1251f",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "Alexander Montgomery",
+          "style": 2,
+          "width": 420,
+          "height": 58,
+          "rgbaSha256": "aaf700379926974d7d8da0265df7b5c383cd0aab0a49c8bf5abaf663ee1ab88e",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "Alexander Montgomery",
+          "style": 3,
+          "width": 420,
+          "height": 165,
+          "rgbaSha256": "88ec1e6b0da131754963ab4432d7d12cb91501bc9cd9648f4fbc5a06322e3da1",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "Alexander Montgomery",
+          "style": 4,
+          "width": 420,
+          "height": 154,
+          "rgbaSha256": "92c621ed4e217737ec2ad64dd7c2fc893ef20d21492cb3bf7ded69622b89b841",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-font-reused-for-cjk",
+          "name": "陈明华",
+          "style": 0,
+          "width": 61,
+          "height": 28,
+          "rgbaSha256": "f1508095a6101a4137e0835060b9c51b04d29155f74c16278c30d9535958d5bb",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-font-reused-for-cjk",
+          "name": "陈明华",
+          "style": 1,
+          "width": 216,
+          "height": 82,
+          "rgbaSha256": "a4db4041126f55d2595f0a65afee43bf1fe6544e764ccfe1b3eb3c6a83ffad77",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-font-reused-for-cjk",
+          "name": "陈明华",
+          "style": 2,
+          "width": 419,
+          "height": 153,
+          "rgbaSha256": "2db871bacf64ac171a10c4864662b4cd290b39cdabe73f84fcb7e0018dff3ba2",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-font-reused-for-cjk",
+          "name": "陈明华",
+          "style": 3,
+          "width": 233,
+          "height": 125,
+          "rgbaSha256": "5d12704c04c3d3626b7d5420176d85a266a78f0126a9a44a6d01d71462a63c74",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-font-reused-for-cjk",
+          "name": "陈明华",
+          "style": 4,
+          "width": 159,
+          "height": 102,
+          "rgbaSha256": "7b22f6b9f5f2a0ed45b2470d7557b031e968bb80482e304cb4302f8839ce0215",
+          "differingBytes": 0
+        }
+      ]
+    },
+    {
+      "id": "zcoolxiaowei",
+      "family": "Astra Signature ZCOOL XiaoWei",
+      "cjkCodepointsCompared": 20992,
+      "supportedMappings": 6763,
+      "missing": "丂",
+      "missingRejectedBeforeShards": true,
+      "shardRequests": 13,
+      "pixelCases": [
+        {
+          "scope": "cjk-shards",
+          "name": "李云舟",
+          "style": 0,
+          "width": 62,
+          "height": 25,
+          "rgbaSha256": "00dc7fd8e1323adf7a73fa6aac01e497752a0a2235893e17f4fb9906b3077377",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "李云舟",
+          "style": 1,
+          "width": 216,
+          "height": 74,
+          "rgbaSha256": "2e886cb8e3e5f3987d316d1295dc087f0b89807afb6bb3594bfd6706276a0c34",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "李云舟",
+          "style": 2,
+          "width": 420,
+          "height": 137,
+          "rgbaSha256": "a454fe98e87720c2aba6e2cd1bab7e8dd7d3e1262200dfb7e8b3f00e9f1ee124",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "李云舟",
+          "style": 3,
+          "width": 240,
+          "height": 123,
+          "rgbaSha256": "1ccd1d4fea616d4245bb57bf349b120829594f8a46207ae0fe10d1abf6f579a2",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "李云舟",
+          "style": 4,
+          "width": 159,
+          "height": 95,
+          "rgbaSha256": "c0fe68642b98474b366539290998d90c1d366a17c9fa875c59ee0455ffe86021",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "张思雨",
+          "style": 0,
+          "width": 63,
+          "height": 25,
+          "rgbaSha256": "8a47158a26b8047b26227b974bdf62983544b1785eefd391a6d38d921756bc37",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "张思雨",
+          "style": 1,
+          "width": 221,
+          "height": 70,
+          "rgbaSha256": "f7b094c1ef0ca74c18428561fdfa85c940f1cb85393c046016e38f303ca82a88",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "张思雨",
+          "style": 2,
+          "width": 419,
+          "height": 128,
+          "rgbaSha256": "5f392d8b81c3f95a29c817555f0b71d105541560a61b9d4aa0fd8ff0af654400",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "张思雨",
+          "style": 3,
+          "width": 245,
+          "height": 129,
+          "rgbaSha256": "bbad56cd54eb1ec3955649a38e3d6768ad8fc06997a8254a93e71993f6ab3364",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "张思雨",
+          "style": 4,
+          "width": 164,
+          "height": 99,
+          "rgbaSha256": "1ec9801476edffb52506a8ec32a397dd6fe404e87dbd5ef3485c09b1aae6e239",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "林晓晚",
+          "style": 0,
+          "width": 61,
+          "height": 25,
+          "rgbaSha256": "3d0eea994b919938100f3987cede3dc2dfc4d2829d0f8a4093fd52743827403d",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "林晓晚",
+          "style": 1,
+          "width": 214,
+          "height": 73,
+          "rgbaSha256": "e9ad953694539771cc53395382ccf75199927b4b78e0dc678e202832f061ae39",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "林晓晚",
+          "style": 2,
+          "width": 419,
+          "height": 137,
+          "rgbaSha256": "f7add8127134ffd512a0da3fe31530f6fd8eeaf6c185c42536edb4fd3556a65f",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "林晓晚",
+          "style": 3,
+          "width": 236,
+          "height": 129,
+          "rgbaSha256": "ec61b604f8035659721714c536082a739ba0902893d36a8b8701db9e1ff12ee3",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "林晓晚",
+          "style": 4,
+          "width": 162,
+          "height": 98,
+          "rgbaSha256": "703e3df11fedc326a2ac24dbd3ff7d714bbd71c3595363b3afc61c4d35d530dc",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "欧阳修",
+          "style": 0,
+          "width": 62,
+          "height": 25,
+          "rgbaSha256": "c174bd9696d935c0848e28e2baeea3fbf662bfdc159ebf68124707a4860299d8",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "欧阳修",
+          "style": 1,
+          "width": 216,
+          "height": 73,
+          "rgbaSha256": "4285a72b34a9a081a60fc8d2b0f0e5c4cde014f84f377e7a360deb41445e147d",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "欧阳修",
+          "style": 2,
+          "width": 419,
+          "height": 136,
+          "rgbaSha256": "4606c85cd783da2a06ab6e2f97849ea860e05bd204c54163ec5c5a78129294b9",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "欧阳修",
+          "style": 3,
+          "width": 245,
+          "height": 126,
+          "rgbaSha256": "2f02219d68ae0fe24b8edc135d8d60cb0ea8bcbb97e82435aa6dddf1b30d0aa0",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "欧阳修",
+          "style": 4,
+          "width": 163,
+          "height": 98,
+          "rgbaSha256": "289867c734b951e58572f98d3f411b2ce42c4d308735dc2ca24b149097f6602a",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "一丁七",
+          "style": 0,
+          "width": 62,
+          "height": 23,
+          "rgbaSha256": "80a1dbd933789e4f115fdd5850f14f5ad1b08fd664e1123c4c0f1cfa31de07ce",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "一丁七",
+          "style": 1,
+          "width": 214,
+          "height": 69,
+          "rgbaSha256": "8ac4f2fb2547bb060206b38050414390d4f7025da097cccb2b63bac36ee69bb2",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "一丁七",
+          "style": 2,
+          "width": 420,
+          "height": 129,
+          "rgbaSha256": "29d614999e6e47a00d30b9f5026da0d129eabfbe64949f6a2f34d9e31e2bcbb9",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "一丁七",
+          "style": 3,
+          "width": 233,
+          "height": 109,
+          "rgbaSha256": "96f0cc0eee42b37994cc34468d944a4041cb9124a5bae7473b24343afd75093d",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "一丁七",
+          "style": 4,
+          "width": 160,
+          "height": 75,
+          "rgbaSha256": "4e7037b9ac20da914436b1b2c21f55e0547a1a3493c6fa78edefe3e91888f070",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "左右天地",
+          "style": 0,
+          "width": 80,
+          "height": 23,
+          "rgbaSha256": "9e38a69693e43840d981b7b3694ef4e1c04e4df1c430e5ac562609cb5a6bb6b1",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "左右天地",
+          "style": 1,
+          "width": 291,
+          "height": 67,
+          "rgbaSha256": "3367a176d608ed47b55ff0e59b4e8fef5deaac176b40e35a887be8c70bdc39ee",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "左右天地",
+          "style": 2,
+          "width": 420,
+          "height": 92,
+          "rgbaSha256": "0f28c7a3a950122b04add5de2aa59d267c4c43cd2a8092b88f2a151699d59d08",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "左右天地",
+          "style": 3,
+          "width": 325,
+          "height": 150,
+          "rgbaSha256": "0866b87877ea83e2af1458152ea8b0d5e096d99372e0cf5a8b0c888b30166e15",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "左右天地",
+          "style": 4,
+          "width": 214,
+          "height": 112,
+          "rgbaSha256": "3adeca474782dac6f2e5e63b43d1d951121b2837d7e0b3383826f0cd32a83526",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "AV ff fi",
+          "style": 0,
+          "width": 63,
+          "height": 22,
+          "rgbaSha256": "bebd7a9d69450b10b640a829e0f5eea5dcacc5fed7a16e7b0b8b58a8f96c0974",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "AV ff fi",
+          "style": 1,
+          "width": 219,
+          "height": 58,
+          "rgbaSha256": "f1a9dba6451a71e11840ff16ec0e731edc5850b96661c4fee6c1478bdd79d78a",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "AV ff fi",
+          "style": 2,
+          "width": 420,
+          "height": 105,
+          "rgbaSha256": "3d15ffa5e02658897dd087c09dbd996fde51854d583f0b62da5324d6913b2c64",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "AV ff fi",
+          "style": 3,
+          "width": 251,
+          "height": 119,
+          "rgbaSha256": "28d1bb7afaea7f53e495f6e965c803cde837d122fd1494faa2b60ae3f1637e97",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "AV ff fi",
+          "style": 4,
+          "width": 156,
+          "height": 91,
+          "rgbaSha256": "d706b9ff8c3109cd0354b0df4b1222a6ba8179801ad4d28f3a4f210b753814a7",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "李云舟 Astra",
+          "style": 0,
+          "width": 108,
+          "height": 25,
+          "rgbaSha256": "6ea0987c576f60b165a7b29d2193fa27d7e8ca11d8ef9a77647a4547889fc555",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "李云舟 Astra",
+          "style": 1,
+          "width": 401,
+          "height": 74,
+          "rgbaSha256": "cd0f52da4c4458ad8aa7dfa039958a93c5b63087d1eae1ef503f7475fe40785f",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "李云舟 Astra",
+          "style": 2,
+          "width": 420,
+          "height": 76,
+          "rgbaSha256": "bcf865cb649fae9e44919993a4b1306c1c1acaa3fb229a51fd8de63641a8fb23",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "李云舟 Astra",
+          "style": 3,
+          "width": 420,
+          "height": 178,
+          "rgbaSha256": "e684599af9dcd6ecae4c186591d9f71c77d9d6aab9c6749e19f7c47a3c013c19",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "李云舟 Astra",
+          "style": 4,
+          "width": 293,
+          "height": 121,
+          "rgbaSha256": "bf2e6fb3ab4d4bd4c8652224e325f4e2e152c04fea5c202ea20cac5aad1714d5",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "Alexander Montgomery",
+          "style": 0,
+          "width": 189,
+          "height": 24,
+          "rgbaSha256": "70182b708cba0a0a84d82ddccba69db34d732e5952174658ed4dce91e99671f7",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "Alexander Montgomery",
+          "style": 1,
+          "width": 420,
+          "height": 44,
+          "rgbaSha256": "dd87fc1b85143d6b570a0920ea40b4b2ad0f5ee75a04cee59497d5062ee3f4e8",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "Alexander Montgomery",
+          "style": 2,
+          "width": 420,
+          "height": 43,
+          "rgbaSha256": "485f312b0ddf700d509f34273359e4f9eaf3f82a3d76f45207802841bf8b399f",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "Alexander Montgomery",
+          "style": 3,
+          "width": 420,
+          "height": 155,
+          "rgbaSha256": "3aa3bc4abf736d3e2a65cf8af9561a3113a05371a21a591e8edb44fe5788078a",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "Alexander Montgomery",
+          "style": 4,
+          "width": 420,
+          "height": 158,
+          "rgbaSha256": "4293093f74b39e1b1048882e25b0868e44c863f607f95f07957470ae356d62eb",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-font-reused-for-cjk",
+          "name": "陈明华",
+          "style": 0,
+          "width": 62,
+          "height": 25,
+          "rgbaSha256": "50a28092db66096895d1b6b4cd992884fc691bd9a1e7336b39190ddd9c53fee0",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-font-reused-for-cjk",
+          "name": "陈明华",
+          "style": 1,
+          "width": 217,
+          "height": 70,
+          "rgbaSha256": "fa348f6689feef76d6ad0553d4baea751bd99696f034b8fc629f72a2a709db70",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-font-reused-for-cjk",
+          "name": "陈明华",
+          "style": 2,
+          "width": 420,
+          "height": 130,
+          "rgbaSha256": "24e4c5e4046f197abdbfd3c55896ea1bb7dabf386097e0733b8e3933614dbe19",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-font-reused-for-cjk",
+          "name": "陈明华",
+          "style": 3,
+          "width": 243,
+          "height": 125,
+          "rgbaSha256": "6bc716797d1ae456397deaefbc9b0fb9167546e4200faac66665fcd8c2848203",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-font-reused-for-cjk",
+          "name": "陈明华",
+          "style": 4,
+          "width": 164,
+          "height": 100,
+          "rgbaSha256": "d8649664ce0f4206049f2023749f4d93f66853a731c003224b0b133cdc9b1c26",
+          "differingBytes": 0
+        }
+      ]
+    },
+    {
+      "id": "zcoolkuaile",
+      "family": "Astra Signature ZCOOL KuaiLe",
+      "cjkCodepointsCompared": 20992,
+      "supportedMappings": 6766,
+      "missing": "丂",
+      "missingRejectedBeforeShards": true,
+      "shardRequests": 13,
+      "pixelCases": [
+        {
+          "scope": "cjk-shards",
+          "name": "李云舟",
+          "style": 0,
+          "width": 58,
+          "height": 25,
+          "rgbaSha256": "85b02a536af0357ff879b97b46879830e4dd999fac4403729fa909b9819fb13e",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "李云舟",
+          "style": 1,
+          "width": 202,
+          "height": 72,
+          "rgbaSha256": "7069e3b322d62a74db9e4624da03d5da9aa4ef9c123ba8cdef0f2ef24f8097f5",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "李云舟",
+          "style": 2,
+          "width": 420,
+          "height": 142,
+          "rgbaSha256": "f5934ffc96fa9874607bbba027f8b73c5da7d839dd3cfc3775f1b6a25d42cdf5",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "李云舟",
+          "style": 3,
+          "width": 225,
+          "height": 117,
+          "rgbaSha256": "569ff1c707d28195f2c2b7aac63cb16a10044e9fa72700ef67165b9d47f35eed",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "李云舟",
+          "style": 4,
+          "width": 148,
+          "height": 89,
+          "rgbaSha256": "4ce2ba8628774d570ebed355c4adc7ed92dca5dc3d6b151228173333ac5fb835",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "张思雨",
+          "style": 0,
+          "width": 59,
+          "height": 25,
+          "rgbaSha256": "08f20778f66a47306d4cb1f011ff4f04b679b5991ce315df6cef17387c9dd460",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "张思雨",
+          "style": 1,
+          "width": 202,
+          "height": 70,
+          "rgbaSha256": "8501d2cb741758330e05cc92185c0a0d3b97f0e8d37b2349159339e8b2f7c15e",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "张思雨",
+          "style": 2,
+          "width": 420,
+          "height": 138,
+          "rgbaSha256": "62136e2ab0e131df4be8541f62227317f7159207c65572282193f01d1c036b4e",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "张思雨",
+          "style": 3,
+          "width": 226,
+          "height": 126,
+          "rgbaSha256": "e4e85ccca4b5239d5409c9969f6f91efe471f8fb34c6343b7c10146966f79474",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "张思雨",
+          "style": 4,
+          "width": 154,
+          "height": 95,
+          "rgbaSha256": "d23f086530f5d61230cf6e84f794954efcc99a010ff9d16ec115e895c9829279",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "林晓晚",
+          "style": 0,
+          "width": 59,
+          "height": 25,
+          "rgbaSha256": "21e6e57054d0dc0b54f078a502976c06c4b5e2a9dcde059e5a3cebb3007ed4b9",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "林晓晚",
+          "style": 1,
+          "width": 206,
+          "height": 72,
+          "rgbaSha256": "02822dc7f3cffd8ef50582e238e1557764f46c192027572a1a7138b70fbecc0b",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "林晓晚",
+          "style": 2,
+          "width": 420,
+          "height": 141,
+          "rgbaSha256": "75468d57836f450e479eca4a25e9e3c185e9586faeed5e23de98305e506a3b45",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "林晓晚",
+          "style": 3,
+          "width": 231,
+          "height": 127,
+          "rgbaSha256": "fcc2ebcd34bdf2005ba4dde659a7bfa84fa59fb16fd8f26efa0444bba848a48a",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "林晓晚",
+          "style": 4,
+          "width": 151,
+          "height": 95,
+          "rgbaSha256": "0f28d7e159e331ad5ba74ca913eab53ec49c91c3190ba315071d28dbbb21ab94",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "欧阳修",
+          "style": 0,
+          "width": 59,
+          "height": 25,
+          "rgbaSha256": "9b517c7f91db333387fc507152b5905ac294d308cca3758595dd8537e3bf5fcd",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "欧阳修",
+          "style": 1,
+          "width": 206,
+          "height": 72,
+          "rgbaSha256": "135ad5fc9b7f44ec7cdb59a1b5546eb0dae6b331ba5ae52344ad6699f4daf54e",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "欧阳修",
+          "style": 2,
+          "width": 420,
+          "height": 139,
+          "rgbaSha256": "50149117af480e75f8417c589fe2f37eb6ffe12736de15fa76d79206bd013d7a",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "欧阳修",
+          "style": 3,
+          "width": 229,
+          "height": 117,
+          "rgbaSha256": "b3500ccf7fb69d8907abb41d5ab9f7577cf00173c34b44e51cf5ec24785a7226",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "欧阳修",
+          "style": 4,
+          "width": 154,
+          "height": 93,
+          "rgbaSha256": "56f28940023e322546421e55f8bb2b66fe3693d7249dc41adf81e431c7992e58",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "一丁七",
+          "style": 0,
+          "width": 58,
+          "height": 23,
+          "rgbaSha256": "7eec9368cee289529af49a9a26ce2bb106bfb18628b28022866bd5f33e288266",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "一丁七",
+          "style": 1,
+          "width": 200,
+          "height": 66,
+          "rgbaSha256": "f2cda1f77f498ea9e44c8bfed1bbfa8c91a3d07deb17848143c17cf696e7afc8",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "一丁七",
+          "style": 2,
+          "width": 420,
+          "height": 131,
+          "rgbaSha256": "1ad1040b4e8fe0784d8df2be4a2d55ac14520d0fe232ff3d4ab1493c39afb041",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "一丁七",
+          "style": 3,
+          "width": 222,
+          "height": 99,
+          "rgbaSha256": "d3da4463a88f0eddbccc257ccf637633ac82272054667971aaadc1cd09bd557c",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "一丁七",
+          "style": 4,
+          "width": 143,
+          "height": 70,
+          "rgbaSha256": "ffed033c8ce60a7e1b33be6ea390c89decd37612f2254a0e7d57a61d09b0db56",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "左右天地",
+          "style": 0,
+          "width": 75,
+          "height": 25,
+          "rgbaSha256": "71b9d20d0ccbe4869bacf48f0c6e274ce41f30e72de293168a4c6d65d776de5e",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "左右天地",
+          "style": 1,
+          "width": 271,
+          "height": 70,
+          "rgbaSha256": "07393d314f96260177a2bf176acf13b38e91098ffa65e63e370b3ea67ab2ba49",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "左右天地",
+          "style": 2,
+          "width": 420,
+          "height": 105,
+          "rgbaSha256": "7ea5466710e38efa9b5f829c021dd3e7d0dfa9d9eb6dc66e70bef89b11d9815a",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "左右天地",
+          "style": 3,
+          "width": 302,
+          "height": 144,
+          "rgbaSha256": "0e5a739534ec753d7ef5c5c6d33c0c98cdd35d5be61eb6aa93a3a5faf8e0355f",
+          "differingBytes": 0
+        },
+        {
+          "scope": "cjk-shards",
+          "name": "左右天地",
+          "style": 4,
+          "width": 200,
+          "height": 110,
+          "rgbaSha256": "e5a19acf3614c96f2b4335e175a53df97b1056156f6984dcb1e4f7b2e5a2faac",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "AV ff fi",
+          "style": 0,
+          "width": 74,
+          "height": 24,
+          "rgbaSha256": "bc47be9ffdeebc01a0ad03b36437f89aa37a73b4cacd285f11d37a3cdb78cec5",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "AV ff fi",
+          "style": 1,
+          "width": 264,
+          "height": 67,
+          "rgbaSha256": "0a22c7f3ce623a7fd7c3302f89f0185a128364a4c5317d1f592132473090c151",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "AV ff fi",
+          "style": 2,
+          "width": 420,
+          "height": 101,
+          "rgbaSha256": "e9c3c2996ef58b5fa356e84c2c41043c9c43ba86c775277e921524643dcfd55d",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "AV ff fi",
+          "style": 3,
+          "width": 300,
+          "height": 137,
+          "rgbaSha256": "ab27166b0cc4f22d1cf1a798dea3dfa519d88b7434b37d7145fcef2f8c9f74cb",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "AV ff fi",
+          "style": 4,
+          "width": 187,
+          "height": 100,
+          "rgbaSha256": "473092f60323f3ed7418162b15f87eecbb2cdaefee461d23e42c3678eec47ebb",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "李云舟 Astra",
+          "style": 0,
+          "width": 117,
+          "height": 25,
+          "rgbaSha256": "f417252fd956d3e0c4aec5d75ccc96337168ee521dbf537263e5334b50729ec2",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "李云舟 Astra",
+          "style": 1,
+          "width": 420,
+          "height": 69,
+          "rgbaSha256": "80c87372ca9605193cc12ae25824ea65db56c1854a7d6ae09fa4de359506fb51",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "李云舟 Astra",
+          "style": 2,
+          "width": 419,
+          "height": 68,
+          "rgbaSha256": "be9895932c8026cedb58259a150f79c2298fd7cc31dba54073fddca750cf43ad",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "李云舟 Astra",
+          "style": 3,
+          "width": 420,
+          "height": 173,
+          "rgbaSha256": "3c5a7002b8c28895f0ed563c73ee634d79bd3dd3d99d5c6a6d78a261622db0d2",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "李云舟 Astra",
+          "style": 4,
+          "width": 317,
+          "height": 132,
+          "rgbaSha256": "c6b660dca7fc9f0063e360c64e9cc052fb5cc24df5713fd891c81ce47db7a4de",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "Alexander Montgomery",
+          "style": 0,
+          "width": 213,
+          "height": 24,
+          "rgbaSha256": "311d25235e5676be733c8c691fb21c2e00e58084597164827639bd8989b56948",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "Alexander Montgomery",
+          "style": 1,
+          "width": 420,
+          "height": 38,
+          "rgbaSha256": "ca379400f7b060be0223b9a5d47f4182d9c7d887b288db573b021eedc516b28f",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "Alexander Montgomery",
+          "style": 2,
+          "width": 420,
+          "height": 37,
+          "rgbaSha256": "c2dfdb8c9d0eb421a199128b85b9da640baa9cf451733ef6d32ac9f51df727c4",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "Alexander Montgomery",
+          "style": 3,
+          "width": 420,
+          "height": 149,
+          "rgbaSha256": "227c5cbc6c2c438d7224158e3705efc9d1496a0e6c2650be3e54f5463a99f8c0",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-fallback-after-shards",
+          "name": "Alexander Montgomery",
+          "style": 4,
+          "width": 420,
+          "height": 157,
+          "rgbaSha256": "04becdd9d4994b4bdcfe6f9bdfeaa5c9a56a894ed52605409e52101d511d492b",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-font-reused-for-cjk",
+          "name": "陈明华",
+          "style": 0,
+          "width": 59,
+          "height": 24,
+          "rgbaSha256": "92c90e1816b82ecda2f885826feb721f4b91e82523ead0a357d0624ce2fa5ceb",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-font-reused-for-cjk",
+          "name": "陈明华",
+          "style": 1,
+          "width": 205,
+          "height": 70,
+          "rgbaSha256": "383a9e179e4de20e5e16df341192654ca21a32b607ea03ddb6bdbcf9d496f0af",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-font-reused-for-cjk",
+          "name": "陈明华",
+          "style": 2,
+          "width": 419,
+          "height": 136,
+          "rgbaSha256": "0904a9a3775703baabc9a58e6650c5905fae3130ffc3403e8606caaefbe155b9",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-font-reused-for-cjk",
+          "name": "陈明华",
+          "style": 3,
+          "width": 229,
+          "height": 119,
+          "rgbaSha256": "bb0310a1decc701d0ce9ad322a77cd627a4e5c7717952533b6cbae17db4bf4ac",
+          "differingBytes": 0
+        },
+        {
+          "scope": "full-font-reused-for-cjk",
+          "name": "陈明华",
+          "style": 4,
+          "width": 154,
+          "height": 96,
+          "rgbaSha256": "a453c717144493616d509c26ebe9d8d048cbf768aedb0cb95b57f893e0294feb",
+          "differingBytes": 0
+        }
+      ]
+    }
+  ],
+  "rejections": [
+    "null",
+    "version",
+    "source",
+    "domain",
+    "block",
+    "short-coverage",
+    "bad-base64",
+    "empty-shards",
+    "duplicate-shard",
+    "missing-covered-shard",
+    "unaligned-range",
+    "bad-last",
+    "traversal-path",
+    "wrong-block-file",
+    "bad-bytes",
+    "bad-hash"
+  ],
+  "faults": [
+    {
+      "target": "manifest",
+      "fault": "http503",
+      "hit": 1,
+      "message": "书写字体加载失败，请重试；现有名字库会保留",
+      "retry": true
+    },
+    {
+      "target": "manifest",
+      "fault": "same-size-checksum",
+      "hit": 1,
+      "message": "书写字体校验失败，请刷新后重试",
+      "retry": true
+    },
+    {
+      "target": "shard",
+      "fault": "http503",
+      "hit": 3,
+      "message": "书写字体加载失败，请重试；现有名字库会保留",
+      "retry": true
+    },
+    {
+      "target": "shard",
+      "fault": "same-size-checksum",
+      "hit": 3,
+      "message": "书写字体校验失败，请刷新后重试",
+      "retry": true
+    },
+    {
+      "target": "shard",
+      "fault": "truncated",
+      "hit": 3,
+      "message": "书写字体文件不完整，请重试",
+      "retry": true
+    }
+  ],
+  "cancellations": [
+    {
+      "preabort": "AbortError",
+      "resourceCountAfterPreabort": 0,
+      "canceled": {
+        "name": "AbortError",
+        "elapsedMs": 30.299999997019768
+      },
+      "kept": "Astra Signature Long Cang",
+      "requests": {
+        "/fonts/signature/cjk/longcang/manifest-c58c046d967c.json": 1,
+        "/fonts/signature/cjk/longcang/6700-44f9f676f359.woff2": 1,
+        "/fonts/signature/cjk/longcang/4e00-03f49a01e5c2.woff2": 1,
+        "/fonts/signature/cjk/longcang/8200-6937f1fd88bd.woff2": 1
+      }
+    }
+  ],
+  "weakNetwork": [
+    {
+      "format": "complete-woff2",
+      "downloadBytesPerSecond": 524288,
+      "latencyMs": 80,
+      "cacheDisabled": true,
+      "elapsedMs": 6532.5,
+      "resources": [
+        {
+          "path": "/fonts/signature/MaShanZheng-Regular.woff2",
+          "bodyBytes": 3279386,
+          "decodedBodyBytes": 3279386,
+          "transferBytes": 3279686
+        }
+      ],
+      "bodyBytes": 3279386,
+      "transferBytes": 3279686,
+      "frames": 395,
+      "rafP95": 16.800000000000182,
+      "rafMax": 66.59999999999945,
+      "mainThreadLongTasks": [
+        89
+      ]
+    },
+    {
+      "format": "cjk-shards",
+      "downloadBytesPerSecond": 524288,
+      "latencyMs": 80,
+      "cacheDisabled": true,
+      "elapsedMs": 528.4000000059605,
+      "resources": [
+        {
+          "path": "/fonts/signature/cjk/mashanzheng/manifest-ad131cde6be5.json",
+          "bodyBytes": 15967,
+          "decodedBodyBytes": 15967,
+          "transferBytes": 16267
+        },
+        {
+          "path": "/fonts/signature/cjk/mashanzheng/6700-624e362e5dc1.woff2",
+          "bodyBytes": 48564,
+          "decodedBodyBytes": 48564,
+          "transferBytes": 48864
+        },
+        {
+          "path": "/fonts/signature/cjk/mashanzheng/4e00-f369415aa95e.woff2",
+          "bodyBytes": 46140,
+          "decodedBodyBytes": 46140,
+          "transferBytes": 46440
+        },
+        {
+          "path": "/fonts/signature/cjk/mashanzheng/8200-b33e239b001d.woff2",
+          "bodyBytes": 57224,
+          "decodedBodyBytes": 57224,
+          "transferBytes": 57524
+        }
+      ],
+      "bodyBytes": 167895,
+      "transferBytes": 169095,
+      "frames": 38,
+      "rafP95": 16.899999999999977,
+      "rafMax": 16.899999999999977,
+      "mainThreadLongTasks": []
+    }
+  ],
+  "ui": {
+    "retryConfirmed": true,
+    "delayedFontMs": 450,
+    "sixFontSwitches": true,
+    "newNameLoadsNewBlocks": true,
+    "onlyCjkShardsAndManifests": true,
+    "fontRequests": [
+      "/fonts/signature/cjk/mashanzheng/manifest-ad131cde6be5.json",
+      "/fonts/signature/cjk/mashanzheng/manifest-ad131cde6be5.json",
+      "/fonts/signature/cjk/mashanzheng/6700-624e362e5dc1.woff2",
+      "/fonts/signature/cjk/mashanzheng/4e00-f369415aa95e.woff2",
+      "/fonts/signature/cjk/mashanzheng/8200-b33e239b001d.woff2",
+      "/fonts/signature/cjk/longcang/manifest-c58c046d967c.json",
+      "/fonts/signature/cjk/longcang/6700-44f9f676f359.woff2",
+      "/fonts/signature/cjk/longcang/4e00-03f49a01e5c2.woff2",
+      "/fonts/signature/cjk/longcang/8200-6937f1fd88bd.woff2",
+      "/fonts/signature/cjk/zhimangxing/manifest-bb692a3bf61c.json",
+      "/fonts/signature/cjk/zhimangxing/6700-8198e079137a.woff2",
+      "/fonts/signature/cjk/zhimangxing/4e00-0c794b867325.woff2",
+      "/fonts/signature/cjk/zhimangxing/8200-767119c388ab.woff2",
+      "/fonts/signature/cjk/liujianmaocao/manifest-d4d54a26a9fb.json",
+      "/fonts/signature/cjk/liujianmaocao/6700-7a30841f07dc.woff2",
+      "/fonts/signature/cjk/liujianmaocao/4e00-f5fc94e0b4e9.woff2",
+      "/fonts/signature/cjk/liujianmaocao/8200-74656d1b6496.woff2",
+      "/fonts/signature/cjk/zcoolxiaowei/manifest-e48a51ff8218.json",
+      "/fonts/signature/cjk/zcoolxiaowei/6700-5b7b7cd7e5d9.woff2",
+      "/fonts/signature/cjk/zcoolxiaowei/4e00-0132e9dd924e.woff2",
+      "/fonts/signature/cjk/zcoolxiaowei/8200-2a1ae50eb47c.woff2",
+      "/fonts/signature/cjk/zcoolkuaile/manifest-04c55c5f1425.json",
+      "/fonts/signature/cjk/zcoolkuaile/6700-d8f481c43925.woff2",
+      "/fonts/signature/cjk/zcoolkuaile/4e00-a5ea5a9c2007.woff2",
+      "/fonts/signature/cjk/zcoolkuaile/8200-9366f6b7aa18.woff2",
+      "/fonts/signature/cjk/zcoolkuaile/9600-c591796f2e82.woff2",
+      "/fonts/signature/cjk/zcoolkuaile/6600-80eb73d6a5f5.woff2",
+      "/fonts/signature/cjk/zcoolkuaile/5300-382ec02b5234.woff2"
+    ],
+    "bothThemes": true,
+    "mobileWidth": 390
+  },
+  "errors": []
+}

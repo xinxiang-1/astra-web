@@ -27,7 +27,7 @@ const context = await browser.newContext({
 async function newPage(fontRoute) {
   const page = await context.newPage()
   page.on('pageerror', (error) => report.errors.push(error.message))
-  if (fontRoute) await page.route('**/fonts/signature/*.woff2', fontRoute)
+  if (fontRoute) await page.route('**/fonts/signature/**', fontRoute)
   // Isolate the library timing from the page's automatic live font preview preload.
   await page.route(`${base}/__signature_font_bank_contract`, (route) =>
     route.fulfill({ contentType: 'text/html', body: '<!doctype html><html><body></body></html>' }),
@@ -36,9 +36,10 @@ async function newPage(fontRoute) {
   return page
 }
 try {
-  let requests = 0
+  const requests = new Map()
   const page = await newPage(async (route) => {
-    requests++
+    const pathname = new URL(route.request().url()).pathname
+    requests.set(pathname, (requests.get(pathname) || 0) + 1)
     await new Promise((resolve) => setTimeout(resolve, 450))
     await route.continue()
   })
@@ -73,13 +74,14 @@ try {
       source: first[0].source,
     }
   })
-  assert.equal(requests, 1, 'Concurrent generators must share one font load')
+  assert.equal(requests.size, 4, 'CJK name must load one manifest and three blocks')
+  assert.ok([...requests.values()].every((n) => n === 1), 'Concurrent generators must share each font resource')
   assert(deterministic.loaded && deterministic.elapsed >= 450)
   assert.deepEqual(deterministic.hashes, deterministic.repeated)
   assert.notEqual(deterministic.hashes[0], deterministic.alternate)
   report.fontLoading.push({
     case: 'cold-delayed-single-flight-determinism',
-    requests,
+    requests: Object.fromEntries(requests),
     ...deterministic,
   })
   const coverage = await page.evaluate(async () => {
@@ -539,7 +541,8 @@ try {
     const m = await import('/src/lib/signature-portrait/bank.ts')
     return (await m.listBanks()).find((b) => b.label === '李云舟')
   })
-  await ui.route('**/fonts/signature/LongCang-Regular.woff2', (route) =>
+  const longcangTransport = /\/fonts\/signature\/(?:LongCang-Regular\.woff2|cjk\/longcang\/[^/]+)$/
+  await ui.route(longcangTransport, (route) =>
     route.fulfill({ status: 503, body: 'temporary failure' }),
   )
   await ui.getByRole('combobox', { name: '书写字体' }).selectOption('longcang')
@@ -554,7 +557,7 @@ try {
     old,
   )
   assert(preserved)
-  await ui.unroute('**/fonts/signature/LongCang-Regular.woff2')
+  await ui.unroute(longcangTransport)
   await ui.locator('input[maxlength="32"]').fill('张思雨')
   await ui.getByRole('button', { name: '一键生成 10 种写法', exact: true }).click()
   await ui.waitForFunction(

@@ -1,6 +1,7 @@
 /** Pinned, locally hosted OFL 1.1 fonts. Never substitute a platform font silently. */
 import { SIGNATURE_FONT_EXTENSION } from './font-extension'
 import { SIGNATURE_WEB_FONTS } from './font-web'
+import { isSubsetName, loadSubsetFont } from './font-subset-loader'
 export const SIGNATURE_FONTS = [
   {
     id: 'mashanzheng',
@@ -146,10 +147,16 @@ function abortable<T>(promise: Promise<T>, signal?: AbortSignal): Promise<T> {
 }
 
 export async function loadSignatureFont(id: SignatureFontId, text: string, signal?: AbortSignal) {
+  signal?.throwIfAborted()
   const descriptor = SIGNATURE_FONTS.find((f) => f.id === id)
   if (!descriptor) throw new Error('请选择有效的书写字体')
   const transport = SIGNATURE_WEB_FONTS[descriptor.id]
   if (transport.sourceSha256 !== descriptor.sha256) throw new Error('书写字体来源校验不一致')
+  if (isSubsetName(text) && !fonts.has(id)) {
+    const family = await abortable(loadSubsetFont(descriptor, text, readWoff2Coverage), signal)
+    signal?.throwIfAborted()
+    return family
+  }
   let promise = fonts.get(id)
   if (!promise) {
     promise = (async () => {

@@ -1,0 +1,42 @@
+{
+  "failedRuns": [],
+  "finalRuns": [
+    "subsets-edge",
+    "subsets-chrome",
+    "full-edge",
+    "full-chrome",
+    "bank-edge",
+    "bank-chrome",
+    "cutout-edge",
+    "cutout-chrome"
+  ],
+  "preliminary": [
+    {
+      "run": "signature-subsets-edge-core-r1",
+      "passed": true,
+      "excludedFromFinalCaseCounts": true,
+      "scope": "core only; no weak network or production UI"
+    }
+  ],
+  "builds": [
+    {
+      "run": "r1",
+      "passed": true
+    },
+    {
+      "run": "r2",
+      "passed": true,
+      "change": "Static font provenance README/SOURCES; same JS/CSS content hash filenames"
+    }
+  ],
+  "notes": [
+    "Primary subset weak-network samples ran serially after the first build completed and before the second build began",
+    "The full Edge regression started while the second documentation-only build was completing; its auxiliary performance samples are excluded from subset conclusions",
+    "No product/generator rerun failures or accumulated counts; first Git index audit found four ignored evidence logs, explicitly staged without changing bytes"
+  ],
+  "indexAudit": {
+    "firstFailed": true,
+    "cause": "Existing *.log ignore rule excluded four owned logs from directory staging",
+    "repairRecord": "checks/staging-repair.json"
+  }
+}

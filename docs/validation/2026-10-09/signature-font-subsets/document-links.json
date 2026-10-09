@@ -1,0 +1,810 @@
+{
+  "checkedFiles": [
+    "public/fonts/signature/SOURCES.md",
+    "public/fonts/signature/cjk/README.md",
+    "docs/plans/signature-font-subsets-2026-10-09.md",
+    "docs/plans/signature-portrait.md",
+    "docs/plans/product-master-plan.md",
+    "docs/validation/2026-10-09/signature-font-subsets/README.md",
+    "../astra-cloud/docs/plans/signature-font-subsets-2026-10-09.md",
+    "../astra-cloud/docs/plans/launch-readiness-2026-10-08.md"
+  ],
+  "broken": [],
+  "links": [
+    {
+      "file": "public/fonts/signature/SOURCES.md",
+      "target": "../../../src/lib/signature-portrait/font-web.ts",
+      "exists": true
+    },
+    {
+      "file": "public/fonts/signature/SOURCES.md",
+      "target": "../../../scripts/build-signature-font-web.py",
+      "exists": true
+    },
+    {
+      "file": "public/fonts/signature/SOURCES.md",
+      "target": "../../../scripts/signature-font-transport-requirements.txt",
+      "exists": true
+    },
+    {
+      "file": "public/fonts/signature/SOURCES.md",
+      "target": "../../../docs/plans/signature-font-web-2026-10-09.md",
+      "exists": true
+    },
+    {
+      "file": "public/fonts/signature/SOURCES.md",
+      "target": "./cjk/README.md",
+      "exists": true
+    },
+    {
+      "file": "public/fonts/signature/SOURCES.md",
+      "target": "../../../src/lib/signature-portrait/font-subsets.ts",
+      "exists": true
+    },
+    {
+      "file": "public/fonts/signature/SOURCES.md",
+      "target": "../../../scripts/build-signature-font-subsets.py",
+      "exists": true
+    },
+    {
+      "file": "public/fonts/signature/SOURCES.md",
+      "target": "../../../docs/plans/signature-font-subsets-2026-10-09.md",
+      "exists": true
+    },
+    {
+      "file": "public/fonts/signature/SOURCES.md",
+      "target": "./mashanzheng-OFL.txt",
+      "exists": true
+    },
+    {
+      "file": "public/fonts/signature/SOURCES.md",
+      "target": "./longcang-OFL.txt",
+      "exists": true
+    },
+    {
+      "file": "public/fonts/signature/SOURCES.md",
+      "target": "./zhimangxing-OFL.txt",
+      "exists": true
+    },
+    {
+      "file": "public/fonts/signature/SOURCES.md",
+      "target": "./liujianmaocao-OFL.txt",
+      "exists": true
+    },
+    {
+      "file": "public/fonts/signature/SOURCES.md",
+      "target": "./zcoolxiaowei-OFL.txt",
+      "exists": true
+    },
+    {
+      "file": "public/fonts/signature/SOURCES.md",
+      "target": "./zcoolkuaile-OFL.txt",
+      "exists": true
+    },
+    {
+      "file": "public/fonts/signature/SOURCES.md",
+      "target": "../../../docs/research/2026-10-07-signature-fonts/sources.json",
+      "exists": true
+    },
+    {
+      "file": "public/fonts/signature/SOURCES.md",
+      "target": "../../../docs/research/2026-10-04-signature-fonts/README.md",
+      "exists": true
+    },
+    {
+      "file": "public/fonts/signature/SOURCES.md",
+      "target": "../../../docs/research/2026-10-04-signature-fonts/sources.json",
+      "exists": true
+    },
+    {
+      "file": "public/fonts/signature/cjk/README.md",
+      "target": "../SOURCES.md",
+      "exists": true
+    },
+    {
+      "file": "public/fonts/signature/cjk/README.md",
+      "target": "./mashanzheng/OFL.txt",
+      "exists": true
+    },
+    {
+      "file": "public/fonts/signature/cjk/README.md",
+      "target": "./longcang/OFL.txt",
+      "exists": true
+    },
+    {
+      "file": "public/fonts/signature/cjk/README.md",
+      "target": "./zhimangxing/OFL.txt",
+      "exists": true
+    },
+    {
+      "file": "public/fonts/signature/cjk/README.md",
+      "target": "./liujianmaocao/OFL.txt",
+      "exists": true
+    },
+    {
+      "file": "public/fonts/signature/cjk/README.md",
+      "target": "./zcoolxiaowei/OFL.txt",
+      "exists": true
+    },
+    {
+      "file": "public/fonts/signature/cjk/README.md",
+      "target": "./zcoolkuaile/OFL.txt",
+      "exists": true
+    },
+    {
+      "file": "public/fonts/signature/cjk/README.md",
+      "target": "../../../../scripts/build-signature-font-subsets.py",
+      "exists": true
+    },
+    {
+      "file": "public/fonts/signature/cjk/README.md",
+      "target": "../../../../scripts/signature-font-transport-requirements.txt",
+      "exists": true
+    },
+    {
+      "file": "public/fonts/signature/cjk/README.md",
+      "target": "../../../../docs/plans/signature-font-subsets-2026-10-09.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/signature-font-subsets-2026-10-09.md",
+      "target": "./signature-font-web-2026-10-09.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/signature-font-subsets-2026-10-09.md",
+      "target": "./site-local-fonts-2026-10-09.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/signature-font-subsets-2026-10-09.md",
+      "target": "../../public/fonts/signature/cjk/README.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/signature-font-subsets-2026-10-09.md",
+      "target": "../validation/2026-10-09/signature-font-subsets/README.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/signature-font-subsets-2026-10-09.md",
+      "target": "../../../astra-cloud/docs/plans/launch-readiness-2026-10-08.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/signature-portrait.md",
+      "target": "./signature-font-subsets-2026-10-09.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/signature-portrait.md",
+      "target": "./signature-font-web-2026-10-09.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/signature-portrait.md",
+      "target": "./signature-font-cutout-2026-10-07.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/signature-portrait.md",
+      "target": "./signature-photo-region-2026-10-08.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/signature-portrait.md",
+      "target": "./signature-wash-styles-2026-10-07.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/signature-portrait.md",
+      "target": "./signature-project-iteration-2026-10-04.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/signature-portrait.md",
+      "target": "./signature-png-background-2026-10-07.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/signature-portrait.md",
+      "target": "./signature-ultra-png-2026-10-07.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/signature-portrait.md",
+      "target": "./signature-font-bank-iteration-2026-10-04.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/signature-portrait.md",
+      "target": "../research/2026-10-04-signature-fonts/README.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/signature-portrait.md",
+      "target": "./signature-raster-iteration-2026-10-04.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/signature-portrait.md",
+      "target": "./signature-print-iteration-2026-10-04.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/signature-portrait.md",
+      "target": "./signature-capacity-iteration-2026-10-04.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/signature-portrait.md",
+      "target": "./signature-ink-pack-v1-iteration-2026-10-01.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/signature-portrait.md",
+      "target": "./signature-native-v2-iteration-2026-10-01.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/signature-portrait.md",
+      "target": "./signature-engine-iteration-2026-10-01.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/signature-portrait.md",
+      "target": "./signature-engine-iteration-2026-09-30.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/signature-portrait.md",
+      "target": "./signature-portrait-wvs-history.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./signature-font-subsets-2026-10-09.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./site-local-fonts-2026-10-09.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./signature-font-web-2026-10-09.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./signature-portrait.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./refund-verification-workbench-2026-10-09.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./refund-verification-2026-10-09.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./payment-verification-workbench-2026-10-09.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./payment-verification-2026-10-09.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./reconciliation-workbench-2026-10-09.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./reconciliation-admin-2026-10-09.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./admin-bootstrap-2026-10-08.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./admin-refunds-2026-10-08.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./refund-application-2026-10-08.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./refund-worker-2026-10-08.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./payment-initiation-2026-10-08.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./order-confirmation-2026-10-08.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./order-recovery-2026-10-08.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "../../../astra-cloud/docs/plans/launch-readiness-2026-10-08.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./growth-playbook-2026-10-08.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./studio-effects-standard.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./hover-parity-iteration-2026-10-02.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./commercial-quality-execution-2026-10-04.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./project-pause-handoff-2026-10-03.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./signature-font-bank-iteration-2026-10-04.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./cinematic-motion-iteration-2026-10-02.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "../../../astra-cloud/docs/plans/gateway-boundary-iteration-2026-10-02.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./kinetic-motion-iteration-2026-10-02.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "../prototypes/v2-kinetic-motion/index.html",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "../../src/router/index.ts",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "../../src/App.vue",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "../../src/styles/art-system.css",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "../../src/lib/art-projects.ts",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./art-gallery-implementation.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "../../package.json",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "../../../astra-cloud/README.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./prd-commerce.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./prd-commerce.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "../../../astra-cloud/docs/commerce/api-contracts.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "../../../astra-cloud/docs/commerce/database-design.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./prd-commerce.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./commerce-catalog-iteration-2026-10-02.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./commerce-orders-iteration-2026-10-02.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./payment-provider-iteration-2026-10-02.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./payment-flow-iteration-2026-10-02.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./editor-state-iteration-2026-10-02.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./template-delivery-iteration-2026-10-02.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./template-entry-iteration-2026-10-02.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./art-effects-iteration-2026-10-01.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./project-package-iteration-2026-10-01.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./signature-engine-iteration-2026-10-01.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./art-editor-iteration-2026-10-01.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./art-quality-iteration-2026-10-01.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./art-quality-v4-iteration-2026-10-01.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./art-quality-v5-iteration-2026-10-01.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./art-quality-v6-iteration-2026-10-01.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./art-quality-v7-iteration-2026-10-01.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./signature-native-v2-iteration-2026-10-01.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./signature-ink-pack-v1-iteration-2026-10-01.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./project-package-iteration-2026-10-01.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./studio-motion-iteration-2026-10-02.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./studio-effects-standard.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./depth-motion-iteration-2026-10-02.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./fluid-motion-iteration-2026-10-02.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "../../../astra-cloud/docs/commerce/entitlements-runtime.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "../../../astra-cloud/docs/plans/entitlement-query-iteration-2026-10-02.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./spatial-motion-iteration-2026-10-03.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "../prototypes/v6-spatial-motion/index.html",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./studio-rift-prototype-2026-10-03.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "../prototypes/v7-studio-rift/index.html",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "../../../astra-cloud/docs/commerce/private-delivery-runtime.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./studio-rift-refinement-2026-10-03.md",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "../prototypes/v8-studio-rift/index.html",
+      "exists": true
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "target": "./studio-rift-integration-2026-10-03.md",
+      "exists": true
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-font-subsets/README.md",
+      "target": "../../../plans/signature-font-subsets-2026-10-09.md",
+      "exists": true
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-font-subsets/README.md",
+      "target": "./summary.json",
+      "exists": true
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-font-subsets/README.md",
+      "target": "./generation/report.json",
+      "exists": true
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-font-subsets/README.md",
+      "target": "./subsets-edge/report.json",
+      "exists": true
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-font-subsets/README.md",
+      "target": "./subsets-chrome/report.json",
+      "exists": true
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-font-subsets/README.md",
+      "target": "./full-edge/report.json",
+      "exists": true
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-font-subsets/README.md",
+      "target": "./full-chrome/report.json",
+      "exists": true
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-font-subsets/README.md",
+      "target": "./bank-edge/report.json",
+      "exists": true
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-font-subsets/README.md",
+      "target": "./bank-chrome/report.json",
+      "exists": true
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-font-subsets/README.md",
+      "target": "./cutout-edge/report.json",
+      "exists": true
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-font-subsets/README.md",
+      "target": "./cutout-chrome/report.json",
+      "exists": true
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-font-subsets/README.md",
+      "target": "./run-history.json",
+      "exists": true
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-font-subsets/README.md",
+      "target": "./source-index.json",
+      "exists": true
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-font-subsets/README.md",
+      "target": "./visual-review.json",
+      "exists": true
+    },
+    {
+      "file": "docs/validation/2026-10-09/signature-font-subsets/README.md",
+      "target": "./checks/staging-repair.json",
+      "exists": true
+    },
+    {
+      "file": "../astra-cloud/docs/plans/signature-font-subsets-2026-10-09.md",
+      "target": "../../../astra-web/docs/plans/signature-font-subsets-2026-10-09.md",
+      "exists": true
+    },
+    {
+      "file": "../astra-cloud/docs/plans/signature-font-subsets-2026-10-09.md",
+      "target": "../../../astra-web/docs/validation/2026-10-09/signature-font-subsets/README.md",
+      "exists": true
+    },
+    {
+      "file": "../astra-cloud/docs/plans/signature-font-subsets-2026-10-09.md",
+      "target": "./launch-readiness-2026-10-08.md",
+      "exists": true
+    },
+    {
+      "file": "../astra-cloud/docs/plans/signature-font-subsets-2026-10-09.md",
+      "target": "../../../astra-web/docs/plans/growth-playbook-2026-10-08.md",
+      "exists": true
+    },
+    {
+      "file": "../astra-cloud/docs/plans/launch-readiness-2026-10-08.md",
+      "target": "./signature-font-subsets-2026-10-09.md",
+      "exists": true
+    },
+    {
+      "file": "../astra-cloud/docs/plans/launch-readiness-2026-10-08.md",
+      "target": "./site-local-fonts-2026-10-09.md",
+      "exists": true
+    },
+    {
+      "file": "../astra-cloud/docs/plans/launch-readiness-2026-10-08.md",
+      "target": "./signature-font-web-2026-10-09.md",
+      "exists": true
+    },
+    {
+      "file": "../astra-cloud/docs/plans/launch-readiness-2026-10-08.md",
+      "target": "./refund-verification-workbench-2026-10-09.md",
+      "exists": true
+    },
+    {
+      "file": "../astra-cloud/docs/plans/launch-readiness-2026-10-08.md",
+      "target": "./refund-verification-2026-10-09.md",
+      "exists": true
+    },
+    {
+      "file": "../astra-cloud/docs/plans/launch-readiness-2026-10-08.md",
+      "target": "./payment-verification-workbench-2026-10-09.md",
+      "exists": true
+    },
+    {
+      "file": "../astra-cloud/docs/plans/launch-readiness-2026-10-08.md",
+      "target": "./payment-verification-2026-10-09.md",
+      "exists": true
+    },
+    {
+      "file": "../astra-cloud/docs/plans/launch-readiness-2026-10-08.md",
+      "target": "./reconciliation-workbench-2026-10-09.md",
+      "exists": true
+    },
+    {
+      "file": "../astra-cloud/docs/plans/launch-readiness-2026-10-08.md",
+      "target": "./reconciliation-admin-2026-10-09.md",
+      "exists": true
+    },
+    {
+      "file": "../astra-cloud/docs/plans/launch-readiness-2026-10-08.md",
+      "target": "./admin-bootstrap-2026-10-08.md",
+      "exists": true
+    },
+    {
+      "file": "../astra-cloud/docs/plans/launch-readiness-2026-10-08.md",
+      "target": "./admin-refunds-2026-10-08.md",
+      "exists": true
+    },
+    {
+      "file": "../astra-cloud/docs/plans/launch-readiness-2026-10-08.md",
+      "target": "./refund-application-2026-10-08.md",
+      "exists": true
+    },
+    {
+      "file": "../astra-cloud/docs/plans/launch-readiness-2026-10-08.md",
+      "target": "./refund-worker-2026-10-08.md",
+      "exists": true
+    },
+    {
+      "file": "../astra-cloud/docs/plans/launch-readiness-2026-10-08.md",
+      "target": "./payment-initiation-2026-10-08.md",
+      "exists": true
+    },
+    {
+      "file": "../astra-cloud/docs/plans/launch-readiness-2026-10-08.md",
+      "target": "./order-confirmation-2026-10-08.md",
+      "exists": true
+    },
+    {
+      "file": "../astra-cloud/docs/plans/launch-readiness-2026-10-08.md",
+      "target": "./order-recovery-2026-10-08.md",
+      "exists": true
+    },
+    {
+      "file": "../astra-cloud/docs/plans/launch-readiness-2026-10-08.md",
+      "target": "../../../astra-web/docs/plans/growth-playbook-2026-10-08.md",
+      "exists": true
+    }
+  ]
+}

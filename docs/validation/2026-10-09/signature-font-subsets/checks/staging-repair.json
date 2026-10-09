@@ -1,0 +1,11 @@
+{
+  "firstIndexCheck": {
+    "passed": false,
+    "error": "Evidence changed during Git conversion: docs/validation/2026-10-09/signature-font-subsets/checks/build.log",
+    "actualIndexBlob": null,
+    "expectedBlob": "d9a690f30528ebf51f82e898dcbb947f4c8076f0",
+    "cause": "Directory git add obeyed the existing *.log ignore rule; four owned evidence logs were not staged. No font or report bytes changed."
+  },
+  "repair": "Explicitly stage only generation/console.log and checks/build.log, eslint.log, type-check.log, then verify all artifacts and source/asset blobs against the index.",
+  "productTestFailure": false
+}

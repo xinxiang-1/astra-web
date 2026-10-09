@@ -1,0 +1,251 @@
+{
+  "passed": true,
+  "scope": "Pinned CJK-only shard geometry/hints/metrics/coverage and layout audit; browser pixels pending",
+  "tools": {
+    "fonttools": "4.60.2",
+    "brotli": "1.1.0"
+  },
+  "assetsWritten": true,
+  "fonts": [
+    {
+      "id": "mashanzheng",
+      "sourceSha256": "6d2546bb189c732a8ca29af9e22457b152387d158aa459e4ac2ce1e51788b7fb",
+      "unicodeGlyphsVerified": 6763,
+      "shards": 81,
+      "shardBytes": 3522440,
+      "manifestBytes": 15967,
+      "layoutAudit": [
+        {
+          "table": "GSUB",
+          "lookup": 1,
+          "inputGlyphs": 100,
+          "cjkInputs": 0
+        },
+        {
+          "table": "GPOS",
+          "lookup": 2,
+          "inputGlyphs": 6,
+          "cjkInputs": 0
+        },
+        {
+          "table": "GPOS",
+          "lookup": 2,
+          "inputGlyphs": 45,
+          "cjkInputs": 0
+        },
+        {
+          "table": "GPOS",
+          "lookup": 2,
+          "inputGlyphs": 8,
+          "cjkInputs": 0
+        }
+      ],
+      "licenseSha256": "d7bdb1cee215b689e23c2f95672a6084c790542170648267a55114103d756a08",
+      "sourceTtfRetained": true
+    },
+    {
+      "id": "longcang",
+      "sourceSha256": "e5bf2c3f24ef2327c6f136d8f73e2f9dfdf44896fdbeb35a9515f44777bb91bc",
+      "unicodeGlyphsVerified": 6763,
+      "shards": 81,
+      "shardBytes": 3214968,
+      "manifestBytes": 15967,
+      "layoutAudit": [
+        {
+          "table": "GPOS",
+          "lookup": 2,
+          "inputGlyphs": 4,
+          "cjkInputs": 0
+        },
+        {
+          "table": "GPOS",
+          "lookup": 2,
+          "inputGlyphs": 7,
+          "cjkInputs": 0
+        },
+        {
+          "table": "GPOS",
+          "lookup": 2,
+          "inputGlyphs": 10,
+          "cjkInputs": 0
+        },
+        {
+          "table": "GPOS",
+          "lookup": 2,
+          "inputGlyphs": 7,
+          "cjkInputs": 0
+        },
+        {
+          "table": "GPOS",
+          "lookup": 2,
+          "inputGlyphs": 1,
+          "cjkInputs": 0
+        },
+        {
+          "table": "GPOS",
+          "lookup": 2,
+          "inputGlyphs": 1,
+          "cjkInputs": 0
+        }
+      ],
+      "licenseSha256": "603546b7219a94bb59bf8294458194a5010119486354092b66a09a3fd61aeacc",
+      "sourceTtfRetained": true
+    },
+    {
+      "id": "zhimangxing",
+      "sourceSha256": "644e0cae9b40f0b10ab729a01bd32032e3973bac22be3dccae01bf6ae7fde969",
+      "unicodeGlyphsVerified": 6763,
+      "shards": 81,
+      "shardBytes": 2547752,
+      "manifestBytes": 15967,
+      "layoutAudit": [
+        {
+          "table": "GPOS",
+          "lookup": 2,
+          "inputGlyphs": 8,
+          "cjkInputs": 0
+        },
+        {
+          "table": "GPOS",
+          "lookup": 2,
+          "inputGlyphs": 23,
+          "cjkInputs": 0
+        },
+        {
+          "table": "GPOS",
+          "lookup": 2,
+          "inputGlyphs": 19,
+          "cjkInputs": 0
+        },
+        {
+          "table": "GPOS",
+          "lookup": 2,
+          "inputGlyphs": 5,
+          "cjkInputs": 0
+        }
+      ],
+      "licenseSha256": "10947328199e369a3e6b4a67e8e5507ed99d5bbb264a1f156415aa9b665e4d15",
+      "sourceTtfRetained": true
+    },
+    {
+      "id": "liujianmaocao",
+      "sourceSha256": "cab396b91a5b7c0b4005a35891180d06e6751f5ac261fe680aec65c1ae209033",
+      "unicodeGlyphsVerified": 6763,
+      "shards": 81,
+      "shardBytes": 2600900,
+      "manifestBytes": 15967,
+      "layoutAudit": [],
+      "licenseSha256": "ff56684b0212481e7c3886c26d5a655de9b211c8119e5ccc756138a97b066acc",
+      "sourceTtfRetained": true
+    },
+    {
+      "id": "zcoolxiaowei",
+      "sourceSha256": "a42b620140f493db42f741351dfbf343c0936d58588ee8004b8b2a218d997ff1",
+      "unicodeGlyphsVerified": 6763,
+      "shards": 81,
+      "shardBytes": 3244488,
+      "manifestBytes": 15967,
+      "layoutAudit": [
+        {
+          "table": "GSUB",
+          "lookup": 1,
+          "inputGlyphs": 100,
+          "cjkInputs": 0
+        },
+        {
+          "table": "GSUB",
+          "lookup": 1,
+          "inputGlyphs": 100,
+          "cjkInputs": 0
+        },
+        {
+          "table": "GPOS",
+          "lookup": 2,
+          "inputGlyphs": 1,
+          "cjkInputs": 0
+        },
+        {
+          "table": "GPOS",
+          "lookup": 2,
+          "inputGlyphs": 4,
+          "cjkInputs": 0
+        },
+        {
+          "table": "GPOS",
+          "lookup": 2,
+          "inputGlyphs": 18,
+          "cjkInputs": 0
+        },
+        {
+          "table": "GPOS",
+          "lookup": 2,
+          "inputGlyphs": 6,
+          "cjkInputs": 0
+        },
+        {
+          "table": "GPOS",
+          "lookup": 2,
+          "inputGlyphs": 4,
+          "cjkInputs": 0
+        },
+        {
+          "table": "GPOS",
+          "lookup": 2,
+          "inputGlyphs": 26,
+          "cjkInputs": 0
+        },
+        {
+          "table": "GPOS",
+          "lookup": 2,
+          "inputGlyphs": 26,
+          "cjkInputs": 0
+        },
+        {
+          "table": "GPOS",
+          "lookup": 2,
+          "inputGlyphs": 3,
+          "cjkInputs": 0
+        },
+        {
+          "table": "GPOS",
+          "lookup": 2,
+          "inputGlyphs": 21,
+          "cjkInputs": 0
+        }
+      ],
+      "licenseSha256": "a094514ca57cf8f9c5e8d8d1adab5d8cd3a377297ff016f9df2c05b3ecd77f0a",
+      "sourceTtfRetained": true
+    },
+    {
+      "id": "zcoolkuaile",
+      "sourceSha256": "812a6fc1fe54b6d73a419245c32dfeba8aa33104d5be90d1cf6af082007cb71d",
+      "unicodeGlyphsVerified": 6766,
+      "shards": 81,
+      "shardBytes": 1013928,
+      "manifestBytes": 15957,
+      "layoutAudit": [
+        {
+          "table": "GSUB",
+          "lookup": 1,
+          "inputGlyphs": 100,
+          "cjkInputs": 0
+        },
+        {
+          "table": "GSUB",
+          "lookup": 1,
+          "inputGlyphs": 100,
+          "cjkInputs": 0
+        },
+        {
+          "table": "GSUB",
+          "lookup": 1,
+          "inputGlyphs": 37,
+          "cjkInputs": 0
+        }
+      ],
+      "licenseSha256": "538078469839b4a2e7ad22bef4ebe41681a4e53749bb2a072144024f1d6d703d",
+      "sourceTtfRetained": true
+    }
+  ],
+  "scriptSha256": "18050ac0a40aeb84d57c25d2db2762804f7c7959bb693aa79dd7de7225b14b5c"
+}

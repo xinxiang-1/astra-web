@@ -103,13 +103,13 @@ try {
       await route.fulfill({ response, body: fault === 'truncated' ? bytes.subarray(0, bytes.length - 1) : bytes })
     })
     const message = await page.evaluate(async () => {
-      try { await (await import('/src/lib/signature-portrait/fonts.ts')).loadSignatureFont('mashanzheng', '李云舟'); return 'unexpected-success' }
+      try { await (await import('/src/lib/signature-portrait/fonts.ts')).loadSignatureFont('mashanzheng', 'Astra'); return 'unexpected-success' }
       catch (e) { return e.message }
     })
     assert.notEqual(message, 'unexpected-success')
     if (fault === 'same-size-checksum') assert.match(message, /校验失败/)
     await page.unrouteAll({ behavior: 'wait' })
-    const recovered = await page.evaluate(async () => (await import('/src/lib/signature-portrait/fonts.ts')).loadSignatureFont('mashanzheng', '李云舟'))
+    const recovered = await page.evaluate(async () => (await import('/src/lib/signature-portrait/fonts.ts')).loadSignatureFont('mashanzheng', 'Astra'))
     assert.equal(recovered, 'Astra Signature Ma Shan Zheng')
     report.failures.push({ fault, message, retry: true })
     await context.close()
@@ -121,8 +121,8 @@ try {
     const { loadSignatureFont } = await import('/src/lib/signature-portrait/fonts.ts')
     const controller = new AbortController(), start = performance.now()
     setTimeout(() => controller.abort(), 30)
-    const canceled = loadSignatureFont('longcang', '李云舟', controller.signal).catch((e) => ({ name: e.name, elapsed: performance.now() - start }))
-    const kept = loadSignatureFont('longcang', '张思雨')
+    const canceled = loadSignatureFont('longcang', 'Astra', controller.signal).catch((e) => ({ name: e.name, elapsed: performance.now() - start }))
+    const kept = loadSignatureFont('longcang', 'Alexander')
     const [a, b] = await Promise.all([canceled, kept])
     let missing
     try { await loadSignatureFont('longcang', '𠮷·') } catch (e) { missing = e.message }
@@ -152,7 +152,7 @@ try {
         const digest = Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256', bytes)), (v) => v.toString(16).padStart(2, '0')).join('')
         if (digest !== descriptor.sha256 || !readTrueTypeCoverage(bytes)(0x674e)) throw Error('Canonical baseline invalid')
         document.fonts.add(await new FontFace('Astra Serial Canonical', bytes, { style: 'normal', weight: '400' }).load())
-      } else await loadSignatureFont(descriptor.id, '李云舟')
+      } else await loadSignatureFont(descriptor.id, 'Astra')
       const elapsedMs = performance.now() - start
       await new Promise((r) => setTimeout(r, 100)); running = false; observer.disconnect()
       const sorted = frames.slice(1).sort((a, b) => a - b)
@@ -173,7 +173,7 @@ try {
   ui.on('pageerror', (e) => report.errors.push(e.message))
   await ui.route('**/fonts/signature/**', async (route) => {
     const pathname = new URL(route.request().url()).pathname
-    assert.ok(pathname.endsWith('.woff2'), 'Production must not download the canonical full TTF')
+    assert.ok(pathname.endsWith('.woff2') || /\/cjk\/[^/]+\/manifest-[a-f0-9]{12}\.json$/.test(pathname), 'Production must use WOFF2 and pinned CJK manifests')
     fontRequests.push(pathname)
     if (failFont) { await route.fulfill({ status: 503, body: 'owned font failure' }); return }
     await new Promise((r) => setTimeout(r, 450)); await route.continue()
@@ -201,7 +201,7 @@ try {
     assert.ok(await ui.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1))
     await panel.screenshot({ path: path.join(out, `font-web-${theme}-mobile.png`) })
   }
-  report.ui = { retryConfirmed: true, sixFontSwitches: true, onlyWoff2: true, delayedFontMs: 450, fontRequests, bothThemes: true, mobileWidth: 390 }
+  report.ui = { retryConfirmed: true, sixFontSwitches: true, onlyWoff2AndPinnedManifests: true, noCanonicalTtf: true, delayedFontMs: 450, fontRequests, bothThemes: true, mobileWidth: 390 }
   await uiContext.close()
   assert.deepEqual(report.errors, [])
   report.passed = true
