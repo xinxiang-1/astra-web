@@ -1,0 +1,18 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: An unchanged editor save created a duplicate backup version
+
+3 !== 2
+
+    at file:///E:/project/astra/astra-web/scripts/creative-workflow-package-ui.mjs:102:10 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 3,
+  expected: 2,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.12.0

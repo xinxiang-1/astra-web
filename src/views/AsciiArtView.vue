@@ -107,6 +107,16 @@ const route = useRoute()
 const projectTitle = ref('未命名作品')
 const projectId = ref('')
 const projectOrigin = ref<SignatureProjectOrigin>()
+const projectWorkflowKey = ref<string>()
+let workflowStoredSettings: Record<string, string | number | boolean> | null = null
+let workflowControlBaseline = ''
+function settingsForProject(settings: Record<string, string | number | boolean>) {
+  return projectWorkflowKey.value &&
+    workflowStoredSettings &&
+    JSON.stringify(settings) === workflowControlBaseline
+    ? { ...workflowStoredSettings }
+    : settings
+}
 const projectStatus = ref('仅保存在此浏览器')
 const savingProject = ref(false)
 const packingProject = ref(false)
@@ -1832,6 +1842,7 @@ async function loadFile(file: File | undefined) {
     }
     sourceFile = file
     projectOrigin.value = undefined
+    projectWorkflowKey.value = undefined
     sourceRevision.value++
     committed = true
     imageAspect.value = candidate.frame.width / candidate.frame.height
@@ -2960,7 +2971,7 @@ async function openExport() {
   exportOpen.value = true
 }
 async function saveProject() {
-  if (!sourceFile || savingProject.value || pending.value || downloading.value) return false
+  if (!sourceFile || loadingRouteProject || savingProject.value || pending.value || downloading.value) return false
   savingProject.value = true
   const captured = snapshot()
   const capturedRevision = sourceRevision.value
@@ -2973,8 +2984,9 @@ async function saveProject() {
       source: sourceFile,
       updatedAt: Date.now(),
       thumbnail: makeThumbnail(),
-      settings: JSON.parse(captured).settings,
+      settings: settingsForProject(JSON.parse(captured).settings),
       origin: projectOrigin.value,
+      workflowKey: projectWorkflowKey.value,
       engineVersion: editorEngine.value === 'calibrated' ? ART_ENGINE_VERSION : 'legacy-1',
     })
     if (capturedRevision !== sourceRevision.value) return false
@@ -3028,6 +3040,7 @@ async function clearArtwork() {
   resetAll()
   projectId.value = ''
   projectOrigin.value = undefined
+  projectWorkflowKey.value = undefined
   projectTitle.value = '未命名作品'
   savedSnapshot.value = ''
   projectStatus.value = '仅保存在此浏览器'
@@ -3040,7 +3053,7 @@ function onBeforeUnload(event: BeforeUnloadEvent) {
 onBeforeRouteLeave(() => requestLeave())
 onBeforeRouteUpdate((to, from) => to.fullPath === from.fullPath || requestLeave())
 async function downloadProjectPackage() {
-  if (!sourceFile || packingProject.value || pending.value || downloading.value) return
+  if (!sourceFile || loadingRouteProject || packingProject.value || pending.value || downloading.value) return
   packingProject.value = true
   packageStatus.value = '正在打包原始素材…'
   error.value = ''
@@ -3053,7 +3066,7 @@ async function downloadProjectPackage() {
       source: sourceFile,
       updatedAt: Date.now(),
       thumbnail: makeThumbnail(),
-      settings: captured.settings,
+      settings: settingsForProject(captured.settings),
       origin: projectOrigin.value,
       engineVersion: editorEngine.value === 'calibrated' ? ART_ENGINE_VERSION : 'legacy-1',
     })
@@ -3161,10 +3174,17 @@ async function loadRouteProject() {
       }
       projectId.value = project.id
       projectOrigin.value = readProjectOrigin(project.origin)
+      projectWorkflowKey.value = project.workflowKey
       projectTitle.value = project.name
       await nextTick()
       await runConvert({ fitZoom: true })
+      if (viewDisposed || generation !== routeLoadGeneration || requestedPath !== route.fullPath)
+        return
       savedSnapshot.value = snapshot()
+      workflowStoredSettings = project.workflowKey ? { ...project.settings } : null
+      workflowControlBaseline = project.workflowKey
+        ? JSON.stringify(JSON.parse(savedSnapshot.value).settings)
+        : ''
       projectStatus.value = '已从此浏览器恢复'
     } catch (cause) {
       error.value = cause instanceof Error ? cause.message : '项目无法恢复，请检查浏览器存储权限。'
@@ -3183,6 +3203,7 @@ watch(
     resetAll()
     projectId.value = ''
     projectOrigin.value = undefined
+    projectWorkflowKey.value = undefined
     savedSnapshot.value = ''
     projectTitle.value = '未命名作品'
     await loadRouteProject()

@@ -1,0 +1,446 @@
+{
+  "date": "2026-10-09",
+  "frontendParent": "cfd815709853cc9fe4846c023021b4efa89c7b5e",
+  "backendParent": "7ca2d97fdf49bba9a503a3ccdd2a155e363fb083",
+  "runtime": {
+    "node": "v24.12.0",
+    "playwright": "1.63.0"
+  },
+  "scope": "Actual workflow files and creative routes; pre-existing shared workspace dirty excluded from commit.",
+  "sources": [
+    {
+      "file": "package.json",
+      "bytes": 9097,
+      "sha256": "ff54d90d8f0c058bd4227ff6b60c33c3142ec55e0804c555096c01707604cdf3",
+      "gitIndexSha256": "ff54d90d8f0c058bd4227ff6b60c33c3142ec55e0804c555096c01707604cdf3"
+    },
+    {
+      "file": "src/lib/art-projects.ts",
+      "bytes": 13432,
+      "sha256": "1ecff60dfd2c5e93affd9f5062de2fa4f3efffd85979b95d68cc0a859be81297",
+      "gitIndexSha256": "1ecff60dfd2c5e93affd9f5062de2fa4f3efffd85979b95d68cc0a859be81297"
+    },
+    {
+      "file": "src/lib/creative-workflow-package.ts",
+      "bytes": 8007,
+      "sha256": "4ccd0f632af4451856b93baf2b63edfdb2f171aeffc5bb7f016d87563f87caeb",
+      "gitIndexSha256": "4ccd0f632af4451856b93baf2b63edfdb2f171aeffc5bb7f016d87563f87caeb"
+    },
+    {
+      "file": "src/lib/creative-workflow-snapshot.ts",
+      "bytes": 1712,
+      "sha256": "9fd097e7c515850c8320da2b613fd9df2d1eccbed866a15849b38fad9f3856fd",
+      "gitIndexSha256": "9fd097e7c515850c8320da2b613fd9df2d1eccbed866a15849b38fad9f3856fd"
+    },
+    {
+      "file": "src/views/AsciiArtView.vue",
+      "bytes": 169275,
+      "sha256": "e1ebda84e10d37785f73df8c94d8da3b47511f61c544178b4bff41f8a6eb1f9f",
+      "gitIndexSha256": "e1ebda84e10d37785f73df8c94d8da3b47511f61c544178b4bff41f8a6eb1f9f"
+    },
+    {
+      "file": "src/views/ProjectsView.vue",
+      "bytes": 20085,
+      "sha256": "e51dddc0f79b0d1e619f992b2bfb8b0d2d8644b14ede5e8beb90c8cfd01c4ea6",
+      "gitIndexSha256": "e51dddc0f79b0d1e619f992b2bfb8b0d2d8644b14ede5e8beb90c8cfd01c4ea6"
+    },
+    {
+      "file": "scripts/creative-workflow-package-contract.mjs",
+      "bytes": 21258,
+      "sha256": "d5ea0c0a1c97b127c871c9257dd37ead3352ba0908ab561fac15cb10617f7d97",
+      "gitIndexSha256": "d5ea0c0a1c97b127c871c9257dd37ead3352ba0908ab561fac15cb10617f7d97"
+    },
+    {
+      "file": "scripts/creative-workflow-package-ui.mjs",
+      "bytes": 12964,
+      "sha256": "69f3daa60cb9d9fc8ab5b9e0c3eff896df51a072eed2b9f7a0c9789d2cea6451",
+      "gitIndexSha256": "69f3daa60cb9d9fc8ab5b9e0c3eff896df51a072eed2b9f7a0c9789d2cea6451"
+    },
+    {
+      "file": "docs/plans/creative-workflow-package-2026-10-09.md",
+      "bytes": 5246,
+      "sha256": "53a140fc3d1d801c9e3274cb9724b368a1e00709cef3769768d0e5e26e2f8ab6",
+      "gitIndexSha256": "53a140fc3d1d801c9e3274cb9724b368a1e00709cef3769768d0e5e26e2f8ab6"
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "bytes": 67906,
+      "sha256": "7ca0e2201b944b1224072f34587428db5a84e8c96e93a833b1b32b33f33b587c",
+      "gitIndexSha256": "7ca0e2201b944b1224072f34587428db5a84e8c96e93a833b1b32b33f33b587c"
+    },
+    {
+      "file": "docs/plans/signature-portrait.md",
+      "bytes": 12425,
+      "sha256": "6a3ee3a3b90a704a68575fdcfdde08aeee1361a68fb79198c66cef3afb44257f",
+      "gitIndexSha256": "6a3ee3a3b90a704a68575fdcfdde08aeee1361a68fb79198c66cef3afb44257f"
+    },
+    {
+      "file": "docs/plans/creative-ecosystem-2026-10-09.md",
+      "bytes": 10558,
+      "sha256": "629d7a36562d586635a837b5838bd325171a7b958b9cbdc8e0cd08645fcde06b",
+      "gitIndexSha256": "629d7a36562d586635a837b5838bd325171a7b958b9cbdc8e0cd08645fcde06b"
+    },
+    {
+      "file": "src/lib/art-project-origin.ts",
+      "bytes": 1164,
+      "sha256": "5cc272d6ba0467ee8833e6bf48fa87cffcc323782111ac9cd9e0730e08265564",
+      "gitIndexSha256": "5cc272d6ba0467ee8833e6bf48fa87cffcc323782111ac9cd9e0730e08265564"
+    },
+    {
+      "file": "src/lib/art-project-package.ts",
+      "bytes": 16914,
+      "sha256": "b5844a738faeb0df02d45914655f363eeaff20791f4576741c815be2cdbb3f4b",
+      "gitIndexSha256": "b5844a738faeb0df02d45914655f363eeaff20791f4576741c815be2cdbb3f4b"
+    },
+    {
+      "file": "src/lib/signature-project-thumbnail.ts",
+      "bytes": 1007,
+      "sha256": "1ef952c17ee9449182476b474a41f1e37be8129c6c04b9c24e6f53bd1257f8e1",
+      "gitIndexSha256": "1ef952c17ee9449182476b474a41f1e37be8129c6c04b9c24e6f53bd1257f8e1"
+    },
+    {
+      "file": "src/lib/signature-portrait/project.ts",
+      "bytes": 18142,
+      "sha256": "775fc6aba5da2a0aa8ead5b4d7efd185e7bc5c537f7fad937667b01005a2aef0",
+      "gitIndexSha256": "775fc6aba5da2a0aa8ead5b4d7efd185e7bc5c537f7fad937667b01005a2aef0"
+    },
+    {
+      "file": "src/lib/signature-portrait/font-licenses.ts",
+      "bytes": 9714,
+      "sha256": "97e29bd6fabe8d6450242b3634675f893f626da4307cdf04a497ae60dac8ce74",
+      "gitIndexSha256": "97e29bd6fabe8d6450242b3634675f893f626da4307cdf04a497ae60dac8ce74"
+    },
+    {
+      "file": "src/lib/signature-portrait/variants.ts",
+      "bytes": 6714,
+      "sha256": "65996b59db6170f33a00f8adb261e323633d264999b2b20844bbe22aa9a1d401",
+      "gitIndexSha256": "65996b59db6170f33a00f8adb261e323633d264999b2b20844bbe22aa9a1d401"
+    },
+    {
+      "file": "src/lib/signature-art-workflow.ts",
+      "bytes": 1502,
+      "sha256": "7064e049de4ce556fc4a1019386e354099fe644dea80bfe6ae34560f06590eef",
+      "gitIndexSha256": "7064e049de4ce556fc4a1019386e354099fe644dea80bfe6ae34560f06590eef"
+    },
+    {
+      "file": "scripts/creative-index-contract.mjs",
+      "bytes": 13262,
+      "sha256": "06770abdb7e13355e438cb709e661f0229d9ee1f8983c6892bef31731b68d8f7",
+      "gitIndexSha256": "06770abdb7e13355e438cb709e661f0229d9ee1f8983c6892bef31731b68d8f7"
+    },
+    {
+      "file": "scripts/creative-index-ui.mjs",
+      "bytes": 15438,
+      "sha256": "9f54cc55387e075a1f50f425f34882a3d7667132c563ecc3f62cb995cbf3ec9d",
+      "gitIndexSha256": "9f54cc55387e075a1f50f425f34882a3d7667132c563ecc3f62cb995cbf3ec9d"
+    },
+    {
+      "file": "scripts/signature-ui-helpers.mjs",
+      "bytes": 289,
+      "sha256": "d003bce0b9e3cd03c009afa416c9f94b1cfcd66d0ca7f2a1a9d6ad428cc129b5",
+      "gitIndexSha256": "d003bce0b9e3cd03c009afa416c9f94b1cfcd66d0ca7f2a1a9d6ad428cc129b5"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/source.astra-signature",
+      "bytes": 86859,
+      "sha256": "798703258d4e6faccef9588838f0e2a232c8e17aa8426418c511e29180ff3269",
+      "gitIndexSha256": "798703258d4e6faccef9588838f0e2a232c8e17aa8426418c511e29180ff3269"
+    }
+  ],
+  "evidence": [
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow-package/.gitattributes",
+      "bytes": 41,
+      "sha256": "898fc2da01b20487ea0b1e7243ca918ee7538eaeb39a3f080b7d01193074e161",
+      "gitIndexSha256": "898fc2da01b20487ea0b1e7243ca918ee7538eaeb39a3f080b7d01193074e161"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow-package/README.md",
+      "bytes": 3803,
+      "sha256": "2968018572fa3af1bf779769f527e5cc4ddd5f85a2453e5cd3f63fa19a63e3d8",
+      "gitIndexSha256": "2968018572fa3af1bf779769f527e5cc4ddd5f85a2453e5cd3f63fa19a63e3d8"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow-package/chrome/report.json",
+      "bytes": 670,
+      "sha256": "58923a03ae594f2595a5654362825a4279fd9a68ea4d26d730121098c6d1e497",
+      "gitIndexSha256": "58923a03ae594f2595a5654362825a4279fd9a68ea4d26d730121098c6d1e497"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow-package/chrome/restored-signature.json",
+      "bytes": 6182,
+      "sha256": "4590ecb2dc6d28f068ed86be6e07a47da3e0cb35e6d10e77117d25d016f21306",
+      "gitIndexSha256": "4590ecb2dc6d28f068ed86be6e07a47da3e0cb35e6d10e77117d25d016f21306"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow-package/chrome/source.json",
+      "bytes": 6182,
+      "sha256": "4590ecb2dc6d28f068ed86be6e07a47da3e0cb35e6d10e77117d25d016f21306",
+      "gitIndexSha256": "4590ecb2dc6d28f068ed86be6e07a47da3e0cb35e6d10e77117d25d016f21306"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow-package/chrome/unchanged-save-diagnostic.json",
+      "bytes": 1947,
+      "sha256": "1dbebd9682d46a2984051bf9509b2b38cd85f2c980aa66b2d384a63fe41229fe",
+      "gitIndexSha256": "1dbebd9682d46a2984051bf9509b2b38cd85f2c980aa66b2d384a63fe41229fe"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow-package/chrome/workflow-dark.png",
+      "bytes": 166577,
+      "sha256": "d06319d2d932b2e8a2a6c269296945435c1da88758782805f4b260a0d1961b99",
+      "gitIndexSha256": "d06319d2d932b2e8a2a6c269296945435c1da88758782805f4b260a0d1961b99"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow-package/chrome/workflow-light.png",
+      "bytes": 168233,
+      "sha256": "bbbf7254fdb3e8cddf0e24ab677cbe69d08309e1715f77b09f6c7d852541ca17",
+      "gitIndexSha256": "bbbf7254fdb3e8cddf0e24ab677cbe69d08309e1715f77b09f6c7d852541ca17"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow-package/chrome/workflow.astra-workflow",
+      "bytes": 153323,
+      "sha256": "3a8c19f3b2e2bca242e6f0b5310bb8b7f3c6fd1589976b48f9587902c3557b2f",
+      "gitIndexSha256": "3a8c19f3b2e2bca242e6f0b5310bb8b7f3c6fd1589976b48f9587902c3557b2f"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow-package/core-chrome/expected.json",
+      "bytes": 6295,
+      "sha256": "921f7835236d3b564e971c5c0c48350c40e7920981d61a768a6d3211bf2d5f98",
+      "gitIndexSha256": "921f7835236d3b564e971c5c0c48350c40e7920981d61a768a6d3211bf2d5f98"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow-package/core-chrome/report.json",
+      "bytes": 1166,
+      "sha256": "2f0bacd97fa76750d8a1299cf0ba2c987f5b232015319021e268020adf3aa43e",
+      "gitIndexSha256": "2f0bacd97fa76750d8a1299cf0ba2c987f5b232015319021e268020adf3aa43e"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow-package/core-chrome/source.astra-signature",
+      "bytes": 137440,
+      "sha256": "44eb699ae4288f11be2bdaef2017ede1d41ab46518532ff22e6f23c07a724071",
+      "gitIndexSha256": "44eb699ae4288f11be2bdaef2017ede1d41ab46518532ff22e6f23c07a724071"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow-package/core-chrome/source.astra-workflow",
+      "bytes": 143868,
+      "sha256": "96122fbffd8cae35bb25543e7edb531b0a1f1c6381f6bd6dd4c50b2874157b1c",
+      "gitIndexSha256": "96122fbffd8cae35bb25543e7edb531b0a1f1c6381f6bd6dd4c50b2874157b1c"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow-package/core-edge/expected.json",
+      "bytes": 6295,
+      "sha256": "921f7835236d3b564e971c5c0c48350c40e7920981d61a768a6d3211bf2d5f98",
+      "gitIndexSha256": "921f7835236d3b564e971c5c0c48350c40e7920981d61a768a6d3211bf2d5f98"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow-package/core-edge/report.json",
+      "bytes": 1167,
+      "sha256": "f27ed8ca62c62b7621157ad491fefcb69774ce3194505c60e3b8c1956e1c8da1",
+      "gitIndexSha256": "f27ed8ca62c62b7621157ad491fefcb69774ce3194505c60e3b8c1956e1c8da1"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow-package/core-edge/source.astra-signature",
+      "bytes": 137440,
+      "sha256": "44eb699ae4288f11be2bdaef2017ede1d41ab46518532ff22e6f23c07a724071",
+      "gitIndexSha256": "44eb699ae4288f11be2bdaef2017ede1d41ab46518532ff22e6f23c07a724071"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow-package/core-edge/source.astra-workflow",
+      "bytes": 143882,
+      "sha256": "2651dc564d7a8e1baa2cfbaf0fcdedda14b515640739eaae24d514227ccc3c05",
+      "gitIndexSha256": "2651dc564d7a8e1baa2cfbaf0fcdedda14b515640739eaae24d514227ccc3c05"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow-package/design-detector.json",
+      "bytes": 4,
+      "sha256": "a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f",
+      "gitIndexSha256": "a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow-package/edge/report.json",
+      "bytes": 671,
+      "sha256": "8fcdb6cf8009a96b5dffb1464796ff1b734192f3d3ef6a05246d876f7c6406c6",
+      "gitIndexSha256": "8fcdb6cf8009a96b5dffb1464796ff1b734192f3d3ef6a05246d876f7c6406c6"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow-package/edge/restored-signature.json",
+      "bytes": 6182,
+      "sha256": "4590ecb2dc6d28f068ed86be6e07a47da3e0cb35e6d10e77117d25d016f21306",
+      "gitIndexSha256": "4590ecb2dc6d28f068ed86be6e07a47da3e0cb35e6d10e77117d25d016f21306"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow-package/edge/source.json",
+      "bytes": 6182,
+      "sha256": "4590ecb2dc6d28f068ed86be6e07a47da3e0cb35e6d10e77117d25d016f21306",
+      "gitIndexSha256": "4590ecb2dc6d28f068ed86be6e07a47da3e0cb35e6d10e77117d25d016f21306"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow-package/edge/unchanged-save-diagnostic.json",
+      "bytes": 1947,
+      "sha256": "1dbebd9682d46a2984051bf9509b2b38cd85f2c980aa66b2d384a63fe41229fe",
+      "gitIndexSha256": "1dbebd9682d46a2984051bf9509b2b38cd85f2c980aa66b2d384a63fe41229fe"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow-package/edge/workflow-dark.png",
+      "bytes": 166577,
+      "sha256": "d06319d2d932b2e8a2a6c269296945435c1da88758782805f4b260a0d1961b99",
+      "gitIndexSha256": "d06319d2d932b2e8a2a6c269296945435c1da88758782805f4b260a0d1961b99"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow-package/edge/workflow-light.png",
+      "bytes": 168233,
+      "sha256": "bbbf7254fdb3e8cddf0e24ab677cbe69d08309e1715f77b09f6c7d852541ca17",
+      "gitIndexSha256": "bbbf7254fdb3e8cddf0e24ab677cbe69d08309e1715f77b09f6c7d852541ca17"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow-package/edge/workflow.astra-workflow",
+      "bytes": 153337,
+      "sha256": "49f85c32dbc7562c2ccb766a69a6a8d03ff94d7a6461a65fc78fc8019dd0f48d",
+      "gitIndexSha256": "49f85c32dbc7562c2ccb766a69a6a8d03ff94d7a6461a65fc78fc8019dd0f48d"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow-package/index-core-regression.json",
+      "bytes": 709,
+      "sha256": "26c846a497fdd6172416ca16ab6a37b3a91ff0ef65ae08b88d0c056fc1e4f9e0",
+      "gitIndexSha256": "26c846a497fdd6172416ca16ab6a37b3a91ff0ef65ae08b88d0c056fc1e4f9e0"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow-package/index-ui-regression.json",
+      "bytes": 821,
+      "sha256": "5e4c4a802ab9a97f76ada161c58688f75d826ece789195b4911618a1d3a9aa6b",
+      "gitIndexSha256": "5e4c4a802ab9a97f76ada161c58688f75d826ece789195b4911618a1d3a9aa6b"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow-package/logs/build.log",
+      "bytes": 17792,
+      "sha256": "08ff32281b175f47543d835375c2feabbcd58330cb7007c25a1f93200b57754d",
+      "gitIndexSha256": "08ff32281b175f47543d835375c2feabbcd58330cb7007c25a1f93200b57754d"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow-package/logs/core-chrome.log",
+      "bytes": 1046,
+      "sha256": "48a423880bbda30262820846d5bf2962e584c852b9b469c7ecd9aab359c7a5e1",
+      "gitIndexSha256": "48a423880bbda30262820846d5bf2962e584c852b9b469c7ecd9aab359c7a5e1"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow-package/logs/core-edge.log",
+      "bytes": 1047,
+      "sha256": "6ed7e02cfc9fd549997aa21edc7dececc2e58609f496226c5c98912c024e2426",
+      "gitIndexSha256": "6ed7e02cfc9fd549997aa21edc7dececc2e58609f496226c5c98912c024e2426"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow-package/logs/eslint.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gitIndexSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow-package/logs/index-core-regression.log",
+      "bytes": 634,
+      "sha256": "8cd9ac993d361d67e93fff133b07f8939dd7a7c39060838d47dd5a67f2072ead",
+      "gitIndexSha256": "8cd9ac993d361d67e93fff133b07f8939dd7a7c39060838d47dd5a67f2072ead"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow-package/logs/index-ui-regression.log",
+      "bytes": 738,
+      "sha256": "63a71ef0024e191490779347efd09b986727b9b8a6559c52808bd8c1c4244090",
+      "gitIndexSha256": "63a71ef0024e191490779347efd09b986727b9b8a6559c52808bd8c1c4244090"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow-package/logs/initial-count-harness-failure.log",
+      "bytes": 415,
+      "sha256": "26aaa3db29eff526d3ca88163b4769970261cab1eb6a2706afcb651870da741d",
+      "gitIndexSha256": "26aaa3db29eff526d3ca88163b4769970261cab1eb6a2706afcb651870da741d"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow-package/logs/initial-order-harness-failure.log",
+      "bytes": 407,
+      "sha256": "cba33c11bc3bfc6b01faaa57cba565a4d09d8f23592097c5ca7e59901cd47f6c",
+      "gitIndexSha256": "cba33c11bc3bfc6b01faaa57cba565a4d09d8f23592097c5ca7e59901cd47f6c"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow-package/logs/initial-unchanged-save-product-failure.log",
+      "bytes": 428,
+      "sha256": "59b2e75b42a2116bc5a6fc07281399feb345069720dc6bfe7467d7cb06a5d04e",
+      "gitIndexSha256": "59b2e75b42a2116bc5a6fc07281399feb345069720dc6bfe7467d7cb06a5d04e"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow-package/logs/types.log",
+      "bytes": 77,
+      "sha256": "0a7d40c8ea67ee87b4bcdc91418a201a96bc30f3286185c82d8888ec96c6d6fb",
+      "gitIndexSha256": "0a7d40c8ea67ee87b4bcdc91418a201a96bc30f3286185c82d8888ec96c6d6fb"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow-package/logs/ui-chrome.log",
+      "bytes": 602,
+      "sha256": "16be2360200422f75cd40267fad5f61bb252e94b667a3dafbe974d1577bcd99f",
+      "gitIndexSha256": "16be2360200422f75cd40267fad5f61bb252e94b667a3dafbe974d1577bcd99f"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow-package/logs/ui-edge.log",
+      "bytes": 603,
+      "sha256": "ea48872a16f355de84ba3818464aeed8660e211c3a799c909327f6d6579dc05c",
+      "gitIndexSha256": "ea48872a16f355de84ba3818464aeed8660e211c3a799c909327f6d6579dc05c"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow-package/logs/ui-mobile.log",
+      "bytes": 602,
+      "sha256": "a4e1817bf3f2726bc0cbb679878debdad3036e9d887e8e2663c33610a835a8f7",
+      "gitIndexSha256": "a4e1817bf3f2726bc0cbb679878debdad3036e9d887e8e2663c33610a835a8f7"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow-package/mobile/report.json",
+      "bytes": 670,
+      "sha256": "cff3641070414bce36389062c6340d48494d120515e0ee6940ee4209847e7b12",
+      "gitIndexSha256": "cff3641070414bce36389062c6340d48494d120515e0ee6940ee4209847e7b12"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow-package/mobile/restored-signature.json",
+      "bytes": 6182,
+      "sha256": "4590ecb2dc6d28f068ed86be6e07a47da3e0cb35e6d10e77117d25d016f21306",
+      "gitIndexSha256": "4590ecb2dc6d28f068ed86be6e07a47da3e0cb35e6d10e77117d25d016f21306"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow-package/mobile/source.json",
+      "bytes": 6182,
+      "sha256": "4590ecb2dc6d28f068ed86be6e07a47da3e0cb35e6d10e77117d25d016f21306",
+      "gitIndexSha256": "4590ecb2dc6d28f068ed86be6e07a47da3e0cb35e6d10e77117d25d016f21306"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow-package/mobile/unchanged-save-diagnostic.json",
+      "bytes": 1947,
+      "sha256": "1dbebd9682d46a2984051bf9509b2b38cd85f2c980aa66b2d384a63fe41229fe",
+      "gitIndexSha256": "1dbebd9682d46a2984051bf9509b2b38cd85f2c980aa66b2d384a63fe41229fe"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow-package/mobile/workflow-dark.png",
+      "bytes": 170322,
+      "sha256": "25772a50b4ed510a4f29882852ce7fd59db5f101c604f7cb7c1dcc61090f6841",
+      "gitIndexSha256": "25772a50b4ed510a4f29882852ce7fd59db5f101c604f7cb7c1dcc61090f6841"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow-package/mobile/workflow-light.png",
+      "bytes": 169367,
+      "sha256": "4646f57259f7e4170306a6666829b2f455f278b6b7823dbdcf0ae96a0ffa3193",
+      "gitIndexSha256": "4646f57259f7e4170306a6666829b2f455f278b6b7823dbdcf0ae96a0ffa3193"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow-package/mobile/workflow.astra-workflow",
+      "bytes": 153337,
+      "sha256": "a7a13f567104694ef9450c38dbc3373dc8de44ff0aebf7710b05f7eb6d1fb952",
+      "gitIndexSha256": "a7a13f567104694ef9450c38dbc3373dc8de44ff0aebf7710b05f7eb6d1fb952"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow-package/unchanged-save-before.json",
+      "bytes": 2170,
+      "sha256": "c88b532c00e15f2a6d9bf6fa26df9cf9fa50db98f306c1c1b4e589a3ac44c594",
+      "gitIndexSha256": "c88b532c00e15f2a6d9bf6fa26df9cf9fa50db98f306c1c1b4e589a3ac44c594"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow-package/unchanged-save-failure.json",
+      "bytes": 444,
+      "sha256": "7ea989885dcb549a76c8957fcc106e46b5183c1c97204240daa02ae22f94aca8",
+      "gitIndexSha256": "7ea989885dcb549a76c8957fcc106e46b5183c1c97204240daa02ae22f94aca8"
+    }
+  ]
+}

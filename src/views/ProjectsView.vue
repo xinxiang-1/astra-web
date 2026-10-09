@@ -9,6 +9,7 @@ import {
   getSignatureProject,
   saveSignatureProject,
   saveArtProject,
+  importCreativeWorkflow,
   type CreativeProjectSummary,
 } from '@/lib/art-projects'
 import {
@@ -19,6 +20,12 @@ import {
 } from '@/lib/signature-portrait/project'
 import { exportSignaturePng } from '@/lib/signature-portrait/png-export'
 import { signatureProjectThumbnail } from '@/lib/signature-project-thumbnail'
+import {
+  CREATIVE_WORKFLOW_ACCEPT,
+  createCreativeWorkflowPackage,
+  creativeWorkflowFilename,
+  readCreativeWorkflowPackage,
+} from '@/lib/creative-workflow-package'
 import {
   ART_PROJECT_PACKAGE_ACCEPT,
   artProjectPackageFilename,
@@ -64,9 +71,9 @@ async function refresh() {
     if (!disposed && generation === refreshGeneration) loading.value = false
   }
 }
-async function downloadPackage(project: CreativeProjectSummary) {
+async function downloadPackage(project: CreativeProjectSummary, workflow = false) {
   if (transferring.value) return
-  transferring.value = project.id
+  transferring.value = workflow ? `workflow:${project.id}` : project.id
   error.value = ''
   transferStatus.value = '正在打包原始素材…'
   const controller = new AbortController()
@@ -77,22 +84,36 @@ async function downloadPackage(project: CreativeProjectSummary) {
         ? await getSignatureProject(project.id, controller.signal)
         : await getArtProject(project.id)
     if (!source) throw new Error('此作品已移除，请刷新项目列表。')
-    const blob = 'file' in source ? source.file : await createArtProjectPackage(source)
+    let blob: Blob
+    if (workflow) {
+      if ('file' in source || !source.origin) throw new Error('此作品没有可打包的签名原作。')
+      const original = await getSignatureProject(source.origin.projectId, controller.signal)
+      if (!original || original.signatureHash !== source.origin.sha256)
+        throw new Error('签名原作已移除或版本不匹配，请先从备份恢复原作。')
+      transferStatus.value = '正在打包签名原作与字符派生…'
+      blob = await createCreativeWorkflowPackage(original, source, controller.signal)
+    } else blob = 'file' in source ? source.file : await createArtProjectPackage(source)
     if (disposed || controller.signal.aborted) return
     triggerDownload(
       blob,
-      project.kind === 'signature'
-        ? signatureProjectFilename(project.name)
-        : artProjectPackageFilename(project.name),
+      workflow
+        ? creativeWorkflowFilename(project.name)
+        : project.kind === 'signature'
+          ? signatureProjectFilename(project.name)
+          : artProjectPackageFilename(project.name),
     )
-    transferStatus.value = '作品包已生成。请保留下载文件，用于备份或换设备继续创作。'
+    transferStatus.value = workflow
+      ? '工作流包已下载，包含签名原作与字符派生，可在另一浏览器一起导入。'
+      : '作品包已生成。请保留下载文件，用于备份或换设备继续创作。'
   } catch (cause) {
     if (disposed || controller.signal.aborted) return
     transferStatus.value = ''
     error.value = cause instanceof Error ? cause.message : '作品包下载失败，请重试。'
   } finally {
-    if (transferController === controller) transferController = null
-    transferring.value = ''
+    if (transferController === controller) {
+      transferController = null
+      transferring.value = ''
+    }
   }
 }
 async function importPackage(event: Event) {
@@ -107,7 +128,40 @@ async function importPackage(event: Event) {
   transferController = controller
   try {
     let notice: string
-    if (file.name.toLowerCase().endsWith(SIGNATURE_PROJECT_ACCEPT)) {
+    if (file.name.toLowerCase().endsWith(CREATIVE_WORKFLOW_ACCEPT)) {
+      transferStatus.value = '正在校验签名原作与字符派生…'
+      const restored = await readCreativeWorkflowPackage(file, controller.signal)
+      try {
+        const thumbnail = await signatureProjectThumbnail(
+          await exportSignaturePng(restored.signature, {
+            longEdge: 420,
+            signal: {
+              get cancelled() {
+                return controller.signal.aborted
+              },
+            },
+          }),
+          controller.signal,
+        )
+        if (disposed || controller.signal.aborted) return
+        const saved = await importCreativeWorkflow(
+          {
+            file: restored.signatureFile,
+            name: restored.project.origin!.name,
+            thumbnail,
+            engineVersion: SIGNATURE_PROJECT_ENGINE,
+          },
+          restored.project,
+          restored.workflowKey,
+          controller.signal,
+        )
+        notice = saved.reused
+          ? '此工作流版本已导入，签名原作与字符派生保持完整。'
+          : '工作流已导入，签名原作与字符派生已一起保存；本地已有改动会保留。字符字体可能随设备变化。'
+      } finally {
+        restored.dispose()
+      }
+    } else if (file.name.toLowerCase().endsWith(SIGNATURE_PROJECT_ACCEPT)) {
       const restored = await readSignatureProject(file, { signal: controller.signal })
       try {
         const scene = restored.project
@@ -137,18 +191,28 @@ async function importPackage(event: Event) {
       await saveArtProject(imported.project, controller.signal)
       notice = imported.notice
     }
+    if (disposed || controller.signal.aborted || transferController !== controller) return
     filter.value = '全部'
     search.value = ''
     await refresh()
-    transferStatus.value = notice
+    if (!disposed && !controller.signal.aborted && transferController === controller)
+      transferStatus.value = notice
   } catch (cause) {
     if (disposed || controller.signal.aborted) return
     transferStatus.value = ''
     error.value = cause instanceof Error ? cause.message : '无法导入作品包，请重试。'
   } finally {
-    if (transferController === controller) transferController = null
-    transferring.value = ''
+    if (transferController === controller) {
+      transferController = null
+      transferring.value = ''
+    }
   }
+}
+function cancelTransfer() {
+  transferController?.abort()
+  transferController = null
+  transferring.value = ''
+  transferStatus.value = '已取消文件操作，已保存的项目会保留。'
 }
 async function remove(id: string) {
   busy.value = true
@@ -203,7 +267,7 @@ function availableOrigin(project: CreativeProjectSummary) {
             type="file"
             class="package-file-input"
             hidden
-            :accept="`${ART_PROJECT_PACKAGE_ACCEPT},${SIGNATURE_PROJECT_ACCEPT}`"
+            :accept="`${ART_PROJECT_PACKAGE_ACCEPT},${SIGNATURE_PROJECT_ACCEPT},${CREATIVE_WORKFLOW_ACCEPT}`"
             aria-label="导入 Astra 作品包"
             @change="importPackage"
           />
@@ -219,6 +283,9 @@ function availableOrigin(project: CreativeProjectSummary) {
       </div>
       <p v-if="transferStatus" class="package-status" role="status" aria-live="polite">
         {{ transferStatus }}
+        <button v-if="transferring" class="package-cancel" @click="cancelTransfer">
+          取消文件操作
+        </button>
       </p>
       <div class="projects-tools">
         <div>
@@ -292,6 +359,12 @@ function availableOrigin(project: CreativeProjectSummary) {
             >
             <span v-else>签名来源 · {{ project.origin.name }}（原作未保存在此浏览器）</span>
           </p>
+          <div v-if="availableOrigin(project)" class="workflow-actions">
+            <button :disabled="!!transferring || busy" @click="downloadPackage(project, true)">
+              {{ transferring === `workflow:${project.id}` ? '工作流打包中…' : '下载完整工作流' }}
+            </button>
+            <small>包含签名原作与字符派生</small>
+          </div>
           <div class="project-actions">
             <template v-if="removing === project.id"
               ><span>{{
@@ -322,6 +395,36 @@ function availableOrigin(project: CreativeProjectSummary) {
   </div>
 </template>
 <style scoped>
+.workflow-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 12px;
+  padding: 0 14px 12px;
+}
+.workflow-actions button,
+.package-cancel {
+  min-height: 44px;
+  border: 0;
+  background: none;
+  padding: 8px 0;
+  font: 12px var(--font-body);
+  color: var(--accent);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.workflow-actions button:disabled {
+  cursor: wait;
+  opacity: 0.5;
+}
+.workflow-actions small {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+.package-cancel {
+  margin-left: 12px;
+}
 .project-origin {
   margin: 0;
   padding: 0 14px 12px;

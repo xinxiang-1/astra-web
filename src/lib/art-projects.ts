@@ -1,4 +1,5 @@
 import { readProjectOrigin, type SignatureProjectOrigin } from './art-project-origin'
+import { creativeWorkflowSnapshot, readWorkflowKey } from './creative-workflow-snapshot'
 
 /** Projects and source files stay in IndexedDB on this device. */
 export interface ArtProject {
@@ -11,6 +12,7 @@ export interface ArtProject {
   settings: Record<string, string | number | boolean>
   engineVersion?: string
   origin?: SignatureProjectOrigin
+  workflowKey?: string
 }
 export interface CreativeProjectSummary {
   id: string
@@ -21,6 +23,8 @@ export interface CreativeProjectSummary {
   engineVersion?: string
   signatureHash?: string
   origin?: SignatureProjectOrigin
+  workflowKey?: string
+  workflowSnapshot?: string
 }
 export interface SavedSignatureProject extends CreativeProjectSummary {
   kind: 'signature'
@@ -153,10 +157,16 @@ async function transaction<T>(
     }
   })
 }
-export function saveArtProject(project: ArtProject, signal?: AbortSignal) {
+export async function saveArtProject(project: ArtProject, signal?: AbortSignal) {
   const entry = {
     ...project,
+    settings: { ...project.settings },
     ...(project.origin ? { origin: readProjectOrigin(project.origin) } : {}),
+  }
+  const summary = artSummary(entry)
+  if (entry.workflowKey) {
+    summary.workflowKey = entry.workflowKey = readWorkflowKey(entry.workflowKey)
+    summary.workflowSnapshot = await creativeWorkflowSnapshot(entry, signal)
   }
   return transaction<IDBValidKey>(
     [PROJECTS, INDEX],
@@ -164,7 +174,7 @@ export function saveArtProject(project: ArtProject, signal?: AbortSignal) {
     (tx, result) => {
       const request = tx.objectStore(PROJECTS).put(entry)
       request.onsuccess = () => result(request.result)
-      tx.objectStore(INDEX).put(artSummary(entry))
+      tx.objectStore(INDEX).put(summary)
     },
     signal,
   )
@@ -316,4 +326,94 @@ export async function getSignatureProject(
   if (Array.from(bytes, (b) => b.toString(16).padStart(2, '0')).join('') !== entry.signatureHash)
     throw new Error('本地签名作品校验失败，请从备份文件恢复。')
   return entry
+}
+
+/** Receipt metadata is local only; an edited copy never gets overwritten by a backup import. */
+export async function importCreativeWorkflow(
+  input: SignatureSaveInput,
+  project: ArtProject,
+  workflowKey: string,
+  signal?: AbortSignal,
+) {
+  readWorkflowKey(workflowKey)
+  const entry = await signatureEntry(input, signal)
+  const origin = readProjectOrigin(project.origin)
+  if (!origin || origin.sha256 !== entry.signatureHash || project.kind !== 'image')
+    throw new Error('工作流的原作与派生关系不匹配')
+  const snapshot = await creativeWorkflowSnapshot(project, signal)
+  return transaction<{ signature: CreativeProjectSummary; project: ArtProject; reused: boolean }>(
+    [INDEX, SIGNATURES, PROJECTS],
+    'readwrite',
+    (tx, result) => {
+      const save = (existing?: ArtProject) =>
+        saveSignatureInTransaction(tx, entry, (signature) => {
+          const mappedOrigin = readProjectOrigin({
+            ...origin,
+            projectId: signature.id,
+            name: signature.name,
+          })!
+          const derived: ArtProject = existing
+            ? { ...existing, origin: mappedOrigin }
+            : { ...project, id: crypto.randomUUID(), workflowKey, origin: mappedOrigin }
+          tx.objectStore(PROJECTS).put(derived)
+          tx.objectStore(INDEX).put({
+            ...artSummary(derived),
+            workflowKey,
+            workflowSnapshot: snapshot,
+          })
+          result({ signature, project: derived, reused: Boolean(existing) })
+        })
+      const abort = () => {
+        try {
+          tx.abort()
+        } catch {
+          /* Already cancelled. */
+        }
+      }
+      const findSnapshot = () => {
+        const cursor = tx.objectStore(INDEX).openCursor()
+        cursor.onsuccess = () => {
+          try {
+            const row = cursor.result
+            if (!row) {
+              save()
+              return
+            }
+            const summary = row.value as CreativeProjectSummary
+            if (summary.workflowKey === workflowKey && summary.workflowSnapshot === snapshot) {
+              const request = tx.objectStore(PROJECTS).get(summary.id)
+              request.onsuccess = () => {
+                try {
+                  save(request.result)
+                } catch {
+                  abort()
+                }
+              }
+            } else row.continue()
+          } catch {
+            abort()
+          }
+        }
+      }
+      // Retain the original id when vacant; collisions with other local work get a fresh id.
+      // Hash deduplication can instead select an existing equivalent local original.
+      let remaining = 3,
+        occupied = false
+      for (const store of [INDEX, SIGNATURES, PROJECTS]) {
+        const request = tx.objectStore(store).getKey(origin.projectId)
+        request.onsuccess = () => {
+          occupied ||= request.result !== undefined
+          if (--remaining === 0) {
+            if (!occupied) entry.id = origin.projectId
+            try {
+              findSnapshot()
+            } catch {
+              abort()
+            }
+          }
+        }
+      }
+    },
+    signal,
+  )
 }
