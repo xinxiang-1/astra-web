@@ -1,5 +1,6 @@
 import type { SignatureStamp } from './extract'
 import { measureStampTraits } from './extract'
+import { loadImageElement } from '../image-element'
 
 const DB_NAME = 'astra-signature-bank'
 const DB_VERSION = 1
@@ -409,30 +410,42 @@ async function loadRows(bankId: string): Promise<BankEntryRecord[]> {
   }
 }
 
-async function blobToImage(blob: Blob): Promise<HTMLImageElement> {
-  const url = URL.createObjectURL(blob)
-  try {
-    const img = new Image()
-    img.src = url
-    await img.decode()
-    return img
-  } finally {
-    URL.revokeObjectURL(url)
-  }
+function readRowsForCaller(bankId: string, signal?: AbortSignal) {
+  signal?.throwIfAborted()
+  const reading = loadRows(bankId)
+  if (!signal) return reading
+  // The existing readonly operation closes its connection even if this caller stops waiting.
+  return new Promise<BankEntryRecord[]>((resolve, reject) => {
+    const abort = () => reject(signal.reason ?? new DOMException('已取消', 'AbortError'))
+    signal.addEventListener('abort', abort, { once: true })
+    void reading.then(resolve, reject).finally(() => signal.removeEventListener('abort', abort))
+  })
 }
 
-export async function loadBankAsStamps(bankId: string): Promise<SignatureStamp[]> {
-  const rows = await loadRows(bankId),
+export async function loadBankAsStamps(bankId: string, signal?: AbortSignal): Promise<SignatureStamp[]> {
+  const rows = await readRowsForCaller(bankId, signal),
     stamps: SignatureStamp[] = []
   try {
+    signal?.throwIfAborted()
     for (const row of rows) {
-      const img = await blobToImage(row.png)
+      const loaded = await loadImageElement(new File([row.png], 'saved-signature.png', { type: 'image/png' }), {
+        signal, maxPixels: 32_000_000, maxSide: 32768,
+      })
       const canvas = document.createElement('canvas')
-      canvas.width = row.width
-      canvas.height = row.height
-      const ctx = canvas.getContext('2d')
-      if (!ctx) throw new Error('无法创建签名画布')
-      ctx.drawImage(img, 0, 0)
+      try {
+        signal?.throwIfAborted()
+        canvas.width = row.width
+        canvas.height = row.height
+        const ctx = canvas.getContext('2d')
+        if (!ctx) throw new Error('无法创建签名画布')
+        ctx.drawImage(loaded.image, 0, 0)
+      } catch (cause) {
+        canvas.width = canvas.height = 1
+        throw cause
+      } finally {
+        loaded.image.removeAttribute('src')
+        URL.revokeObjectURL(loaded.objectUrl)
+      }
       stamps.push({
         id: row.id,
         label: row.source ? `字体写法 #${row.index}` : `#${row.index}`,
@@ -445,7 +458,10 @@ export async function loadBankAsStamps(bankId: string): Promise<SignatureStamp[]
     }
     return stamps
   } catch (error) {
-    for (const stamp of stamps) URL.revokeObjectURL(stamp.previewUrl)
+    for (const stamp of stamps) {
+      URL.revokeObjectURL(stamp.previewUrl)
+      stamp.canvas.width = stamp.canvas.height = 1
+    }
     throw error
   }
 }

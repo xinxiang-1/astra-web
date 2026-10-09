@@ -1,0 +1,128 @@
+{
+  "baseSha": "6b142b4c61f427fb02a96486cf2ae272ba8492ef",
+  "scope": "Cancellable native image reading in signature portrait; backend documentation only.",
+  "final": {
+    "image-edge": {
+      "browser": "154.0.4258.62",
+      "passed": true,
+      "pixelInputs": 12,
+      "rejections": 10,
+      "cancellations": 5,
+      "uiThemesAndWidths": 4,
+      "cancelElapsedMs": {
+        "loadImageElement": 21.599999994039536,
+        "openSignaturePhoto": 20.5,
+        "bounded-header-read": 20.299999997019768,
+        "loadBankAsStamps": 6.9000000059604645,
+        "readSignatureProject": 10.299999997019768
+      }
+    },
+    "image-chrome": {
+      "browser": "157.0.8081.0",
+      "passed": true,
+      "pixelInputs": 12,
+      "rejections": 10,
+      "cancellations": 5,
+      "uiThemesAndWidths": 4,
+      "cancelElapsedMs": {
+        "loadImageElement": 20.799999997019768,
+        "openSignaturePhoto": 30.80000001192093,
+        "bounded-header-read": 30.400000005960464,
+        "loadBankAsStamps": 6.700000002980232,
+        "readSignatureProject": 16.69999998807907
+      }
+    },
+    "bank-edge": {
+      "browser": "154.0.4258.62",
+      "exitCode": 0,
+      "fontLoadingCases": 6,
+      "geometryRows": 12,
+      "nativeReferences": 4,
+      "errors": [],
+      "reportHasPassedField": false
+    },
+    "bank-chrome": {
+      "browser": "157.0.8081.0",
+      "exitCode": 0,
+      "fontLoadingCases": 6,
+      "geometryRows": 12,
+      "nativeReferences": 4,
+      "errors": [],
+      "reportHasPassedField": false
+    },
+    "region-edge": {
+      "browser": "154.0.4258.62",
+      "passed": true,
+      "cases": 4
+    },
+    "region-chrome": {
+      "browser": "157.0.8081.0",
+      "passed": true,
+      "cases": 4
+    },
+    "assets-edge": {
+      "browser": "154.0.4258.62",
+      "passed": true,
+      "cases": 5
+    },
+    "assets-chrome": {
+      "browser": "157.0.8081.0",
+      "passed": true,
+      "cases": 5
+    }
+  },
+  "baseline": {
+    "loadEventDelayMs": 450,
+    "abortAtMs": 20,
+    "loaderResolvedAfterAbortMs": 466,
+    "photoAbortErrorMs": 464.3
+  },
+  "limits": {
+    "headerPrefixBytes": 262144,
+    "defaultTimeoutMs": 30000,
+    "portrait": {
+      "bytes": 67108864,
+      "pixels": 32000000,
+      "side": 32768
+    },
+    "signaturePhoto": {
+      "bytes": 33554432,
+      "pixels": 48000000,
+      "side": 12000
+    }
+  },
+  "reproduction": {
+    "dev": "http://127.0.0.1:5210",
+    "production": "http://127.0.0.1:4210",
+    "newContract": {
+      "script": "scripts/signature-image-read-contract.mjs",
+      "outputEnv": "ASTRA_IMAGE_OUTPUT"
+    },
+    "regressions": [
+      {
+        "script": "scripts/signature-font-bank-contract.mjs",
+        "outputEnv": "ASTRA_SIGNATURE_FONT_OUTPUT"
+      },
+      {
+        "script": "scripts/signature-photo-region-contract.mjs",
+        "outputEnv": "ASTRA_REGION_OUTPUT"
+      },
+      {
+        "script": "scripts/signature-project-assets-contract.mjs",
+        "outputEnv": "ASTRA_SIGNATURE_ASSETS_OUTPUT"
+      }
+    ],
+    "sharedEnv": [
+      "ASTRA_PREVIEW_URL",
+      "ASTRA_UI_URL",
+      "ASTRA_BROWSER_CHANNEL=msedge|chrome"
+    ]
+  },
+  "boundaries": [
+    "Controlled native event delays retain actual browser decoder; no real-device latency claim.",
+    "Unknown headers fall back to native decoding before geometry rejection.",
+    "12 reading inputs are not P1 commercial material/video acceptance.",
+    "Shared worktree has unrelated dirt; this is not a clean deployment build.",
+    "No backend code tests, main database migration, real payments or membership completion."
+  ]
+}

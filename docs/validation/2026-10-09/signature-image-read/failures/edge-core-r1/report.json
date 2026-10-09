@@ -1,0 +1,10 @@
+{
+  "passed": false,
+  "browser": "154.0.4258.62",
+  "formats": [],
+  "rejections": [],
+  "cancellations": [],
+  "ui": null,
+  "errors": [],
+  "failure": "Error: page.evaluate: EncodingError: The source image cannot be decoded."
+}

@@ -1,0 +1,127 @@
+{
+  "out": "E:\\project\\astra\\astra-web\\test-results\\signature-image-assets-chrome-r1",
+  "browser": "157.0.8081.0",
+  "cases": [
+    {
+      "inkStyle": "ink",
+      "background": "#f5f3ef",
+      "sourceBytesEqual": true,
+      "vectorsEqual": true,
+      "raster": {
+        "channels": 307200,
+        "changed": 0,
+        "maxDelta": 0
+      },
+      "templates": [
+        {
+          "channels": 35840,
+          "changed": 0,
+          "maxDelta": 0
+        },
+        {
+          "channels": 8192,
+          "changed": 0,
+          "maxDelta": 0
+        },
+        {
+          "channels": 19824,
+          "changed": 0,
+          "maxDelta": 0
+        }
+      ],
+      "released": true
+    },
+    {
+      "inkStyle": "ink",
+      "background": "#111615",
+      "sourceBytesEqual": true,
+      "vectorsEqual": true,
+      "raster": {
+        "channels": 307200,
+        "changed": 0,
+        "maxDelta": 0
+      },
+      "templates": [
+        {
+          "channels": 35840,
+          "changed": 0,
+          "maxDelta": 0
+        },
+        {
+          "channels": 8192,
+          "changed": 0,
+          "maxDelta": 0
+        },
+        {
+          "channels": 19824,
+          "changed": 0,
+          "maxDelta": 0
+        }
+      ],
+      "released": true
+    },
+    {
+      "inkStyle": "cutout",
+      "background": "#f5f3ef",
+      "sourceBytesEqual": true,
+      "vectorsEqual": true,
+      "raster": {
+        "channels": 307200,
+        "changed": 0,
+        "maxDelta": 0
+      },
+      "templates": [
+        {
+          "channels": 35840,
+          "changed": 0,
+          "maxDelta": 0
+        },
+        {
+          "channels": 8192,
+          "changed": 0,
+          "maxDelta": 0
+        },
+        {
+          "channels": 19824,
+          "changed": 0,
+          "maxDelta": 0
+        }
+      ],
+      "released": true
+    },
+    {
+      "inkStyle": "cutout",
+      "background": "#111615",
+      "sourceBytesEqual": true,
+      "vectorsEqual": true,
+      "raster": {
+        "channels": 307200,
+        "changed": 0,
+        "maxDelta": 0
+      },
+      "templates": [
+        {
+          "channels": 35840,
+          "changed": 0,
+          "maxDelta": 0
+        },
+        {
+          "channels": 8192,
+          "changed": 0,
+          "maxDelta": 0
+        },
+        {
+          "channels": 19824,
+          "changed": 0,
+          "maxDelta": 0
+        }
+      ],
+      "released": true
+    },
+    {
+      "templateContextFailure": true,
+      "partialSurfaceReleased": true
+    }
+  ],
+  "passed": true
+}

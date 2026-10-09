@@ -1,0 +1,86 @@
+{
+  "failedAndIntermediate": [
+    {
+      "run": "signature-image-build-r1",
+      "result": "failed-before-vite",
+      "reason": "npm PowerShell wrapper could not determine Node.js install directory; npm.cmd used without system config changes.",
+      "includedInFinalCounts": false
+    },
+    {
+      "run": "signature-image-edge-core-r1",
+      "result": "failed",
+      "reason": "Wrong WebP fixture paths; EncodingError before first completed input.",
+      "includedInFinalCounts": false
+    },
+    {
+      "run": "signature-image-edge-core-r2",
+      "result": "failed",
+      "reason": "Fixture expected two variants, generator minimum is eight; corrected fixture.",
+      "includedInFinalCounts": false
+    },
+    {
+      "run": "signature-image-edge-r1",
+      "result": "failed",
+      "reason": "Ambiguous navigation/footer link prevented final leave test; scope main navigation.",
+      "includedInFinalCounts": false
+    },
+    {
+      "run": "signature-image-edge-core-r3",
+      "result": "passed-core-only",
+      "includedInFinalCounts": false
+    },
+    {
+      "run": "signature-image-build-r2",
+      "result": "passed",
+      "reason": "Superseded by R3 after candidate image src cleanup."
+    },
+    {
+      "run": "signature-image-build-r3",
+      "result": "passed",
+      "reason": "Final product source; production UI uses this dist."
+    }
+  ],
+  "final": [
+    {
+      "run": "signature-image-edge-r2",
+      "exitCode": 0,
+      "report": "image-edge/report.json"
+    },
+    {
+      "run": "signature-image-chrome-r1",
+      "exitCode": 0,
+      "report": "image-chrome/report.json"
+    },
+    {
+      "run": "signature-image-bank-edge-r1",
+      "exitCode": 0,
+      "report": "bank-edge/report.json"
+    },
+    {
+      "run": "signature-image-bank-chrome-r1",
+      "exitCode": 0,
+      "report": "bank-chrome/report.json"
+    },
+    {
+      "run": "signature-image-region-edge-r1",
+      "exitCode": 0,
+      "report": "region-edge/report.json"
+    },
+    {
+      "run": "signature-image-region-chrome-r1",
+      "exitCode": 0,
+      "report": "region-chrome/report.json"
+    },
+    {
+      "run": "signature-image-assets-edge-r1",
+      "exitCode": 0,
+      "report": "assets-edge/report.json"
+    },
+    {
+      "run": "signature-image-assets-chrome-r1",
+      "exitCode": 0,
+      "report": "assets-chrome/report.json"
+    }
+  ],
+  "countsPolicy": "Only Edge full R2 and Chrome full R1 supply new contract final counts. Core/failed runs are excluded."
+}

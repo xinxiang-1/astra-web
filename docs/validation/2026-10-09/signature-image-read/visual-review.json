@@ -1,0 +1,50 @@
+[
+  {
+    "path": "image-edge/image-read-dark-1440.png",
+    "reviewedWith": "native view_image",
+    "result": "Read feedback and cancel/upload legible; other operations disabled; previous portrait label retained; 390px fits.",
+    "scope": "Production creation toolbar during controlled image load; not artwork aesthetic or real-phone acceptance."
+  },
+  {
+    "path": "image-edge/image-read-dark-390.png",
+    "reviewedWith": "native view_image",
+    "result": "Read feedback and cancel/upload legible; other operations disabled; previous portrait label retained; 390px fits.",
+    "scope": "Production creation toolbar during controlled image load; not artwork aesthetic or real-phone acceptance."
+  },
+  {
+    "path": "image-edge/image-read-light-1440.png",
+    "reviewedWith": "native view_image",
+    "result": "Read feedback and cancel/upload legible; other operations disabled; previous portrait label retained; 390px fits.",
+    "scope": "Production creation toolbar during controlled image load; not artwork aesthetic or real-phone acceptance."
+  },
+  {
+    "path": "image-edge/image-read-light-390.png",
+    "reviewedWith": "native view_image",
+    "result": "Read feedback and cancel/upload legible; other operations disabled; previous portrait label retained; 390px fits.",
+    "scope": "Production creation toolbar during controlled image load; not artwork aesthetic or real-phone acceptance."
+  },
+  {
+    "path": "image-chrome/image-read-dark-1440.png",
+    "reviewedWith": "native view_image",
+    "result": "Read feedback and cancel/upload legible; other operations disabled; previous portrait label retained; 390px fits.",
+    "scope": "Production creation toolbar during controlled image load; not artwork aesthetic or real-phone acceptance."
+  },
+  {
+    "path": "image-chrome/image-read-dark-390.png",
+    "reviewedWith": "native view_image",
+    "result": "Read feedback and cancel/upload legible; other operations disabled; previous portrait label retained; 390px fits.",
+    "scope": "Production creation toolbar during controlled image load; not artwork aesthetic or real-phone acceptance."
+  },
+  {
+    "path": "image-chrome/image-read-light-1440.png",
+    "reviewedWith": "native view_image",
+    "result": "Read feedback and cancel/upload legible; other operations disabled; previous portrait label retained; 390px fits.",
+    "scope": "Production creation toolbar during controlled image load; not artwork aesthetic or real-phone acceptance."
+  },
+  {
+    "path": "image-chrome/image-read-light-390.png",
+    "reviewedWith": "native view_image",
+    "result": "Read feedback and cancel/upload legible; other operations disabled; previous portrait label retained; 390px fits.",
+    "scope": "Production creation toolbar during controlled image load; not artwork aesthetic or real-phone acceptance."
+  }
+]

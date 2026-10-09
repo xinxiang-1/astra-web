@@ -1,0 +1,280 @@
+{
+  "passed": true,
+  "browser": "154.0.4258.62",
+  "formats": [
+    {
+      "name": "portrait.jpg",
+      "fileBytes": 167762,
+      "fileSha256": "3b47141fc9fc62d760147df102c316b13d187709e3fbd8ca6fd724d7655562a2",
+      "width": 1200,
+      "height": 1500,
+      "header": {
+        "format": "jpeg",
+        "width": 1200,
+        "height": 1500
+      },
+      "rgbaSha256": "fe14f32f50bbc8808d2a6e562bd7c1bdf3a5e88cbc9547d1117ea65d5f4f7d07",
+      "differingBytes": 0
+    },
+    {
+      "name": "landscape.jpg",
+      "fileBytes": 201978,
+      "fileSha256": "6b8865b691747d831a00f33017c97cbc5beed21575601a3442918de61361ef31",
+      "width": 1000,
+      "height": 667,
+      "header": {
+        "format": "jpeg",
+        "width": 1000,
+        "height": 667
+      },
+      "rgbaSha256": "c49e8b29f2cf751fb6d507dd094908225f3f36a400cb044d730eda03915e96c9",
+      "differingBytes": 0
+    },
+    {
+      "name": "pet.jpg",
+      "fileBytes": 156529,
+      "fileSha256": "177e6791c1ec8b62640fb1877bd8d3813561542d4716669cf65bee6eb81ab75f",
+      "width": 900,
+      "height": 1200,
+      "header": {
+        "format": "jpeg",
+        "width": 900,
+        "height": 1200
+      },
+      "rgbaSha256": "451baf2a9d0182512aabbd773519af41ba5308cfa42250ab485dfc2ae911021b",
+      "differingBytes": 0
+    },
+    {
+      "name": "same-portrait.png",
+      "fileBytes": 1900005,
+      "fileSha256": "8e3b48f2f8c4a9704e0f22ca4c3c761ffbd15a29118e77fe75e8fbb996a1d2ea",
+      "width": 1200,
+      "height": 1500,
+      "header": {
+        "format": "png",
+        "width": 1200,
+        "height": 1500
+      },
+      "rgbaSha256": "fe14f32f50bbc8808d2a6e562bd7c1bdf3a5e88cbc9547d1117ea65d5f4f7d07",
+      "differingBytes": 0
+    },
+    {
+      "name": "mountain.webp",
+      "fileBytes": 1776566,
+      "fileSha256": "44258e002857e66a7c8ed7ea136ca154a68bc34ea9ec78d8393105ae1d78ad54",
+      "width": 1122,
+      "height": 1402,
+      "header": {
+        "format": "webp",
+        "width": 1122,
+        "height": 1402
+      },
+      "rgbaSha256": "e3e7d7e0ed0eb3091bf22774c57a6e913de483e0585afd13cd4d67657da024b0",
+      "differingBytes": 0
+    },
+    {
+      "name": "eagle.webp",
+      "fileBytes": 1877512,
+      "fileSha256": "c09bccc941aaa7816e7e510bea141b3126373cdac088fe57d7eaaa19f3752c1f",
+      "width": 1122,
+      "height": 1402,
+      "header": {
+        "format": "webp",
+        "width": 1122,
+        "height": 1402
+      },
+      "rgbaSha256": "bbfda50acf2734f5e0a08efcd0abad454ead5483768c47451ab14d1fb21ad9e3",
+      "differingBytes": 0
+    },
+    {
+      "name": "sea.webp",
+      "fileBytes": 1841934,
+      "fileSha256": "fabb4a862bad0a49479cab8d2761e07478aa304e7a0dd8e176349e8061636815",
+      "width": 1122,
+      "height": 1402,
+      "header": {
+        "format": "webp",
+        "width": 1122,
+        "height": 1402
+      },
+      "rgbaSha256": "17b64762663b0813786d8625f21b15e1f2a5181dab00d817727a15d044078722",
+      "differingBytes": 0
+    },
+    {
+      "name": "public-historical-signature.svg",
+      "fileBytes": 5992,
+      "fileSha256": "4c19519c3ea10a6a976f73430fbe42341f09faff7d63d352345b4a9c91b146f1",
+      "width": 390,
+      "height": 60,
+      "header": null,
+      "rgbaSha256": "463f7b78b41adcfa9c1afbe2b869bbf9a6b0221955a7239c7e611f75946fbe53",
+      "differingBytes": 0
+    },
+    {
+      "name": "controlled-bmp.bmp",
+      "fileBytes": 70,
+      "fileSha256": "3be899316545ad877a48e354837214dab5280c4c30d061be0ca6355b074c7153",
+      "width": 2,
+      "height": 2,
+      "header": null,
+      "rgbaSha256": "9c55658f78018a2d5667d4a15f7ad47b38d44a5b80571c06e477d5e47169933c",
+      "differingBytes": 0
+    },
+    {
+      "name": "controlled-transparent.gif",
+      "fileBytes": 42,
+      "fileSha256": "ef1955ae757c8b966c83248350331bd3a30f658ced11f387f8ebf05ab3368629",
+      "width": 1,
+      "height": 1,
+      "header": null,
+      "rgbaSha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+      "differingBytes": 0
+    },
+    {
+      "name": "exif-6.jpg",
+      "fileBytes": 167798,
+      "fileSha256": "be15942f30410f5e214f91c245e0c378b484ee7fc94b066de4ccc0f06a507032",
+      "width": 1500,
+      "height": 1200,
+      "header": {
+        "format": "jpeg",
+        "width": 1200,
+        "height": 1500
+      },
+      "rgbaSha256": "5f1c8707ded018d71881c2488da61d67f0904306988b13684ed07ac81f5821cb",
+      "differingBytes": 0
+    },
+    {
+      "name": "exif-8.jpg",
+      "fileBytes": 167798,
+      "fileSha256": "76dd38eef313fa4f101e36ec96df2671e6f10a83581889390da9217105e460a6",
+      "width": 1500,
+      "height": 1200,
+      "header": {
+        "format": "jpeg",
+        "width": 1200,
+        "height": 1500
+      },
+      "rgbaSha256": "65a961be24c39eaf034dd9b14448f2172077b170623e98aafccb8a0d78fb99ee",
+      "differingBytes": 0
+    }
+  ],
+  "rejections": [
+    {
+      "label": "png-256MP",
+      "message": "图片最多支持3200万像素，请裁切或缩小后重试",
+      "beforeNativeDecode": true
+    },
+    {
+      "label": "jpeg-256MP",
+      "message": "图片最多支持3200万像素，请裁切或缩小后重试",
+      "beforeNativeDecode": true
+    },
+    {
+      "label": "webp-VP8X",
+      "message": "图片最多支持3200万像素，请裁切或缩小后重试",
+      "beforeNativeDecode": true
+    },
+    {
+      "label": "webp-VP8L",
+      "message": "图片最多支持3200万像素，请裁切或缩小后重试",
+      "beforeNativeDecode": true
+    },
+    {
+      "label": "webp-VP8 ",
+      "message": "图片最多支持3200万像素，请裁切或缩小后重试",
+      "beforeNativeDecode": true
+    },
+    {
+      "label": "byte-budget",
+      "message": "图片超过0.1599893569946289MiB，请压缩或裁切后重试",
+      "beforeNativeDecode": true
+    },
+    {
+      "label": "empty-file",
+      "message": "图片文件为空，请重新选择",
+      "beforeNativeDecode": true
+    },
+    {
+      "label": "corrupt-image",
+      "message": "无法读取图片：bad.png，请换一张有效图片重试",
+      "beforeNativeDecode": false
+    },
+    {
+      "label": "unknown-format-native-dimensions",
+      "message": "图片最多支持0.01万像素，请裁切或缩小后重试",
+      "beforeNativeDecode": false
+    },
+    {
+      "label": "timeout-cleanup",
+      "message": "图片读取超时，请换文件或缩小图片后重试",
+      "beforeNativeDecode": false
+    }
+  ],
+  "cancellations": [
+    {
+      "api": "loadImageElement",
+      "elapsedMs": 21.599999994039536,
+      "error": "AbortError",
+      "liveUrls": 0
+    },
+    {
+      "api": "openSignaturePhoto",
+      "elapsedMs": 20.5,
+      "error": "AbortError",
+      "liveUrls": 0
+    },
+    {
+      "api": "bounded-header-read",
+      "error": "AbortError",
+      "elapsedMs": 20.299999997019768,
+      "noUrlCreated": true
+    },
+    {
+      "api": "loadBankAsStamps",
+      "error": "AbortError",
+      "elapsedMs": 6.9000000059604645,
+      "bankUnchanged": true,
+      "liveUrls": 0
+    },
+    {
+      "api": "readSignatureProject",
+      "error": "AbortError",
+      "elapsedMs": 10.299999997019768,
+      "liveUrls": 0
+    }
+  ],
+  "ui": {
+    "production": "http://127.0.0.1:4210",
+    "preserved": [
+      {
+        "theme": "light",
+        "width": 1440,
+        "retainedCompleteRgba": true,
+        "retainedPortraitName": true
+      },
+      {
+        "theme": "light",
+        "width": 390,
+        "retainedCompleteRgba": true,
+        "retainedPortraitName": true
+      },
+      {
+        "theme": "dark",
+        "width": 1440,
+        "retainedCompleteRgba": true,
+        "retainedPortraitName": true
+      },
+      {
+        "theme": "dark",
+        "width": 390,
+        "retainedCompleteRgba": true,
+        "retainedPortraitName": true
+      }
+    ],
+    "latestSelectionWins": true,
+    "corruptInputPreservesLatest": true,
+    "leaveReleasesCandidate": true
+  },
+  "errors": []
+}

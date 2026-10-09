@@ -1,4 +1,6 @@
 * text=auto eol=lf
+docs/validation/2026-10-09/signature-image-read/** -text whitespace=cr-at-eol
+docs/validation/2026-10-09/signature-image-read/**/*.log -diff
 public/fonts/brand/OFL.txt -text -diff
 public/fonts/signature/cjk/**/OFL.txt -text -diff
 docs/validation/2026-10-09/signature-font-subsets/** -text whitespace=cr-at-eol

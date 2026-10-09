@@ -4,22 +4,20 @@ import { FULL_IMAGE_REGION, imageRegionBounds, type ImageRegion } from '../image
 
 export async function openSignaturePhoto(file: File, signal: AbortSignal) {
   signal.throwIfAborted()
-  if (file.size > 32 * 1024 * 1024) throw new Error('签名图片超过32MB，请先缩小图片')
-  const loaded = await loadImageElement(file)
+  const loaded = await loadImageElement(file, {
+    signal, maxBytes: 32 * 1024 * 1024, maxPixels: 48_000_000, maxSide: 12000,
+  })
   try {
     signal.throwIfAborted()
-    const { naturalWidth: width, naturalHeight: height } = loaded.image
-    if (width * height > 48_000_000 || Math.max(width, height) > 12000)
-      throw new Error('签名照片超过4800万像素或12000像素长边，请先缩小图片')
     return {
       ...loaded,
       dispose: () => {
-        loaded.image.src = ''
+        loaded.image.removeAttribute('src')
         URL.revokeObjectURL(loaded.objectUrl)
       },
     }
   } catch (error) {
-    loaded.image.src = ''
+    loaded.image.removeAttribute('src')
     URL.revokeObjectURL(loaded.objectUrl)
     throw error
   }

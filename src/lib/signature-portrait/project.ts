@@ -428,7 +428,9 @@ export async function readSignatureProject(
     type: manifest.portrait.type,
     lastModified: manifest.portrait.lastModified,
   })
-  const { image: portrait, objectUrl } = await loadImageElement(portraitFile)
+  const { image: portrait, objectUrl } = await loadImageElement(portraitFile, {
+    signal: progress.signal, maxPixels: 32_000_000, maxSide: 32768,
+  })
   const stamps: SignatureStamp[] = []
   const ownedCanvases: HTMLCanvasElement[] = []
   let disposed = false

@@ -1,0 +1,26 @@
+[
+  {
+    "check": "vue-tsc --noEmit -p tsconfig.views.json (package type-check equivalent)",
+    "session": 53038,
+    "exitCode": 0,
+    "log": "type-check.log"
+  },
+  {
+    "check": "ESLint product and contract",
+    "session": 53314,
+    "exitCode": 0,
+    "log": "eslint-product-and-contract.log"
+  },
+  {
+    "check": "ESLint final contract after navigation selector change",
+    "session": 6766,
+    "exitCode": 0,
+    "log": "eslint-final-contract.log"
+  },
+  {
+    "check": "npm.cmd run build final R3",
+    "session": 39855,
+    "exitCode": 0,
+    "log": "build-final.log"
+  }
+]

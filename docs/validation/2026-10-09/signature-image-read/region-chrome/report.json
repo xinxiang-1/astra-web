@@ -1,0 +1,50 @@
+{
+  "browser": "157.0.8081.0",
+  "dev": "http://127.0.0.1:5210",
+  "production": "http://127.0.0.1:4210",
+  "errors": [],
+  "cases": [
+    {
+      "case": "crop-original-before-resize-and-native-cutout",
+      "width": 1176,
+      "height": 176,
+      "crop": {
+        "x": 0.4,
+        "y": 0.4,
+        "width": 0.2,
+        "height": 0.1
+      },
+      "changed": 0,
+      "wholePhoto": [
+        2032,
+        1016
+      ],
+      "nativeCrop": [
+        1200,
+        300
+      ],
+      "fixtureFileBytes": 401139,
+      "rejected": 6
+    },
+    {
+      "case": "production-mouse-keyboard-native-preview-confirm-and-url-release",
+      "passed": true
+    },
+    {
+      "case": "two-theme-mobile-real-touch-move-cancel-no-append-or-url-leak",
+      "passed": true
+    },
+    {
+      "case": "batch-next-resets-crop-and-cancel-is-atomic",
+      "passed": true
+    }
+  ],
+  "sourceHashes": {
+    "src/lib/image-region.ts": "f325aae103476d99f4085185b44a750c8d6dfbde27760b3c4e5659cb2b4f292a",
+    "src/components/ui/ImageRegionSelect.vue": "cc0261601d74550bf0c5d8d3e8d951bda29ec3b384ff2ed6fdd4bdfe713dd7e4",
+    "src/components/signature/SignatureCutoutDialog.vue": "e80393ba95024e7c4571d99fdb789cfff1089ed0707a4434a82f25791dfc90c1",
+    "src/lib/signature-portrait/cutout-client.ts": "708003779afcfc9c228e190d9d6acc56af6689142034ba3cdad4df500b377fbe",
+    "src/lib/signature-portrait/signature-cutout.ts": "54db7567e2dca14219db8abe293cb6fa1f77c99eb7257bf9cdff58d210158331"
+  },
+  "passed": true
+}

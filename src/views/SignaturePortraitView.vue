@@ -87,6 +87,8 @@ const portrait = ref<HTMLImageElement | null>(null)
 const portraitName = ref('')
 const portraitObjectUrl = ref('')
 const portraitFile = shallowRef<File | null>(null)
+const portraitBusy = ref(false)
+let portraitController: AbortController | null = null
 const projectBusy = ref(false)
 const projectNotice = ref('')
 let projectController: AbortController | null = null
@@ -476,7 +478,7 @@ async function generate100Styles() {
 }
 
 async function uploadPortraitThenPaint() {
-  if (bankBusy.value) return
+  if (bankBusy.value && !portraitBusy.value) return
   portraitInput.value?.click()
 }
 
@@ -1143,6 +1145,7 @@ onBeforeUnmount(() => {
   viewDisposed = true
   projectController?.abort()
   generationController?.abort()
+  portraitController?.abort()
   if (pngSignal) pngSignal.cancelled = true
   paintSignal.cancelled = true
   disposeRasterWorker()
@@ -1248,7 +1251,7 @@ async function loadDemo() {
         stamps.value = variants
       }
     } else {
-      stamps.value = await loadBankAsStamps(activeBank.value.id)
+      stamps.value = await loadBankAsStamps(activeBank.value.id, controller.signal)
     }
 
     const demoPath = `${import.meta.env.BASE_URL}demos/ascii-live/aristotle-bust.webp`
@@ -1258,7 +1261,9 @@ async function loadDemo() {
       type: 'image/webp',
       lastModified: 0,
     })
-    const { image, objectUrl } = await loadImageElement(file)
+    const { image, objectUrl } = await loadImageElement(file, {
+      signal: controller.signal, maxPixels: 32_000_000, maxSide: 32768,
+    })
     if (controller.signal.aborted || viewDisposed) {
       URL.revokeObjectURL(objectUrl)
       return
@@ -1281,46 +1286,78 @@ async function loadDemo() {
 }
 
 async function onPortraitChange(event: Event) {
-  if (bankBusy.value) return
+  if (bankBusy.value && !portraitBusy.value) return
   const input = event.target as HTMLInputElement
   const file = input.files?.item(0)
   if (!file) return
+  portraitController?.abort()
+  const controller = new AbortController()
+  portraitController = controller
   error.value = ''
+  projectNotice.value = ''
+  portraitBusy.value = true
   pending.value = true
+  progressStage.value = '读取画像照片'
+  progressRatio.value = 0
   let candidateUrl = ''
+  let candidateImage: HTMLImageElement | null = null
+  let candidateStamps: SignatureStamp[] | null = null
+  const stale = () => controller.signal.aborted || portraitController !== controller || viewDisposed
   try {
-    const { image, objectUrl } = await loadImageElement(file)
+    const { image, objectUrl } = await loadImageElement(file, {
+      signal: controller.signal, maxBytes: 64 * 1024 * 1024, maxPixels: 32_000_000, maxSide: 32768,
+    })
     candidateUrl = objectUrl
-    if (viewDisposed) return
-    if (image.naturalWidth * image.naturalHeight > 32_000_000)
-      throw new Error('画像最多支持3200万像素，请缩小后重试')
+    candidateImage = image
+    if (stale()) return
     // Prepare the bank too; failed input/decode/storage must preserve the current result.
     const loaded =
       activeBank.value && activeBank.value.count > 0
-        ? await loadBankAsStamps(activeBank.value.id)
+        ? await loadBankAsStamps(activeBank.value.id, controller.signal)
         : null
-    if (viewDisposed) return
+    candidateStamps = loaded
+    if (stale()) return
     revokePortraitUrl()
     portrait.value = image
     portraitObjectUrl.value = objectUrl
     candidateUrl = ''
     portraitFile.value = file
     portraitName.value = file.name
+    portraitBusy.value = false
     // 已有名字库则自动载入并作画
     if (loaded) {
       stamps.value = loaded
+      candidateStamps = null
       await renderNow()
     } else {
-      void maybeAutoRender()
+      await maybeAutoRender()
     }
   } catch (e) {
-    error.value = e instanceof Error ? e.message : '画像读取失败'
+    if (!stale()) error.value = e instanceof Error ? e.message : '画像读取失败'
   } finally {
-    if (candidateUrl) URL.revokeObjectURL(candidateUrl)
+    if (candidateUrl) {
+      candidateImage?.removeAttribute('src')
+      URL.revokeObjectURL(candidateUrl)
+    }
+    if (candidateStamps) for (const stamp of candidateStamps) {
+      URL.revokeObjectURL(stamp.previewUrl)
+      stamp.canvas.width = stamp.canvas.height = 1
+    }
     releaseUnusedImportedScenes()
-    pending.value = false
-    if (portraitInput.value) portraitInput.value.value = ''
+    if (portraitController === controller) {
+      portraitController = null
+      portraitBusy.value = false
+      pending.value = false
+      progressStage.value = ''
+      progressRatio.value = 0
+      if (portraitInput.value) portraitInput.value.value = ''
+    }
   }
+}
+
+function cancelPortraitRead() {
+  portraitController?.abort()
+  projectNotice.value = '已取消读取照片，上一幅完整作品保留。'
 }
 
 async function maybeAutoRender() {
@@ -1954,11 +1991,12 @@ watch([coverFill, colorize, signatureInkStyle], () => {
         <FxButton
           type="button"
           variant="primary"
-          :disabled="bankBusy"
+          :disabled="bankBusy && !portraitBusy"
           @click="uploadPortraitThenPaint"
         >
           上传画像照片
         </FxButton>
+        <FxButton v-if="portraitBusy" type="button" @click="cancelPortraitRead">取消读取照片</FxButton>
         <input
           ref="portraitInput"
           class="sr-only"
@@ -1979,6 +2017,11 @@ watch([coverFill, colorize, signatureInkStyle], () => {
           {{ pngBusy ? '导出PNG中…' : '下载 PNG' }} </FxButton
         ><FxButton v-if="pngBusy" type="button" @click="cancelPng"> 取消PNG导出 </FxButton>
       </div>
+      <RenderFeedback
+        v-if="portraitBusy"
+        title="正在读取画像照片"
+        detail="可以取消或重新选择照片，上一幅完整作品会保留。"
+      />
       <div class="project-actions">
         <FxButton type="button" :disabled="bankBusy" @click="projectInput?.click()">
           打开作品文件 </FxButton
@@ -2631,10 +2674,10 @@ watch([coverFill, colorize, signatureInkStyle], () => {
           }}）：照片生成的彩绘底色＋完整签名。SVG保留签名矢量路径，同时嵌入底色图像。
         </p>
         <RenderFeedback
-          v-if="(pending && !pngBusy) || generatingVariants || sharpPainting"
-          :title="sharpPainting && !pending ? '正在精绘局部笔迹' : progressStage || '正在准备作品'"
+          v-if="(pending && !pngBusy && !portraitBusy) || generatingVariants || sharpPainting"
+          :title="sharpPainting && (!pending || portraitBusy) ? '正在精绘局部笔迹' : progressStage || '正在准备作品'"
           :detail="
-            sharpPainting && !pending
+            sharpPainting && (!pending || portraitBusy)
               ? '视图已更新，清晰笔迹随后呈现。可以继续缩放或拖动。'
               : pngBusy
                 ? pngBackend === 'canvas'
@@ -2644,7 +2687,7 @@ watch([coverFill, colorize, signatureInkStyle], () => {
                     : '正在准备高清导出。可以继续浏览或取消，当前作品会保留。'
                 : '可以继续浏览页面，完成后会呈现完整笔迹与色彩。'
           "
-          :progress="pending ? progressRatio : undefined"
+          :progress="pending && !portraitBusy ? progressRatio : undefined"
           :progress-label="pngBusy ? 'PNG导出进度' : '作品生成进度'"
         />
         <label v-if="hasResult" class="preview-quality">

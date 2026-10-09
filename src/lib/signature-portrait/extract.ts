@@ -1,5 +1,7 @@
 /** Signature → transparent ink stamp (整段签名当一枚印章). */
 import type { SignatureFontId } from './fonts'
+import { loadImageElement } from '../image-element'
+export { loadImageElement } from '../image-element'
 
 export type SignatureStamp = {
   id: string
@@ -213,25 +215,6 @@ export function measureStampTraits(canvas: HTMLCanvasElement): {
     inkRatio: total > 0 ? Math.min(0.8, ink / total) : 0.2,
     aspect: width / Math.max(1, height),
   }
-}
-
-export async function loadImageElement(file: File): Promise<{
-  image: HTMLImageElement
-  objectUrl: string
-}> {
-  const objectUrl = URL.createObjectURL(file)
-  const image = new Image()
-  image.decoding = 'async'
-  await new Promise<void>((resolve, reject) => {
-    image.onload = () => resolve()
-    image.onerror = () => {
-      URL.revokeObjectURL(objectUrl)
-      reject(new Error(`无法读取图片：${file.name}`))
-    }
-    image.src = objectUrl
-  })
-  // 不在这里 revoke：画像还要用 drawImage 渲染预览
-  return { image, objectUrl }
 }
 
 export async function stampFromFile(
