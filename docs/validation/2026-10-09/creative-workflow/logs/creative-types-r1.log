@@ -1,0 +1,8 @@
+
+> astra-web@0.0.0 type-check
+> vue-tsc --noEmit -p tsconfig.views.json
+
+src/views/SignaturePortraitView.vue(2001,42): error TS2345: Argument of type 'string' is not assignable to parameter of type 'File'.
+src/views/SignaturePortraitView.vue(2003,43): error TS2339: Property 'naturalWidth' does not exist on type '{ image: HTMLImageElement; objectUrl: string; }'.
+src/views/SignaturePortraitView.vue(2003,63): error TS2339: Property 'naturalHeight' does not exist on type '{ image: HTMLImageElement; objectUrl: string; }'.
+src/views/SignaturePortraitView.vue(2009,23): error TS2345: Argument of type '{ image: HTMLImageElement; objectUrl: string; }' is not assignable to parameter of type 'CanvasImageSourceWebCodecs'.

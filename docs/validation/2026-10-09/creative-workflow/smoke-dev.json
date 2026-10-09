@@ -1,0 +1,28 @@
+{
+  "modules": [
+    {
+      "base": "http://localhost:5173",
+      "dependency": "/node_modules/.vite-astra/serve-development-5173/deps/webgl-fluid.js?v=32e49b9b",
+      "status": 200
+    },
+    {
+      "base": "http://127.0.0.1:5210",
+      "dependency": "/node_modules/.vite-astra/serve-development-5210/deps/webgl-fluid.js?v=32e49b9b",
+      "status": 200
+    }
+  ],
+  "browsers": [
+    {
+      "channel": "msedge",
+      "version": "154.0.4258.62",
+      "errors": [],
+      "failed": []
+    },
+    {
+      "channel": "chrome",
+      "version": "157.0.8081.0",
+      "errors": [],
+      "failed": []
+    }
+  ]
+}

@@ -35,9 +35,9 @@ export function tintCacheKey(
   return `${index}:${signatureTint(colorize, r, g, b, depth, literal).join(',')}`
 }
 
-/** Raise ink opacity smoothly without clipping midtones; gain 1 preserves old works exactly. */
+/** Adjust ink opacity smoothly; gain 1 preserves old works exactly. */
 export function signatureInkStrength(strength: number, gain = 1): number {
   const alpha = Math.max(0, Math.min(1, strength))
-  const amount = Number.isFinite(gain) ? Math.max(1, Math.min(3, gain)) : 1
+  const amount = Number.isFinite(gain) ? Math.max(0.2, Math.min(3, gain)) : 1
   return amount === 1 ? alpha : 1 - Math.pow(1 - alpha, amount)
 }

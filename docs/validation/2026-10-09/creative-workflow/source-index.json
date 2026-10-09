@@ -1,0 +1,526 @@
+{
+  "date": "2026-10-09",
+  "root": "E:\\project\\astra\\astra-web",
+  "frontendParent": "32aafd661185e4dbed7978feac419307e9f6e033",
+  "backendParent": "8a6b2d32c2d829ece1ca69c2b52c6835798bfd3d",
+  "sources": [
+    {
+      "file": "package.json",
+      "bytes": 8619,
+      "sha256": "78b34a539930f8666a836f54c97a767f9ad451dcb06a1675d10438e760f51f8c",
+      "gitIndexSha256": "78b34a539930f8666a836f54c97a767f9ad451dcb06a1675d10438e760f51f8c"
+    },
+    {
+      "file": "vite.config.ts",
+      "bytes": 2377,
+      "sha256": "3a133004d522b1c1f02c09bffa2b7ce2d0f3facc80935357bcabe2ccb5e88410",
+      "gitIndexSha256": "3a133004d522b1c1f02c09bffa2b7ce2d0f3facc80935357bcabe2ccb5e88410"
+    },
+    {
+      "file": "src/views/AsciiArtView.vue",
+      "bytes": 167843,
+      "sha256": "4c3130eb3a72f49ae5bffe318d763acf68b5ce1da379dc894fe665ea5efa9e96",
+      "gitIndexSha256": "4c3130eb3a72f49ae5bffe318d763acf68b5ce1da379dc894fe665ea5efa9e96"
+    },
+    {
+      "file": "src/views/SignaturePortraitView.vue",
+      "bytes": 119479,
+      "sha256": "0bdb09161135754de23e44d273b578abec13170c4a7fb3bdfe6edebe51c1e2f3",
+      "gitIndexSha256": "0bdb09161135754de23e44d273b578abec13170c4a7fb3bdfe6edebe51c1e2f3"
+    },
+    {
+      "file": "src/views/packages/effects/WebglFluidEffect.vue",
+      "bytes": 3835,
+      "sha256": "18375162a4f8f704afc0fe9ba1bfa510913e4b8d051c62cb60de7c349fb576ad",
+      "gitIndexSha256": "18375162a4f8f704afc0fe9ba1bfa510913e4b8d051c62cb60de7c349fb576ad"
+    },
+    {
+      "file": "src/lib/art-recipes.ts",
+      "bytes": 1625,
+      "sha256": "5504e6b831d9c5cb7b2a815ccf5a4ae573170a131dc04d5dff14c9f612b2121b",
+      "gitIndexSha256": "5504e6b831d9c5cb7b2a815ccf5a4ae573170a131dc04d5dff14c9f612b2121b"
+    },
+    {
+      "file": "src/lib/signature-art-workflow.ts",
+      "bytes": 1502,
+      "sha256": "7064e049de4ce556fc4a1019386e354099fe644dea80bfe6ae34560f06590eef",
+      "gitIndexSha256": "7064e049de4ce556fc4a1019386e354099fe644dea80bfe6ae34560f06590eef"
+    },
+    {
+      "file": "src/lib/signature-portrait/layout.ts",
+      "bytes": 28765,
+      "sha256": "49a7d4e859a4bbe8a9563b89f2a3743c57f8814cf54bb0d28c490bc2ae294996",
+      "gitIndexSha256": "49a7d4e859a4bbe8a9563b89f2a3743c57f8814cf54bb0d28c490bc2ae294996"
+    },
+    {
+      "file": "src/lib/signature-portrait/layout-compute.ts",
+      "bytes": 17853,
+      "sha256": "6b81ee6fe37b4f14869f57cef262c02d5dad27c15395254572f44f803b2c53a9",
+      "gitIndexSha256": "6b81ee6fe37b4f14869f57cef262c02d5dad27c15395254572f44f803b2c53a9"
+    },
+    {
+      "file": "src/lib/signature-portrait/render-style.ts",
+      "bytes": 1297,
+      "sha256": "765d8e06d08216f87e4b960e9c34b6bb4ed45d0aa256c396fa0d1e468155386f",
+      "gitIndexSha256": "765d8e06d08216f87e4b960e9c34b6bb4ed45d0aa256c396fa0d1e468155386f"
+    },
+    {
+      "file": "src/lib/signature-portrait/project.ts",
+      "bytes": 18142,
+      "sha256": "775fc6aba5da2a0aa8ead5b4d7efd185e7bc5c537f7fad937667b01005a2aef0",
+      "gitIndexSha256": "775fc6aba5da2a0aa8ead5b4d7efd185e7bc5c537f7fad937667b01005a2aef0"
+    },
+    {
+      "file": "src/lib/signature-portrait/png-export.ts",
+      "bytes": 2976,
+      "sha256": "a18814c8bb3a0bc61b12d48f0cf7ce4e1967883d46613de63c973637de1d450f",
+      "gitIndexSha256": "a18814c8bb3a0bc61b12d48f0cf7ce4e1967883d46613de63c973637de1d450f"
+    },
+    {
+      "file": "scripts/creative-core-contract.mjs",
+      "bytes": 8371,
+      "sha256": "9ae44ab17d3ae76bfffed8b093facc2c3bc97a72f70a56771e160fda9579d80b",
+      "gitIndexSha256": "9ae44ab17d3ae76bfffed8b093facc2c3bc97a72f70a56771e160fda9579d80b"
+    },
+    {
+      "file": "scripts/creative-smoke-contract.mjs",
+      "bytes": 2068,
+      "sha256": "62ca590925faeee88574f39068946d5eb486a8d0c37c6e020adec047609ee267",
+      "gitIndexSha256": "62ca590925faeee88574f39068946d5eb486a8d0c37c6e020adec047609ee267"
+    },
+    {
+      "file": "scripts/creative-smoke-dev.mjs",
+      "bytes": 2113,
+      "sha256": "d3793b99ee821e0ef7ee4916f0320b398e71d791fd72d891a892af18277c3042",
+      "gitIndexSha256": "d3793b99ee821e0ef7ee4916f0320b398e71d791fd72d891a892af18277c3042"
+    },
+    {
+      "file": "scripts/creative-workflow-ui.mjs",
+      "bytes": 7953,
+      "sha256": "642b4f725d103a2470edd7fcf316da5f16f2697fc8e38166ab628aa3f13a8a3b",
+      "gitIndexSha256": "642b4f725d103a2470edd7fcf316da5f16f2697fc8e38166ab628aa3f13a8a3b"
+    },
+    {
+      "file": "scripts/creative-workflow-suite.mjs",
+      "bytes": 1001,
+      "sha256": "36ceda986f0d2014e6fc057648051c1bc8c8c3d9396cd3eb95173242f9f134e0",
+      "gitIndexSha256": "36ceda986f0d2014e6fc057648051c1bc8c8c3d9396cd3eb95173242f9f134e0"
+    },
+    {
+      "file": "scripts/auth-session-contract.mjs",
+      "bytes": 2160,
+      "sha256": "89b5362c40266842f0dd6646c657753433fdb70c620a95098bc909fe22bfef05",
+      "gitIndexSha256": "89b5362c40266842f0dd6646c657753433fdb70c620a95098bc909fe22bfef05"
+    },
+    {
+      "file": "scripts/signature-png-contract.mjs",
+      "bytes": 12367,
+      "sha256": "e5a44a8e05ee8f535a781dcd9420fe3e5e36b588715e66305fb0f664d7a1c65a",
+      "gitIndexSha256": "e5a44a8e05ee8f535a781dcd9420fe3e5e36b588715e66305fb0f664d7a1c65a"
+    },
+    {
+      "file": "docs/plans/creative-ecosystem-2026-10-09.md",
+      "bytes": 9606,
+      "sha256": "c4141ee8e7fc3d4bdf8dcf78d010da0ee62797cfb60428e8d0bf5ccd50778dd7",
+      "gitIndexSha256": "c4141ee8e7fc3d4bdf8dcf78d010da0ee62797cfb60428e8d0bf5ccd50778dd7"
+    },
+    {
+      "file": "docs/research/2026-10-09-creative-ecosystem/README.md",
+      "bytes": 2666,
+      "sha256": "f014aa835273630fb7d98d8da4308a1fecb4f676ad432900c0f62a589bd7c7d1",
+      "gitIndexSha256": "f014aa835273630fb7d98d8da4308a1fecb4f676ad432900c0f62a589bd7c7d1"
+    },
+    {
+      "file": "docs/plans/product-master-plan.md",
+      "bytes": 66596,
+      "sha256": "aa7ff35609cd7672909151e4572befed3902b267590d915dc12f3a5a4a2f54f9",
+      "gitIndexSha256": "aa7ff35609cd7672909151e4572befed3902b267590d915dc12f3a5a4a2f54f9"
+    },
+    {
+      "file": "docs/plans/signature-portrait.md",
+      "bytes": 11229,
+      "sha256": "bdaf40486858724b5c923d568e3a66960cb4587a748226f7b7359a445a62d855",
+      "gitIndexSha256": "bdaf40486858724b5c923d568e3a66960cb4587a748226f7b7359a445a62d855"
+    },
+    {
+      "file": "docs/plans/studio-effects-standard.md",
+      "bytes": 14887,
+      "sha256": "550f65294d1b8d081ca663a83e46a6d4152034e38778fbc56e4cb6b5e174b425",
+      "gitIndexSha256": "550f65294d1b8d081ca663a83e46a6d4152034e38778fbc56e4cb6b5e174b425"
+    }
+  ],
+  "evidence": [
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/.gitattributes",
+      "bytes": 17,
+      "sha256": "e34dfc770c4134767b196cb2b64de704c438d4edd8ce88d8d7c0bc88dcb6e2bd",
+      "gitIndexSha256": "e34dfc770c4134767b196cb2b64de704c438d4edd8ce88d8d7c0bc88dcb6e2bd"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/core-chrome.json",
+      "bytes": 334,
+      "sha256": "8b94d7e2e65d866a8b324dcd70362b60c98cadd5948f80c99c74caa501b0b29e",
+      "gitIndexSha256": "8b94d7e2e65d866a8b324dcd70362b60c98cadd5948f80c99c74caa501b0b29e"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/core-msedge.json",
+      "bytes": 335,
+      "sha256": "d0d982a67a5cbd8c023e1ce447b26bd145384a7382c8781d4084c18047312e2f",
+      "gitIndexSha256": "d0d982a67a5cbd8c023e1ce447b26bd145384a7382c8781d4084c18047312e2f"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/design-detector.json",
+      "bytes": 4,
+      "sha256": "a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f",
+      "gitIndexSha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/logs/creative-build-final.log",
+      "bytes": 17703,
+      "sha256": "38c6253af5880fed24ea011ff66d3ba5cdfa91e8277c34205130ffdef935a6d2",
+      "gitIndexSha256": "38c6253af5880fed24ea011ff66d3ba5cdfa91e8277c34205130ffdef935a6d2"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/logs/creative-canvas-check.log",
+      "bytes": 121,
+      "sha256": "b48cecca5f5a4835d8c381109135f3c7d35087029dc9776283a3d1c2ebfca4ac",
+      "gitIndexSha256": "b48cecca5f5a4835d8c381109135f3c7d35087029dc9776283a3d1c2ebfca4ac"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/logs/creative-core-chrome-r1.log",
+      "bytes": 221,
+      "sha256": "443100447b015a1dfa73a7db59a1bfb85819afe7cfb6c994df45094d33024669",
+      "gitIndexSha256": "443100447b015a1dfa73a7db59a1bfb85819afe7cfb6c994df45094d33024669"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/logs/creative-core-edge-final.log",
+      "bytes": 259,
+      "sha256": "34ea3683f0ecf1e1d449d4925596fd5cf2db0199b24a9061d2e30f73366464a2",
+      "gitIndexSha256": "34ea3683f0ecf1e1d449d4925596fd5cf2db0199b24a9061d2e30f73366464a2"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/logs/creative-core-edge-r1.log",
+      "bytes": 378,
+      "sha256": "bdcec18a8bd624ce0722aa250435150220dc7d0fc323f9f8d7a83e7f2a18229e",
+      "gitIndexSha256": "bdcec18a8bd624ce0722aa250435150220dc7d0fc323f9f8d7a83e7f2a18229e"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/logs/creative-core-edge-r2.log",
+      "bytes": 374,
+      "sha256": "24bb24f7d9e20314edeb77f73445befc7ff5106e8be3d91f2704edba961fb65b",
+      "gitIndexSha256": "24bb24f7d9e20314edeb77f73445befc7ff5106e8be3d91f2704edba961fb65b"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/logs/creative-core-edge-r3.log",
+      "bytes": 589,
+      "sha256": "2ef6f4d7a1597fefd0f83f8f70330cd11150cc2f65561da376a75db38647ac7e",
+      "gitIndexSha256": "2ef6f4d7a1597fefd0f83f8f70330cd11150cc2f65561da376a75db38647ac7e"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/logs/creative-core-edge-r4.log",
+      "bytes": 221,
+      "sha256": "443100447b015a1dfa73a7db59a1bfb85819afe7cfb6c994df45094d33024669",
+      "gitIndexSha256": "443100447b015a1dfa73a7db59a1bfb85819afe7cfb6c994df45094d33024669"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/logs/creative-eslint-final.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gitIndexSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/logs/creative-eslint-scripts-final.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gitIndexSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/logs/creative-png-r1.log",
+      "bytes": 94,
+      "sha256": "b93801c9b37333f6c796456ffa7d4e0a65e2ad1cd507eeaef6eddfadf4cce0b7",
+      "gitIndexSha256": "b93801c9b37333f6c796456ffa7d4e0a65e2ad1cd507eeaef6eddfadf4cce0b7"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/logs/creative-smoke-after-ssr.log",
+      "bytes": 451,
+      "sha256": "398a370e93805fb69186b415efe3dc725d6caaf020ef8f9561ac2da9e2f3b8fa",
+      "gitIndexSha256": "398a370e93805fb69186b415efe3dc725d6caaf020ef8f9561ac2da9e2f3b8fa"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/logs/creative-smoke-dev-r1.log",
+      "bytes": 1159,
+      "sha256": "541a7af9905c9bee94b034556bc2822e469970e8e0f740968a786d975dc35301",
+      "gitIndexSha256": "541a7af9905c9bee94b034556bc2822e469970e8e0f740968a786d975dc35301"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/logs/creative-smoke-dev-r2.log",
+      "bytes": 1159,
+      "sha256": "541a7af9905c9bee94b034556bc2822e469970e8e0f740968a786d975dc35301",
+      "gitIndexSha256": "541a7af9905c9bee94b034556bc2822e469970e8e0f740968a786d975dc35301"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/logs/creative-smoke-dev-r3.log",
+      "bytes": 694,
+      "sha256": "001c2afdab965a8ae18d745322526490d82c291251c0abf6232fdb3c39259ec2",
+      "gitIndexSha256": "001c2afdab965a8ae18d745322526490d82c291251c0abf6232fdb3c39259ec2"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/logs/creative-smoke-dev-r4.log",
+      "bytes": 451,
+      "sha256": "398a370e93805fb69186b415efe3dc725d6caaf020ef8f9561ac2da9e2f3b8fa",
+      "gitIndexSha256": "398a370e93805fb69186b415efe3dc725d6caaf020ef8f9561ac2da9e2f3b8fa"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/logs/creative-smoke-lifecycle-chrome-r1.log",
+      "bytes": 130,
+      "sha256": "a8b3969c336dbba0e9b3919675de35ed50a40fc16433dd8ddd26637d8ebf5160",
+      "gitIndexSha256": "a8b3969c336dbba0e9b3919675de35ed50a40fc16433dd8ddd26637d8ebf5160"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/logs/creative-smoke-lifecycle-r1.log",
+      "bytes": 131,
+      "sha256": "cb059511560d5fbd303f24c9021b382fbcb5a4931965b964cb87bf22ffde2e3b",
+      "gitIndexSha256": "cb059511560d5fbd303f24c9021b382fbcb5a4931965b964cb87bf22ffde2e3b"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/logs/creative-ssr-isolation.log",
+      "bytes": 118,
+      "sha256": "54969f4bc82bd70a1c952805fa49941b43110cd186c539ce860e49076811e820",
+      "gitIndexSha256": "54969f4bc82bd70a1c952805fa49941b43110cd186c539ce860e49076811e820"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/logs/creative-suite-r1.log",
+      "bytes": 3876,
+      "sha256": "284aa1570ef5ea9d298836d34bca44bb98501c85ba088140131b3998fdf3239d",
+      "gitIndexSha256": "284aa1570ef5ea9d298836d34bca44bb98501c85ba088140131b3998fdf3239d"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/logs/creative-suite-r2.log",
+      "bytes": 2652,
+      "sha256": "66fd48a9c19e746519dd00298cfbec2e3c65a66edb8482be689d672b096071ce",
+      "gitIndexSha256": "66fd48a9c19e746519dd00298cfbec2e3c65a66edb8482be689d672b096071ce"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/logs/creative-types-final.log",
+      "bytes": 77,
+      "sha256": "0a7d40c8ea67ee87b4bcdc91418a201a96bc30f3286185c82d8888ec96c6d6fb",
+      "gitIndexSha256": "0a7d40c8ea67ee87b4bcdc91418a201a96bc30f3286185c82d8888ec96c6d6fb"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/logs/creative-types-r1.log",
+      "bytes": 727,
+      "sha256": "bf37aa90c3ceb3adaa12c7de1e0eac88877257b8e47b172e792b472761f79124",
+      "gitIndexSha256": "bf37aa90c3ceb3adaa12c7de1e0eac88877257b8e47b172e792b472761f79124"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/logs/creative-ui-chrome-r1.log",
+      "bytes": 429,
+      "sha256": "ddbcf240067be4b227f0f5ee790367aaaab95db80dca64f5a06e80e8321250d0",
+      "gitIndexSha256": "ddbcf240067be4b227f0f5ee790367aaaab95db80dca64f5a06e80e8321250d0"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/logs/creative-ui-edge-r1.log",
+      "bytes": 429,
+      "sha256": "623a835c7775ded985e4d6f802083766c226b0d9a4882132dd6423d733e69d20",
+      "gitIndexSha256": "623a835c7775ded985e4d6f802083766c226b0d9a4882132dd6423d733e69d20"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/logs/creative-ui-edge-r2.log",
+      "bytes": 421,
+      "sha256": "c7a71ac8b1ebaf9b600ba70132de07a6a4f1762418ee00cc36e75816457dee52",
+      "gitIndexSha256": "c7a71ac8b1ebaf9b600ba70132de07a6a4f1762418ee00cc36e75816457dee52"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/logs/creative-ui-edge-r3.log",
+      "bytes": 430,
+      "sha256": "e91a582d5125f0b27473372aaa9771323e18306e05d682f1c0a203649f56e2f7",
+      "gitIndexSha256": "e91a582d5125f0b27473372aaa9771323e18306e05d682f1c0a203649f56e2f7"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/mobile-failure-r1.json",
+      "bytes": 1361,
+      "sha256": "fa08e76d406527f12548175a166b795e65ce40cd6d9bd35b38baf91a1bd3ed3c",
+      "gitIndexSha256": "fa08e76d406527f12548175a166b795e65ce40cd6d9bd35b38baf91a1bd3ed3c"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/png-regression.json",
+      "bytes": 21228,
+      "sha256": "e558f77d496238d0a8ba098ab1672868018b099dc980fd430a9792d5a5e090df",
+      "gitIndexSha256": "e558f77d496238d0a8ba098ab1672868018b099dc980fd430a9792d5a5e090df"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/README.md",
+      "bytes": 5111,
+      "sha256": "eb1df90e62710b33e40c718fdfc80561f35ec0110171a3cdff293ba44cd4c983",
+      "gitIndexSha256": "eb1df90e62710b33e40c718fdfc80561f35ec0110171a3cdff293ba44cd4c983"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/smoke-chrome.json",
+      "bytes": 155,
+      "sha256": "6f17f73031f72515b6c397447b86ac1a03d1473d8345aa94af0397e8ee493e59",
+      "gitIndexSha256": "6f17f73031f72515b6c397447b86ac1a03d1473d8345aa94af0397e8ee493e59"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/smoke-dev-chrome.png",
+      "bytes": 543437,
+      "sha256": "b6ee2ea53b50bef56de14cb399322b5af2904299dfe6efacee3313c3fcf6384c",
+      "gitIndexSha256": "b6ee2ea53b50bef56de14cb399322b5af2904299dfe6efacee3313c3fcf6384c"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/smoke-dev-msedge.png",
+      "bytes": 560094,
+      "sha256": "2e6273d6c4b2872fd2690913bb976bdcd602188e3fb019d655d618440c8ca1c9",
+      "gitIndexSha256": "2e6273d6c4b2872fd2690913bb976bdcd602188e3fb019d655d618440c8ca1c9"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/smoke-dev.json",
+      "bytes": 617,
+      "sha256": "37fce7a91b3be4436c34f0dd66a30298d4b76a60d42808c5c578e2530021d423",
+      "gitIndexSha256": "37fce7a91b3be4436c34f0dd66a30298d4b76a60d42808c5c578e2530021d423"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/smoke-msedge.json",
+      "bytes": 156,
+      "sha256": "c3b33daace1c1473d24210ceecb5a97e4938c36d98eef30529a46283e700f1da",
+      "gitIndexSha256": "c3b33daace1c1473d24210ceecb5a97e4938c36d98eef30529a46283e700f1da"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/source.astra-signature",
+      "bytes": 86859,
+      "sha256": "798703258d4e6faccef9588838f0e2a232c8e17aa8426418c511e29180ff3269",
+      "gitIndexSha256": "798703258d4e6faccef9588838f0e2a232c8e17aa8426418c511e29180ff3269"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/ui-chrome/baseline.json",
+      "bytes": 5912,
+      "sha256": "d24714fe8c00acca27b810efa7425892c48256e2e33161ee1068a1e05a028bad",
+      "gitIndexSha256": "d24714fe8c00acca27b810efa7425892c48256e2e33161ee1068a1e05a028bad"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/ui-chrome/characters.png",
+      "bytes": 241832,
+      "sha256": "07d717d22ba0d26f282a80ece12e6a910d1ace9f4589198c32a7a08c8d6528fe",
+      "gitIndexSha256": "07d717d22ba0d26f282a80ece12e6a910d1ace9f4589198c32a7a08c8d6528fe"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/ui-chrome/custom.json",
+      "bytes": 6214,
+      "sha256": "453f7413f2c700112d747040a2b538db65b6c26d387a9d44c8be6d64a0b34952",
+      "gitIndexSha256": "453f7413f2c700112d747040a2b538db65b6c26d387a9d44c8be6d64a0b34952"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/ui-chrome/light.json",
+      "bytes": 6214,
+      "sha256": "5433f5fa93feaed1497f848f51eb09a7612615ca7e6655b62835331a34c39cd9",
+      "gitIndexSha256": "5433f5fa93feaed1497f848f51eb09a7612615ca7e6655b62835331a34c39cd9"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/ui-chrome/report.json",
+      "bytes": 518,
+      "sha256": "21959999f8fab9bf96832c4b4844ab15c0d999b9cbe7ca7d9bfe038dd7728010",
+      "gitIndexSha256": "21959999f8fab9bf96832c4b4844ab15c0d999b9cbe7ca7d9bfe038dd7728010"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/ui-chrome/signature.png",
+      "bytes": 257122,
+      "sha256": "f198e5b9726b2ab1297bd5917e33a84f60208aff1125562071a10e4e18a4b0cf",
+      "gitIndexSha256": "f198e5b9726b2ab1297bd5917e33a84f60208aff1125562071a10e4e18a4b0cf"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/ui-chrome/source.json",
+      "bytes": 6165,
+      "sha256": "079619aa31f7db7056d9420a98536b922f42b247cc1f4ba507ae35a99715e5bf",
+      "gitIndexSha256": "079619aa31f7db7056d9420a98536b922f42b247cc1f4ba507ae35a99715e5bf"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/ui-msedge-mobile/baseline.json",
+      "bytes": 5912,
+      "sha256": "d24714fe8c00acca27b810efa7425892c48256e2e33161ee1068a1e05a028bad",
+      "gitIndexSha256": "d24714fe8c00acca27b810efa7425892c48256e2e33161ee1068a1e05a028bad"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/ui-msedge-mobile/characters.png",
+      "bytes": 110804,
+      "sha256": "e25d03078c6fe5224b1922880c114c5e81cc43e25c026357282e30595b140be7",
+      "gitIndexSha256": "e25d03078c6fe5224b1922880c114c5e81cc43e25c026357282e30595b140be7"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/ui-msedge-mobile/custom.json",
+      "bytes": 6214,
+      "sha256": "453f7413f2c700112d747040a2b538db65b6c26d387a9d44c8be6d64a0b34952",
+      "gitIndexSha256": "453f7413f2c700112d747040a2b538db65b6c26d387a9d44c8be6d64a0b34952"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/ui-msedge-mobile/light.json",
+      "bytes": 6214,
+      "sha256": "5433f5fa93feaed1497f848f51eb09a7612615ca7e6655b62835331a34c39cd9",
+      "gitIndexSha256": "5433f5fa93feaed1497f848f51eb09a7612615ca7e6655b62835331a34c39cd9"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/ui-msedge-mobile/report.json",
+      "bytes": 567,
+      "sha256": "1636deceaca11cedbdcb7025312fc6482669934db59cd16b3e447a255d2befbc",
+      "gitIndexSha256": "1636deceaca11cedbdcb7025312fc6482669934db59cd16b3e447a255d2befbc"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/ui-msedge-mobile/signature.png",
+      "bytes": 229287,
+      "sha256": "fc57f6e9e0adc684bf7a1b70074cbf54173ce3241f2a50867d647e7adb37885e",
+      "gitIndexSha256": "fc57f6e9e0adc684bf7a1b70074cbf54173ce3241f2a50867d647e7adb37885e"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/ui-msedge-mobile/source.json",
+      "bytes": 6165,
+      "sha256": "079619aa31f7db7056d9420a98536b922f42b247cc1f4ba507ae35a99715e5bf",
+      "gitIndexSha256": "079619aa31f7db7056d9420a98536b922f42b247cc1f4ba507ae35a99715e5bf"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/ui-msedge/baseline.json",
+      "bytes": 5912,
+      "sha256": "d24714fe8c00acca27b810efa7425892c48256e2e33161ee1068a1e05a028bad",
+      "gitIndexSha256": "d24714fe8c00acca27b810efa7425892c48256e2e33161ee1068a1e05a028bad"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/ui-msedge/characters.png",
+      "bytes": 241832,
+      "sha256": "07d717d22ba0d26f282a80ece12e6a910d1ace9f4589198c32a7a08c8d6528fe",
+      "gitIndexSha256": "07d717d22ba0d26f282a80ece12e6a910d1ace9f4589198c32a7a08c8d6528fe"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/ui-msedge/custom.json",
+      "bytes": 6214,
+      "sha256": "453f7413f2c700112d747040a2b538db65b6c26d387a9d44c8be6d64a0b34952",
+      "gitIndexSha256": "453f7413f2c700112d747040a2b538db65b6c26d387a9d44c8be6d64a0b34952"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/ui-msedge/light.json",
+      "bytes": 6214,
+      "sha256": "5433f5fa93feaed1497f848f51eb09a7612615ca7e6655b62835331a34c39cd9",
+      "gitIndexSha256": "5433f5fa93feaed1497f848f51eb09a7612615ca7e6655b62835331a34c39cd9"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/ui-msedge/report.json",
+      "bytes": 519,
+      "sha256": "bc9464a3b719f23f2b4c49de9b87246750e2e842b34f0f554944708e9c7aa093",
+      "gitIndexSha256": "bc9464a3b719f23f2b4c49de9b87246750e2e842b34f0f554944708e9c7aa093"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/ui-msedge/signature.png",
+      "bytes": 257122,
+      "sha256": "f198e5b9726b2ab1297bd5917e33a84f60208aff1125562071a10e4e18a4b0cf",
+      "gitIndexSha256": "f198e5b9726b2ab1297bd5917e33a84f60208aff1125562071a10e4e18a4b0cf"
+    },
+    {
+      "file": "docs/validation/2026-10-09/creative-workflow/ui-msedge/source.json",
+      "bytes": 6165,
+      "sha256": "079619aa31f7db7056d9420a98536b922f42b247cc1f4ba507ae35a99715e5bf",
+      "gitIndexSha256": "079619aa31f7db7056d9420a98536b922f42b247cc1f4ba507ae35a99715e5bf"
+    }
+  ],
+  "scope": "Current working tree with pre-existing unrelated dirty preserved; only owned files staged. PNG regression predates recipe-select class only. Canvas type check used local SDK, not IDE diagnostics.",
+  "indexVerification": {
+    "files": 84,
+    "rawLogs": 27,
+    "note": "Each staged blob checked; raw logs identical, text CRLF normalization recorded separately."
+  }
+}

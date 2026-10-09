@@ -1,0 +1,21 @@
+{
+  "browser": "157.0.8081.0",
+  "base": "http://127.0.0.1:4210",
+  "cases": [
+    "automatic-custom-colour",
+    "saved-custom-controls-restore",
+    "rapid-input-latest-concentration",
+    "automatic-regional-source-colour",
+    "signature-to-project-and-recipe-edit",
+    "faithful-reset",
+    "faithful-new-project"
+  ],
+  "errors": [],
+  "timings": {
+    "customMs": 436,
+    "rapidMs": 435,
+    "sourceMs": 422,
+    "workflowMs": 128
+  },
+  "project": "/ascii-art?project=41c68343-e1f2-4a4c-ac61-568b25045ac4"
+}

@@ -1,0 +1,64 @@
+
+> astra-web@0.0.0 test:creative-workflow
+> node scripts/creative-workflow-suite.mjs
+
+{"cases":["gain-one-and-monotonic-alpha","woven-geometry-rgb-opacity-project","stipple-geometry-rgb-opacity-project","bounded-png-fallback-and-no-upscale","recipe-package-fluid-reveal","recipe-package-glyph-bloom","recipe-package-hologram"],"placements":21}
+{"browser":"154.0.4258.62","base":"http://127.0.0.1:4210","cases":["automatic-custom-colour","saved-custom-controls-restore","rapid-input-latest-concentration","automatic-regional-source-colour","signature-to-project-and-recipe-edit","faithful-reset","faithful-new-project"],"errors":[],"timings":{"customMs":430,"rapidMs":433,"sourceMs":430,"workflowMs":146},"project":"/ascii-art?project=40d261b8-92ed-4d82-9d3d-b4ad44755623"}
+{"browser":"154.0.4258.62","cases":["friendly-import-failure-and-real-reload","leave-while-renderer-import-pending"],"errors":[]}
+{"cases":["gain-one-and-monotonic-alpha","woven-geometry-rgb-opacity-project","stipple-geometry-rgb-opacity-project","bounded-png-fallback-and-no-upscale","recipe-package-fluid-reveal","recipe-package-glyph-bloom","recipe-package-hologram"],"placements":21}
+{"browser":"157.0.8081.0","base":"http://127.0.0.1:4210","cases":["automatic-custom-colour","saved-custom-controls-restore","rapid-input-latest-concentration","automatic-regional-source-colour","signature-to-project-and-recipe-edit","faithful-reset","faithful-new-project"],"errors":[],"timings":{"customMs":467,"rapidMs":442,"sourceMs":424,"workflowMs":139},"project":"/ascii-art?project=9004c3ab-cbef-4f1b-bc92-83fa4ebd5aae"}
+{"browser":"157.0.8081.0","cases":["friendly-import-failure-and-real-reload","leave-while-renderer-import-pending"],"errors":[]}
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator('details.calibrated-effects').locator('summary')
+    - locator resolved to <summary class="card-head" data-v-fa8fc722="">…</summary>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is not visible
+    - retrying click action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and stable
+      - element is not visible
+    - retrying click action
+      - waiting 100ms
+    58 × waiting for element to be visible, enabled and stable
+       - element is not visible
+     - retrying click action
+       - waiting 500ms
+
+    at E:\project\astra\astra-web\scripts\creative-workflow-ui.mjs:123:36 {
+  log: [
+    "  - waiting for locator('details.calibrated-effects').locator('summary')",
+    '    - locator resolved to <summary class="card-head" data-v-fa8fc722="">…</summary>',
+    '  - attempting click action',
+    '    2 × waiting for element to be visible, enabled and stable',
+    '      - element is not visible',
+    '    - retrying click action',
+    '    - waiting 20ms',
+    '    2 × waiting for element to be visible, enabled and stable',
+    '      - element is not visible',
+    '    - retrying click action',
+    '      - waiting 100ms',
+    '    58 × waiting for element to be visible, enabled and stable',
+    '       - element is not visible',
+    '     - retrying click action',
+    '       - waiting 500ms'
+  ],
+  name: 'TimeoutError'
+}
+
+Node.js v24.12.0
+file:///E:/project/astra/astra-web/scripts/creative-workflow-suite.mjs:13
+      code === 0 ? resolve() : reject(new Error(`${script} failed: ${signal || code}`)),
+                                      ^
+
+Error: creative-workflow-ui.mjs failed: 1
+    at ChildProcess.<anonymous> (file:///E:/project/astra/astra-web/scripts/creative-workflow-suite.mjs:13:39)
+    at ChildProcess.emit (node:events:508:28)
+    at ChildProcess._handle.onexit (node:internal/child_process:294:12)
+
+Node.js v24.12.0

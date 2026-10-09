@@ -578,6 +578,8 @@ export function computePlacementsFromPixels(
       }
     }
 
+    if (options.inkColor && !(onEdge && edgeColorMode === 'custom')) tint = { ...options.inkColor }
+
     placements.push({
       x: ox,
       y: oy,
@@ -590,7 +592,7 @@ export function computePlacementsFromPixels(
       depth: clamp01(onEdge ? 0.75 + e * 0.2 : 0.3 + t * 0.5),
       onEdge,
       tintLiteral:
-        Boolean(options.sourceColor) ||
+        Boolean(options.inkColor || options.sourceColor) ||
         (onEdge && (edgeColorMode === 'custom' || edgeColorMode === 'ink')),
     })
   }

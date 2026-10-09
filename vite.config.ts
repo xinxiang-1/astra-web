@@ -29,32 +29,43 @@ function asciifyEnginePreviewFont(): Plugin {
 }
 
 // https://vite.dev/config/
-export default defineConfig({
-  plugins: [
-    asciifyEnginePreviewFont(),
-    vue(),
-    vueDevTools(),
-    wgslVitePlugin(),
-    fileViewerRenderers({
-      copyAssets: true,
-      chunkStrategy: 'renderer',
-    }),
-  ],
-  resolve: {
-    alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url)),
-    },
-  },
-  // Ensure Studio/core go through the font transform (not a stale prebundle).
-  optimizeDeps: {
-    exclude: ['asciify-engine'],
-  },
-  server: {
-    proxy: {
-      '/api': {
-        target: 'http://127.0.0.1:8080',
-        changeOrigin: true,
+export default defineConfig(({ command, mode, isPreview }) => {
+  const portIndex = process.argv.indexOf('--port')
+  const port =
+    process.argv.find((arg) => arg.startsWith('--port='))?.slice(7) ??
+    (portIndex >= 0 ? process.argv[portIndex + 1] : undefined) ??
+    '5173'
+  const cacheScope = `${isPreview ? 'preview' : command}-${mode}-${/^\d+$/.test(port) ? port : '5173'}`
+  return {
+    // Concurrent dev servers and SSR contracts must not replace each other's optimized modules.
+    cacheDir: process.env.ASTRA_VITE_CACHE_DIR || `node_modules/.vite-astra/${cacheScope}`,
+    plugins: [
+      asciifyEnginePreviewFont(),
+      vue(),
+      vueDevTools(),
+      wgslVitePlugin(),
+      fileViewerRenderers({
+        copyAssets: true,
+        chunkStrategy: 'renderer',
+      }),
+    ],
+    resolve: {
+      alias: {
+        '@': fileURLToPath(new URL('./src', import.meta.url)),
       },
     },
-  },
+    // Ensure Studio/core go through the font transform (not a stale prebundle).
+    optimizeDeps: {
+      include: ['webgl-fluid'],
+      exclude: ['asciify-engine'],
+    },
+    server: {
+      proxy: {
+        '/api': {
+          target: 'http://127.0.0.1:8080',
+          changeOrigin: true,
+        },
+      },
+    },
+  }
 })

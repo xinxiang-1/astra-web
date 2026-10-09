@@ -29,7 +29,9 @@ export type SignatureLayoutOptions = SignatureWashRecipe & {
   colorize?: boolean
   /** 原墨色保持兼容；source 把采样RGB直接用作彩墨，不再额外压暗。 */
   colorMode?: 'ink' | 'source'
-  /** 1保持旧作品；1–3平滑增强笔迹墨量，不改变几何。 */
+  /** UI choice retained in project files; auto keeps historical colour settings. */
+  inkColorMode?: 'auto' | 'custom' | 'source'
+  /** 1保持旧作品；0.2–3平滑调整笔迹墨量，不改变几何。 */
   toneGain?: number
   /** 印章下垫软色椭圆（Canvas / Path SVG；GPU 候选另行验证） */
   coverFill?: boolean

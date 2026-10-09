@@ -1,5 +1,9 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, shallowRef, watch } from 'vue'
+import { useRouter } from 'vue-router'
+import { ART_RECIPES } from '@/lib/art-recipes'
+import { signatureArtProject } from '@/lib/signature-art-workflow'
+import { saveArtProject } from '@/lib/art-projects'
 
 import FxButton from '@/components/ui/FxButton.vue'
 import UiInput from '@/components/ui/UiInput.vue'
@@ -71,6 +75,10 @@ import {
 } from '@/lib/signature-portrait/raster-worker-client'
 
 const theme = useThemeStore()
+const router = useRouter()
+const workflowRecipe = ref('fluid-reveal')
+const workflowProjectId = ref('')
+const workflowBusy = ref(false)
 const BANK_ID_KEY = 'astra-sig-bank-id'
 
 const signatureInput = ref<HTMLInputElement | null>(null)
@@ -177,6 +185,18 @@ const maxSizePct = ref(4)
 const colorize = ref(true)
 const colorMode = ref<'ink' | 'source'>('ink')
 const toneGain = ref(1)
+const inkColorMode = ref<'auto' | 'custom' | 'source'>('auto')
+const inkColorHex = ref('#1c4860')
+let inkUpdateTimer: ReturnType<typeof setTimeout> | null = null
+const inkControlsBusy = computed(
+  () =>
+    portraitBusy.value ||
+    projectBusy.value ||
+    pngBusy.value ||
+    bankSaving.value ||
+    generatingVariants.value ||
+    (pending.value && !renderBusy.value),
+)
 const colorWashStrength = ref(0)
 const washStyle = ref<'source' | SignatureWashStyle>('source')
 const washPalette = ref<SignatureWashPalette>('blue-coral')
@@ -241,17 +261,30 @@ function currentLayoutOptions(): SignatureLayoutOptions {
     maxSizeRatio: maxSizePct.value / 100,
     fillHighlights: fillHighlights.value,
     invertDensity: invertDensity.value ?? undefined,
-    colorize: colorize.value,
-    colorMode:
-      colorMode.value === 'source' || restoredLayoutOptions.value.colorMode === 'ink'
-        ? colorMode.value
+    colorize: inkColorMode.value === 'source' || colorize.value,
+    inkColorMode:
+      inkColorMode.value !== 'auto' || restoredLayoutOptions.value.inkColorMode !== undefined
+        ? inkColorMode.value
         : undefined,
+    colorMode:
+      inkColorMode.value === 'source'
+        ? 'source'
+        : colorMode.value === 'source' || restoredLayoutOptions.value.colorMode === 'ink'
+          ? colorMode.value
+          : undefined,
     toneGain:
       toneGain.value !== 1 || restoredLayoutOptions.value.toneGain === 1
         ? toneGain.value
         : undefined,
     coverFill: coverFill.value,
-    ink: signatureSurface.value === 'night' ? { r: 238, g: 234, b: 226 } : undefined,
+    ink:
+      inkColorMode.value === 'custom'
+        ? hexToRgb(inkColorHex.value)
+        : inkColorMode.value === 'source'
+          ? undefined
+          : signatureSurface.value === 'night'
+            ? { r: 238, g: 234, b: 226 }
+            : undefined,
     overlap: restoredLayoutOptions.value.overlap ?? 0.22,
     gamma: restoredLayoutOptions.value.gamma ?? 1.15,
     background: previewBg.value,
@@ -284,6 +317,7 @@ const resultBackground = computed(
 
 const portraitSrc = ref('')
 watch(generatedResult, (result) => {
+  workflowProjectId.value = ''
   if (portraitSrc.value) URL.revokeObjectURL(portraitSrc.value)
   portraitSrc.value = result ? URL.createObjectURL(result.portraitFile) : ''
 })
@@ -1143,6 +1177,7 @@ function onWindowResize() {
 
 onBeforeUnmount(() => {
   viewDisposed = true
+  if (inkUpdateTimer) clearTimeout(inkUpdateTimer)
   projectController?.abort()
   generationController?.abort()
   portraitController?.abort()
@@ -1262,7 +1297,9 @@ async function loadDemo() {
       lastModified: 0,
     })
     const { image, objectUrl } = await loadImageElement(file, {
-      signal: controller.signal, maxPixels: 32_000_000, maxSide: 32768,
+      signal: controller.signal,
+      maxPixels: 32_000_000,
+      maxSide: 32768,
     })
     if (controller.signal.aborted || viewDisposed) {
       URL.revokeObjectURL(objectUrl)
@@ -1305,7 +1342,10 @@ async function onPortraitChange(event: Event) {
   const stale = () => controller.signal.aborted || portraitController !== controller || viewDisposed
   try {
     const { image, objectUrl } = await loadImageElement(file, {
-      signal: controller.signal, maxBytes: 64 * 1024 * 1024, maxPixels: 32_000_000, maxSide: 32768,
+      signal: controller.signal,
+      maxBytes: 64 * 1024 * 1024,
+      maxPixels: 32_000_000,
+      maxSide: 32768,
     })
     candidateUrl = objectUrl
     candidateImage = image
@@ -1339,10 +1379,11 @@ async function onPortraitChange(event: Event) {
       candidateImage?.removeAttribute('src')
       URL.revokeObjectURL(candidateUrl)
     }
-    if (candidateStamps) for (const stamp of candidateStamps) {
-      URL.revokeObjectURL(stamp.previewUrl)
-      stamp.canvas.width = stamp.canvas.height = 1
-    }
+    if (candidateStamps)
+      for (const stamp of candidateStamps) {
+        URL.revokeObjectURL(stamp.previewUrl)
+        stamp.canvas.width = stamp.canvas.height = 1
+      }
     releaseUnusedImportedScenes()
     if (portraitController === controller) {
       portraitController = null
@@ -1585,7 +1626,20 @@ function cancelProjectFile() {
 
 function restoreProjectControls(options: SignatureLayoutOptions) {
   restoredLayoutOptions.value = { ...options }
-  signatureSurface.value = options.ink ? 'night' : 'paper'
+  const nightInk = options.ink?.r === 238 && options.ink.g === 234 && options.ink.b === 226
+  signatureSurface.value =
+    options.background === '#111615' || (nightInk && !options.background) ? 'night' : 'paper'
+  inkColorMode.value =
+    options.inkColorMode ??
+    (options.ink && !(nightInk && signatureSurface.value === 'night')
+      ? 'custom'
+      : options.colorMode === 'source' && !options.ink
+        ? 'source'
+        : 'auto')
+  if (options.ink)
+    inkColorHex.value = `#${[options.ink.r, options.ink.g, options.ink.b]
+      .map((value) => Math.round(value).toString(16).padStart(2, '0'))
+      .join('')}`
   signatureInkStyle.value = options.inkStyle ?? 'ink'
   previewBg.value = options.background ?? '#f5f3ef'
   maxSide.value = options.maxSide ?? 4096
@@ -1914,6 +1968,75 @@ async function downloadPng(ultra = false) {
   }
 }
 
+async function continueAsCharacterArt() {
+  const scene = generatedResult.value
+  if (!scene || pending.value || resultSettingsChanged.value) return
+  const recipe = workflowRecipe.value
+  const signal = { cancelled: false }
+  pngSignal = signal
+  pending.value = pngBusy.value = workflowBusy.value = true
+  error.value = ''
+  workflowProjectId.value = ''
+  progressRatio.value = 0
+  const check = () => {
+    if (signal.cancelled || viewDisposed) throw new Error('已取消')
+  }
+  let thumbnailCanvas: HTMLCanvasElement | null = null
+  let sourceUrl = ''
+  try {
+    const blob = await exportSignaturePng(scene, {
+      signal,
+      longEdge: 2048,
+      onBackend: (backend) => {
+        pngBackend.value = backend
+      },
+      onProgress: (stage, ratio) => {
+        if (signal.cancelled || viewDisposed) return
+        progressStage.value = stage === 'encode' ? '准备动态字符素材' : '绘制签名作品副本'
+        progressRatio.value = ratio * 0.9
+      },
+    })
+    check()
+    sourceUrl = URL.createObjectURL(blob)
+    const image = new Image()
+    image.src = sourceUrl
+    await image.decode()
+    check()
+    const size = fitSignatureRaster(image.naturalWidth, image.naturalHeight, 420)
+    thumbnailCanvas = document.createElement('canvas')
+    thumbnailCanvas.width = size.width
+    thumbnailCanvas.height = size.height
+    const context = thumbnailCanvas.getContext('2d')
+    if (!context) throw new Error('无法准备作品缩略图')
+    context.drawImage(image, 0, 0, size.width, size.height)
+    const project = signatureArtProject(
+      new File([blob], 'signature-art.png', { type: 'image/png' }),
+      thumbnailCanvas.toDataURL('image/jpeg', 0.85),
+      scene.portraitName,
+      scene.options.background ?? '#f5f3ef',
+      recipe,
+    )
+    check()
+    progressStage.value = '保存动态字符项目'
+    await saveArtProject(project)
+    if (!viewDisposed) {
+      workflowProjectId.value = project.id
+      projectNotice.value = '动态字符项目已保存到此浏览器，可在新标签页打开；当前签名作品保留。'
+    }
+  } catch (cause) {
+    if (!signal.cancelled && !viewDisposed)
+      error.value = cause instanceof Error ? cause.message : '创作项目准备失败'
+  } finally {
+    if (sourceUrl) URL.revokeObjectURL(sourceUrl)
+    if (thumbnailCanvas) thumbnailCanvas.width = thumbnailCanvas.height = 1
+    if (pngSignal === signal) pngSignal = null
+    pending.value = pngBusy.value = workflowBusy.value = false
+    pngBackend.value = null
+    progressStage.value = ''
+    progressRatio.value = 0
+  }
+}
+
 function cancelPng() {
   if (pngSignal) pngSignal.cancelled = true
   projectNotice.value = '已取消PNG导出，当前作品保留。'
@@ -1962,6 +2085,21 @@ watch(signatureSurface, (value) => {
 watch([coverFill, colorize, signatureInkStyle], () => {
   if (canRender.value && hasResult.value && !pending.value) void renderNow()
 })
+watch([inkColorMode, inkColorHex, toneGain, colorMode], () => {
+  if (inkUpdateTimer) clearTimeout(inkUpdateTimer)
+  inkUpdateTimer = null
+  if (!canRender.value || !hasResult.value || inkControlsBusy.value) return
+  inkUpdateTimer = setTimeout(() => {
+    inkUpdateTimer = null
+    if (!viewDisposed && !inkControlsBusy.value) void renderNow()
+  }, 250)
+})
+watch(projectBusy, (busy) => {
+  if (busy && inkUpdateTimer) {
+    clearTimeout(inkUpdateTimer)
+    inkUpdateTimer = null
+  }
+})
 </script>
 
 <template>
@@ -1996,7 +2134,9 @@ watch([coverFill, colorize, signatureInkStyle], () => {
         >
           上传画像照片
         </FxButton>
-        <FxButton v-if="portraitBusy" type="button" @click="cancelPortraitRead">取消读取照片</FxButton>
+        <FxButton v-if="portraitBusy" type="button" @click="cancelPortraitRead"
+          >取消读取照片</FxButton
+        >
         <input
           ref="portraitInput"
           class="sr-only"
@@ -2417,12 +2557,36 @@ watch([coverFill, colorize, signatureInkStyle], () => {
               v-model.number="toneGain"
               aria-label="笔迹浓度"
               type="range"
-              min="1"
+              min="0.2"
               max="3"
               step="0.1"
+              :disabled="inkControlsBusy"
             />
-            <span class="hint">1×保留原效果；提高浓度可减少白底冲淡，生成预览后生效。</span>
+            <span class="hint"
+              >向左减淡，向右加深；1×保留原效果。调节后自动更新，完整笔迹保持。</span
+            >
           </label>
+
+          <label class="ink-control">
+            <span class="ink-control-head"><span>笔迹颜色</span></span>
+            <UiSelect v-model="inkColorMode" aria-label="笔迹颜色" :disabled="inkControlsBusy">
+              <option value="auto">自动墨色 · 原效果</option>
+              <option value="custom">自定义墨色</option>
+              <option value="source">原图位置颜色</option>
+            </UiSelect>
+          </label>
+          <label v-if="inkColorMode === 'custom'" class="ink-control">
+            <span>自定义墨色 {{ inkColorHex }}</span>
+            <input
+              v-model="inkColorHex"
+              aria-label="自定义墨色"
+              type="color"
+              :disabled="inkControlsBusy"
+            />
+          </label>
+          <p class="hint">
+            原图位置颜色按每枚签名所在的照片区域取色；颜色与浓度自动更新到预览和后续导出。
+          </p>
 
           <DisclosurePanel title="色彩与光影" description="彩墨风格、填色与明暗方向">
             <div class="ink-control">
@@ -2620,6 +2784,37 @@ watch([coverFill, colorize, signatureInkStyle], () => {
             作品文件保存画像、签名、布局和参数，可换设备继续创作。JSON仅含坐标；PNG用于图片，Path
             SVG用于矢量作品。
           </p>
+          <DisclosurePanel title="继续创作" description="把当前签名作品做成动态字符作品">
+            <label class="ink-control">
+              <span>动态字符配方</span>
+              <UiSelect v-model="workflowRecipe" aria-label="动态字符配方" :disabled="pending">
+                <option v-for="recipe in ART_RECIPES" :key="recipe.id" :value="recipe.id">
+                  {{ recipe.name }}
+                </option>
+              </UiSelect>
+            </label>
+            <p class="hint">
+              以当前完整作品生成最长边2048像素的图片副本，保存为本地字符项目。签名原作请另存作品文件，保留可编辑笔迹。
+            </p>
+            <FxButton
+              type="button"
+              :disabled="!hasResult || pending || resultSettingsChanged"
+              @click="continueAsCharacterArt"
+            >
+              {{ workflowBusy ? '正在准备…' : '创建动态字符项目' }}
+            </FxButton>
+            <a
+              v-if="workflowProjectId"
+              :href="
+                router.resolve({ name: 'ascii-art', query: { project: workflowProjectId } }).href
+              "
+              target="_blank"
+              rel="noopener"
+              class="hint"
+            >
+              打开动态字符项目
+            </a>
+          </DisclosurePanel>
 
           <p v-if="pending && progressStage" class="meta">
             {{ progressStage }} · {{ Math.round(progressRatio * 100) }}%
@@ -2675,7 +2870,11 @@ watch([coverFill, colorize, signatureInkStyle], () => {
         </p>
         <RenderFeedback
           v-if="(pending && !pngBusy && !portraitBusy) || generatingVariants || sharpPainting"
-          :title="sharpPainting && (!pending || portraitBusy) ? '正在精绘局部笔迹' : progressStage || '正在准备作品'"
+          :title="
+            sharpPainting && (!pending || portraitBusy)
+              ? '正在精绘局部笔迹'
+              : progressStage || '正在准备作品'
+          "
           :detail="
             sharpPainting && (!pending || portraitBusy)
               ? '视图已更新，清晰笔迹随后呈现。可以继续缩放或拖动。'

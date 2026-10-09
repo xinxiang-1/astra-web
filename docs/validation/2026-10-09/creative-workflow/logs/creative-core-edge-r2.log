@@ -1,0 +1,13 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+page.evaluate: Error: SVG loses custom RGB
+    at check (eval at evaluate (:311:30), <anonymous>:11:41)
+    at eval (eval at evaluate (:311:30), <anonymous>:47:4)
+    at async <anonymous>:337:30
+    at E:\project\astra\astra-web\tmp\creative-core.mjs:10:28 {
+  log: []
+}
+
+Node.js v24.12.0

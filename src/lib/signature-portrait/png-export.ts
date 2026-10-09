@@ -2,6 +2,7 @@ import { canvasToPngBlob, paintPlacementsTiled } from './layout'
 import { createSignatureRasterWorker } from './raster-worker-client'
 import { prepareSignatureWash } from './styled-wash'
 import type { SignatureProject } from './project'
+import { fitSignatureRaster } from './preview-viewport'
 
 export type SignaturePngStage = 'prepare' | 'render' | 'encode'
 export async function exportSignaturePng(
@@ -10,6 +11,8 @@ export async function exportSignaturePng(
     signal?: { cancelled?: boolean }
     onProgress?: (stage: SignaturePngStage, ratio: number) => void
     onBackend?: (backend: 'worker' | 'canvas') => void
+    /** Optional bounded raster for a new creative step; layout coordinates stay unchanged. */
+    longEdge?: number
   } = {},
 ) {
   const check = () => {
@@ -22,6 +25,11 @@ export async function exportSignaturePng(
     )
   )
     throw new Error('PNG导出尺寸无效')
+  const size = fitSignatureRaster(
+    scene.width,
+    scene.height,
+    hooks.longEdge ?? Math.max(scene.width, scene.height),
+  )
   hooks.onProgress?.('prepare', 0)
   const wash =
     (scene.options.underlay ?? 0) > 0
@@ -46,7 +54,7 @@ export async function exportSignaturePng(
     )
     if (worker) {
       hooks.onBackend?.('worker')
-      const blob = await worker.exportPng(scene.width, scene.height, stampMaxLong, {
+      const blob = await worker.exportPng(size.width, size.height, stampMaxLong, {
         tileSize: 384,
         signal: hooks.signal,
         onProgress: (done, total, stage) =>
@@ -70,8 +78,8 @@ export async function exportSignaturePng(
       scene.stamps,
       scene.width,
       scene.height,
-      scene.width,
-      scene.height,
+      size.width,
+      size.height,
       {
         ...scene.options,
         portrait: wash,

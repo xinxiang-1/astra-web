@@ -12,6 +12,7 @@ import UnsavedChangesDialog from '@/components/UnsavedChangesDialog.vue'
 import { prepareArtSource, type PreparedArtSource } from '@/lib/art-media-source'
 import { artworkPresets, findArtworkPreset, type ArtworkPreset } from '@/content/artwork'
 import { getArtProject, saveArtProject } from '@/lib/art-projects'
+import { ART_RECIPES, artRecipeSettings } from '@/lib/art-recipes'
 import {
   assertArtProjectEngineCompatible,
   artProjectPackageFilename,
@@ -186,9 +187,9 @@ const editorEngine = ref<'calibrated' | 'legacy'>(
   route.query.engine === 'legacy' ? 'legacy' : 'calibrated',
 )
 const artMode = ref<ArtMode>('density')
-const artQuality = ref<'classic' | 'detailed' | 'smooth' | 'faithful'>('classic')
+const artQuality = ref<'classic' | 'detailed' | 'smooth' | 'faithful'>('faithful')
 const artMotion = ref<ArtMotion>('none')
-const artHover = ref<ArtHover | 'none'>('light')
+const artHover = ref<ArtHover | 'none'>('trail')
 const artEffectProfile = ref<'classic' | 'expressive'>('expressive')
 const artMotionSpeed = ref(1)
 const artMotionStrength = ref(0.65)
@@ -254,7 +255,6 @@ const cinematicMotionDescriptions: Record<ArtMotion, string> = {
   caustics: '全息扫描：显影前沿与双层光迹逐行扫过真实笔画。',
 }
 const artHoverOptions: { id: ArtHover | 'none'; label: string }[] = [
-  { id: 'light', label: '光晕' },
   { id: 'ripple', label: '涟漪' },
   { id: 'displace', label: '轻推' },
   { id: 'trail', label: '拖尾' },
@@ -676,6 +676,26 @@ function selectArtHover(next: ArtHover | 'none') {
   artHover.value = next
 }
 
+function applyArtRecipe(id: string) {
+  const recipe = ART_RECIPES.find((item) => item.id === id)
+  if (!recipe) return
+  selectArtMotionStyle('cinematic')
+  selectArtMotion(recipe.motion)
+  selectArtHover(recipe.hover)
+  artMotionSpeed.value = recipe.speed
+  artMotionStrength.value = recipe.strength
+  hoverStrength.value = recipe.hoverStrength
+  hoverRadius.value = recipe.radius
+  artEffectProfile.value = 'expressive'
+}
+const selectedArtRecipe = computed(() =>
+  ART_RECIPES.find((recipe) =>
+    Object.entries(artRecipeSettings(recipe)).every(
+      ([key, value]) => projectSettings[key]?.value === value,
+    ),
+  ),
+)
+
 function calibratedSettings(cols = columns.value, kind = mediaKind.value): ArtSettings {
   return {
     mode: artMode.value,
@@ -1080,9 +1100,9 @@ function restoreCharsetFontDefaults() {
 
 function restoreDefaults() {
   artMode.value = 'density'
-  artQuality.value = 'classic'
+  artQuality.value = 'faithful'
   artMotion.value = 'none'
-  artHover.value = 'light'
+  artHover.value = 'trail'
   artEffectProfile.value = 'expressive'
   artMotionSpeed.value = 1
   artMotionStrength.value = 0.65
@@ -1092,7 +1112,7 @@ function restoreDefaults() {
   phrase.value = '我爱你中国'
   phraseThreshold.value = 0.55
   phraseFillAll.value = false
-  phraseColor.value = true
+  phraseColor.value = false
   exposure.value = 0
   contrast.value = 0.2
   normalizeTone.value = true
@@ -2685,9 +2705,10 @@ watch(previewFontFamily, () => {
   schedulePaint()
 })
 
-watch([artQualityAvailable, artMode], ([available]) => {
+watch([artQualityAvailable, artMode], ([available], [wasAvailable]) => {
   if (!available || !artQualityOptions.value.some((item) => item.id === artQuality.value))
     artQuality.value = 'classic'
+  else if (!wasAvailable && !loadingRouteProject) artQuality.value = 'faithful'
 })
 
 watch(artPaused, () => {
@@ -3083,12 +3104,14 @@ async function applyPreset(preset: ArtworkPreset, replaceSource = false) {
   await nextTick()
   void runConvert({ fitZoom: true })
 }
+let loadingRouteProject = false
 async function loadRouteProject() {
   const generation = ++routeLoadGeneration
   const requestedPath = route.fullPath
   if (typeof route.query.project !== 'string')
     editorEngine.value = route.query.engine === 'legacy' ? 'legacy' : 'calibrated'
   if (typeof route.query.project === 'string') {
+    loadingRouteProject = true
     try {
       const project = await getArtProject(route.query.project)
       if (viewDisposed || generation !== routeLoadGeneration || requestedPath !== route.fullPath)
@@ -3114,6 +3137,8 @@ async function loadRouteProject() {
         const target = projectSettings[key]
         if (target && typeof value === typeof target.value) target.value = value
       }
+      // Archived files remain readable; the removed editor effect no longer runs.
+      if (artHover.value === 'light') artHover.value = 'none'
       if (!['studio', 'cinematic'].includes(artMotionStyle.value)) artMotionStyle.value = 'studio'
       if (!ART_MODES.some((item) => item.id === artMode.value))
         artMode.value = mode.value === 'phrase' ? 'phrase' : 'density'
@@ -3136,6 +3161,8 @@ async function loadRouteProject() {
       projectStatus.value = '已从此浏览器恢复'
     } catch (cause) {
       error.value = cause instanceof Error ? cause.message : '项目无法恢复，请检查浏览器存储权限。'
+    } finally {
+      loadingRouteProject = false
     }
   } else {
     const preset = findArtworkPreset(route.query.preset)
@@ -3763,6 +3790,26 @@ onBeforeUnmount(() => {
             <h2>动态效果</h2>
             <span>＋</span>
           </summary>
+          <div class="field">
+            <label for="art-recipe">效果配方</label>
+            <select
+              id="art-recipe"
+              class="text-input"
+              :value="selectedArtRecipe?.id ?? ''"
+              @change="applyArtRecipe(($event.target as HTMLSelectElement).value)"
+            >
+              <option value="" disabled>自由组合</option>
+              <option v-for="recipe in ART_RECIPES" :key="recipe.id" :value="recipe.id">
+                {{ recipe.name }}
+              </option>
+            </select>
+            <p class="hint">
+              {{
+                selectedArtRecipe?.description ??
+                '选择配方后可继续微调，保存项目时保留完整效果参数。'
+              }}
+            </p>
+          </div>
           <div class="field">
             <div class="seg" role="group" aria-label="效果风格">
               <button

@@ -43,16 +43,20 @@ const props = withDefaults(
 
 const canvasRef = ref<HTMLCanvasElement | null>(null)
 const error = ref('')
+const loading = ref(true)
+let disposed = false
 
 let disposeRenderer: (() => void) | undefined
 
 onMounted(async () => {
-  if (!canvasRef.value) return
+  const canvas = canvasRef.value
+  if (!canvas) return
   try {
     const { createRenderer } = await import('@/effects/webgl-fluid/renderer')
+    if (disposed) return
     const bg = hexToRgb01(props.backgroundColor)
     const renderer = createRenderer({
-      canvas: canvasRef.value,
+      canvas,
       options: {
         TRIGGER: props.trigger,
         IMMEDIATE: props.immediate,
@@ -70,23 +74,35 @@ onMounted(async () => {
     disposeRenderer = () => renderer.dispose()
     await renderer.ready
   } catch (e) {
-    error.value = e instanceof Error ? e.message : 'WebGL 流体初始化失败'
+    if (disposed) return
+    const message = e instanceof Error ? e.message : ''
+    error.value = /fetch|import|module/i.test(message)
+      ? '彩烟资源加载失败，请重新加载后重试。'
+      : message || '彩烟初始化失败，请重新加载后重试。'
+  } finally {
+    if (!disposed) loading.value = false
   }
 })
 
 onBeforeUnmount(() => {
+  disposed = true
   disposeRenderer?.()
 })
+
+function reload() {
+  window.location.reload()
+}
 </script>
 
 <template>
-  <section
-    class="stage"
-    :style="{ background: normalizeHex(backgroundColor) }"
-  >
+  <section class="stage" :style="{ background: normalizeHex(backgroundColor) }">
     <canvas ref="canvasRef" class="canvas" />
-    <p v-if="hint" class="hint">{{ hint }}</p>
-    <aside v-if="error" class="error">{{ error }}</aside>
+    <p v-if="loading" class="hint" role="status">正在加载彩烟…</p>
+    <p v-else-if="hint && !error" class="hint">{{ hint }}</p>
+    <aside v-if="error" class="error" role="alert">
+      <p>{{ error }}</p>
+      <button type="button" @click="reload">重新加载彩烟</button>
+    </aside>
   </section>
 </template>
 
@@ -128,5 +144,17 @@ onBeforeUnmount(() => {
   background: rgba(40, 0, 0, 0.75);
   color: #ffb4b4;
   font-size: 0.85rem;
+}
+.error p {
+  margin: 0 0 0.65rem;
+}
+.error button {
+  min-height: 44px;
+  padding: 0.5rem 0.9rem;
+  border: 1px solid currentColor;
+  border-radius: 8px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
 }
 </style>

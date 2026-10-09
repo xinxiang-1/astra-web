@@ -1,0 +1,15 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+page.evaluate: Error: 作品包缺少必要参数：previewFontFamily
+    at fail (http://localhost:5173/src/lib/art-project-package.ts:146:8)
+    at settingsOf (http://localhost:5173/src/lib/art-project-package.ts:186:38)
+    at createArtProjectPackage (http://localhost:5173/src/lib/art-project-package.ts:285:19)
+    at eval (eval at evaluate (:311:30), <anonymous>:53:23)
+    at async <anonymous>:337:30
+    at E:\project\astra\astra-web\tmp\creative-core.mjs:10:28 {
+  log: []
+}
+
+Node.js v24.12.0

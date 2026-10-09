@@ -96,7 +96,7 @@ function optionsOf(value: unknown): SignatureLayoutOptions {
     seed: [0, Number.MAX_SAFE_INTEGER],
     overlap: [0, 0.9],
     gamma: [0.1, 5],
-    toneGain: [1, 3],
+    toneGain: [0.2, 3],
     lloydIters: [0, 30],
     edgeBoost: [0, 2.2],
     edgeThreshold: [0, 1],
@@ -112,6 +112,7 @@ function optionsOf(value: unknown): SignatureLayoutOptions {
   const enums: Record<string, string[]> = {
     inkStyle: ['ink', 'cutout'],
     colorMode: ['ink', 'source'],
+    inkColorMode: ['auto', 'custom', 'source'],
     layoutMethod: ['woven', 'stipple'],
     orientationMode: ['classic', 'flow'],
     edgeColorMode: ['auto', 'custom', 'ink'],
@@ -429,7 +430,9 @@ export async function readSignatureProject(
     lastModified: manifest.portrait.lastModified,
   })
   const { image: portrait, objectUrl } = await loadImageElement(portraitFile, {
-    signal: progress.signal, maxPixels: 32_000_000, maxSide: 32768,
+    signal: progress.signal,
+    maxPixels: 32_000_000,
+    maxSide: 32768,
   })
   const stamps: SignatureStamp[] = []
   const ownedCanvases: HTMLCanvasElement[] = []
