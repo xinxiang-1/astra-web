@@ -1,0 +1,1453 @@
+{
+  "passed": true,
+  "checked": 289,
+  "broken": 0,
+  "scope": "all newly staged Markdown across both repositories; generated self-links verified after files exist",
+  "links": [
+    {
+      "source": "astra-cloud/README.md",
+      "target": "docs/plans/refund-verification-2026-10-09.md",
+      "resolved": "astra-cloud/docs/plans/refund-verification-2026-10-09.md"
+    },
+    {
+      "source": "astra-cloud/README.md",
+      "target": "./docs/plans/payment-verification-workbench-2026-10-09.md",
+      "resolved": "astra-cloud/docs/plans/payment-verification-workbench-2026-10-09.md"
+    },
+    {
+      "source": "astra-cloud/README.md",
+      "target": "./docs/plans/payment-verification-2026-10-09.md",
+      "resolved": "astra-cloud/docs/plans/payment-verification-2026-10-09.md"
+    },
+    {
+      "source": "astra-cloud/README.md",
+      "target": "./docs/commerce/payment-verification-runtime.md",
+      "resolved": "astra-cloud/docs/commerce/payment-verification-runtime.md"
+    },
+    {
+      "source": "astra-cloud/README.md",
+      "target": "./docs/plans/admin-bootstrap-2026-10-08.md",
+      "resolved": "astra-cloud/docs/plans/admin-bootstrap-2026-10-08.md"
+    },
+    {
+      "source": "astra-cloud/README.md",
+      "target": "./docs/plans/admin-refunds-2026-10-08.md",
+      "resolved": "astra-cloud/docs/plans/admin-refunds-2026-10-08.md"
+    },
+    {
+      "source": "astra-cloud/README.md",
+      "target": "./docs/plans/refund-application-2026-10-08.md",
+      "resolved": "astra-cloud/docs/plans/refund-application-2026-10-08.md"
+    },
+    {
+      "source": "astra-cloud/README.md",
+      "target": "./docs/plans/refund-worker-2026-10-08.md",
+      "resolved": "astra-cloud/docs/plans/refund-worker-2026-10-08.md"
+    },
+    {
+      "source": "astra-cloud/README.md",
+      "target": "./docs/plans/payment-initiation-2026-10-08.md",
+      "resolved": "astra-cloud/docs/plans/payment-initiation-2026-10-08.md"
+    },
+    {
+      "source": "astra-cloud/README.md",
+      "target": "./docs/plans/account-commerce-2026-10-08.md",
+      "resolved": "astra-cloud/docs/plans/account-commerce-2026-10-08.md"
+    },
+    {
+      "source": "astra-cloud/README.md",
+      "target": "./docs/plans/launch-readiness-2026-10-08.md",
+      "resolved": "astra-cloud/docs/plans/launch-readiness-2026-10-08.md"
+    },
+    {
+      "source": "astra-cloud/README.md",
+      "target": "./docs/plans/order-recovery-2026-10-08.md",
+      "resolved": "astra-cloud/docs/plans/order-recovery-2026-10-08.md"
+    },
+    {
+      "source": "astra-cloud/README.md",
+      "target": "./docs/plans/catalog-ui-2026-10-08.md",
+      "resolved": "astra-cloud/docs/plans/catalog-ui-2026-10-08.md"
+    },
+    {
+      "source": "astra-cloud/README.md",
+      "target": "./docs/plans/purchased-delivery-2026-10-08.md",
+      "resolved": "astra-cloud/docs/plans/purchased-delivery-2026-10-08.md"
+    },
+    {
+      "source": "astra-cloud/README.md",
+      "target": "./docs/plans/launch-readiness-2026-10-08.md",
+      "resolved": "astra-cloud/docs/plans/launch-readiness-2026-10-08.md"
+    },
+    {
+      "source": "astra-cloud/README.md",
+      "target": "./docs/commerce/api-contracts.md",
+      "resolved": "astra-cloud/docs/commerce/api-contracts.md"
+    },
+    {
+      "source": "astra-cloud/README.md",
+      "target": "./docs/commerce/openapi.json",
+      "resolved": "astra-cloud/docs/commerce/openapi.json"
+    },
+    {
+      "source": "astra-cloud/README.md",
+      "target": "./docs/commerce/database-design.md",
+      "resolved": "astra-cloud/docs/commerce/database-design.md"
+    },
+    {
+      "source": "astra-cloud/README.md",
+      "target": "./docs/plans/commerce-contract-iteration-2026-10-02.md",
+      "resolved": "astra-cloud/docs/plans/commerce-contract-iteration-2026-10-02.md"
+    },
+    {
+      "source": "astra-cloud/README.md",
+      "target": "./docs/commerce/catalog-runtime.md",
+      "resolved": "astra-cloud/docs/commerce/catalog-runtime.md"
+    },
+    {
+      "source": "astra-cloud/README.md",
+      "target": "./docs/commerce/orders-runtime.md",
+      "resolved": "astra-cloud/docs/commerce/orders-runtime.md"
+    },
+    {
+      "source": "astra-cloud/README.md",
+      "target": "./docs/commerce/payment-provider-runtime.md",
+      "resolved": "astra-cloud/docs/commerce/payment-provider-runtime.md"
+    },
+    {
+      "source": "astra-cloud/README.md",
+      "target": "./docs/commerce/payment-flow-runtime.md",
+      "resolved": "astra-cloud/docs/commerce/payment-flow-runtime.md"
+    },
+    {
+      "source": "astra-cloud/README.md",
+      "target": "./docs/commerce/entitlements-runtime.md",
+      "resolved": "astra-cloud/docs/commerce/entitlements-runtime.md"
+    },
+    {
+      "source": "astra-cloud/README.md",
+      "target": "./docs/commerce/private-delivery-runtime.md",
+      "resolved": "astra-cloud/docs/commerce/private-delivery-runtime.md"
+    },
+    {
+      "source": "astra-cloud/README.md",
+      "target": "./docs/validation/2026-10-03/private-delivery/README.md",
+      "resolved": "astra-cloud/docs/validation/2026-10-03/private-delivery/README.md"
+    },
+    {
+      "source": "astra-cloud/README.md",
+      "target": "./scripts/commerce-contract-requirements.txt",
+      "resolved": "astra-cloud/scripts/commerce-contract-requirements.txt"
+    },
+    {
+      "source": "astra-cloud/docs/commerce/admin-refunds-runtime.md",
+      "target": "./refund-verification-runtime.md",
+      "resolved": "astra-cloud/docs/commerce/refund-verification-runtime.md"
+    },
+    {
+      "source": "astra-cloud/docs/commerce/admin-refunds-runtime.md",
+      "target": "../plans/admin-refunds-2026-10-08.md",
+      "resolved": "astra-cloud/docs/plans/admin-refunds-2026-10-08.md"
+    },
+    {
+      "source": "astra-cloud/docs/commerce/admin-refunds-runtime.md",
+      "target": "./openapi.json",
+      "resolved": "astra-cloud/docs/commerce/openapi.json"
+    },
+    {
+      "source": "astra-cloud/docs/commerce/admin-refunds-runtime.md",
+      "target": "./refund-application-runtime.md",
+      "resolved": "astra-cloud/docs/commerce/refund-application-runtime.md"
+    },
+    {
+      "source": "astra-cloud/docs/commerce/api-contracts.md",
+      "target": "./refund-verification-runtime.md",
+      "resolved": "astra-cloud/docs/commerce/refund-verification-runtime.md"
+    },
+    {
+      "source": "astra-cloud/docs/commerce/api-contracts.md",
+      "target": "../plans/payment-verification-workbench-2026-10-09.md",
+      "resolved": "astra-cloud/docs/plans/payment-verification-workbench-2026-10-09.md"
+    },
+    {
+      "source": "astra-cloud/docs/commerce/api-contracts.md",
+      "target": "./payment-verification-runtime.md",
+      "resolved": "astra-cloud/docs/commerce/payment-verification-runtime.md"
+    },
+    {
+      "source": "astra-cloud/docs/commerce/api-contracts.md",
+      "target": "../plans/reconciliation-workbench-2026-10-09.md",
+      "resolved": "astra-cloud/docs/plans/reconciliation-workbench-2026-10-09.md"
+    },
+    {
+      "source": "astra-cloud/docs/commerce/api-contracts.md",
+      "target": "./reconciliation-admin-runtime.md",
+      "resolved": "astra-cloud/docs/commerce/reconciliation-admin-runtime.md"
+    },
+    {
+      "source": "astra-cloud/docs/commerce/api-contracts.md",
+      "target": "./admin-refunds-runtime.md",
+      "resolved": "astra-cloud/docs/commerce/admin-refunds-runtime.md"
+    },
+    {
+      "source": "astra-cloud/docs/commerce/api-contracts.md",
+      "target": "../plans/refund-application-2026-10-08.md",
+      "resolved": "astra-cloud/docs/plans/refund-application-2026-10-08.md"
+    },
+    {
+      "source": "astra-cloud/docs/commerce/api-contracts.md",
+      "target": "./openapi.json",
+      "resolved": "astra-cloud/docs/commerce/openapi.json"
+    },
+    {
+      "source": "astra-cloud/docs/commerce/api-contracts.md",
+      "target": "../../../astra-web/docs/plans/prd-commerce.md",
+      "resolved": "astra-web/docs/plans/prd-commerce.md"
+    },
+    {
+      "source": "astra-cloud/docs/commerce/api-contracts.md",
+      "target": "./database-design.md",
+      "resolved": "astra-cloud/docs/commerce/database-design.md"
+    },
+    {
+      "source": "astra-cloud/docs/commerce/api-contracts.md",
+      "target": "../plans/commerce-contract-iteration-2026-10-02.md",
+      "resolved": "astra-cloud/docs/plans/commerce-contract-iteration-2026-10-02.md"
+    },
+    {
+      "source": "astra-cloud/docs/commerce/api-contracts.md",
+      "target": "./payment-flow-runtime.md",
+      "resolved": "astra-cloud/docs/commerce/payment-flow-runtime.md"
+    },
+    {
+      "source": "astra-cloud/docs/commerce/api-contracts.md",
+      "target": "./entitlements-runtime.md",
+      "resolved": "astra-cloud/docs/commerce/entitlements-runtime.md"
+    },
+    {
+      "source": "astra-cloud/docs/commerce/api-contracts.md",
+      "target": "./private-delivery-runtime.md",
+      "resolved": "astra-cloud/docs/commerce/private-delivery-runtime.md"
+    },
+    {
+      "source": "astra-cloud/docs/commerce/api-contracts.md",
+      "target": "../validation/2026-10-03/private-delivery/README.md",
+      "resolved": "astra-cloud/docs/validation/2026-10-03/private-delivery/README.md"
+    },
+    {
+      "source": "astra-cloud/docs/commerce/api-contracts.md",
+      "target": "./gateway-runtime.md",
+      "resolved": "astra-cloud/docs/commerce/gateway-runtime.md"
+    },
+    {
+      "source": "astra-cloud/docs/commerce/api-contracts.md",
+      "target": "./payment-provider-runtime.md",
+      "resolved": "astra-cloud/docs/commerce/payment-provider-runtime.md"
+    },
+    {
+      "source": "astra-cloud/docs/commerce/api-contracts.md",
+      "target": "./payment-flow-runtime.md",
+      "resolved": "astra-cloud/docs/commerce/payment-flow-runtime.md"
+    },
+    {
+      "source": "astra-cloud/docs/commerce/api-contracts.md",
+      "target": "./private-delivery-runtime.md",
+      "resolved": "astra-cloud/docs/commerce/private-delivery-runtime.md"
+    },
+    {
+      "source": "astra-cloud/docs/commerce/api-contracts.md",
+      "target": "../plans/order-confirmation-2026-10-08.md",
+      "resolved": "astra-cloud/docs/plans/order-confirmation-2026-10-08.md"
+    },
+    {
+      "source": "astra-cloud/docs/commerce/api-contracts.md",
+      "target": "../plans/payment-initiation-2026-10-08.md",
+      "resolved": "astra-cloud/docs/plans/payment-initiation-2026-10-08.md"
+    },
+    {
+      "source": "astra-cloud/docs/commerce/refund-application-runtime.md",
+      "target": "./refund-verification-runtime.md",
+      "resolved": "astra-cloud/docs/commerce/refund-verification-runtime.md"
+    },
+    {
+      "source": "astra-cloud/docs/commerce/refund-application-runtime.md",
+      "target": "../plans/refund-application-2026-10-08.md",
+      "resolved": "astra-cloud/docs/plans/refund-application-2026-10-08.md"
+    },
+    {
+      "source": "astra-cloud/docs/commerce/refund-application-runtime.md",
+      "target": "../plans/refund-worker-2026-10-08.md",
+      "resolved": "astra-cloud/docs/plans/refund-worker-2026-10-08.md"
+    },
+    {
+      "source": "astra-cloud/docs/commerce/refund-application-runtime.md",
+      "target": "./openapi.json",
+      "resolved": "astra-cloud/docs/commerce/openapi.json"
+    },
+    {
+      "source": "astra-cloud/docs/commerce/refund-application-runtime.md",
+      "target": "./api-contracts.md",
+      "resolved": "astra-cloud/docs/commerce/api-contracts.md"
+    },
+    {
+      "source": "astra-cloud/docs/commerce/refund-verification-runtime.md",
+      "target": "./payment-verification-runtime.md",
+      "resolved": "astra-cloud/docs/commerce/payment-verification-runtime.md"
+    },
+    {
+      "source": "astra-cloud/docs/commerce/refund-verification-runtime.md",
+      "target": "./refund-application-runtime.md",
+      "resolved": "astra-cloud/docs/commerce/refund-application-runtime.md"
+    },
+    {
+      "source": "astra-cloud/docs/commerce/refund-verification-runtime.md",
+      "target": "./admin-refunds-runtime.md",
+      "resolved": "astra-cloud/docs/commerce/admin-refunds-runtime.md"
+    },
+    {
+      "source": "astra-cloud/docs/commerce/refund-verification-runtime.md",
+      "target": "../plans/refund-verification-2026-10-09.md",
+      "resolved": "astra-cloud/docs/plans/refund-verification-2026-10-09.md"
+    },
+    {
+      "source": "astra-cloud/docs/commerce/refund-verification-runtime.md",
+      "target": "../../sql/migrations/V20261002_01__commerce_v1.sql",
+      "resolved": "astra-cloud/sql/migrations/V20261002_01__commerce_v1.sql"
+    },
+    {
+      "source": "astra-cloud/docs/commerce/refund-verification-runtime.md",
+      "target": "../../sql/migrations/V20261008_01__commerce_statement_indexes.sql",
+      "resolved": "astra-cloud/sql/migrations/V20261008_01__commerce_statement_indexes.sql"
+    },
+    {
+      "source": "astra-cloud/docs/commerce/refund-verification-runtime.md",
+      "target": "../../sql/migrations/V20261008_02__commerce_daily_reconciliation.sql",
+      "resolved": "astra-cloud/sql/migrations/V20261008_02__commerce_daily_reconciliation.sql"
+    },
+    {
+      "source": "astra-cloud/docs/commerce/refund-verification-runtime.md",
+      "target": "../../sql/migrations/V20261009_01__commerce_payment_verification.sql",
+      "resolved": "astra-cloud/sql/migrations/V20261009_01__commerce_payment_verification.sql"
+    },
+    {
+      "source": "astra-cloud/docs/commerce/refund-verification-runtime.md",
+      "target": "../../sql/migrations/V20261009_02__commerce_refund_verification.sql",
+      "resolved": "astra-cloud/sql/migrations/V20261009_02__commerce_refund_verification.sql"
+    },
+    {
+      "source": "astra-cloud/docs/plans/launch-readiness-2026-10-08.md",
+      "target": "./refund-verification-2026-10-09.md",
+      "resolved": "astra-cloud/docs/plans/refund-verification-2026-10-09.md"
+    },
+    {
+      "source": "astra-cloud/docs/plans/launch-readiness-2026-10-08.md",
+      "target": "./payment-verification-workbench-2026-10-09.md",
+      "resolved": "astra-cloud/docs/plans/payment-verification-workbench-2026-10-09.md"
+    },
+    {
+      "source": "astra-cloud/docs/plans/launch-readiness-2026-10-08.md",
+      "target": "./payment-verification-2026-10-09.md",
+      "resolved": "astra-cloud/docs/plans/payment-verification-2026-10-09.md"
+    },
+    {
+      "source": "astra-cloud/docs/plans/launch-readiness-2026-10-08.md",
+      "target": "./reconciliation-workbench-2026-10-09.md",
+      "resolved": "astra-cloud/docs/plans/reconciliation-workbench-2026-10-09.md"
+    },
+    {
+      "source": "astra-cloud/docs/plans/launch-readiness-2026-10-08.md",
+      "target": "./reconciliation-admin-2026-10-09.md",
+      "resolved": "astra-cloud/docs/plans/reconciliation-admin-2026-10-09.md"
+    },
+    {
+      "source": "astra-cloud/docs/plans/launch-readiness-2026-10-08.md",
+      "target": "./admin-bootstrap-2026-10-08.md",
+      "resolved": "astra-cloud/docs/plans/admin-bootstrap-2026-10-08.md"
+    },
+    {
+      "source": "astra-cloud/docs/plans/launch-readiness-2026-10-08.md",
+      "target": "./admin-refunds-2026-10-08.md",
+      "resolved": "astra-cloud/docs/plans/admin-refunds-2026-10-08.md"
+    },
+    {
+      "source": "astra-cloud/docs/plans/launch-readiness-2026-10-08.md",
+      "target": "./refund-application-2026-10-08.md",
+      "resolved": "astra-cloud/docs/plans/refund-application-2026-10-08.md"
+    },
+    {
+      "source": "astra-cloud/docs/plans/launch-readiness-2026-10-08.md",
+      "target": "./refund-worker-2026-10-08.md",
+      "resolved": "astra-cloud/docs/plans/refund-worker-2026-10-08.md"
+    },
+    {
+      "source": "astra-cloud/docs/plans/launch-readiness-2026-10-08.md",
+      "target": "./payment-initiation-2026-10-08.md",
+      "resolved": "astra-cloud/docs/plans/payment-initiation-2026-10-08.md"
+    },
+    {
+      "source": "astra-cloud/docs/plans/launch-readiness-2026-10-08.md",
+      "target": "./order-confirmation-2026-10-08.md",
+      "resolved": "astra-cloud/docs/plans/order-confirmation-2026-10-08.md"
+    },
+    {
+      "source": "astra-cloud/docs/plans/launch-readiness-2026-10-08.md",
+      "target": "./order-recovery-2026-10-08.md",
+      "resolved": "astra-cloud/docs/plans/order-recovery-2026-10-08.md"
+    },
+    {
+      "source": "astra-cloud/docs/plans/launch-readiness-2026-10-08.md",
+      "target": "../../../astra-web/docs/plans/growth-playbook-2026-10-08.md",
+      "resolved": "astra-web/docs/plans/growth-playbook-2026-10-08.md"
+    },
+    {
+      "source": "astra-cloud/docs/plans/refund-verification-2026-10-09.md",
+      "target": "./payment-verification-workbench-2026-10-09.md",
+      "resolved": "astra-cloud/docs/plans/payment-verification-workbench-2026-10-09.md"
+    },
+    {
+      "source": "astra-cloud/docs/plans/refund-verification-2026-10-09.md",
+      "target": "../commerce/refund-verification-runtime.md",
+      "resolved": "astra-cloud/docs/commerce/refund-verification-runtime.md"
+    },
+    {
+      "source": "astra-cloud/docs/plans/refund-verification-2026-10-09.md",
+      "target": "../validation/2026-10-09/refund-verification/README.md",
+      "resolved": "astra-cloud/docs/validation/2026-10-09/refund-verification/README.md"
+    },
+    {
+      "source": "astra-cloud/docs/plans/refund-verification-2026-10-09.md",
+      "target": "../../../astra-web/docs/plans/refund-verification-2026-10-09.md",
+      "resolved": "astra-web/docs/plans/refund-verification-2026-10-09.md"
+    },
+    {
+      "source": "astra-cloud/docs/plans/refund-verification-2026-10-09.md",
+      "target": "./launch-readiness-2026-10-08.md",
+      "resolved": "astra-cloud/docs/plans/launch-readiness-2026-10-08.md"
+    },
+    {
+      "source": "astra-cloud/docs/plans/refund-verification-2026-10-09.md",
+      "target": "../../../astra-web/docs/plans/growth-playbook-2026-10-08.md",
+      "resolved": "astra-web/docs/plans/growth-playbook-2026-10-08.md"
+    },
+    {
+      "source": "astra-cloud/docs/validation/2026-10-09/refund-verification/README.md",
+      "target": "../../../plans/refund-verification-2026-10-09.md",
+      "resolved": "astra-cloud/docs/plans/refund-verification-2026-10-09.md"
+    },
+    {
+      "source": "astra-cloud/docs/validation/2026-10-09/refund-verification/README.md",
+      "target": "./summary.json",
+      "resolved": "astra-cloud/docs/validation/2026-10-09/refund-verification/summary.json"
+    },
+    {
+      "source": "astra-cloud/docs/validation/2026-10-09/refund-verification/README.md",
+      "target": "./junit.json",
+      "resolved": "astra-cloud/docs/validation/2026-10-09/refund-verification/junit.json"
+    },
+    {
+      "source": "astra-cloud/docs/validation/2026-10-09/refund-verification/README.md",
+      "target": "./http-evidence.json",
+      "resolved": "astra-cloud/docs/validation/2026-10-09/refund-verification/http-evidence.json"
+    },
+    {
+      "source": "astra-cloud/docs/validation/2026-10-09/refund-verification/README.md",
+      "target": "./http-schema.json",
+      "resolved": "astra-cloud/docs/validation/2026-10-09/refund-verification/http-schema.json"
+    },
+    {
+      "source": "astra-cloud/docs/validation/2026-10-09/refund-verification/README.md",
+      "target": "./failure-history.json",
+      "resolved": "astra-cloud/docs/validation/2026-10-09/refund-verification/failure-history.json"
+    },
+    {
+      "source": "astra-cloud/docs/validation/2026-10-09/refund-verification/README.md",
+      "target": "./sql-analysis.json",
+      "resolved": "astra-cloud/docs/validation/2026-10-09/refund-verification/sql-analysis.json"
+    },
+    {
+      "source": "astra-cloud/docs/validation/2026-10-09/refund-verification/README.md",
+      "target": "./static-contract.json",
+      "resolved": "astra-cloud/docs/validation/2026-10-09/refund-verification/static-contract.json"
+    },
+    {
+      "source": "astra-cloud/docs/validation/2026-10-09/refund-verification/README.md",
+      "target": "./source-index.json",
+      "resolved": "astra-cloud/docs/validation/2026-10-09/refund-verification/source-index.json"
+    },
+    {
+      "source": "astra-cloud/docs/validation/2026-10-09/refund-verification/README.md",
+      "target": "./document-links.json",
+      "resolved": "astra-cloud/docs/validation/2026-10-09/refund-verification/document-links.json"
+    },
+    {
+      "source": "astra-cloud/docs/validation/2026-10-09/refund-verification/README.md",
+      "target": "./artifact-manifest.json",
+      "resolved": "astra-cloud/docs/validation/2026-10-09/refund-verification/artifact-manifest.json"
+    },
+    {
+      "source": "astra-web/README.md",
+      "target": "docs/plans/refund-verification-2026-10-09.md",
+      "resolved": "astra-web/docs/plans/refund-verification-2026-10-09.md"
+    },
+    {
+      "source": "astra-web/README.md",
+      "target": "./docs/plans/payment-verification-workbench-2026-10-09.md",
+      "resolved": "astra-web/docs/plans/payment-verification-workbench-2026-10-09.md"
+    },
+    {
+      "source": "astra-web/README.md",
+      "target": "./docs/plans/payment-verification-2026-10-09.md",
+      "resolved": "astra-web/docs/plans/payment-verification-2026-10-09.md"
+    },
+    {
+      "source": "astra-web/README.md",
+      "target": "./docs/plans/admin-bootstrap-2026-10-08.md",
+      "resolved": "astra-web/docs/plans/admin-bootstrap-2026-10-08.md"
+    },
+    {
+      "source": "astra-web/README.md",
+      "target": "./docs/plans/admin-refunds-2026-10-08.md",
+      "resolved": "astra-web/docs/plans/admin-refunds-2026-10-08.md"
+    },
+    {
+      "source": "astra-web/README.md",
+      "target": "./docs/plans/refund-application-2026-10-08.md",
+      "resolved": "astra-web/docs/plans/refund-application-2026-10-08.md"
+    },
+    {
+      "source": "astra-web/README.md",
+      "target": "./docs/plans/refund-worker-2026-10-08.md",
+      "resolved": "astra-web/docs/plans/refund-worker-2026-10-08.md"
+    },
+    {
+      "source": "astra-web/README.md",
+      "target": "./docs/plans/payment-initiation-2026-10-08.md",
+      "resolved": "astra-web/docs/plans/payment-initiation-2026-10-08.md"
+    },
+    {
+      "source": "astra-web/README.md",
+      "target": "./docs/plans/order-confirmation-2026-10-08.md",
+      "resolved": "astra-web/docs/plans/order-confirmation-2026-10-08.md"
+    },
+    {
+      "source": "astra-web/README.md",
+      "target": "./docs/plans/order-recovery-2026-10-08.md",
+      "resolved": "astra-web/docs/plans/order-recovery-2026-10-08.md"
+    },
+    {
+      "source": "astra-web/README.md",
+      "target": "../astra-cloud/docs/plans/launch-readiness-2026-10-08.md",
+      "resolved": "astra-cloud/docs/plans/launch-readiness-2026-10-08.md"
+    },
+    {
+      "source": "astra-web/README.md",
+      "target": "./docs/plans/growth-playbook-2026-10-08.md",
+      "resolved": "astra-web/docs/plans/growth-playbook-2026-10-08.md"
+    },
+    {
+      "source": "astra-web/README.md",
+      "target": "./docs/plans/signature-font-bank-iteration-2026-10-04.md",
+      "resolved": "astra-web/docs/plans/signature-font-bank-iteration-2026-10-04.md"
+    },
+    {
+      "source": "astra-web/README.md",
+      "target": "./docs/plans/studio-effects-standard.md",
+      "resolved": "astra-web/docs/plans/studio-effects-standard.md"
+    },
+    {
+      "source": "astra-web/README.md",
+      "target": "./docs/plans/hover-parity-iteration-2026-10-02.md",
+      "resolved": "astra-web/docs/plans/hover-parity-iteration-2026-10-02.md"
+    },
+    {
+      "source": "astra-web/README.md",
+      "target": "./docs/plans/stage-delivery-2026-10-01.md",
+      "resolved": "astra-web/docs/plans/stage-delivery-2026-10-01.md"
+    },
+    {
+      "source": "astra-web/README.md",
+      "target": "./docs/plans/product-master-plan.md",
+      "resolved": "astra-web/docs/plans/product-master-plan.md"
+    },
+    {
+      "source": "astra-web/README.md",
+      "target": "./docs/plans/prd-commerce.md",
+      "resolved": "astra-web/docs/plans/prd-commerce.md"
+    },
+    {
+      "source": "astra-web/README.md",
+      "target": "./docs/plans/commerce-contract-iteration-2026-10-02.md",
+      "resolved": "astra-web/docs/plans/commerce-contract-iteration-2026-10-02.md"
+    },
+    {
+      "source": "astra-web/README.md",
+      "target": "./docs/plans/commerce-orders-iteration-2026-10-02.md",
+      "resolved": "astra-web/docs/plans/commerce-orders-iteration-2026-10-02.md"
+    },
+    {
+      "source": "astra-web/README.md",
+      "target": "./docs/plans/payment-provider-iteration-2026-10-02.md",
+      "resolved": "astra-web/docs/plans/payment-provider-iteration-2026-10-02.md"
+    },
+    {
+      "source": "astra-web/README.md",
+      "target": "./docs/plans/payment-flow-iteration-2026-10-02.md",
+      "resolved": "astra-web/docs/plans/payment-flow-iteration-2026-10-02.md"
+    },
+    {
+      "source": "astra-web/README.md",
+      "target": "./docs/plans/site-architecture.md",
+      "resolved": "astra-web/docs/plans/site-architecture.md"
+    },
+    {
+      "source": "astra-web/README.md",
+      "target": "./docs/prototypes/v7-studio-rift/index.html",
+      "resolved": "astra-web/docs/prototypes/v7-studio-rift/index.html"
+    },
+    {
+      "source": "astra-web/README.md",
+      "target": "./docs/plans/studio-rift-prototype-2026-10-03.md",
+      "resolved": "astra-web/docs/plans/studio-rift-prototype-2026-10-03.md"
+    },
+    {
+      "source": "astra-web/README.md",
+      "target": "./docs/plans/studio-effects-standard.md",
+      "resolved": "astra-web/docs/plans/studio-effects-standard.md"
+    },
+    {
+      "source": "astra-web/README.md",
+      "target": "./docs/prototypes/v8-studio-rift/index.html",
+      "resolved": "astra-web/docs/prototypes/v8-studio-rift/index.html"
+    },
+    {
+      "source": "astra-web/README.md",
+      "target": "./docs/plans/studio-rift-refinement-2026-10-03.md",
+      "resolved": "astra-web/docs/plans/studio-rift-refinement-2026-10-03.md"
+    },
+    {
+      "source": "astra-web/README.md",
+      "target": "./docs/plans/studio-rift-integration-2026-10-03.md",
+      "resolved": "astra-web/docs/plans/studio-rift-integration-2026-10-03.md"
+    },
+    {
+      "source": "astra-web/README.md",
+      "target": "./docs/plans/commercial-quality-execution-2026-10-04.md",
+      "resolved": "astra-web/docs/plans/commercial-quality-execution-2026-10-04.md"
+    },
+    {
+      "source": "astra-web/README.md",
+      "target": "./docs/prototypes/v9-glyph-particles/index.html",
+      "resolved": "astra-web/docs/prototypes/v9-glyph-particles/index.html"
+    },
+    {
+      "source": "astra-web/README.md",
+      "target": "./docs/plans/creative-research-iteration-2026-10-04.md",
+      "resolved": "astra-web/docs/plans/creative-research-iteration-2026-10-04.md"
+    },
+    {
+      "source": "astra-web/README.md",
+      "target": "./docs/plans/project-pause-handoff-2026-10-03.md",
+      "resolved": "astra-web/docs/plans/project-pause-handoff-2026-10-03.md"
+    },
+    {
+      "source": "astra-web/docs/plans/README.md",
+      "target": "./refund-verification-2026-10-09.md",
+      "resolved": "astra-web/docs/plans/refund-verification-2026-10-09.md"
+    },
+    {
+      "source": "astra-web/docs/plans/README.md",
+      "target": "./payment-verification-workbench-2026-10-09.md",
+      "resolved": "astra-web/docs/plans/payment-verification-workbench-2026-10-09.md"
+    },
+    {
+      "source": "astra-web/docs/plans/README.md",
+      "target": "./payment-verification-2026-10-09.md",
+      "resolved": "astra-web/docs/plans/payment-verification-2026-10-09.md"
+    },
+    {
+      "source": "astra-web/docs/plans/README.md",
+      "target": "./account-commerce-2026-10-08.md",
+      "resolved": "astra-web/docs/plans/account-commerce-2026-10-08.md"
+    },
+    {
+      "source": "astra-web/docs/plans/README.md",
+      "target": "../../../astra-cloud/docs/plans/launch-readiness-2026-10-08.md",
+      "resolved": "astra-cloud/docs/plans/launch-readiness-2026-10-08.md"
+    },
+    {
+      "source": "astra-web/docs/plans/README.md",
+      "target": "./growth-playbook-2026-10-08.md",
+      "resolved": "astra-web/docs/plans/growth-playbook-2026-10-08.md"
+    },
+    {
+      "source": "astra-web/docs/plans/README.md",
+      "target": "./commercial-quality-execution-2026-10-04.md",
+      "resolved": "astra-web/docs/plans/commercial-quality-execution-2026-10-04.md"
+    },
+    {
+      "source": "astra-web/docs/plans/README.md",
+      "target": "./creative-research-iteration-2026-10-04.md",
+      "resolved": "astra-web/docs/plans/creative-research-iteration-2026-10-04.md"
+    },
+    {
+      "source": "astra-web/docs/plans/README.md",
+      "target": "./product-master-plan.md",
+      "resolved": "astra-web/docs/plans/product-master-plan.md"
+    },
+    {
+      "source": "astra-web/docs/plans/README.md",
+      "target": "./commercial-art-engine.md",
+      "resolved": "astra-web/docs/plans/commercial-art-engine.md"
+    },
+    {
+      "source": "astra-web/docs/plans/README.md",
+      "target": "../research/2026-09-30-ascii/README.md",
+      "resolved": "astra-web/docs/research/2026-09-30-ascii/README.md"
+    },
+    {
+      "source": "astra-web/docs/plans/README.md",
+      "target": "./brand-identity.md",
+      "resolved": "astra-web/docs/plans/brand-identity.md"
+    },
+    {
+      "source": "astra-web/docs/plans/README.md",
+      "target": "./stage-delivery-2026-10-01.md",
+      "resolved": "astra-web/docs/plans/stage-delivery-2026-10-01.md"
+    },
+    {
+      "source": "astra-web/docs/plans/README.md",
+      "target": "./art-effects-iteration-2026-10-01.md",
+      "resolved": "astra-web/docs/plans/art-effects-iteration-2026-10-01.md"
+    },
+    {
+      "source": "astra-web/docs/plans/README.md",
+      "target": "./template-entry-iteration-2026-10-02.md",
+      "resolved": "astra-web/docs/plans/template-entry-iteration-2026-10-02.md"
+    },
+    {
+      "source": "astra-web/docs/plans/README.md",
+      "target": "./template-delivery-iteration-2026-10-02.md",
+      "resolved": "astra-web/docs/plans/template-delivery-iteration-2026-10-02.md"
+    },
+    {
+      "source": "astra-web/docs/plans/README.md",
+      "target": "./editor-state-iteration-2026-10-02.md",
+      "resolved": "astra-web/docs/plans/editor-state-iteration-2026-10-02.md"
+    },
+    {
+      "source": "astra-web/docs/plans/README.md",
+      "target": "./prd-creation.md",
+      "resolved": "astra-web/docs/plans/prd-creation.md"
+    },
+    {
+      "source": "astra-web/docs/plans/README.md",
+      "target": "./design-system-v2.md",
+      "resolved": "astra-web/docs/plans/design-system-v2.md"
+    },
+    {
+      "source": "astra-web/docs/plans/README.md",
+      "target": "./template-delivery-contract.md",
+      "resolved": "astra-web/docs/plans/template-delivery-contract.md"
+    },
+    {
+      "source": "astra-web/docs/plans/README.md",
+      "target": "./creation-product-iteration-2026-10-01.md",
+      "resolved": "astra-web/docs/plans/creation-product-iteration-2026-10-01.md"
+    },
+    {
+      "source": "astra-web/docs/plans/README.md",
+      "target": "./stage-delivery-2026-10-01.md",
+      "resolved": "astra-web/docs/plans/stage-delivery-2026-10-01.md"
+    },
+    {
+      "source": "astra-web/docs/plans/README.md",
+      "target": "./project-package-iteration-2026-10-01.md",
+      "resolved": "astra-web/docs/plans/project-package-iteration-2026-10-01.md"
+    },
+    {
+      "source": "astra-web/docs/plans/README.md",
+      "target": "../../src/lib/art-project-package.md",
+      "resolved": "astra-web/src/lib/art-project-package.md"
+    },
+    {
+      "source": "astra-web/docs/plans/README.md",
+      "target": "./signature-engine-iteration-2026-10-01.md",
+      "resolved": "astra-web/docs/plans/signature-engine-iteration-2026-10-01.md"
+    },
+    {
+      "source": "astra-web/docs/plans/README.md",
+      "target": "./signature-ink-pack-v1-iteration-2026-10-01.md",
+      "resolved": "astra-web/docs/plans/signature-ink-pack-v1-iteration-2026-10-01.md"
+    },
+    {
+      "source": "astra-web/docs/plans/README.md",
+      "target": "./signature-native-v2-iteration-2026-10-01.md",
+      "resolved": "astra-web/docs/plans/signature-native-v2-iteration-2026-10-01.md"
+    },
+    {
+      "source": "astra-web/docs/plans/README.md",
+      "target": "./art-editor-iteration-2026-10-01.md",
+      "resolved": "astra-web/docs/plans/art-editor-iteration-2026-10-01.md"
+    },
+    {
+      "source": "astra-web/docs/plans/README.md",
+      "target": "./art-quality-iteration-2026-10-01.md",
+      "resolved": "astra-web/docs/plans/art-quality-iteration-2026-10-01.md"
+    },
+    {
+      "source": "astra-web/docs/plans/README.md",
+      "target": "./art-quality-v4-iteration-2026-10-01.md",
+      "resolved": "astra-web/docs/plans/art-quality-v4-iteration-2026-10-01.md"
+    },
+    {
+      "source": "astra-web/docs/plans/README.md",
+      "target": "./art-quality-v5-iteration-2026-10-01.md",
+      "resolved": "astra-web/docs/plans/art-quality-v5-iteration-2026-10-01.md"
+    },
+    {
+      "source": "astra-web/docs/plans/README.md",
+      "target": "./art-quality-v6-iteration-2026-10-01.md",
+      "resolved": "astra-web/docs/plans/art-quality-v6-iteration-2026-10-01.md"
+    },
+    {
+      "source": "astra-web/docs/plans/README.md",
+      "target": "./art-quality-v7-iteration-2026-10-01.md",
+      "resolved": "astra-web/docs/plans/art-quality-v7-iteration-2026-10-01.md"
+    },
+    {
+      "source": "astra-web/docs/plans/README.md",
+      "target": "./site-architecture.md",
+      "resolved": "astra-web/docs/plans/site-architecture.md"
+    },
+    {
+      "source": "astra-web/docs/plans/README.md",
+      "target": "./ascii-art.md",
+      "resolved": "astra-web/docs/plans/ascii-art.md"
+    },
+    {
+      "source": "astra-web/docs/plans/README.md",
+      "target": "./ascii-art-roadmap.md",
+      "resolved": "astra-web/docs/plans/ascii-art-roadmap.md"
+    },
+    {
+      "source": "astra-web/docs/plans/README.md",
+      "target": "./ascii-engine-optimizer.md",
+      "resolved": "astra-web/docs/plans/ascii-engine-optimizer.md"
+    },
+    {
+      "source": "astra-web/docs/plans/README.md",
+      "target": "./signature-portrait.md",
+      "resolved": "astra-web/docs/plans/signature-portrait.md"
+    },
+    {
+      "source": "astra-web/docs/plans/commercial-quality-execution-2026-10-04.md",
+      "target": "./refund-verification-2026-10-09.md",
+      "resolved": "astra-web/docs/plans/refund-verification-2026-10-09.md"
+    },
+    {
+      "source": "astra-web/docs/plans/commercial-quality-execution-2026-10-04.md",
+      "target": "./payment-verification-workbench-2026-10-09.md",
+      "resolved": "astra-web/docs/plans/payment-verification-workbench-2026-10-09.md"
+    },
+    {
+      "source": "astra-web/docs/plans/commercial-quality-execution-2026-10-04.md",
+      "target": "./payment-verification-2026-10-09.md",
+      "resolved": "astra-web/docs/plans/payment-verification-2026-10-09.md"
+    },
+    {
+      "source": "astra-web/docs/plans/commercial-quality-execution-2026-10-04.md",
+      "target": "./project-pause-handoff-2026-10-03.md",
+      "resolved": "astra-web/docs/plans/project-pause-handoff-2026-10-03.md"
+    },
+    {
+      "source": "astra-web/docs/plans/commercial-quality-execution-2026-10-04.md",
+      "target": "./creative-research-iteration-2026-10-04.md",
+      "resolved": "astra-web/docs/plans/creative-research-iteration-2026-10-04.md"
+    },
+    {
+      "source": "astra-web/docs/plans/commercial-quality-execution-2026-10-04.md",
+      "target": "./glyph-particles-integration-2026-10-05.md",
+      "resolved": "astra-web/docs/plans/glyph-particles-integration-2026-10-05.md"
+    },
+    {
+      "source": "astra-web/docs/plans/commercial-quality-execution-2026-10-04.md",
+      "target": "./signature-font-bank-iteration-2026-10-04.md",
+      "resolved": "astra-web/docs/plans/signature-font-bank-iteration-2026-10-04.md"
+    },
+    {
+      "source": "astra-web/docs/plans/commercial-quality-execution-2026-10-04.md",
+      "target": "./signature-raster-iteration-2026-10-04.md",
+      "resolved": "astra-web/docs/plans/signature-raster-iteration-2026-10-04.md"
+    },
+    {
+      "source": "astra-web/docs/plans/commercial-quality-execution-2026-10-04.md",
+      "target": "./signature-viewport-iteration-2026-10-04.md",
+      "resolved": "astra-web/docs/plans/signature-viewport-iteration-2026-10-04.md"
+    },
+    {
+      "source": "astra-web/docs/plans/commercial-quality-execution-2026-10-04.md",
+      "target": "./signature-project-iteration-2026-10-04.md",
+      "resolved": "astra-web/docs/plans/signature-project-iteration-2026-10-04.md"
+    },
+    {
+      "source": "astra-web/docs/plans/commercial-quality-execution-2026-10-04.md",
+      "target": "./site-shell-iteration-2026-10-04.md",
+      "resolved": "astra-web/docs/plans/site-shell-iteration-2026-10-04.md"
+    },
+    {
+      "source": "astra-web/docs/plans/commercial-quality-execution-2026-10-04.md",
+      "target": "./signature-print-iteration-2026-10-04.md",
+      "resolved": "astra-web/docs/plans/signature-print-iteration-2026-10-04.md"
+    },
+    {
+      "source": "astra-web/docs/plans/commercial-quality-execution-2026-10-04.md",
+      "target": "./signature-capacity-iteration-2026-10-04.md",
+      "resolved": "astra-web/docs/plans/signature-capacity-iteration-2026-10-04.md"
+    },
+    {
+      "source": "astra-web/docs/plans/commercial-quality-execution-2026-10-04.md",
+      "target": "./signature-preview-transaction-2026-10-04.md",
+      "resolved": "astra-web/docs/plans/signature-preview-transaction-2026-10-04.md"
+    },
+    {
+      "source": "astra-web/docs/plans/commercial-quality-execution-2026-10-04.md",
+      "target": "./signature-png-background-2026-10-07.md",
+      "resolved": "astra-web/docs/plans/signature-png-background-2026-10-07.md"
+    },
+    {
+      "source": "astra-web/docs/plans/commercial-quality-execution-2026-10-04.md",
+      "target": "./signature-png-stream-2026-10-07.md",
+      "resolved": "astra-web/docs/plans/signature-png-stream-2026-10-07.md"
+    },
+    {
+      "source": "astra-web/docs/plans/commercial-quality-execution-2026-10-04.md",
+      "target": "./signature-font-cutout-2026-10-07.md",
+      "resolved": "astra-web/docs/plans/signature-font-cutout-2026-10-07.md"
+    },
+    {
+      "source": "astra-web/docs/plans/commercial-quality-execution-2026-10-04.md",
+      "target": "./signature-ultra-png-2026-10-07.md",
+      "resolved": "astra-web/docs/plans/signature-ultra-png-2026-10-07.md"
+    },
+    {
+      "source": "astra-web/docs/plans/commercial-quality-execution-2026-10-04.md",
+      "target": "./signature-photo-region-2026-10-08.md",
+      "resolved": "astra-web/docs/plans/signature-photo-region-2026-10-08.md"
+    },
+    {
+      "source": "astra-web/docs/plans/commercial-quality-execution-2026-10-04.md",
+      "target": "./portrait-print-styles-2026-10-07.md",
+      "resolved": "astra-web/docs/plans/portrait-print-styles-2026-10-07.md"
+    },
+    {
+      "source": "astra-web/docs/plans/commercial-quality-execution-2026-10-04.md",
+      "target": "./signature-responsive-render-2026-10-04.md",
+      "resolved": "astra-web/docs/plans/signature-responsive-render-2026-10-04.md"
+    },
+    {
+      "source": "astra-web/docs/plans/commercial-quality-execution-2026-10-04.md",
+      "target": "./signature-theme-workspace-2026-10-04.md",
+      "resolved": "astra-web/docs/plans/signature-theme-workspace-2026-10-04.md"
+    },
+    {
+      "source": "astra-web/docs/plans/commercial-quality-execution-2026-10-04.md",
+      "target": "./signature-direction-2026-10-04.md",
+      "resolved": "astra-web/docs/plans/signature-direction-2026-10-04.md"
+    },
+    {
+      "source": "astra-web/docs/plans/commercial-quality-execution-2026-10-04.md",
+      "target": "./video-responsive-playback-2026-10-04.md",
+      "resolved": "astra-web/docs/plans/video-responsive-playback-2026-10-04.md"
+    },
+    {
+      "source": "astra-web/docs/plans/commercial-quality-execution-2026-10-04.md",
+      "target": "./video-tile-atlas-research-2026-10-04.md",
+      "resolved": "astra-web/docs/plans/video-tile-atlas-research-2026-10-04.md"
+    },
+    {
+      "source": "astra-web/docs/plans/commercial-quality-execution-2026-10-04.md",
+      "target": "./video-render-slices-2026-10-05.md",
+      "resolved": "astra-web/docs/plans/video-render-slices-2026-10-05.md"
+    },
+    {
+      "source": "astra-web/docs/plans/commercial-quality-execution-2026-10-04.md",
+      "target": "./image-preview-background-2026-10-05.md",
+      "resolved": "astra-web/docs/plans/image-preview-background-2026-10-05.md"
+    },
+    {
+      "source": "astra-web/docs/plans/commercial-quality-execution-2026-10-04.md",
+      "target": "./glyph-particles-clock-2026-10-05.md",
+      "resolved": "astra-web/docs/plans/glyph-particles-clock-2026-10-05.md"
+    },
+    {
+      "source": "astra-web/docs/plans/commercial-quality-execution-2026-10-04.md",
+      "target": "./preview-feedback-idle-2026-10-05.md",
+      "resolved": "astra-web/docs/plans/preview-feedback-idle-2026-10-05.md"
+    },
+    {
+      "source": "astra-web/docs/plans/commercial-quality-execution-2026-10-04.md",
+      "target": "./preview-region-cache-research-2026-10-05.md",
+      "resolved": "astra-web/docs/plans/preview-region-cache-research-2026-10-05.md"
+    },
+    {
+      "source": "astra-web/docs/plans/commercial-quality-execution-2026-10-04.md",
+      "target": "./preview-region-page-research-2026-10-05.md",
+      "resolved": "astra-web/docs/plans/preview-region-page-research-2026-10-05.md"
+    },
+    {
+      "source": "astra-web/docs/plans/commercial-quality-execution-2026-10-04.md",
+      "target": "./purchased-delivery-2026-10-08.md",
+      "resolved": "astra-web/docs/plans/purchased-delivery-2026-10-08.md"
+    },
+    {
+      "source": "astra-web/docs/plans/commercial-quality-execution-2026-10-04.md",
+      "target": "./catalog-ui-2026-10-08.md",
+      "resolved": "astra-web/docs/plans/catalog-ui-2026-10-08.md"
+    },
+    {
+      "source": "astra-web/docs/plans/commercial-quality-execution-2026-10-04.md",
+      "target": "./order-recovery-2026-10-08.md",
+      "resolved": "astra-web/docs/plans/order-recovery-2026-10-08.md"
+    },
+    {
+      "source": "astra-web/docs/plans/commercial-quality-execution-2026-10-04.md",
+      "target": "./order-confirmation-2026-10-08.md",
+      "resolved": "astra-web/docs/plans/order-confirmation-2026-10-08.md"
+    },
+    {
+      "source": "astra-web/docs/plans/commercial-quality-execution-2026-10-04.md",
+      "target": "./payment-initiation-2026-10-08.md",
+      "resolved": "astra-web/docs/plans/payment-initiation-2026-10-08.md"
+    },
+    {
+      "source": "astra-web/docs/plans/commercial-quality-execution-2026-10-04.md",
+      "target": "./reconciliation-workbench-2026-10-09.md",
+      "resolved": "astra-web/docs/plans/reconciliation-workbench-2026-10-09.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "./refund-verification-2026-10-09.md",
+      "resolved": "astra-web/docs/plans/refund-verification-2026-10-09.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "./payment-verification-workbench-2026-10-09.md",
+      "resolved": "astra-web/docs/plans/payment-verification-workbench-2026-10-09.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "./payment-verification-2026-10-09.md",
+      "resolved": "astra-web/docs/plans/payment-verification-2026-10-09.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "./reconciliation-workbench-2026-10-09.md",
+      "resolved": "astra-web/docs/plans/reconciliation-workbench-2026-10-09.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "./reconciliation-admin-2026-10-09.md",
+      "resolved": "astra-web/docs/plans/reconciliation-admin-2026-10-09.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "./admin-bootstrap-2026-10-08.md",
+      "resolved": "astra-web/docs/plans/admin-bootstrap-2026-10-08.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "./admin-refunds-2026-10-08.md",
+      "resolved": "astra-web/docs/plans/admin-refunds-2026-10-08.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "./refund-application-2026-10-08.md",
+      "resolved": "astra-web/docs/plans/refund-application-2026-10-08.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "./refund-worker-2026-10-08.md",
+      "resolved": "astra-web/docs/plans/refund-worker-2026-10-08.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "./payment-initiation-2026-10-08.md",
+      "resolved": "astra-web/docs/plans/payment-initiation-2026-10-08.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "./order-confirmation-2026-10-08.md",
+      "resolved": "astra-web/docs/plans/order-confirmation-2026-10-08.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "./order-recovery-2026-10-08.md",
+      "resolved": "astra-web/docs/plans/order-recovery-2026-10-08.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "../../../astra-cloud/docs/plans/launch-readiness-2026-10-08.md",
+      "resolved": "astra-cloud/docs/plans/launch-readiness-2026-10-08.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "./growth-playbook-2026-10-08.md",
+      "resolved": "astra-web/docs/plans/growth-playbook-2026-10-08.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "./studio-effects-standard.md",
+      "resolved": "astra-web/docs/plans/studio-effects-standard.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "./hover-parity-iteration-2026-10-02.md",
+      "resolved": "astra-web/docs/plans/hover-parity-iteration-2026-10-02.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "./commercial-quality-execution-2026-10-04.md",
+      "resolved": "astra-web/docs/plans/commercial-quality-execution-2026-10-04.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "./project-pause-handoff-2026-10-03.md",
+      "resolved": "astra-web/docs/plans/project-pause-handoff-2026-10-03.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "./signature-font-bank-iteration-2026-10-04.md",
+      "resolved": "astra-web/docs/plans/signature-font-bank-iteration-2026-10-04.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "./cinematic-motion-iteration-2026-10-02.md",
+      "resolved": "astra-web/docs/plans/cinematic-motion-iteration-2026-10-02.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "../../../astra-cloud/docs/plans/gateway-boundary-iteration-2026-10-02.md",
+      "resolved": "astra-cloud/docs/plans/gateway-boundary-iteration-2026-10-02.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "./kinetic-motion-iteration-2026-10-02.md",
+      "resolved": "astra-web/docs/plans/kinetic-motion-iteration-2026-10-02.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "../prototypes/v2-kinetic-motion/index.html",
+      "resolved": "astra-web/docs/prototypes/v2-kinetic-motion/index.html"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "../../src/router/index.ts",
+      "resolved": "astra-web/src/router/index.ts"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "../../src/App.vue",
+      "resolved": "astra-web/src/App.vue"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "../../src/styles/art-system.css",
+      "resolved": "astra-web/src/styles/art-system.css"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "../../src/lib/art-projects.ts",
+      "resolved": "astra-web/src/lib/art-projects.ts"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "./art-gallery-implementation.md",
+      "resolved": "astra-web/docs/plans/art-gallery-implementation.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "../../package.json",
+      "resolved": "astra-web/package.json"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "../../../astra-cloud/README.md",
+      "resolved": "astra-cloud/README.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "./prd-commerce.md",
+      "resolved": "astra-web/docs/plans/prd-commerce.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "./prd-commerce.md",
+      "resolved": "astra-web/docs/plans/prd-commerce.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "../../../astra-cloud/docs/commerce/api-contracts.md",
+      "resolved": "astra-cloud/docs/commerce/api-contracts.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "../../../astra-cloud/docs/commerce/database-design.md",
+      "resolved": "astra-cloud/docs/commerce/database-design.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "./prd-commerce.md",
+      "resolved": "astra-web/docs/plans/prd-commerce.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "./commerce-catalog-iteration-2026-10-02.md",
+      "resolved": "astra-web/docs/plans/commerce-catalog-iteration-2026-10-02.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "./commerce-orders-iteration-2026-10-02.md",
+      "resolved": "astra-web/docs/plans/commerce-orders-iteration-2026-10-02.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "./payment-provider-iteration-2026-10-02.md",
+      "resolved": "astra-web/docs/plans/payment-provider-iteration-2026-10-02.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "./payment-flow-iteration-2026-10-02.md",
+      "resolved": "astra-web/docs/plans/payment-flow-iteration-2026-10-02.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "./editor-state-iteration-2026-10-02.md",
+      "resolved": "astra-web/docs/plans/editor-state-iteration-2026-10-02.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "./template-delivery-iteration-2026-10-02.md",
+      "resolved": "astra-web/docs/plans/template-delivery-iteration-2026-10-02.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "./template-entry-iteration-2026-10-02.md",
+      "resolved": "astra-web/docs/plans/template-entry-iteration-2026-10-02.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "./art-effects-iteration-2026-10-01.md",
+      "resolved": "astra-web/docs/plans/art-effects-iteration-2026-10-01.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "./project-package-iteration-2026-10-01.md",
+      "resolved": "astra-web/docs/plans/project-package-iteration-2026-10-01.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "./signature-engine-iteration-2026-10-01.md",
+      "resolved": "astra-web/docs/plans/signature-engine-iteration-2026-10-01.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "./art-editor-iteration-2026-10-01.md",
+      "resolved": "astra-web/docs/plans/art-editor-iteration-2026-10-01.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "./art-quality-iteration-2026-10-01.md",
+      "resolved": "astra-web/docs/plans/art-quality-iteration-2026-10-01.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "./art-quality-v4-iteration-2026-10-01.md",
+      "resolved": "astra-web/docs/plans/art-quality-v4-iteration-2026-10-01.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "./art-quality-v5-iteration-2026-10-01.md",
+      "resolved": "astra-web/docs/plans/art-quality-v5-iteration-2026-10-01.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "./art-quality-v6-iteration-2026-10-01.md",
+      "resolved": "astra-web/docs/plans/art-quality-v6-iteration-2026-10-01.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "./art-quality-v7-iteration-2026-10-01.md",
+      "resolved": "astra-web/docs/plans/art-quality-v7-iteration-2026-10-01.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "./signature-native-v2-iteration-2026-10-01.md",
+      "resolved": "astra-web/docs/plans/signature-native-v2-iteration-2026-10-01.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "./signature-ink-pack-v1-iteration-2026-10-01.md",
+      "resolved": "astra-web/docs/plans/signature-ink-pack-v1-iteration-2026-10-01.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "./project-package-iteration-2026-10-01.md",
+      "resolved": "astra-web/docs/plans/project-package-iteration-2026-10-01.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "./studio-motion-iteration-2026-10-02.md",
+      "resolved": "astra-web/docs/plans/studio-motion-iteration-2026-10-02.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "./studio-effects-standard.md",
+      "resolved": "astra-web/docs/plans/studio-effects-standard.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "./depth-motion-iteration-2026-10-02.md",
+      "resolved": "astra-web/docs/plans/depth-motion-iteration-2026-10-02.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "./fluid-motion-iteration-2026-10-02.md",
+      "resolved": "astra-web/docs/plans/fluid-motion-iteration-2026-10-02.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "../../../astra-cloud/docs/commerce/entitlements-runtime.md",
+      "resolved": "astra-cloud/docs/commerce/entitlements-runtime.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "../../../astra-cloud/docs/plans/entitlement-query-iteration-2026-10-02.md",
+      "resolved": "astra-cloud/docs/plans/entitlement-query-iteration-2026-10-02.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "./spatial-motion-iteration-2026-10-03.md",
+      "resolved": "astra-web/docs/plans/spatial-motion-iteration-2026-10-03.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "../prototypes/v6-spatial-motion/index.html",
+      "resolved": "astra-web/docs/prototypes/v6-spatial-motion/index.html"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "./studio-rift-prototype-2026-10-03.md",
+      "resolved": "astra-web/docs/plans/studio-rift-prototype-2026-10-03.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "../prototypes/v7-studio-rift/index.html",
+      "resolved": "astra-web/docs/prototypes/v7-studio-rift/index.html"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "../../../astra-cloud/docs/commerce/private-delivery-runtime.md",
+      "resolved": "astra-cloud/docs/commerce/private-delivery-runtime.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "./studio-rift-refinement-2026-10-03.md",
+      "resolved": "astra-web/docs/plans/studio-rift-refinement-2026-10-03.md"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "../prototypes/v8-studio-rift/index.html",
+      "resolved": "astra-web/docs/prototypes/v8-studio-rift/index.html"
+    },
+    {
+      "source": "astra-web/docs/plans/product-master-plan.md",
+      "target": "./studio-rift-integration-2026-10-03.md",
+      "resolved": "astra-web/docs/plans/studio-rift-integration-2026-10-03.md"
+    },
+    {
+      "source": "astra-web/docs/plans/refund-verification-2026-10-09.md",
+      "target": "./payment-verification-workbench-2026-10-09.md",
+      "resolved": "astra-web/docs/plans/payment-verification-workbench-2026-10-09.md"
+    },
+    {
+      "source": "astra-web/docs/plans/refund-verification-2026-10-09.md",
+      "target": "../../../astra-cloud/docs/plans/refund-verification-2026-10-09.md",
+      "resolved": "astra-cloud/docs/plans/refund-verification-2026-10-09.md"
+    },
+    {
+      "source": "astra-web/docs/plans/refund-verification-2026-10-09.md",
+      "target": "../../../astra-cloud/docs/commerce/refund-verification-runtime.md",
+      "resolved": "astra-cloud/docs/commerce/refund-verification-runtime.md"
+    },
+    {
+      "source": "astra-web/docs/plans/refund-verification-2026-10-09.md",
+      "target": "../validation/2026-10-09/refund-verification/README.md",
+      "resolved": "astra-web/docs/validation/2026-10-09/refund-verification/README.md"
+    },
+    {
+      "source": "astra-web/docs/plans/refund-verification-2026-10-09.md",
+      "target": "../../../astra-cloud/docs/plans/launch-readiness-2026-10-08.md",
+      "resolved": "astra-cloud/docs/plans/launch-readiness-2026-10-08.md"
+    },
+    {
+      "source": "astra-web/docs/plans/refund-verification-2026-10-09.md",
+      "target": "./growth-playbook-2026-10-08.md",
+      "resolved": "astra-web/docs/plans/growth-playbook-2026-10-08.md"
+    },
+    {
+      "source": "astra-web/docs/validation/2026-10-09/refund-verification/README.md",
+      "target": "../../../plans/refund-verification-2026-10-09.md",
+      "resolved": "astra-web/docs/plans/refund-verification-2026-10-09.md"
+    },
+    {
+      "source": "astra-web/docs/validation/2026-10-09/refund-verification/README.md",
+      "target": "./summary.json",
+      "resolved": "astra-web/docs/validation/2026-10-09/refund-verification/summary.json"
+    },
+    {
+      "source": "astra-web/docs/validation/2026-10-09/refund-verification/README.md",
+      "target": "./junit.json",
+      "resolved": "astra-web/docs/validation/2026-10-09/refund-verification/junit.json"
+    },
+    {
+      "source": "astra-web/docs/validation/2026-10-09/refund-verification/README.md",
+      "target": "./http-evidence.json",
+      "resolved": "astra-web/docs/validation/2026-10-09/refund-verification/http-evidence.json"
+    },
+    {
+      "source": "astra-web/docs/validation/2026-10-09/refund-verification/README.md",
+      "target": "./http-schema.json",
+      "resolved": "astra-web/docs/validation/2026-10-09/refund-verification/http-schema.json"
+    },
+    {
+      "source": "astra-web/docs/validation/2026-10-09/refund-verification/README.md",
+      "target": "./failure-history.json",
+      "resolved": "astra-web/docs/validation/2026-10-09/refund-verification/failure-history.json"
+    },
+    {
+      "source": "astra-web/docs/validation/2026-10-09/refund-verification/README.md",
+      "target": "./sql-analysis.json",
+      "resolved": "astra-web/docs/validation/2026-10-09/refund-verification/sql-analysis.json"
+    },
+    {
+      "source": "astra-web/docs/validation/2026-10-09/refund-verification/README.md",
+      "target": "./static-contract.json",
+      "resolved": "astra-web/docs/validation/2026-10-09/refund-verification/static-contract.json"
+    },
+    {
+      "source": "astra-web/docs/validation/2026-10-09/refund-verification/README.md",
+      "target": "./source-index.json",
+      "resolved": "astra-web/docs/validation/2026-10-09/refund-verification/source-index.json"
+    },
+    {
+      "source": "astra-web/docs/validation/2026-10-09/refund-verification/README.md",
+      "target": "./document-links.json",
+      "resolved": "astra-web/docs/validation/2026-10-09/refund-verification/document-links.json"
+    },
+    {
+      "source": "astra-web/docs/validation/2026-10-09/refund-verification/README.md",
+      "target": "./artifact-manifest.json",
+      "resolved": "astra-web/docs/validation/2026-10-09/refund-verification/artifact-manifest.json"
+    }
+  ]
+}

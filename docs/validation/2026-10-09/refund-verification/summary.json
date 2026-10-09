@@ -1,0 +1,70 @@
+{
+  "passed": true,
+  "stage": "refund-verification-2026-10-09",
+  "finalRun": "refund-verification-it-560c63618a88",
+  "junit": {
+    "tests": 45,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "newIntegration": 15,
+  "newPropertiesAndSpringConfiguration": 8,
+  "existingPaymentAndRefundConfiguration": 10,
+  "originalRefundWorkerRegression": 12,
+  "responseSchemas": {
+    "total": 202,
+    "direct": 51,
+    "gateway": 151,
+    "statuses": [
+      200,
+      400,
+      401,
+      403,
+      404,
+      409,
+      429,
+      503
+    ]
+  },
+  "checks": {
+    "finalTests": {
+      "path": "tmp/refund-verification-r3.log",
+      "sha256": "ee684cdfeeef8d72cc3fc501276d0f364e1e20d1c9b1531d9819768bafaeba69",
+      "sizeBytes": 35050
+    },
+    "completeBackendPackage": {
+      "path": "tmp/refund-verification-build-final.log",
+      "sha256": "8b378b57fdab523fce3901ba38558fa5f0a6e5ce20c6f509a2c815e488524c1a",
+      "sizeBytes": 9136,
+      "skipTests": true
+    }
+  },
+  "frontendProductChanged": false,
+  "frontendTestsRerun": false,
+  "browserEvidence": false,
+  "ownedFixtureCleanupComplete": true,
+  "sqlMigrationTablesActuallyCreatedInNewFixture": 23,
+  "existingDatabaseMigrated": false,
+  "mockAndInjectedScope": [
+    "Persisted mock channel facts created by actual provider; real HTTP/SQL/permissions/worker",
+    "Original normal refund CREATE_REFUND task explicitly exhausted in isolated anomaly fixture, never requeued by verification",
+    "No-op new query scheduler; real consumer and lease/transaction fencing",
+    "Injected malformed amount/parent/time, timeout and delayed provider calls",
+    "Actual isolated Redis stop/restart and unavailable role table",
+    "Actual audit/command/financial event SQL trigger failures and rollbacks",
+    "Fixture JWT and database roles, no production authentication"
+  ],
+  "earlierRunsAddedToFinalCount": false,
+  "notVerified": [
+    "real channel funds",
+    "refund verification UI/browser",
+    "production authentication/admin bootstrap",
+    "private file bytes",
+    "deployment",
+    "entire commercial goal",
+    "backend membership",
+    "signature/media/all-site commercial quality",
+    "clean deployment/backup/monitoring"
+  ]
+}

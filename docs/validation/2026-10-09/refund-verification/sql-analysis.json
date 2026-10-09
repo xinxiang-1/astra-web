@@ -1,0 +1,49 @@
+{
+  "passed": true,
+  "scope": "New CREATE TABLE AST, migration inventory and final actual isolated execution; ALTER CHECK fallback excluded from full AST claim",
+  "completeMigrationTableCount": 23,
+  "tables": [
+    "commerce_policy",
+    "commerce_product",
+    "commerce_release",
+    "commerce_sku",
+    "commerce_asset",
+    "commerce_order",
+    "commerce_order_item",
+    "commerce_payment",
+    "commerce_refund",
+    "commerce_payment_event",
+    "commerce_entitlement",
+    "commerce_asset_access",
+    "commerce_admin_role",
+    "commerce_lead",
+    "commerce_admin_audit",
+    "commerce_command",
+    "commerce_outbox",
+    "commerce_reconcile_day",
+    "commerce_reconcile_job",
+    "commerce_reconcile_issue",
+    "commerce_reconcile_attempt",
+    "commerce_payment_verification",
+    "commerce_refund_verification"
+  ],
+  "newMigrationSha256": "9c3ca0ba8fa24d5c6405d892312f5c3b79b75c3c643922c70f7d34c45ae1e67c",
+  "createTableFullyParsed": true,
+  "alterContainsParserFallback": true,
+  "actualIsolatedExecution": true,
+  "mainDatabaseMigrated": false,
+  "mockTableCountedSeparately": true,
+  "offlineAstContractCoversBase17Only": true,
+  "openapi": {
+    "operations": 40,
+    "schemas": 90,
+    "existingOperationsAndSchemasUnchanged": true,
+    "newOperations": 4,
+    "newSchemas": 5
+  },
+  "notVerified": [
+    "production/staging migration",
+    "backup/restore",
+    "full ALTER CHECK AST"
+  ]
+}

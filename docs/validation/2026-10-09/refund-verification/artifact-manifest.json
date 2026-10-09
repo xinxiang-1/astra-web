@@ -1,0 +1,46 @@
+{
+  "passed": true,
+  "scope": "all stage archive files except this manifest; both repository copies retain exact bytes",
+  "files": {
+    "document-links.json": {
+      "sha256": "296e597e32072bde2cec957f4a7974a5329cd449e5e713a714c0ffb6e7ee04ee",
+      "sizeBytes": 62313
+    },
+    "failure-history.json": {
+      "sha256": "02212e4f4a7afd16f5d1b03930aea6c9c97e73022a1aa851d441e7436a0aaffc",
+      "sizeBytes": 3902
+    },
+    "http-evidence.json": {
+      "sha256": "e496b10b5c6092d6348bf1bd5a6a09838e945803f1efcf41e32331b8fac8128b",
+      "sizeBytes": 232290
+    },
+    "http-schema.json": {
+      "sha256": "ce7b2c92f56b125e9e96f25346acca1e3619881ee98705a0f2a9df4dfe34d838",
+      "sizeBytes": 5447
+    },
+    "junit.json": {
+      "sha256": "db18f1b64797292d3875fb0b0a55f2d64fc2bc3677e54a62693754d13235f7c0",
+      "sizeBytes": 7668
+    },
+    "README.md": {
+      "sha256": "133a2feba2fd3d745dd315e8d0b1194b5eed481b4c8dcb3404e57328b4982487",
+      "sizeBytes": 1946
+    },
+    "source-index.json": {
+      "sha256": "972c9123b64a9fecd75683128ac69a3e589ce6011a58458bc3f69a52ab6431f4",
+      "sizeBytes": 12908
+    },
+    "sql-analysis.json": {
+      "sha256": "5bff6f9517f57d87a2fe21e04118e9408785125de5a9cf680c603302d4c3781c",
+      "sizeBytes": 1468
+    },
+    "static-contract.json": {
+      "sha256": "db7f01ac1fe6b14ca49dbf887767e1118dcf2e88b83dd2030032a17529bbec04",
+      "sizeBytes": 8575
+    },
+    "summary.json": {
+      "sha256": "9cfd4c2ba6c75487f7d6e43688728ea491d7b31aa4dbd0fa8e10a2666eb3a1b8",
+      "sizeBytes": 2287
+    }
+  }
+}

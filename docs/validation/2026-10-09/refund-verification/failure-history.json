@@ -1,0 +1,107 @@
+{
+  "earlierRunsNotAddedToFinalCount": true,
+  "findings": [
+    {
+      "phase": "R1 initialization",
+      "junit": {
+        "tests": 1,
+        "failures": 0,
+        "errors": 1,
+        "skipped": 0,
+        "report": "tmp/refund-verification-junit-r1.xml",
+        "reportSha256": "82a99a3c9fd86b22591343d906c669380ef94788c67c61680c26f513d332d5b8",
+        "cases": [
+          {
+            "name": "",
+            "passed": false
+          }
+        ]
+      },
+      "log": {
+        "path": "tmp/refund-verification-r1.log",
+        "sha256": "f3a8e1168dd466c941ba4fd53d89a623cb1f5002a6325c80e08448c7b56e8638",
+        "sizeBytes": 131760
+      },
+      "failure": "Inherited default Redis executable path no longer exists; integration class failed before owned database/service startup",
+      "fix": "Locate actual Redis executable and set existing ASTRA_IT_REDIS_SERVER override; no main DB or existing Redis altered"
+    },
+    {
+      "phase": "R2 green, coverage review",
+      "junit": {
+        "tests": 14,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "report": "tmp/refund-verification-junit-r2.xml",
+        "reportSha256": "83250d9c495d3c1abe70facc8235dc1c83ff933f98b64db89aa731a521d8e939",
+        "cases": [
+          {
+            "name": "strictInputRoleAccountAndDirectServiceAreRechecked",
+            "passed": true
+          },
+          {
+            "name": "acceptedResponseLossRenewedJwtAndSameKeyRecoverOneAtomicCommand",
+            "passed": true
+          },
+          {
+            "name": "unapprovedRejectedStaleVersionActiveTaskAndDisabledExecutionCannotQueue",
+            "passed": true
+          },
+          {
+            "name": "pendingObservationCompletesQueryWithoutCreatingRefundOrRevokingRights",
+            "passed": true
+          },
+          {
+            "name": "trustedSuccessRevokesOnlyOriginalSourceOnceAndContradictoryFailureCannotReverseIt",
+            "passed": true
+          },
+          {
+            "name": "trustedFailedRefundPreservesRightsAndLaterVerifiedSuccessCorrectsOriginalOnce",
+            "passed": true
+          },
+          {
+            "name": "malformedAmountsParentAndTimeCannotWriteMoneyOrRights",
+            "passed": true
+          },
+          {
+            "name": "timeoutAndMissingRefundStopWithinEightAttemptsWithoutCreateFallback",
+            "passed": true
+          },
+          {
+            "name": "auditAndCommandSqlFailureRollBackAllAcceptedQueryWrites",
+            "passed": true
+          },
+          {
+            "name": "financialEventFailureRollsBackRefundMoneyAndRevocationThenOriginalQueryRecovers",
+            "passed": true
+          },
+          {
+            "name": "expiredLeaseTakeoverFencesOldResultAndAppliesOneRefundFact",
+            "passed": true
+          },
+          {
+            "name": "concurrentAdministratorsCannotQueueParallelTasksAndBrokenBindingHasFiniteBudget",
+            "passed": true
+          },
+          {
+            "name": "boundedHistoryReadQuotaWriteQuotaAndDisabledBuyerStillAllowOriginalRecovery",
+            "passed": true
+          },
+          {
+            "name": "realRedisAndRoleStorageFailureRejectReadsThenActuallyRecover",
+            "passed": true
+          }
+        ]
+      },
+      "log": {
+        "path": "tmp/refund-verification-r2.log",
+        "sha256": "4f2289f05089aeb05003165735486e14a01d761d162678583d0a11ed4127325b",
+        "sizeBytes": 23814
+      },
+      "finding": "Add15th in-flight immutable refund-number change case and4 Spring configuration/scheduler cases; normal refund consumer regression also included in final run",
+      "preAdditionScenarioPassClaimed": false,
+      "countedAsFinalEvidence": false
+    }
+  ],
+  "finalRun": "refund-verification-it-560c63618a88"
+}
