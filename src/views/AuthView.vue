@@ -128,6 +128,8 @@ watch(loginTab, () => {
 watch(
   () => form.email,
   () => {
+    formController?.abort()
+    resetSent.value = false
     cancelEmailRequest()
     form.code = ''
     auth.lastMessage = ''
@@ -446,11 +448,12 @@ function validate(): string | null {
 
   if (mode.value === 'forgot') {
     const account = form.email.trim()
-    if (!account) return '请输入邮箱或手机号'
-    if (!isEmail(account) && !isPhone(account)) return '请输入有效邮箱或手机号'
+    if (!isEmail(account)) return '请输入有效邮箱'
+    if (account.length > 128) return '邮箱过长'
     if (resetSent.value) {
-      if (!form.code.trim()) return '请输入验证码'
+      if (!/^\d{6}$/.test(form.code.trim())) return '请输入 6 位邮箱验证码'
       if (form.password.length < 6) return '密码至少 6 位'
+      if (new TextEncoder().encode(form.password).length > 72) return '密码过长，请缩短后重试'
       if (form.password !== form.confirm) return '两次密码不一致'
     }
     return null
@@ -578,6 +581,49 @@ async function onSendSms() {
   }
 }
 
+async function onSendResetCode() {
+  if (mode.value !== 'forgot' || auth.pending) return
+  const email = form.email.trim()
+  if (!isEmail(email) || email.length > 128) {
+    error.value = '请输入有效邮箱'
+    return
+  }
+  if (emailCooldown.value > 0) {
+    error.value = `请 ${emailCooldown.value} 秒后再获取`
+    return
+  }
+  const captchaError = showCaptcha.value ? requireCaptchaCode() : null
+  if (captchaError) {
+    error.value = captchaError
+    return
+  }
+  formController?.abort()
+  const controller = new AbortController(),
+    generation = auth.sessionRevision
+  formController = controller
+  const result = await auth.requestPasswordReset(email, captchaPayload(), controller.signal)
+  if (
+    controller.signal.aborted ||
+    formController !== controller ||
+    auth.sessionRevision !== generation ||
+    mode.value !== 'forgot'
+  )
+    return
+  if (result.ok) {
+    resetSent.value = true
+    showCaptcha.value = false
+    error.value = ''
+    startEmailCooldown(email)
+  } else {
+    error.value = auth.lastMessage || '发送失败'
+    if (result.code === 429) startEmailCooldown(email)
+    else {
+      resetSent.value = false
+      await enableCaptcha()
+    }
+  }
+}
+
 async function onSubmit() {
   if (auth.pending) return
   error.value = ''
@@ -590,17 +636,20 @@ async function onSubmit() {
 
   if (mode.value === 'forgot') {
     if (!resetSent.value) {
-      const ok = await auth.requestPasswordReset(form.email.trim(), captchaPayload())
-      if (ok) {
-        resetSent.value = true
-        showCaptcha.value = false
-      } else {
-        error.value = auth.lastMessage || '发送失败'
-        await enableCaptcha()
-      }
+      await onSendResetCode()
       return
     }
-    const ok = await auth.resetPassword(form.email.trim(), form.code.trim(), form.password)
+    formController?.abort()
+    const controller = new AbortController()
+    formController = controller
+    const ok = await auth.resetPassword(
+      form.email.trim(),
+      form.code.trim(),
+      form.password,
+      controller.signal,
+    )
+    if (controller.signal.aborted || formController !== controller || mode.value !== 'forgot')
+      return
     if (ok) {
       resetSent.value = false
       form.password = ''
@@ -859,9 +908,7 @@ async function onSubmit() {
 
           <template v-else>
             <label class="field">
-              <span>{{
-                mode === 'login' ? '账号' : mode === 'forgot' ? '邮箱 / 手机号' : '邮箱'
-              }}</span>
+              <span>{{ mode === 'login' ? '账号' : '邮箱' }}</span>
               <input
                 v-model="form.email"
                 :type="mode === 'register' ? 'email' : 'text'"
@@ -903,14 +950,25 @@ async function onSubmit() {
             <template v-if="mode === 'forgot' && resetSent">
               <label class="field">
                 <span>验证码</span>
-                <input
-                  v-model="form.code"
-                  type="text"
-                  name="code"
-                  inputmode="numeric"
-                  autocomplete="one-time-code"
-                  placeholder="邮箱收到的 6 位验证码"
-                />
+                <div class="code-row">
+                  <input
+                    v-model="form.code"
+                    type="text"
+                    name="code"
+                    inputmode="numeric"
+                    autocomplete="one-time-code"
+                    maxlength="6"
+                    placeholder="邮箱收到的 6 位验证码"
+                  />
+                  <button
+                    type="button"
+                    class="sms-btn"
+                    :disabled="auth.pending || emailCooldown > 0"
+                    @click="onSendResetCode"
+                  >
+                    {{ emailCooldown > 0 ? `${emailCooldown} 秒后重发` : '重新获取' }}
+                  </button>
+                </div>
               </label>
             </template>
 

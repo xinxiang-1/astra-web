@@ -1,0 +1,120 @@
+{
+  "selfExcluded": true,
+  "files": [
+    {
+      "path": "build-artifacts.json",
+      "sha256": "6dc04f3832a4a4f77c463830cc6d456b76b52c272954e805a150c1774f066297",
+      "bytes": 902
+    },
+    {
+      "path": "chrome/report.json",
+      "sha256": "9ddc622a191d9f76666c589de9dff137eb59d8ad62f27f6dc5479ad1bb925a6a",
+      "bytes": 2440
+    },
+    {
+      "path": "document-links.json",
+      "sha256": "a94ee1dd05b055b543af62caddbe5f1a8218b7c6be1c0126eb1a8bf53ef95304",
+      "bytes": 26328
+    },
+    {
+      "path": "failure-history.json",
+      "sha256": "3cc5752c2ca7c7095fb629a9337d3c00765976d5a7c13449c93a6022448ab82c",
+      "bytes": 1012
+    },
+    {
+      "path": "failures/reset-edge-r2.json",
+      "sha256": "8c24312542fc8178a4ec2be976c365514bd629978b8d918e5e0a9e90ce768726",
+      "bytes": 1372
+    },
+    {
+      "path": "identity-report.json",
+      "sha256": "95bcacd122ebb9935dd5264d88655e31a84ae0e74a145b0ca8c4439d1cb65403",
+      "bytes": 1875
+    },
+    {
+      "path": "junit-summary.json",
+      "sha256": "bcea4e351983ac6f614a3793722976dd298c044abd313ed6ff3ebe14f40b6d25",
+      "bytes": 1551
+    },
+    {
+      "path": "mobile/report.json",
+      "sha256": "bb0f0cf3de296bfdc64011ef5a69ae8092f8405e4c0fd93a17e37a6b93f68601",
+      "bytes": 2178
+    },
+    {
+      "path": "msedge/report.json",
+      "sha256": "d654fe69ad0290d2bbc84fbac57d65c88bb32bf69a1d190fbda5f3ffaa66eeee",
+      "bytes": 2441
+    },
+    {
+      "path": "openapi-check.json",
+      "sha256": "ffb0afd10172ec6f5cb05bdf7b14a124b226ab64ea6e54bec3d4406ed301a841",
+      "bytes": 250
+    },
+    {
+      "path": "README.md",
+      "sha256": "285341dba40930d1115709c3d40b39b89934b8d4a2defbc2281cf64daf24de77",
+      "bytes": 1385
+    },
+    {
+      "path": "reset-chrome/report.json",
+      "sha256": "998374100382396270d953949c3e390f65c521ff28a8428704b10c7ba2cb57ed",
+      "bytes": 2679
+    },
+    {
+      "path": "reset-chrome/reset-dark.png",
+      "sha256": "4c92feb6c6a25b880fe7d56eaa86132100fd10d39d39ffa9bd3c12792ae4b291",
+      "bytes": 987112
+    },
+    {
+      "path": "reset-chrome/reset-light.png",
+      "sha256": "b022f3d3727041fcfeb99790ad0c053341fc8c833fdd638c07c7c072dd8c0da3",
+      "bytes": 989404
+    },
+    {
+      "path": "reset-mobile/report.json",
+      "sha256": "52b4b9fedc638ce74acc7738c3306319c67618788878d1f8af1e979a988e11c5",
+      "bytes": 2941
+    },
+    {
+      "path": "reset-mobile/reset-dark.png",
+      "sha256": "576a505351db2a7d33c00e29b6c8f336524406220f62ded4dd367e7c2ef68fd9",
+      "bytes": 219169
+    },
+    {
+      "path": "reset-mobile/reset-light.png",
+      "sha256": "549677e002d1a99fdca8ac944ac966bbe5a103fb63dad37731dd2528d446968d",
+      "bytes": 212588
+    },
+    {
+      "path": "reset-msedge/report.json",
+      "sha256": "51d8576528fb2d0595b4dca76f164a86e19f0951f50b10029594be4642d9b226",
+      "bytes": 2680
+    },
+    {
+      "path": "reset-msedge/reset-dark.png",
+      "sha256": "772f9613af79b1855a4bc8c2a9ef8a0aa23d8d048d20dbbf07f45f4a6cde0e39",
+      "bytes": 986866
+    },
+    {
+      "path": "reset-msedge/reset-light.png",
+      "sha256": "de3226bd8152673ff0c530cf0d1127ede8698cafc7760b13f0ac1765550f55cf",
+      "bytes": 988799
+    },
+    {
+      "path": "source-index.json",
+      "sha256": "d938686a9eda39fc1b983a54a7a4835f324a6ea4b3051498aa414f80ad41895a",
+      "bytes": 2901
+    },
+    {
+      "path": "source-manifest.json",
+      "sha256": "b01d367a37d5d07fe7f56353b79bf3f8eb361f036d5ed5ac10e2897123f2d4fd",
+      "bytes": 8910
+    },
+    {
+      "path": "summary.json",
+      "sha256": "a95e58412fbdc5391e44c86ca7ce4817b5d9d809ead22e3c32888dae1bb8ab9e",
+      "bytes": 1740
+    }
+  ]
+}

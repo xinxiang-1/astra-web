@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "scope": "OpenAPI3.1 structural validation; actual HTTP response bodies are not retained or retrospectively schema-validated",
+  "sha256": "212eb09eb4d58c18b8161be5f5445f5d6199e444c4f755e3c72d17ce288b433f",
+  "paths": 5
+}

@@ -1,0 +1,101 @@
+{
+  "passed": true,
+  "scope": "Production frontend with owned actual auth/gateway/system/TLS SMTP; no success API mock or real funds",
+  "browser": "157.0.8081.0",
+  "mobile": false,
+  "checks": [
+    "Actual auth-issued old session restores the buyer and reads orders before reset",
+    "Forgot sends a real reset-scene TLS SMTP proof and disables resend during mailbox cooldown",
+    "Reset proof/password fields fit both themes on desktop or synthesized touch viewport",
+    "Valid proof changes password without auto-login, clears matching local session and server rejects its old token",
+    "New password signs in with a fresh auth-issued version and still reads the backend-owned orders",
+    "Mailbox change cancels a real delayed forgot response; no stale proof step, message or cooldown is committed"
+  ],
+  "requests": [
+    {
+      "method": "GET",
+      "path": "/api/auth/me",
+      "httpStatus": 200,
+      "businessCode": 0
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/access",
+      "httpStatus": 403,
+      "businessCode": 403
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/orders",
+      "httpStatus": 200,
+      "businessCode": 0
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/access",
+      "httpStatus": 403,
+      "businessCode": 403
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/orders",
+      "httpStatus": 200,
+      "businessCode": 0
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/me",
+      "httpStatus": 200,
+      "businessCode": 0
+    },
+    {
+      "method": "POST",
+      "path": "/api/auth/password/forgot",
+      "httpStatus": 200,
+      "businessCode": 0
+    },
+    {
+      "method": "POST",
+      "path": "/api/auth/password/reset",
+      "httpStatus": 200,
+      "businessCode": 0
+    },
+    {
+      "method": "POST",
+      "path": "/api/auth/login/password",
+      "httpStatus": 200,
+      "businessCode": 0
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/me",
+      "httpStatus": 200,
+      "businessCode": 0
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/access",
+      "httpStatus": 403,
+      "businessCode": 403
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/orders",
+      "httpStatus": 200,
+      "businessCode": 0
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/me",
+      "httpStatus": 200,
+      "businessCode": 0
+    },
+    {
+      "method": "POST",
+      "path": "/api/auth/password/forgot",
+      "httpStatus": 200,
+      "businessCode": 0
+    }
+  ],
+  "errors": []
+}

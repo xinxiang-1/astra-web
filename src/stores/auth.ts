@@ -87,7 +87,10 @@ export const useAuthStore = defineStore('auth', () => {
     }
   }
 
-  async function withPending<T>(fn: () => Promise<T>, opts?: { signal?: AbortSignal }): Promise<T> {
+  async function withPending<T>(
+    fn: () => Promise<T>,
+    opts?: { signal?: AbortSignal; current?: () => boolean },
+  ): Promise<T> {
     const owner = Symbol(),
       generation = revision.value
     pendingOwner = owner
@@ -95,12 +98,22 @@ export const useAuthStore = defineStore('auth', () => {
     lastMessage.value = ''
     try {
       const result = await fn()
-      if (pendingOwner !== owner || revision.value !== generation || opts?.signal?.aborted)
+      if (
+        pendingOwner !== owner ||
+        revision.value !== generation ||
+        opts?.signal?.aborted ||
+        opts?.current?.() === false
+      )
         throw new DOMException('操作已取消', 'AbortError')
       return result
     } catch (err) {
       const msg = errText(err)
-      if (pendingOwner === owner && revision.value === generation && !opts?.signal?.aborted) {
+      if (
+        pendingOwner === owner &&
+        revision.value === generation &&
+        !opts?.signal?.aborted &&
+        opts?.current?.() !== false
+      ) {
         lastMessage.value = msg
         tipErr(msg)
       }
@@ -231,20 +244,51 @@ export const useAuthStore = defineStore('auth', () => {
     return (await requestEmailCode(email, 'login', captcha)).ok
   }
 
-  async function requestPasswordReset(account: string, captcha: authApi.CaptchaFields) {
+  async function requestPasswordReset(
+    account: string,
+    captcha: authApi.CaptchaFields,
+    signal?: AbortSignal,
+  ) {
+    const generation = revision.value,
+      token = getAccessToken()
+    const current = () =>
+      !signal?.aborted && revision.value === generation && getAccessToken() === token
     try {
-      const msg = await withPending(() => authApi.forgotPassword(account, captcha))
+      const msg = await withPending(() => authApi.forgotPassword(account, captcha, signal), {
+        signal,
+        current,
+      })
+      if (!current()) return { ok: false }
       lastMessage.value = msg || '验证码已发送'
       tipOk(lastMessage.value)
-      return true
-    } catch {
-      return false
+      return { ok: true }
+    } catch (err) {
+      return { ok: false, code: err instanceof ApiError ? err.code : undefined }
     }
   }
 
-  async function resetPassword(account: string, code: string, newPassword: string) {
+  async function resetPassword(
+    account: string,
+    code: string,
+    newPassword: string,
+    signal?: AbortSignal,
+  ) {
+    const generation = revision.value,
+      token = getAccessToken()
+    const current = () =>
+      !signal?.aborted && revision.value === generation && getAccessToken() === token
     try {
-      await withPending(() => authApi.resetPassword(account, code, newPassword))
+      await withPending(() => authApi.resetPassword(account, code, newPassword, signal), {
+        signal,
+        current,
+      })
+      if (!current()) return false
+      if (user.value?.email.trim().toLowerCase() === account.trim().toLowerCase()) {
+        invalidateSessionRequests()
+        setAccessToken(null)
+        observedToken = null
+        user.value = null
+      }
       lastMessage.value = '密码已重置，请登录'
       tipOk(lastMessage.value)
       return true

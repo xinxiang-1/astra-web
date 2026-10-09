@@ -1,0 +1,78 @@
+{
+  "documents": [
+    {
+      "path": "astra-web/docs/plans/password-reset-2026-10-10.md",
+      "sha256": "1f8f7de54a4d73c8a73009a6b951f5449ca89bf2161232c5fc06a02343bcf1b4"
+    },
+    {
+      "path": "astra-web/docs/plans/product-master-plan.md",
+      "sha256": "f450a1cd86b718ca4abfe757725bae417ca9b50add6428b3e8561f49c231a874"
+    },
+    {
+      "path": "astra-cloud/docs/plans/password-reset-2026-10-10.md",
+      "sha256": "8c0ca469caa7036a02c88acc6a9c2d9f6c380df9ece2cc78bbb7291acea5c3ae"
+    },
+    {
+      "path": "astra-cloud/docs/plans/launch-readiness-2026-10-08.md",
+      "sha256": "fa248535cc18dafb84a202d00449f4d08610d520f8f8d2aa648535d984d650bb"
+    },
+    {
+      "path": "astra-cloud/docs/auth/password-reset-runtime.md",
+      "sha256": "d6da6fe12da2d3ff2d6bd8451d3134c8cd7c2de6174bff5cd507bed247627898"
+    },
+    {
+      "path": "astra-cloud/docs/auth/password-reset-openapi.json",
+      "sha256": "212eb09eb4d58c18b8161be5f5445f5d6199e444c4f755e3c72d17ce288b433f"
+    },
+    {
+      "path": "astra-cloud/README.md",
+      "sha256": "baac1a3e6a854f8cd49f44b71d3d3abdfea363f9f746964784e47c3b272a3e91"
+    },
+    {
+      "path": "astra-web/docs/validation/2026-10-10/password-reset/README.md",
+      "sha256": "285341dba40930d1115709c3d40b39b89934b8d4a2defbc2281cf64daf24de77"
+    },
+    {
+      "path": "astra-cloud/docs/validation/2026-10-10/password-reset/README.md",
+      "sha256": "34129f17edbe40b4a8d5ea9b18cf33e12b9863757de40fa85cfe5da546d8ec7c"
+    }
+  ],
+  "rawLocalLogs": [
+    {
+      "path": "tmp/password-reset-live-r1.log",
+      "sha256": "f204e9bb44e178f50a977a0252c5456c5d0f9e660d4fa6e6bf8531f00a5bcf95"
+    },
+    {
+      "path": "tmp/password-reset-live-r2.log",
+      "sha256": "a09bca8b5981ce06b8e90c5729a7dc22096469a8a609af5f0706f934995ec474"
+    },
+    {
+      "path": "tmp/password-reset-live-r3.log",
+      "sha256": "6fac62ae0017fcbc4376f22a5aa70216d306871054c422dacd11dc8c5431f725"
+    },
+    {
+      "path": "tmp/password-reset-live-r4.log",
+      "sha256": "1774798a7bd5d299f97e88d9869771251626d74cc3136b72a464422803113a6f"
+    },
+    {
+      "path": "tmp/password-reset-web-type-r2.log",
+      "sha256": "0a7d40c8ea67ee87b4bcdc91418a201a96bc30f3286185c82d8888ec96c6d6fb"
+    },
+    {
+      "path": "tmp/password-reset-web-lint-r2.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tmp/password-reset-web-build-r2.log",
+      "sha256": "c0bcc0cc297ffeb3773370faa889597c1dbe388b7cc4b70d01d1113d419a4366"
+    },
+    {
+      "path": "tmp/password-reset-http-r1.log",
+      "sha256": "904fd549c2f31fa59e1425c276aa6c4864356b37097cd553a0970957d3848aaa"
+    },
+    {
+      "path": "tmp/password-reset-session-r1.log",
+      "sha256": "461eeebccb3db091ae90a96af324834089a629cb63c6383695f3a1ba2577f9a1"
+    }
+  ]
+}

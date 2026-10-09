@@ -1,0 +1,209 @@
+{
+  "scope": "Exact working-tree bytes of owned stage source; unrelated dirty excluded",
+  "files": [
+    {
+      "repository": "astra-web",
+      "path": "src/api/auth.ts",
+      "sha256": "4668aa7456bf14dd41561d43ff260241ea915d6c9fbb288b1b03147d6c74fb26",
+      "bytes": 3568
+    },
+    {
+      "repository": "astra-web",
+      "path": "src/stores/auth.ts",
+      "sha256": "1e815168061863150fb147ff8d85f245bc0278b2defcc5f86af1a953e11fb232",
+      "bytes": 11080
+    },
+    {
+      "repository": "astra-web",
+      "path": "src/views/AuthView.vue",
+      "sha256": "3e0f759399a61ec974f3ad3dcbbf1f73bfe672aa175ee8a00a8756eb6969e698",
+      "bytes": 42444
+    },
+    {
+      "repository": "astra-web",
+      "path": "scripts/auth-identity-contract.mjs",
+      "sha256": "d3274e5176cd0bafedd057fe395d5339d60587f99d1aa2f60a91cd354b04ec2c",
+      "bytes": 10031
+    },
+    {
+      "repository": "astra-web",
+      "path": "scripts/auth-password-reset-live.mjs",
+      "sha256": "6291d0b85aa6c63162724554cd763d8c6ef0180c77b890a07875dbbb34b07961",
+      "bytes": 9838
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-api/src/main/java/com/astra/api/auth/dto/ForgotPasswordRequest.java",
+      "sha256": "0c282fe3a65604d327f4757ffa8689a435a745bfbb2c7857adc778b9a0c89cec",
+      "bytes": 720
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-api/src/main/java/com/astra/api/auth/dto/ResetPasswordRequest.java",
+      "sha256": "d44c142484b41606fb7b2b939999a7aa36e48781f05bc4c9cf06a6409d0c5ea7",
+      "bytes": 778
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-common/src/main/java/com/astra/common/security/JwtSupport.java",
+      "sha256": "082189e6e3c04829bf4a6b6ec8d3681af7fecc2fe28ff85b53ac27ce4afb5c18",
+      "bytes": 3205
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-common/src/test/java/com/astra/common/security/JwtSupportTest.java",
+      "sha256": "95b1ac1c579f423d88bf1410c82e793bdc86b18875388a5a302b74f182ada313",
+      "bytes": 3487
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-auth/src/main/java/com/astra/auth/config/AuthTokenFilter.java",
+      "sha256": "06a4c62107867a9fd54329cded7aa7a1ff1dd315aebf702e76f3b3dd0d4d4cd8",
+      "bytes": 4470
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-auth/src/main/java/com/astra/auth/domain/SysUser.java",
+      "sha256": "5b20bfbd3d59bce1195f7e6108885e5e89865b223d180c39fc244aebb554f1b4",
+      "bytes": 721
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-auth/src/main/java/com/astra/auth/service/impl/AuthServiceImpl.java",
+      "sha256": "36721274ede602dd3085d61a21970757eaafa71d42e8b8bf914b1dd8c8ea5314",
+      "bytes": 25702
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-auth/src/test/java/com/astra/auth/config/AuthTokenFilterTest.java",
+      "sha256": "4beeed0370d2fb2a66c8a4eed2484adddcf4ba6d31292f91d6f270a32585ebc1",
+      "bytes": 6596
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-auth/src/test/java/com/astra/auth/integration/AuthRegistrationIntegrationTest.java",
+      "sha256": "af3b648011730f90ae677cdcbb4d2c4c79244bd338da9f4fee1dad98c9d9622b",
+      "bytes": 40523
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-auth/src/test/java/com/astra/auth/integration/OwnedAuthFixture.java",
+      "sha256": "c04997433759536194f6fab56ac774e9e9c68dac4f499100578d2741b3da6c7b",
+      "bytes": 14205
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/security/CommerceAccessRepository.java",
+      "sha256": "4c87202e1555c6304a50da0d50cbb2b48ce3a1ff8dfbbe1e33aa3adc3d618497",
+      "bytes": 1014
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/main/java/com/astra/system/commerce/security/CommerceTokenFilter.java",
+      "sha256": "f70448fc956f9cb1c3daae6a9b0493cce31e8e7537aec4b557c982793e3df36c",
+      "bytes": 4868
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/test/java/com/astra/system/commerce/AdminBootstrapIntegrationTest.java",
+      "sha256": "94dba614666aa3ef78e226b559a8e3f51715c01e9412b0b9c4b5147c43407e43",
+      "bytes": 47806
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/test/java/com/astra/system/commerce/AdminRefundWorkbenchIntegrationTest.java",
+      "sha256": "399129ffe4e934d02bf4fb2dbdd1b47e0ec7738bdcd1989815f550ddf9059218",
+      "bytes": 39939
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/test/java/com/astra/system/commerce/CommerceCatalogIntegrationTest.java",
+      "sha256": "dc7a4aca620e7097d5baea4c9e25d1b0d623e41b4fcb87afcb6b4f1a37364367",
+      "bytes": 57082
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/test/java/com/astra/system/commerce/DeliveryIntegrationTest.java",
+      "sha256": "32c239778125271decf26ba0ce342ed6e72df43feac16f2bbfffe21c1585b421",
+      "bytes": 53098
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/test/java/com/astra/system/commerce/EntitlementIntegrationTest.java",
+      "sha256": "04673399d05cac55bff43de46cdce667ac0d7806c4ea0c60364f65119b5dd3f4",
+      "bytes": 38827
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/test/java/com/astra/system/commerce/OrderConfirmationIntegrationTest.java",
+      "sha256": "08a755cb8337dea8a7bcfb73eb8613e2520a7879d1d4bb78a4b5fa1fbe2ccdaf",
+      "bytes": 30429
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/test/java/com/astra/system/commerce/OrderRecoveryIntegrationTest.java",
+      "sha256": "291f1405cd5dfe1f664e2e2c1f794a5fa2428bd7563112cd7c7baafd112fcec6",
+      "bytes": 31828
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/test/java/com/astra/system/commerce/PaymentFlowIntegrationTest.java",
+      "sha256": "acdc3f5d1260c251e27140a525d85a38b68bdb23b2f4e5c8d950b375c26cc962",
+      "bytes": 34530
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/test/java/com/astra/system/commerce/PaymentInitiationIntegrationTest.java",
+      "sha256": "fad86a1b36aaf9aea6668b6d5380046a7c959e53c51db7dd4e59f8cf00fbbb8a",
+      "bytes": 32500
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/test/java/com/astra/system/commerce/PaymentVerificationIntegrationTest.java",
+      "sha256": "afb075efc4476beb531eadac22a2c7b381e6faf80f0ac349184b7996c1982f74",
+      "bytes": 50179
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/test/java/com/astra/system/commerce/ReconciliationAdminIntegrationTest.java",
+      "sha256": "e511584bbbda35d379e2b31f752a4af0e585d60eaee4104acb777e31102048e2",
+      "bytes": 44946
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/test/java/com/astra/system/commerce/RefundApplicationIntegrationTest.java",
+      "sha256": "995ac4146269ba889692ef26c26e8ec9c74d3913452a47399d5274f0fc5343a9",
+      "bytes": 42715
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/test/java/com/astra/system/commerce/RefundVerificationIntegrationTest.java",
+      "sha256": "1aff9f383b6e45345c1f4084a1ad137cbbd52a05449a4e89aae4755fc87624be",
+      "bytes": 58469
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/test/java/com/astra/system/commerce/RefundWorkerIntegrationTest.java",
+      "sha256": "55b26c47b9050a0fe2faf72a46851255c25792ab4eb9709b6ccb1ed754c0146a",
+      "bytes": 45567
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-system/src/test/java/com/astra/system/commerce/security/CommerceTokenFilterTest.java",
+      "sha256": "d50a98372eb761c8c395240c976db57e4493ee39f22fae9587a833aa9196465a",
+      "bytes": 9209
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "astra-modules/astra-auth/src/main/java/com/astra/auth/service/PasswordCredentialService.java",
+      "sha256": "cb4d4e58788a0cd622a503f2166338636a808d502b30a28bd3c64d0657e9c092",
+      "bytes": 1584
+    },
+    {
+      "repository": "astra-cloud",
+      "path": "sql/migrations/V20261010_02__auth_session_version.sql",
+      "sha256": "3c47ef706a59d06e485b708ec1b234c6ff395ea537987c2820e22539433e08d3",
+      "bytes": 311
+    }
+  ]
+}

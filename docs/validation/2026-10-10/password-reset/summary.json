@@ -1,0 +1,74 @@
+{
+  "stage": "email-proof-v3",
+  "passed": true,
+  "junit": 69,
+  "ownedIntegration": 13,
+  "browserChecks": 39,
+  "browsers": [
+    {
+      "variant": "msedge",
+      "checks": 7,
+      "browser": "154.0.4258.62",
+      "requests": 11,
+      "touchEmulated": false
+    },
+    {
+      "variant": "chrome",
+      "checks": 7,
+      "browser": "157.0.8081.0",
+      "requests": 11,
+      "touchEmulated": false
+    },
+    {
+      "variant": "mobile",
+      "checks": 7,
+      "browser": "154.0.4258.62",
+      "requests": 9,
+      "touchEmulated": true
+    },
+    {
+      "variant": "reset-msedge",
+      "checks": 6,
+      "browser": "154.0.4258.62",
+      "requests": 14,
+      "touchEmulated": false
+    },
+    {
+      "variant": "reset-chrome",
+      "checks": 6,
+      "browser": "157.0.8081.0",
+      "requests": 14,
+      "touchEmulated": false
+    },
+    {
+      "variant": "reset-mobile",
+      "checks": 6,
+      "browser": "154.0.4258.62",
+      "requests": 16,
+      "touchEmulated": true
+    }
+  ],
+  "frontend": {
+    "typeCheckExit": 0,
+    "eslintExit": 0,
+    "buildExit": 0,
+    "controlledIdentityCases": 23,
+    "controlledHttpRequests": 8,
+    "controlledStoreRestoreCases": 7,
+    "designFindings": 0
+  },
+  "logsVerified": true,
+  "cleanupComplete": true,
+  "ownedSchema": "astra_auth_it_1f005ac1b98c",
+  "limits": [
+    "external SMTP delivery/reputation and reset notifications",
+    "full auth purchase/private delivery",
+    "independent download ticket revocation",
+    "membership/quota",
+    "real funds",
+    "production migration/deployment",
+    "physical mobile",
+    "Linux paths",
+    "all password-login/reset interleavings"
+  ]
+}

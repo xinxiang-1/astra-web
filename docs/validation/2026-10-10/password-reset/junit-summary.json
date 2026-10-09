@@ -1,0 +1,65 @@
+{
+  "tests": 69,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "scope": "Full69 verify r3; unchanged unit suites plus owned13 integration rerun r4 for final screenshot timing",
+  "suites": [
+    {
+      "suite": "com.astra.common.security.JwtSupportTest",
+      "timestamp": null,
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.astra.gateway.filter.JwtAuthGlobalFilterTest",
+      "timestamp": null,
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.astra.gateway.error.GatewayErrorHandlerTest",
+      "timestamp": null,
+      "tests": 20,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.astra.system.commerce.security.CommerceTokenFilterTest",
+      "timestamp": null,
+      "tests": 11,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.astra.auth.config.AuthTokenFilterTest",
+      "timestamp": null,
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.astra.auth.config.ProductionAuthConfigurationTest",
+      "timestamp": null,
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.astra.auth.integration.AuthRegistrationIntegrationTest",
+      "timestamp": null,
+      "tests": 13,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ]
+}

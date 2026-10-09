@@ -107,17 +107,24 @@ export function sendSms(
   })
 }
 
-export function forgotPassword(account: string, captcha: CaptchaFields) {
+export function forgotPassword(account: string, captcha: CaptchaFields, signal?: AbortSignal) {
   return http<string>('/auth/password/forgot', {
     method: 'POST',
     body: JSON.stringify({ account, ...captcha }),
+    signal,
   })
 }
 
-export function resetPassword(account: string, code: string, newPassword: string) {
+export function resetPassword(
+  account: string,
+  code: string,
+  newPassword: string,
+  signal?: AbortSignal,
+) {
   return http<void>('/auth/password/reset', {
     method: 'POST',
     body: JSON.stringify({ account, code, newPassword }),
+    signal,
   })
 }
 

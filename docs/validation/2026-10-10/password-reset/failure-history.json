@@ -1,0 +1,34 @@
+{
+  "historyOnly": true,
+  "attempts": [
+    {
+      "attempt": "live-r1",
+      "passed": false,
+      "phase": "testCompile",
+      "reason": "New test helper did not declare checked exception from SHA256 helper",
+      "fix": "Declare exception before rerun; no owned runtime resources started"
+    },
+    {
+      "attempt": "live-r2",
+      "passed": false,
+      "testsPassed": 12,
+      "cleanupComplete": true,
+      "logsVerified": true,
+      "reason": "Reset UI unconditionally required a graphic proof before it was displayed; no forgot HTTP issued",
+      "fix": "Only validate when shown; non429 resend failure exposes proof step"
+    },
+    {
+      "attempt": "live-r3",
+      "passed": true,
+      "tests": 69,
+      "cleanupComplete": true
+    },
+    {
+      "attempt": "live-r4",
+      "passed": true,
+      "tests": 13,
+      "cleanupComplete": true,
+      "reason": "Final browser script waits for finite theme animations before dark screenshots"
+    }
+  ]
+}

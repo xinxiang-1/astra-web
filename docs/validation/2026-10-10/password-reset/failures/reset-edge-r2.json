@@ -1,0 +1,55 @@
+{
+  "passed": false,
+  "scope": "Production frontend with owned actual auth/gateway/system/TLS SMTP; no success API mock or real funds",
+  "browser": "154.0.4258.62",
+  "mobile": false,
+  "checks": [
+    "Actual auth-issued old session restores the buyer and reads orders before reset"
+  ],
+  "requests": [
+    {
+      "method": "GET",
+      "path": "/api/auth/me",
+      "httpStatus": 200,
+      "businessCode": 0
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/access",
+      "httpStatus": 403,
+      "businessCode": 403
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/orders",
+      "httpStatus": 200,
+      "businessCode": 0
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/admin/access",
+      "httpStatus": 403,
+      "businessCode": 403
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/orders",
+      "httpStatus": 200,
+      "businessCode": 0
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/me",
+      "httpStatus": 200,
+      "businessCode": 0
+    }
+  ],
+  "errors": [],
+  "failure": "locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('input[name=code]') to be visible\u001b[22m\n",
+  "diagnostics": {
+    "path": "/forgot",
+    "notices": [
+      "验证码加载中，请稍候"
+    ]
+  }
+}

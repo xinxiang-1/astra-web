@@ -181,13 +181,77 @@ try {
         check(!auth.user, 'clear retained user')
         rows.push({ case: 'storage-rotate-and-clear', passed: true })
       }
+      for (const operation of ['forgot', 'reset']) {
+        const auth = fresh()
+        auth.acceptToken({
+          ...payload('A'),
+          user: { ...payload('A').user, email: 'a@example.test' },
+        })
+        const q = deferred(),
+          controller = new AbortController()
+        const task =
+          operation === 'forgot'
+            ? auth.requestPasswordReset(
+                'a@example.test',
+                { captchaId: '', captchaCode: '' },
+                controller.signal,
+              )
+            : auth.resetPassword('a@example.test', '123456', 'new-password', controller.signal)
+        auth.acceptToken(payload('B'))
+        q[0].resolve(response(operation === 'forgot' ? 'Sent' : null))
+        const result = await task
+        check(operation === 'forgot' ? !result.ok : !result, 'late recovery accepted')
+        identity(auth, 'B')
+        check(auth.lastMessage === '', 'late recovery message polluted new user')
+        rows.push({ case: 'late-' + operation + '-keeps-new-user', passed: true })
+      }
+      for (const sameUser of [true, false]) {
+        const auth = fresh()
+        auth.acceptToken({
+          ...payload('A'),
+          user: { ...payload('A').user, email: 'a@example.test' },
+        })
+        const q = deferred(),
+          task = auth.resetPassword(
+            sameUser ? 'a@example.test' : 'other@example.test',
+            '123456',
+            'new-password',
+          )
+        q[0].resolve(response(null))
+        check(await task, 'current reset rejected')
+        if (sameUser)
+          check(
+            !auth.user && !localStorage.getItem('astra_access_token'),
+            'revoked matching local identity retained',
+          )
+        else identity(auth, 'A')
+        rows.push({
+          case: sameUser ? 'reset-clears-matching-user' : 'reset-keeps-other-user',
+          passed: true,
+        })
+      }
+      {
+        const auth = fresh(),
+          q = deferred(),
+          controller = new AbortController()
+        const task = auth.requestPasswordReset(
+          'a@example.test',
+          { captchaId: '', captchaCode: '' },
+          controller.signal,
+        )
+        controller.abort()
+        q[0].resolve(response('Sent'))
+        check(!(await task).ok && auth.lastMessage === '', 'cancelled recovery committed message')
+        check(q[0].options.signal.aborted, 'recovery transport not cancelled')
+        rows.push({ case: 'cancel-forgot-send', passed: true })
+      }
       return rows
     } finally {
       window.fetch = original
       localStorage.clear()
     }
   })
-  assert.equal(rows.length, 18)
+  assert.equal(rows.length, 23)
   await writeFile(
     out + '/report.json',
     JSON.stringify(
