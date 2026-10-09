@@ -1,0 +1,107 @@
+{
+  "images": [
+    {
+      "path": "web-edge/six-fonts-lossless.png",
+      "reviewed": true,
+      "scope": "Development visual review; not real-device or commercial aesthetic certification",
+      "result": "Complete names and distinct Chinese fonts"
+    },
+    {
+      "path": "web-edge/font-web-light-desktop.png",
+      "reviewed": true,
+      "scope": "Development visual review; not real-device or commercial aesthetic certification",
+      "result": "Readable font preview and themed controls at desktop or 390px"
+    },
+    {
+      "path": "web-edge/font-web-dark-desktop.png",
+      "reviewed": true,
+      "scope": "Development visual review; not real-device or commercial aesthetic certification",
+      "result": "Readable font preview and themed controls at desktop or 390px"
+    },
+    {
+      "path": "web-edge/font-web-light-mobile.png",
+      "reviewed": true,
+      "scope": "Development visual review; not real-device or commercial aesthetic certification",
+      "result": "Readable font preview and themed controls at desktop or 390px"
+    },
+    {
+      "path": "web-edge/font-web-dark-mobile.png",
+      "reviewed": true,
+      "scope": "Development visual review; not real-device or commercial aesthetic certification",
+      "result": "Readable font preview and themed controls at desktop or 390px"
+    },
+    {
+      "path": "web-chrome/six-fonts-lossless.png",
+      "reviewed": true,
+      "scope": "Development visual review; not real-device or commercial aesthetic certification",
+      "result": "Complete names and distinct Chinese fonts"
+    },
+    {
+      "path": "web-chrome/font-web-light-desktop.png",
+      "reviewed": true,
+      "scope": "Development visual review; not real-device or commercial aesthetic certification",
+      "result": "Readable font preview and themed controls at desktop or 390px"
+    },
+    {
+      "path": "web-chrome/font-web-dark-desktop.png",
+      "reviewed": true,
+      "scope": "Development visual review; not real-device or commercial aesthetic certification",
+      "result": "Readable font preview and themed controls at desktop or 390px"
+    },
+    {
+      "path": "web-chrome/font-web-light-mobile.png",
+      "reviewed": true,
+      "scope": "Development visual review; not real-device or commercial aesthetic certification",
+      "result": "Readable font preview and themed controls at desktop or 390px"
+    },
+    {
+      "path": "web-chrome/font-web-dark-mobile.png",
+      "reviewed": true,
+      "scope": "Development visual review; not real-device or commercial aesthetic certification",
+      "result": "Readable font preview and themed controls at desktop or 390px"
+    },
+    {
+      "path": "cutout-edge/cutout-desktop.png",
+      "reviewed": true,
+      "scope": "Development visual review; not real-device or commercial aesthetic certification",
+      "result": "Readable themed controls and no visible horizontal clipping; mobile dialog scrolls vertically"
+    },
+    {
+      "path": "cutout-edge/cutout-light-mobile.png",
+      "reviewed": true,
+      "scope": "Development visual review; not real-device or commercial aesthetic certification",
+      "result": "Readable themed controls and no visible horizontal clipping; mobile dialog scrolls vertically"
+    },
+    {
+      "path": "cutout-edge/cutout-dark-mobile.png",
+      "reviewed": true,
+      "scope": "Development visual review; not real-device or commercial aesthetic certification",
+      "result": "Readable themed controls and no visible horizontal clipping; mobile dialog scrolls vertically"
+    },
+    {
+      "path": "cutout-chrome/cutout-desktop.png",
+      "reviewed": true,
+      "scope": "Development visual review; not real-device or commercial aesthetic certification",
+      "result": "Readable themed controls and no visible horizontal clipping; mobile dialog scrolls vertically"
+    },
+    {
+      "path": "cutout-chrome/cutout-light-mobile.png",
+      "reviewed": true,
+      "scope": "Development visual review; not real-device or commercial aesthetic certification",
+      "result": "Readable themed controls and no visible horizontal clipping; mobile dialog scrolls vertically"
+    },
+    {
+      "path": "cutout-chrome/cutout-dark-mobile.png",
+      "reviewed": true,
+      "scope": "Development visual review; not real-device or commercial aesthetic certification",
+      "result": "Readable themed controls and no visible horizontal clipping; mobile dialog scrolls vertically"
+    }
+  ],
+  "reviewedCount": 16,
+  "notProven": [
+    "Real phones/Safari",
+    "Printed product",
+    "Arbitrary background semantic extraction",
+    "User commercial aesthetic acceptance"
+  ]
+}

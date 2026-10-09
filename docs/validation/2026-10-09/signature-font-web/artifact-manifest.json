@@ -1,0 +1,215 @@
+{
+  "scope": "All stage evidence except this manifest",
+  "files": [
+    {
+      "path": "bank-edge/report.json",
+      "bytes": 8783,
+      "sha256": "e7a1415f3233afb48afd9e9b99d469eafdf09c40b6f610e178aa04b25403bf2d"
+    },
+    {
+      "path": "checks/bank-edge.log",
+      "bytes": 1804,
+      "sha256": "d2300dbb40b89dfc67d8d81bb251390631454de664b55de4b2b6468d746a8a68"
+    },
+    {
+      "path": "checks/build.log",
+      "bytes": 16725,
+      "sha256": "2bba46d19919d78d9e1baca45741134b1b6a4c92fade5da09f835b90867e5a33"
+    },
+    {
+      "path": "checks/cutout-chrome.log",
+      "bytes": 120,
+      "sha256": "7f729597b3f7d018c7c85916d042eee404bcb93a761dce19abcfbad9825ca1fc"
+    },
+    {
+      "path": "checks/cutout-edge.log",
+      "bytes": 118,
+      "sha256": "012cfc395884d0fb297cf556ed3e621991e5d920281b52bfaad4d7009d002f5a"
+    },
+    {
+      "path": "checks/eslint-final.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "checks/type-check.log",
+      "bytes": 77,
+      "sha256": "0a7d40c8ea67ee87b4bcdc91418a201a96bc30f3286185c82d8888ec96c6d6fb"
+    },
+    {
+      "path": "checks/web-chrome.log",
+      "bytes": 797,
+      "sha256": "2165c8cf21f6327e4843d817ed3195e32b453fb5865f4d7251c2a790c7d1ce1e"
+    },
+    {
+      "path": "checks/web-edge.log",
+      "bytes": 797,
+      "sha256": "6effcea195e75406017e2057996ac2c37a48295b4b8b33f457a023327a0ce865"
+    },
+    {
+      "path": "cutout-chrome/cutout-dark-mobile.png",
+      "bytes": 65384,
+      "sha256": "b760c0fffe9a833f97eecdb18db6c0fd5d7857548c160e60bc4637a605a8ed90"
+    },
+    {
+      "path": "cutout-chrome/cutout-desktop.png",
+      "bytes": 164618,
+      "sha256": "279f7668e35fde3b6149a3acd3302691bd3308402ce1b9ac54488a07b2a1ba83"
+    },
+    {
+      "path": "cutout-chrome/cutout-light-mobile.png",
+      "bytes": 64910,
+      "sha256": "d69d9a4f2d28a97f677990356ed7ea752f2c86406b8491295bf749b944cc03f9"
+    },
+    {
+      "path": "cutout-chrome/report.json",
+      "bytes": 4261,
+      "sha256": "db331357201105b1584abec03dad03188f26fcc8ae7c2e1b1f35f35a8387a5ea"
+    },
+    {
+      "path": "cutout-edge/cutout-dark-mobile.png",
+      "bytes": 65384,
+      "sha256": "b760c0fffe9a833f97eecdb18db6c0fd5d7857548c160e60bc4637a605a8ed90"
+    },
+    {
+      "path": "cutout-edge/cutout-desktop.png",
+      "bytes": 164618,
+      "sha256": "279f7668e35fde3b6149a3acd3302691bd3308402ce1b9ac54488a07b2a1ba83"
+    },
+    {
+      "path": "cutout-edge/cutout-light-mobile.png",
+      "bytes": 64847,
+      "sha256": "c0bf919420ceebf5ccf50ccf682b190585b168e4435e026f8b216bb474928738"
+    },
+    {
+      "path": "cutout-edge/report.json",
+      "bytes": 4261,
+      "sha256": "735e25529eca0df8201a5239202459630b1e6c742a85da2fb404fa541af76e94"
+    },
+    {
+      "path": "document-links.json",
+      "bytes": 44358,
+      "sha256": "34516c4d6b41263c99b4095006e309a79ef1eb90604caf8ea597b030a93fbe7e"
+    },
+    {
+      "path": "failure-history.json",
+      "bytes": 1604,
+      "sha256": "51f8687d05d6f3eab9648251807ce5a5167f4917cc8af5e3bbe3ac47efd71889"
+    },
+    {
+      "path": "failures/bank-edge-r1.json",
+      "bytes": 367,
+      "sha256": "53af6b5118985c0e8cbcc0d1b233e66313bdd83363074ddf88fd43f62618a649"
+    },
+    {
+      "path": "failures/cutout-chrome-r1.json",
+      "bytes": 251,
+      "sha256": "9b8f0397a821a1fe4727fa19b79cf85d7c0e642e790a1739c921ba31a060a435"
+    },
+    {
+      "path": "failures/navigation-probe-r1.json",
+      "bytes": 311,
+      "sha256": "39e8a7d1e34a1e233d5e70b95e3c4d33b05823bc6498bcf6e29432cfa8a6c989"
+    },
+    {
+      "path": "failures/transport-r1.log",
+      "bytes": 816,
+      "sha256": "499b590095d722c308126e077007362f46ddc15af1fb9b955ff82a0ff220b430"
+    },
+    {
+      "path": "failures/transport-r2.log",
+      "bytes": 911,
+      "sha256": "a0ca18db5f666548df92984b6ce7d97e786260acac3768f2406e578b2f4297c0"
+    },
+    {
+      "path": "README.md",
+      "bytes": 1998,
+      "sha256": "5718514126a559b2c2ea627c6e7f82488ea46562a42cbe53fe42628f1028b2aa"
+    },
+    {
+      "path": "source-index.json",
+      "bytes": 8982,
+      "sha256": "4e473b239debdf2df711059a23eea4589091c5f8d6fb3233b1889ced46be3b33"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 5229,
+      "sha256": "27510ca06c8aaa7dc791745c05225cf6bfbb3360d6f7261f4bbc16645e5e5aa0"
+    },
+    {
+      "path": "transport/generator.log",
+      "bytes": 1415,
+      "sha256": "d8e77c7dae34dec18693263ce6980132c36fae0e8e9f7aa54a53ba8d2a06d638"
+    },
+    {
+      "path": "transport/report.json",
+      "bytes": 11917,
+      "sha256": "be51859ed3de3853bd2e4a85b603bbeb6507a74b9e7f2ddcabd0e9dc00deb95e"
+    },
+    {
+      "path": "visual-review.json",
+      "bytes": 4757,
+      "sha256": "68740b8a70824666c5221886b7e79733837ae23cc199fc5286723dda37c07219"
+    },
+    {
+      "path": "web-chrome/font-web-dark-desktop.png",
+      "bytes": 33509,
+      "sha256": "e755e68650b75c4bfa27dcbcd4221162203476ca0859463fb4b9c71377ed17e0"
+    },
+    {
+      "path": "web-chrome/font-web-dark-mobile.png",
+      "bytes": 33819,
+      "sha256": "78dc0c6892fa778daee11436a2d7aec9ebab855617b0a9dc7e648a0f3134cdfb"
+    },
+    {
+      "path": "web-chrome/font-web-light-desktop.png",
+      "bytes": 34263,
+      "sha256": "e83bd30beb0e931d8b9daba534fdbca2be152c364e2f5555c8b63e919879042f"
+    },
+    {
+      "path": "web-chrome/font-web-light-mobile.png",
+      "bytes": 34175,
+      "sha256": "49b9df0304c330783d3906d2e55885ede2663a5e5d54bfdb7893f778395e7342"
+    },
+    {
+      "path": "web-chrome/report.json",
+      "bytes": 48240,
+      "sha256": "bf98f011d8fab166744d14969fb81b0249bbeefb53e8895cb22e82f53b3a02fe"
+    },
+    {
+      "path": "web-chrome/six-fonts-lossless.png",
+      "bytes": 229755,
+      "sha256": "bbce15cfe2c48c083873a4db5cc1a35d99ba8bf34f37bd2161674cf3bb17ab2a"
+    },
+    {
+      "path": "web-edge/font-web-dark-desktop.png",
+      "bytes": 33509,
+      "sha256": "e755e68650b75c4bfa27dcbcd4221162203476ca0859463fb4b9c71377ed17e0"
+    },
+    {
+      "path": "web-edge/font-web-dark-mobile.png",
+      "bytes": 33819,
+      "sha256": "78dc0c6892fa778daee11436a2d7aec9ebab855617b0a9dc7e648a0f3134cdfb"
+    },
+    {
+      "path": "web-edge/font-web-light-desktop.png",
+      "bytes": 34263,
+      "sha256": "e83bd30beb0e931d8b9daba534fdbca2be152c364e2f5555c8b63e919879042f"
+    },
+    {
+      "path": "web-edge/font-web-light-mobile.png",
+      "bytes": 34175,
+      "sha256": "49b9df0304c330783d3906d2e55885ede2663a5e5d54bfdb7893f778395e7342"
+    },
+    {
+      "path": "web-edge/report.json",
+      "bytes": 48243,
+      "sha256": "14deeb6895676184644a0ef4ad64161858f410c518b86a40254d1a4a80f5bdaf"
+    },
+    {
+      "path": "web-edge/six-fonts-lossless.png",
+      "bytes": 229755,
+      "sha256": "bbce15cfe2c48c083873a4db5cc1a35d99ba8bf34f37bd2161674cf3bb17ab2a"
+    }
+  ]
+}

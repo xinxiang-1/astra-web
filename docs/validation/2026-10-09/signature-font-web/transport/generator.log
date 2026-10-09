@@ -1,0 +1,7 @@
+{"id": "mashanzheng", "originalBytes": 5857936, "gzipTtfBytes": 3804292, "woffBytes": 3821220, "plainWoff2Bytes": 3250464, "webBytes": 3279386, "glyphsVerified": 7017, "reductionVsUncompressedTtf": 0.44018063700252097}
+{"id": "longcang", "originalBytes": 5162508, "gzipTtfBytes": 3461053, "woffBytes": 3475336, "plainWoff2Bytes": 2945128, "webBytes": 2974052, "glyphsVerified": 7017, "reductionVsUncompressedTtf": 0.42391333824567434}
+{"id": "zhimangxing", "originalBytes": 4063532, "gzipTtfBytes": 2718777, "woffBytes": 2730340, "plainWoff2Bytes": 2300368, "webBytes": 2329292, "glyphsVerified": 7017, "reductionVsUncompressedTtf": 0.42678143053875295}
+{"id": "liujianmaocao", "originalBytes": 4951804, "gzipTtfBytes": 2708330, "woffBytes": 2719152, "plainWoff2Bytes": 2340288, "webBytes": 2369212, "glyphsVerified": 7018, "reductionVsUncompressedTtf": 0.52154568314901}
+{"id": "zcoolxiaowei", "originalBytes": 6313808, "gzipTtfBytes": 3415538, "woffBytes": 3421856, "plainWoff2Bytes": 2633132, "webBytes": 2662062, "glyphsVerified": 7019, "reductionVsUncompressedTtf": 0.5783745720490708}
+{"id": "zcoolkuaile", "originalBytes": 1514968, "gzipTtfBytes": 1107863, "woffBytes": 1108856, "plainWoff2Bytes": 871928, "webBytes": 900972, "glyphsVerified": 7055, "reductionVsUncompressedTtf": 0.40528644829461746}
+{"passed": true, "originalBytes": 27864556, "webBytes": 14514976, "reduction": 0.47908820079530423}

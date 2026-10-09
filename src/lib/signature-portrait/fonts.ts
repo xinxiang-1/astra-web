@@ -1,5 +1,6 @@
 /** Pinned, locally hosted OFL 1.1 fonts. Never substitute a platform font silently. */
 import { SIGNATURE_FONT_EXTENSION } from './font-extension'
+import { SIGNATURE_WEB_FONTS } from './font-web'
 export const SIGNATURE_FONTS = [
   {
     id: 'mashanzheng',
@@ -42,6 +43,14 @@ export function readTrueTypeCoverage(buffer: ArrayBuffer) {
   }
   if (cmap < 0 || cmap + length > buffer.byteLength || length < 4)
     throw new Error('书写字体缺少字表')
+  return readCmapCoverage(view, cmap, length)
+}
+
+function readCmapCoverage(view: DataView, cmap: number, length: number) {
+  const u16 = (offset: number) => view.getUint16(offset)
+  const u32 = (offset: number) => view.getUint32(offset)
+  if (length < 4 || cmap + length > view.byteLength || u16(cmap) !== 0)
+    throw new Error('书写字体字表损坏')
   const bmp = new Uint8Array(65536),
     ranges: [number, number][] = []
   let found = false
@@ -55,6 +64,7 @@ export function readTrueTypeCoverage(buffer: ArrayBuffer) {
     if (at + 4 > cmap + length) throw new Error('书写字体字表越界')
     const format = u16(at)
     if (format === 4) {
+      if (at + 14 > cmap + length) throw new Error('书写字体分段字表损坏')
       const end = at + u16(at + 2),
         segments = u16(at + 6) / 2,
         ends = at + 14,
@@ -111,6 +121,20 @@ export function readTrueTypeCoverage(buffer: ArrayBuffer) {
     (Boolean(bmp[cp]) || ranges.some(([first, last]) => cp >= first && cp <= last))
 }
 
+/** Standard WOFF2 private data binds the original cmap to the compressed full font. */
+export function readWoff2Coverage(buffer: ArrayBuffer) {
+  const view = new DataView(buffer)
+  if (buffer.byteLength < 48 || view.getUint32(0) !== 0x774f4632 ||
+    view.getUint32(4) !== 0x00010000 || view.getUint32(8) !== buffer.byteLength ||
+    !view.getUint16(12) || view.getUint16(12) > 512 || view.getUint16(14) !== 0)
+    throw new Error('书写字体压缩格式损坏')
+  const offset = view.getUint32(40), length = view.getUint32(44)
+  if (offset < 48 || offset % 4 !== 0 || length < 8 || length > 1024 * 1024 ||
+    offset + length !== buffer.byteLength || view.getUint32(offset) !== 0x41434d31)
+    throw new Error('书写字体缺少原始字表')
+  return readCmapCoverage(view, offset + 4, length - 4)
+}
+
 function abortable<T>(promise: Promise<T>, signal?: AbortSignal): Promise<T> {
   if (!signal) return promise
   signal.throwIfAborted()
@@ -124,21 +148,24 @@ function abortable<T>(promise: Promise<T>, signal?: AbortSignal): Promise<T> {
 export async function loadSignatureFont(id: SignatureFontId, text: string, signal?: AbortSignal) {
   const descriptor = SIGNATURE_FONTS.find((f) => f.id === id)
   if (!descriptor) throw new Error('请选择有效的书写字体')
+  const transport = SIGNATURE_WEB_FONTS[descriptor.id]
+  if (transport.sourceSha256 !== descriptor.sha256) throw new Error('书写字体来源校验不一致')
   let promise = fonts.get(id)
   if (!promise) {
     promise = (async () => {
       const response = await fetch(
-        `${import.meta.env.BASE_URL}fonts/signature/${descriptor.file}`,
+        `${import.meta.env.BASE_URL}fonts/signature/${transport.file}`,
         { signal: AbortSignal.timeout(15000) },
       ).catch(() => { throw new Error('书写字体暂未加载成功，请检查网络后重试；现有名字库会保留') })
       if (!response.ok) throw new Error('书写字体加载失败，请重试；现有名字库会保留')
       const buffer = await response.arrayBuffer()
+      if (buffer.byteLength !== transport.bytes) throw new Error('书写字体文件不完整，请重试')
       const digest = await crypto.subtle.digest('SHA-256', buffer)
       const hash = Array.from(new Uint8Array(digest), (byte) =>
         byte.toString(16).padStart(2, '0'),
       ).join('')
-      if (hash !== descriptor.sha256) throw new Error('书写字体校验失败，请刷新后重试')
-      const supports = readTrueTypeCoverage(buffer)
+      if (hash !== transport.sha256) throw new Error('书写字体校验失败，请刷新后重试')
+      const supports = readWoff2Coverage(buffer)
       const face = await new FontFace(descriptor.family, buffer, {
         style: 'normal',
         weight: '400',

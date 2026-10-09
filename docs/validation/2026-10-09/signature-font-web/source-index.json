@@ -1,0 +1,233 @@
+{
+  "baseSha": "bb04df34da1e9efdc9a8b896540ce6d28d7297c6",
+  "changedSources": [
+    {
+      "path": "src/lib/signature-portrait/fonts.ts",
+      "bytes": 8227,
+      "worktreeSha256": "84a9724ded9cc17ebea2830c23db53781c45b72619a0531b32a14af233692312"
+    },
+    {
+      "path": "src/lib/signature-portrait/font-web.ts",
+      "bytes": 1887,
+      "worktreeSha256": "6deb09993daadb81e3b01d3d3a2356c8282abcfb4df54e9b816ec8e6ceb928a0"
+    },
+    {
+      "path": "src/components/signature/SignatureFontPreview.vue",
+      "bytes": 2052,
+      "worktreeSha256": "4e81b57821893d8dd41f362230f6761ec7ab2210cd24c700d024620085621a9e"
+    },
+    {
+      "path": "scripts/build-signature-font-web.py",
+      "bytes": 9083,
+      "worktreeSha256": "caf0aee0c8e43134b232cf2e8c661365c6635f3ba9d332ad1cf9c345fc3447c4"
+    },
+    {
+      "path": "scripts/signature-font-transport-requirements.txt",
+      "bytes": 38,
+      "worktreeSha256": "5b1af64664f5bbd0d7176ba547449464bd63d8c073c9ba0e0c356d7c85496119"
+    },
+    {
+      "path": "scripts/signature-font-web-contract.mjs",
+      "bytes": 15526,
+      "worktreeSha256": "401a3ab233624dff08ef3a158f98cd6b99879737f2b415fc671483fd55360b96"
+    },
+    {
+      "path": "scripts/signature-font-bank-contract.mjs",
+      "bytes": 23238,
+      "worktreeSha256": "2a5d630e61e9355bc2744bffacc962849bb638e495e973fbc10f328428f2dde0"
+    }
+  ],
+  "assets": [
+    {
+      "canonical": {
+        "path": "public/fonts/signature/MaShanZheng-Regular.ttf",
+        "bytes": 5857936,
+        "worktreeSha256": "6d2546bb189c732a8ca29af9e22457b152387d158aa459e4ac2ce1e51788b7fb",
+        "unchangedFromHead": true,
+        "headBlob": "11bbfb9867d70612158229d037e7a5f622bd0e38"
+      },
+      "web": {
+        "path": "public/fonts/signature/MaShanZheng-Regular.woff2",
+        "bytes": 3279386,
+        "worktreeSha256": "fc7a43be592c1226a3311389106b1016170cab33927ea08e314debfed89b1b1a"
+      },
+      "distBytesEqual": true
+    },
+    {
+      "canonical": {
+        "path": "public/fonts/signature/LongCang-Regular.ttf",
+        "bytes": 5162508,
+        "worktreeSha256": "e5bf2c3f24ef2327c6f136d8f73e2f9dfdf44896fdbeb35a9515f44777bb91bc",
+        "unchangedFromHead": true,
+        "headBlob": "363bb08696fe4d3827bd36d3d2fbc028d1205161"
+      },
+      "web": {
+        "path": "public/fonts/signature/LongCang-Regular.woff2",
+        "bytes": 2974052,
+        "worktreeSha256": "4e0bd65ee2f67d848e4dca5d64eace3f5f7df8d33dda6582a08d84a598c4a23a"
+      },
+      "distBytesEqual": true
+    },
+    {
+      "canonical": {
+        "path": "public/fonts/signature/ZhiMangXing-Regular.ttf",
+        "bytes": 4063532,
+        "worktreeSha256": "644e0cae9b40f0b10ab729a01bd32032e3973bac22be3dccae01bf6ae7fde969",
+        "unchangedFromHead": true,
+        "headBlob": "d037d1f00395175de01de33e62957c30a008a1b1"
+      },
+      "web": {
+        "path": "public/fonts/signature/ZhiMangXing-Regular.woff2",
+        "bytes": 2329292,
+        "worktreeSha256": "9cc72a3b46bfb556a17fff2a14b2bc4501ddb10dc223690a99aacda3adcbf12b"
+      },
+      "distBytesEqual": true
+    },
+    {
+      "canonical": {
+        "path": "public/fonts/signature/LiuJianMaoCao-Regular.ttf",
+        "bytes": 4951804,
+        "worktreeSha256": "cab396b91a5b7c0b4005a35891180d06e6751f5ac261fe680aec65c1ae209033",
+        "unchangedFromHead": true,
+        "headBlob": "f380deef04a5ee6d5af2c6fba60d1613d831c1aa"
+      },
+      "web": {
+        "path": "public/fonts/signature/LiuJianMaoCao-Regular.woff2",
+        "bytes": 2369212,
+        "worktreeSha256": "fde0c78ba491adbe9fc2d6cd5e40934819b4bb9d7f39e78217728a1e6c2a934e"
+      },
+      "distBytesEqual": true
+    },
+    {
+      "canonical": {
+        "path": "public/fonts/signature/ZCOOLXiaoWei-Regular.ttf",
+        "bytes": 6313808,
+        "worktreeSha256": "a42b620140f493db42f741351dfbf343c0936d58588ee8004b8b2a218d997ff1",
+        "unchangedFromHead": true,
+        "headBlob": "2d8731a231f2e6625b32d96b87f84852e24f9d82"
+      },
+      "web": {
+        "path": "public/fonts/signature/ZCOOLXiaoWei-Regular.woff2",
+        "bytes": 2662062,
+        "worktreeSha256": "d183bed8c6af769fbbb1f5d1d648d54b565a3cbbb3655aced65aa0d166ed6880"
+      },
+      "distBytesEqual": true
+    },
+    {
+      "canonical": {
+        "path": "public/fonts/signature/ZCOOLKuaiLe-Regular.ttf",
+        "bytes": 1514968,
+        "worktreeSha256": "812a6fc1fe54b6d73a419245c32dfeba8aa33104d5be90d1cf6af082007cb71d",
+        "unchangedFromHead": true,
+        "headBlob": "3cf6cd927ee910d46875de173efdaac4330e84ac"
+      },
+      "web": {
+        "path": "public/fonts/signature/ZCOOLKuaiLe-Regular.woff2",
+        "bytes": 900972,
+        "worktreeSha256": "fd5dcfc6e77a8af1806eec54580d87cd717b60b178ca7b368bc078f602ed222d"
+      },
+      "distBytesEqual": true
+    }
+  ],
+  "unchangedLicenses": [
+    {
+      "path": "public/fonts/signature/mashanzheng-OFL.txt",
+      "bytes": 4397,
+      "worktreeSha256": "d7bdb1cee215b689e23c2f95672a6084c790542170648267a55114103d756a08",
+      "unchangedFromHead": true,
+      "headBlob": "9e252e1997092670936a7f1d38560973d919f6b0"
+    },
+    {
+      "path": "public/fonts/signature/longcang-OFL.txt",
+      "bytes": 4390,
+      "worktreeSha256": "603546b7219a94bb59bf8294458194a5010119486354092b66a09a3fd61aeacc",
+      "unchangedFromHead": true,
+      "headBlob": "06a1757ca2ae5ff689aac4b410fffa98cd73dad0"
+    },
+    {
+      "path": "public/fonts/signature/zhimangxing-OFL.txt",
+      "bytes": 4397,
+      "worktreeSha256": "10947328199e369a3e6b4a67e8e5507ed99d5bbb264a1f156415aa9b665e4d15",
+      "unchangedFromHead": true,
+      "headBlob": "8e1e6c70cd7fad5b34f6337c694fed96b5e38884"
+    },
+    {
+      "path": "public/fonts/signature/liujianmaocao-OFL.txt",
+      "bytes": 4406,
+      "worktreeSha256": "ff56684b0212481e7c3886c26d5a655de9b211c8119e5ccc756138a97b066acc",
+      "unchangedFromHead": true,
+      "headBlob": "39751fc29a1f782e5726d7a3a7e3c648c186f536"
+    },
+    {
+      "path": "public/fonts/signature/zcoolxiaowei-OFL.txt",
+      "bytes": 4400,
+      "worktreeSha256": "a094514ca57cf8f9c5e8d8d1adab5d8cd3a377297ff016f9df2c05b3ecd77f0a",
+      "unchangedFromHead": true,
+      "headBlob": "8e5184b269289a6adda77caa05defe3acc309651"
+    },
+    {
+      "path": "public/fonts/signature/zcoolkuaile-OFL.txt",
+      "bytes": 4398,
+      "worktreeSha256": "538078469839b4a2e7ad22bef4ebe41681a4e53749bb2a072144024f1d6d703d",
+      "unchangedFromHead": true,
+      "headBlob": "fe1432fe7e56b24842d855a8ddbde0911a844d7f"
+    }
+  ],
+  "unchangedProtectedAndProjectSources": [
+    {
+      "path": "src/views/ArtHomeView.vue",
+      "bytes": 20727,
+      "worktreeSha256": "80ffa2cbd65cfad27f6c53b7e659d74a8aaa2a3c0f72b7c2c105be715a6bd24d",
+      "unchangedFromHead": true,
+      "headBlob": "8ab88da893492a508b375ccd1383b6867545cd59"
+    },
+    {
+      "path": "src/components/CharacterArtwork.vue",
+      "bytes": 9774,
+      "worktreeSha256": "99da7635979b98f70aa622887bcf775047114529b4130de201cebf40d0ab2858",
+      "unchangedFromHead": true,
+      "headBlob": "74e2aa40a948cff8eb8f2c9c9f99c102350e1c71"
+    },
+    {
+      "path": "src/lib/ascii/studio-preview.ts",
+      "bytes": 12855,
+      "worktreeSha256": "87ef73fd4261872b1a6bc3d66fd2a05498bc73fa047294b4934174ede9af1a07",
+      "unchangedFromHead": true,
+      "headBlob": "bd62d61bf6b892659b643441cc82bbf7ecef60d1"
+    },
+    {
+      "path": "src/components/ui/FxButton.vue",
+      "bytes": 2824,
+      "worktreeSha256": "eeac05cd3ac2f5d287761cb3482d110f3a3346f7e80e45bcad534911e0cc79d1",
+      "unchangedFromHead": true,
+      "headBlob": "eceed29a26fe0419a82091231ac8a7f8cbf853a3"
+    },
+    {
+      "path": "src/lib/signature-portrait/project.ts",
+      "bytes": 18009,
+      "worktreeSha256": "250e57f8a616edd4f00c57f035a7b25ee5a45a66cba1d58834a0a5c8d8c3d633",
+      "unchangedFromHead": true,
+      "headBlob": "0d2a455e88bf8c86fadf0b1407dda67dd4cbbe14"
+    },
+    {
+      "path": "src/lib/signature-portrait/font-extension.ts",
+      "bytes": 20106,
+      "worktreeSha256": "a520111e6723e5aeeba2f5d0bd4151a8dad933d238ae78030d1aa364cfb24d32",
+      "unchangedFromHead": true,
+      "headBlob": "d7b2d8632c9c70f624478d7c573c0e1a1da2fd97"
+    }
+  ],
+  "productionBundlesWithPinnedFonts": [
+    {
+      "path": "dist/assets/SignaturePortraitView-BGZ8n6JL.js",
+      "sha256": "0c492e93d7ba149118edf31bc8cee72fa09230892409bae2f1a7b01ebc6341e2",
+      "bytes": 199161
+    }
+  ],
+  "specification": {
+    "url": "https://www.w3.org/TR/WOFF2/#Private",
+    "htmlSha256": "65dfdde1efb57bf123526b9c15a4025ecc78158426a28fefdb396ecf4fc26dc8",
+    "htmlBytes": 125108,
+    "section": "7 Private Data Block; arbitrary vendor data at end, aligned to four-byte boundary; user agents cannot depend on block for font rendering"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "browser": "154.0.8037.98",
+  "errors": [],
+  "cases": [],
+  "failure": "TimeoutError: page.goto: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:5196/signature-portrait\", waiting until \"load\"\u001b[22m\n"
+}

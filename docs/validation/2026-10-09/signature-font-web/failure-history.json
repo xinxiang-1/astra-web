@@ -1,0 +1,35 @@
+{
+  "history": [
+    {
+      "source": "test-results/signature-font-transport-candidate-r1.log",
+      "target": "failures/transport-r1.log",
+      "result": "failed",
+      "reason": "Empty LongCang DSIG removed; only exact 8-byte zero-signature placeholder permitted"
+    },
+    {
+      "source": "test-results/signature-font-transport-candidate-r2.log",
+      "target": "failures/transport-r2.log",
+      "result": "failed",
+      "reason": "Cmap recompilation compared to original bytes; final uses reader raw bytes"
+    },
+    {
+      "source": "test-results/signature-font-web-bank-edge-r1/failure.json",
+      "target": "failures/bank-edge-r1.json",
+      "result": "failed",
+      "reason": "Actual page automatically preloaded font before cold timer; library-only page isolated, real UI unchanged"
+    },
+    {
+      "source": "test-results/signature-font-web-cutout-chrome-r1/report.json",
+      "target": "failures/cutout-chrome-r1.json",
+      "result": "failed",
+      "reason": "Development page load timeout at 30 seconds; zero cases executed; same-source same-threshold retry passes; cause not proven"
+    },
+    {
+      "source": "test-results/signature-font-web-navigation-probe-r1.json",
+      "target": "failures/navigation-probe-r1.json",
+      "result": "diagnostic",
+      "reason": "Same-source Chrome load successful; Google Fonts request 3448ms; original timeout lacked request trace"
+    }
+  ],
+  "supersededPassedRun": "test-results/signature-font-web-edge-r1/report.json; replaced by R2 stronger actual family assertion; not accumulated"
+}

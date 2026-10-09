@@ -5,9 +5,10 @@ const props = defineProps<{ font: SignatureFontId; text: string }>()
 const family = ref('')
 const error = ref('')
 const loading = ref(false)
+const retry = ref(0)
 let controller: AbortController | null = null
 let timer: ReturnType<typeof setTimeout> | undefined
-watch(() => [props.font, props.text], () => {
+watch(() => [props.font, props.text, retry.value], () => {
   controller?.abort(); clearTimeout(timer); family.value = ''; error.value = ''; loading.value = true
   timer = setTimeout(async () => {
     const current = new AbortController(); controller = current
@@ -24,6 +25,7 @@ onBeforeUnmount(() => { controller?.abort(); clearTimeout(timer) })
     <span class="sample" :style="family ? { fontFamily: `'${family}'` } : undefined">{{ family ? text.trim() || '名字' : loading ? '正在加载字体…' : '字体暂未加载' }}</span>
     <span class="caption">{{ SIGNATURE_FONTS.find(f => f.id === font)?.name }} · 字体辅助写法</span>
     <p v-if="error" role="alert">{{ error }}</p>
+    <button v-if="error" class="art-button" type="button" :disabled="loading" @click="retry++">重新加载字体</button>
   </div>
 </template>
 

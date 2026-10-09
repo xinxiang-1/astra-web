@@ -1,0 +1,9 @@
+{
+  "browser": "154.0.4258.62",
+  "fontLoading": [],
+  "geometry": [],
+  "banks": null,
+  "ui": null,
+  "errors": [],
+  "error": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert(deterministic.loaded && deterministic.elapsed >= 450)\n\n    at file:///D:/my/project/astra/astra-web/scripts/signature-font-bank-contract.mjs:73:3"
+}

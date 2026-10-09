@@ -1,0 +1,162 @@
+{
+  "passed": true,
+  "scope": "Full-font transport, missing-glyph checks and retry; not overall product or commercial completion",
+  "fontAssets": {
+    "canonicalBytes": 27864556,
+    "webBytes": 14514976,
+    "reductionVsUncompressedTtf": 0.47908820079530423,
+    "glyphsVerified": 42143,
+    "deploymentSizeReduced": false,
+    "canonicalTtfRetained": true
+  },
+  "browsers": {
+    "web-edge": {
+      "browser": "154.0.4258.62",
+      "pixelCases": 180,
+      "rgbaDifferentBytes": 0,
+      "coverageCodepointsPerFont": 1114112,
+      "readerRejections": 9,
+      "weakNetwork": [
+        {
+          "format": "canonical-ttf",
+          "downloadBytesPerSecond": 524288,
+          "latencyMs": 80,
+          "cacheDisabled": true,
+          "elapsedMs": 11508.5,
+          "bodyBytes": 5857936,
+          "decodedBodyBytes": 5857936,
+          "transferBytes": 5858236,
+          "contentEncodingAlreadyApplied": false,
+          "frames": 653,
+          "rafP95": 18.299999999999955,
+          "rafMax": 52.20000000000073,
+          "mainThreadLongTasks": []
+        },
+        {
+          "format": "woff2",
+          "downloadBytesPerSecond": 524288,
+          "latencyMs": 80,
+          "cacheDisabled": true,
+          "elapsedMs": 6543,
+          "bodyBytes": 3279386,
+          "decodedBodyBytes": 3279386,
+          "transferBytes": 3279686,
+          "contentEncodingAlreadyApplied": false,
+          "frames": 371,
+          "rafP95": 18.300000000000182,
+          "rafMax": 69.89999999999964,
+          "mainThreadLongTasks": [
+            67
+          ]
+        }
+      ],
+      "ui": {
+        "retryConfirmed": true,
+        "sixFontSwitches": true,
+        "onlyWoff2": true,
+        "delayedFontMs": 450,
+        "fontRequests": [
+          "/fonts/signature/MaShanZheng-Regular.woff2",
+          "/fonts/signature/MaShanZheng-Regular.woff2",
+          "/fonts/signature/LongCang-Regular.woff2",
+          "/fonts/signature/ZhiMangXing-Regular.woff2",
+          "/fonts/signature/LiuJianMaoCao-Regular.woff2",
+          "/fonts/signature/ZCOOLXiaoWei-Regular.woff2",
+          "/fonts/signature/ZCOOLKuaiLe-Regular.woff2"
+        ],
+        "bothThemes": true,
+        "mobileWidth": 390
+      },
+      "pageErrors": []
+    },
+    "web-chrome": {
+      "browser": "154.0.8037.98",
+      "pixelCases": 180,
+      "rgbaDifferentBytes": 0,
+      "coverageCodepointsPerFont": 1114112,
+      "readerRejections": 9,
+      "weakNetwork": [
+        {
+          "format": "canonical-ttf",
+          "downloadBytesPerSecond": 524288,
+          "latencyMs": 80,
+          "cacheDisabled": true,
+          "elapsedMs": 11467.5,
+          "bodyBytes": 5857936,
+          "decodedBodyBytes": 5857936,
+          "transferBytes": 5858236,
+          "contentEncodingAlreadyApplied": false,
+          "frames": 653,
+          "rafP95": 18.299999999999272,
+          "rafMax": 19,
+          "mainThreadLongTasks": []
+        },
+        {
+          "format": "woff2",
+          "downloadBytesPerSecond": 524288,
+          "latencyMs": 80,
+          "cacheDisabled": true,
+          "elapsedMs": 6530.399999976158,
+          "bodyBytes": 3279386,
+          "decodedBodyBytes": 3279386,
+          "transferBytes": 3279686,
+          "contentEncodingAlreadyApplied": false,
+          "frames": 348,
+          "rafP95": 18.300000000000182,
+          "rafMax": 442.9000000000001,
+          "mainThreadLongTasks": [
+            73
+          ]
+        }
+      ],
+      "ui": {
+        "retryConfirmed": true,
+        "sixFontSwitches": true,
+        "onlyWoff2": true,
+        "delayedFontMs": 450,
+        "fontRequests": [
+          "/fonts/signature/MaShanZheng-Regular.woff2",
+          "/fonts/signature/MaShanZheng-Regular.woff2",
+          "/fonts/signature/LongCang-Regular.woff2",
+          "/fonts/signature/ZhiMangXing-Regular.woff2",
+          "/fonts/signature/LiuJianMaoCao-Regular.woff2",
+          "/fonts/signature/ZCOOLXiaoWei-Regular.woff2",
+          "/fonts/signature/ZCOOLKuaiLe-Regular.woff2"
+        ],
+        "bothThemes": true,
+        "mobileWidth": 390
+      },
+      "pageErrors": []
+    }
+  },
+  "bankRegression": {
+    "browser": "154.0.4258.62",
+    "pageErrors": [],
+    "report": "bank-edge/report.json"
+  },
+  "cutoutRegression": {
+    "cutout-edge": {
+      "browser": "154.0.4258.62",
+      "cases": 5,
+      "pageErrors": []
+    },
+    "cutout-chrome": {
+      "browser": "154.0.8037.98",
+      "cases": 5,
+      "pageErrors": []
+    }
+  },
+  "checks": {
+    "typeCheck": "passed",
+    "eslint": "passed",
+    "build": "passed; existing large chunk and dynamic/static import warnings retained",
+    "backend": "documentation only; no backend tests run"
+  },
+  "limits": [
+    "Network waiting improves; 67/73ms long task and Chrome 442.9ms rAF interval remain",
+    "Single cold MaShanZheng font per browser, no HTTP gzip in TTF baseline",
+    "Not full portrait, zoom, actual phone/Safari or printed-product performance proof",
+    "Controlled cutout backgrounds, not arbitrary-photo quality proof"
+  ],
+  "overallGoal": "active"
+}

@@ -1,5 +1,7 @@
 # Signature fonts
 
+2026-10-09 web transport: six full WOFF2 files preserve the canonical glyph outlines, advances, hints and original cmap. Standard WOFF2 private data carries `ACM1` + original cmap for runtime missing-glyph checks; the browser renders the native compressed font. Original TTF files, names and OFL texts below remain the canonical project/license identity. No font subsetting. Generated descriptors and hashes: [font-web.ts](../../../src/lib/signature-portrait/font-web.ts); reproducible conversion: [generator](../../../scripts/build-signature-font-web.py), [pinned dependencies](../../../scripts/signature-font-transport-requirements.txt); [validation and limitations](../../../docs/plans/signature-font-web-2026-10-09.md).
+
 These unmodified TrueType fonts are locally hosted, selected on demand, and used as typography aids. They do not reproduce any person's handwriting.
 
 - Ma Shan Zheng: [pinned source](https://github.com/google/fonts/tree/406197b91ff39a93061c2c2eeaee67ddf2ae1f0d/ofl/mashanzheng), SHA256 `6d2546bb189c732a8ca29af9e22457b152387d158aa459e4ac2ce1e51788b7fb`, 5,857,936 bytes. Full copyright and OFL1.1: [mashanzheng-OFL.txt](./mashanzheng-OFL.txt).

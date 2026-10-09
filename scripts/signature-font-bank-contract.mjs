@@ -24,16 +24,20 @@ const context = await browser.newContext({
   viewport: { width: 1440, height: 960 },
   reducedMotion: 'reduce',
 })
-async function newPage() {
+async function newPage(fontRoute) {
   const page = await context.newPage()
   page.on('pageerror', (error) => report.errors.push(error.message))
-  await page.goto(`${base}/signature-portrait`)
+  if (fontRoute) await page.route('**/fonts/signature/*.woff2', fontRoute)
+  // Isolate the library timing from the page's automatic live font preview preload.
+  await page.route(`${base}/__signature_font_bank_contract`, (route) =>
+    route.fulfill({ contentType: 'text/html', body: '<!doctype html><html><body></body></html>' }),
+  )
+  await page.goto(`${base}/__signature_font_bank_contract`)
   return page
 }
 try {
-  const page = await newPage()
   let requests = 0
-  await page.route('**/fonts/signature/*.ttf', async (route) => {
+  const page = await newPage(async (route) => {
     requests++
     await new Promise((resolve) => setTimeout(resolve, 450))
     await route.continue()
@@ -119,10 +123,13 @@ try {
   report.fontLoading.push({ case: 'missing-glyph-invalid-input-preabort', ...coverage })
 
   for (const fault of ['http', 'checksum', 'cancel-loading', 'cancel-generation']) {
-    const faultPage = await newPage()
-    await faultPage.route('**/fonts/signature/*.ttf', async (route) => {
+    const faultPage = await newPage(async (route) => {
       if (fault === 'http') await route.fulfill({ status: 503, body: 'unavailable' })
-      else if (fault === 'checksum') await route.fulfill({ status: 200, body: 'invalid-font' })
+      else if (fault === 'checksum') {
+        const response = await route.fetch(), bytes = await response.body()
+        bytes[bytes.length - 1] ^= 1
+        await route.fulfill({ response, body: bytes })
+      }
       else {
         await new Promise((resolve) => setTimeout(resolve, 300))
         await route.continue()
@@ -532,10 +539,10 @@ try {
     const m = await import('/src/lib/signature-portrait/bank.ts')
     return (await m.listBanks()).find((b) => b.label === '李云舟')
   })
-  await ui.getByRole('combobox', { name: '书写字体' }).selectOption('longcang')
-  await ui.route('**/fonts/signature/LongCang-Regular.ttf', (route) =>
+  await ui.route('**/fonts/signature/LongCang-Regular.woff2', (route) =>
     route.fulfill({ status: 503, body: 'temporary failure' }),
   )
+  await ui.getByRole('combobox', { name: '书写字体' }).selectOption('longcang')
   ui.on('dialog', (dialog) => dialog.accept())
   await ui.getByRole('button', { name: '一键生成 10 种写法', exact: true }).click()
   await ui.locator('.error').waitFor({ state: 'visible' })
@@ -547,7 +554,7 @@ try {
     old,
   )
   assert(preserved)
-  await ui.unroute('**/fonts/signature/LongCang-Regular.ttf')
+  await ui.unroute('**/fonts/signature/LongCang-Regular.woff2')
   await ui.locator('input[maxlength="32"]').fill('张思雨')
   await ui.getByRole('button', { name: '一键生成 10 种写法', exact: true }).click()
   await ui.waitForFunction(

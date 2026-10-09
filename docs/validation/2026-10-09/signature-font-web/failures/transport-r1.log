@@ -1,0 +1,11 @@
+{"id": "mashanzheng", "originalBytes": 5857936, "gzipTtfBytes": 3804292, "woffBytes": 3821220, "plainWoff2Bytes": 3250464, "webBytes": 3279386, "glyphsVerified": 7017, "reductionVsUncompressedTtf": 0.44018063700252097}
+Traceback (most recent call last):
+  File "D:\my\project\astra\astra-web\scripts\build-signature-font-web.py", line 130, in <module>
+    main()
+  File "D:\my\project\astra\astra-web\scripts\build-signature-font-web.py", line 96, in main
+    checks = inspect(original, encoded)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\my\project\astra\astra-web\scripts\build-signature-font-web.py", line 54, in inspect
+    assert set(source.keys()) == set(restored.keys()), 'Font table set changed'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Font table set changed
