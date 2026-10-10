@@ -63,7 +63,7 @@ export function nearestPrerenderIndex(frames: readonly PrerenderFrame[], time: n
 }
 
 export type PrerenderVideoOptions = {
-  /** Bound typed cell buffers retained by the six-mode cache. */
+  /** Budget text, backing buffers, glyph tiles and optional rasters; not total browser heap. */
   maxCacheBytes?: number
   video: HTMLVideoElement
   fps: number
@@ -130,7 +130,7 @@ export async function prerenderVideoFrames(
     }
   }
 
-  const fps = Math.max(8, Math.min(24, options.fps))
+  const fps = Math.max(8, Math.min(60, options.fps))
   const step = 1 / fps
   const planned = Math.floor(span * fps) + 1
   if (planned > maxFrames) {
@@ -145,6 +145,13 @@ export async function prerenderVideoFrames(
 
   const frames: PrerenderFrame[] = []
   let cacheBytes = 0
+  const retained = new WeakSet<object>()
+  const maxCacheBytes = options.maxCacheBytes ?? 96 * 1024 * 1024
+  const bufferBytes = (view: ArrayBufferView | undefined) => {
+    if (!view || retained.has(view.buffer)) return 0
+    retained.add(view.buffer)
+    return view.buffer.byteLength
+  }
   const resumeTime = video.currentTime
 
   try {
@@ -163,18 +170,29 @@ export async function prerenderVideoFrames(
 
       const result = await convertFrame(source)
       if (shouldAbort()) return { ok: false, error: '已取消预渲染', aborted: true }
-      if (result.art) {
-        cacheBytes +=
-          result.art.indices.byteLength +
-          result.art.alpha.byteLength +
-          result.art.colors.byteLength +
-          result.text.length * 2
-        if (cacheBytes > (options.maxCacheBytes ?? 96 * 1024 * 1024))
-          return { ok: false, error: '选段缓存已达到内存上限，请缩短选段或降低清晰度后重试' }
+      const frameBytes = result.text.length * 2 + 1024 + bufferBytes(result.colors) +
+        bufferBytes(result.art?.indices) + bufferBytes(result.art?.alpha) + bufferBytes(result.art?.colors)
+      let atlasBytes = 0
+      for (const glyph of result.art?.glyphs ?? []) {
+        if (!retained.has(glyph.tile)) {
+          retained.add(glyph.tile)
+          atlasBytes += glyph.tile.width * glyph.tile.height * 4 + 128
+        }
       }
+      // Reject the complete typed-frame plan after one sample, before spending time on all frames.
+      if (i === 0 && frameBytes * total + atlasBytes > maxCacheBytes) {
+        const mib = Math.ceil((frameBytes * total + atlasBytes) / 1024 / 1024)
+        return { ok: false, error: `预计缓存 ${mib} MiB，超过内存上限。请选择低消耗预览或缩短选段；视频导出会逐帧处理。` }
+      }
+      const raster = await options.renderRaster?.(source, t)
+      if (i === 0 && (frameBytes + (raster?.size ?? 0)) * total + atlasBytes > maxCacheBytes)
+        return { ok: false, error: '预计栅格缓存超过内存上限，请选择低消耗预览或缩短选段。' }
+      cacheBytes += frameBytes + atlasBytes + (raster?.size ?? 0)
+      if (cacheBytes > maxCacheBytes)
+        return { ok: false, error: '选段缓存已达到内存上限，请选择低消耗预览或缩短选段。视频导出会逐帧处理。' }
       const frame: PrerenderFrame = {
         art: result.art,
-        raster: await options.renderRaster?.(source, t),
+        raster,
         text: result.text,
         colors: result.colors ?? null,
         columns: result.columns,

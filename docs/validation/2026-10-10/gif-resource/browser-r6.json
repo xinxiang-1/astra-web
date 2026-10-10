@@ -1,0 +1,99 @@
+{
+  "sourceHash": "f2f047c700a572eb5b5ce6b868b1374529af281245055578982b4d0c86a5e29b",
+  "browser": "154.0.4258.62",
+  "scope": "Local Edge, real GIF plus synthetic MP4; no physical mobile or total-heap certification",
+  "errors": [],
+  "posts": [],
+  "uploadMs": 2445,
+  "changedFrames": [
+    "0dfa6102a2e609c67e3ed8cc8010695dd6013be19ec08bfa56219351e7e4666d",
+    "3d9acded6e1700d310c893d4a7120b47afeabc4c3abb4c4e88530b74dc3da104"
+  ],
+  "gif": {
+    "time": 0.060728,
+    "duration": 6.91,
+    "paused": true,
+    "ended": false,
+    "loop": false
+  },
+  "fullscreenDesktop": {
+    "dx": 0,
+    "dy": 0,
+    "width": 859,
+    "height": 859
+  },
+  "fullscreenMobile": {
+    "dx": 0,
+    "dy": 0,
+    "width": 358,
+    "height": 358
+  },
+  "package": {
+    "originalHashRetained": true,
+    "settings": {
+      "videoLoopEnabled": false,
+      "videoPreviewMode": "economy",
+      "videoExportEdge": 1920,
+      "editorEngine": "calibrated",
+      "artMode": "density",
+      "artQuality": "classic",
+      "artMotion": "none",
+      "artHover": "trail",
+      "artEffectProfile": "expressive",
+      "artMotionSpeed": 1,
+      "artMotionStrength": 0.65,
+      "artMotionStyle": "cinematic",
+      "mode": "charset",
+      "phrase": "我爱你中国",
+      "phraseThreshold": 0.55,
+      "phraseFillAll": false,
+      "phraseColor": false,
+      "exposure": 0,
+      "contrast": 0.2,
+      "normalizeTone": true,
+      "ditherStrength": 0.25,
+      "hoverEffect": "none",
+      "hoverStrength": 0.65,
+      "hoverRadius": 0.38,
+      "ambientMotion": "none",
+      "resolutionKey": "low",
+      "columns": 80,
+      "charsetKey": "dense",
+      "customCharset": "",
+      "invert": false,
+      "fontSize": 9,
+      "previewFontKey": "consolas",
+      "previewFontFamily": "Consolas, \"Cascadia Mono\", \"Courier New\", monospace",
+      "previewAspect": 0.4712611607142857,
+      "exportFontKey": "yahei",
+      "exportFontFamily": "\"Microsoft YaHei\", \"微软雅黑\", Cascadia Mono, Consolas, \"Courier New\", monospace",
+      "exportAspect": 0.74,
+      "backgroundColor": "#111615",
+      "foregroundColor": "#eeeae2",
+      "clipStart": 0,
+      "clipEnd": 6.91,
+      "videoFps": 60
+    }
+  },
+  "projectRestored": true,
+  "offlineReplay": true,
+  "qualityReplay": true,
+  "resources": {
+    "earlyRejected": true,
+    "earlyCount": 1,
+    "rasterRejected": true,
+    "resumeTime": 0.1,
+    "fps": 60,
+    "exportWidth": 1920,
+    "exportHeight": 1080,
+    "exportDuration": 0.116667,
+    "exportBytes": 1669
+  },
+  "staticFullscreen": {
+    "dx": 0,
+    "dy": 0,
+    "width": 687.1875,
+    "height": 859
+  },
+  "passed": true
+}

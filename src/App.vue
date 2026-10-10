@@ -15,7 +15,8 @@ const route = useRoute(),
 useThemeStore()
 const main = ref<HTMLElement>()
 const routeName = computed(() => String(route.name ?? ''))
-const isEditor = computed(() => ['ascii-art', 'art-lab'].includes(routeName.value))
+const isEditor = computed(() => routeName.value === 'ascii-art')
+const hasOwnHeader = computed(() => ['ascii-art', 'art-lab'].includes(routeName.value))
 const isAuthPage = computed(() => (authRouteNames as readonly string[]).includes(routeName.value))
 const isStudioHub = computed(() => routeName.value === 'studio')
 const isToolPage = computed(() => (toolRouteNames as readonly string[]).includes(routeName.value))
@@ -70,7 +71,7 @@ onBeforeUnmount(() => window.removeEventListener('storage', synchronizeSession))
       }"
     >
       <a class="skip-link" href="#main-content" @click="focusMain">跳到主要内容</a>
-      <ArtHeader v-if="!isEditor" :immersive="isImmersive" :account="isAuthPage" show-theme />
+      <ArtHeader v-if="!hasOwnHeader" :immersive="isImmersive" :account="isAuthPage" show-theme />
       <main id="main-content" ref="main" tabindex="-1"><RouterView /></main>
       <ArtFooter v-if="hasSharedFooter" />
     </div>

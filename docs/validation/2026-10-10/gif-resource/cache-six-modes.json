@@ -1,0 +1,73 @@
+{
+  "scope": "Synthetic clip development regression, not holdout or real-device certification",
+  "browser": "153.0.8010.12",
+  "sourceHash": "2ac71802efe0da92a32273e60d21b68e36f554eeb13132628e8a6201be827513",
+  "records": [
+    {
+      "mode": "density",
+      "complete": true,
+      "frames": 6,
+      "restoredAfterSuccess": true,
+      "aborted": true,
+      "cancelledError": "已取消预渲染",
+      "restoredAfterCancel": true,
+      "memoryRejected": true,
+      "restoredAfterMemory": true
+    },
+    {
+      "mode": "color",
+      "complete": true,
+      "frames": 6,
+      "restoredAfterSuccess": true,
+      "aborted": true,
+      "cancelledError": "已取消预渲染",
+      "restoredAfterCancel": true,
+      "memoryRejected": true,
+      "restoredAfterMemory": true
+    },
+    {
+      "mode": "phrase",
+      "complete": true,
+      "frames": 6,
+      "restoredAfterSuccess": true,
+      "aborted": true,
+      "cancelledError": "已取消预渲染",
+      "restoredAfterCancel": true,
+      "memoryRejected": true,
+      "restoredAfterMemory": true
+    },
+    {
+      "mode": "contour",
+      "complete": true,
+      "frames": 6,
+      "restoredAfterSuccess": true,
+      "aborted": true,
+      "cancelledError": "已取消预渲染",
+      "restoredAfterCancel": true,
+      "memoryRejected": true,
+      "restoredAfterMemory": true
+    },
+    {
+      "mode": "braille",
+      "complete": true,
+      "frames": 6,
+      "restoredAfterSuccess": true,
+      "aborted": true,
+      "cancelledError": "已取消预渲染",
+      "restoredAfterCancel": true,
+      "memoryRejected": true,
+      "restoredAfterMemory": true
+    },
+    {
+      "mode": "halftone",
+      "complete": true,
+      "frames": 6,
+      "restoredAfterSuccess": true,
+      "aborted": true,
+      "cancelledError": "已取消预渲染",
+      "restoredAfterCancel": true,
+      "memoryRejected": true,
+      "restoredAfterMemory": true
+    }
+  ]
+}

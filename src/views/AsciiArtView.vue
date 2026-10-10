@@ -64,6 +64,7 @@ import {
   hasCjkText,
   measureMonoCellAspect,
   measureMonoCellMetrics,
+  isVideoFile,
   MEDIA_ACCEPT,
   nearestPrerenderIndex,
   needsVideoPrerender,
@@ -129,6 +130,7 @@ const exportPreview = ref('')
 const backgroundColor = ref('#111615')
 const foregroundColor = ref('#eeeae2')
 let sourceFile: File | null = null
+let sourcePlaybackFile: File | null = null
 let exportName = ''
 let exportLongEdge = 2048
 let exportTransparent = false
@@ -177,9 +179,12 @@ const copied = ref(false)
 const hasImage = ref(false)
 const mediaKind = ref<AsciiMediaKind | null>(null)
 const videoPlaying = ref(false)
+const videoLoopEnabled = ref(true)
+const videoPreviewMode = ref<'economy' | 'quality'>('economy')
 const videoDuration = ref(0)
 const videoCurrentTime = ref(0)
 const videoFps = ref(VIDEO_TARGET_FPS)
+const videoExportEdge = ref(720)
 const clipStart = ref(0)
 const clipEnd = ref(0)
 const downloading = ref(false)
@@ -401,7 +406,9 @@ const videoLivePreview = computed(
 
 const liveColumnCap = computed(() => videoLiveColumnCap(mode.value))
 
-const usePrerenderPath = computed(() => needsVideoPrerender(columns.value, mode.value))
+const usePrerenderPath = computed(
+  () => videoPreviewMode.value === 'quality',
+)
 
 const effectiveColumns = computed(() =>
   resolveAsciiColumns({
@@ -1045,6 +1052,7 @@ function resetAll() {
   sourceLoadController = null
   loadingSource.value = false
   sourceFile = null
+  sourcePlaybackFile = null
   sourceRevision.value++
   showOriginal.value = false
   destroyArtStudio()
@@ -1271,11 +1279,11 @@ function syncZoomForGrid(nextCols: number, nextRows: number, options?: { forceFi
 
 function convertFrame(
   frame: AsciiFrameSource,
-  options?: { fitZoom?: boolean; forExport?: boolean; sourceKind?: AsciiMediaKind },
+  options?: { fitZoom?: boolean; forExport?: boolean; sourceKind?: AsciiMediaKind; columns?: number },
 ) {
   const invertFlag = previewInvert.value
   const cols = resolveAsciiColumns({
-    columns: columns.value,
+    columns: options?.columns ?? columns.value,
     kind: options?.sourceKind ?? mediaKind.value,
     mode: mode.value,
     livePreview: options?.forExport ? false : videoLivePreview.value,
@@ -1616,6 +1624,8 @@ function startPrerenderLoop() {
     onFrame: (index) => {
       applyPrerenderFrame(index)
     },
+    getLoop: () => videoLoopEnabled.value,
+    onEnded: () => pauseVideoPlayback(),
   })
 }
 
@@ -1630,7 +1640,7 @@ async function playVideo() {
       if (!ok) return
     }
     const playAt =
-      videoCurrentTime.value < clipStart.value || videoCurrentTime.value >= clipEnd.value
+      videoCurrentTime.value < clipStart.value || videoCurrentTime.value >= clipEnd.value - 1 / videoFps.value
         ? clipStart.value
         : videoCurrentTime.value
     prerenderPlayIndex = nearestPrerenderIndex(prerenderFrames, playAt)
@@ -1798,6 +1808,7 @@ async function loadFile(file: File | undefined) {
     candidate = await prepareArtSource(file, videoSlots[slot]?.value ?? null, controller.signal)
     controller.signal.throwIfAborted()
     if (generation !== sourceLoadGeneration) return false
+    const candidateColumns = candidate.kind === 'video' ? ASCII_RESOLUTIONS.low.columns : columns.value
     // The first frame must be usable before releasing any part of the previous work.
     const result =
       editorEngine.value === 'calibrated'
@@ -1805,7 +1816,7 @@ async function loadFile(file: File | undefined) {
             candidate.frame.source,
             candidate.frame.width,
             candidate.frame.height,
-            calibratedSettings(columns.value, candidate.kind),
+            calibratedSettings(candidateColumns, candidate.kind),
             {
               shouldAbort: () =>
                 controller.signal.aborted || viewDisposed || generation !== sourceLoadGeneration,
@@ -1817,7 +1828,7 @@ async function loadFile(file: File | undefined) {
             columns: art.columns,
             rows: art.rows,
           }))
-        : convertFrame(candidate.frame, { forExport: true, sourceKind: candidate.kind })
+        : convertFrame(candidate.frame, { forExport: true, sourceKind: candidate.kind, columns: candidateColumns })
     controller.signal.throwIfAborted()
     if (viewDisposed || generation !== sourceLoadGeneration) return false
     destroyArtStudio()
@@ -1831,7 +1842,10 @@ async function loadFile(file: File | undefined) {
       activeVideoSlot.value = slot
       videoObjectUrl = candidate.url
       const video = sourceVideo.value!
-      video.loop = false
+      video.loop = videoLoopEnabled.value
+      videoPreviewMode.value = 'economy'
+      resolutionKey.value = 'low'
+      columns.value = candidateColumns
       videoDuration.value = video.duration
       videoCurrentTime.value = 0
       resetClipBounds(video.duration)
@@ -1841,6 +1855,7 @@ async function loadFile(file: File | undefined) {
       previewUrl.value = candidate.url
     }
     sourceFile = file
+    sourcePlaybackFile = candidate.playbackFile ?? file
     projectOrigin.value = undefined
     projectWorkflowKey.value = undefined
     sourceRevision.value++
@@ -1859,7 +1874,7 @@ async function loadFile(file: File | undefined) {
     if (
       generation === sourceLoadGeneration &&
       candidate.kind === 'video' &&
-      !usePrerenderPath.value
+      (!usePrerenderPath.value || candidate.animated)
     )
       await playVideo()
     return generation === sourceLoadGeneration
@@ -2048,6 +2063,7 @@ async function downloadVideo() {
     motionStyle: artEffectProfile.value === 'expressive' ? artMotionStyle.value : 'studio',
   }
   const capturedClip = { start: clipStart.value, end: clipEnd.value }
+  const capturedEdge = videoExportEdge.value
   const calibrated = editorEngine.value === 'calibrated'
   const raster = document.createElement('canvas')
   const rasterRenderer = calibrated ? createCanvasArtRenderer(raster) : null
@@ -2058,6 +2074,8 @@ async function downloadVideo() {
       frameCount: plan.total,
       bufferFrames: calibrated ? 0 : undefined,
       fps: plan.fps,
+      maxEdge: capturedEdge,
+      videoBitsPerSecond: capturedEdge >= 1920 ? 16_000_000 : 4_000_000,
       fontSize: Math.max(8, fontSize.value),
       background: exportColors.background,
       foreground: exportColors.foreground,
@@ -2075,7 +2093,7 @@ async function downloadVideo() {
         if (rasterRenderer) {
           const art = prepareArtFrame(frame.source, frame.width, frame.height, capturedSettings)
           rasterRenderer.render(art, {
-            longEdge: 1280,
+            longEdge: capturedEdge,
             time: index * plan.step,
             motion: capturedMotion,
             ...capturedEffects,
@@ -2145,17 +2163,17 @@ async function downloadLiveHtml() {
       const frame = artFrame.value
       if (!frame) throw new Error('请先生成作品')
       let embeddedSource:
-        { kind: 'image' | 'video'; dataUrl: string; start: number; end: number } | undefined
-      if (sourceFile && hasVideo.value) {
-        if (sourceFile.size > 64 * 1024 * 1024)
+        { kind: 'image' | 'video'; dataUrl: string; start: number; end: number; loop?: boolean } | undefined
+      if (sourcePlaybackFile && hasVideo.value) {
+        if (sourcePlaybackFile.size > 64 * 1024 * 1024)
           throw new Error('离线网页的视频素材超过 64 MB，请先缩短或压缩视频')
         const dataUrl = await new Promise<string>((resolve, reject) => {
           const reader = new FileReader()
           reader.onload = () => resolve(String(reader.result))
           reader.onerror = () => reject(new Error('视频读取失败'))
-          reader.readAsDataURL(sourceFile!)
+          reader.readAsDataURL(sourcePlaybackFile!)
         })
-        embeddedSource = { kind: 'video', dataUrl, start: clipStart.value, end: clipEnd.value }
+        embeddedSource = { kind: 'video', dataUrl, start: clipStart.value, end: clipEnd.value, loop: videoLoopEnabled.value }
       }
       const html = artworkEmbedPage(frame, {
         title: projectTitle.value,
@@ -2868,7 +2886,29 @@ watch(fullscreen, (open) => {
   document.body.style.overflow = open ? 'hidden' : ''
 })
 
+watch(videoLoopEnabled, (enabled) => {
+  if (sourceVideo.value) sourceVideo.value.loop = enabled
+})
+watch(sourceVideo, (video, _previous, onCleanup) => {
+  if (!video) return
+  const ended = () => {
+    videoCurrentTime.value = video.duration
+    pauseVideoPlayback()
+    void runConvert()
+  }
+  video.addEventListener('ended', ended)
+  onCleanup(() => video.removeEventListener('ended', ended))
+})
+watch(videoPreviewMode, () => {
+  pauseVideoPlayback()
+  clearPrerenderCache()
+  if (hasVideo.value) void runConvert()
+})
+
 const projectSettings: Record<string, Ref<string | number | boolean>> = {
+  videoLoopEnabled,
+  videoPreviewMode,
+  videoExportEdge,
   editorEngine,
   artMode,
   artQuality,
@@ -2980,7 +3020,7 @@ async function saveProject() {
     await saveArtProject({
       id,
       name: projectTitle.value.trim() || '未命名作品',
-      kind: hasVideo.value ? 'video' : 'image',
+      kind: isVideoFile(sourceFile) ? 'video' : 'image',
       source: sourceFile,
       updatedAt: Date.now(),
       thumbnail: makeThumbnail(),
@@ -3062,7 +3102,7 @@ async function downloadProjectPackage() {
     const blob = await createArtProjectPackage({
       id: projectId.value || crypto.randomUUID(),
       name: projectTitle.value.trim() || '未命名作品',
-      kind: hasVideo.value ? 'video' : 'image',
+      kind: isVideoFile(sourceFile) ? 'video' : 'image',
       source: sourceFile,
       updatedAt: Date.now(),
       thumbnail: makeThumbnail(),
@@ -3363,7 +3403,7 @@ onBeforeUnmount(() => {
             <button
               type="button"
               class="btn"
-              :disabled="pending || videoPrerendering || clipOverLimit"
+              :disabled="pending || videoPrerendering || (usePrerenderPath && clipOverLimit)"
               @click="toggleVideoPlayback"
             >
               {{
@@ -3395,10 +3435,18 @@ onBeforeUnmount(() => {
               @input="onVideoSeekInput"
             />
             <span class="video-clock">{{ videoTimeLabel }}</span>
+            <label class="video-clock">
+              <input v-model="videoLoopEnabled" type="checkbox" :disabled="videoPrerendering || downloading" />
+              循环播放
+            </label>
+            <select v-model="videoPreviewMode" class="fps-select" aria-label="视频预览方式" :disabled="pending || videoPrerendering || downloading">
+              <option value="economy">低消耗预览</option>
+              <option value="quality">完整画质预览（等待解析）</option>
+            </select>
             <select
-              v-if="usePrerenderPath"
               v-model.number="videoFps"
               class="fps-select"
+              aria-label="视频帧率"
               :disabled="videoPrerendering"
               title="解析帧率"
             >
@@ -3406,8 +3454,17 @@ onBeforeUnmount(() => {
               <option :value="15">15fps</option>
               <option :value="20">20fps</option>
               <option :value="24">24fps</option>
+              <option :value="30">30fps</option>
+              <option :value="60">60fps（较慢）</option>
+            </select>
+            <select v-model.number="videoExportEdge" class="fps-select" aria-label="视频导出尺寸" :disabled="downloading">
+              <option :value="720">导出长边 720 · 省资源</option>
+              <option :value="1280">导出长边 1280</option>
+              <option :value="1920">导出长边 1920</option>
+              <option :value="3840">导出长边 3840 · 等待渲染</option>
             </select>
           </div>
+          <p v-if="hasVideo" class="hint">低消耗预览限制实时列数；完整画质按所选列数解析，缓存预算 96 MiB。导出逐帧处理，画质、尺寸和帧率越高，等待越久。不会上传素材。</p>
 
           <div v-if="hasVideo && usePrerenderPath" class="clip-panel" @click.stop>
             <div class="clip-top">
@@ -3627,7 +3684,7 @@ onBeforeUnmount(() => {
                   effect="dark"
                   placement="top"
                   :show-after="120"
-                  content="视频需先选片段再解析播放，最长 20 秒"
+                  content="低消耗预览限制实时列数；完整画质可等待解析，最长 20 秒 / 480 帧"
                 >
                   <span class="res-warn" role="img" aria-label="需解析播放" @click.stop>
                     <el-icon :size="12"><WarningFilled /></el-icon>
@@ -4410,6 +4467,7 @@ onBeforeUnmount(() => {
             }}</span
           >
           <div class="fs-tools">
+            <ThemeToggle compact />
             <button type="button" class="btn ghost" @click="zoomOut">缩小</button>
             <button type="button" class="btn ghost" @click="zoomIn">放大</button>
             <button type="button" class="btn ghost" @click="resetZoom">自适应</button>
@@ -5405,7 +5463,17 @@ onBeforeUnmount(() => {
 }
 
 .fs-scroll .ascii-scroll-inner {
+  display: flex;
+  width: max-content;
+  min-width: 100%;
+  min-height: 100%;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
   padding: 1rem;
+}
+.fs-scroll .ascii-canvas {
+  flex-shrink: 0;
 }
 
 @media (max-width: 980px) {

@@ -180,7 +180,7 @@ async function encodeMp4(
     throw new Error('当前浏览器不支持 MP4 编码')
   }
 
-  const fps = Math.max(8, Math.min(24, Math.round(options.fps)))
+  const fps = Math.max(8, Math.min(60, Math.round(options.fps)))
   const target = new BufferTarget()
   const output = new Output({
     format: new Mp4OutputFormat({ fastStart: 'in-memory' }),
@@ -227,7 +227,7 @@ async function encodeWithRecorder(
   paint: (frame: AsciiVideoFrameInput) => void,
   options: AsciiVideoExportOptions,
 ): Promise<AsciiVideoExportResult> {
-  const fps = Math.max(8, Math.min(24, Math.round(options.fps)))
+  const fps = Math.max(8, Math.min(60, Math.round(options.fps)))
   const pick = pickRecorderMimeType()
   if (!pick) throw new Error('当前浏览器不支持视频录制导出')
 
@@ -367,7 +367,7 @@ export function planVideoExportFrames(
   if (!Number.isFinite(durationSec) || durationSec <= 0) {
     return { ok: false, error: '无法读取视频时长，请换一个文件' }
   }
-  const clampedFps = Math.max(8, Math.min(24, Math.round(fps)))
+  const clampedFps = Math.max(8, Math.min(60, Math.round(fps)))
   const step = 1 / clampedFps
   const total = Math.floor(durationSec * clampedFps) + 1
   if (total <= 0) return { ok: false, error: '没有可导出的视频帧' }

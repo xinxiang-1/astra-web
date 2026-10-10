@@ -131,6 +131,11 @@ async function ready() {
   await page.evaluate(
     () => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))),
   )
+  await page.locator('.stage-feedback').waitFor({ state: 'hidden' })
+  await page.waitForFunction(() => {
+    const image = document.querySelector('.drop img'), canvas = document.querySelector('.ascii-scroll canvas')
+    return !image || (image.complete && image.naturalHeight > 0 && Math.abs(canvas.width / canvas.height - image.naturalWidth / image.naturalHeight) < 0.02)
+  })
 }
 const pixels = async () =>
   hash(await page.locator('.ascii-scroll canvas').evaluate((c) => c.toDataURL()))
@@ -145,7 +150,7 @@ async function records() {
   return page.evaluate(
     () =>
       new Promise((resolve, reject) => {
-        const request = indexedDB.open('astra-art-projects', 1)
+        const request = indexedDB.open('astra-art-projects', 2)
         request.onerror = () => reject(request.error)
         request.onsuccess = () => {
           const db = request.result,
@@ -218,6 +223,9 @@ try {
   assert.equal(await unloadProtected(), false)
   await input().setInputFiles(file('portrait.jpg'))
   await ready()
+  await page.locator('button[data-quality="classic"]').click()
+  await ready()
+  await page.waitForFunction(() => document.querySelector('.ascii-scroll canvas')?.dataset.quality === 'classic')
   await page.getByLabel('作品名称').fill('受保护的作品')
   assert.equal(await unloadProtected(), true)
   await save()
@@ -288,6 +296,7 @@ try {
   await input().setInputFiles(file('held-old.jpg', pet))
   await page.waitForFunction(() => window.__editorState.gates['held-old.jpg'])
   await input().setInputFiles(file('newest.jpg', other))
+  await page.waitForFunction(() => window.__editorState.urls.get(document.querySelector('.drop img')?.src) === 'newest.jpg')
   await ready()
   const newest = await pixels()
   assert.notEqual(newest, original)

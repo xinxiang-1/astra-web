@@ -24,6 +24,7 @@ export interface ArtProjectPackageManifest {
 }
 
 const enums: Record<string, readonly string[]> = {
+  videoPreviewMode: ['economy', 'quality'],
   editorEngine: ['calibrated', 'legacy'],
   artMode: ['density', 'color', 'phrase', 'contour', 'braille', 'halftone'],
   artQuality: ['classic', 'detailed', 'smooth', 'faithful'],
@@ -66,10 +67,11 @@ const ranges: Record<string, readonly [number, number]> = {
   clipStart: [0, 86400],
   clipEnd: [0, 86400],
   videoFps: [1, 60],
+  videoExportEdge: [720, 3840],
   artMotionSpeed: [0.2, 2],
   artMotionStrength: [0, 1],
 }
-const booleans = new Set(['phraseFillAll', 'phraseColor', 'normalizeTone', 'invert'])
+const booleans = new Set(['phraseFillAll', 'phraseColor', 'normalizeTone', 'invert', 'videoLoopEnabled'])
 const strings: Record<string, number> = {
   phrase: 64,
   customCharset: 1024,

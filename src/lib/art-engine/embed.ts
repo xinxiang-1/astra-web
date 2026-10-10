@@ -19,7 +19,7 @@ type PagePayload = {
   motionStyle?: ArtRenderOptions['motionStyle']
   hoverStrength?: number
   hoverRadius?: number
-  source?: { kind: 'image' | 'video'; dataUrl: string; start: number; end: number }
+  source?: { kind: 'image' | 'video'; dataUrl: string; start: number; end: number; loop?: boolean }
 }
 
 /** This function has no module globals: the exact runtime is copied into HTML. */
@@ -144,8 +144,17 @@ async function runArtworkPage(
     pointer.strength +=
       (pointer.target - pointer.strength) * (1 - Math.exp(-Math.max(pointerDelta, 1 / 60) / 0.16))
     if (!pointer.target && pointer.strength < 0.002) pointer.strength = 0
-    if (video && data.source && running && (video.currentTime >= data.source.end || video.ended))
-      video.currentTime = data.source.start
+    if (video && data.source && running && (video.currentTime >= data.source.end || video.ended)) {
+      if (data.source.loop !== false) {
+        video.currentTime = data.source.start
+        if (video.paused) void video.play().catch(() => undefined)
+      } else {
+        running = false
+        video.pause()
+        button.textContent = '播放作品'
+        return
+      }
+    }
     if (
       video &&
       !video.seeking &&
@@ -209,11 +218,14 @@ async function runArtworkPage(
     running = !running
     previousTime = 0
     if (video) {
-      if (running)
+      if (running) {
+        if (video.ended || video.currentTime >= (data.source?.end ?? video.duration) - 0.04)
+          video.currentTime = data.source?.start ?? 0
         await video.play().catch(() => {
           running = false
           status.textContent = '无法播放，请选择其他视频'
         })
+      }
       else video.pause()
     }
     button.textContent = running ? '暂停作品' : '播放作品'

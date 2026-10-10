@@ -4,7 +4,7 @@ export type FrameLoopHandle = {
 }
 
 function clampFps(fps: number): number {
-  return Math.max(8, Math.min(24, fps))
+  return Math.max(8, Math.min(60, fps))
 }
 
 /**
@@ -148,6 +148,8 @@ export function createPrerenderFrameLoop(options: {
   getIndex: () => number
   setIndex: (index: number) => void
   onFrame: (index: number) => void
+  getLoop?: () => boolean
+  onEnded?: () => void
 }): FrameLoopHandle {
   let rafId = 0
   let lastFrameMs = 0
@@ -169,6 +171,12 @@ export function createPrerenderFrameLoop(options: {
     lastFrameMs = now
     const index = options.getIndex()
     options.onFrame(index)
+    if (index >= count - 1 && options.getLoop?.() === false) {
+      if (rafId) cancelAnimationFrame(rafId)
+      rafId = 0
+      options.onEnded?.()
+      return
+    }
     options.setIndex((index + 1) % count)
   }
 

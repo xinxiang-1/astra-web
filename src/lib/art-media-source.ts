@@ -9,6 +9,9 @@ export interface PreparedArtSource {
   frame: AsciiFrameSource
   url: string
   bitmap?: ImageBitmap
+  /** Derived playback bytes; the caller keeps the user's original GIF for projects. */
+  playbackFile?: File
+  animated?: boolean
   dispose: () => void
 }
 
@@ -27,9 +30,20 @@ export async function prepareArtSource(
   signal.throwIfAborted()
   if (!file.size) throw new Error('文件为空，请重新选择素材')
   if (file.size > ART_SOURCE_MAX_BYTES) throw new Error('素材超过 64 MiB，请压缩或裁剪后重试')
-  if (isVideoFile(file)) {
+  let playbackFile = file
+  let animated = false
+  if (file.type === 'image/gif' || /\.gif$/i.test(file.name)) {
+    const { gifPlaybackFile } = await import('./gif-playback')
+    const playback = await gifPlaybackFile(file, signal, checkDimensions)
+    if (playback) {
+      playbackFile = playback
+      animated = true
+    }
+  }
+  signal.throwIfAborted()
+  if (isVideoFile(playbackFile)) {
     if (!video) throw new Error('视频预览组件未就绪')
-    const url = URL.createObjectURL(file)
+    const url = URL.createObjectURL(playbackFile)
     let disposed = false
     const dispose = () => {
       if (disposed) return
@@ -73,6 +87,8 @@ export async function prepareArtSource(
         throw new Error('视频时长无法读取，请重新编码后重试')
       return {
         kind: 'video',
+        playbackFile,
+        animated,
         frame: { source: video, width: video.videoWidth, height: video.videoHeight },
         url,
         dispose,
