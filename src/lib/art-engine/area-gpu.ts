@@ -124,7 +124,16 @@ result=vec4(ink.rgb,alpha);
     return value
   }
   const output = target.getContext('2d')!
+  const maxTextureSize = gl.getParameter(gl.MAX_TEXTURE_SIZE) as number
+  const canRaster = (frame: ArtFrame, width: number, height: number) => {
+    if (lost || gl.isContextLost() || width * height * 4 > 32 * 1024 * 1024) return false
+    const nextGrid = Math.ceil(Math.sqrt(frame.glyphs.length))
+    const aw = nextGrid * (frame.cellWidth + 1),
+      ah = nextGrid * (frame.cellHeight + 1)
+    return Math.max(aw, ah) <= maxTextureSize && aw * ah * 4 <= 4 * 1024 * 1024
+  }
   return {
+    canRaster,
     get cacheStats() {
       return {
         active: rendered,
@@ -155,12 +164,10 @@ result=vec4(ink.rgb,alpha);
       count: number,
     ) {
       rendered = false
-      if (lost || gl.isContextLost() || width * height * 4 > 32 * 1024 * 1024) return false
+      if (!canRaster(frame, width, height)) return false
       const nextGrid = Math.ceil(Math.sqrt(frame.glyphs.length))
       const aw = nextGrid * (frame.cellWidth + 1),
         ah = nextGrid * (frame.cellHeight + 1)
-      if (Math.max(aw, ah) > gl.getParameter(gl.MAX_TEXTURE_SIZE) || aw * ah * 4 > 4 * 1024 * 1024)
-        return false
       if (surface.width !== width || surface.height !== height) {
         surface.width = width
         surface.height = height

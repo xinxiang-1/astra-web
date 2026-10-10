@@ -12,6 +12,7 @@ let gpuAttempted = false
 const renderer = createCanvasArtRenderer(surface as unknown as HTMLCanvasElement, {
   createSurface: () => new OffscreenCanvas(1, 1) as unknown as HTMLCanvasElement,
   maxTileEntries: 64,
+  canRasterBatch: (frame, width, height) => Boolean(areaGpu?.canRaster(frame, width, height)),
   rasterBatch: (...args) => {
     if (args[1].glow !== false) return false
     try {

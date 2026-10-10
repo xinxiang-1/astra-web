@@ -57,6 +57,7 @@
     "test:signature-responsive": "node scripts/signature-responsive-contract.mjs",
     "test:video-responsive": "node scripts/video-responsive-contract.mjs",
     "test:art-area-gpu": "node scripts/area-gpu-contract.mjs",
+    "test:art-area-fallback": "node scripts/area-gpu-fallback-contract.mjs",
     "test:art-prerender-clock": "node scripts/prerender-clock-contract.mjs",
     "test:image-responsive": "node scripts/image-preview-responsive-contract.mjs",
     "test:particle-clock": "node scripts/particle-clock-contract.mjs",

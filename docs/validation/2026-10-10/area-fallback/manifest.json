@@ -1,0 +1,65 @@
+{
+  "passed": true,
+  "experiment": "area-fallback-20261010-r1",
+  "baselineCommit": "97452867910072a0ef0e596c8d84419901c39462",
+  "sourceManifest": [
+    {
+      "path": "src/lib/art-engine/canvas.ts",
+      "sha256": "1d6111f786315bd3069d5625b1bb0fa17003c026ba3efa2a2f9d16e7550d955d"
+    },
+    {
+      "path": "src/lib/art-engine/area-gpu.ts",
+      "sha256": "c66cdd48c88515b4f111c081df2353a5150261b38d2d2f8ed4dc06fd6845a0b4"
+    },
+    {
+      "path": "src/lib/art-engine/frame-render.worker.ts",
+      "sha256": "1fbce6bf5ef211ec41bbf8011d15b02948acf94d5c22f960ca821f0ca82874bf"
+    },
+    {
+      "path": "scripts/area-gpu-fallback-contract.mjs",
+      "sha256": "7614cd356e2bfcdb3aa5c7ecc2ae60f0fe3fb3da2a72ffc385f520fddc4f04d7"
+    },
+    {
+      "path": "package.json",
+      "sha256": "67c951b71403a832deb73dd4505b97668e71826476b329eb8a963fbb9973b6eb"
+    }
+  ],
+  "fixture": {
+    "path": "public/artwork/porcelain-study-v1.png",
+    "sourceId": "repository-porcelain-study-v1",
+    "sha256": "0ce4707016f8fd4c7348fd7a6bead069789e1aaa2b1b0b12551b5227bddb36d5",
+    "split": "development",
+    "columns": 32,
+    "mode": "color",
+    "quality": "faithful",
+    "longEdge": 320,
+    "font": "Microsoft YaHei",
+    "viewport": [
+      1440,
+      960
+    ],
+    "dpr": 1
+  },
+  "checks": {
+    "typeCheck": "exit0, area-fallback-types-r1.log",
+    "eslint": "exit0, area-fallback-lint-r1.log",
+    "build": "exit0, area-fallback-build-r1.log",
+    "fallbackCases": 5,
+    "gpuParityCases": 57
+  },
+  "evidence": [
+    "baseline-regression.json",
+    "candidate.json",
+    "production.json",
+    "gpu-parity.json"
+  ],
+  "budget": {
+    "cases": 5,
+    "framesPerTemporalCase": 3,
+    "deadlineSeconds": 90,
+    "modelCalls": 0
+  },
+  "scope": "Resource and pixel parity for fallback capability; not sustained FPS or all-device memory certification",
+  "screenFpsRetested": false,
+  "userMediaCommitted": false
+}

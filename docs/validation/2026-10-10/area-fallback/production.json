@@ -1,0 +1,40 @@
+{
+  "browser": "154.0.4258.62",
+  "engine": "/src/lib/art-engine",
+  "errors": [],
+  "cases": [
+    {
+      "reason": "no-webgl",
+      "comparedFrames": 3,
+      "gpuCalls": 0,
+      "commandBytes": 0,
+      "maxPixelDelta": 0
+    },
+    {
+      "reason": "context-loss",
+      "comparedFrames": 3,
+      "gpuCalls": 0,
+      "commandBytes": 0,
+      "maxPixelDelta": 0
+    },
+    {
+      "reason": "texture-limit",
+      "comparedFrames": 3,
+      "gpuCalls": 0,
+      "commandBytes": 0,
+      "maxPixelDelta": 0
+    },
+    {
+      "reason": "ready",
+      "comparedFrames": 3,
+      "gpuCalls": 3,
+      "commandBytes": 46080,
+      "maxPixelDelta": 2
+    },
+    {
+      "reason": "output-budget",
+      "rejectedBeforeAllocation": true
+    }
+  ],
+  "passed": true
+}

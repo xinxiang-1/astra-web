@@ -2,6 +2,8 @@ import type { ArtFrame, ArtRenderOptions } from './types'
 
 /** Drawing-environment hooks; experimentalTrail is excluded from production and portable output. */
 export type CanvasArtPrototypeOptions = {
+  /** Reject unavailable accelerators before building per-character command buffers. */
+  canRasterBatch?: (frame: ArtFrame, width: number, height: number) => boolean
   /** Optional area-integral accelerator; false retains the exact CPU fallback. */
   rasterBatch?: (
     frame: ArtFrame,
@@ -2284,7 +2286,8 @@ export function createCanvasArtRenderer(
     if (
       prototype.rasterBatch &&
       options.glow === false &&
-      frame.indices.length * 9 * 8 <= 8 * 1024 * 1024
+      frame.indices.length * 9 * 8 <= 8 * 1024 * 1024 &&
+      (!prototype.canRasterBatch || prototype.canRasterBatch(frame, w, h))
     ) {
       if (softwareCommands.length < frame.indices.length * 9)
         softwareCommands = new Float64Array(frame.indices.length * 9)
