@@ -17,6 +17,7 @@ type PagePayload = {
   motionSpeed?: number
   motionStrength?: number
   motionStyle?: ArtRenderOptions['motionStyle']
+  glow?: boolean
   hoverStrength?: number
   hoverRadius?: number
   source?: { kind: 'image' | 'video'; dataUrl: string; start: number; end: number; loop?: boolean }
@@ -102,6 +103,7 @@ async function runArtworkPage(
       motionSpeed: data.motionSpeed,
       motionStrength: data.motionStrength,
       motionStyle: data.motionStyle,
+      glow: data.glow,
       hoverRadius: data.hoverRadius,
       hoverStrength: reduced.matches || data.hover === 'none' ? 0 : data.hoverStrength,
       pointerSamples: pointerSamples.splice(0),

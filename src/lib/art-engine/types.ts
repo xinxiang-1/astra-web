@@ -56,6 +56,8 @@ export type ArtFrame = {
   statistics: { nonEmpty: number; preparationMs: number; maxCoverage: number }
 }
 export type ArtRenderOptions = {
+  /** Disable the separate glow compositor while retaining native character motion. */
+  glow?: boolean
   longEdge?: number
   transparent?: boolean
   time?: number

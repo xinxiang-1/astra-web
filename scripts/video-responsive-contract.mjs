@@ -459,6 +459,7 @@ try {
   report.pausedStable = true
   await page.getByRole('button', { name: /切换到/ }).click()
   await page.screenshot({ path: path.join(out, 'video-dark.png') })
+  await page.getByRole('combobox', { name: '视频预览方式', exact: true }).selectOption('quality')
   await page.getByRole('button', { name: /^超清/ }).click()
   await page.locator('.clip-panel').getByRole('button', { name: '自定义', exact: true }).click()
   await page.locator('.clip-custom-field input').first().fill('0.5')
@@ -476,6 +477,7 @@ try {
   await page.getByRole('button', { name: '取消', exact: true }).click()
   await page.getByRole('button', { name: '取消', exact: true }).waitFor({ state: 'hidden' })
   report.prerenderCancel = true
+  await page.getByRole('combobox', { name: '视频预览方式', exact: true }).selectOption('economy')
   await page.getByRole('button', { name: /^低清/ }).click()
   await page.getByRole('button', { name: '播放', exact: true }).click()
   await page.getByRole('button', { name: '全屏 ↗', exact: true }).click()

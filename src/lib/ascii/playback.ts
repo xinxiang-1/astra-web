@@ -152,24 +152,32 @@ export function createPrerenderFrameLoop(options: {
   onEnded?: () => void
 }): FrameLoopHandle {
   let rafId = 0
-  let lastFrameMs = 0
+  let lastFrameMs: number | null = null
   const frameMs = 1000 / clampFps(options.fps)
   const count = Math.max(0, options.frameCount)
 
   if (count === 0) {
     return {
       stop() {
-        lastFrameMs = 0
+        lastFrameMs = null
       },
     }
   }
 
   const tick = (now: number) => {
     rafId = requestAnimationFrame(tick)
-    if (document.hidden || !options.shouldTick()) return
-    if (now - lastFrameMs < frameMs) return
-    lastFrameMs = now
-    const index = options.getIndex()
+    if (document.hidden || !options.shouldTick()) {
+      lastFrameMs = null
+      return
+    }
+    if (lastFrameMs === null) lastFrameMs = now - frameMs
+    const elapsed = now - lastFrameMs
+    // Keep the deadline phase: 16.6/16.7ms rAF jitter must not turn 60fps into 30fps.
+    if (elapsed + 0.5 < frameMs) return
+    const steps = Math.max(1, Math.floor((elapsed + 0.5) / frameMs))
+    lastFrameMs += steps * frameMs
+    const next = options.getIndex() + steps - 1
+    const index = options.getLoop?.() === false ? Math.min(count - 1, next) : next % count
     options.onFrame(index)
     if (index >= count - 1 && options.getLoop?.() === false) {
       if (rafId) cancelAnimationFrame(rafId)
@@ -188,7 +196,7 @@ export function createPrerenderFrameLoop(options: {
         cancelAnimationFrame(rafId)
         rafId = 0
       }
-      lastFrameMs = 0
+      lastFrameMs = null
     },
   }
 }

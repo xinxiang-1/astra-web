@@ -1,0 +1,45 @@
+{
+  "browser": "154.0.4258.62",
+  "errors": [],
+  "samples": [
+    {
+      "label": "real image with wave and hover",
+      "presentedFrames": 56,
+      "presentP50Ms": 64.59999999403954,
+      "presentP95Ms": 120.59999999403954,
+      "rafP95Ms": 16.800000000000182,
+      "longFrames": 47
+    },
+    {
+      "label": "real uploaded GIF default low resolution",
+      "presentedFrames": 90,
+      "presentP50Ms": 39.5,
+      "presentP95Ms": 66,
+      "rafP95Ms": 16.80000000000109,
+      "longFrames": 22
+    },
+    {
+      "label": "real GIF predecoded 180 columns, selected 60fps, wave and hover",
+      "presentedFrames": 93,
+      "presentP50Ms": 34.599999994039536,
+      "presentP95Ms": 87.40000000596046,
+      "rafP95Ms": 16.80000000000291,
+      "longFrames": 20
+    }
+  ],
+  "passed": true,
+  "fullscreen": {
+    "areaGpu": true,
+    "themeToggle": true
+  },
+  "gifDefault": {
+    "columns": "80",
+    "quality": "faithful",
+    "backend": "area-gpu"
+  },
+  "predecodedHigh": {
+    "columns": "180",
+    "quality": "faithful",
+    "selectedFps": "60"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "jitterKeeps60Hz": true,
+  "mediaClockCatchup": true,
+  "hiddenResumeFreezes": true,
+  "finalFrameAndStop": true
+}

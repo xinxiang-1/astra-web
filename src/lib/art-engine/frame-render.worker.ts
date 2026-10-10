@@ -1,16 +1,31 @@
 /// <reference lib="webworker" />
 import { createCanvasArtRenderer } from './canvas'
+import { createAreaGlyphGpu } from './area-gpu'
 import type { ArtFrame, ArtGlyph } from './types'
 import type { FrameRenderRequest, FrameRenderResponse } from './frame-render-protocol'
 
 const surface = new OffscreenCanvas(1, 1)
 surface.getContext('2d', { willReadFrequently: false })
+let areaGpu: ReturnType<typeof createAreaGlyphGpu> = null
+let gpuAttempted = false
 // The shared renderer uses Canvas geometry/context APIs only, including on its glyph tiles.
 const renderer = createCanvasArtRenderer(surface as unknown as HTMLCanvasElement, {
   createSurface: () => new OffscreenCanvas(1, 1) as unknown as HTMLCanvasElement,
   maxTileEntries: 64,
+  rasterBatch: (...args) => {
+    if (args[1].glow !== false) return false
+    try {
+      return Boolean(areaGpu?.rasterBatch(...args))
+    } catch {
+      areaGpu?.destroy()
+      areaGpu = null
+      return false
+    }
+  },
 })
 let glyphs: ArtGlyph[] = []
+let sourceFrame: ArtFrame | null = null
+let frameRevision = 0
 self.onmessage = async (event: MessageEvent<FrameRenderRequest>) => {
   const request = event.data
   try {
@@ -21,9 +36,25 @@ self.onmessage = async (event: MessageEvent<FrameRenderRequest>) => {
         return { char: g.char, coverage: g.coverage, tile: tile as unknown as HTMLCanvasElement }
       })
     }
+    if (request.frame) {
+      if (request.frameRevision !== frameRevision + 1) throw new Error('字符画帧版本不连续')
+      sourceFrame = { ...request.frame, glyphs } as ArtFrame
+      frameRevision = request.frameRevision
+    }
+    if (!sourceFrame || request.frameRevision !== frameRevision)
+      throw new Error('字符画源帧不可用，请重新解析')
+    if (!gpuAttempted && sourceFrame.settings.softwareRaster && request.options.glow === false) {
+      gpuAttempted = true
+      try {
+        areaGpu = createAreaGlyphGpu(surface as unknown as HTMLCanvasElement, false)
+      } catch {
+        /* Preserve the full-quality CPU fallback. */
+      }
+    }
     const start = performance.now()
+    areaGpu?.reset()
     await renderer.renderResponsive(
-      { ...request.frame, glyphs } as ArtFrame,
+      sourceFrame,
       request.options,
       (completedCells, totalCells) => {
         const progress: FrameRenderResponse = { id: request.id, completedCells, totalCells }
@@ -35,16 +66,18 @@ self.onmessage = async (event: MessageEvent<FrameRenderRequest>) => {
         self.postMessage(response)
       },
     )
-    // Bound pending GPU work before reporting the actual cost to the playback clock.
-    surface.getContext('2d')!.getImageData(0, 0, 1, 1)
+    // Transfer GPU pixels directly; keep the 2D readback barrier for the CPU fallback.
+    // renderMs measures worker completion, not the browser's presented frame interval.
+    const accelerated = areaGpu?.bitmap()
+    if (!accelerated) surface.getContext('2d')!.getImageData(0, 0, 1, 1)
+    const bitmap = accelerated ?? surface.transferToImageBitmap()
     const renderMs = performance.now() - start
-    const bitmap = surface.transferToImageBitmap()
     const response: FrameRenderResponse = {
       id: request.id,
       bitmap,
       renderMs,
       interactionActive: renderer.interactionActive,
-      cacheStats: renderer.cacheStats,
+      cacheStats: { ...renderer.cacheStats, rasterGpu: areaGpu?.cacheStats },
     }
     self.postMessage(response, [bitmap])
   } catch (e) {

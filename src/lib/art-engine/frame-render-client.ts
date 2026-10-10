@@ -37,6 +37,8 @@ export function createFrameRenderWorker(
     busy = false,
     id = 0
   let atlas: ArtFrame['glyphs'] | null = null
+  let uploadedFrame: ArtFrame | null = null
+  let frameRevision = 0
   let queued: { frame: ArtFrame; options: ArtRenderOptions } | null = null
   let sentFrame: ArtFrame | null = null
   let sentOptions: ArtRenderOptions | null = null
@@ -54,6 +56,7 @@ export function createFrameRenderWorker(
     sentFrame = null
     sentOptions = null
     atlas = null
+    uploadedFrame = null
     previousClock = expectedInteractionSeconds = null
     worker.terminate()
     clearTimeout(watchdog)
@@ -69,7 +72,13 @@ export function createFrameRenderWorker(
     queued = null
     const { glyphs, ...frame } = next.frame
     try {
-      const request: FrameRenderRequest = { id: ++id, frame, options: next.options }
+      const changed = uploadedFrame !== next.frame
+      const request: FrameRenderRequest = {
+        id: ++id,
+        frameRevision: changed ? ++frameRevision : frameRevision,
+        frame: changed ? frame : undefined,
+        options: next.options,
+      }
       if (atlas !== glyphs) {
         request.glyphs = glyphs.map((g) => ({
           char: g.char,
@@ -97,6 +106,7 @@ export function createFrameRenderWorker(
           : null
       busy = true
       worker.postMessage(request)
+      uploadedFrame = next.frame
       watchdog = setTimeout(fail, 12000)
     } catch {
       fail()

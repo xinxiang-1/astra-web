@@ -1,0 +1,92 @@
+{
+  "passed": true,
+  "sourceManifest": [
+    {
+      "path": "src/lib/art-engine/area-gpu.ts",
+      "sha256": "9793993e0ed4fdd8035ddd734289ffb674841187919a06e355bc889d443032ea"
+    },
+    {
+      "path": "src/lib/art-engine/canvas.ts",
+      "sha256": "15d421a0faa133edac099846b52e03f06384c45ea8148bb115f73d6ff377157a"
+    },
+    {
+      "path": "src/lib/art-engine/types.ts",
+      "sha256": "f5120ccbb7e73093bab12ae20d798c303f0058eae320a6940b7e7a734d5eff8e"
+    },
+    {
+      "path": "src/lib/art-engine/frame-render-client.ts",
+      "sha256": "11427e1d95bf97213afb11c7617a644d0d642117d0251c5ab3c7a3592bc40fc3"
+    },
+    {
+      "path": "src/lib/art-engine/frame-render-protocol.ts",
+      "sha256": "92e227d71d22c10d7fbb82d4a61c0ade427509a52468aba8f8f18d3493b63ee1"
+    },
+    {
+      "path": "src/lib/art-engine/frame-render.worker.ts",
+      "sha256": "4fc103a369b7910ae479887adb693d11b77fb151ecd0f757b119fa8b2e2b70e8"
+    },
+    {
+      "path": "src/lib/art-engine/embed.ts",
+      "sha256": "e55f2db2aa2b70ebf455bee097bad2d510a6f20b25a8922c4fee40ec494c9bc9"
+    },
+    {
+      "path": "src/lib/ascii/playback.ts",
+      "sha256": "704d835dd1ec264c157fd4d49baea52f086d0dd92ef47fac6b4bbb94762ba006"
+    },
+    {
+      "path": "src/views/AsciiArtView.vue",
+      "sha256": "56869d551fd107393ebea4de04d76a1cd7612a5c889b779fa3c04dc6f2da345d"
+    },
+    {
+      "path": "scripts/area-gpu-contract.mjs",
+      "sha256": "07a6dae768f43a95fef5be6de6fb9271a24dfd42e6d0cc2927dd19425e45d690"
+    },
+    {
+      "path": "scripts/area-gpu-editor-live.mjs",
+      "sha256": "28528db53e6a915f668ce45ac3748bcf83a693aef15e2c4d6a274d8b61b8f43c"
+    },
+    {
+      "path": "scripts/prerender-clock-contract.mjs",
+      "sha256": "960b851b7951653f7878abe0c1fff0882716b50c8559486354153688d65f7ab8"
+    },
+    {
+      "path": "scripts/video-responsive-contract.mjs",
+      "sha256": "5d0da45d2b6bbde0c1cba485196dbf2db020b37d12246212a19130e9c2c42082"
+    },
+    {
+      "path": "package.json",
+      "sha256": "7f8315166e5933faae148d2df39a03e2fa76d34805cfd723762b025e4e34cb9b"
+    }
+  ],
+  "evidence": [
+    "area-filter-r2.json",
+    "worker-benchmark-r1.json",
+    "gpu-contract-r3.json",
+    "image-contract-r1.json",
+    "video-contract-r2.json",
+    "gif-resource-r1.json",
+    "clock-contract-r1.json",
+    "production-editor-r4.json"
+  ],
+  "build": "npm run build, exit0, area-gpu-build-r3.log",
+  "typeCheck": "exit0, area-gpu-types-r4.log",
+  "eslint": "exit0, area-gpu-lint-r4.log",
+  "scope": "Validated density/color faithful worker accelerator; not all-mode sustained 60fps",
+  "userMediaCommitted": false,
+  "modelCalls": 0,
+  "failuresRetainedLocally": [
+    "frame-residency-r1 cutoff during concurrent auth browsers",
+    "area GPU with glow: high color did not accelerate",
+    "video r1: obsolete implicit prerender UI assumption",
+    "editor r1: wrong wave button label",
+    "editor r2: waited for main canvas instead of new fullscreen canvas"
+  ],
+  "notVerified": [
+    "sustained high-resolution 60fps",
+    "classic/phrase GPU acceleration",
+    "10-minute endurance",
+    "physical mobile/other GPU",
+    "total driver/browser memory ceiling"
+  ],
+  "testEntryReview": "Removed personal temporary GIF default; explicit ASTRA_GIF_FIXTURE required. Browser interactions unchanged; node --check passed."
+}

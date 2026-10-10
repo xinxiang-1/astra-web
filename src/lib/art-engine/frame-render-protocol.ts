@@ -3,7 +3,9 @@ import type { ArtRendererCacheStats, ArtInteractionRenderProgress } from './canv
 
 export type FrameRenderRequest = {
   id: number
-  frame: Omit<ArtFrame, 'glyphs'>
+  /** Immutable source data is uploaded once; subsequent interaction frames reuse it. */
+  frameRevision: number
+  frame?: Omit<ArtFrame, 'glyphs'>
   glyphs?: { char: string; coverage: number; pixels: ImageData }[]
   options: ArtRenderOptions
 }

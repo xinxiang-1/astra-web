@@ -1,0 +1,503 @@
+{
+  "id": "area-gpu-20261010-r2",
+  "browser": "154.0.4258.62",
+  "engineCommit": "a66e729be58e25c7d27e60eee918b7a7f074417b",
+  "sourceId": "repository-portrait",
+  "sourceHash": "3b47141fc9fc62d760147df102c316b13d187709e3fbd8ca6fd724d7655562a2",
+  "seed": 42,
+  "font": "Microsoft YaHei",
+  "viewport": [
+    1440,
+    960
+  ],
+  "dpr": 1,
+  "evaluator": "area-integral-v1",
+  "scope": "Fixed geometry/pixel comparison and synchronized detached rendering. Not sustained screen FPS.",
+  "cases": [
+    {
+      "mode": "density",
+      "columns": 80,
+      "active": 10,
+      "parity": [
+        {
+          "frame": 0,
+          "mae": 0.025411723572530864,
+          "max": 255,
+          "changedChannels": 8725,
+          "totalChannels": 1658880
+        },
+        {
+          "frame": 1,
+          "mae": 0.07178337191358025,
+          "max": 2,
+          "changedChannels": 119076,
+          "totalChannels": 1658880
+        },
+        {
+          "frame": 2,
+          "mae": 0.07082911361882716,
+          "max": 2,
+          "changedChannels": 117495,
+          "totalChannels": 1658880
+        },
+        {
+          "frame": 3,
+          "mae": 0.07056628568672839,
+          "max": 2,
+          "changedChannels": 117059,
+          "totalChannels": 1658880
+        },
+        {
+          "frame": 4,
+          "mae": 0.0709376205632716,
+          "max": 2,
+          "changedChannels": 117672,
+          "totalChannels": 1658880
+        },
+        {
+          "frame": 5,
+          "mae": 0.070751953125,
+          "max": 2,
+          "changedChannels": 117367,
+          "totalChannels": 1658880
+        },
+        {
+          "frame": 6,
+          "mae": 0.07051384066358024,
+          "max": 2,
+          "changedChannels": 116967,
+          "totalChannels": 1658880
+        },
+        {
+          "frame": 7,
+          "mae": 0.07090687692901235,
+          "max": 2,
+          "changedChannels": 117620,
+          "totalChannels": 1658880
+        },
+        {
+          "frame": 8,
+          "mae": 0.06984833140432099,
+          "max": 2,
+          "changedChannels": 115864,
+          "totalChannels": 1658880
+        },
+        {
+          "frame": 9,
+          "mae": 0.06979648919753087,
+          "max": 2,
+          "changedChannels": 115781,
+          "totalChannels": 1658880
+        }
+      ],
+      "costs": [
+        {
+          "cpuMs": 75.59999999403954,
+          "gpuMs": 25.69999998807907
+        },
+        {
+          "cpuMs": 104.2000000178814,
+          "gpuMs": 36.39999997615814
+        },
+        {
+          "cpuMs": 67.5,
+          "gpuMs": 23
+        },
+        {
+          "cpuMs": 54.099999994039536,
+          "gpuMs": 13
+        },
+        {
+          "cpuMs": 40.20000001788139,
+          "gpuMs": 13
+        },
+        {
+          "cpuMs": 41.900000005960464,
+          "gpuMs": 12.599999994039536
+        },
+        {
+          "cpuMs": 39.69999998807907,
+          "gpuMs": 12.099999994039536
+        },
+        {
+          "cpuMs": 80.39999997615814,
+          "gpuMs": 19.200000017881393
+        },
+        {
+          "cpuMs": 67.80000001192093,
+          "gpuMs": 17.099999994039536
+        },
+        {
+          "cpuMs": 59.79999998211861,
+          "gpuMs": 16.80000001192093
+        }
+      ],
+      "cpuP95": 80.39999997615814,
+      "gpuP95": 23
+    },
+    {
+      "mode": "density",
+      "columns": 180,
+      "active": 10,
+      "parity": [
+        {
+          "frame": 0,
+          "mae": 0.13777006172839507,
+          "max": 255,
+          "changedChannels": 41542,
+          "totalChannels": 1658880
+        },
+        {
+          "frame": 1,
+          "mae": 0.10125385802469136,
+          "max": 2,
+          "changedChannels": 167943,
+          "totalChannels": 1658880
+        },
+        {
+          "frame": 2,
+          "mae": 0.10025981385030865,
+          "max": 2,
+          "changedChannels": 166306,
+          "totalChannels": 1658880
+        },
+        {
+          "frame": 3,
+          "mae": 0.10036771797839507,
+          "max": 2,
+          "changedChannels": 166486,
+          "totalChannels": 1658880
+        },
+        {
+          "frame": 4,
+          "mae": 0.10045994888117284,
+          "max": 2,
+          "changedChannels": 166635,
+          "totalChannels": 1658880
+        },
+        {
+          "frame": 5,
+          "mae": 0.10038097993827161,
+          "max": 2,
+          "changedChannels": 166501,
+          "totalChannels": 1658880
+        },
+        {
+          "frame": 6,
+          "mae": 0.10065104166666666,
+          "max": 2,
+          "changedChannels": 166943,
+          "totalChannels": 1658880
+        },
+        {
+          "frame": 7,
+          "mae": 0.09975827064043209,
+          "max": 2,
+          "changedChannels": 165465,
+          "totalChannels": 1658880
+        },
+        {
+          "frame": 8,
+          "mae": 0.09979564525462963,
+          "max": 2,
+          "changedChannels": 165522,
+          "totalChannels": 1658880
+        },
+        {
+          "frame": 9,
+          "mae": 0.0988208912037037,
+          "max": 2,
+          "changedChannels": 163913,
+          "totalChannels": 1658880
+        }
+      ],
+      "costs": [
+        {
+          "cpuMs": 201.39999997615814,
+          "gpuMs": 69.7000000178814
+        },
+        {
+          "cpuMs": 217.30000001192093,
+          "gpuMs": 85.69999998807907
+        },
+        {
+          "cpuMs": 219.69999998807907,
+          "gpuMs": 44.80000001192093
+        },
+        {
+          "cpuMs": 174.69999998807907,
+          "gpuMs": 36
+        },
+        {
+          "cpuMs": 144.80000001192093,
+          "gpuMs": 32.400000005960464
+        },
+        {
+          "cpuMs": 148.40000000596046,
+          "gpuMs": 36
+        },
+        {
+          "cpuMs": 146.09999999403954,
+          "gpuMs": 51.900000005960464
+        },
+        {
+          "cpuMs": 154.39999997615814,
+          "gpuMs": 33.60000002384186
+        },
+        {
+          "cpuMs": 159.5,
+          "gpuMs": 39.5
+        },
+        {
+          "cpuMs": 199.40000000596046,
+          "gpuMs": 84.2000000178814
+        }
+      ],
+      "cpuP95": 219.69999998807907,
+      "gpuP95": 84.2000000178814
+    },
+    {
+      "mode": "color",
+      "columns": 80,
+      "active": 10,
+      "parity": [
+        {
+          "frame": 0,
+          "mae": 0.023181303047839507,
+          "max": 255,
+          "changedChannels": 6610,
+          "totalChannels": 1658880
+        },
+        {
+          "frame": 1,
+          "mae": 0.062171465084876545,
+          "max": 2,
+          "changedChannels": 103132,
+          "totalChannels": 1658880
+        },
+        {
+          "frame": 2,
+          "mae": 0.06141673900462963,
+          "max": 2,
+          "changedChannels": 101882,
+          "totalChannels": 1658880
+        },
+        {
+          "frame": 3,
+          "mae": 0.060782576195987655,
+          "max": 2,
+          "changedChannels": 100830,
+          "totalChannels": 1658880
+        },
+        {
+          "frame": 4,
+          "mae": 0.06115752797067901,
+          "max": 2,
+          "changedChannels": 101449,
+          "totalChannels": 1658880
+        },
+        {
+          "frame": 5,
+          "mae": 0.06034372588734568,
+          "max": 2,
+          "changedChannels": 100098,
+          "totalChannels": 1658880
+        },
+        {
+          "frame": 6,
+          "mae": 0.05990849247685185,
+          "max": 2,
+          "changedChannels": 99378,
+          "totalChannels": 1658880
+        },
+        {
+          "frame": 7,
+          "mae": 0.05978431230709876,
+          "max": 2,
+          "changedChannels": 99171,
+          "totalChannels": 1658880
+        },
+        {
+          "frame": 8,
+          "mae": 0.05975055459104938,
+          "max": 2,
+          "changedChannels": 99114,
+          "totalChannels": 1658880
+        },
+        {
+          "frame": 9,
+          "mae": 0.059493754822530866,
+          "max": 2,
+          "changedChannels": 98692,
+          "totalChannels": 1658880
+        }
+      ],
+      "costs": [
+        {
+          "cpuMs": 216.09999999403954,
+          "gpuMs": 25.69999998807907
+        },
+        {
+          "cpuMs": 124.30000001192093,
+          "gpuMs": 60.39999997615814
+        },
+        {
+          "cpuMs": 160.59999999403954,
+          "gpuMs": 25.400000005960464
+        },
+        {
+          "cpuMs": 91.40000000596046,
+          "gpuMs": 20.900000005960464
+        },
+        {
+          "cpuMs": 160.09999999403954,
+          "gpuMs": 18.69999998807907
+        },
+        {
+          "cpuMs": 89.40000000596046,
+          "gpuMs": 18.80000001192093
+        },
+        {
+          "cpuMs": 85.90000000596046,
+          "gpuMs": 18.599999994039536
+        },
+        {
+          "cpuMs": 86.5,
+          "gpuMs": 19.900000005960464
+        },
+        {
+          "cpuMs": 78,
+          "gpuMs": 19.400000005960464
+        },
+        {
+          "cpuMs": 91.40000000596046,
+          "gpuMs": 21.5
+        }
+      ],
+      "cpuP95": 160.59999999403954,
+      "gpuP95": 25.400000005960464
+    },
+    {
+      "mode": "color",
+      "columns": 180,
+      "active": 10,
+      "parity": [
+        {
+          "frame": 0,
+          "mae": 0.14406647858796295,
+          "max": 255,
+          "changedChannels": 31608,
+          "totalChannels": 1658880
+        },
+        {
+          "frame": 1,
+          "mae": 0.09029887635030864,
+          "max": 2,
+          "changedChannels": 149782,
+          "totalChannels": 1658880
+        },
+        {
+          "frame": 2,
+          "mae": 0.0893259307484568,
+          "max": 2,
+          "changedChannels": 148161,
+          "totalChannels": 1658880
+        },
+        {
+          "frame": 3,
+          "mae": 0.08850248360339506,
+          "max": 2,
+          "changedChannels": 146804,
+          "totalChannels": 1658880
+        },
+        {
+          "frame": 4,
+          "mae": 0.08877133969907407,
+          "max": 2,
+          "changedChannels": 147236,
+          "totalChannels": 1658880
+        },
+        {
+          "frame": 5,
+          "mae": 0.08864233699845679,
+          "max": 2,
+          "changedChannels": 147034,
+          "totalChannels": 1658880
+        },
+        {
+          "frame": 6,
+          "mae": 0.08761996045524692,
+          "max": 2,
+          "changedChannels": 145336,
+          "totalChannels": 1658880
+        },
+        {
+          "frame": 7,
+          "mae": 0.08744574652777778,
+          "max": 2,
+          "changedChannels": 145049,
+          "totalChannels": 1658880
+        },
+        {
+          "frame": 8,
+          "mae": 0.08761996045524692,
+          "max": 2,
+          "changedChannels": 145337,
+          "totalChannels": 1658880
+        },
+        {
+          "frame": 9,
+          "mae": 0.08749457465277778,
+          "max": 2,
+          "changedChannels": 145123,
+          "totalChannels": 1658880
+        }
+      ],
+      "costs": [
+        {
+          "cpuMs": 182.90000000596046,
+          "gpuMs": 52.099999994039536
+        },
+        {
+          "cpuMs": 241.40000000596046,
+          "gpuMs": 99
+        },
+        {
+          "cpuMs": 219.90000000596046,
+          "gpuMs": 52.70000001788139
+        },
+        {
+          "cpuMs": 170.59999999403954,
+          "gpuMs": 43.400000005960464
+        },
+        {
+          "cpuMs": 175.60000002384186,
+          "gpuMs": 41.5
+        },
+        {
+          "cpuMs": 188.90000000596046,
+          "gpuMs": 41.599999994039536
+        },
+        {
+          "cpuMs": 169,
+          "gpuMs": 38.69999998807907
+        },
+        {
+          "cpuMs": 165.60000002384186,
+          "gpuMs": 41
+        },
+        {
+          "cpuMs": 170.59999999403954,
+          "gpuMs": 40.5
+        },
+        {
+          "cpuMs": 163.30000001192093,
+          "gpuMs": 37.5
+        }
+      ],
+      "cpuP95": 219.90000000596046,
+      "gpuP95": 52.70000001788139
+    }
+  ],
+  "passed": true
+}

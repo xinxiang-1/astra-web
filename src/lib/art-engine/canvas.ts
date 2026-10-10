@@ -2,6 +2,17 @@ import type { ArtFrame, ArtRenderOptions } from './types'
 
 /** Drawing-environment hooks; experimentalTrail is excluded from production and portable output. */
 export type CanvasArtPrototypeOptions = {
+  /** Optional area-integral accelerator; false retains the exact CPU fallback. */
+  rasterBatch?: (
+    frame: ArtFrame,
+    options: ArtRenderOptions,
+    width: number,
+    height: number,
+    prefixes: Map<number, Float32Array>,
+    commands: Float64Array,
+    count: number,
+  ) => boolean
+
   /** Supply compatible Canvas surfaces when drawing in an OffscreenCanvas worker. */
   createSurface?: () => HTMLCanvasElement
   /** Limit temporary color tiles for changing video frames; colors/geometry stay exact. */
@@ -421,6 +432,7 @@ export function createCanvasArtRenderer(
     maskBytes = 0
   let softwarePixels: Float32Array | null = null
   let softwareImage: ImageData | null = null
+  let softwareCommands = new Float64Array(0)
   let colorProbe: HTMLCanvasElement | null = null
   const styleColors = new Map<string, number[]>()
   let glowCanvas: HTMLCanvasElement | null = null
@@ -2263,17 +2275,89 @@ export function createCanvasArtRenderer(
     for (const index of usedGlyphs)
       if (frame.glyphs[index]!.coverage > 0.001 && !prefixOf(index)) return false
     const stripRows = Math.min(h, Math.max(1, Math.floor(softwareWorkingLimit / (w * 20))))
+    const background = options.transparent ? [0, 0, 0, 0] : styleColor(frame.settings.background)
+    const ink = styleColor(frame.settings.ink)
+    const colored = frame.settings.colored || frame.settings.mode === 'color'
+    const time = options.time ?? 0,
+      motion = options.motion ?? 'none'
+    // Keep native effects and summed-area glyph coverage; only pixel compositing moves to GPU.
+    if (
+      prototype.rasterBatch &&
+      options.glow === false &&
+      frame.indices.length * 9 * 8 <= 8 * 1024 * 1024
+    ) {
+      if (softwareCommands.length < frame.indices.length * 9)
+        softwareCommands = new Float64Array(frame.indices.length * 9)
+      const commands = softwareCommands
+      let commandCount = 0
+      for (let y = 0; y < frame.rows; y++)
+        for (let x = 0; x < frame.columns; x++) {
+          const cell = y * frame.columns + x,
+            alpha = frame.alpha[cell]!
+          let index = frame.indices[cell]!
+          if (!effect.expressive && (alpha < 0.005 || frame.glyphs[index]!.coverage < 0.001))
+            continue
+          let dx = 0,
+            dy = 0,
+            intensity = 1,
+            opacity = alpha,
+            size = 1
+          if (effect.expressive) {
+            const e = effect.cell(x, y, cw, ch, alpha)
+            dx = e.dx
+            dy = e.dy
+            intensity = e.intensity
+            opacity = e.opacity
+            index = e.glyph
+            size = e.size
+          } else {
+            if (motion === 'breathe')
+              intensity = 0.92 + Math.sin(time * 0.9 + x * 0.02 + y * 0.02) * 0.08
+            if (motion === 'wave') {
+              dx = Math.sin(y * 0.075 + time * 0.75) * cw * 0.18
+              dy = Math.cos(x * 0.055 + time * 0.6) * ch * 0.1
+            }
+            if (motion === 'assemble') {
+              const amount = Math.exp(-Math.max(0, time) * 1.4)
+              dx = Math.sin(cell * 12.9898) * cw * 12 * amount
+              dy = Math.cos(cell * 7.13) * ch * 10 * amount
+            }
+            if (options.pointer?.strength) {
+              const px = (x + 0.5) / frame.columns - options.pointer.x
+              const py = (y + 0.5) / frame.rows - options.pointer.y
+              const falloff = Math.exp(-(px * px + py * py) / 0.018) * options.pointer.strength
+              if (options.hover === 'light') opacity += (1 - alpha) * falloff * 0.28
+              else if (options.hover === 'ripple') {
+                const distance = Math.hypot(px, py),
+                  ripple = Math.sin(distance * 48 - time * 2.4) * falloff
+                dx += (px / Math.max(0.01, distance)) * cw * ripple * 0.14
+                dy += (py / Math.max(0.01, distance)) * ch * ripple * 0.14
+                opacity += (1 - alpha) * falloff * 0.18
+              } else {
+                dx += px * cw * 14 * falloff
+                dy += py * ch * 10 * falloff
+              }
+            }
+          }
+          if (opacity < 0.005 || frame.glyphs[index]!.coverage < 0.001) continue
+          const dw = cw * size,
+            dh = ch * size
+          const px = x * cw + dx + (cw - dw) * 0.5
+          const py = y * ch + dy + (ch - dh) * 0.5
+          const red = colored ? frame.colors[cell * 3]! / 255 : ink[0]!
+          const green = colored ? frame.colors[cell * 3 + 1]! / 255 : ink[1]!
+          const blue = colored ? frame.colors[cell * 3 + 2]! / 255 : ink[2]!
+          const multiplier = clamp(opacity * intensity * (colored ? 1 : ink[3]!), 0, 1)
+          commands.set([index, px, py, dw, dh, multiplier, red, green, blue], commandCount++ * 9)
+        }
+      if (prototype.rasterBatch(frame, options, w, h, prefixes, commands, commandCount)) return true
+    }
     if (!softwareImage || softwareImage.width !== w || softwareImage.height !== stripRows) {
       softwareImage = outputCtx.createImageData(w, stripRows)
       softwarePixels = new Float32Array(w * stripRows * 4)
     }
     const pixels = softwarePixels!,
       image = softwareImage!
-    const background = options.transparent ? [0, 0, 0, 0] : styleColor(frame.settings.background)
-    const ink = styleColor(frame.settings.ink)
-    const colored = frame.settings.colored || frame.settings.mode === 'color'
-    const time = options.time ?? 0,
-      motion = options.motion ?? 'none'
     for (let strip = 0; strip < h; strip += stripRows) {
       const activeRows = Math.min(stripRows, h - strip),
         count = w * activeRows * 4
@@ -2412,7 +2496,7 @@ export function createCanvasArtRenderer(
         (frame.settings.mode === 'density' && !frame.settings.colored)) &&
       renderSoftware(options, w, h, effect)
     ) {
-      renderGlow(effect, w, h)
+      if (options.glow !== false) renderGlow(effect, w, h)
       return { width: w, height: h, renderMs: performance.now() - start }
     }
     const quality =
@@ -2525,7 +2609,7 @@ export function createCanvasArtRenderer(
       if (options.transparent) outputCtx.clearRect(0, 0, w, h)
       outputCtx.drawImage(supersample!, 0, 0, w, h)
     }
-    renderGlow(effect, w, h)
+    if (options.glow !== false) renderGlow(effect, w, h)
     return { width: w, height: h, renderMs: performance.now() - start }
   }
 
@@ -2582,6 +2666,7 @@ export function createCanvasArtRenderer(
       softwareGlyphs = null
       softwarePixels = null
       softwareImage = null
+      softwareCommands = new Float64Array(0)
       interaction?.clear()
       interaction = null
       coverageGlyphs = null
@@ -2664,6 +2749,7 @@ export function createCanvasArtRenderer(
         softwareMaskEntries: softwareMasks.size,
         softwareWorkingBytes:
           (softwarePixels?.byteLength ?? 0) + (softwareImage?.data.byteLength ?? 0),
+        softwareCommandBytes: softwareCommands.byteLength,
         hits,
         misses,
       }
@@ -2671,4 +2757,14 @@ export function createCanvasArtRenderer(
   }
 }
 
-export type ArtRendererCacheStats = ReturnType<typeof createCanvasArtRenderer>['cacheStats']
+export type ArtRendererCacheStats = ReturnType<typeof createCanvasArtRenderer>['cacheStats'] & {
+  rasterGpu?: {
+    active: boolean
+    atlasBytes: number
+    instanceCpuBytes: number
+    instanceBufferBytes: number
+    framebufferBytes: number
+    atlasLimit: number
+    framebufferLimit: number
+  }
+}

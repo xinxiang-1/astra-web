@@ -1,5 +1,7 @@
 # 动态字符画：预解析、GPU 绘制与资源预算
 
+接续正式实施见[还原品质 GPU 与播放时钟](./area-gpu-preview-2026-10-10.md)：密度/原色还原栅格已接 Worker GPU，修复同源帧重复复制、编辑器隐藏光层及30fps调度限制。本文保留先前经典GPU原型与路线的冻结记录；全品质/4K持续60fps仍未验收。
+
 ## 本阶段结论
 
 目标是用户可以等待预解析，完成后保持选定画质，播放、环境动效和悬停交互流畅。当前完成了绘制瓶颈确认与隔离 GPU 原型；没有完成全品质、高清或 4K 持续 60fps 的正式接入。
@@ -47,6 +49,6 @@ node sandbox/ascii-optimizer/scripts/video-gpu-feasibility.mjs
 
 认证、验证码、价格、付费权益、素材访问权限和付费渲染额度由后端判断。本地采样与 GPU 绘制处理用户素材，不签发权限或模拟业务成功。若后续确有云端渲染需求，再由后端创建有幂等键的任务、校验身份/归属/额度、限制并发并排队，支持取消、失败重试、结果授权下载和过期清理；浏览器只展示服务器任务状态。
 
-目前不新增云队列、Docker 集群或收费服务，不自动上传用户媒体。本地主库尚缺 commerce 表及 auth_version，已有 health UP 和 MCP 连接不能证明完整商业后端可用；迁移遵守兄弟后端仓库的受控建库脚本。验证码的模拟发送已关闭，参考[渠道修复](./auth-channel-authority-2026-10-10.md)。
+目前不新增云队列、Docker 集群或收费服务，不自动上传用户媒体。本地主库的 auth_version 已由后端受控备份修复，commerce 表仍缺；已有 health UP 和 MCP 连接不能证明完整商业后端可用。迁移遵守兄弟后端仓库的受控建库脚本，参考[申请部署手册](https://github.com/xinxiang-1/astra-cloud/blob/main/docs/deployment/user-setup-guide.md)。验证码的模拟发送已关闭，参考[渠道修复](./auth-channel-authority-2026-10-10.md)。
 
 本阶段关联的[GIF 与缓存修复](./gif-preview-resource-2026-10-10.md)已经正式提交；探索页自然滚动、全屏居中及主题切换均在该阶段完成。本 GPU 候选仍处于 sandbox，尚未替换正式渲染器。

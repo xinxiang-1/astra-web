@@ -395,8 +395,7 @@ const hasVideo = computed(() => mediaKind.value === 'video')
 const artQualityAvailable = computed(
   () =>
     editorEngine.value === 'calibrated' &&
-    (artMode.value === 'color' || (artMode.value === 'density' && !phraseColor.value)) &&
-    !hasVideo.value,
+    (artMode.value === 'color' || (artMode.value === 'density' && !phraseColor.value)),
 )
 
 /** Realtime playback uses a lighter column cap; prerender / pause use full clarity. */
@@ -715,7 +714,7 @@ const selectedArtRecipe = computed(() =>
   ),
 )
 
-function calibratedSettings(cols = columns.value, kind = mediaKind.value): ArtSettings {
+function calibratedSettings(cols = columns.value): ArtSettings {
   return {
     mode: artMode.value,
     columns: cols,
@@ -733,8 +732,7 @@ function calibratedSettings(cols = columns.value, kind = mediaKind.value): ArtSe
     fontFamily: previewFontFamily.value,
     charAspect: previewAspect.value,
     ditherStrength: ditherStrength.value,
-    ...(kind !== 'video' &&
-    (artMode.value === 'color' || (artMode.value === 'density' && !phraseColor.value)) &&
+    ...((artMode.value === 'color' || (artMode.value === 'density' && !phraseColor.value)) &&
     artQuality.value !== 'classic'
       ? artQuality.value === 'faithful'
         ? { fontWeight: 600 as const, softwareRaster: true, colorFidelity: true }
@@ -865,9 +863,12 @@ function queueCalibratedAnimation() {
       queueCalibratedAnimation()
       return
     }
+    const accelerated = (fullscreen.value ? fullscreenCanvas.value : previewCanvas.value)
+      ?.dataset.rasterBackend === 'area-gpu'
+    const frameInterval = accelerated ? 1000 / 60 : 1000 / 30
     if (
       artLastTick &&
-      now - artLastTick < Math.max(1000 / 30, lastPaintMs * 2, freshInput ? 0 : videoRenderBudget())
+      now - artLastTick + 0.5 < Math.max(frameInterval, lastPaintMs * 2, freshInput ? 0 : videoRenderBudget())
     ) {
       queueCalibratedAnimation()
       return
@@ -1296,7 +1297,7 @@ function convertFrame(
             frame.source,
             frame.width,
             frame.height,
-            calibratedSettings(cols, options?.sourceKind ?? mediaKind.value),
+            calibratedSettings(cols),
           )
           return { art, text: art.text, colors: art.colors, columns: art.columns, rows: art.rows }
         })()
@@ -1816,7 +1817,7 @@ async function loadFile(file: File | undefined) {
             candidate.frame.source,
             candidate.frame.width,
             candidate.frame.height,
-            calibratedSettings(candidateColumns, candidate.kind),
+            calibratedSettings(candidateColumns),
             {
               shouldAbort: () =>
                 controller.signal.aborted || viewDisposed || generation !== sourceLoadGeneration,
@@ -2054,6 +2055,7 @@ async function downloadVideo() {
   const capturedSettings = calibratedSettings(columns.value)
   const capturedMotion = artMotion.value
   const capturedEffects = {
+    glow: false,
     effectProfile: artEffectProfile.value,
     hover: artHover.value === 'none' ? ('light' as const) : artHover.value,
     hoverStrength: hoverStrength.value,
@@ -2176,6 +2178,7 @@ async function downloadLiveHtml() {
         embeddedSource = { kind: 'video', dataUrl, start: clipStart.value, end: clipEnd.value, loop: videoLoopEnabled.value }
       }
       const html = artworkEmbedPage(frame, {
+        glow: false,
         title: projectTitle.value,
         motion: artMotion.value,
         hover: artHover.value,
@@ -2464,6 +2467,7 @@ function paintTo(
         reducedArtMotion.value || downloading.value ? 0 : artPointer.strength * hoverStrength.value,
     }
     const renderOptions: ArtRenderOptions = {
+      glow: false,
       longEdge: Math.max(cssWidth, cssHeight) * Math.min(2, devicePixelRatio || 1),
       motion: reducedArtMotion.value ? 'none' : artMotion.value,
       time: artElapsed,
@@ -2642,6 +2646,8 @@ function markArtCanvas(
         : 'classic'
   canvas.dataset.time = String(options.time ?? 0)
   canvas.dataset.motionStyle = options.motionStyle ?? 'studio'
+  canvas.dataset.glow = String(options.glow !== false)
+  canvas.dataset.rasterBackend = stats.rasterGpu?.active ? 'area-gpu' : 'canvas'
   canvas.dataset.interactionTime = String(options.hoverTime ?? options.time ?? 0)
   canvas.dataset.pointerStrength = String(options.pointer?.strength ?? 0)
   canvas.dataset.interactionActive = String(interactionActive)
@@ -3858,9 +3864,9 @@ onBeforeUnmount(() => {
             {{
               artQualityAvailable
                 ? artMode === 'color'
-                  ? '还原保留色彩与明暗层次，适用于图片创作。'
+                  ? '还原保留色彩与明暗层次，动图与视频也可使用。'
                   : '精细强化纹理，柔和减轻锯齿，还原保留明暗层次。'
-                : '品质增强适用于光影字符的单色图片和原色字符图片。'
+                : '品质增强适用于单色光影字符和原色字符。'
             }}
           </p>
         </section>
