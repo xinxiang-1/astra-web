@@ -1,0 +1,41 @@
+{
+  "passed": true,
+  "scope": "Controlled failures of actual auth store; no real recipients or OTPs",
+  "records": [
+    {
+      "kind": "offline",
+      "sms": false,
+      "email": false,
+      "message": "Failed to fetch",
+      "pending": false
+    },
+    {
+      "kind": "503",
+      "sms": false,
+      "email": false,
+      "message": "渠道不可用",
+      "pending": false
+    },
+    {
+      "kind": "502-html",
+      "sms": false,
+      "email": false,
+      "message": "请求失败(502)",
+      "pending": false
+    },
+    {
+      "kind": "bad-200",
+      "sms": false,
+      "email": false,
+      "message": "请求失败(200)",
+      "pending": false
+    },
+    {
+      "kind": "smtp-rejected",
+      "sms": false,
+      "email": false,
+      "message": "渠道不可用",
+      "pending": false
+    }
+  ]
+}
