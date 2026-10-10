@@ -1,0 +1,15 @@
+{
+  "dataset_version": "video-gpu-single-portrait-dev-v1",
+  "scope": "One existing development fixture; no held-out quality or device-generalization claim",
+  "fixtures": [
+    {
+      "id": "repository-portrait-001",
+      "source_id": "repository-portrait-original-001",
+      "path": "public/artwork/portrait.jpg",
+      "sha256": "3b47141fc9fc62d760147df102c316b13d187709e3fbd8ca6fd724d7655562a2",
+      "split": "dev",
+      "tags": ["portrait", "static-renderer-feasibility"],
+      "license": "Existing repository fixture used locally; no external redistribution rights asserted"
+    }
+  ]
+}

@@ -1,0 +1,393 @@
+{
+  "experimentId": "video-gpu-20261010-r3",
+  "engineCommit": "68b915b8be0b56349d028282580188e8a3ab890d",
+  "frozenCanvasHash": "ef913a0e8a82da6e0562c325ea8ad57f935c2696e818e3822809a1d238a17087",
+  "candidateCanvasHash": "45ce3c0879e2de8b289af7cacc1e0d32ff155a4a55e31936618a320cd03a3d4d",
+  "inputHash": "3b47141fc9fc62d760147df102c316b13d187709e3fbd8ca6fd724d7655562a2",
+  "dataset": "Single repository portrait feasibility probe; no train/holdout claims",
+  "evaluatorVersion": "native-glyph-batch-v1",
+  "seed": 42,
+  "budget": "18 paths, 4 warmup + 10 samples; no paid judge; no production renderer promotion",
+  "browser": "154.0.4258.62",
+  "scope": "Detached renderer including GPU finish; excludes browser presentation, live decode and multi-device 60fps certification",
+  "records": [
+    {
+      "mode": "density",
+      "columns": 80,
+      "edge": 720,
+      "path": "canvas2d",
+      "preparedMs": 40.20000001788139,
+      "costs": [
+        171.69999998807907
+      ],
+      "p50Ms": 171.69999998807907,
+      "p95Ms": 171.69999998807907,
+      "frameBudgetPassed": false,
+      "field": [],
+      "stoppedEarly": true,
+      "artifact": "0-density-80-canvas2d.png",
+      "artifactHash": "e7388a5723b6108c72947a3363b030a1db7e42c96afeddaccbcbefcf32713d9f"
+    },
+    {
+      "mode": "density",
+      "columns": 80,
+      "edge": 720,
+      "path": "native-geometry-gpu-batch",
+      "preparedMs": 40.20000001788139,
+      "costs": [
+        8.5,
+        8.599999994039536,
+        8.899999976158142,
+        9.099999994039536,
+        8.5,
+        9,
+        8.400000005960464,
+        9.900000005960464,
+        9.699999988079071,
+        9.400000005960464
+      ],
+      "p50Ms": 8.899999976158142,
+      "p95Ms": 9.900000005960464,
+      "frameBudgetPassed": true,
+      "field": [],
+      "stoppedEarly": false,
+      "artifact": "1-density-80-native-geometry-gpu-batch.png",
+      "artifactHash": "833798ce4da09b3949ea73012af4879d5efec50147d988c2711ef0d764261da6"
+    },
+    {
+      "mode": "density",
+      "columns": 180,
+      "edge": 1920,
+      "path": "canvas2d",
+      "preparedMs": 40.20000001788139,
+      "costs": [
+        369.40000000596046
+      ],
+      "p50Ms": 369.40000000596046,
+      "p95Ms": 369.40000000596046,
+      "frameBudgetPassed": false,
+      "field": [],
+      "stoppedEarly": true,
+      "artifact": "2-density-180-canvas2d.png",
+      "artifactHash": "6083d8ed8c394ba639a75e551f0466ed9e366c33f59420a669ba9cfdd2fc86f9"
+    },
+    {
+      "mode": "density",
+      "columns": 180,
+      "edge": 1920,
+      "path": "native-geometry-gpu-batch",
+      "preparedMs": 40.20000001788139,
+      "costs": [
+        22.700000017881393,
+        23.599999994039536,
+        21.299999982118607,
+        22.200000017881393,
+        22.399999976158142,
+        23.5,
+        21.100000023841858,
+        23,
+        21.799999982118607,
+        21.099999994039536
+      ],
+      "p50Ms": 22.200000017881393,
+      "p95Ms": 23.599999994039536,
+      "frameBudgetPassed": false,
+      "field": [],
+      "stoppedEarly": false,
+      "artifact": "3-density-180-native-geometry-gpu-batch.png",
+      "artifactHash": "f28f60ca8aa72600d6c0dd3510ae704e78b75f9baa0e16b971f6167d112d9c17"
+    },
+    {
+      "mode": "density",
+      "columns": 400,
+      "edge": 3840,
+      "path": "canvas2d",
+      "preparedMs": 146.80000001192093,
+      "costs": [
+        1431.5
+      ],
+      "p50Ms": 1431.5,
+      "p95Ms": 1431.5,
+      "frameBudgetPassed": false,
+      "field": [],
+      "stoppedEarly": true,
+      "artifact": "4-density-400-canvas2d.png",
+      "artifactHash": "152cb2321d8adf46c51ccf9f8d4f200362fb5ebef890e2d3506e6fa8d9f2f3ac"
+    },
+    {
+      "mode": "density",
+      "columns": 400,
+      "edge": 3840,
+      "path": "native-geometry-gpu-batch",
+      "preparedMs": 146.80000001192093,
+      "costs": [
+        73.59999999403954,
+        73.59999999403954,
+        73.7999999821186,
+        77.2999999821186,
+        76.2999999821186,
+        76.90000000596046,
+        78.09999999403954,
+        74.7000000178814,
+        76.90000000596046,
+        78.40000000596046
+      ],
+      "p50Ms": 76.2999999821186,
+      "p95Ms": 78.40000000596046,
+      "frameBudgetPassed": false,
+      "field": [],
+      "stoppedEarly": false,
+      "artifact": "5-density-400-native-geometry-gpu-batch.png",
+      "artifactHash": "b8e0f1749e95e791a8d81f824107add924cb5bba31012e7d7ebaf0c9047c3e31"
+    },
+    {
+      "mode": "color",
+      "columns": 80,
+      "edge": 720,
+      "path": "canvas2d",
+      "preparedMs": 12.100000023841858,
+      "costs": [
+        2328.699999988079
+      ],
+      "p50Ms": 2328.699999988079,
+      "p95Ms": 2328.699999988079,
+      "frameBudgetPassed": false,
+      "field": [],
+      "stoppedEarly": true,
+      "artifact": "6-color-80-canvas2d.png",
+      "artifactHash": "7547b0462dad43b34a43b180be77d0ae226114d01ff2864bf8c3fb275fba8cca"
+    },
+    {
+      "mode": "color",
+      "columns": 80,
+      "edge": 720,
+      "path": "native-geometry-gpu-batch",
+      "preparedMs": 12.100000023841858,
+      "costs": [
+        25.30000001192093,
+        12.099999994039536,
+        14.699999988079071,
+        13.200000017881393,
+        13.800000011920929,
+        11.400000005960464,
+        12.200000017881393,
+        14.599999994039536,
+        12.200000017881393,
+        12.300000011920929
+      ],
+      "p50Ms": 12.300000011920929,
+      "p95Ms": 25.30000001192093,
+      "frameBudgetPassed": false,
+      "field": [],
+      "stoppedEarly": false,
+      "artifact": "7-color-80-native-geometry-gpu-batch.png",
+      "artifactHash": "e6d0d0586e853ba6a41263c44b0115cb7c23d2c40d608b65268073c43030f9c4"
+    },
+    {
+      "mode": "color",
+      "columns": 180,
+      "edge": 1920,
+      "path": "canvas2d",
+      "preparedMs": 29.900000005960464,
+      "costs": [
+        6312.300000011921
+      ],
+      "p50Ms": 6312.300000011921,
+      "p95Ms": 6312.300000011921,
+      "frameBudgetPassed": false,
+      "field": [],
+      "stoppedEarly": true,
+      "artifact": "8-color-180-canvas2d.png",
+      "artifactHash": "38e15b10d3c75dc0033af10f9209c2d4c30cc885550a8137aeb00f34b894115d"
+    },
+    {
+      "mode": "color",
+      "columns": 180,
+      "edge": 1920,
+      "path": "native-geometry-gpu-batch",
+      "preparedMs": 29.900000005960464,
+      "costs": [
+        36.5,
+        34.19999998807907,
+        33.39999997615814,
+        42.69999998807907,
+        39,
+        35.599999994039536,
+        32.5,
+        34.79999998211861,
+        34.30000001192093,
+        35.19999998807907
+      ],
+      "p50Ms": 34.79999998211861,
+      "p95Ms": 42.69999998807907,
+      "frameBudgetPassed": false,
+      "field": [],
+      "stoppedEarly": false,
+      "artifact": "9-color-180-native-geometry-gpu-batch.png",
+      "artifactHash": "957a64bd29da994675175cd14d548e333cc293830bb4a9f52148b094f9e29fa2"
+    },
+    {
+      "mode": "color",
+      "columns": 400,
+      "edge": 3840,
+      "path": "canvas2d",
+      "preparedMs": 87.2000000178814,
+      "costs": [
+        18459
+      ],
+      "p50Ms": 18459,
+      "p95Ms": 18459,
+      "frameBudgetPassed": false,
+      "field": [],
+      "stoppedEarly": true,
+      "artifact": "10-color-400-canvas2d.png",
+      "artifactHash": "f8440982b71f2016a7a5debb0913a0c57f62e9c1b04036dd9acece5301534421"
+    },
+    {
+      "mode": "color",
+      "columns": 400,
+      "edge": 3840,
+      "path": "native-geometry-gpu-batch",
+      "preparedMs": 87.2000000178814,
+      "costs": [
+        312.7999999821186
+      ],
+      "p50Ms": 312.7999999821186,
+      "p95Ms": 312.7999999821186,
+      "frameBudgetPassed": false,
+      "field": [],
+      "stoppedEarly": true,
+      "artifact": "11-color-400-native-geometry-gpu-batch.png",
+      "artifactHash": "2352079810c48deb1a54f2fdde1c5ff18f3898d500fbf854b77161a2a5ee59a7"
+    },
+    {
+      "mode": "phrase",
+      "columns": 80,
+      "edge": 720,
+      "path": "canvas2d",
+      "preparedMs": 11.5,
+      "costs": [
+        217.59999999403954
+      ],
+      "p50Ms": 217.59999999403954,
+      "p95Ms": 217.59999999403954,
+      "frameBudgetPassed": false,
+      "field": [],
+      "stoppedEarly": true,
+      "artifact": "12-phrase-80-canvas2d.png",
+      "artifactHash": "8afa980fbb90f24a0c756e2ff3acfe1aa07e1b6f367006ae28e87608a57f1078"
+    },
+    {
+      "mode": "phrase",
+      "columns": 80,
+      "edge": 720,
+      "path": "native-geometry-gpu-batch",
+      "preparedMs": 11.5,
+      "costs": [
+        9,
+        8.900000005960464,
+        8.100000023841858,
+        8.099999994039536,
+        7.699999988079071,
+        9.099999994039536,
+        9.299999982118607,
+        9.099999994039536,
+        8.899999976158142,
+        8.699999988079071
+      ],
+      "p50Ms": 8.899999976158142,
+      "p95Ms": 9.299999982118607,
+      "frameBudgetPassed": true,
+      "field": [],
+      "stoppedEarly": false,
+      "artifact": "13-phrase-80-native-geometry-gpu-batch.png",
+      "artifactHash": "dca683aec5f36eb3f97e89af6bb0b3f9f7d88f0f3479a14f212c223df3d2b8f7"
+    },
+    {
+      "mode": "phrase",
+      "columns": 180,
+      "edge": 1920,
+      "path": "canvas2d",
+      "preparedMs": 26.400000005960464,
+      "costs": [
+        1052.7999999821186
+      ],
+      "p50Ms": 1052.7999999821186,
+      "p95Ms": 1052.7999999821186,
+      "frameBudgetPassed": false,
+      "field": [],
+      "stoppedEarly": true,
+      "artifact": "14-phrase-180-canvas2d.png",
+      "artifactHash": "2c92c86b9784f1b2ef08e15da03be36a4741a5bfe032e077e0310d5d23629fdc"
+    },
+    {
+      "mode": "phrase",
+      "columns": 180,
+      "edge": 1920,
+      "path": "native-geometry-gpu-batch",
+      "preparedMs": 26.400000005960464,
+      "costs": [
+        19.900000005960464,
+        19.400000005960464,
+        18.599999994039536,
+        29.399999976158142,
+        18.69999998807907,
+        17.69999998807907,
+        17.5,
+        17.700000017881393,
+        17.400000005960464,
+        17.80000001192093
+      ],
+      "p50Ms": 17.80000001192093,
+      "p95Ms": 29.399999976158142,
+      "frameBudgetPassed": false,
+      "field": [],
+      "stoppedEarly": false,
+      "artifact": "15-phrase-180-native-geometry-gpu-batch.png",
+      "artifactHash": "89b301314e66eac72803132fe5bb268e11ec8475184424387e4a17d8ea326ca2"
+    },
+    {
+      "mode": "phrase",
+      "columns": 400,
+      "edge": 3840,
+      "path": "canvas2d",
+      "preparedMs": 70.19999998807907,
+      "costs": [
+        4600.699999988079
+      ],
+      "p50Ms": 4600.699999988079,
+      "p95Ms": 4600.699999988079,
+      "frameBudgetPassed": false,
+      "field": [],
+      "stoppedEarly": true,
+      "artifact": "16-phrase-400-canvas2d.png",
+      "artifactHash": "d6559fd60c30412977535dfb78f5a6459cb0335789326f8b08123995c879ebf8"
+    },
+    {
+      "mode": "phrase",
+      "columns": 400,
+      "edge": 3840,
+      "path": "native-geometry-gpu-batch",
+      "preparedMs": 70.19999998807907,
+      "costs": [
+        112.5
+      ],
+      "p50Ms": 112.5,
+      "p95Ms": 112.5,
+      "frameBudgetPassed": false,
+      "field": [],
+      "stoppedEarly": true,
+      "artifact": "17-phrase-400-native-geometry-gpu-batch.png",
+      "artifactHash": "1f557cf41149228551add3492980811ef3da3c4fed33a1e0a9ba6f9285b1f1d7"
+    }
+  ],
+  "device": "ANGLE (Intel, Intel(R) UHD Graphics 770 (0x00004680) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+  "hardwareConcurrency": 20,
+  "deviceMemoryGiB": 32,
+  "dpr": 1,
+  "font": "Microsoft YaHei",
+  "viewport": [
+    1440,
+    960
+  ]
+}
