@@ -1,0 +1,265 @@
+{
+  "passed": true,
+  "base": "http://127.0.0.1:4210",
+  "records": [
+    {
+      "channel": "msedge",
+      "viewport": {
+        "width": 1440,
+        "height": 700
+      },
+      "theme": "light",
+      "entrance": "homepage",
+      "ignoredHasRules": 0,
+      "before": {
+        "height": 1136,
+        "viewport": 700,
+        "headers": 1,
+        "mains": 1,
+        "bodyOverflow": "auto",
+        "horizontalOverflow": false,
+        "theme": "light"
+      },
+      "input": "mouse wheel over canvas",
+      "gestureScrollY": 436,
+      "keyboardScrollY": 138,
+      "bottom": {
+        "scrollY": 522,
+        "viewport": 700,
+        "noteBottom": 428.1875,
+        "bodyOverflow": "auto"
+      },
+      "returnScrollY": 105,
+      "modes": 6,
+      "pageErrors": 0,
+      "screenshot": "msedge-1440-light.png"
+    },
+    {
+      "channel": "msedge",
+      "viewport": {
+        "width": 1440,
+        "height": 700
+      },
+      "theme": "dark",
+      "entrance": "direct",
+      "ignoredHasRules": 0,
+      "before": {
+        "height": 1136,
+        "viewport": 700,
+        "headers": 1,
+        "mains": 1,
+        "bodyOverflow": "auto",
+        "horizontalOverflow": false,
+        "theme": "dark"
+      },
+      "input": "mouse wheel over canvas",
+      "gestureScrollY": 436,
+      "keyboardScrollY": 114,
+      "bottom": {
+        "scrollY": 522,
+        "viewport": 700,
+        "noteBottom": 428.1875,
+        "bodyOverflow": "auto"
+      },
+      "returnScrollY": 140,
+      "modes": 6,
+      "pageErrors": 0,
+      "screenshot": "msedge-1440-dark.png"
+    },
+    {
+      "channel": "msedge",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "theme": "light",
+      "entrance": "homepage",
+      "ignoredHasRules": 0,
+      "before": {
+        "height": 1653,
+        "viewport": 844,
+        "headers": 1,
+        "mains": 1,
+        "bodyOverflow": "auto",
+        "horizontalOverflow": false,
+        "theme": "light"
+      },
+      "input": "Chromium dispatched touch swipe over canvas",
+      "gestureScrollY": 404,
+      "keyboardScrollY": 123,
+      "bottom": {
+        "scrollY": 696,
+        "viewport": 844,
+        "noteBottom": 286.5625,
+        "bodyOverflow": "auto"
+      },
+      "returnScrollY": 178,
+      "modes": 6,
+      "pageErrors": 0,
+      "screenshot": "msedge-390-light.png"
+    },
+    {
+      "channel": "msedge",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "theme": "dark",
+      "entrance": "direct",
+      "ignoredHasRules": 0,
+      "before": {
+        "height": 1653,
+        "viewport": 844,
+        "headers": 1,
+        "mains": 1,
+        "bodyOverflow": "auto",
+        "horizontalOverflow": false,
+        "theme": "dark"
+      },
+      "input": "Chromium dispatched touch swipe over canvas",
+      "gestureScrollY": 398,
+      "keyboardScrollY": 167,
+      "bottom": {
+        "scrollY": 696,
+        "viewport": 844,
+        "noteBottom": 286.5625,
+        "bodyOverflow": "auto"
+      },
+      "returnScrollY": 138,
+      "modes": 6,
+      "pageErrors": 0,
+      "screenshot": "msedge-390-dark.png"
+    },
+    {
+      "channel": "chrome",
+      "viewport": {
+        "width": 1440,
+        "height": 700
+      },
+      "theme": "light",
+      "entrance": "homepage",
+      "ignoredHasRules": 0,
+      "before": {
+        "height": 1136,
+        "viewport": 700,
+        "headers": 1,
+        "mains": 1,
+        "bodyOverflow": "auto",
+        "horizontalOverflow": false,
+        "theme": "light"
+      },
+      "input": "mouse wheel over canvas",
+      "gestureScrollY": 436,
+      "keyboardScrollY": 152,
+      "bottom": {
+        "scrollY": 522,
+        "viewport": 700,
+        "noteBottom": 428.1875,
+        "bodyOverflow": "auto"
+      },
+      "returnScrollY": 159,
+      "modes": 6,
+      "pageErrors": 0,
+      "screenshot": "chrome-1440-light.png"
+    },
+    {
+      "channel": "chrome",
+      "viewport": {
+        "width": 1440,
+        "height": 700
+      },
+      "theme": "dark",
+      "entrance": "direct",
+      "ignoredHasRules": 0,
+      "before": {
+        "height": 1136,
+        "viewport": 700,
+        "headers": 1,
+        "mains": 1,
+        "bodyOverflow": "auto",
+        "horizontalOverflow": false,
+        "theme": "dark"
+      },
+      "input": "mouse wheel over canvas",
+      "gestureScrollY": 436,
+      "keyboardScrollY": 112,
+      "bottom": {
+        "scrollY": 522,
+        "viewport": 700,
+        "noteBottom": 428.1875,
+        "bodyOverflow": "auto"
+      },
+      "returnScrollY": 120,
+      "modes": 6,
+      "pageErrors": 0,
+      "screenshot": "chrome-1440-dark.png"
+    },
+    {
+      "channel": "chrome",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "theme": "light",
+      "entrance": "homepage",
+      "ignoredHasRules": 0,
+      "before": {
+        "height": 1653,
+        "viewport": 844,
+        "headers": 1,
+        "mains": 1,
+        "bodyOverflow": "auto",
+        "horizontalOverflow": false,
+        "theme": "light"
+      },
+      "input": "Chromium dispatched touch swipe over canvas",
+      "gestureScrollY": 385,
+      "keyboardScrollY": 197,
+      "bottom": {
+        "scrollY": 696,
+        "viewport": 844,
+        "noteBottom": 286.5625,
+        "bodyOverflow": "auto"
+      },
+      "returnScrollY": 186,
+      "modes": 6,
+      "pageErrors": 0,
+      "screenshot": "chrome-390-light.png"
+    },
+    {
+      "channel": "chrome",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "theme": "dark",
+      "entrance": "direct",
+      "ignoredHasRules": 0,
+      "before": {
+        "height": 1653,
+        "viewport": 844,
+        "headers": 1,
+        "mains": 1,
+        "bodyOverflow": "auto",
+        "horizontalOverflow": false,
+        "theme": "dark"
+      },
+      "input": "Chromium dispatched touch swipe over canvas",
+      "gestureScrollY": 385,
+      "keyboardScrollY": 183,
+      "bottom": {
+        "scrollY": 696,
+        "viewport": 844,
+        "noteBottom": 286.5625,
+        "bodyOverflow": "auto"
+      },
+      "returnScrollY": 121,
+      "modes": 6,
+      "pageErrors": 0,
+      "screenshot": "chrome-390-dark.png"
+    }
+  ],
+  "limitations": [
+    "Touch was dispatched through Chromium CDP; physical devices and Safari were not tested."
+  ]
+}

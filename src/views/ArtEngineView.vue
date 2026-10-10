@@ -129,19 +129,19 @@ onBeforeUnmount(() => {
         <label class="engine-field">环境动效<select v-model="motion"><option value="none">静态</option><option value="breathe">光息</option><option value="wave">流动</option><option value="assemble">聚合入场</option></select></label>
         <p class="engine-note">移动指针可扰动字符。系统减少动效时自动静止。</p>
       </aside>
-      <main class="engine-workspace">
+      <section class="engine-workspace" :aria-label="`${currentMode.name}工作区`">
         <div class="engine-toolbar"><span>{{ currentMode.name }}</span><button @click="running = !running">{{ running ? '暂停动效' : '继续动效' }}</button></div>
         <div class="engine-canvas"><canvas ref="canvas" role="img" :aria-label="`${currentMode.name}作品预览`" @pointermove="move" @pointerleave="leave" /></div>
         <div class="engine-meta"><span role="status">{{ status }}</span><span>{{ lastFrame.columns }} × {{ lastFrame.rows }} 字格</span></div>
         <div class="engine-actions"><input ref="fileInput" type="file" accept="image/png,image/jpeg,image/webp,image/gif" hidden @change="upload" /><button class="art-button primary" @click="fileInput?.click()">上传图片</button><button class="art-button" :disabled="exporting" @click="download('png')">下载 4K PNG</button><button class="art-button" :disabled="exporting" @click="download('txt')">下载文字</button><label class="engine-check"><input v-model="transparent" type="checkbox" /> 透明背景</label></div>
         <p class="engine-note">新引擎画质验证版 · 所有处理在本机完成。<RouterLink to="/ascii-art">进入支持短视频与本地项目的完整编辑器 →</RouterLink></p>
-      </main>
+      </section>
     </div>
   </div>
 </template>
 
 <style scoped>
-.engine-page { min-height: 100dvh; background: var(--bg); color: var(--text); overflow: auto; }
+.engine-page { min-height: 100dvh; background: var(--bg); color: var(--text); }
 .engine-intro { max-width: 1440px; margin: auto; padding: 42px 48px 30px; }
 .engine-intro > span { font: 10px monospace; letter-spacing: 3px; color: var(--art-cyan); }
 .engine-intro h1 { font: 400 clamp(25px, 3vw, 40px)/1.4 var(--art-serif); margin: 16px 0; }

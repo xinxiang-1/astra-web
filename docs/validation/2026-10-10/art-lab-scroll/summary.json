@@ -1,0 +1,87 @@
+{
+  "stage": "art-lab scroll compatibility and route return",
+  "date": "2026-10-10",
+  "passed": true,
+  "scope": "Frontend document scrolling; no backend or membership changes included.",
+  "checks": [
+    {
+      "command": "npm run type-check",
+      "exitCode": 0
+    },
+    {
+      "command": "npx.cmd eslint src/App.vue src/views/ArtEngineView.vue scripts/art-lab-scroll-contract.mjs",
+      "exitCode": 0
+    },
+    {
+      "command": "node --check scripts/art-lab-scroll-contract.mjs",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run build",
+      "exitCode": 0,
+      "buildSeconds": 14.98
+    },
+    {
+      "command": "impeccable.cmd detect src/App.vue src/views/ArtEngineView.vue",
+      "exitCode": 0,
+      "findings": 0
+    },
+    {
+      "command": "node scripts/art-lab-scroll-contract.mjs",
+      "exitCode": 0,
+      "scenarios": 8,
+      "report": "report.json"
+    }
+  ],
+  "controlledBaseline": {
+    "selectorIgnored": "body:has(.app-shell.scrollable)",
+    "bodyOverflow": "hidden",
+    "scrollYBefore": 414,
+    "scrollYAfterWheel": 414
+  },
+  "baselineLimitation": "Current Edge direct opening passed before this hardening. User device/browser failure was not directly reproduced.",
+  "extraRouteCheck": {
+    "channel": "msedge",
+    "viewport": {
+      "width": 1440,
+      "height": 700
+    },
+    "sequence": [
+      "/webgl-fluid",
+      "/",
+      "/art-lab"
+    ],
+    "immersiveOverflow": "hidden",
+    "artLabOverflow": "auto",
+    "artLabScrollY": 436
+  },
+  "failedAttempts": [
+    {
+      "output": "output/playwright/art-lab-scroll-20261010-fixed-dev",
+      "failedAt": "PageDown wait",
+      "correction": "Wait for native keyboard scrolling to settle before issuing the next key."
+    },
+    {
+      "output": "output/playwright/art-lab-scroll-20261010-fixed-production-r1",
+      "failedAt": "synthetic touch scroll wait",
+      "diagnosis": "Input.synthesizeScrollGesture emitted touchstart/touchend without touchmove.",
+      "correction": "Dispatch touchStart, consecutive touchMove and touchEnd through CDP.",
+      "diagnosticScrollY": 510
+    }
+  ],
+  "screenshotCorrection": "Capture from scrollY 0; capturing the entire page from a lower viewport included the translated fixed skip link outside its visible viewport.",
+  "visuallyInspected": [
+    "msedge-1440-light.png",
+    "chrome-1440-dark.png",
+    "msedge-390-dark.png",
+    "chrome-390-light.png"
+  ],
+  "warnings": [
+    "Existing JSZip stream browser externalization",
+    "Existing signature layout mixed static/dynamic import",
+    "Existing large build chunks"
+  ],
+  "limitations": [
+    "Touch was dispatched through Chromium CDP; physical devices and Safari were not tested."
+  ]
+}

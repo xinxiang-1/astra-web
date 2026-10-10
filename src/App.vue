@@ -24,6 +24,11 @@ const isImmersive = computed(
   () => (studioRouteNames as readonly string[]).includes(routeName.value) && !isStudioHub.value,
 )
 const isScrollable = computed(() => !isEditor.value && !isImmersive.value)
+watch(
+  isScrollable,
+  (scrollable) => document.body.classList.toggle('page-scroll-locked', !scrollable),
+  { immediate: true },
+)
 const hasSharedFooter = computed(
   () =>
     (isToolPage.value && !isEditor.value && routeName.value !== 'file-preview') ||
@@ -56,7 +61,10 @@ onMounted(() => {
   window.addEventListener('storage', synchronizeSession)
 })
 onBeforeMount(() => { void auth.restoreSession() })
-onBeforeUnmount(() => window.removeEventListener('storage', synchronizeSession))
+onBeforeUnmount(() => {
+  window.removeEventListener('storage', synchronizeSession)
+  document.body.classList.remove('page-scroll-locked')
+})
 </script>
 
 <template>
@@ -90,7 +98,7 @@ body,
   margin: 0;
 }
 body {
-  overflow: hidden;
+  overflow: auto;
   font-family: var(--font-body);
   background: var(--bg);
   color: var(--text);
@@ -98,8 +106,8 @@ body {
     background-color 0.25s,
     color 0.25s;
 }
-body:has(.app-shell.scrollable) {
-  overflow: auto;
+body.page-scroll-locked {
+  overflow: hidden;
 }
 a {
   color: inherit;

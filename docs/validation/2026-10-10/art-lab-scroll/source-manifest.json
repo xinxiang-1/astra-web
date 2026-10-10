@@ -1,0 +1,20 @@
+{
+  "scope": "art-lab scroll",
+  "sources": [
+    {
+      "path": "src/App.vue",
+      "sha256": "0f142cfdd8869dd6d71ff5265691462e4817b6b2887efd5fa2bb2b917e5fceb1",
+      "bytes": 4663
+    },
+    {
+      "path": "src/views/ArtEngineView.vue",
+      "sha256": "2a4aaf1fb72fbd5a95dd7765dee603b0e51f6c661d62fa8b8ef2bf146f4f0768",
+      "bytes": 11459
+    },
+    {
+      "path": "scripts/art-lab-scroll-contract.mjs",
+      "sha256": "4c0935c052cf1ad8ac7e1406a80c0f020843491fc4842ea125d01936484daa6a",
+      "bytes": 7574
+    }
+  ]
+}
