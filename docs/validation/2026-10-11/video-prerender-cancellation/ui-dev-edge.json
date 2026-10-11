@@ -1,0 +1,665 @@
+{
+  "base": "http://127.0.0.1:5212",
+  "channel": "msedge",
+  "scriptSha256": "abbcf533f3fa042f9841315720f9e4487cf3a929649226b80b1b3c65d9fe6a97",
+  "stateEvidence": "Development Vue setupState plus real DOM interactions",
+  "scope": "Owned locally generated video and PNG; real editor interactions with an intentionally stalled seek. Not a decoder/network stall or real-device performance certification.",
+  "cancelCases": [
+    {
+      "label": "light-1440",
+      "theme": "light",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "parsing": {
+        "mediaKind": "video",
+        "sourceRevision": 1,
+        "error": "",
+        "sourceError": "",
+        "parsing": true,
+        "ready": false,
+        "done": 1,
+        "total": 7,
+        "playing": false,
+        "loading": false,
+        "columns": 80
+      },
+      "cancelled": {
+        "mediaKind": "video",
+        "sourceRevision": 1,
+        "error": "",
+        "sourceError": "",
+        "parsing": false,
+        "ready": false,
+        "done": 0,
+        "total": 0,
+        "playing": false,
+        "loading": false,
+        "columns": 80
+      },
+      "recovered": {
+        "requests": [
+          {
+            "target": 0.08333333333333333,
+            "at": 1826.7999999523163
+          }
+        ],
+        "restored": true,
+        "lateEvents": 1,
+        "connected": true,
+        "source": "blob:http://127.0.0.1:5212/e8001bf6-b915-4377-8f04-fc3b6b876267"
+      },
+      "retry": {
+        "mediaKind": "video",
+        "sourceRevision": 1,
+        "error": "",
+        "sourceError": "",
+        "parsing": false,
+        "ready": true,
+        "done": 7,
+        "total": 7,
+        "playing": false,
+        "loading": false,
+        "columns": 80
+      },
+      "overflow": false,
+      "boundMs": 1500,
+      "elapsedMs": 20.199999809265137,
+      "loadingScreenshot": "D:\\my\\project\\astra\\astra-web\\output\\playwright\\video-prerender-stage-2026-10-11-r1\\ui-final-dev-edge-shared-r2\\run-mSDjD2\\light-1440-loading.png",
+      "cancelledScreenshot": "D:\\my\\project\\astra\\astra-web\\output\\playwright\\video-prerender-stage-2026-10-11-r1\\ui-final-dev-edge-shared-r2\\run-mSDjD2\\light-1440-cancelled.png"
+    },
+    {
+      "label": "light-390",
+      "theme": "light",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "parsing": {
+        "mediaKind": "video",
+        "sourceRevision": 1,
+        "error": "",
+        "sourceError": "",
+        "parsing": true,
+        "ready": false,
+        "done": 1,
+        "total": 7,
+        "playing": false,
+        "loading": false,
+        "columns": 80
+      },
+      "cancelled": {
+        "mediaKind": "video",
+        "sourceRevision": 1,
+        "error": "",
+        "sourceError": "",
+        "parsing": false,
+        "ready": false,
+        "done": 0,
+        "total": 0,
+        "playing": false,
+        "loading": false,
+        "columns": 80
+      },
+      "recovered": {
+        "requests": [
+          {
+            "target": 0.08333333333333333,
+            "at": 1445.1000001430511
+          }
+        ],
+        "restored": true,
+        "lateEvents": 1,
+        "connected": true,
+        "source": "blob:http://127.0.0.1:5212/c3dbc04c-070a-4caf-914a-bb06f07fec84"
+      },
+      "retry": {
+        "mediaKind": "video",
+        "sourceRevision": 1,
+        "error": "",
+        "sourceError": "",
+        "parsing": false,
+        "ready": true,
+        "done": 7,
+        "total": 7,
+        "playing": false,
+        "loading": false,
+        "columns": 80
+      },
+      "overflow": false,
+      "boundMs": 1500,
+      "elapsedMs": 14.299999952316284,
+      "loadingScreenshot": "D:\\my\\project\\astra\\astra-web\\output\\playwright\\video-prerender-stage-2026-10-11-r1\\ui-final-dev-edge-shared-r2\\run-mSDjD2\\light-390-loading.png",
+      "cancelledScreenshot": "D:\\my\\project\\astra\\astra-web\\output\\playwright\\video-prerender-stage-2026-10-11-r1\\ui-final-dev-edge-shared-r2\\run-mSDjD2\\light-390-cancelled.png"
+    },
+    {
+      "label": "dark-1440",
+      "theme": "dark",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "parsing": {
+        "mediaKind": "video",
+        "sourceRevision": 1,
+        "error": "",
+        "sourceError": "",
+        "parsing": true,
+        "ready": false,
+        "done": 1,
+        "total": 7,
+        "playing": false,
+        "loading": false,
+        "columns": 80
+      },
+      "cancelled": {
+        "mediaKind": "video",
+        "sourceRevision": 1,
+        "error": "",
+        "sourceError": "",
+        "parsing": false,
+        "ready": false,
+        "done": 0,
+        "total": 0,
+        "playing": false,
+        "loading": false,
+        "columns": 80
+      },
+      "recovered": {
+        "requests": [
+          {
+            "target": 0.08333333333333333,
+            "at": 1544.8000001907349
+          }
+        ],
+        "restored": true,
+        "lateEvents": 1,
+        "connected": true,
+        "source": "blob:http://127.0.0.1:5212/2f9902a2-8d99-4e14-9b14-240598ced147"
+      },
+      "retry": {
+        "mediaKind": "video",
+        "sourceRevision": 1,
+        "error": "",
+        "sourceError": "",
+        "parsing": false,
+        "ready": true,
+        "done": 7,
+        "total": 7,
+        "playing": false,
+        "loading": false,
+        "columns": 80
+      },
+      "overflow": false,
+      "boundMs": 1500,
+      "elapsedMs": 12.700000047683716,
+      "loadingScreenshot": "D:\\my\\project\\astra\\astra-web\\output\\playwright\\video-prerender-stage-2026-10-11-r1\\ui-final-dev-edge-shared-r2\\run-mSDjD2\\dark-1440-loading.png",
+      "cancelledScreenshot": "D:\\my\\project\\astra\\astra-web\\output\\playwright\\video-prerender-stage-2026-10-11-r1\\ui-final-dev-edge-shared-r2\\run-mSDjD2\\dark-1440-cancelled.png"
+    },
+    {
+      "label": "dark-390",
+      "theme": "dark",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "parsing": {
+        "mediaKind": "video",
+        "sourceRevision": 1,
+        "error": "",
+        "sourceError": "",
+        "parsing": true,
+        "ready": false,
+        "done": 1,
+        "total": 7,
+        "playing": false,
+        "loading": false,
+        "columns": 80
+      },
+      "cancelled": {
+        "mediaKind": "video",
+        "sourceRevision": 1,
+        "error": "",
+        "sourceError": "",
+        "parsing": false,
+        "ready": false,
+        "done": 0,
+        "total": 0,
+        "playing": false,
+        "loading": false,
+        "columns": 80
+      },
+      "recovered": {
+        "requests": [
+          {
+            "target": 0.08333333333333333,
+            "at": 1382.5999999046326
+          }
+        ],
+        "restored": true,
+        "lateEvents": 1,
+        "connected": true,
+        "source": "blob:http://127.0.0.1:5212/15b807ab-75ea-4179-adbd-0bcc4e7bdb1a"
+      },
+      "retry": {
+        "mediaKind": "video",
+        "sourceRevision": 1,
+        "error": "",
+        "sourceError": "",
+        "parsing": false,
+        "ready": true,
+        "done": 7,
+        "total": 7,
+        "playing": false,
+        "loading": false,
+        "columns": 80
+      },
+      "overflow": false,
+      "boundMs": 1500,
+      "elapsedMs": 16.800000190734863,
+      "loadingScreenshot": "D:\\my\\project\\astra\\astra-web\\output\\playwright\\video-prerender-stage-2026-10-11-r1\\ui-final-dev-edge-shared-r2\\run-mSDjD2\\dark-390-loading.png",
+      "cancelledScreenshot": "D:\\my\\project\\astra\\astra-web\\output\\playwright\\video-prerender-stage-2026-10-11-r1\\ui-final-dev-edge-shared-r2\\run-mSDjD2\\dark-390-cancelled.png"
+    }
+  ],
+  "invalidationCases": [
+    {
+      "input": "resolution",
+      "method": "real UI click",
+      "invalidated": {
+        "mediaKind": "video",
+        "sourceRevision": 4,
+        "error": "",
+        "sourceError": "",
+        "parsing": false,
+        "ready": false,
+        "done": 0,
+        "total": 0,
+        "playing": false,
+        "loading": false,
+        "columns": 120
+      },
+      "recovered": {
+        "requests": [
+          {
+            "target": 0.08333333333333333,
+            "at": 13882
+          }
+        ],
+        "restored": true,
+        "lateEvents": 1,
+        "connected": true,
+        "source": "blob:http://127.0.0.1:5212/3fee468d-b51f-49b5-b470-b01ad86492b8"
+      },
+      "retry": {
+        "mediaKind": "video",
+        "sourceRevision": 4,
+        "error": "",
+        "sourceError": "",
+        "parsing": false,
+        "ready": true,
+        "done": 7,
+        "total": 7,
+        "playing": false,
+        "loading": false,
+        "columns": 120
+      },
+      "boundMs": 1500
+    },
+    {
+      "input": "fps",
+      "method": "reactive model/handler; UI control remains disabled while parsing",
+      "invalidated": {
+        "mediaKind": "video",
+        "sourceRevision": 4,
+        "error": "",
+        "sourceError": "",
+        "parsing": false,
+        "ready": false,
+        "done": 0,
+        "total": 0,
+        "playing": false,
+        "loading": false,
+        "columns": 120
+      },
+      "recovered": {
+        "requests": [
+          {
+            "target": 0.08333333333333333,
+            "at": 14282.399999856949
+          }
+        ],
+        "restored": true,
+        "lateEvents": 1,
+        "connected": true,
+        "source": "blob:http://127.0.0.1:5212/3fee468d-b51f-49b5-b470-b01ad86492b8"
+      },
+      "retry": {
+        "mediaKind": "video",
+        "sourceRevision": 4,
+        "error": "",
+        "sourceError": "",
+        "parsing": false,
+        "ready": true,
+        "done": 8,
+        "total": 8,
+        "playing": false,
+        "loading": false,
+        "columns": 120
+      },
+      "boundMs": 1500
+    },
+    {
+      "input": "clip",
+      "method": "reactive model/handler; UI control remains disabled while parsing",
+      "invalidated": {
+        "mediaKind": "video",
+        "sourceRevision": 4,
+        "error": "",
+        "sourceError": "",
+        "parsing": false,
+        "ready": false,
+        "done": 0,
+        "total": 0,
+        "playing": false,
+        "loading": false,
+        "columns": 120
+      },
+      "recovered": {
+        "requests": [
+          {
+            "target": 0.06666666666666667,
+            "at": 14732.199999809265
+          }
+        ],
+        "restored": true,
+        "lateEvents": 1,
+        "connected": true,
+        "source": "blob:http://127.0.0.1:5212/3fee468d-b51f-49b5-b470-b01ad86492b8"
+      },
+      "retry": {
+        "mediaKind": "video",
+        "sourceRevision": 4,
+        "error": "",
+        "sourceError": "",
+        "parsing": false,
+        "ready": true,
+        "done": 10,
+        "total": 10,
+        "playing": false,
+        "loading": false,
+        "columns": 120
+      },
+      "boundMs": 1500
+    }
+  ],
+  "errors": [],
+  "browser": "155.0.4283.45",
+  "fixture": {
+    "filename": "synthetic-source.mp4",
+    "sha256": "8638a30009c037e32d114d769caf2f4d8967f6d20223fff670a55b94b1ccd9d8",
+    "bytes": 335748,
+    "format": {
+      "extension": ".mp4",
+      "mimeType": "video/mp4"
+    },
+    "source": {
+      "mode": "Explicit owned synthetic input",
+      "path": "D:\\my\\project\\astra\\astra-web\\output\\playwright\\video-prerender-stage-2026-10-11-r1\\shared-fixture-r1\\synthetic-source.mp4",
+      "sha256": "8638a30009c037e32d114d769caf2f4d8967f6d20223fff670a55b94b1ccd9d8"
+    },
+    "decoded": {
+      "ok": true,
+      "error": "",
+      "width": 480,
+      "height": 320,
+      "readyState": 4,
+      "duration": 2,
+      "finiteDuration": true
+    },
+    "capture": {
+      "mode": "Explicit owned synthetic input; no browser MediaRecorder generation",
+      "requestFrames": null
+    },
+    "cleanup": {
+      "decoderUrlRevoked": true
+    }
+  },
+  "replacement": {
+    "old": {
+      "mediaKind": "video",
+      "sourceRevision": 1,
+      "error": "",
+      "sourceError": "",
+      "parsing": true,
+      "ready": false,
+      "done": 1,
+      "total": 7,
+      "playing": false,
+      "loading": false,
+      "columns": 80
+    },
+    "imageState": {
+      "mediaKind": "image",
+      "sourceRevision": 2,
+      "error": "",
+      "sourceError": "",
+      "parsing": false,
+      "ready": false,
+      "done": 0,
+      "total": 0,
+      "playing": false,
+      "loading": false,
+      "columns": 80
+    },
+    "baseline": {
+      "renderPending": "false",
+      "capturedAt": 1491.5999999046326,
+      "stableSince": null,
+      "width": 844,
+      "height": 563
+    },
+    "oldSlot": {
+      "requests": [
+        {
+          "target": 0.08333333333333333,
+          "at": 1399.5
+        }
+      ],
+      "restored": true,
+      "lateEvents": 1,
+      "connected": true,
+      "source": null
+    },
+    "late": {
+      "sameFrame": true,
+      "sameText": true,
+      "samePixels": true,
+      "renderPending": "false",
+      "capturedAt": 1762.0999999046326,
+      "stableSince": null,
+      "width": 844,
+      "height": 563
+    },
+    "screenshot": "D:\\my\\project\\astra\\astra-web\\output\\playwright\\video-prerender-stage-2026-10-11-r1\\ui-final-dev-edge-shared-r2\\run-mSDjD2\\replacement-stable.png"
+  },
+  "supersededTask": {
+    "first": {
+      "mediaKind": "video",
+      "sourceRevision": 3,
+      "error": "",
+      "sourceError": "",
+      "parsing": true,
+      "ready": false,
+      "done": 1,
+      "total": 7,
+      "playing": false,
+      "loading": false,
+      "columns": 80
+    },
+    "next": {
+      "mediaKind": "video",
+      "sourceRevision": 4,
+      "error": "",
+      "sourceError": "",
+      "parsing": true,
+      "ready": false,
+      "done": 1,
+      "total": 7,
+      "playing": false,
+      "loading": false,
+      "columns": 80
+    },
+    "superseded": {
+      "requests": [
+        {
+          "target": 0.08333333333333333,
+          "at": 2099.899999856949
+        }
+      ],
+      "restored": true,
+      "lateEvents": 1,
+      "connected": true,
+      "source": null
+    },
+    "afterLate": {
+      "mediaKind": "video",
+      "sourceRevision": 4,
+      "error": "",
+      "sourceError": "",
+      "parsing": true,
+      "ready": false,
+      "done": 1,
+      "total": 7,
+      "playing": false,
+      "loading": false,
+      "columns": 80
+    },
+    "retry": {
+      "mediaKind": "video",
+      "sourceRevision": 4,
+      "error": "",
+      "sourceError": "",
+      "parsing": false,
+      "ready": true,
+      "done": 7,
+      "total": 7,
+      "playing": false,
+      "loading": false,
+      "columns": 80
+    }
+  },
+  "timeout": {
+    "elapsedMs": 10100.099999904633,
+    "configuredDefaultMs": 10000,
+    "timedOut": {
+      "mediaKind": "video",
+      "sourceRevision": 4,
+      "error": "视频定位超时，请重试或换 MP4 / WebM 文件",
+      "sourceError": "",
+      "parsing": false,
+      "ready": false,
+      "done": 0,
+      "total": 0,
+      "playing": false,
+      "loading": false,
+      "columns": 80
+    },
+    "restored": {
+      "requests": [
+        {
+          "target": 0.08333333333333333,
+          "at": 2899
+        }
+      ],
+      "restored": true,
+      "lateEvents": 0,
+      "connected": true,
+      "source": "blob:http://127.0.0.1:5212/3fee468d-b51f-49b5-b470-b01ad86492b8"
+    },
+    "screenshot": "D:\\my\\project\\astra\\astra-web\\output\\playwright\\video-prerender-stage-2026-10-11-r1\\ui-final-dev-edge-shared-r2\\run-mSDjD2\\default-seek-timeout-alert.png",
+    "retry": {
+      "mediaKind": "video",
+      "sourceRevision": 4,
+      "error": "",
+      "sourceError": "",
+      "parsing": false,
+      "ready": true,
+      "done": 7,
+      "total": 7,
+      "playing": false,
+      "loading": false,
+      "columns": 80
+    }
+  },
+  "scrub": {
+    "method": "Same-turn real DOM click/input handler stress; native currentTime accessor restored before timeline seek",
+    "target": 0.35,
+    "immediate": {
+      "time": 0.35,
+      "seeking": true
+    },
+    "position": 0.35,
+    "restored": {
+      "requests": [
+        {
+          "target": 0.08333333333333333,
+          "at": 13481.599999904633
+        }
+      ],
+      "restored": true,
+      "lateEvents": 1,
+      "connected": true,
+      "source": "blob:http://127.0.0.1:5212/3fee468d-b51f-49b5-b470-b01ad86492b8"
+    },
+    "state": {
+      "mediaKind": "video",
+      "sourceRevision": 4,
+      "error": "",
+      "sourceError": "",
+      "parsing": false,
+      "ready": false,
+      "done": 0,
+      "total": 0,
+      "playing": false,
+      "loading": false,
+      "columns": 80
+    }
+  },
+  "unmount": {
+    "method": "real cancel and route/discard, retained old slot seeked after unmount and after same-document return",
+    "detached": {
+      "requests": [
+        {
+          "target": 0.06666666666666667,
+          "at": 15198.899999856949
+        }
+      ],
+      "restored": true,
+      "lateEvents": 1,
+      "connected": false,
+      "source": null
+    },
+    "disposed": {
+      "parsing": false,
+      "ready": false,
+      "error": "",
+      "loading": false,
+      "total": 0
+    },
+    "returned": {
+      "mediaKind": null,
+      "sourceRevision": 0,
+      "error": "",
+      "sourceError": "",
+      "parsing": false,
+      "ready": false,
+      "done": 0,
+      "total": 0,
+      "playing": false,
+      "loading": false,
+      "columns": 0
+    }
+  },
+  "passed": true
+}

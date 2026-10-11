@@ -1,0 +1,328 @@
+{
+  "browser": "155.0.4283.45",
+  "errors": [],
+  "parity": [
+    {
+      "mode": "density",
+      "columns": 80,
+      "fontFamily": "Consolas",
+      "sync": true,
+      "responsive": true
+    },
+    {
+      "mode": "density",
+      "columns": 80,
+      "fontFamily": "Microsoft YaHei",
+      "sync": true,
+      "responsive": true
+    },
+    {
+      "mode": "density",
+      "columns": 360,
+      "fontFamily": "Consolas",
+      "sync": true,
+      "responsive": true
+    },
+    {
+      "mode": "density",
+      "columns": 360,
+      "fontFamily": "Microsoft YaHei",
+      "sync": true,
+      "responsive": true
+    },
+    {
+      "mode": "color",
+      "columns": 80,
+      "fontFamily": "Consolas",
+      "sync": true,
+      "responsive": true
+    },
+    {
+      "mode": "color",
+      "columns": 80,
+      "fontFamily": "Microsoft YaHei",
+      "sync": true,
+      "responsive": true
+    },
+    {
+      "mode": "color",
+      "columns": 360,
+      "fontFamily": "Consolas",
+      "sync": true,
+      "responsive": true
+    },
+    {
+      "mode": "color",
+      "columns": 360,
+      "fontFamily": "Microsoft YaHei",
+      "sync": true,
+      "responsive": true
+    },
+    {
+      "mode": "phrase",
+      "columns": 80,
+      "fontFamily": "Consolas",
+      "sync": true,
+      "responsive": true
+    },
+    {
+      "mode": "phrase",
+      "columns": 80,
+      "fontFamily": "Microsoft YaHei",
+      "sync": true,
+      "responsive": true
+    },
+    {
+      "mode": "phrase",
+      "columns": 360,
+      "fontFamily": "Consolas",
+      "sync": true,
+      "responsive": true
+    },
+    {
+      "mode": "phrase",
+      "columns": 360,
+      "fontFamily": "Microsoft YaHei",
+      "sync": true,
+      "responsive": true
+    },
+    {
+      "mode": "contour",
+      "columns": 80,
+      "fontFamily": "Consolas",
+      "sync": true,
+      "responsive": true
+    },
+    {
+      "mode": "contour",
+      "columns": 80,
+      "fontFamily": "Microsoft YaHei",
+      "sync": true,
+      "responsive": true
+    },
+    {
+      "mode": "contour",
+      "columns": 360,
+      "fontFamily": "Consolas",
+      "sync": true,
+      "responsive": true
+    },
+    {
+      "mode": "contour",
+      "columns": 360,
+      "fontFamily": "Microsoft YaHei",
+      "sync": true,
+      "responsive": true
+    },
+    {
+      "mode": "braille",
+      "columns": 80,
+      "fontFamily": "Consolas",
+      "sync": true,
+      "responsive": true
+    },
+    {
+      "mode": "braille",
+      "columns": 80,
+      "fontFamily": "Microsoft YaHei",
+      "sync": true,
+      "responsive": true
+    },
+    {
+      "mode": "braille",
+      "columns": 360,
+      "fontFamily": "Consolas",
+      "sync": true,
+      "responsive": true
+    },
+    {
+      "mode": "braille",
+      "columns": 360,
+      "fontFamily": "Microsoft YaHei",
+      "sync": true,
+      "responsive": true
+    },
+    {
+      "mode": "halftone",
+      "columns": 80,
+      "fontFamily": "Consolas",
+      "sync": true,
+      "responsive": true
+    },
+    {
+      "mode": "halftone",
+      "columns": 80,
+      "fontFamily": "Microsoft YaHei",
+      "sync": true,
+      "responsive": true
+    },
+    {
+      "mode": "halftone",
+      "columns": 360,
+      "fontFamily": "Consolas",
+      "sync": true,
+      "responsive": true
+    },
+    {
+      "mode": "halftone",
+      "columns": 360,
+      "fontFamily": "Microsoft YaHei",
+      "sync": true,
+      "responsive": true
+    },
+    {
+      "cancelled": true,
+      "timerFired": true
+    }
+  ],
+  "playback": [
+    {
+      "mode": "density",
+      "frames": 144,
+      "p95": 17,
+      "max": 117,
+      "timerMax": 137.40000009536743,
+      "time": 2.635728,
+      "ready": 4,
+      "columns": "80",
+      "backend": "worker"
+    },
+    {
+      "mode": "color",
+      "frames": 138,
+      "p95": 19.5,
+      "max": 164.09999999999854,
+      "timerMax": 208.79999995231628,
+      "time": 2.65737,
+      "ready": 4,
+      "columns": "80",
+      "backend": "worker"
+    }
+  ],
+  "scheduler": {
+    "busyCount": 1,
+    "duplicateCount": 1,
+    "gatedCount": 1,
+    "conversions": [
+      0,
+      0.6
+    ],
+    "cancelled": 1
+  },
+  "workerParity": [
+    {
+      "mode": "density",
+      "style": "static",
+      "changed": 0,
+      "maxDelta": 0
+    },
+    {
+      "mode": "density",
+      "style": "breathe",
+      "changed": 0,
+      "maxDelta": 0
+    },
+    {
+      "mode": "density",
+      "style": "rift",
+      "changed": 0,
+      "maxDelta": 0
+    },
+    {
+      "mode": "color",
+      "style": "static",
+      "changed": 0,
+      "maxDelta": 0
+    },
+    {
+      "mode": "color",
+      "style": "breathe",
+      "changed": 0,
+      "maxDelta": 0
+    },
+    {
+      "mode": "color",
+      "style": "rift",
+      "changed": 0,
+      "maxDelta": 0
+    },
+    {
+      "mode": "phrase",
+      "style": "static",
+      "changed": 0,
+      "maxDelta": 0
+    },
+    {
+      "mode": "phrase",
+      "style": "breathe",
+      "changed": 0,
+      "maxDelta": 0
+    },
+    {
+      "mode": "phrase",
+      "style": "rift",
+      "changed": 0,
+      "maxDelta": 0
+    },
+    {
+      "mode": "contour",
+      "style": "static",
+      "changed": 0,
+      "maxDelta": 0
+    },
+    {
+      "mode": "contour",
+      "style": "breathe",
+      "changed": 0,
+      "maxDelta": 0
+    },
+    {
+      "mode": "contour",
+      "style": "rift",
+      "changed": 0,
+      "maxDelta": 0
+    },
+    {
+      "mode": "braille",
+      "style": "static",
+      "changed": 0,
+      "maxDelta": 0
+    },
+    {
+      "mode": "braille",
+      "style": "breathe",
+      "changed": 0,
+      "maxDelta": 0
+    },
+    {
+      "mode": "braille",
+      "style": "rift",
+      "changed": 0,
+      "maxDelta": 0
+    },
+    {
+      "mode": "halftone",
+      "style": "static",
+      "changed": 0,
+      "maxDelta": 0
+    },
+    {
+      "mode": "halftone",
+      "style": "breathe",
+      "changed": 0,
+      "maxDelta": 0
+    },
+    {
+      "mode": "halftone",
+      "style": "rift",
+      "changed": 0,
+      "maxDelta": 0
+    }
+  ],
+  "workerFailureRecovery": {
+    "callbackFailure": true,
+    "runtimeFailure": true
+  },
+  "passed": false,
+  "failure": "AssertionError [ERR_ASSERTION]: Video conversion must not block the main-thread heartbeat\n    at file:///D:/my/project/astra/astra-web/scripts/video-responsive-contract.mjs:425:5"
+}

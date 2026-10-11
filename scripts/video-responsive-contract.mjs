@@ -387,7 +387,14 @@ try {
     await page.waitForFunction(() => !document.querySelector('.video-thumb.show').seeking)
     await page.getByRole('button', { name: '播放', exact: true }).click()
     await page.evaluate(() => {
-      const m = (window.__videoMeasure = { active: true, raf: [], timers: [] })
+      const m = (window.__videoMeasure = { active: true, raf: [], timers: [], longTasks: [] })
+      if (PerformanceObserver.supportedEntryTypes.includes('longtask')) {
+        m.observer = new PerformanceObserver((list) => {
+          for (const entry of list.getEntries())
+            m.longTasks.push({ startTime: entry.startTime, duration: entry.duration })
+        })
+        m.observer.observe({ type: 'longtask' })
+      }
       let last = performance.now(),
         t = last
       function frame(now) {
@@ -407,6 +414,7 @@ try {
       const m = window.__videoMeasure
       m.active = false
       clearInterval(m.timer)
+      m.observer?.disconnect()
       const gaps = [...m.raf].sort((a, b) => a - b),
         v = document.querySelector('.video-thumb.show')
       return {
@@ -414,6 +422,7 @@ try {
         p95: gaps[Math.floor(gaps.length * 0.95)],
         max: Math.max(...gaps),
         timerMax: Math.max(...m.timers),
+        longTasks: m.longTasks,
         time: v.currentTime,
         ready: v.readyState,
         columns: document.querySelector('.ascii-canvas').dataset.columns,

@@ -1,0 +1,573 @@
+{
+  "base": "http://127.0.0.1:5213",
+  "channel": "chrome",
+  "scriptSha256": "abbcf533f3fa042f9841315720f9e4487cf3a929649226b80b1b3c65d9fe6a97",
+  "stateEvidence": "Production DOM only; no Vue internals or reactive-model mutations",
+  "scope": "Owned locally generated video and PNG; real editor interactions with an intentionally stalled seek. Not a decoder/network stall or real-device performance certification.",
+  "cancelCases": [
+    {
+      "label": "light-1440",
+      "theme": "light",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "parsing": {
+        "mediaKind": "video",
+        "sourceRevision": "blob:http://127.0.0.1:5213/45abe793-940a-40c7-8a56-699dded631bf",
+        "error": "",
+        "sourceError": "",
+        "parsing": true,
+        "ready": false,
+        "done": 1,
+        "total": 7,
+        "playing": false,
+        "loading": false,
+        "columns": 80
+      },
+      "cancelled": {
+        "mediaKind": "video",
+        "sourceRevision": "blob:http://127.0.0.1:5213/45abe793-940a-40c7-8a56-699dded631bf",
+        "error": "",
+        "sourceError": "",
+        "parsing": false,
+        "ready": false,
+        "done": 0,
+        "total": 0,
+        "playing": false,
+        "loading": false,
+        "columns": 80
+      },
+      "recovered": {
+        "requests": [
+          {
+            "target": 0.08333333333333333,
+            "at": 1679.8000001907349
+          }
+        ],
+        "restored": true,
+        "lateEvents": 1,
+        "connected": true,
+        "source": "blob:http://127.0.0.1:5213/45abe793-940a-40c7-8a56-699dded631bf"
+      },
+      "retry": {
+        "mediaKind": "video",
+        "sourceRevision": "blob:http://127.0.0.1:5213/45abe793-940a-40c7-8a56-699dded631bf",
+        "error": "",
+        "sourceError": "",
+        "parsing": false,
+        "ready": true,
+        "done": 0,
+        "total": 7,
+        "playing": false,
+        "loading": false,
+        "columns": 80
+      },
+      "overflow": false,
+      "boundMs": 1500,
+      "elapsedMs": 12.700000047683716,
+      "loadingScreenshot": "D:\\my\\project\\astra\\astra-web\\output\\playwright\\video-prerender-stage-2026-10-11-r1\\ui-final-prod-chrome-shared-r4\\run-Se2gOV\\light-1440-loading.png",
+      "cancelledScreenshot": "D:\\my\\project\\astra\\astra-web\\output\\playwright\\video-prerender-stage-2026-10-11-r1\\ui-final-prod-chrome-shared-r4\\run-Se2gOV\\light-1440-cancelled.png"
+    },
+    {
+      "label": "light-390",
+      "theme": "light",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "parsing": {
+        "mediaKind": "video",
+        "sourceRevision": "blob:http://127.0.0.1:5213/3010e6c7-2bf5-4175-a293-420afc1d99d4",
+        "error": "",
+        "sourceError": "",
+        "parsing": true,
+        "ready": false,
+        "done": 1,
+        "total": 7,
+        "playing": false,
+        "loading": false,
+        "columns": 80
+      },
+      "cancelled": {
+        "mediaKind": "video",
+        "sourceRevision": "blob:http://127.0.0.1:5213/3010e6c7-2bf5-4175-a293-420afc1d99d4",
+        "error": "",
+        "sourceError": "",
+        "parsing": false,
+        "ready": false,
+        "done": 0,
+        "total": 0,
+        "playing": false,
+        "loading": false,
+        "columns": 80
+      },
+      "recovered": {
+        "requests": [
+          {
+            "target": 0.08333333333333333,
+            "at": 1708.2999999523163
+          }
+        ],
+        "restored": true,
+        "lateEvents": 1,
+        "connected": true,
+        "source": "blob:http://127.0.0.1:5213/3010e6c7-2bf5-4175-a293-420afc1d99d4"
+      },
+      "retry": {
+        "mediaKind": "video",
+        "sourceRevision": "blob:http://127.0.0.1:5213/3010e6c7-2bf5-4175-a293-420afc1d99d4",
+        "error": "",
+        "sourceError": "",
+        "parsing": false,
+        "ready": true,
+        "done": 0,
+        "total": 7,
+        "playing": false,
+        "loading": false,
+        "columns": 80
+      },
+      "overflow": false,
+      "boundMs": 1500,
+      "elapsedMs": 14.599999904632568,
+      "loadingScreenshot": "D:\\my\\project\\astra\\astra-web\\output\\playwright\\video-prerender-stage-2026-10-11-r1\\ui-final-prod-chrome-shared-r4\\run-Se2gOV\\light-390-loading.png",
+      "cancelledScreenshot": "D:\\my\\project\\astra\\astra-web\\output\\playwright\\video-prerender-stage-2026-10-11-r1\\ui-final-prod-chrome-shared-r4\\run-Se2gOV\\light-390-cancelled.png"
+    },
+    {
+      "label": "dark-1440",
+      "theme": "dark",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "parsing": {
+        "mediaKind": "video",
+        "sourceRevision": "blob:http://127.0.0.1:5213/9b74aed4-8f29-499d-949b-5c7330b147b1",
+        "error": "",
+        "sourceError": "",
+        "parsing": true,
+        "ready": false,
+        "done": 1,
+        "total": 7,
+        "playing": false,
+        "loading": false,
+        "columns": 80
+      },
+      "cancelled": {
+        "mediaKind": "video",
+        "sourceRevision": "blob:http://127.0.0.1:5213/9b74aed4-8f29-499d-949b-5c7330b147b1",
+        "error": "",
+        "sourceError": "",
+        "parsing": false,
+        "ready": false,
+        "done": 0,
+        "total": 0,
+        "playing": false,
+        "loading": false,
+        "columns": 80
+      },
+      "recovered": {
+        "requests": [
+          {
+            "target": 0.08333333333333333,
+            "at": 1767.9000000953674
+          }
+        ],
+        "restored": true,
+        "lateEvents": 1,
+        "connected": true,
+        "source": "blob:http://127.0.0.1:5213/9b74aed4-8f29-499d-949b-5c7330b147b1"
+      },
+      "retry": {
+        "mediaKind": "video",
+        "sourceRevision": "blob:http://127.0.0.1:5213/9b74aed4-8f29-499d-949b-5c7330b147b1",
+        "error": "",
+        "sourceError": "",
+        "parsing": false,
+        "ready": true,
+        "done": 0,
+        "total": 7,
+        "playing": false,
+        "loading": false,
+        "columns": 80
+      },
+      "overflow": false,
+      "boundMs": 1500,
+      "elapsedMs": 12.5,
+      "loadingScreenshot": "D:\\my\\project\\astra\\astra-web\\output\\playwright\\video-prerender-stage-2026-10-11-r1\\ui-final-prod-chrome-shared-r4\\run-Se2gOV\\dark-1440-loading.png",
+      "cancelledScreenshot": "D:\\my\\project\\astra\\astra-web\\output\\playwright\\video-prerender-stage-2026-10-11-r1\\ui-final-prod-chrome-shared-r4\\run-Se2gOV\\dark-1440-cancelled.png"
+    },
+    {
+      "label": "dark-390",
+      "theme": "dark",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "parsing": {
+        "mediaKind": "video",
+        "sourceRevision": "blob:http://127.0.0.1:5213/c614120c-f7e8-4392-b797-c1f9b52ca5a9",
+        "error": "",
+        "sourceError": "",
+        "parsing": true,
+        "ready": false,
+        "done": 1,
+        "total": 7,
+        "playing": false,
+        "loading": false,
+        "columns": 80
+      },
+      "cancelled": {
+        "mediaKind": "video",
+        "sourceRevision": "blob:http://127.0.0.1:5213/c614120c-f7e8-4392-b797-c1f9b52ca5a9",
+        "error": "",
+        "sourceError": "",
+        "parsing": false,
+        "ready": false,
+        "done": 0,
+        "total": 0,
+        "playing": false,
+        "loading": false,
+        "columns": 80
+      },
+      "recovered": {
+        "requests": [
+          {
+            "target": 0.08333333333333333,
+            "at": 1588.7999999523163
+          }
+        ],
+        "restored": true,
+        "lateEvents": 1,
+        "connected": true,
+        "source": "blob:http://127.0.0.1:5213/c614120c-f7e8-4392-b797-c1f9b52ca5a9"
+      },
+      "retry": {
+        "mediaKind": "video",
+        "sourceRevision": "blob:http://127.0.0.1:5213/c614120c-f7e8-4392-b797-c1f9b52ca5a9",
+        "error": "",
+        "sourceError": "",
+        "parsing": false,
+        "ready": true,
+        "done": 0,
+        "total": 7,
+        "playing": false,
+        "loading": false,
+        "columns": 80
+      },
+      "overflow": false,
+      "boundMs": 1500,
+      "elapsedMs": 11,
+      "loadingScreenshot": "D:\\my\\project\\astra\\astra-web\\output\\playwright\\video-prerender-stage-2026-10-11-r1\\ui-final-prod-chrome-shared-r4\\run-Se2gOV\\dark-390-loading.png",
+      "cancelledScreenshot": "D:\\my\\project\\astra\\astra-web\\output\\playwright\\video-prerender-stage-2026-10-11-r1\\ui-final-prod-chrome-shared-r4\\run-Se2gOV\\dark-390-cancelled.png"
+    }
+  ],
+  "invalidationCases": [
+    {
+      "input": "resolution",
+      "method": "real UI click",
+      "invalidated": {
+        "mediaKind": "video",
+        "sourceRevision": "blob:http://127.0.0.1:5213/e79f749b-da82-4e4f-b6cf-cad82fa056d0",
+        "error": "",
+        "sourceError": "",
+        "parsing": false,
+        "ready": false,
+        "done": 0,
+        "total": 0,
+        "playing": false,
+        "loading": false,
+        "columns": 80
+      },
+      "recovered": {
+        "requests": [
+          {
+            "target": 0.08333333333333333,
+            "at": 16915.299999952316
+          }
+        ],
+        "restored": true,
+        "lateEvents": 1,
+        "connected": true,
+        "source": "blob:http://127.0.0.1:5213/e79f749b-da82-4e4f-b6cf-cad82fa056d0"
+      },
+      "retry": {
+        "mediaKind": "video",
+        "sourceRevision": "blob:http://127.0.0.1:5213/e79f749b-da82-4e4f-b6cf-cad82fa056d0",
+        "error": "",
+        "sourceError": "",
+        "parsing": false,
+        "ready": true,
+        "done": 0,
+        "total": 7,
+        "playing": false,
+        "loading": false,
+        "columns": 120
+      },
+      "boundMs": 1500
+    }
+  ],
+  "errors": [],
+  "browser": "154.0.8037.98",
+  "fixture": {
+    "filename": "synthetic-source.mp4",
+    "sha256": "8638a30009c037e32d114d769caf2f4d8967f6d20223fff670a55b94b1ccd9d8",
+    "bytes": 335748,
+    "format": {
+      "extension": ".mp4",
+      "mimeType": "video/mp4"
+    },
+    "source": {
+      "mode": "Explicit owned synthetic input",
+      "path": "D:\\my\\project\\astra\\astra-web\\output\\playwright\\video-prerender-stage-2026-10-11-r1\\shared-fixture-r1\\synthetic-source.mp4",
+      "sha256": "8638a30009c037e32d114d769caf2f4d8967f6d20223fff670a55b94b1ccd9d8"
+    },
+    "decoded": {
+      "ok": true,
+      "error": "",
+      "width": 480,
+      "height": 320,
+      "readyState": 4,
+      "duration": 2,
+      "finiteDuration": true
+    },
+    "capture": {
+      "mode": "Explicit owned synthetic input; no browser MediaRecorder generation",
+      "requestFrames": null
+    },
+    "cleanup": {
+      "decoderUrlRevoked": true
+    }
+  },
+  "replacement": {
+    "old": {
+      "mediaKind": "video",
+      "sourceRevision": "blob:http://127.0.0.1:5213/fbdf087d-2dbe-43a5-bafc-f4d7fdb0f967",
+      "error": "",
+      "sourceError": "",
+      "parsing": true,
+      "ready": false,
+      "done": 1,
+      "total": 7,
+      "playing": false,
+      "loading": false,
+      "columns": 80
+    },
+    "imageState": {
+      "mediaKind": "image",
+      "sourceRevision": "blob:http://127.0.0.1:5213/84f08d7b-37d2-41cc-ba4d-4e47f4cd269d",
+      "error": "",
+      "sourceError": "",
+      "parsing": false,
+      "ready": false,
+      "done": 0,
+      "total": 0,
+      "playing": false,
+      "loading": false,
+      "columns": 80
+    },
+    "baseline": {
+      "renderPending": "false",
+      "capturedAt": 1769.0999999046326,
+      "stableSince": 1648.5999999046326,
+      "width": 844,
+      "height": 563
+    },
+    "oldSlot": {
+      "requests": [
+        {
+          "target": 0.08333333333333333,
+          "at": 1549.4000000953674
+        }
+      ],
+      "restored": true,
+      "lateEvents": 1,
+      "connected": true,
+      "source": null
+    },
+    "late": {
+      "sameFrame": null,
+      "sameText": null,
+      "samePixels": true,
+      "renderPending": "false",
+      "capturedAt": 2163.2000000476837,
+      "stableSince": 2043.2000000476837,
+      "width": 844,
+      "height": 563
+    },
+    "screenshot": "D:\\my\\project\\astra\\astra-web\\output\\playwright\\video-prerender-stage-2026-10-11-r1\\ui-final-prod-chrome-shared-r4\\run-Se2gOV\\replacement-stable.png"
+  },
+  "supersededTask": {
+    "first": {
+      "mediaKind": "video",
+      "sourceRevision": "blob:http://127.0.0.1:5213/352aa401-1b88-436a-a43a-b9dfde75dc6e",
+      "error": "",
+      "sourceError": "",
+      "parsing": true,
+      "ready": false,
+      "done": 1,
+      "total": 7,
+      "playing": false,
+      "loading": false,
+      "columns": 80
+    },
+    "next": {
+      "mediaKind": "video",
+      "sourceRevision": "blob:http://127.0.0.1:5213/e79f749b-da82-4e4f-b6cf-cad82fa056d0",
+      "error": "",
+      "sourceError": "",
+      "parsing": true,
+      "ready": false,
+      "done": 1,
+      "total": 7,
+      "playing": false,
+      "loading": false,
+      "columns": 80
+    },
+    "superseded": {
+      "requests": [
+        {
+          "target": 0.08333333333333333,
+          "at": 2832.0999999046326
+        }
+      ],
+      "restored": true,
+      "lateEvents": 1,
+      "connected": true,
+      "source": null
+    },
+    "afterLate": {
+      "mediaKind": "video",
+      "sourceRevision": "blob:http://127.0.0.1:5213/e79f749b-da82-4e4f-b6cf-cad82fa056d0",
+      "error": "",
+      "sourceError": "",
+      "parsing": true,
+      "ready": false,
+      "done": 1,
+      "total": 7,
+      "playing": false,
+      "loading": false,
+      "columns": 80
+    },
+    "retry": {
+      "mediaKind": "video",
+      "sourceRevision": "blob:http://127.0.0.1:5213/e79f749b-da82-4e4f-b6cf-cad82fa056d0",
+      "error": "",
+      "sourceError": "",
+      "parsing": false,
+      "ready": true,
+      "done": 0,
+      "total": 7,
+      "playing": false,
+      "loading": false,
+      "columns": 80
+    }
+  },
+  "timeout": {
+    "elapsedMs": 10093,
+    "configuredDefaultMs": 10000,
+    "timedOut": {
+      "mediaKind": "video",
+      "sourceRevision": "blob:http://127.0.0.1:5213/e79f749b-da82-4e4f-b6cf-cad82fa056d0",
+      "error": "视频定位超时，请重试或换 MP4 / WebM 文件",
+      "sourceError": "",
+      "parsing": false,
+      "ready": false,
+      "done": 0,
+      "total": 0,
+      "playing": false,
+      "loading": false,
+      "columns": 80
+    },
+    "restored": {
+      "requests": [
+        {
+          "target": 0.08333333333333333,
+          "at": 4782
+        }
+      ],
+      "restored": true,
+      "lateEvents": 0,
+      "connected": true,
+      "source": "blob:http://127.0.0.1:5213/e79f749b-da82-4e4f-b6cf-cad82fa056d0"
+    },
+    "screenshot": "D:\\my\\project\\astra\\astra-web\\output\\playwright\\video-prerender-stage-2026-10-11-r1\\ui-final-prod-chrome-shared-r4\\run-Se2gOV\\default-seek-timeout-alert.png",
+    "retry": {
+      "mediaKind": "video",
+      "sourceRevision": "blob:http://127.0.0.1:5213/e79f749b-da82-4e4f-b6cf-cad82fa056d0",
+      "error": "",
+      "sourceError": "",
+      "parsing": false,
+      "ready": true,
+      "done": 0,
+      "total": 7,
+      "playing": false,
+      "loading": false,
+      "columns": 80
+    }
+  },
+  "scrub": {
+    "method": "Same-turn real DOM click/input handler stress; native currentTime accessor restored before timeline seek",
+    "target": 0.35,
+    "immediate": {
+      "time": 0.35,
+      "seeking": true
+    },
+    "position": 0.35,
+    "restored": {
+      "requests": [
+        {
+          "target": 0.08333333333333333,
+          "at": 16016
+        }
+      ],
+      "restored": true,
+      "lateEvents": 1,
+      "connected": true,
+      "source": "blob:http://127.0.0.1:5213/e79f749b-da82-4e4f-b6cf-cad82fa056d0"
+    },
+    "state": {
+      "mediaKind": "video",
+      "sourceRevision": "blob:http://127.0.0.1:5213/e79f749b-da82-4e4f-b6cf-cad82fa056d0",
+      "error": "",
+      "sourceError": "",
+      "parsing": false,
+      "ready": false,
+      "done": 0,
+      "total": 0,
+      "playing": false,
+      "loading": false,
+      "columns": 80
+    }
+  },
+  "unmount": {
+    "method": "real cancel and route/discard, retained old slot seeked after unmount and after same-document return",
+    "detached": {
+      "requests": [
+        {
+          "target": 0.08333333333333333,
+          "at": 17914.900000095367
+        }
+      ],
+      "restored": true,
+      "lateEvents": 1,
+      "connected": false,
+      "source": null
+    },
+    "disposed": null,
+    "returned": {
+      "mediaKind": null,
+      "sourceRevision": null,
+      "error": "",
+      "sourceError": "",
+      "parsing": false,
+      "ready": false,
+      "done": 0,
+      "total": 0,
+      "playing": false,
+      "loading": false,
+      "columns": 0
+    }
+  },
+  "passed": true
+}

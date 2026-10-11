@@ -1,0 +1,546 @@
+{
+  "scope": "Actual browser modules with controlled EventTarget media; no real codec, physical mobile, image-quality or total-heap certification",
+  "channel": "chrome",
+  "browser": "154.0.8037.98",
+  "baseline": false,
+  "head": "0b8bb8ebd6ff24a467198629dd98e37ac25c3fc1",
+  "sourceModules": {
+    "src/lib/ascii/media.ts": {
+      "sha256": "db97bf142afb13f4be027cf0d0f99dbfdaa8e26fe270c6bcb1d98352091501dd",
+      "origin": "working tree"
+    },
+    "src/lib/ascii/prerender.ts": {
+      "sha256": "8e5ec854c58da6e4ccda072c148d5ec9ca03d4914d63b74f6fa9270373388234",
+      "origin": "working tree"
+    }
+  },
+  "errors": [],
+  "cases": [
+    {
+      "name": "successful-seek-and-already-positioned",
+      "passed": true,
+      "elapsedMs": 4.8999998569488525,
+      "retained": {
+        "videoListeners": 0,
+        "signalListeners": 0,
+        "timeouts": 0,
+        "intervals": 0
+      },
+      "details": {
+        "seeks": [
+          2
+        ]
+      }
+    },
+    {
+      "name": "late-seeked-does-not-complete-an-active-seek",
+      "passed": true,
+      "elapsedMs": 21.09999990463257,
+      "retained": {
+        "videoListeners": 0,
+        "signalListeners": 0,
+        "timeouts": 0,
+        "intervals": 0
+      },
+      "details": {
+        "ignoredWhileSeeking": true,
+        "seeks": [
+          2
+        ]
+      }
+    },
+    {
+      "name": "preaborted-and-shouldAbort-zero-seek",
+      "passed": true,
+      "elapsedMs": 1.2000000476837158,
+      "retained": {
+        "videoListeners": 0,
+        "signalListeners": 0,
+        "timeouts": 0,
+        "intervals": 0
+      },
+      "details": {
+        "seeks": 0
+      }
+    },
+    {
+      "name": "invalid-targets-rejected-before-seek",
+      "passed": true,
+      "elapsedMs": 0.20000004768371582,
+      "retained": {
+        "videoListeners": 0,
+        "signalListeners": 0,
+        "timeouts": 0,
+        "intervals": 0
+      },
+      "details": {
+        "results": [
+          {
+            "ok": false,
+            "name": "Error",
+            "message": "视频定位时间无效"
+          },
+          {
+            "ok": false,
+            "name": "Error",
+            "message": "视频定位时间无效"
+          },
+          {
+            "ok": false,
+            "name": "Error",
+            "message": "视频定位时间无效"
+          }
+        ],
+        "seeks": 0
+      }
+    },
+    {
+      "name": "signal-cancels-in-flight-seek",
+      "passed": true,
+      "elapsedMs": 21.299999952316284,
+      "retained": {
+        "videoListeners": 0,
+        "signalListeners": 0,
+        "timeouts": 0,
+        "intervals": 0
+      },
+      "details": {
+        "result": {
+          "ok": false,
+          "name": "AbortError",
+          "message": "已取消视频定位"
+        },
+        "seeks": [
+          2
+        ]
+      }
+    },
+    {
+      "name": "shouldAbort-cancels-in-flight-seek",
+      "passed": true,
+      "elapsedMs": 26.09999990463257,
+      "retained": {
+        "videoListeners": 0,
+        "signalListeners": 0,
+        "timeouts": 0,
+        "intervals": 0
+      },
+      "details": {
+        "result": {
+          "ok": false,
+          "name": "AbortError",
+          "message": "已取消视频定位"
+        },
+        "seeks": [
+          2
+        ]
+      }
+    },
+    {
+      "name": "media-emptied-settles-seek",
+      "passed": true,
+      "elapsedMs": 20.90000009536743,
+      "retained": {
+        "videoListeners": 0,
+        "signalListeners": 0,
+        "timeouts": 0,
+        "intervals": 0
+      },
+      "details": {
+        "result": {
+          "ok": false,
+          "name": "AbortError",
+          "message": "已取消视频定位"
+        }
+      }
+    },
+    {
+      "name": "media-abort-settles-seek",
+      "passed": true,
+      "elapsedMs": 20.5,
+      "retained": {
+        "videoListeners": 0,
+        "signalListeners": 0,
+        "timeouts": 0,
+        "intervals": 0
+      },
+      "details": {
+        "result": {
+          "ok": false,
+          "name": "AbortError",
+          "message": "已取消视频定位"
+        }
+      }
+    },
+    {
+      "name": "media-error-settles-seek",
+      "passed": true,
+      "elapsedMs": 21.100000143051147,
+      "retained": {
+        "videoListeners": 0,
+        "signalListeners": 0,
+        "timeouts": 0,
+        "intervals": 0
+      },
+      "details": {
+        "result": {
+          "ok": false,
+          "name": "Error",
+          "message": "视频定位失败，请换 MP4 / WebM 再试"
+        }
+      }
+    },
+    {
+      "name": "timeout-is-bounded-and-readable",
+      "passed": true,
+      "elapsedMs": 58.19999980926514,
+      "retained": {
+        "videoListeners": 0,
+        "signalListeners": 0,
+        "timeouts": 0,
+        "intervals": 0
+      },
+      "details": {
+        "result": {
+          "ok": false,
+          "name": "Error",
+          "message": "视频定位超时，请重试或换 MP4 / WebM 文件"
+        },
+        "elapsedMs": 58
+      }
+    },
+    {
+      "name": "throwing-setter-cleans-listeners-and-timers",
+      "passed": true,
+      "elapsedMs": 0.9000000953674316,
+      "retained": {
+        "videoListeners": 0,
+        "signalListeners": 0,
+        "timeouts": 0,
+        "intervals": 0
+      },
+      "details": {
+        "result": {
+          "ok": false,
+          "name": "Error",
+          "message": "Controlled seek setter failure"
+        }
+      }
+    },
+    {
+      "name": "cancelled-seek-can-retry",
+      "passed": true,
+      "elapsedMs": 4.5,
+      "retained": {
+        "videoListeners": 0,
+        "signalListeners": 0,
+        "timeouts": 0,
+        "intervals": 0
+      },
+      "details": {
+        "seeks": [
+          1,
+          2
+        ]
+      }
+    },
+    {
+      "name": "two-elements-do-not-share-cancellation",
+      "passed": true,
+      "elapsedMs": 0.40000009536743164,
+      "retained": {
+        "videoListeners": 0,
+        "signalListeners": 0,
+        "timeouts": 0,
+        "intervals": 0
+      },
+      "details": {
+        "firstSeeks": [
+          1
+        ],
+        "secondSeeks": [
+          2
+        ]
+      }
+    },
+    {
+      "name": "prerender-preabort-does-not-seek-or-progress",
+      "passed": true,
+      "elapsedMs": 0.5,
+      "retained": {
+        "videoListeners": 0,
+        "signalListeners": 0,
+        "timeouts": 0,
+        "intervals": 0
+      },
+      "details": {
+        "result": {
+          "ok": false,
+          "error": "已取消预渲染",
+          "aborted": true
+        },
+        "progress": 0,
+        "seeks": []
+      }
+    },
+    {
+      "name": "prerender-signal-during-seek",
+      "passed": true,
+      "elapsedMs": 101.79999995231628,
+      "retained": {
+        "videoListeners": 0,
+        "signalListeners": 0,
+        "timeouts": 0,
+        "intervals": 0
+      },
+      "details": {
+        "result": {
+          "ok": false,
+          "error": "已取消预渲染",
+          "aborted": true
+        },
+        "progress": 0,
+        "converted": 0,
+        "seeks": [
+          0.2,
+          0.1
+        ]
+      }
+    },
+    {
+      "name": "prerender-shouldAbort-during-seek",
+      "passed": true,
+      "elapsedMs": 107.79999995231628,
+      "retained": {
+        "videoListeners": 0,
+        "signalListeners": 0,
+        "timeouts": 0,
+        "intervals": 0
+      },
+      "details": {
+        "result": {
+          "ok": false,
+          "error": "已取消预渲染",
+          "aborted": true
+        },
+        "progress": 0,
+        "converted": 0,
+        "seeks": [
+          0.2,
+          0.1
+        ]
+      }
+    },
+    {
+      "name": "prerender-seek-timeout-restores-without-waiting-again",
+      "passed": true,
+      "elapsedMs": 51.59999990463257,
+      "retained": {
+        "videoListeners": 0,
+        "signalListeners": 0,
+        "timeouts": 0,
+        "intervals": 0
+      },
+      "details": {
+        "result": {
+          "ok": false,
+          "error": "视频定位超时，请重试或换 MP4 / WebM 文件"
+        },
+        "progress": 0,
+        "seeks": [
+          0.2,
+          0.1
+        ]
+      }
+    },
+    {
+      "name": "prerender-source-replacement-never-restores-old-position",
+      "passed": true,
+      "elapsedMs": 104.79999995231628,
+      "retained": {
+        "videoListeners": 0,
+        "signalListeners": 0,
+        "timeouts": 0,
+        "intervals": 0
+      },
+      "details": {
+        "result": {
+          "ok": false,
+          "error": "已取消预渲染",
+          "aborted": true
+        },
+        "progress": 0,
+        "seeks": [
+          0.2
+        ],
+        "replacementTime": 3
+      }
+    },
+    {
+      "name": "prerender-cancel-during-conversion-has-no-late-progress",
+      "passed": true,
+      "elapsedMs": 139.70000004768372,
+      "retained": {
+        "videoListeners": 0,
+        "signalListeners": 0,
+        "timeouts": 0,
+        "intervals": 0
+      },
+      "details": {
+        "result": {
+          "ok": false,
+          "error": "已取消预渲染",
+          "aborted": true
+        },
+        "progress": 0,
+        "seeks": [
+          0.2,
+          0.1
+        ]
+      }
+    },
+    {
+      "name": "prerender-cancel-during-raster-has-no-late-progress",
+      "passed": true,
+      "elapsedMs": 137.79999995231628,
+      "retained": {
+        "videoListeners": 0,
+        "signalListeners": 0,
+        "timeouts": 0,
+        "intervals": 0
+      },
+      "details": {
+        "result": {
+          "ok": false,
+          "error": "已取消预渲染",
+          "aborted": true
+        },
+        "progress": 0,
+        "seeks": [
+          0.2,
+          0.1
+        ]
+      }
+    },
+    {
+      "name": "same-source-obsolete-task-cannot-restore-new-task-position",
+      "passed": true,
+      "elapsedMs": 92.09999990463257,
+      "retained": {
+        "videoListeners": 0,
+        "signalListeners": 0,
+        "timeouts": 0,
+        "intervals": 0
+      },
+      "details": {
+        "result": {
+          "ok": false,
+          "error": "已取消预渲染",
+          "aborted": true
+        },
+        "progress": 0,
+        "seeks": [
+          0.2,
+          2
+        ],
+        "retainedNewTime": 2
+      }
+    },
+    {
+      "name": "prerender-success-preserves-frames-and-restores",
+      "passed": true,
+      "elapsedMs": 34.10000014305115,
+      "retained": {
+        "videoListeners": 0,
+        "signalListeners": 0,
+        "timeouts": 0,
+        "intervals": 0
+      },
+      "details": {
+        "frames": 3,
+        "progress": [
+          1,
+          2,
+          3
+        ],
+        "seeks": [
+          0.2,
+          0.325,
+          0.45,
+          0.1
+        ]
+      }
+    },
+    {
+      "name": "prerender-conversion-failure-restores-without-blocking",
+      "passed": true,
+      "elapsedMs": 13.799999952316284,
+      "retained": {
+        "videoListeners": 0,
+        "signalListeners": 0,
+        "timeouts": 0,
+        "intervals": 0
+      },
+      "details": {
+        "result": {
+          "ok": false,
+          "error": "Controlled conversion failure"
+        },
+        "progress": 1,
+        "seeks": [
+          0.2,
+          0.325,
+          0.1
+        ]
+      }
+    },
+    {
+      "name": "prerender-success-restoration-signal-is-bounded",
+      "passed": true,
+      "elapsedMs": 51.299999952316284,
+      "retained": {
+        "videoListeners": 0,
+        "signalListeners": 0,
+        "timeouts": 0,
+        "intervals": 0
+      },
+      "details": {
+        "result": {
+          "ok": false,
+          "error": "已取消预渲染",
+          "aborted": true
+        },
+        "seeks": [
+          0.2,
+          0.325,
+          0.45,
+          0.1
+        ]
+      }
+    },
+    {
+      "name": "prerender-success-restoration-timeout-is-bounded",
+      "passed": true,
+      "elapsedMs": 78.09999990463257,
+      "retained": {
+        "videoListeners": 0,
+        "signalListeners": 0,
+        "timeouts": 0,
+        "intervals": 0
+      },
+      "details": {
+        "result": {
+          "ok": false,
+          "error": "视频定位超时，请重试或换 MP4 / WebM 文件"
+        },
+        "seeks": [
+          0.2,
+          0.325,
+          0.45,
+          0.1
+        ]
+      }
+    }
+  ],
+  "passed": true
+}

@@ -1,0 +1,31 @@
+{
+  "base": "http://127.0.0.1:5213",
+  "channel": "chrome",
+  "stateEvidence": "Production DOM only; no Vue internals or reactive-model mutations",
+  "scope": "Locally generated WebM and PNG; real editor interactions with an intentionally stalled seek. Not a decoder/network stall or real-device performance certification.",
+  "cancelCases": [],
+  "invalidationCases": [],
+  "errors": [],
+  "browser": "154.0.8037.98",
+  "fixture": {
+    "filename": "synthetic-source.webm",
+    "sha256": "34625a59ca017ae414573bcb4a21464514f695d9806955fa676098939005795c",
+    "bytes": 110
+  },
+  "failureState": {
+    "mediaKind": null,
+    "sourceRevision": null,
+    "error": "视频解码失败，请换 MP4 / WebM 再试",
+    "sourceError": "",
+    "parsing": false,
+    "ready": false,
+    "done": 0,
+    "total": 0,
+    "playing": false,
+    "loading": false,
+    "columns": 0
+  },
+  "failureScreenshot": "D:\\my\\project\\astra\\astra-web\\output\\playwright\\video-prerender-stage-2026-10-11-r1\\ui-final-prod-chrome\\run-eJpAl9\\light-1440-failure.png",
+  "passed": false,
+  "failure": "locator.waitFor: Timeout 60000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: '暂停', exact: true }) to be visible\u001b[22m\n\n    at loadVideo (D:\\my\\project\\astra\\astra-web\\scripts\\video-prerender-cancellation-ui.mjs:186:63)\n    at async file:///D:/my/project/astra/astra-web/scripts/video-prerender-cancellation-ui.mjs:284:9"
+}

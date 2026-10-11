@@ -5,10 +5,12 @@ import { createHash } from 'node:crypto'
 import path from 'node:path'
 
 const base = process.env.ASTRA_PREVIEW_URL || 'http://127.0.0.1:5180'
-const output = path.resolve('test-results/editor-cache-contract')
+const output = path.resolve(process.env.ASTRA_CACHE_OUTPUT || 'test-results/editor-cache-contract')
 await mkdir(output, { recursive: true })
-const bytes = await readFile('test-results/editor-contract-source.mp4')
-const browser = await chromium.launch()
+const bytes = await readFile(process.env.ASTRA_CACHE_INPUT || 'test-results/editor-contract-source.mp4')
+const browser = await chromium.launch({
+  ...(process.env.ASTRA_BROWSER_CHANNEL ? { channel: process.env.ASTRA_BROWSER_CHANNEL } : {}),
+})
 try {
   const page = await browser.newPage({ reducedMotion: 'reduce' })
   await page.goto(`${base}/ascii-art`)

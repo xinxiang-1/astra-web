@@ -1,0 +1,307 @@
+{
+  "base": "http://127.0.0.1:5213",
+  "channel": "chrome",
+  "stateEvidence": "Production DOM only; no Vue internals or reactive-model mutations",
+  "scope": "Locally generated WebM and PNG; real editor interactions with an intentionally stalled seek. Not a decoder/network stall or real-device performance certification.",
+  "cancelCases": [
+    {
+      "label": "light-1440",
+      "theme": "light",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "parsing": {
+        "mediaKind": "video",
+        "sourceRevision": "blob:http://127.0.0.1:5213/e8cbf13b-9415-446b-9d0a-086786890324",
+        "error": "",
+        "sourceError": "",
+        "parsing": true,
+        "ready": false,
+        "done": 1,
+        "total": 7,
+        "playing": false,
+        "loading": false,
+        "columns": 80
+      },
+      "cancelled": {
+        "mediaKind": "video",
+        "sourceRevision": "blob:http://127.0.0.1:5213/e8cbf13b-9415-446b-9d0a-086786890324",
+        "error": "",
+        "sourceError": "",
+        "parsing": false,
+        "ready": false,
+        "done": 0,
+        "total": 0,
+        "playing": false,
+        "loading": false,
+        "columns": 80
+      },
+      "recovered": {
+        "requests": [
+          {
+            "target": 0.08333333333333333,
+            "at": 1768
+          }
+        ],
+        "restored": true,
+        "lateEvents": 1,
+        "connected": true,
+        "source": "blob:http://127.0.0.1:5213/e8cbf13b-9415-446b-9d0a-086786890324"
+      },
+      "retry": {
+        "mediaKind": "video",
+        "sourceRevision": "blob:http://127.0.0.1:5213/e8cbf13b-9415-446b-9d0a-086786890324",
+        "error": "",
+        "sourceError": "",
+        "parsing": false,
+        "ready": true,
+        "done": 0,
+        "total": 7,
+        "playing": false,
+        "loading": false,
+        "columns": 80
+      },
+      "overflow": false,
+      "boundMs": 1500,
+      "elapsedMs": 18.299999952316284,
+      "loadingScreenshot": "D:\\my\\project\\astra\\astra-web\\output\\playwright\\video-prerender-stage-2026-10-11-r1\\ui-final-prod-chrome-fixture-r2\\run-maGolX\\light-1440-loading.png",
+      "cancelledScreenshot": "D:\\my\\project\\astra\\astra-web\\output\\playwright\\video-prerender-stage-2026-10-11-r1\\ui-final-prod-chrome-fixture-r2\\run-maGolX\\light-1440-cancelled.png"
+    },
+    {
+      "label": "light-390",
+      "theme": "light",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "parsing": {
+        "mediaKind": "video",
+        "sourceRevision": "blob:http://127.0.0.1:5213/e06e99a1-62b4-43b5-95f6-2f0a0b184605",
+        "error": "",
+        "sourceError": "",
+        "parsing": true,
+        "ready": false,
+        "done": 1,
+        "total": 7,
+        "playing": false,
+        "loading": false,
+        "columns": 80
+      },
+      "cancelled": {
+        "mediaKind": "video",
+        "sourceRevision": "blob:http://127.0.0.1:5213/e06e99a1-62b4-43b5-95f6-2f0a0b184605",
+        "error": "",
+        "sourceError": "",
+        "parsing": false,
+        "ready": false,
+        "done": 0,
+        "total": 0,
+        "playing": false,
+        "loading": false,
+        "columns": 80
+      },
+      "recovered": {
+        "requests": [
+          {
+            "target": 0.08333333333333333,
+            "at": 1623
+          }
+        ],
+        "restored": true,
+        "lateEvents": 1,
+        "connected": true,
+        "source": "blob:http://127.0.0.1:5213/e06e99a1-62b4-43b5-95f6-2f0a0b184605"
+      },
+      "retry": {
+        "mediaKind": "video",
+        "sourceRevision": "blob:http://127.0.0.1:5213/e06e99a1-62b4-43b5-95f6-2f0a0b184605",
+        "error": "",
+        "sourceError": "",
+        "parsing": false,
+        "ready": true,
+        "done": 0,
+        "total": 7,
+        "playing": false,
+        "loading": false,
+        "columns": 80
+      },
+      "overflow": false,
+      "boundMs": 1500,
+      "elapsedMs": 17.799999952316284,
+      "loadingScreenshot": "D:\\my\\project\\astra\\astra-web\\output\\playwright\\video-prerender-stage-2026-10-11-r1\\ui-final-prod-chrome-fixture-r2\\run-maGolX\\light-390-loading.png",
+      "cancelledScreenshot": "D:\\my\\project\\astra\\astra-web\\output\\playwright\\video-prerender-stage-2026-10-11-r1\\ui-final-prod-chrome-fixture-r2\\run-maGolX\\light-390-cancelled.png"
+    },
+    {
+      "label": "dark-1440",
+      "theme": "dark",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "parsing": {
+        "mediaKind": "video",
+        "sourceRevision": "blob:http://127.0.0.1:5213/2758f5e7-6016-4795-98aa-1df2ef7634a4",
+        "error": "",
+        "sourceError": "",
+        "parsing": true,
+        "ready": false,
+        "done": 1,
+        "total": 7,
+        "playing": false,
+        "loading": false,
+        "columns": 80
+      },
+      "cancelled": {
+        "mediaKind": "video",
+        "sourceRevision": "blob:http://127.0.0.1:5213/2758f5e7-6016-4795-98aa-1df2ef7634a4",
+        "error": "",
+        "sourceError": "",
+        "parsing": false,
+        "ready": false,
+        "done": 0,
+        "total": 0,
+        "playing": false,
+        "loading": false,
+        "columns": 80
+      },
+      "recovered": {
+        "requests": [
+          {
+            "target": 0.08333333333333333,
+            "at": 1836.3000001907349
+          }
+        ],
+        "restored": true,
+        "lateEvents": 1,
+        "connected": true,
+        "source": "blob:http://127.0.0.1:5213/2758f5e7-6016-4795-98aa-1df2ef7634a4"
+      },
+      "retry": {
+        "mediaKind": "video",
+        "sourceRevision": "blob:http://127.0.0.1:5213/2758f5e7-6016-4795-98aa-1df2ef7634a4",
+        "error": "",
+        "sourceError": "",
+        "parsing": false,
+        "ready": true,
+        "done": 0,
+        "total": 7,
+        "playing": false,
+        "loading": false,
+        "columns": 80
+      },
+      "overflow": false,
+      "boundMs": 1500,
+      "elapsedMs": 16.600000143051147,
+      "loadingScreenshot": "D:\\my\\project\\astra\\astra-web\\output\\playwright\\video-prerender-stage-2026-10-11-r1\\ui-final-prod-chrome-fixture-r2\\run-maGolX\\dark-1440-loading.png",
+      "cancelledScreenshot": "D:\\my\\project\\astra\\astra-web\\output\\playwright\\video-prerender-stage-2026-10-11-r1\\ui-final-prod-chrome-fixture-r2\\run-maGolX\\dark-1440-cancelled.png"
+    },
+    {
+      "label": "dark-390",
+      "theme": "dark",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "parsing": {
+        "mediaKind": "video",
+        "sourceRevision": "blob:http://127.0.0.1:5213/cd5193ba-b868-48df-962a-3d9650fef41e",
+        "error": "",
+        "sourceError": "",
+        "parsing": true,
+        "ready": false,
+        "done": 1,
+        "total": 7,
+        "playing": false,
+        "loading": false,
+        "columns": 80
+      },
+      "cancelled": {
+        "mediaKind": "video",
+        "sourceRevision": "blob:http://127.0.0.1:5213/cd5193ba-b868-48df-962a-3d9650fef41e",
+        "error": "",
+        "sourceError": "",
+        "parsing": false,
+        "ready": false,
+        "done": 0,
+        "total": 0,
+        "playing": false,
+        "loading": false,
+        "columns": 80
+      },
+      "recovered": {
+        "requests": [
+          {
+            "target": 0.08333333333333333,
+            "at": 1686.1000001430511
+          }
+        ],
+        "restored": true,
+        "lateEvents": 1,
+        "connected": true,
+        "source": "blob:http://127.0.0.1:5213/cd5193ba-b868-48df-962a-3d9650fef41e"
+      },
+      "retry": {
+        "mediaKind": "video",
+        "sourceRevision": "blob:http://127.0.0.1:5213/cd5193ba-b868-48df-962a-3d9650fef41e",
+        "error": "",
+        "sourceError": "",
+        "parsing": false,
+        "ready": true,
+        "done": 0,
+        "total": 7,
+        "playing": false,
+        "loading": false,
+        "columns": 80
+      },
+      "overflow": false,
+      "boundMs": 1500,
+      "elapsedMs": 10.5,
+      "loadingScreenshot": "D:\\my\\project\\astra\\astra-web\\output\\playwright\\video-prerender-stage-2026-10-11-r1\\ui-final-prod-chrome-fixture-r2\\run-maGolX\\dark-390-loading.png",
+      "cancelledScreenshot": "D:\\my\\project\\astra\\astra-web\\output\\playwright\\video-prerender-stage-2026-10-11-r1\\ui-final-prod-chrome-fixture-r2\\run-maGolX\\dark-390-cancelled.png"
+    }
+  ],
+  "invalidationCases": [],
+  "errors": [],
+  "browser": "154.0.8037.98",
+  "fixture": {
+    "filename": "synthetic-source.webm",
+    "sha256": "88659125a1ef8af82e74cb4959da4b04275508a8b335909b39426aa9ec3c2d1a",
+    "bytes": 16712,
+    "decoded": {
+      "ok": true,
+      "error": "",
+      "width": 480,
+      "height": 320,
+      "readyState": 4,
+      "duration": 2.276386,
+      "finiteDuration": true
+    },
+    "capture": {
+      "mode": "visible canvas, captureStream(0), explicit track.requestFrame",
+      "requestFrames": 40,
+      "recordingMs": 2367.0999999046326
+    },
+    "cleanup": {
+      "canvasRemoved": true,
+      "tracksStopped": true,
+      "decoderUrlRevoked": true
+    }
+  },
+  "passed": false,
+  "failure": "AssertionError [ERR_ASSERTION]: Late old-slot completion must leave the new image untouched\n    at file:///D:/my/project/astra/astra-web/scripts/video-prerender-cancellation-ui.mjs:428:3",
+  "failureState": {
+    "mediaKind": "image",
+    "sourceRevision": "blob:http://127.0.0.1:5213/8c60116a-ed50-4f42-b8a0-8b1b924b46cf",
+    "error": "",
+    "sourceError": "",
+    "parsing": false,
+    "ready": false,
+    "done": 0,
+    "total": 0,
+    "playing": false,
+    "loading": false,
+    "columns": 80
+  },
+  "failureScreenshot": "D:\\my\\project\\astra\\astra-web\\output\\playwright\\video-prerender-stage-2026-10-11-r1\\ui-final-prod-chrome-fixture-r2\\run-maGolX\\failure.png"
+}

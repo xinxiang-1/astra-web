@@ -1,0 +1,145 @@
+{
+  "stage": "video-prerender-cancellation",
+  "date": "2026-10-11",
+  "scope": "Cancellation, source/task ownership and recovery; synthetic local media. No total-heap, real-device, sustained artwork-fps or commercial deployment certification.",
+  "evidence": {
+    "core-original-24-baseline.json": {
+      "sha256": "da946884ef246104dfefd92176cefe398cf5ce673bfa0cd451b525cb4213d844",
+      "raw": "output/playwright/video-seek-cancellation-2026-10-11-old-head-edge-r3/report.json",
+      "scriptSha256": "6d5380310844bfd297b3fbf3ce4e760fb2842309ce94ccee3a5b4f788f74d3e3"
+    },
+    "core-old-head-edge-final-r4.json": {
+      "sha256": "311db56400d3e47116dba3c8435a36d3b0e73b78110954be67dfba4990c73ead",
+      "raw": "output/playwright/video-seek-cancellation-2026-10-11-old-head-edge-final-r4/report.json",
+      "scriptSha256": "cf4cd57cdcee8a4e5809b6509d1ce6ec39e778e32816906aada1e2bfa4a3588b"
+    },
+    "core-final-edge-r2.json": {
+      "sha256": "3372ebb62aceb0b97d3abf8d0e7bfc62bddced1cedcf1c17eb15b8d5b9504721",
+      "raw": "output/playwright/video-seek-cancellation-2026-10-11-final-edge-r2/report.json",
+      "scriptSha256": "cf4cd57cdcee8a4e5809b6509d1ce6ec39e778e32816906aada1e2bfa4a3588b"
+    },
+    "core-final-chrome-r2.json": {
+      "sha256": "331ce433decd471c8cfa15360b8d68b0f25136a9e58c27b20b75a56b0ce8fe15",
+      "raw": "output/playwright/video-seek-cancellation-2026-10-11-final-chrome-r2/report.json",
+      "scriptSha256": "cf4cd57cdcee8a4e5809b6509d1ce6ec39e778e32816906aada1e2bfa4a3588b"
+    },
+    "ui-dev-edge.json": {
+      "sha256": "4699afe2903b0304fde2c1b9cc3284e51314a7c61a56f6bd3ed555e7e9a960d1",
+      "raw": "output/playwright/video-prerender-stage-2026-10-11-r1/ui-final-dev-edge-shared-r2/run-mSDjD2/report.json",
+      "scriptSha256": "abbcf533f3fa042f9841315720f9e4487cf3a929649226b80b1b3c65d9fe6a97",
+      "maxCancelMs": 20.199999809265137
+    },
+    "ui-dev-chrome.json": {
+      "sha256": "6b11e6a69aefc536ce1dc60aab9ade182e6460fb9c3c4b391fd3c161e1a5e4ba",
+      "raw": "output/playwright/video-prerender-stage-2026-10-11-r1/ui-final-dev-chrome-shared-r2/run-px3JM6/report.json",
+      "scriptSha256": "abbcf533f3fa042f9841315720f9e4487cf3a929649226b80b1b3c65d9fe6a97",
+      "maxCancelMs": 13
+    },
+    "ui-prod-edge.json": {
+      "sha256": "02dd6d556b07ebf62624d5fc02f14985425f63de9333c11475edb56711ebb987",
+      "raw": "output/playwright/video-prerender-stage-2026-10-11-r1/ui-final-prod-edge-shared-r3/run-6GwPcS/report.json",
+      "scriptSha256": "abbcf533f3fa042f9841315720f9e4487cf3a929649226b80b1b3c65d9fe6a97",
+      "maxCancelMs": 24.700000047683716
+    },
+    "ui-prod-chrome.json": {
+      "sha256": "ff60c23a7f10b8d14155af8fd9b84ae991d6bc61035f5c7ebc049cc60ef12ff7",
+      "raw": "output/playwright/video-prerender-stage-2026-10-11-r1/ui-final-prod-chrome-shared-r4/run-Se2gOV/report.json",
+      "scriptSha256": "abbcf533f3fa042f9841315720f9e4487cf3a929649226b80b1b3c65d9fe6a97",
+      "maxCancelMs": 14.599999904632568
+    },
+    "ui-prod-chrome-fixture-failure.json": {
+      "sha256": "41f97141859e205668682f0abcf2cce8b0524016a47afc1daebe074293d4239d",
+      "raw": "output/playwright/video-prerender-stage-2026-10-11-r1/ui-final-prod-chrome/run-eJpAl9/report.json",
+      "scriptSha256": "a67066c975fd3f4ae5ed09ef594dab847148f38cab1ec284e32cba479315358c"
+    },
+    "ui-prod-chrome-manual-capture-failure.json": {
+      "sha256": "73ecabb15b4447fa2dee9a62b197208fed777208ebdd28d6131b8ad40a2ae726",
+      "raw": "output/playwright/video-prerender-stage-2026-10-11-r1/ui-final-prod-chrome-settle-r3/run-uwQG7v/report.json",
+      "scriptSha256": "da89dc6ca7eca9a280902395093fdc5edfd5dff6ea73af56152cbf1fd8717801"
+    },
+    "ui-prod-chrome-early-canvas-failure.json": {
+      "sha256": "f456d956e5e83d48969fbf669f881c0d501d5fe550a64ec32c9ff2e4962faa61",
+      "raw": "output/playwright/video-prerender-stage-2026-10-11-r1/ui-final-prod-chrome-fixture-r2/run-maGolX/report.json",
+      "scriptSha256": "9f96dfbbcb6301e97ef9b863130c8ed7abfb5e7c46a322b49b2fe64d20e177ab"
+    },
+    "video-responsive-first-failure.json": {
+      "sha256": "6b3788c59aa168fffd793f74fa3ab1fb9ec922d612e687bd2d72511dc63447bc",
+      "raw": "output/playwright/video-prerender-stage-2026-10-11-r1/video-responsive-edge/report.json"
+    },
+    "video-responsive-diagnostic.json": {
+      "sha256": "388391a3c51ecd27a1f1010d9bc8ae0969d7a687404ff8880335892e73fbebfb",
+      "raw": "output/playwright/video-prerender-stage-2026-10-11-r1/video-responsive-edge-diagnostic-r2/report.json"
+    },
+    "typed-cache.json": {
+      "sha256": "e46645439988ad738b293ca5232de3813bc2a0180e8c8a1a46c9709a36d1dd1b",
+      "raw": "output/playwright/video-prerender-stage-2026-10-11-r1/typed-cache-final-edge-r2/report.json"
+    },
+    "gif-resource.json": {
+      "sha256": "4eb32415f02b36cacd806ed73f11efd174b29f4a95ff996f39f6b49f9958f028",
+      "raw": "output/playwright/video-prerender-stage-2026-10-11-r1/gif-resource-edge/report.json"
+    },
+    "light-390-loading.png": {
+      "sha256": "41d0a21e433579fde0ed6f3fd1784774f37015a55d736d90259792ccc55c6e35",
+      "review": "Manually inspected in Codex: theme, current artwork, loading/cancel/error state, no viewport overflow."
+    },
+    "dark-390-cancelled.png": {
+      "sha256": "a92181b36262320b63a156aaa14ea1034a3306a06d7d496f87fb5b0f3ecb1dc7",
+      "review": "Manually inspected in Codex: theme, current artwork, loading/cancel/error state, no viewport overflow."
+    },
+    "dark-1440-cancelled.png": {
+      "sha256": "fdea8c9b615f6e589e5c680e43408d4f20740c5738c0627ab1c4c0999ea00b90",
+      "review": "Manually inspected in Codex: theme, current artwork, loading/cancel/error state, no viewport overflow."
+    },
+    "default-seek-timeout-alert.png": {
+      "sha256": "b2ac36a2a198ff3616f3c99cfb5d40c20d1f956f2fdcd04d5c1dd7e5c2a71221",
+      "review": "Manually inspected in Codex: theme, current artwork, loading/cancel/error state, no viewport overflow."
+    },
+    "static-checks.json": {
+      "sha256": "2759ee3a78d2e2bfb1ab487a5fb6adc4d6d0e7c1819c96a8435ae2785814caf1",
+      "raw": "output/playwright/video-prerender-stage-2026-10-11-r1/static-checks-final-r2.json"
+    }
+  },
+  "sourceSha256": {
+    "src/lib/ascii/media.ts": "db97bf142afb13f4be027cf0d0f99dbfdaa8e26fe270c6bcb1d98352091501dd",
+    "src/lib/ascii/prerender.ts": "8e5ec854c58da6e4ccda072c148d5ec9ca03d4914d63b74f6fa9270373388234",
+    "src/views/AsciiArtView.vue": "35c02d3b5e768eb4d0de405d79feb02d974ebfe7159b6983e908734e3ec0b5da",
+    "scripts/art-video-cache-contract.mjs": "3e656d7c9ccacb3c59b486aa4b7a034537741c875d3e30578b90bc0a54d5aea2",
+    "scripts/video-responsive-contract.mjs": "7878d6cb03efe7d6f06dc5888bfbc6935a0318578b7967d60519a75e18ffbb89",
+    "scripts/video-seek-cancellation-contract.mjs": "cf4cd57cdcee8a4e5809b6509d1ce6ec39e778e32816906aada1e2bfa4a3588b",
+    "scripts/video-prerender-cancellation-ui.mjs": "abbcf533f3fa042f9841315720f9e4487cf3a929649226b80b1b3c65d9fe6a97"
+  },
+  "checks": {
+    "typeCheck": "exit 0; static-checks.json:type-check",
+    "eslint": "exit 0; static-checks.json:eslint; script syntax checks also exit 0",
+    "build": "exit 0; static-checks.json:build; existing warnings retained",
+    "protectedSources": "unchanged against HEAD",
+    "localNativeGlyphScripts": "preserved; excluded from stage commit",
+    "localBackendConfig": "preserved; excluded from stage commit",
+    "backend": "documentation only; no unrelated Maven test or shared database mutation",
+    "visualReview": [
+      "light-390-loading.png",
+      "dark-390-cancelled.png",
+      "dark-1440-cancelled.png",
+      "default-seek-timeout-alert.png"
+    ],
+    "expectedBaselineFailures": 22,
+    "originalBaselineFailures": 21,
+    "coreChecksPerBrowser": 25
+  },
+  "fixture": {
+    "sha256": "8638a30009c037e32d114d769caf2f4d8967f6d20223fff670a55b94b1ccd9d8",
+    "bytes": 335748,
+    "generation": "Owned local FFmpeg 3.0.1 lavfi testsrc2, 480x320, 20fps, 2 seconds, 40 H.264 yuv420p frames; native decode checked independently in each browser. No personal media committed."
+  },
+  "distIndexSha256": "e6e9e0136ec5260ed53e6f831e6c0058fa3c8ac36b685bd18884a36eabe2c88e",
+  "limits": [
+    "Short synthetic clips and desktop browsers only",
+    "390px is a simulated viewport, not a physical phone",
+    "First heartbeat run exceeded 150ms; diagnostic rerun passed with unchanged product code, cause unproven",
+    "No 10-minute resource growth/LRU/paging or sustained artwork-fps certification",
+    "Browser MediaRecorder fixture twice produced a 110-byte empty WebM; explicit shared generated MP4 fixed the test input, not a production decoder defect",
+    "Earlier canvas comparison did not wait for renderPending=false; corrected wait requires finished rendering and 100ms stable pixels, preserving samePixels assertion",
+    "Related responsive/GIF reports predate the final stale-seeked guard; current core, six-mode typed cache and all four final UI reports cover the latest product",
+    "Live external auth/payment channels, complete membership sale/cloud consumption, real funds and deployment remain outside this stage and unfinished"
+  ]
+}

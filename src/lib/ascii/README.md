@@ -28,6 +28,7 @@ legacy 的 `paintStudioFrame` 为缩略图 / PNG / 视频导出复用原生渲�
 项目恢复、390px 与真实选段 MP4；可设置 `ASTRA_PREVIEW_URL` 验证 minify 后的生产页。
 `npm run test:art-cache` 检查六模式 typed-frame 缓存、取消/内存拒绝及源视频时间恢复。
 新缓存默认上限 96 MiB；视频流式编码复用 Canvas，不能把同一可变 raster 缓存在多帧队列。
+定位支持取消和默认10秒超时；预解析同源失败直接请求恢复位置，换源或失去任务归属不恢复。页面等待解码就绪再采样。原理、复验入口与范围见[取消阶段](../../../docs/plans/video-prerender-cancellation-2026-10-11.md)。
 JPEG 缩略图和视频有压缩损失，不宣称逐像素相等；静态 PNG/HTML 合同要求相同 Canvas 输出。
 
 ## 模块地图

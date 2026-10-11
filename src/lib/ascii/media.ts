@@ -120,30 +120,72 @@ export function loadVideoElement(
   })
 }
 
-/** Seek a video element and wait until `seeked` (or resolve if already there). */
-export function seekVideoTo(video: HTMLVideoElement, time: number): Promise<void> {
+export type VideoSeekOptions = {
+  signal?: AbortSignal
+  timeoutMs?: number
+  /** Legacy callers can cancel while the decoder is still seeking. */
+  shouldAbort?: () => boolean
+}
+
+/** Wait for decoded positioning, with cancellation and a bounded decoder wait. */
+export function seekVideoTo(
+  video: HTMLVideoElement,
+  time: number,
+  options: VideoSeekOptions = {},
+): Promise<void> {
+  const aborted = () => options.signal?.aborted || options.shouldAbort?.()
+  const abortError = () => new DOMException('已取消视频定位', 'AbortError')
+  if (aborted()) return Promise.reject(abortError())
+  if (!Number.isFinite(time)) return Promise.reject(new Error('视频定位时间无效'))
   const target = Math.min(
     Math.max(0, time),
-    Number.isFinite(video.duration) ? video.duration : time,
+    Number.isFinite(video.duration) ? Math.max(0, video.duration) : Math.max(0, time),
   )
-  if (Math.abs(video.currentTime - target) < 0.001) {
+  if (!video.seeking && Math.abs(video.currentTime - target) < 0.001) {
     return Promise.resolve()
   }
   return new Promise((resolve, reject) => {
+    let settled = false
+    const finish = (error?: unknown) => {
+      if (settled) return
+      settled = true
+      cleanup()
+      if (error) reject(error)
+      else resolve()
+    }
+    const onAbort = () => finish(abortError())
     const onSeeked = () => {
-      cleanup()
-      resolve()
+      if (aborted()) onAbort()
+      else if (!video.seeking) finish()
     }
-    const onError = () => {
-      cleanup()
-      reject(new Error('视频定位失败'))
-    }
+    const onError = () => finish(new Error('视频定位失败，请换 MP4 / WebM 再试'))
     const cleanup = () => {
+      clearTimeout(timeout)
+      clearInterval(poll)
       video.removeEventListener('seeked', onSeeked)
       video.removeEventListener('error', onError)
+      video.removeEventListener('emptied', onAbort)
+      video.removeEventListener('abort', onAbort)
+      options.signal?.removeEventListener('abort', onAbort)
     }
     video.addEventListener('seeked', onSeeked)
     video.addEventListener('error', onError)
-    video.currentTime = target
+    video.addEventListener('emptied', onAbort)
+    video.addEventListener('abort', onAbort)
+    options.signal?.addEventListener('abort', onAbort, { once: true })
+    const requestedTimeout = options.timeoutMs ?? 10_000
+    const timeoutMs = Number.isFinite(requestedTimeout)
+      ? Math.max(1, requestedTimeout)
+      : 10_000
+    const timeout = setTimeout(() => finish(new Error('视频定位超时，请重试或换 MP4 / WebM 文件')), timeoutMs)
+    const poll = options.shouldAbort
+      ? setInterval(() => { if (aborted()) onAbort() }, 25)
+      : undefined
+    try {
+      if (aborted()) onAbort()
+      else video.currentTime = target
+    } catch (error) {
+      finish(error)
+    }
   })
 }

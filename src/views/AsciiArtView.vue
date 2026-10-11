@@ -197,6 +197,7 @@ const videoPrerendering = ref(false)
 const videoPrerenderDone = ref(0)
 const videoPrerenderTotal = ref(0)
 const videoPrerenderReady = ref(false)
+const videoPrerenderNotice = ref('')
 
 /** charset = classic ASCII; phrase = 指定文字铺底 (我爱你中国 style). */
 const mode = ref<AsciiMode>('charset')
@@ -374,14 +375,31 @@ let paintRaf = 0
 let lastPaintMs = 0
 let videoLoop: FrameLoopHandle | null = null
 let frameBusy = false
-let convertQueued: { fitZoom?: boolean } | false = false
+type ConvertOptions = { fitZoom?: boolean; shouldAbort?: () => boolean }
+let convertQueued: ConvertOptions | false = false
 let videoObjectUrl = ''
 /** Last presented grid — used to refit zoom when live-cap toggles. */
 let lastPreviewCols = 0
 let lastPreviewRows = 0
 let prerenderFrames: PrerenderFrame[] = []
 let prerenderCacheKey = ''
-let prerenderAbort = false
+type VideoPrerenderTask = {
+  controller: AbortController
+  generation: number
+  video: HTMLVideoElement
+  sourceRevision: number
+  cacheKey: string
+  resumeTime: number
+}
+type VideoPrerenderRecovery = {
+  task: VideoPrerenderTask
+  error: string
+  settled: boolean
+  recovering: boolean
+}
+let prerenderGeneration = 0
+let prerenderTask: VideoPrerenderTask | null = null
+let prerenderRecovery: VideoPrerenderRecovery | null = null
 let prerenderPlayIndex = 0
 /** Remember charset-mode fonts when switching to phrase. */
 let savedCharsetPreview: {
@@ -975,7 +993,7 @@ function pauseVideoPlayback() {
 
 function clearVideoElement() {
   pauseVideoPlayback()
-  cancelVideoPrerender()
+  invalidateVideoPrerender(false)
   clearPrerenderCache()
   const video = sourceVideo.value
   if (video) {
@@ -1012,8 +1030,77 @@ function clearPrerenderCache() {
   videoPrerenderTotal.value = 0
 }
 
+function ownsPrerenderSource(task: VideoPrerenderTask) {
+  return (
+    !viewDisposed &&
+    task.generation === prerenderGeneration &&
+    task.sourceRevision === sourceRevision.value &&
+    task.video === sourceVideo.value &&
+    hasVideo.value
+  )
+}
+
+function ownsPrerenderTask(task: VideoPrerenderTask) {
+  return prerenderTask === task && ownsPrerenderSource(task)
+}
+
+function isCurrentPrerenderTask(task: VideoPrerenderTask) {
+  return (
+    ownsPrerenderTask(task) &&
+    !task.controller.signal.aborted &&
+    task.cacheKey === currentPrerenderCacheKey()
+  )
+}
+
+function invalidateVideoPrerender(restorePosition = true) {
+  const task = prerenderTask ?? prerenderRecovery?.task
+  const canRestore = task && ownsPrerenderSource(task)
+  prerenderTask = null
+  prerenderRecovery = null
+  videoPrerenderNotice.value = ''
+  prerenderGeneration++
+  task?.controller.abort()
+  videoPrerendering.value = false
+  if (restorePosition && task && canRestore && task.video.readyState >= 1) {
+    // A superseded task cannot restore later over a new task's sampling position.
+    try {
+      if (Math.abs(task.video.currentTime - task.resumeTime) >= 0.001)
+        task.video.currentTime = task.resumeTime
+    } catch {
+      // A changed or unavailable source will be handled by its own load operation.
+    }
+  }
+}
+
 function cancelVideoPrerender() {
-  prerenderAbort = true
+  const task = prerenderTask
+  if (!task) return
+  prerenderTask = null
+  task.controller.abort()
+  videoPrerendering.value = false
+  videoBuffering.value = false
+  if (!ownsPrerenderSource(task)) return
+  clearPrerenderCache()
+  const message = '已取消解析，可调整设置后重新解析或使用低消耗预览'
+  error.value = ''
+  videoPrerenderNotice.value = message
+  prerenderRecovery = { task, error: '', settled: false, recovering: false }
+}
+
+async function restorePrerenderPreview(recovery: VideoPrerenderRecovery) {
+  const isCurrent = () =>
+    prerenderRecovery === recovery &&
+    ownsPrerenderSource(recovery.task) &&
+    !prerenderTask &&
+    !videoPrerendering.value
+  if (!isCurrent() || !recovery.settled || recovery.recovering) return
+  if (frameBusy || recovery.task.video.seeking || !getFrameSource()) return
+  recovery.recovering = true
+  await runConvert({ fitZoom: autoZoom.value, shouldAbort: () => !isCurrent() })
+  if (isCurrent()) {
+    if (recovery.error) error.value = recovery.error
+    prerenderRecovery = null
+  }
 }
 
 function currentPrerenderCacheKey() {
@@ -1043,6 +1130,7 @@ function currentPrerenderCacheKey() {
 function invalidatePrerenderIfStale() {
   if (!videoPrerenderReady.value) return
   if (prerenderCacheKey !== currentPrerenderCacheKey()) {
+    invalidateVideoPrerender()
     clearPrerenderCache()
   }
 }
@@ -1120,6 +1208,7 @@ function restoreCharsetFontDefaults() {
 }
 
 function restoreDefaults() {
+  invalidateVideoPrerender()
   artMode.value = 'density'
   artQuality.value = 'faithful'
   artMotion.value = 'none'
@@ -1328,16 +1417,19 @@ function convertFrame(
   return result
 }
 
-async function runConvert(options?: { fitZoom?: boolean }) {
+async function runConvert(options?: ConvertOptions) {
+  if (options?.shouldAbort?.() || (hasVideo.value && sourceVideo.value?.seeking)) return
   const frame = getFrameSource()
   if (!frame) return
   if (frameBusy) {
     const prevFit = typeof convertQueued === 'object' ? Boolean(convertQueued.fitZoom) : false
-    convertQueued = { fitZoom: Boolean(options?.fitZoom) || prevFit }
+    convertQueued = { ...options, fitZoom: Boolean(options?.fitZoom) || prevFit }
     return
   }
   frameBusy = true
   const capturedRevision = sourceRevision.value
+  const shouldAbort = () =>
+    viewDisposed || capturedRevision !== sourceRevision.value || Boolean(options?.shouldAbort?.())
   const targetCols = resolveAsciiColumns({
     columns: columns.value,
     kind: mediaKind.value,
@@ -1350,7 +1442,7 @@ async function runConvert(options?: { fitZoom?: boolean }) {
   error.value = ''
   try {
     if (heavy) await new Promise<void>((r) => setTimeout(r, 0))
-    if (capturedRevision !== sourceRevision.value) return
+    if (shouldAbort()) return
     const latest = getFrameSource()
     if (!latest) {
       clearResult()
@@ -1366,7 +1458,7 @@ async function runConvert(options?: { fitZoom?: boolean }) {
             latest.height,
             calibratedSettings(targetCols),
             {
-              shouldAbort: () => viewDisposed || capturedRevision !== sourceRevision.value,
+              shouldAbort,
             },
           ).then((art) => ({
             art,
@@ -1376,7 +1468,7 @@ async function runConvert(options?: { fitZoom?: boolean }) {
             rows: art.rows,
           }))
         : convertFrame(latest, options)
-    if (viewDisposed || capturedRevision !== sourceRevision.value) return
+    if (shouldAbort()) return
     artFrame.value = result.art ?? null
     ascii.value = result.text
     asciiColors.value = result.colors ?? null
@@ -1391,7 +1483,7 @@ async function runConvert(options?: { fitZoom?: boolean }) {
     schedulePaint()
   } catch (e) {
     if (e instanceof DOMException && e.name === 'AbortError') return
-    if (capturedRevision !== sourceRevision.value) return
+    if (shouldAbort()) return
     error.value = e instanceof Error ? e.message : '转换失败'
     clearResult()
   } finally {
@@ -1402,6 +1494,7 @@ async function runConvert(options?: { fitZoom?: boolean }) {
       convertQueued = false
       void runConvert(queued)
     }
+    if (prerenderRecovery?.settled && !viewDisposed) void restorePrerenderPreview(prerenderRecovery)
   }
 }
 
@@ -1420,7 +1513,12 @@ function buildExportAscii(): {
   return { text: result.text, colors: result.colors }
 }
 
-function onVideoTimeUpdate() {
+function isCurrentSourceVideoEvent(event?: Event) {
+  return !event || event.currentTarget === sourceVideo.value
+}
+
+function onVideoTimeUpdate(event?: Event) {
+  if (!hasVideo.value || !isCurrentSourceVideoEvent(event)) return
   const video = sourceVideo.value
   if (!video) return
   if (videoPlaybackMode.value === 'prerender') return
@@ -1428,30 +1526,40 @@ function onVideoTimeUpdate() {
   if (Number.isFinite(video.duration)) videoDuration.value = video.duration
 }
 
-function onSourceVideoPlay() {
+function onSourceVideoPlay(event?: Event) {
+  if (!hasVideo.value || !isCurrentSourceVideoEvent(event)) return
   if (videoPlaybackMode.value === 'prerender' || videoPrerendering.value) return
   videoPlaying.value = true
 }
 
-function onVideoBuffering() {
-  if (!downloading.value && !videoPrerendering.value) videoBuffering.value = true
+function onVideoBuffering(event?: Event) {
+  if (!hasVideo.value || !isCurrentSourceVideoEvent(event)) return
+  if (!downloading.value && !videoPrerendering.value && !prerenderRecovery)
+    videoBuffering.value = true
 }
 
-function onVideoReady() {
+function onVideoReady(event?: Event) {
+  if (!hasVideo.value || !isCurrentSourceVideoEvent(event)) return
   videoBuffering.value = false
+  if (prerenderRecovery?.settled) void restorePrerenderPreview(prerenderRecovery)
 }
 
-function onSourceVideoPause() {
+function onSourceVideoPause(event?: Event) {
+  if (!hasVideo.value || !isCurrentSourceVideoEvent(event)) return
   if (videoPlaybackMode.value === 'prerender' || videoPrerendering.value) return
   videoPlaying.value = false
   videoBuffering.value = false
   stopVideoLoop()
 }
 
-function onVideoSeeked() {
-  onVideoReady()
-  if (!hasVideo.value) return
+function onVideoSeeked(event?: Event) {
+  if (!hasVideo.value || !isCurrentSourceVideoEvent(event)) return
+  onVideoReady(event)
   if (downloading.value || videoPrerendering.value) return
+  if (prerenderRecovery) {
+    void restorePrerenderPreview(prerenderRecovery)
+    return
+  }
   if (videoPlaybackMode.value === 'prerender' && videoPlaying.value) return
   if (videoPrerenderReady.value && usePrerenderPath.value && !videoPlaying.value) {
     applyPrerenderFrame(nearestPrerenderIndex(prerenderFrames, videoCurrentTime.value))
@@ -1476,9 +1584,9 @@ function applyPrerenderFrame(index: number, options?: { fitZoom?: boolean }) {
 
 async function runPrerenderVideoFrames(): Promise<boolean> {
   const video = sourceVideo.value
-  if (!video || !hasVideo.value) return false
+  if (!video || !hasVideo.value || viewDisposed) return false
 
-  prerenderAbort = false
+  invalidateVideoPrerender()
   pauseVideoPlayback()
   clearPrerenderCache()
   videoPrerendering.value = true
@@ -1488,6 +1596,15 @@ async function runPrerenderVideoFrames(): Promise<boolean> {
   const capturedCacheKey = currentPrerenderCacheKey()
   const capturedSettings = calibratedSettings(columns.value)
   const calibrated = editorEngine.value === 'calibrated'
+  const task: VideoPrerenderTask = {
+    controller: new AbortController(),
+    generation: prerenderGeneration,
+    video,
+    sourceRevision: sourceRevision.value,
+    cacheKey: capturedCacheKey,
+    resumeTime: video.currentTime,
+  }
+  prerenderTask = task
 
   try {
     const result = await prerenderVideoFrames({
@@ -1495,9 +1612,12 @@ async function runPrerenderVideoFrames(): Promise<boolean> {
       fps: videoFps.value,
       startTime: clipStart.value,
       endTime: clipEnd.value,
-      shouldAbort: () => prerenderAbort || capturedCacheKey !== currentPrerenderCacheKey(),
-      getFrameSource,
+      signal: task.controller.signal,
+      shouldAbort: () => !isCurrentPrerenderTask(task),
+      canRestoreSource: () => ownsPrerenderSource(task),
+      getFrameSource: () => (isCurrentPrerenderTask(task) ? getFrameSource() : null),
       convertFrame: async (source) => {
+        if (!isCurrentPrerenderTask(task)) throw new DOMException('已取消解析', 'AbortError')
         if (!calibrated) return convertFrame(source)
         const art = await prepareArtFrameResponsive(
           source.source,
@@ -1505,17 +1625,17 @@ async function runPrerenderVideoFrames(): Promise<boolean> {
           source.height,
           capturedSettings,
           {
-            shouldAbort: () =>
-              prerenderAbort || viewDisposed || capturedCacheKey !== currentPrerenderCacheKey(),
+            shouldAbort: () => !isCurrentPrerenderTask(task),
           },
         )
         return { art, text: art.text, colors: art.colors, columns: art.columns, rows: art.rows }
       },
       onPlan: ({ total }) => {
+        if (!isCurrentPrerenderTask(task)) return
         videoPrerenderTotal.value = total
       },
       onProgress: ({ done, total, frame, index }) => {
-        if (prerenderAbort || capturedCacheKey !== currentPrerenderCacheKey()) return
+        if (!isCurrentPrerenderTask(task)) return
         videoPrerenderDone.value = done
         videoPrerenderTotal.value = total
         if (index === 0) {
@@ -1530,11 +1650,7 @@ async function runPrerenderVideoFrames(): Promise<boolean> {
       },
     })
 
-    if (capturedCacheKey !== currentPrerenderCacheKey()) {
-      clearPrerenderCache()
-      error.value = '解析期间参数已调整，请按当前设置重新解析'
-      return false
-    }
+    if (!isCurrentPrerenderTask(task)) return false
     if (!result.ok) {
       clearPrerenderCache()
       error.value = result.error
@@ -1546,12 +1662,23 @@ async function runPrerenderVideoFrames(): Promise<boolean> {
     videoPrerenderReady.value = true
     applyPrerenderFrame(nearestPrerenderIndex(result.frames, result.resumeTime), { fitZoom: true })
     return true
+  } catch (cause) {
+    if (!isCurrentPrerenderTask(task)) return false
+    clearPrerenderCache()
+    error.value = cause instanceof Error ? cause.message : '解析失败，请重新解析或使用低消耗预览'
+    return false
   } finally {
-    videoPrerendering.value = false
-    if (!videoPrerenderReady.value && getFrameSource()) {
-      const failure = error.value
-      await runConvert({ fitZoom: autoZoom.value })
-      error.value = failure
+    if (ownsPrerenderTask(task)) {
+      prerenderTask = null
+      videoPrerendering.value = false
+      if (!videoPrerenderReady.value) {
+        prerenderRecovery = { task, error: error.value, settled: true, recovering: false }
+        await restorePrerenderPreview(prerenderRecovery)
+      }
+    } else if (prerenderRecovery?.task === task && ownsPrerenderSource(task)) {
+      // Only a recovery explicitly requested by cancel may outlive task ownership.
+      prerenderRecovery.settled = true
+      await restorePrerenderPreview(prerenderRecovery)
     }
   }
 }
@@ -1633,13 +1760,24 @@ function startPrerenderLoop() {
 async function playVideo() {
   const video = sourceVideo.value
   if (!video || !hasVideo.value || videoPrerendering.value) return
+  const capturedRevision = sourceRevision.value
 
   if (usePrerenderPath.value) {
     invalidatePrerenderIfStale()
     if (!videoPrerenderReady.value) {
-      const ok = await runPrerenderVideoFrames()
-      if (!ok) return
+      const pendingPrerender = runPrerenderVideoFrames()
+      const generation = prerenderGeneration
+      const ok = await pendingPrerender
+      if (!ok || generation !== prerenderGeneration) return
     }
+    if (
+      viewDisposed ||
+      capturedRevision !== sourceRevision.value ||
+      video !== sourceVideo.value ||
+      !usePrerenderPath.value ||
+      !videoPrerenderReady.value ||
+      prerenderCacheKey !== currentPrerenderCacheKey()
+    ) return
     const playAt =
       videoCurrentTime.value < clipStart.value || videoCurrentTime.value >= clipEnd.value - 1 / videoFps.value
         ? clipStart.value
@@ -1649,14 +1787,17 @@ async function playVideo() {
     return
   }
 
+  invalidateVideoPrerender()
   clearPrerenderCache()
   seekPlaybackIntoClip(video)
   try {
     await video.play()
+    if (viewDisposed || capturedRevision !== sourceRevision.value || video !== sourceVideo.value) return
     videoPlaying.value = true
     startVideoLoop()
     void runConvert({ fitZoom: autoZoom.value })
   } catch {
+    if (viewDisposed || capturedRevision !== sourceRevision.value || video !== sourceVideo.value) return
     error.value = '无法自动播放，请点击播放'
   }
 }
@@ -1711,6 +1852,8 @@ function syncClipEnd() {
 }
 
 function onClipEdited() {
+  if (videoPlaybackMode.value === 'prerender') pauseVideoPlayback()
+  invalidateVideoPrerender()
   clearPrerenderCache()
   const video = sourceVideo.value
   if (!video || videoPlaybackMode.value !== 'live' || video.paused) return
@@ -1768,6 +1911,7 @@ function startClipHere() {
 function onVideoSeekInput(event: Event) {
   const video = sourceVideo.value
   if (!video || !hasVideo.value || videoPrerendering.value) return
+  if (prerenderRecovery) invalidateVideoPrerender(false)
   const value = Number((event.target as HTMLInputElement).value)
   videoCurrentTime.value = value
 
@@ -1793,6 +1937,7 @@ function clearImageBitmap() {
 
 async function loadFile(file: File | undefined) {
   if (!file || viewDisposed || downloading.value || packingProject.value) return false
+  videoPrerenderNotice.value = ''
   sourceLoadController?.abort()
   const controller = new AbortController()
   sourceLoadController = controller
@@ -2729,6 +2874,7 @@ watch(
       if (videoPlaying.value && parsingPlayback) {
         pauseVideoPlayback()
       }
+      invalidateVideoPrerender()
       clearPrerenderCache()
     }
     if (getFrameSource() && !videoPrerendering.value) {
@@ -2762,6 +2908,7 @@ watch(fontSize, () => {
 
 watch(videoFps, () => {
   if (!hasVideo.value) return
+  invalidateVideoPrerender()
   clearPrerenderCache()
   if (!videoPlaying.value) return
   if (videoPlaybackMode.value === 'prerender') {
@@ -2769,6 +2916,11 @@ watch(videoFps, () => {
   } else if (videoPlaybackMode.value === 'live') {
     startVideoLoop()
   }
+})
+
+watch([clipStart, clipEnd], () => {
+  if (!hasVideo.value || (!prerenderTask && !prerenderRecovery && !videoPrerenderReady.value)) return
+  onClipEdited()
 })
 
 watch(
@@ -2898,6 +3050,8 @@ watch(videoLoopEnabled, (enabled) => {
 watch(sourceVideo, (video, _previous, onCleanup) => {
   if (!video) return
   const ended = () => {
+    if (viewDisposed || !hasVideo.value || sourceVideo.value !== video) return
+    if (videoPrerendering.value || prerenderRecovery) return
     videoCurrentTime.value = video.duration
     pauseVideoPlayback()
     void runConvert()
@@ -2907,6 +3061,7 @@ watch(sourceVideo, (video, _previous, onCleanup) => {
 })
 watch(videoPreviewMode, () => {
   pauseVideoPlayback()
+  invalidateVideoPrerender()
   clearPrerenderCache()
   if (hasVideo.value) void runConvert()
 })
@@ -3379,15 +3534,15 @@ onBeforeUnmount(() => {
               playsinline
               loop
               @click.stop
-              @timeupdate="activeVideoSlot === slot && onVideoTimeUpdate()"
-              @seeked="activeVideoSlot === slot && onVideoSeeked()"
-              @play="activeVideoSlot === slot && onSourceVideoPlay()"
-              @pause="activeVideoSlot === slot && onSourceVideoPause()"
-              @waiting="activeVideoSlot === slot && onVideoBuffering()"
-              @stalled="activeVideoSlot === slot && onVideoBuffering()"
-              @seeking="activeVideoSlot === slot && onVideoBuffering()"
-              @playing="activeVideoSlot === slot && onVideoReady()"
-              @canplay="activeVideoSlot === slot && onVideoReady()"
+              @timeupdate="activeVideoSlot === slot && onVideoTimeUpdate($event)"
+              @seeked="activeVideoSlot === slot && onVideoSeeked($event)"
+              @play="activeVideoSlot === slot && onSourceVideoPlay($event)"
+              @pause="activeVideoSlot === slot && onSourceVideoPause($event)"
+              @waiting="activeVideoSlot === slot && onVideoBuffering($event)"
+              @stalled="activeVideoSlot === slot && onVideoBuffering($event)"
+              @seeking="activeVideoSlot === slot && onVideoBuffering($event)"
+              @playing="activeVideoSlot === slot && onVideoReady($event)"
+              @canplay="activeVideoSlot === slot && onVideoReady($event)"
             />
             <img v-if="previewUrl && !hasVideo" class="thumb" :src="previewUrl" alt="上传预览" />
             <div class="drop-copy">
@@ -4319,6 +4474,9 @@ onBeforeUnmount(() => {
             </p>
             <p v-else-if="sourceError || error" class="status error" role="alert">
               {{ sourceError || error }}
+            </p>
+            <p v-else-if="videoPrerenderNotice" class="status notice" role="status" aria-live="polite">
+              {{ videoPrerenderNotice }}
             </p>
             <p v-else-if="meta" class="status">{{ meta }}</p>
             <p v-else class="status">上传图片或短视频后实时显示结果</p>
@@ -5334,6 +5492,10 @@ onBeforeUnmount(() => {
 
 .status.error {
   color: var(--danger);
+}
+
+.status.notice {
+  color: var(--text-muted);
 }
 
 .empty {

@@ -73,7 +73,12 @@ export type PrerenderVideoOptions = {
   endTime?: number
   maxDurationSec?: number
   maxFrames?: number
-  /** Return true to abort mid-loop. */
+  signal?: AbortSignal
+  /** Decoder wait limit per seek, including successful source restoration. */
+  seekTimeoutMs?: number
+  /** A newer task may own the same element even when its URL has not changed. */
+  canRestoreSource?: () => boolean
+  /** Return true to abort, including while waiting for a seek. */
   shouldAbort: () => boolean
   getFrameSource: () => AsciiFrameSource | null
   convertFrame: (source: AsciiFrameSource) => AsciiConvertResult | Promise<AsciiConvertResult>
@@ -109,6 +114,8 @@ export async function prerenderVideoFrames(
   options: PrerenderVideoOptions,
 ): Promise<PrerenderVideoResult> {
   const { video, getFrameSource, convertFrame, shouldAbort, onProgress } = options
+  const cancelled = (): PrerenderVideoFailure => ({ ok: false, error: '已取消预渲染', aborted: true })
+  if (options.signal?.aborted || shouldAbort()) return cancelled()
   const maxDurationSec = options.maxDurationSec ?? VIDEO_PRERENDER_MAX_DURATION_SEC
   const maxFrames = options.maxFrames ?? VIDEO_PRERENDER_MAX_FRAMES
 
@@ -141,8 +148,6 @@ export async function prerenderVideoFrames(
   }
   const total = Math.min(maxFrames, planned)
 
-  options.onPlan?.({ total, fps, duration: span })
-
   const frames: PrerenderFrame[] = []
   let cacheBytes = 0
   const retained = new WeakSet<object>()
@@ -153,23 +158,36 @@ export async function prerenderVideoFrames(
     return view.buffer.byteLength
   }
   const resumeTime = video.currentTime
+  const sourceUrl = () => video.getAttribute?.('src') ?? video.currentSrc ?? ''
+  const originalSource = sourceUrl()
+  let sourceInvalidated = false
+  const onSourceRemoved = () => { sourceInvalidated = true }
+  const sameSource = () => !sourceInvalidated && sourceUrl() === originalSource
+  const aborted = () => options.signal?.aborted || shouldAbort() || !sameSource()
+  const checkAbort = () => {
+    if (aborted()) throw new DOMException('已取消预渲染', 'AbortError')
+  }
+  const seekOptions = { signal: options.signal, shouldAbort: aborted, timeoutMs: options.seekTimeoutMs }
+  const failure = (error: unknown): PrerenderVideoFailure =>
+    aborted() || (error instanceof Error && error.name === 'AbortError')
+      ? cancelled()
+      : { ok: false, error: error instanceof Error ? error.message : '预渲染失败' }
+  video.addEventListener('emptied', onSourceRemoved)
+  video.addEventListener('abort', onSourceRemoved)
 
-  try {
+  const collectFrames = async (): Promise<PrerenderVideoResult> => {
+    checkAbort()
+    options.onPlan?.({ total, fps, duration: span })
     for (let i = 0; i < total; i++) {
-      if (shouldAbort()) {
-        return {
-          ok: false,
-          error: '已取消预渲染',
-          aborted: true,
-        }
-      }
+      checkAbort()
       const t = Math.min(end, start + i * step)
-      await seekVideoTo(video, t)
+      await seekVideoTo(video, t, seekOptions)
+      checkAbort()
       const source = getFrameSource()
       if (!source) continue
 
       const result = await convertFrame(source)
-      if (shouldAbort()) return { ok: false, error: '已取消预渲染', aborted: true }
+      checkAbort()
       const frameBytes = result.text.length * 2 + 1024 + bufferBytes(result.colors) +
         bufferBytes(result.art?.indices) + bufferBytes(result.art?.alpha) + bufferBytes(result.art?.colors)
       let atlasBytes = 0
@@ -185,6 +203,7 @@ export async function prerenderVideoFrames(
         return { ok: false, error: `预计缓存 ${mib} MiB，超过内存上限。请选择低消耗预览或缩短选段；视频导出会逐帧处理。` }
       }
       const raster = await options.renderRaster?.(source, t)
+      checkAbort()
       if (i === 0 && (frameBytes + (raster?.size ?? 0)) * total + atlasBytes > maxCacheBytes)
         return { ok: false, error: '预计栅格缓存超过内存上限，请选择低消耗预览或缩短选段。' }
       cacheBytes += frameBytes + atlasBytes + (raster?.size ?? 0)
@@ -210,19 +229,36 @@ export async function prerenderVideoFrames(
     }
 
     return { ok: true, frames, resumeTime }
-  } catch (e) {
-    return {
-      ok: false,
-      error: e instanceof Error ? e.message : '预渲染失败',
+  }
+
+  try {
+    let result: PrerenderVideoResult
+    try {
+      result = await collectFrames()
+      checkAbort()
+    } catch (error) {
+      result = failure(error)
     }
-  } finally {
-    // Cancellation and memory failures must restore the source just like success.
-    if (video.readyState >= 2) {
-      try {
-        await seekVideoTo(video, resumeTime)
-      } catch {
-        // The caller may have replaced or removed this source while parsing.
+    if (sameSource() && (options.canRestoreSource?.() ?? true) && video.readyState >= 1) {
+      if (result.ok) {
+        try {
+          await seekVideoTo(video, resumeTime, seekOptions)
+          checkAbort()
+        } catch (error) {
+          result = failure(error)
+        }
+      } else {
+        // Release cancelled/failed work immediately; another decoder wait can stall again.
+        try {
+          if (Math.abs(video.currentTime - resumeTime) >= 0.001) video.currentTime = resumeTime
+        } catch {
+          // Keep the original failure if the same source is no longer seekable.
+        }
       }
     }
+    return aborted() ? cancelled() : result
+  } finally {
+    video.removeEventListener('emptied', onSourceRemoved)
+    video.removeEventListener('abort', onSourceRemoved)
   }
 }
