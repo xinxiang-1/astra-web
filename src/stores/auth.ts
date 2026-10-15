@@ -340,6 +340,8 @@ export const useAuthStore = defineStore('auth', () => {
         err instanceof ApiError &&
         (err.status === 401 || ((!err.status || err.status === 200) && err.code === 401))
       ) {
+        // Cold startup can already have user=null; account readers still need the invalidation.
+        invalidateSessionRequests()
         setAccessToken(null)
         observedToken = null
         user.value = null

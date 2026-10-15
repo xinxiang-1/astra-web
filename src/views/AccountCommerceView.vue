@@ -230,6 +230,7 @@ onBeforeUnmount(() => {
           >已购内容</RouterLink
         >
         <RouterLink to="/projects">本地项目 ↗</RouterLink>
+        <RouterLink to="/account/membership">会员与额度</RouterLink>
         <RouterLink to="/collections">内容合集 ↗</RouterLink>
         <RouterLink v-if="adminAvailable" to="/admin/refunds">退款工作台 ↗</RouterLink>
         <RouterLink v-if="adminAvailable" to="/admin/reconciliations">每日对账 ↗</RouterLink>

@@ -19,6 +19,7 @@ export const routeTitles: Record<string, string> = {
   'account-orders': '我的订单',
   'account-order-detail': '订单详情',
   'account-library': '已购内容',
+  'account-membership': '会员与服务额度',
   'admin-refunds': '退款工作台',
   'admin-reconciliations': '每日对账',
   'admin-payment-verification': '原支付核查',

@@ -57,6 +57,11 @@ const router = createRouter({
       props: { collection: 'library' },
     },
     {
+      path: '/account/membership',
+      name: 'account-membership',
+      component: () => import('@/views/AccountMembershipView.vue'),
+    },
+    {
       path: '/login',
       name: 'login',
       component: AuthView,

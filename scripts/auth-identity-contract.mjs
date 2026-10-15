@@ -20,6 +20,9 @@ try {
       source.match(/from "([^"]*\/pinia.js[^"]*)"/)[1]
     )
     const { useAuthStore } = await import('/src/stores/auth.ts')
+    const { nextTick, watch } = await import(
+      source.match(/from "([^"]*\/vue.js[^"]*)"/)[1]
+    )
     const original = window.fetch,
       rows = []
     const payload = (label) => ({
@@ -51,6 +54,41 @@ try {
       )
     }
     try {
+      for (const [label, status, code, clearsSession] of [
+        ['http401', 401, 401, true],
+        ['business401', 200, 401, true],
+        ['service503', 503, 503, false],
+        ['service503-business401', 503, 401, false],
+      ]) {
+        const auth = fresh()
+        localStorage.setItem('astra_access_token', payload('A').accessToken)
+        const q = deferred(),
+          pending = auth.restoreSession(),
+          observed = []
+        // Account pages mount while startup restoration is pending, before a user exists.
+        const stop = watch(
+          [() => auth.user?.id, () => auth.sessionRevision],
+          () => observed.push(localStorage.getItem('astra_access_token')),
+          { immediate: true },
+        )
+        try {
+          check(auth.user === null, 'cold restore unexpectedly had a user')
+          q[0].resolve(response(null, status, code))
+          check((await pending) === false, 'failed cold restore accepted')
+          await nextTick()
+          check(
+            observed.length === (clearsSession ? 2 : 1),
+            'cold restore did not notify identity observers exactly when credentials changed',
+          )
+          check(
+            observed.at(-1) === (clearsSession ? null : payload('A').accessToken),
+            'identity observers retained a stale token or lost a transiently unavailable session',
+          )
+          rows.push({ case: 'cold-restore-notifies-' + label, passed: true })
+        } finally {
+          stop()
+        }
+      }
       for (const [label, status, code] of [
         ['success', 200, 0],
         ['http401', 401, 401],
@@ -251,7 +289,7 @@ try {
       localStorage.clear()
     }
   })
-  assert.equal(rows.length, 23)
+  assert.equal(rows.length, 27)
   await writeFile(
     out + '/report.json',
     JSON.stringify(

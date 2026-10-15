@@ -1,0 +1,68 @@
+{
+  "date": "2026-10-15",
+  "stage": "membership-account",
+  "passed": true,
+  "baseCommit": "0493cd596f56b7dc0a15e84d513efaa81e56d91f",
+  "sourceSha256": {
+    "src/api/membership.ts": "76ac5071230c3a0b2c056005354d03ee54a21670afe094b07da02351735bca30",
+    "src/views/AccountMembershipView.vue": "e03ede6e0e81263c35204bf045f9478d168655164e8158d3b2ceca4673d6912a",
+    "src/stores/auth.ts": "a753e1d5c69fb6f3b02459f66408ae6160d54e5f853afd66b674968bc60403d7",
+    "src/router/index.ts": "670f307b797f973ae06d7b551dc244572f10b47cedc82e40854ff35103e9595d",
+    "src/content/navigation.ts": "5c507aaf12aa54a42185af36a219c9c486bc5824fc54b470b9c2e15e34f4668b",
+    "src/views/AccountCommerceView.vue": "2e1a868217bf677a48c9ac3f374de0af28dd599a2c9e242b04258806b8228434",
+    "scripts/membership-api-contract.mjs": "04b45d5d82633860a5c6e2eb3cd81eff04133138b557d1e83bd9b4ffc4ed3bd2",
+    "scripts/membership-account-live.mjs": "f6ec5422ca09f4935244ca43280920c4b0db8fbdaeb47d94f0c65ad5f4064d2a",
+    "scripts/auth-identity-contract.mjs": "6260ec875e354a1af4bb4c02bd4cddd64b70b2ec42c87f0db535e4f64ad249f0"
+  },
+  "checks": {
+    "typeCheck": true,
+    "targetedEslint": true,
+    "productionBuild": true,
+    "membershipApi": 27,
+    "authHttp": 8,
+    "authSession": 7,
+    "authIdentity": {
+      "msedge": 27,
+      "chrome": 27
+    },
+    "ownedBrowser": {
+      "msedge": 13,
+      "chrome": 13
+    },
+    "junit": {
+      "membership": 19,
+      "gateway": 20
+    },
+    "impeccableDetector": [],
+    "stageManualLinks": true
+  },
+  "productionIndexSha256": "36eb223b78832c470c493fd27a9eb77ef7ac5cf54beed849d3191cf172f6535a",
+  "backendEvidence": "../../../../../astra-cloud/docs/validation/2026-10-15/membership-account",
+  "backendContractValidation": {
+    "passed": true,
+    "membershipTests": 19,
+    "actualHttpResponsesValidated": 21,
+    "browserAcceptanceVerified": true,
+    "browsersValidated": 2,
+    "actualBrowserHttpResponsesValidated": 56,
+    "cleanupVerified": true,
+    "contractSha256": "65ca9cc077369247e5a76f019ab4d8c8f9729d8a87dd5aea64bd2c9a88586d82",
+    "scope": "Owned system/gateway HTTP and transactional membership ledger; fixture JWT and seeded paid-order/grant facts; no real auth login, funds, sale or cloud consumer",
+    "realMembershipSaleVerified": false,
+    "realCloudConsumerVerified": false
+  },
+  "visualReview": [
+    "msedge-desktop-light",
+    "msedge-desktop-dark",
+    "msedge-mobile-light",
+    "msedge-mobile-dark",
+    "msedge-usage-mobile",
+    "msedge-long-name-mobile"
+  ],
+  "limits": [
+    "Fixture-issued JWT and seeded paid-order/grant facts; regular auth/me controlled503 and cold-start controlled401",
+    "No real membership sale, merchant funds or cloud consumer",
+    "390px browser emulation, no physical mobile certification",
+    "Existing Office compatibility, large chunks and signature mixed-import build warnings remain"
+  ]
+}
